@@ -23,8 +23,7 @@ const config = {
       ({
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
-          editUrl: 'https://github.com/farcasterxyz/www/tree/main/docs',
+          editUrl: 'https://github.com/farcasterxyz/www/tree/main/',
         },
         blog: false,
         theme: {
