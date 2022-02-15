@@ -39,8 +39,8 @@ const config = {
       navbar: {
         title: 'Farcaster',
         logo: {
-          alt: 'My Site Logo',
-          src: 'img/logo.svg',
+          alt: 'Farcaster logo',
+          src: 'img/logo.png',
         },
         items: [
           {
