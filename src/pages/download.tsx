@@ -94,12 +94,11 @@ function DownloadPage() {
             <strong>iOS:</strong> we support all{" "}
             <a href="https://walletconnect.com/">Wallet Connect</a> wallets.
             We've found{" "}
-            <a href="https://apps.apple.com/us/app/rainbow-ethereum-wallet/id1457119021">
-              Rainbow
-            </a>{" "}
-            and{" "}
             <a href="https://apps.apple.com/us/app/metamask/id1438144202">
               MetaMask mobile
+            </a>{" "}and{" "}
+            <a href="https://apps.apple.com/us/app/rainbow-ethereum-wallet/id1457119021">
+              Rainbow
             </a>{" "}
             to be the most reliable to connect.
           </li>
