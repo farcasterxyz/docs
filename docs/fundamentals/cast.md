@@ -48,8 +48,8 @@ A simple, hello world message from the user `@v` might look like this:
 ```javascript
 {
   body: {
-    username: 'v',
     address: '0x6bFBF67473014Bfd814BCAF9259f5EB41A48380A',
+    username: 'v',
     publishedAt: 1622579480955,
     type: 'text-short',
     data: {
