@@ -15,11 +15,11 @@ You can think of a signed blob as an interface that all data stored on the host 
 
 ```json
 {
-	"body":  {
-    "text": "Hello, world!"
-	},
-	"merkleRoot": "0xfoo",
-	"signature": "0xbar"
+    "body":  {
+        "text": "Hello, world!"
+    },
+    "merkleRoot": "0xfoo",
+    "signature": "0xbar"
 }
 ```
 
