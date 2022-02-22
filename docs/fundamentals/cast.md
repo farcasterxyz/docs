@@ -17,14 +17,14 @@ A determined, malicious user who hates the sound of `gif` might rewrite all thei
 
 The cast object looks like this: 
 
-```tsx
+```javascript
 interface Cast {
   body: {
 	  address: string;
 	  username: string;
 	  publishedAt: number; 
 	  type: string;
-		data: unknown;	
+	  data: unknown;	
 	  sequence: number;
 	  prevMerkleRoot: string;
   },
@@ -35,8 +35,8 @@ interface Cast {
 
 A cast is a [signed blob](https://www.notion.so/Signed-Blob-d6f35b95dd4946e0a208441996612ce4), so it follows the typical structure of having a `body`, `merkleRoot` and `signature`.  The body object contains a few new properties: 
 
-- `username` -  the user who generated  the cast.
 - `address` - the Ethereum that signed the cast.
+- `username` -  the user who generated  the cast.
 - `publishedAt` - the unverified, user-reported unix timestamp of publication.
 - `type` - the schema for message in the data object.
 - `data`- the message that the user is broadcasting as defined by the type schema.
@@ -45,14 +45,14 @@ A cast is a [signed blob](https://www.notion.so/Signed-Blob-d6f35b95dd4946e0a208
 
 A simple, hello world message from the user `@v` might look like this:
 
-```tsx
+```javascript
 {
   body: {
     username: 'v',
     address: '0x6bFBF67473014Bfd814BCAF9259f5EB41A48380A',
     publishedAt: 1622579480955,
     type: 'text-short',
-		data: {
+    data: {
       text: 'hello world!',
     },
     sequence: 0,
@@ -71,10 +71,10 @@ A simple, hello world message from the user `@v` might look like this:
 Farcaster defines the `text-short` schema which is used in its social network. It allows short simple text messages that can either stand alone, or be replies to other messages.  It defines the cast data as an object that contains two properties: 
 
 ```tsx
-		data: {
-		  text: string;
-			replyParentMerkleRoot?: string;
-		}
+data: {
+  text: string;
+  replyParentMerkleRoot?: string;
+}
 ```
 
 - `text` - the message from the user, which may contain up to 280 unicode characters
