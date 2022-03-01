@@ -1,7 +1,6 @@
 import React from "react";
 import clsx from "clsx";
 import LayoutHead from "@theme/LayoutHead";
-import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import styles from "./download.module.css";
@@ -9,7 +8,8 @@ import styles from "./download.module.css";
 function DownloadPage() {
   const { siteConfig } = useDocusaurusContext();
   return (
-    <div className={styles.container}>
+    <div>
+      <div className={styles.container}>
       <div className={styles.downloadContainer}>
         <div className={styles.downloadButtonContainer}>
           <p className={styles.betaAlert}>
@@ -116,6 +116,8 @@ function DownloadPage() {
         </p>
       </div>
     </div>
+    </div>
+
   );
 }
 
