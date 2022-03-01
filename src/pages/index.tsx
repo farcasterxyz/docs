@@ -12,7 +12,7 @@ function HomepageContent() {
       <div className={styles.indexContainer}>
         <div className={styles.downloadButtonContainer}>
           <div className={styles.logoContainer}>
-            <img src="/img/logo.png" alt="logo" width="32" height="32" />
+            <img src="/img/logo_48.png" alt="logo" width="48" height="48" />
             <h1>Farcaster</h1>
           </div>
           <p>
