@@ -1,5 +1,6 @@
 import React from "react";
 import clsx from "clsx";
+import LayoutHead from "@theme/LayoutHead";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
@@ -96,7 +97,8 @@ function DownloadPage() {
             We've found{" "}
             <a href="https://apps.apple.com/us/app/metamask/id1438144202">
               MetaMask mobile
-            </a>{" "}and{" "}
+            </a>{" "}
+            and{" "}
             <a href="https://apps.apple.com/us/app/rainbow-ethereum-wallet/id1457119021">
               Rainbow
             </a>{" "}
@@ -119,5 +121,13 @@ function DownloadPage() {
 
 export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
-  return <DownloadPage />;
+  return (
+    <div>
+      <LayoutHead
+        title="Download"
+        description="Farcaster, a decentralized social network"
+      />
+      <DownloadPage />
+    </div>
+  );
 }

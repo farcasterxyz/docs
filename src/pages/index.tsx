@@ -9,11 +9,43 @@ function HomepageContent() {
   const { siteConfig } = useDocusaurusContext();
   return (
     <div className={styles.container}>
-      <h1>Farcaster</h1>
-      <h2>A decentralized social network</h2>
-      <p>
-        Get started with our <a href="/docs/intro">developer docs</a>.
-      </p>
+      <div className={styles.indexContainer}>
+        <div className={styles.downloadButtonContainer}>
+          <div className={styles.logoContainer}>
+            <img src="/img/logo.png" alt="logo" width="32" height="32" />
+            <h1>Farcaster</h1>
+          </div>
+          <p>
+            Farcaster is a{" "}
+            <a href="https://www.varunsrinivasan.com/2022/01/11/sufficient-decentralization-for-social-networks">
+              sufficiently decentralized
+            </a>{" "}
+            social network. It is an open protocol that can support many
+            clients, just like email.{" "}
+          </p>
+          <p>
+            Users will always have the freedom to move their social identity
+            between applications, and developers will always have the freedom to
+            build applications with new features on the network.
+          </p>
+          <p>
+            It is currently in private beta. You can sign up for the waitlist{" "}
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfxZGZpVF0Dd1ray5odAouwo0PazBy61LNdseY6cN1Dpl4YXA/viewform">
+              here
+            </a>
+            .
+          </p>
+        </div>
+
+        <div className={styles.downloadButtonContainer}>
+          <Link
+            className={styles.downloadButton}
+            to="https://www.farcaster.xyz/docs/intro"
+          >
+            Learn more
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }
@@ -22,11 +54,8 @@ export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
   return (
     <div>
-      <LayoutHead
-        title={`Home`}
-        description="Farcaster, a decentralized social network"
-      />
-        <HomepageContent />
+      <LayoutHead description="Farcaster, a decentralized social network" />
+      <HomepageContent />
     </div>
   );
 }
