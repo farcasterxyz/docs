@@ -1,36 +1,61 @@
-import React from 'react';
-import clsx from 'clsx';
-import Layout from '@theme/Layout';
-import Link from '@docusaurus/Link';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import styles from './index.module.css';
+import React from "react";
+import clsx from "clsx";
+import LayoutHead from "@theme/LayoutHead";
+import Link from "@docusaurus/Link";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import styles from "./index.module.css";
 
-function HomepageHeader() {
-  const {siteConfig} = useDocusaurusContext();
+function HomepageContent() {
+  const { siteConfig } = useDocusaurusContext();
   return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)}>
-      <div className="container">
-        <h1 className="hero__title">{siteConfig.title}</h1>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
+    <div className={styles.container}>
+      <div className={styles.indexContainer}>
+        <div className={styles.downloadButtonContainer}>
+          <div className={styles.logoContainer}>
+            <img src="/img/logo.png" alt="logo" width="32" height="32" />
+            <h1>Farcaster</h1>
+          </div>
+          <p>
+            Farcaster is a{" "}
+            <a href="https://www.varunsrinivasan.com/2022/01/11/sufficient-decentralization-for-social-networks">
+              sufficiently decentralized
+            </a>{" "}
+            social network. It is an open protocol that can support many
+            clients, just like email.{" "}
+          </p>
+          <p>
+            Users will always have the freedom to move their social identity
+            between applications, and developers will always have the freedom to
+            build applications with new features on the network.
+          </p>
+          <p>
+            It is currently in private beta. You can sign up for the waitlist{" "}
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfxZGZpVF0Dd1ray5odAouwo0PazBy61LNdseY6cN1Dpl4YXA/viewform">
+              here
+            </a>
+            .
+          </p>
+        </div>
+
+        <div className={styles.downloadButtonContainer}>
           <Link
-            className="button button--secondary button--lg"
-            to="/docs/intro">
-            Get Started
+            className={styles.downloadButton}
+            to="https://www.farcaster.xyz/docs/intro"
+          >
+            Learn more
           </Link>
         </div>
       </div>
-    </header>
+    </div>
   );
 }
 
 export default function Home(): JSX.Element {
-  const {siteConfig} = useDocusaurusContext();
+  const { siteConfig } = useDocusaurusContext();
   return (
-    <Layout
-      title={`Home`}
-      description="Farcaster, a decentralized social network">
-      <HomepageHeader />
-    </Layout>
+    <div>
+      <LayoutHead description="Farcaster, a decentralized social network" />
+      <HomepageContent />
+    </div>
   );
 }

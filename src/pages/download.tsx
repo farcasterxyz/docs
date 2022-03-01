@@ -9,7 +9,6 @@ function DownloadPage() {
   const { siteConfig } = useDocusaurusContext();
   return (
     <div>
-      <LayoutHead title={'Download'} ></LayoutHead>
       <div className={styles.container}>
       <div className={styles.downloadContainer}>
         <div className={styles.downloadButtonContainer}>
@@ -98,7 +97,8 @@ function DownloadPage() {
             We've found{" "}
             <a href="https://apps.apple.com/us/app/metamask/id1438144202">
               MetaMask mobile
-            </a>{" "}and{" "}
+            </a>{" "}
+            and{" "}
             <a href="https://apps.apple.com/us/app/rainbow-ethereum-wallet/id1457119021">
               Rainbow
             </a>{" "}
@@ -123,5 +123,13 @@ function DownloadPage() {
 
 export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
-  return <DownloadPage />;
+  return (
+    <div>
+      <LayoutHead
+        title="Download"
+        description="Farcaster, a decentralized social network"
+      />
+      <DownloadPage />
+    </div>
+  );
 }
