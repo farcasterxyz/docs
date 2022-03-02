@@ -34,13 +34,13 @@ function DownloadPage() {
           <h5>Desktop</h5>
           <Link
             className={styles.downloadButton}
-            to="https://s3.amazonaws.com/release.reader.merklemanufactory.com/Farcaster-0.4.28.dmg"
+            to="https://s3.amazonaws.com/release.reader.merklemanufactory.com/Farcaster-0.4.29.dmg"
           >
             macOS - Intel
           </Link>
           <Link
             className={styles.downloadButton}
-            to="https://s3.amazonaws.com/release.reader.merklemanufactory.com/Farcaster-0.4.28-arm64.dmg"
+            to="https://s3.amazonaws.com/release.reader.merklemanufactory.com/Farcaster-0.4.29-arm64.dmg"
           >
             macOS - Apple silicon
           </Link>
