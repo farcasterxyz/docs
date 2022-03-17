@@ -114,6 +114,13 @@ function DownloadPage() {
           </a>{" "}
           and <a href="https://www.farcaster.xyz/docs/intro">developer docs</a>.
         </p>
+        
+        <h4>Are you hiring?</h4>
+        <p>
+          <a href="https://farcasterxyz.notion.site/Farcaster-Open-Roles-27586d01276441b3802bfb0237c07ec3">
+            Yes!
+          </a>
+        </p>
       </div>
     </div>
     </div>
