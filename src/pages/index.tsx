@@ -33,7 +33,7 @@ function HomepageContent() {
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSfxZGZpVF0Dd1ray5odAouwo0PazBy61LNdseY6cN1Dpl4YXA/viewform">
               here
             </a>
-            .{" "}We're also
+            .{" "}We're also{" "}
            <a href="https://farcasterxyz.notion.site/Farcaster-Open-Roles-27586d01276441b3802bfb0237c07ec3">
             hiring
            </a>
