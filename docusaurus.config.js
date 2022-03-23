@@ -61,6 +61,8 @@ const config = {
         links: [],
         // copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
       },
+      metadata: [{name: 'twitter:card', content: 'summary'}],
+      image: 'img/square_logo.png',
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
