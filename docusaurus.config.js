@@ -61,8 +61,8 @@ const config = {
         links: [],
         // copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
       },
-      metadata: [{name: 'twitter:card', content: 'summary'}],
-      image: 'img/square_logo.png',
+      metadata: [{name: 'twitter:card', content: 'summary_large_image'},{name: 'twitter:image', content: 'https://www.farcaster.xyz/img/opengraph.png'}],
+      image: 'img/opengraph.png',
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
