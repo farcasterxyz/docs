@@ -5,7 +5,7 @@ slug: /registry
 
 # Registry
 
-The Farcaster Registry is an Ethereum contract that lets you look up the Host URL of any username. It also lets you register a new username and set your Host URL. You can think of the registry as a lookup table that lets you to go from address → username → host url. It’s deployed at [0x7154655eE203d4700336f75384BC5D85dDa58f8A](https://rinkeby.etherscan.io/address/0x7154655eE203d4700336f75384BC5D85dDa58f8A#code) on the Rinkeby Testnet.  
+The Farcaster Registry is an Ethereum contract that lets you look up the Host URL of any username. It also lets you register a new username and set your Host URL. You can think of the registry as a lookup table that lets you to go from address → username → host url. It’s deployed at [0xe3Be01D99bAa8dB9905b33a3cA391238234B79D1](https://rinkeby.etherscan.io/address/0xe3Be01D99bAa8dB9905b33a3cA391238234B79D1#code) on the Rinkeby Testnet.  
 
 <p align="center">
   <img width="512" height="300" align="center" src="/img/docs/registry-smart-contract.png" />
@@ -36,7 +36,7 @@ You can read the [tutorial](https://www.notion.so/Tutorial-Download-messages-a79
 
 ### Proxy Upgrade Pattern
 
-The Registry contract implements the [Proxy Upgrade Pattern](https://docs.openzeppelin.com/upgrades-plugins/1.x/proxies) which allows the contract logic to be changed by admins over time. This results in two contracts - the [proxy contract](https://rinkeby.etherscan.io/address/0x7154655eE203d4700336f75384BC5D85dDa58f8A#code), which is the public interface and the [implementation contract](https://rinkeby.etherscan.io/address/0x313ecedd3f157086ee1d27b8d30a2dd1f486b16b#code), which contains the logic. When calling the smart contract, always remember to call the proxy contract. 
+The Registry contract implements the [Proxy Upgrade Pattern](https://docs.openzeppelin.com/upgrades-plugins/1.x/proxies) which allows the contract logic to be changed by admins over time. This results in two contracts - the [proxy contract](https://rinkeby.etherscan.io/address/0xe3Be01D99bAa8dB9905b33a3cA391238234B79D1#code), which is the public interface and the [implementation contract](https://rinkeby.etherscan.io/address/0x1a211dfba6e76d765fbd8dd089d885a5c94a6acf#code), which contains the logic. When calling the smart contract, always remember to call the proxy contract. 
 
 ### OpenGSN
 
