@@ -80,7 +80,7 @@ data: {
 - `text` - the message from the user, which may contain up to 280 unicode characters
 - `replyParentMerkleRoot` - (optional) references the ancestor cast, if in a thread.
 
-Schemas are enforced at the client level, and clients may truncate or reject messages entirely if they do not conform to the schema. Other schema types can be proposed as protocol improvments — for example, a poll schema to allow users to run quick polls and collect responses from their followers. 
+Schemas are enforced at the client level, and clients may truncate or reject messages entirely if they do not conform to the schema. Other schema types can be proposed as protocol improvements — for example, a poll schema to allow users to run quick polls and collect responses from their followers. 
 
 ### Making a text-short Cast
 
