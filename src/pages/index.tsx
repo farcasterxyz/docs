@@ -28,17 +28,6 @@ function HomepageContent() {
             between applications, and developers will always have the freedom to
             build applications with new features on the network.
           </p>
-          <p>
-            It is currently in private beta. You can sign up for the waitlist{" "}
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfxZGZpVF0Dd1ray5odAouwo0PazBy61LNdseY6cN1Dpl4YXA/viewform">
-              here
-            </a>
-            .{" "}We're also{" "}
-           <a href="https://farcasterxyz.notion.site/Farcaster-Open-Roles-27586d01276441b3802bfb0237c07ec3">
-            hiring
-           </a>
-            .
-          </p>
         </div>
 
         <div className={styles.downloadButtonContainer}>
@@ -46,7 +35,13 @@ function HomepageContent() {
             className={styles.downloadButton}
             to="https://www.farcaster.xyz/docs/intro"
           >
-            Learn more
+            Docs
+          </Link>
+          <Link
+            className={styles.downloadButton}
+            to="https://github.com/farcasterxyz/protocol"
+          >
+            GitHub
           </Link>
         </div>
       </div>
