@@ -34,19 +34,12 @@ function DownloadPage() {
           <h5>Desktop</h5>
           <Link
             className={styles.downloadButton}
-            to="https://s3.amazonaws.com/release.reader.merklemanufactory.com/Farcaster-latest.dmg"
+            to="https://downloads.farcaster.xyz/Farcaster-latest-universal.dmg"
           >
-            macOS - Intel
-          </Link>
-          <Link
-            className={styles.downloadButton}
-            to="https://s3.amazonaws.com/release.reader.merklemanufactory.com/Farcaster-latest-arm64.dmg"
-          >
-            macOS - Apple silicon
+            macOS - Universal
           </Link>
           <div className={styles.downloadHelpLink}>
-            Not sure if your Mac is Intel or Apple silicon?{" "}
-            <a href="https://support.apple.com/en-us/HT211814">Learn more</a>
+            You can also download <a href="https://downloads.farcaster.xyz/Farcaster-latest.dmg">Intel</a> or <a href="https://downloads.farcaster.xyz/Farcaster-latest-arm64.dmg">Apple Silicon</a> binaries directly.
           </div>
         </div>
 
@@ -114,7 +107,7 @@ function DownloadPage() {
           </a>{" "}
           and <a href="https://www.farcaster.xyz/docs/intro">developer docs</a>.
         </p>
-        
+
         <h4>Are you hiring?</h4>
         <p>
           <a href="https://farcasterxyz.notion.site/Farcaster-Open-Roles-27586d01276441b3802bfb0237c07ec3">
