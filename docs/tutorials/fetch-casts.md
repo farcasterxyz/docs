@@ -5,7 +5,7 @@ slug: /fetch-casts
 
 # Fetch Casts
 
-In this tutorial, we’ll show you how to write a simple script that can fetch a Farcaster user’s [casts](https://www.notion.so/Casts-7b05d9bf01374bd1b79ef81de4586519) and verify their authenticity. All you need is a web browser to get started. The final code is available on [Replit](https://replit.com/@VarunSrinivasa3/Farcaster-Tutorial-1#index.js) and you can open it to see how it works if you’d like. If you prefer to learn by doing, we recommend following these steps which will walk you through creating the app from scratch.
+In this tutorial, we’ll show you how to write a simple script that can fetch a Farcaster user’s [casts](https://www.farcaster.xyz/docs/cast) and verify their authenticity. All you need is a web browser to get started. The final code is available on [Replit](https://replit.com/@VarunSrinivasa3/Farcaster-Tutorial-1#index.js) and you can open it to see how it works if you’d like. If you prefer to learn by doing, we recommend following these steps which will walk you through creating the app from scratch.
 
 ### Step 1: Set up your Environment
 
@@ -99,10 +99,10 @@ v's Host is located at: https://guardian.farcaster.xyz/origin/directory/0x012D36
 
 There’s a lot we just wrote, so let’s unpack it. First, we define the registry contract’s address and [ABI](https://en.wikipedia.org/wiki/Application_binary_interface). The address tells ethers where to find the contract on the blockchain, and the ABI tells ethers what functions the contract has. The Registry contract has several methods, but our ABI only calls out two of them:
 
-- `getDirectoryUrl` - returns the URL location of a username’s [Host Directory](https://www.notion.so/Host-84cc5cd6f4ea487e88b203b34fca3ae9).
+- `getDirectoryUrl` - returns the URL location of a username’s [Host Directory](https://www.farcaster.xyz/docs/host#host-directory).
 - `addressToUsername` - returns the username registered to an address.
 
-We don’t need to tell the contract about methods we aren’t calling, so we omit the rest of the ABI for simplicity. If you ever want to call the other methods, they can be found [here](https://www.notion.so/Registry-82cd3c4a524d42e090031de7d1240598). 
+We don’t need to tell the contract about methods we aren’t calling, so we omit the rest of the ABI for simplicity. If you ever want to call the other methods, they can be found [here](https://www.notion.so/Registry-82cd3c4a524d42e090031de7d1240598).
 
 Next, we initialize an [Ethers Contract](https://docs.ethers.io/v5/api/contract/contract/), and call the `getDirectoryUrl` function to the directory of a user called `v` .  Since the ABI indicates that the username must be `byte32 encoded`, we encode it first before invoking the contract call.  This gives us the URL of the users’ Directory, which we can use to find their messages. 
 
@@ -210,7 +210,7 @@ PASSED: the recovered address 0x012D3606bAe7aebF03a04F8802c561330eAce70A matches
 
 The Cast that we got in the previous step claims to be from the user. But the Host could be lying to us, or someone might have broken into the Host and changed a user’s messages. We can prove that the message wasn’t tampered with because Farcaster gives us a way to verify any data on the network. 
 
-Every Farcaster Cast is a [Signed Blob](https://www.notion.so/Spec-Signed-Blob-v2-15a59f63450e4a5b97077bd8c4de9dbb), so it’s body is hashed and signed. The hash is stored in the Cast as the `merkleRoot` and its signature is stored as `signature`. To verify the signature we: 
+Every Farcaster Cast is a [Signed Blob](https://www.farcaster.xyz/docs/signed-blob), so it’s body is hashed and signed. The hash is stored in the Cast as the `merkleRoot` and its signature is stored as `signature`. To verify the signature we: 
 
 1. Hash the body with keccak256 and check that the value matches the merkleRoot.
 2. Run ecRecover on the secp256k1 signature with the merkleRoot and check that it returns the address. 
