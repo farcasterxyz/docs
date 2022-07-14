@@ -60,7 +60,7 @@ The code we just wrote created an [Ethers Provider](https://docs.ethers.io/v5/ap
 
 ### Step 3: Connect to the Farcaster Registry
 
-Copy the following it code and add it at the bottom of the `doStuff` function, just below the last line  `console.log("The latest Ethereum block is:", block);`. All future snippets should be added to the bottom in the same way: 
+Copy the following code and add it at the bottom of the `doStuff` function, just below the last line  `console.log("The latest Ethereum block is:", block);`. All future snippets should be added to the bottom in the same way: 
  
 
 ```jsx
