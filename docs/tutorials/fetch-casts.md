@@ -102,7 +102,7 @@ There’s a lot we just wrote, so let’s unpack it. First, we define the regist
 - `getDirectoryUrl` - returns the URL location of a username’s [Host Directory](https://www.farcaster.xyz/docs/host#host-directory).
 - `addressToUsername` - returns the username registered to an address.
 
-We don’t need to tell the contract about methods we aren’t calling, so we omit the rest of the ABI for simplicity. If you ever want to call the other methods, they can be found [here](https://www.notion.so/Registry-82cd3c4a524d42e090031de7d1240598).
+We don’t need to tell the contract about methods we aren’t calling, so we omit the rest of the ABI for simplicity. If you ever want to call the other methods, they can be found [here](https://www.farcaster.xyz/docs/registry#contract-interface).
 
 Next, we initialize an [Ethers Contract](https://docs.ethers.io/v5/api/contract/contract/), and call the `getDirectoryUrl` function to the directory of a user called `v` .  Since the ABI indicates that the username must be `byte32 encoded`, we encode it first before invoking the contract call.  This gives us the URL of the users’ Directory, which we can use to find their messages. 
 
