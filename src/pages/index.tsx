@@ -33,12 +33,6 @@ function HomepageContent() {
         <div className={styles.downloadButtonContainer}>
           <Link
             className={styles.downloadButton}
-            to="https://www.farcaster.xyz/docs/intro"
-          >
-            Docs
-          </Link>
-          <Link
-            className={styles.downloadButton}
             to="https://github.com/farcasterxyz/protocol"
           >
             GitHub
