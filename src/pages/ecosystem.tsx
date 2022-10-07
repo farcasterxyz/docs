@@ -229,11 +229,6 @@ function EcosystemPage() {
               </a>
             </li>
             <li>
-              <a href="https://app.radicle.network/seeds/pine.radicle.garden/rad:git:hnrkk8zzkim4ommau8h91ogmyh75kdj7d3kpy">
-                https://app.radicle.network/seeds/pine.radicle.garden/rad:git:hnrkk8zzkim4ommau8h91ogmyh75kdj7d3kpy
-              </a>
-            </li>
-            <li>
               <a href="https://github.com/TheLDB/farcaster-rs">
                 https://github.com/TheLDB/farcaster-rs
               </a>
