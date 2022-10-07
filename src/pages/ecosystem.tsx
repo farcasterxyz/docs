@@ -8,11 +8,11 @@ import styles from "./download.module.css";
 function EcosystemPage() {
   const { siteConfig } = useDocusaurusContext();
   return (
-    <div>
+    <div>   
       <div className={styles.container}>
-        <div className={styles.ecosystemContainer}>
-
-<div className={styles.downloadButtonContainer}>
+        <div className={styles.downloadContainer}>
+          <div className={styles.downloadButtonContainer}>
+   
 
           <h3 id="developer-docs">Dev docs</h3>
 
@@ -297,7 +297,8 @@ function EcosystemPage() {
               </a>
             </li>
           </ul>
-        </div></div>
+        </div>
+       </div>
       </div>
     </div>
   );
