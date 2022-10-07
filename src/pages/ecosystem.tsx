@@ -259,39 +259,7 @@ function EcosystemPage() {
               </a>
             </li>
           </ul>
-          <h3 id="writing-about-farcaster">Writing about Farcaster</h3>
-          <ul>
-            <li>
-              <a href="https://www.shawkisukkar.com/2022/farcaster">
-                https://www.shawkisukkar.com/2022/farcaster
-              </a>
-            </li>
-            <li>
-              <a href="https://mirror.xyz/giacaglia.eth/u5S-6JMWq6in7JVWLJKnh3HaO8In430K4JYKIxxD_nY">
-                https://mirror.xyz/giacaglia.eth/u5S-6JMWq6in7JVWLJKnh3HaO8In430K4JYKIxxD_nY
-              </a>
-            </li>
-            <li>
-              <a href="https://www.varunsrinivasan.com/2022/01/11/sufficient-decentralization-for-social-networks">
-                https://www.varunsrinivasan.com/2022/01/11/sufficient-decentralization-for-social-networks
-              </a>
-            </li>
-            <li>
-              <a href="https://mirror.xyz/rish.eth/IVu3YxwgH74GdGyI0zqpW4OJRKERqb5rY33XDAnu4NA">
-                https://mirror.xyz/rish.eth/IVu3YxwgH74GdGyI0zqpW4OJRKERqb5rY33XDAnu4NA
-              </a>
-            </li>
-            <li>
-              <a href="https://derekbrown.xyz/thoughts-on-farcaster">
-                https://derekbrown.xyz/thoughts-on-farcaster
-              </a>
-            </li>
-            <li>
-              <a href="http://newsletter.alphaschedule.io/issues/alpha-schedule-2-selling-nfts-from-a-vending-machine-1049024">
-                http://newsletter.alphaschedule.io/issues/alpha-schedule-2-selling-nfts-from-a-vending-machine-1049024
-              </a>
-            </li>
-          </ul>
+        
         </div>
        </div>
       </div>
