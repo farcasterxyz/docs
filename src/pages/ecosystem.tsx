@@ -305,8 +305,8 @@ export default function Home(): JSX.Element {
   return (
     <div>
       <LayoutHead
-        title="Download"
-        description="Farcaster, a decentralized social network"
+        title="Ecosystem"
+        description="Farcaster"
       />
       <EcosystemPage />
     </div>
