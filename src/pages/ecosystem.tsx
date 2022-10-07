@@ -11,6 +11,9 @@ function EcosystemPage() {
     <div>
       <div className={styles.container}>
         <div className={styles.ecosystemContainer}>
+
+<div className={styles.downloadButtonContainer}>
+
           <h3 id="developer-docs">Dev docs</h3>
 
           <ul>
@@ -294,7 +297,7 @@ function EcosystemPage() {
               </a>
             </li>
           </ul>
-        </div>
+        </div></div>
       </div>
     </div>
   );
