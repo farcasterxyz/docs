@@ -37,6 +37,12 @@ function HomepageContent() {
           >
             GitHub
           </Link>
+          <Link
+            className={styles.downloadButton}
+            to="https://farcaster.xyz/ecosystem"
+          >
+            Ecosystem
+          </Link>
         </div>
       </div>
     </div>
