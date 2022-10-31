@@ -23,14 +23,21 @@
   border-radius: 6px;
 }
 
-.downloadContainer, .ecosystemContainer {
+.downloadContainer, .containerEco {
   font-size: 0.9em;
 }
 
-.downloadContainer a:link, .ecosystemContainer a:link {
+a:link {
   color: #0000ee;
 }
-.downloadContainer a:visited, .ecosystemContainer a:visited {
+a:visited {
+  color: #551a8b;
+}
+
+.containerEco a:link {
+  color: #0000ee;
+}
+.containerEco a:visited {
   color: #551a8b;
 }
 
@@ -113,6 +120,6 @@
 }
 
 
-.ecosystemContainer h3 {
-  margin-top: 60px;
+.containerEco h3 {
+  margin-top: 40px;
 }
