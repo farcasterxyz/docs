@@ -12,6 +12,10 @@
   padding: 32px 16px;
 }
 
+.containerEco {
+  padding: 1em;
+}
+
 .betaAlert {
   padding: 16px 24px;
   background: rgb(255, 248, 197);
