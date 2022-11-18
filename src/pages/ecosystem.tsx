@@ -74,7 +74,9 @@ function EcosystemPage() {
           <li>
             <a href="https://fcast.me">https://fcast.me</a>
           </li>
-
+          <li>
+            <a href="https://screenshot-essay-caster.vercel.app">https://screenshot-essay-caster.vercel.app</a>
+          </li>
           <li>
             <a href="https://farcasternews.xyz">https://farcasternews.xyz</a>
           </li>
