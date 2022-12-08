@@ -20,8 +20,7 @@ function DownloadPage() {
           <div className={styles.downloadButtonContainer}>
             <h3>Download</h3>
             <p>
-              Farcaster is available for macOS and iOS; Windows, Linux and Android
-              coming soon.
+              Farcaster is available for macOS, iOS and Android; web, Windows and Linux coming in 2023.
             </p>
           </div>
 
@@ -53,9 +52,13 @@ function DownloadPage() {
             >
               iOS - TestFlight
             </Link>
+            <Link
+              className={styles.downloadButton}
+              to="https://farcasterxyz.notion.site/Android-app-f4386f3be3d2491f9553cc82d4c18f68"
+            >
+              Android
+            </Link>
           </div>
-
-          
         </div>
       </div>
     </div>
