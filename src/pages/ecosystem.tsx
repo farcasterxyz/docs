@@ -66,6 +66,9 @@ function EcosystemPage() {
             <a href="https://pincaster.xyz/">https://pincaster.xyz</a>
           </li>
           <li>
+            <a href="https://sharecaster.xyz/">https://sharecaster.xyz/</a>
+          </li>
+          <li>
             <a href="https://bebcaster.xyz/">https://bebcaster.xyz</a>
           </li>
           <li>
@@ -89,8 +92,8 @@ function EcosystemPage() {
             </a>
           </li>
           <li>
-            <a href="https://www.farcaster.events/">
-              https://farcaster.events
+            <a href="https://eventcaster.xyz/">
+              https://eventcaster.xyz
             </a>
           </li>
           <li>
