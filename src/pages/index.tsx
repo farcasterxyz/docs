@@ -36,19 +36,19 @@ function HomepageContent() {
             className={styles.downloadButton}
             to="https://www.youtube.com/playlist?list=PL0eq1PLf6eUdm35v_840EGLXkVJDhxhcF"
           >
-            Learn more
+            Learn
           </Link>
           <Link
             className={styles.downloadButton}
             to="https://github.com/farcasterxyz/protocol"
           >
-            Protocol spec
+            Protocol
           </Link>
           <Link
             className={styles.downloadButton}
             to="https://farcaster.xyz/ecosystem"
           >
-            Ecosystem
+            Apps
           </Link>
         </div></div>
       </div>
