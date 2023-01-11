@@ -31,6 +31,7 @@ function HomepageContent() {
         </div>
 
         <div className={styles.downloadButtonContainer}>
+          <div className={styles.floatContainer}>
           <Link
             className={styles.downloadButton}
             to="https://www.youtube.com/playlist?list=PL0eq1PLf6eUdm35v_840EGLXkVJDhxhcF"
@@ -49,7 +50,7 @@ function HomepageContent() {
           >
             Ecosystem
           </Link>
-        </div>
+        </div></div>
       </div>
     </div>
   );
