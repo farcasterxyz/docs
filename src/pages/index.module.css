@@ -58,7 +58,7 @@
 }
 
 .floatContainer {
-  display: float !important;
+  display: flex !important;
 }
 
 .downloadButton {
