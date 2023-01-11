@@ -57,6 +57,10 @@
   margin-bottom: 32px;
 }
 
+.floatContainer {
+  display: float !important;
+}
+
 .downloadButton {
   margin-right: 16px;
 }
