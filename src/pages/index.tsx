@@ -33,9 +33,15 @@ function HomepageContent() {
         <div className={styles.downloadButtonContainer}>
           <Link
             className={styles.downloadButton}
+            to="https://www.youtube.com/playlist?list=PL0eq1PLf6eUdm35v_840EGLXkVJDhxhcF"
+          >
+            Learn more
+          </Link>
+          <Link
+            className={styles.downloadButton}
             to="https://github.com/farcasterxyz/protocol"
           >
-            GitHub
+            Protocol spec
           </Link>
           <Link
             className={styles.downloadButton}
