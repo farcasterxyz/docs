@@ -46,9 +46,9 @@ function HomepageContent() {
           </Link>
           <Link
             className={styles.downloadButton}
-            to="https://farcaster.xyz/ecosystem"
+            to="https://github.com/a16z/awesome-farcaster"
           >
-            Apps
+            Ecosystem
           </Link>
         </div></div>
       </div>
