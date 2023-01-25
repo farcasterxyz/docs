@@ -11,11 +11,6 @@ function DownloadPage() {
     <div>
       <div className={styles.container}>
         <div className={styles.downloadContainer}>
-          <div className={styles.downloadButtonContainer}>
-            <p className={styles.betaAlert}>
-              <strong>Please don't share this page publicly for now. If you want to invite someone to Farcaster, have them <a href="https://twitter.com/dwr">DM dwr on Twitter</a>.</strong>
-            </p>
-          </div>
 
           <div className={styles.downloadButtonContainer}>
             <h3>Download</h3>
@@ -48,7 +43,7 @@ function DownloadPage() {
             <h5>Mobile</h5>
             <Link
               className={styles.downloadButton}
-              to="https://testflight.apple.com/join/VVHx4840"
+              to="https://apps.apple.com/us/app/farcaster/id1600555445"
             >
               iOS - TestFlight
             </Link>
