@@ -45,7 +45,7 @@ function DownloadPage() {
               className={styles.downloadButton}
               to="https://apps.apple.com/us/app/farcaster/id1600555445"
             >
-              iOS - TestFlight
+              iOS
             </Link>
             <Link
               className={styles.downloadButton}
