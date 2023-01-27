@@ -49,7 +49,7 @@ function DownloadPage() {
             </Link>
             <Link
               className={styles.downloadButton}
-              to="https://farcasterxyz.notion.site/Android-app-f4386f3be3d2491f9553cc82d4c18f68"
+              to="https://play.google.com/store/apps/details?id=com.farcaster.mobile"
             >
               Android
             </Link>
