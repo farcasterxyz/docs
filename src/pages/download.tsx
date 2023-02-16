@@ -15,43 +15,16 @@ function DownloadPage() {
           <div className={styles.downloadButtonContainer}>
             <h3>Download</h3>
             <p>
-              Farcaster is available for macOS, iOS and Android; web, Windows and Linux coming in 2023.
+              The original Farcaster app has been rebranded to Warpcast. If you are visiting this page from a Farcaster invite email or search result, please visit warpcast.com to download the mobile or desktop apps.
             </p>
           </div>
 
           <div className={styles.downloadButtonContainer}>
-            <h5>Desktop</h5>
             <Link
               className={styles.downloadButton}
-              to="https://downloads.farcaster.xyz/Farcaster-latest.dmg"
+              to="https://warpcast.com/~/download"
             >
-              macOS - Intel
-            </Link>
-            <Link
-              className={styles.downloadButton}
-              to="https://downloads.farcaster.xyz/Farcaster-latest-arm64.dmg"
-            >
-              macOS - Apple silicon
-            </Link>
-            <div className={styles.downloadHelpLink}>
-              Not sure if your Mac is Intel or Apple silicon?{" "}
-              <a href="https://support.apple.com/en-us/HT211814">Learn more</a>
-            </div>
-          </div>
-
-          <div className={styles.downloadButtonContainer}>
-            <h5>Mobile</h5>
-            <Link
-              className={styles.downloadButton}
-              to="https://apps.apple.com/us/app/farcaster/id1600555445"
-            >
-              iOS
-            </Link>
-            <Link
-              className={styles.downloadButton}
-              to="https://play.google.com/store/apps/details?id=com.farcaster.mobile"
-            >
-              Android
+              Download on Warpcast
             </Link>
           </div>
         </div>
