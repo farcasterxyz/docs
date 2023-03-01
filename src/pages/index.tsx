@@ -38,18 +38,25 @@ function HomepageContent() {
           >
             Learn
           </Link>
+        </div>
+        <div className={styles.downloadButtonContainer}>
+          
           <Link
             className={styles.downloadButton}
             to="https://github.com/farcasterxyz/protocol"
           >
             Protocol
           </Link>
+                  </div>
+        <div className={styles.downloadButtonContainer}>
           <Link
             className={styles.downloadButton}
             to="https://github.com/a16z/awesome-farcaster"
           >
             Ecosystem
           </Link>
+                  </div>
+        <div className={styles.downloadButtonContainer}>
          <Link
             className={styles.downloadButton}
             to="https://farcaster.xyz/download"
