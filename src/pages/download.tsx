@@ -15,7 +15,8 @@ function DownloadPage() {
           <div className={styles.downloadButtonContainer}>
             <h3>Download</h3>
             <p>
-              The original Farcaster app has been rebranded to Warpcast. If you are visiting this page from a Farcaster invite email or search result, please visit warpcast.com to download the mobile or desktop apps.
+              The original Farcaster app has been rebranded to Warpcast.</p>
+            <p>If you are visiting this page from a Farcaster invite email or search result, please visit warpcast.com to download the mobile or desktop apps.
             </p>
           </div>
 
