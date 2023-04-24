@@ -19,3 +19,7 @@ For now, invites are limited to minimize spam. If you're a person who actively e
 ## Where can I find a public roadmap?
 
 You can find a public roadmap [here](https://hackmd.io/@farcasterxyz/SyeXtT4fh).
+
+## What is the difference between Farcaster & Warpcast
+
+Warpcast is an application that implements the Farcaster protocol and is owned/operated privately by the Merkle team.
