@@ -22,6 +22,17 @@ Github is where the work gets done. It's the best place for technical conversati
 | [Contracts](https://github.com/farcasterxyz/contracts) | An implementation of the Farcaster Contracts |
 | [Hubble](https://github.com/farcasterxyz/hub-monorepo) | An implementation of a Farcaster Hub         |
 
+## Community SDKs
+
+This section references the language specific Farcaster community built SDKs for interacting hubs directly, or the warpcast APIs.
+
+| Language                                                      | Description                               |
+| ------------------------------------------------------------- | ----------------------------------------- |
+| [Python](https://github.com/farcasterxyz/protocol)            | Supported by a16z crypto & community      |
+| [Javascript](https://github.com/standard-crypto/farcaster-js) | Suppported by standard-crypto & community |
+| [Rust](https://github.com/TheLDB/farcaster-rs)                | Open community build                      |
+| [Go](https://github.com/ertan/go-farcaster)                   | Open community build                      |
+
 ## Developer Calls
 
 Farcaster developer calls are an open, public forum for anyone building on top of the protocol. They're a space to discuss new proposals and recent developments.
