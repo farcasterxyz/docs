@@ -1,0 +1,1 @@
+import{_ as e,c as t,o as a,N as r}from"./chunks/framework.0799945b.js";const g=JSON.parse('{"title":"Contracts","description":"","frontmatter":{},"headers":[],"relativePath":"protocol/contracts.md"}'),s={name:"protocol/contracts.md"},n=r("",14),d=[n];function o(i,c,h,l,b,f){return a(),t("div",null,d)}const p=e(s,[["render",o]]);export{g as __pageData,p as default};

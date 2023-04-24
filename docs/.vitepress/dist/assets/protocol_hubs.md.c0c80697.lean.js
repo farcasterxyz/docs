@@ -1,0 +1,1 @@
+import{_ as e,c as a,o as t,N as n}from"./chunks/framework.0799945b.js";const d=JSON.parse('{"title":"Hubs","description":"","frontmatter":{},"headers":[],"relativePath":"protocol/hubs.md"}'),r={name:"protocol/hubs.md"},o=n("",11),s=[o];function i(u,l,c,h,p,m){return t(),a("div",null,s)}const _=e(r,[["render",i]]);export{d as __pageData,_ as default};

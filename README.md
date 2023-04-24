@@ -1,11 +1,8 @@
-# Farcaster Documentation
+# farcaster.xyz
 
-Our documentation site lives at [farcaster.xyz](http://farcaster.xyz/)
+Homepage for the Farcaster Protocol
 
-### Installation
+### Getting Started
 
-This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator. To use locally, run: 
-
-```
-$ yarn start
-```
+1. Run `npm install -D vitepress`
+2. Run `npm run docs:dev`

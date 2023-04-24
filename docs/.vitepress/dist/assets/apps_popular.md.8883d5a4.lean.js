@@ -1,0 +1,1 @@
+import{_ as e,c as a,o as r,N as t}from"./chunks/framework.0799945b.js";const d=JSON.parse('{"title":"Applications","description":"","frontmatter":{},"headers":[],"relativePath":"apps/popular.md"}'),l={name:"apps/popular.md"},o=t("",7),s=[o];function i(n,p,c,h,_,f){return r(),a("div",null,s)}const m=e(l,[["render",i]]);export{d as __pageData,m as default};
