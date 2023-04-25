@@ -38,6 +38,7 @@ export default defineConfig({
             ]
           },
           { text: 'Specification', link: '/protocol/specification' },
+          { text: 'Governance', link: '/protocol/governance' },
         ]
       },
       {
