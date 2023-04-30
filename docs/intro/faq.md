@@ -22,4 +22,4 @@ You can find a public roadmap [here](https://hackmd.io/@farcasterxyz/SyeXtT4fh).
 
 ## What is the difference between Farcaster & Warpcast
 
-Warpcast is an application that implements the Farcaster protocol and is owned/operated privately by the Merkle team.
+Farcaster is an open protocol (like IMAP for email), while Warpcast is one of many specific apps (like Gmail) that implements the protocol.
