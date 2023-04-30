@@ -2,8 +2,26 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "Farcaster",
-  description: "Protocol homepage",
+  title: 'Farcaster',
+  description: 'Protocol homepage',
+  head: [
+    ['link', { rel: 'icon', type: 'image/png', href: '/icon.png' }],
+    ['meta', { property: 'og:type', content: 'website' }],
+    [
+      'meta',
+      {
+        property: 'og:title',
+        content: `Farcaster`,
+      },
+    ],
+    ['meta', { property: 'og:image', content: 'https://farcaster.xyz/og-image.png' }],
+    ['meta', { property: 'og:url', content: 'https://farcaster.xyz' }],
+    [
+      'meta',
+      { property: 'og:description', content: 'A protocol for building sufficiently decentralized social networks.' },
+    ],
+    ['meta', { name: 'twitter:site', content: '@farcaster_xyz' }]
+  ],
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },
