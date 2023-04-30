@@ -22,17 +22,6 @@ Github is where the work gets done. It's the best place for technical conversati
 | [Contracts](https://github.com/farcasterxyz/contracts) | An implementation of the Farcaster Contracts |
 | [Hubble](https://github.com/farcasterxyz/hub-monorepo) | An implementation of a Farcaster Hub         |
 
-## Community SDKs
-
-This section references the language specific Farcaster community built SDKs for interacting hubs directly, or the warpcast APIs.
-
-| Language                                                      | Description                               |
-| ------------------------------------------------------------- | ----------------------------------------- |
-| [Python](https://github.com/farcasterxyz/protocol)            | Supported by a16z crypto & community      |
-| [Javascript](https://github.com/standard-crypto/farcaster-js) | Suppported by standard-crypto & community |
-| [Rust](https://github.com/TheLDB/farcaster-rs)                | Open community build                      |
-| [Go](https://github.com/ertan/go-farcaster)                   | Open community build                      |
-
 ## Developer Calls
 
 Farcaster developer calls are an open, public forum for anyone building on top of the protocol. They're a space to discuss new proposals and recent developments.
@@ -44,3 +33,7 @@ Farcaster developer calls are an open, public forum for anyone building on top o
 | [Recordings](https://www.youtube.com/watch?v=lmGXWP5m1_Y&list=PL0eq1PLf6eUeZnPtyKMS6uN9I5iRIlnvq)                                                                                   | Recordings of prior dev calls.              |
 
 Developer calls take place every other week at 10am Pacific Time. They last for 45 minutes and are recorded and posted to YouTube. The core team proposes the agenda and runs the meeting. Anyone can suggest new topics for discussion by leaving a comment on the meeting agenda or proposing it live during the meeting.
+
+## More Resources
+
+Visit [alexpaden/farcaster-resources](https://github.com/alexpaden/farcaster-resources) for a community maintained list of open-source project repositories and SDKs.
