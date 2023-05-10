@@ -36,6 +36,16 @@ On your local machine, go through the following steps:
 write-data broadcasts to testnet by default, but provides instructions to submit to mainnet
 :::
 
+## Replicate data to Postgres DB
+
+On your local machine, go through the following steps:
+
+1. Check out [hub-monorepo](https://github.com/farcasterxyz/hub-monorepo) to your local machine.
+
+2. Navigate to the `packages/hub-nodejs/examples/replicate-data-postgres` directory.
+
+3. Follow the instructions in README.md
+
 ## Publish new casts
 
 On your local machine, go through the following steps:
