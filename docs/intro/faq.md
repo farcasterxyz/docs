@@ -13,8 +13,13 @@ Farcaster's identity layer is currently on the Goerli Ethereum testnet. We plan 
 Farcaster is free during the Goerli testnet phase. After Farcaster migrates to Ethereum mainnet, it will cost ~$10 a year to have an account. Users will pay the protocol directly.
 
 ## Why is Farcaster invite only?
+
 For now, invites are limited to minimize spam. If you're a person who actively engages on social networks or writes code, you shouldn't have a problem getting an invite. We're working on opening the system so that anyone can register by the end of the year.
 
 ## Where can I find a public roadmap?
 
 You can find a public roadmap [here](https://hackmd.io/@farcasterxyz/SyeXtT4fh).
+
+## What is the difference between Farcaster & Warpcast
+
+Farcaster is an open protocol (like IMAP for email), while Warpcast is one of many specific apps (like Gmail) that implements the protocol.

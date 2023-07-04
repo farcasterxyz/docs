@@ -11,7 +11,7 @@ General purpose apps have familiar functionality to other social networks: feeds
 
 ## Specialized
 
-Specialized apps are built for specific use cases like advanced search,  discovery and onchain governance.
+Specialized apps are built for specific use cases like advanced search, discovery and onchain governance.
 
 - [Alphacaster](https://www.alphacaster.xyz/)
 - [Eventcaster](https://www.eventcaster.xyz/)

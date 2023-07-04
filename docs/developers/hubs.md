@@ -20,5 +20,10 @@ A Hub can be run on any machine that has:
 - 8 GB of RAM
 - 2 CPU cores or vCPUs
 - 20 GB of free storage
+- Access to an Ethereum Goerli node via an RPC URL
 
 The storage requirements will grow over time as more users join the network. At 10M daily active users we expect storage to approach 64TB.
+
+:::info
+These requirements are suggested and less RAM and storage may be functionally operational.
+:::
