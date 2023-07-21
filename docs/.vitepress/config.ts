@@ -36,7 +36,6 @@ export default defineConfig({
         items: [
           { text: 'What is Farcaster?', link: '/intro/what-is-farcaster' },
           { text: 'Use Farcaster', link: '/intro/use-farcaster' },
-          { text: 'Discover Apps', link: '/intro/discover-apps  ' },
           { text: 'FAQ', link: '/intro/faq' },
         ]
       },
