@@ -43,17 +43,6 @@ export default defineConfig({
         text: 'Protocol',
         items: [
           { text: 'Overview', link: '/protocol/overview' },
-          {
-            text: 'Concepts',
-            collapsed: true,
-            items: [
-              { text: 'Identity', link: '/protocol/concepts/identity' },
-              { text: 'Messages', link: '/protocol/concepts/messages' },
-              { text: 'Authentication', link: '/protocol/concepts/authentication' },
-              { text: 'Message Graph', link: '/protocol/concepts/message-graph' },
-              { text: 'Applications', link: '/protocol/concepts/applications' },
-            ]
-          },
           { text: 'Specification', link: '/protocol/specification' },
           { text: 'Governance', link: '/protocol/governance' },
           { text: 'Contracts', link: '/protocol/contracts' },
