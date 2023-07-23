@@ -56,13 +56,13 @@ export default defineConfig({
           },
           { text: 'Specification', link: '/protocol/specification' },
           { text: 'Governance', link: '/protocol/governance' },
+          { text: 'Contracts', link: '/protocol/contracts' },
           { text: 'FIPs', link: '/protocol/fips' },
         ]
       },
       {
         text: 'Developers',
         items: [
-          { text: 'Contracts', link: '/developers/contracts' },
           { text: 'Hubs', link: '/developers/hubs' },
           { text: 'Community', link: '/developers/community' },
           { text: 'Examples', link: '/developers/examples' },
