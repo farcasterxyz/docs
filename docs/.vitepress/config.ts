@@ -25,7 +25,7 @@ export default defineConfig({
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/developers/examples' }
+      { text: 'Website', link: 'http://www.farcaster.xyz' }
     ],
     search: {
       provider: 'local'
@@ -35,7 +35,8 @@ export default defineConfig({
         text: 'Introduction',
         items: [
           { text: 'What is Farcaster?', link: '/intro/what-is-farcaster' },
-          { text: 'Use Farcaster', link: '/intro/use-farcaster' },
+          { text: 'Community', link: '/intro/community' },
+          { text: 'Examples', link: '/developers/examples' },
           { text: 'FAQ', link: '/intro/faq' },
         ]
       },
@@ -43,18 +44,11 @@ export default defineConfig({
         text: 'Protocol',
         items: [
           { text: 'Overview', link: '/protocol/overview' },
-          { text: 'Specification', link: '/protocol/specification' },
-          { text: 'Governance', link: '/protocol/governance' },
+          { text: 'Hubs', link: '/protocol/hubs' },
           { text: 'Contracts', link: '/protocol/contracts' },
-          { text: 'FIPs', link: '/protocol/fips' },
-        ]
-      },
-      {
-        text: 'Developers',
-        items: [
-          { text: 'Hubs', link: '/developers/hubs' },
-          { text: 'Community', link: '/developers/community' },
-          { text: 'Examples', link: '/developers/examples' },
+          { text: 'Specification', link: '/protocol/specification' },
+          { text: 'Proposals', link: '/protocol/fips' },
+          { text: 'Governance', link: '/protocol/governance' },
         ]
       }
     ],
