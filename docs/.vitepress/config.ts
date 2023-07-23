@@ -56,6 +56,7 @@ export default defineConfig({
           },
           { text: 'Specification', link: '/protocol/specification' },
           { text: 'Governance', link: '/protocol/governance' },
+          { text: 'FIPs', link: '/protocol/fips' },
         ]
       },
       {
