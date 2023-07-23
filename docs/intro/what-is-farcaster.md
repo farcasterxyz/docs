@@ -1,17 +1,14 @@
 # What is Farcaster?
 
-Farcaster is a community-created protocol for building new kinds of social networks.
+Farcaster is a protocol for building new kinds of social networks.
 
 It is a [sufficiently decentralized](https://www.varunsrinivasan.com/2022/01/11/sufficient-decentralization-for-social-networks) protocol where users control their data and developers can build apps permissionlessly on the network.
 
-## Learn by Doing
+Farcaster is still in private beta and an invitation is required. You can get invites from existing users or by messaging [@dwr](https://twitter.com/dwr) on Twitter.
 
-1. Sign up to [use Farcaster](./use-farcaster.md).
-2. [Write your own Farcaster app](../developers/examples.md).
-3. Run a [Hub](../developers/hubs.md)
+## Learn More
 
-## Learn By Reading
-
-1. Read the [protocol](../protocol/overview.md)
-2. Watch the [whiteboard video series](https://www.youtube.com/playlist?list=PL0eq1PLf6eUdm35v_840EGLXkVJDhxhcF)
-3. Dive into the [code](https://github.com/farcasterxyz/hub-monorepo)
+1. Watch the [video series](https://www.farcaster.xyz/devs#learn).
+2. Follow the [tutorials](https://www.farcaster.xyz/devs#tutorials).
+3. Read about the [protocol](../protocol/overview.md).
+3. Dive into the [code](https://github.com/farcasterxyz/hub-monorepo).
