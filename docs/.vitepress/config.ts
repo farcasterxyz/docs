@@ -36,7 +36,6 @@ export default defineConfig({
         items: [
           { text: 'What is Farcaster?', link: '/intro/what-is-farcaster' },
           { text: 'Use Farcaster', link: '/intro/use-farcaster' },
-          { text: 'Discover Apps', link: '/intro/discover-apps  ' },
           { text: 'FAQ', link: '/intro/faq' },
         ]
       },
@@ -57,12 +56,13 @@ export default defineConfig({
           },
           { text: 'Specification', link: '/protocol/specification' },
           { text: 'Governance', link: '/protocol/governance' },
+          { text: 'Contracts', link: '/protocol/contracts' },
+          { text: 'FIPs', link: '/protocol/fips' },
         ]
       },
       {
         text: 'Developers',
         items: [
-          { text: 'Contracts', link: '/developers/contracts' },
           { text: 'Hubs', link: '/developers/hubs' },
           { text: 'Community', link: '/developers/community' },
           { text: 'Examples', link: '/developers/examples' },
