@@ -15,7 +15,6 @@ Users can have many usernames from different namespaces. Names may come from dec
 
 A user's account has a unique numeric identifier like `413241` which is mapped to the usernames that they own. Identifiers are tracked using an Ethereum contract that ensures that two users can always find each other and communicate. 
 
-
 ### Global State
 
 Many decentralized networks are federated, but this breaks the guarantee of permissionless access to public data. It also complicates the developer experience by requiring them to crawl many unreliable servers.
