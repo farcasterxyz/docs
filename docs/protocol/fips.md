@@ -9,6 +9,9 @@ Farcaster Improvement Proposals (FIPs) are proposals to extend, modify or standa
 | 1   | [Canonical URIs](https://github.com/farcasterxyz/protocol/discussions/72)                  | @pfh, @v                       |
 | 2   | [Flexible targets for messages](https://github.com/farcasterxyz/protocol/discussions/71)   | @pfh                           |
 | 3   | [Links](https://github.com/farcasterxyz/protocol/discussions/85)                           | @cassie, @v                    |
-| 4   | [ENS Usernames](https://github.com/farcasterxyz/protocol/discussions/90)                   | @sanjay, @sds, @v, @horsefacts |
+| 4   | [ENS Usernames](https://github.com/farcasterxyz/protocol/discussions/90)                   | @horsefacts, @sanjay, @sds, @v |
+| 5   | [Instant Recovery](https://github.com/farcasterxyz/protocol/discussions/100)               | @v                             |
+| 6   | [Flexible Storage](https://github.com/farcasterxyz/protocol/discussions/98)                | @cassie, @horsefacts, @v       |
+| 7   | [Onchain Signers](https://github.com/farcasterxyz/protocol/discussions/103)                | @horsefacts, @sanjay, @v       |
 
 
