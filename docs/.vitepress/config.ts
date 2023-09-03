@@ -44,6 +44,7 @@ export default defineConfig({
         text: 'Protocol',
         items: [
           { text: 'Overview', link: '/protocol/overview' },
+          { text: 'Concepts', link: '/protocol/concepts' },
           { text: 'Hubs', link: '/protocol/hubs' },
           { text: 'Contracts', link: '/protocol/contracts' },
           { text: 'Specification', link: '/protocol/specification' },
