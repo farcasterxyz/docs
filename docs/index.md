@@ -2,7 +2,12 @@
 
 Farcaster is a protocol for building decentralized social apps.
 
-It is a [sufficiently decentralized](https://www.varunsrinivasan.com/2022/01/11/sufficient-decentralization-for-social-networks) protocol where users control their data, and developers can build apps permissionlessly on the network. To learn more about Farcaster, check out the following resources:
+It is a [sufficiently decentralized](https://www.varunsrinivasan.com/2022/01/11/sufficient-decentralization-for-social-networks) protocol where users control their data, and developers can build apps permissionlessly on the network. 
+
+![High Level Overview](./assets/high-level.png)
+
+
+To learn more about Farcaster, check out the following resources:
 
 - [Overview](./protocol/overview.md), to learn how Farcaster works.
 - [Community](./intro/community.md), to get involved and find out where stuff happens.
