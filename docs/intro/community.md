@@ -1,10 +1,10 @@
 # Community
 
-The developer community is a great place to get help, learn new things and find interesting people to work with.
+The developer community is a great place to get help, learn new things, and find interesting people to work with.
 
 ## Telegram Channels
 
-Telegram channels are useful for staying up to date on recent developments and having quick, asynchronous conversations.
+Telegram channels are helpful for staying up-to-date with recent developments and having quick, asynchronous conversations.
 
 | Medium                                            | Description                                     |
 | ------------------------------------------------- | ----------------------------------------------- |
