@@ -1,5 +1,13 @@
 # Concepts
 
+There are five main building blocks in the protocol: 
+
+- **Accounts**, which represent users on the network
+- **Usernames**, which point to accounts
+- **Signers**, which post messages on an account's behalf 
+- **Messages**, which represent public updates by accounts 
+- **Storage**, which must be rented by accounts to publish messages 
+
 ## Accounts
 
 A Farcaster account represents a distinct entity on the network. Each account has a Farcaster ID or fid, which is a unique numeric identifier like `78213`. Identities are issued and managed onchain using an Ethereum contract called the IdRegistry.
@@ -18,14 +26,14 @@ A Signer is a cryptographic key pair used to sign messages. Each account can hav
 
 Signers are [Ed25519 keys](https://en.wikipedia.org/wiki/EdDSA#Ed25519) that are generated offchain. An account registers a signer by making a transaction to the KeyRegistry with the public key of the signer. The private key can then be used to sign and publish messages to the network.
 
-## Storage 
-
-Storage gives an account the right to publish messages to the network. It is rented on a yearly basis by paying a fee, similar to how space is rented on a web server. Storage is managed and tracked onchain by the StorageRegistry contract. 
-
-Storage is measured in units and one unit grants an account the right to store a certain number of messages. Anyone can make a payment to the StorageRegistry to rent a storage unit for an account. The price and size of each unit of storage will be changed according to supply and demand.
-
 ## Messages 
 
 Messages are public updates Farcaster like making a post, following someone or adding a profile picture. The network supports many message types and each has its own properties, requirements and semantics. Messages are stored entirely offchain on Farcaster Hubs. 
 
 A message is encoded as a binary [protobufs](https://protobuf.dev/) and must be hashed and signed by the account's signer. Users can publish messages to Hubs as long as they have sufficient storage. Hubs check the validity of each message's signers before accepting them. 
+
+## Storage 
+
+Storage gives an account the right to publish messages to the network. It is rented on a yearly basis by paying a fee, similar to how space is rented on a web server. Storage is managed and tracked onchain by the StorageRegistry contract. 
+
+Storage is measured in units and one unit grants an account the right to store a certain number of messages. Anyone can make a payment to the StorageRegistry to rent a storage unit for an account. The price and size of each unit of storage will be changed according to supply and demand.

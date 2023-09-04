@@ -11,7 +11,7 @@ export default defineConfig({
       'meta',
       {
         property: 'og:title',
-        content: `Farcaster`,
+        content: 'Farcaster',
       },
     ],
     ['meta', { property: 'og:image', content: 'https://farcaster.xyz/og-image.png' }],
@@ -36,8 +36,7 @@ export default defineConfig({
         items: [
           { text: 'What is Farcaster?', link: '/intro/what-is-farcaster' },
           { text: 'Community', link: '/intro/community' },
-          { text: 'Examples', link: '/developers/examples' },
-          { text: 'FAQ', link: '/intro/faq' },
+          { text: 'Tutorials', link: '/developers/examples' },
         ]
       },
       {
@@ -45,12 +44,10 @@ export default defineConfig({
         items: [
           { text: 'Overview', link: '/protocol/overview' },
           { text: 'Concepts', link: '/protocol/concepts' },
+          { text: 'Architecture', link: '/protocol/architecture' },
           { text: 'Messages', link: '/protocol/messages' },
-          { text: 'Hubs', link: '/protocol/hubs' },
-          { text: 'Contracts', link: '/protocol/contracts' },
-          { text: 'Specification', link: '/protocol/specification' },
-          { text: 'Proposals', link: '/protocol/fips' },
           { text: 'Governance', link: '/protocol/governance' },
+          { text: 'Specification', link: '/protocol/specification' },
         ]
       }
     ],

@@ -42,9 +42,9 @@ A link is a relationship between accounts. Links have only one type today: follo
 
 A verification is a proof of ownership of an Ethereum address. It is signed by both the Ethereum address and the account's signer to prove that they are owned by the same person. The EIP-712 standard is used to request a signature from the address. Verifications are not unique and the same address can be verified by many accounts if the same person controls them.
 
-## UserData 
+## User Data 
 
-A UserData message contains metadata about an account, typically displayed on the profile. UserData messages have types and there is only one message of each type. If multiple message of the same type are published, older ones are discarded. 
+A User Data message contains metadata about an account, typically displayed on the profile. UserData messages have types and there is only one message of each type. If multiple message of the same type are published, older ones are discarded. 
 
 | Type      | Description                               |
 |-----------|-------------------------------------------|

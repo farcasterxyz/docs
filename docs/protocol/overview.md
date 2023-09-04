@@ -2,7 +2,6 @@
 
 Farcaster is a [sufficiently decentralized](https://www.varunsrinivasan.com/2022/01/11/sufficient-decentralization-for-social-networks) protocol for building social apps. Sufficient decentralization means that two people who want to communicate can always do so. It also means developers have permissionless access to public data on the network. 
 
-
 ## Design Philosophy
 
 There have been many attempts to decentralize social networks, making different tradeoffs for decentralization, scalability, and usability. ActivityPub chose federation, SecureScuttlebutt went the peer-to-peer route, and peepeth was blockchain-based. 
