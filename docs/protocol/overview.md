@@ -10,18 +10,18 @@ Farcaster borrows ideas from some of these projects but makes different tradeoff
 
 ### Flexible namespaces
 
-Users can have many usernames from different namespaces. Names may come from decentralized namespaces, which are censorship-resistant or centralized namespaces, which are free and easy to use. 
+Users can have many usernames from different namespaces. Names may come from decentralized namespaces, which are censorship-resistant, or from centralized namespaces, which are free and easy to use. 
 
-A user's account has a unique numeric identifier like `413241` which is mapped to the usernames that they own. Identifiers are tracked using an Ethereum contract that ensures that two users can always find each other and communicate. 
+A user's account has a unique numeric identifier like `413241`, which is mapped to the usernames that they own. Identifiers are tracked using an Ethereum contract that ensures that two users can always find each other and communicate. 
 
 ### Global State
 
 Many decentralized networks are federated, but this breaks the guarantee of permissionless access to public data. It also complicates the developer experience by requiring them to crawl many unreliable servers.
 
-Farcaster stores all user data on a server called a Hub. Anyone can run a Hub that connects to all other Hubs over a p2p network. When a user sends a new message to a Hub it is propagated to all other Hubs. Every Hub must store valid data from all users or it will be excluded from the network.   
+Farcaster stores all user data on a server called a Hub. Anyone can run a Hub that connects to all other Hubs over a p2p network. When a user sends a new message to a Hub it is propagated to all other Hubs. Every Hub must store valid data from all users, or it will be excluded from the network.   
 
 ### Storage Rent
 
-Letting users store infinite amounts of data is detrimental to the network's health. Malicious users can create billions of spam messages, making it difficult for developers and users to use the network. It also makes it impossible to operate Hubs, which are designed for commodity hardware. 
+Letting users store infinite amounts of data harms the network's health. Malicious users can create billions of spam messages, making it difficult for developers and users to use the network. It also makes it impossible to operate Hubs, which are designed for commodity hardware. 
 
-Farcaster charges users rent to store data on the network. A yearly fee is paid to the protocol, which guarantees a certain amount of space on Hubs. This disincentives spam and encourages users to clean up less important data on the network.
+Farcaster charges users rent to store data on the network. A yearly fee is paid to the protocol, which guarantees a certain amount of space on Hubs. This disincentives spam and encourages users to clean up less valuable data on the network.
