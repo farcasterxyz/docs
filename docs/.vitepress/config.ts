@@ -34,9 +34,7 @@ export default defineConfig({
       {
         text: 'Introduction',
         items: [
-          { text: 'What is Farcaster?', link: '/intro/what-is-farcaster' },
-          { text: 'Community', link: '/intro/community' },
-          { text: 'Tutorials', link: '/developers/examples' },
+          { text: 'What is Farcaster?', link: '/' },
         ]
       },
       {
@@ -48,6 +46,13 @@ export default defineConfig({
           { text: 'Messages', link: '/protocol/messages' },
           { text: 'Governance', link: '/protocol/governance' },
           { text: 'Specification', link: '/protocol/specification' },
+        ]
+      },
+      {
+        text: 'Resources',
+        items: [
+          { text: 'Community', link: '/intro/community' },
+          { text: 'Tutorials', link: '/developers/examples' },
         ]
       }
     ],
