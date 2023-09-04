@@ -4,7 +4,7 @@ layout: home
 
 hero:
   name: 'Farcaster'
-  tagline: A protocol for building sufficiently decentralized social networks
+  tagline: A protocol for building decentralized social apps
   actions:
     - theme: brand
       text: Get Started
