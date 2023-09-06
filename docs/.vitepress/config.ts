@@ -45,6 +45,7 @@ export default defineConfig({
           { text: 'Architecture', link: '/protocol/architecture' },
           { text: 'Messages', link: '/protocol/messages' },
           { text: 'Governance', link: '/protocol/governance' },
+          { text: 'FIPs', link: '/protocol/fips' },
           { text: 'Specification', link: '/protocol/specification' },
         ]
       },
