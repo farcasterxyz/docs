@@ -43,6 +43,7 @@ export default defineConfig({
           { text: 'Overview', link: '/protocol/overview' },
           { text: 'Concepts', link: '/protocol/concepts' },
           { text: 'Architecture', link: '/protocol/architecture' },
+          { text: 'Fnames', link: '/protocol/fnames' },
           { text: 'Messages', link: '/protocol/messages' },
           { text: 'Governance', link: '/protocol/governance' },
           { text: 'FIPs', link: '/protocol/fips' },
