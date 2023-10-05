@@ -14,6 +14,9 @@ Decisions usually require human judgementand are made by the Farcaster core team
 - Is active and creating quality content on Farcaster
 - Has a reasonable claim, like being called elon or owning the handle elsewhere
 
+The registry also imposes some restrictions to prevent abuse
+ - An fid can only have one fname at a time
+ - An fid can only change their fname once every 28 days
 
 ## API
 
@@ -87,31 +90,15 @@ Then make a POST request to `/transfers` with the following body:
 To generate the EIP-712 signature, use the following code:
 
 ```js
-import { ethers } from 'ethers';
-const signer: ethers.Signer = undefined // Signer for the custody address
+import { makeUserNameProofClaim, EIP712Signer } from "@farcaster/hub-nodejs";
+const signer: EIP712Signer = undefined // Signer for the custody address (use appropriate subclass from hub-nodejs for ethers or viem)
 
-const domain = {
-    name: 'Farcaster name verification',
-    version: '1',
-    chainId: 1,
-    verifyingContract: '0xe3be01d99baa8db9905b33a3ca391238234b79d1',
-};
-
-const types = {
-    UserNameProof: [
-        { name: 'name', type: 'string' },
-        { name: 'timestamp', type: 'uint256' },
-        { name: 'owner', type: 'address' },
-    ],
-};
-
-const userNameProof = {
+const claim = makeUserNameProofClaim({
     name: 'hubble',
-    timestamp: 1641234567,
     owner: '0x...',
-}
-
-const signature = await signer.signTypedData(domain, types, userNameProof)
+    timestamp: Math.floor(Date.now() / 1000),
+});
+const signature = (await signer.signUserNameProofClaim(claim))._unsafeUnwrap();
 ```
 This is the exact same kind of signature used in the ENS UsernameProofs provided to hubs to prove ownership of an ENS name.
 
