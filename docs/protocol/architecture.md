@@ -26,7 +26,7 @@ The Id Registry issues new Farcaster accounts to Ethereum addresses. A user can 
 
 ### Storage Registry
 
-The Storage Registry rents out storage units to accounts for a yearly fee. Accounts must have at least one storage unit to publish messages on Farcaster. Storage prices are set by the contract in USD but must be paid in ETH. A Chainlink oracle determines the exchange rate which is updated at most once in 24 hours. The price, exchange rate, available units and size of each unit are controlled by Farcaster and changed based on supply and demand. 
+The Storage Registry rents out storage units to accounts for a yearly fee. Accounts must have at least one storage unit to publish messages on Farcaster. Storage prices are set by the contract in USD but must be paid in ETH. A Chainlink oracle determines the exchange rate which is updated at most once in 24 hours. The price, exchange rate, available units and size of each unit are controlled by Farcaster and vary based on supply and demand. 
 
 ### Key Registry
 
@@ -44,7 +44,7 @@ For more details and documentation, please see the [contracts repository](https:
 
 ## Hubs 
 
-Hubs validate, storage and replicate account messages to other hubs. Apps run hubs to read and write to Farcaster in real-time. Hubs run on commodity hardware and are conceptually like low-level, high-performance data streams. Most apps should copy hub data into a database for easy indexing and querying. 
+Hubs validate, store, and replicate account messages to other hubs. Apps run hubs to read and write to Farcaster in real-time. Hubs run on commodity hardware and are conceptually like low-level, high-performance data streams. Most apps should copy hub data into a database for easy indexing and querying. 
 
 Each hub stores the entire global state or messages created by every account on the network. The Storage Registry's max storage unit limit ensures that the size of the global state is bounded. Unlike Ethereum nodes, hubs are eventually consistent and may get messages out of order. This makes reading and writing very fast at the cost of more complexity when interpreting changes.
 
