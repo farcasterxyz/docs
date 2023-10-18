@@ -9,7 +9,7 @@ Fnames have a usage policy to prevent squatting and impersonation. Users who do 
 - Names connected to public figures or entities may be reclaimed (e.g. @google)
 - Names that haven't been used for 60+ days may be reclaimed
 
-Decisions usually require human judgementand are made by the Farcaster core team. For instance, if a user registers @elon and Elon Musk wants the name, we made the decision based on whether the user:
+Decisions usually require human judgement and are made by the Farcaster core team. For instance, if a user registers @elon and Elon Musk wants the name, we made the decision based on whether the user:
 
 - Is active and creating quality content on Farcaster
 - Has a reasonable claim, like being called elon or owning the handle elsewhere
