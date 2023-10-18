@@ -56,11 +56,11 @@ When a message is received, it is hashed, and its signature is compared against 
 
 ### Storage
 
-When a message is validated, it is stored in a message set. Each message type has a set which defines rules for merging messages and handling cases where the number of messages exceeds the user's limits. Typically, the earliest message ends up discarded. The rules designed so that messages added in any order will always produce the same set.
+When a message is validated, it is stored in a message set. Each message type has a set which defines rules for merging messages and handling cases where the number of messages exceeds the user's limits. Typically, the earliest message ends up discarded. The rules are designed so that messages added in any order will always produce the same set.
 
 ### Replication 
 
-When a message is stored, it is sent to other hubs over a libp2p gossip mesh. Messages that do not arrive over gossip are fetched using diff sync, a periodic out-of-band process. Diff sync compares the merkle trie of messages ids between two hubs and fetches missing messages. Hubs monitor peers and score their behavior. If a peer doesn't accept valid messages, falls behind or gossips too much, it may be ignored by its peers.
+When a message is stored, it is sent to other hubs over a libp2p gossip mesh. Messages that do not arrive over gossip are fetched using diff sync, a periodic out-of-band process. Diff sync compares the merkle tree of message ids between two hubs and fetches any missing messages. Hubs monitor peers and score their behavior. If a peer doesn't accept valid messages, falls behind, or gossips too much it may be ignored by its peers.
 
 ### Implementations
 
