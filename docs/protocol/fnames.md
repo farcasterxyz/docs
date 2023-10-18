@@ -22,8 +22,8 @@ The registry also imposes some restrictions to prevent abuse
 
 The [Fname registry](https://github.com/farcasterxyz/fname-registry) server is hosted at https://fnames.farcaster.xyz
 
-It's a simple HTTP service that's responsible for issuing and tracking fnames. All fname changes are recorded as a transfer.
-Registering an Fname is a transfer from fid 0 to the user's fid. Transferring an fname is a transfer from the user's fid to another fid. Unregistering an fname is a transfer from the user's fid to fid 0.
+It's a simple HTTP service that's responsible for issuing and tracking fnames. All Fname changes are recorded as a transfer.
+Registering an fname is a transfer from FID 0 to the user's fid. Transferring an fname is a transfer from the user's fid to another fid. Unregistering an fname is a transfer from the user's fid to fid 0.
 
 ### Get Transfer History
 
