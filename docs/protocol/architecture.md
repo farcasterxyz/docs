@@ -46,7 +46,7 @@ For more details and documentation, please see the [contracts repository](https:
 
 Hubs validate, store, and replicate account messages to other hubs. Apps run hubs to read and write to Farcaster in real-time. Hubs run on commodity hardware and are conceptually like low-level, high-performance data streams. Most apps should copy hub data into a database for easy indexing and querying. 
 
-Each hub stores the entire global state or messages created by every account on the network. The Storage Registry's max storage unit limit ensures that the size of the global state is bounded. Unlike Ethereum nodes, hubs are eventually consistent and may get messages out of order. This makes reading and writing very fast at the cost of more complexity when interpreting changes.
+Each hub stores the entire global state, i.e. all messages created by every account on the network. The Storage Registry's max storage unit limit ensures that the size of the global state is bounded. Unlike Ethereum nodes, hubs are eventually consistent and may get messages out of order. This makes reading and writing very fast at the cost of more complexity when interpreting changes.
 
 ![Hub](../assets/hub.png)
 
