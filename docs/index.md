@@ -20,7 +20,7 @@ Farcaster is still in beta, and an invitation is required to join. If you don't 
 
 ### Who is building Farcaster?
 
-Farcaster is an MIT-licensed protocol created by a community of users and developers. The [Farcaster core team](https://github.com/orgs/farcasterxyz/teams/core/members) maintains the repository with contributions made by over 50 developers.
+Farcaster is an MIT-licensed protocol created by a community of users and developers. The [Farcaster core team](https://github.com/orgs/farcasterxyz/people) maintains the repository with contributions made by over 50 developers.
 
 ### Does Farcaster use a blockchain?
 
