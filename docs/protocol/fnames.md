@@ -9,7 +9,7 @@ Fnames have a usage policy to prevent squatting and impersonation. Users who do 
 - Names connected to public figures or entities may be reclaimed (e.g. @google)
 - Names that haven't been used for 60+ days may be reclaimed
 
-Decisions usually require human judgementand are made by the Farcaster core team. For instance, if a user registers @elon and Elon Musk wants the name, we made the decision based on whether the user:
+Decisions usually require human judgement and are made by the Farcaster core team. For instance, if a user registers @elon and Elon Musk wants the name, we made the decision based on whether the user:
 
 - Is active and creating quality content on Farcaster
 - Has a reasonable claim, like being called elon or owning the handle elsewhere
@@ -22,8 +22,8 @@ The registry also imposes some restrictions to prevent abuse
 
 The [Fname registry](https://github.com/farcasterxyz/fname-registry) server is hosted at https://fnames.farcaster.xyz
 
-It's a simple HTTP service that's responsible for issuing and tracking fnames. All fname changes are recorded as a transfer.
-Registering an Fname is a transfer from fid 0 to the user's fid. Transferring an fname is a transfer from the user's fid to another fid. Unregistering an fname is a transfer from the user's fid to fid 0.
+It's a simple HTTP service that's responsible for issuing and tracking fnames. All Fname changes are recorded as a transfer.
+Registering an fname is a transfer from FID 0 to the user's fid. Transferring an fname is a transfer from the user's fid to another fid. Unregistering an fname is a transfer from the user's fid to fid 0.
 
 ### Get Transfer History
 

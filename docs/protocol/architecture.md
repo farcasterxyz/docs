@@ -26,7 +26,7 @@ The Id Registry issues new Farcaster accounts to Ethereum addresses. A user can 
 
 ### Storage Registry
 
-The Storage Registry rents out storage units to accounts for a yearly fee. Accounts must have at least one storage unit to publish messages on Farcaster. Storage prices are set by the contract in USD but must be paid in ETH. A Chainlink oracle determines the exchange rate which is updated at most once in 24 hours. The price, exchange rate, available units and size of each unit are controlled by Farcaster and changed based on supply and demand. 
+The Storage Registry rents out storage units to accounts for a yearly fee. Accounts must have at least one storage unit to publish messages on Farcaster. Storage prices are set by the contract in USD but must be paid in ETH. A Chainlink oracle determines the exchange rate which is updated at most once in 24 hours. The price, exchange rate, available units and size of each unit are controlled by Farcaster and vary based on supply and demand. 
 
 ### Key Registry
 
@@ -44,9 +44,9 @@ For more details and documentation, please see the [contracts repository](https:
 
 ## Hubs 
 
-Hubs validate, storage and replicate account messages to other hubs. Apps run hubs to read and write to Farcaster in real-time. Hubs run on commodity hardware and are conceptually like low-level, high-performance data streams. Most apps should copy hub data into a database for easy indexing and querying. 
+Hubs validate, store, and replicate account messages to other hubs. Apps run hubs to read and write to Farcaster in real-time. Hubs run on commodity hardware and are conceptually like low-level, high-performance data streams. Most apps should copy hub data into a database for easy indexing and querying. 
 
-Each hub stores the entire global state or messages created by every account on the network. The Storage Registry's max storage unit limit ensures that the size of the global state is bounded. Unlike Ethereum nodes, hubs are eventually consistent and may get messages out of order. This makes reading and writing very fast at the cost of more complexity when interpreting changes.
+Each hub stores the entire global state, i.e. all messages created by every account on the network. The Storage Registry's max storage unit limit ensures that the size of the global state is bounded. Unlike Ethereum nodes, hubs are eventually consistent and may get messages out of order. This makes reading and writing very fast at the cost of more complexity when interpreting changes.
 
 ![Hub](../assets/hub.png)
 
@@ -56,11 +56,11 @@ When a message is received, it is hashed, and its signature is compared against 
 
 ### Storage
 
-When a message is validated, it is stored in a message set. Each message type has a set which defines rules for merging messages and handling cases where the number of messages exceeds the user's limits. Typically, the earliest message ends up discarded. The rules designed so that messages added in any order will always produce the same set.
+When a message is validated, it is stored in a message set. Each message type has a set which defines rules for merging messages and handling cases where the number of messages exceeds the user's limits. Typically, the earliest message ends up discarded. The rules are designed so that messages added in any order will always produce the same set.
 
 ### Replication 
 
-When a message is stored, it is sent to other hubs over a libp2p gossip mesh. Messages that do not arrive over gossip are fetched using diff sync, a periodic out-of-band process. Diff sync compares the merkle trie of messages ids between two hubs and fetches missing messages. Hubs monitor peers and score their behavior. If a peer doesn't accept valid messages, falls behind or gossips too much, it may be ignored by its peers.
+When a message is stored, it is sent to other hubs over a libp2p gossip mesh. Messages that do not arrive over gossip are fetched using diff sync, a periodic out-of-band process. Diff sync compares the merkle tree of message ids between two hubs and fetches any missing messages. Hubs monitor peers and score their behavior. If a peer doesn't accept valid messages, falls behind, or gossips too much it may be ignored by its peers.
 
 ### Implementations
 
