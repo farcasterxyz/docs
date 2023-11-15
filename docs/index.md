@@ -29,7 +29,3 @@ Farcaster uses Ethereum and Optimism Mainnet, an Ethereum L2, for its contract. 
 ### What does it cost to use Farcaster?
 
 A Farcaster account requires a one-time fee for the gas to register the account onchain and an ongoing yearly fee to store messages. The one-time fee is about $0.20 at the time of writing, and the ongoing fee is about $5. Prices will change based on supply and demand. 
-
-### Why is Farcaster invite only?
-
-Farcaster is invite-only while we test and validate our contracts. We expect to drop this requirement by late 2023 or early 2024.
