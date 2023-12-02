@@ -14,8 +14,6 @@ To learn more about Farcaster, check out the following resources:
 - [App Directory](https://www.farcaster.xyz/apps), to find new apps and utilities.
 - [Developer Portal](https://www.farcaster.xyz/devs), to find tutorials and other resources. 
 
-Farcaster is still in beta, and an invitation is required to join. If you don't have an invite, you can join the [waitlist](https://app.deform.cc/form/5ccff9d9-9435-42da-bf0f-507e13cd0597/).
-
 ## FAQ
 
 ### Who is building Farcaster?
