@@ -27,7 +27,7 @@ export default defineConfig({
       { text: 'Learn', link: '/learn/index', activeMatch: '/learn/' },
       // { text: 'Developers', link: '/developers/index', activeMatch: '/developers/' },
       // { text: 'Hub Runners', link: '/operators/hubble', activeMatch: '/operators/' },
-      { text: 'Reference', link: '/reference/index', activeMatch: '/reference/' },
+      // { text: 'Reference', link: '/reference/index', activeMatch: '/reference/' },
       { text: 'Website', link: 'http://www.farcaster.xyz' },
     ],
     search: {
