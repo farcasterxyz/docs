@@ -11,7 +11,7 @@ protocol where users control their data, and developers can build apps permissio
 To learn more about Farcaster, check out the following resources:
 
 - [Overview](reference/protocol/overview.md), to learn how Farcaster works.
-- [Community](learn/community.md), to get involved and find out where stuff happens.
+- [Community](developers/community.md), to get involved and find out where stuff happens.
 - [App Directory](https://www.farcaster.xyz/apps), to find new apps and utilities.
 - [Developer Portal](https://www.farcaster.xyz/devs), to find tutorials and other resources.
 

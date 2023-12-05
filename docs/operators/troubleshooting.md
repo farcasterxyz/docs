@@ -7,3 +7,5 @@
 - re-sync eth events
 - re-sync fnames
 - reset db
+- is my hub in sync?
+- no incoming gossip connections?

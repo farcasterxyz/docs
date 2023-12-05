@@ -1,22 +1,15 @@
-# What is Farcaster?
+# Getting Started
 
 Farcaster is a protocol for building decentralized social apps.
 
-It is
-a [sufficiently decentralized](https://www.varunsrinivasan.com/2022/01/11/sufficient-decentralization-for-social-networks)
-protocol where users control their data, and developers can build apps permissionlessly on the network.
+To learn more, check out the following resources:
 
-![High Level Overview](/assets/high-level.png)
-
-To learn more about Farcaster, check out the following resources:
-
-- [Overview](), to learn how Farcaster works.
-- [Community](), to get involved and find out where stuff happens.
-- [App Directory](https://www.farcaster.xyz/apps), to find new apps and utilities.
-- [Developer Portal](https://www.farcaster.xyz/devs), to find tutorials and other resources.
-
-Farcaster is still in beta, and an invitation is required to join. If you don't have an invite, you can join
-the [waitlist](https://app.deform.cc/form/5ccff9d9-9435-42da-bf0f-507e13cd0597/).
+- [What is Farcaster?](/learn/what-is-farcaster) - A high level overview of the protocol
+- [Sign up](/learn/sign-up) - How to create an account
+- [Hub Runners]() (coming soon) - A guide for running your own Farcaster Hub
+- [Developers Guide]() (coming soon) - Guides and examples for building your own Farcaster apps
+- [Community]() (coming soon) - How to get involved and find out where stuff happens.
+- [API Reference](/reference/index) - API reference for the smart contracts, hubs and other services
 
 ## FAQ
 
@@ -34,5 +27,5 @@ the [architecture]() section to learn more.
 ### What does it cost to use Farcaster?
 
 A Farcaster account requires a one-time fee for the gas to register the account onchain and an ongoing yearly fee to
-store messages. The one-time fee is about $0.20 at the time of writing, and the ongoing fee is about $5. Prices will
+store messages. The one-time fee is about $0.20 at the time of writing, and the ongoing fee is about $7. Prices will
 change based on supply and demand. 

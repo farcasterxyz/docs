@@ -6,9 +6,8 @@ The developer community is a great place to get help, learn new things, and find
 
 ## TODO: Youtube links
 
-- Varun playlist
 - woj?
- 
+
 ## Telegram Channels
 
 Telegram channels are helpful for staying up-to-date with recent developments and having quick, asynchronous

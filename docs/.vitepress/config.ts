@@ -25,8 +25,8 @@ export default defineConfig({
   themeConfig: {
     nav: [
       { text: 'Learn', link: '/learn/index', activeMatch: '/learn/' },
-      { text: 'Developers', link: '/developers/index', activeMatch: '/developers/' },
-      { text: 'Hub Operators', link: '/operators/hubble', activeMatch: '/operators/' },
+      // { text: 'Developers', link: '/developers/index', activeMatch: '/developers/' },
+      // { text: 'Hub Runners', link: '/operators/hubble', activeMatch: '/operators/' },
       { text: 'Reference', link: '/reference/index', activeMatch: '/reference/' },
       { text: 'Website', link: 'http://www.farcaster.xyz' },
     ],
@@ -35,12 +35,17 @@ export default defineConfig({
     },
     sidebar: {
       '/': [
+        { text: 'Getting Started', link: '/learn/' },
         {
           text: 'What is Farcaster?',
           items: [
             {
               text: 'Overview',
-              link: '/learn/',
+              link: '/learn/what-is-farcaster',
+            },
+            {
+              text: 'Sign Up',
+              link: '/learn/sign-up',
             },
             {
               text: 'Accounts',
@@ -59,20 +64,21 @@ export default defineConfig({
         {
           text: 'Architecture',
           items: [
-            { text: 'On Chain vs Off Chain', link: '/learn/architecture/' },
+            { text: 'Overview', link: '/learn/architecture/' },
             { text: 'Contracts', link: '/learn/architecture/contracts' },
+            { text: 'FName Registry', link: '/learn/architecture/fname-registry' },
             { text: 'Hubs', link: '/learn/architecture/hubs' },
           ],
         },
         {
-          text: 'Governance',
+          text: 'Development',
           items: [
-            { text: 'Overview', link: '/learn/governance' },
+            { text: 'Repositories', link: '/learn/repos' },
+            { text: 'Governence', link: '/learn/governance' },
             { text: 'FIPs', link: '/learn/fips' },
           ],
         },
         { text: 'Ecosystem', link: '/learn/ecosystem' },
-        { text: 'Getting Help', link: '/learn/community' },
       ],
       '/developers/': [
         { text: 'Overview', link: '/developers/index' },
@@ -81,7 +87,7 @@ export default defineConfig({
           collapsed: false,
           items: [
             {
-              text: 'Basics',
+              text: 'Getting Started',
               collapsed: false,
               items: [
                 {
@@ -128,7 +134,7 @@ export default defineConfig({
               text: 'Utilities',
               link: '/developers/utilities',
             },
-            { text: 'Community', link: '/learn/community' },
+            { text: 'Community', link: '/developers/community' },
           ],
         },
       ],
@@ -153,7 +159,7 @@ export default defineConfig({
         },
       ],
       '/reference/': [
-        { text: 'Overview', link: '/reference' },
+        { text: 'Overview', link: '/reference/index' },
         {
           text: 'Hubble',
           items: [
@@ -211,16 +217,6 @@ export default defineConfig({
           ],
         },
         {
-          text: 'FName Server',
-          items: [
-            { text: 'Using the HTTP API', link: '/reference/fname/using' },
-            {
-              text: 'API Reference',
-              link: '/reference/fname/api',
-            },
-          ],
-        },
-        {
           text: 'Smart Contracts',
           items: [
             { text: 'Overview', link: '/reference/contracts/index' },
@@ -230,16 +226,25 @@ export default defineConfig({
           ],
         },
         {
-          text: 'Protocol Specification',
-          collapsed: true,
+          text: 'FName Server',
           items: [
-            { text: 'Overview', link: '/reference/protocol/overview' },
             {
-              text: 'Specification',
-              link: '/reference/protocol/specification',
+              text: 'API Reference',
+              link: '/reference/fname/api',
             },
           ],
         },
+        // {
+        //   text: 'Protocol Specification',
+        //   collapsed: true,
+        //   items: [
+        //     { text: 'Overview', link: '/reference/protocol/overview' },
+        //     {
+        //       text: 'Specification',
+        //       link: '/reference/protocol/specification',
+        //     },
+        //   ],
+        // },
 
         { text: 'Replicator', items: [{ text: 'Overview', link: '/reference/replicator/index' }] },
       ],
