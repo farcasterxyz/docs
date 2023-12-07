@@ -35,50 +35,61 @@ export default defineConfig({
     },
     sidebar: {
       '/': [
-        { text: 'Getting Started', link: '/learn/' },
+        {
+          text: 'Introduction?',
+          items: [
+            {
+              text: 'Getting Started',
+              link: '/index',
+            },
+            {
+              text: 'Create Your Account',
+              link: '/intro/create-account',
+            },
+          ],
+        },
         {
           text: 'What is Farcaster?',
           items: [
             {
               text: 'Overview',
-              link: '/learn/what-is-farcaster',
-            },
-            {
-              text: 'Sign Up',
-              link: '/learn/sign-up',
+              link: '/learn/what-is-farcaster/overview',
             },
             {
               text: 'Accounts',
-              link: '/learn/accounts',
+              link: '/learn/what-is-farcaster/accounts',
             },
             {
               text: 'Usernames',
-              link: '/learn/usernames',
+              link: '/learn/what-is-farcaster/usernames',
             },
             {
-              text: 'Account Data',
-              link: '/learn/account-data',
+              text: 'Messages',
+              link: '/learn/what-is-farcaster/messages',
+            },
+            {
+              text: 'Apps',
+              link: '/learn/what-is-farcaster/apps',
             },
           ],
         },
         {
           text: 'Architecture',
           items: [
-            { text: 'Overview', link: '/learn/architecture/' },
+            { text: 'Overview', link: '/learn/architecture/overview' },
             { text: 'Contracts', link: '/learn/architecture/contracts' },
-            { text: 'FName Registry', link: '/learn/architecture/fname-registry' },
             { text: 'Hubs', link: '/learn/architecture/hubs' },
+            { text: 'ENS Names', link: '/learn/architecture/ens-names' },
           ],
         },
         {
           text: 'Development',
           items: [
-            { text: 'Repositories', link: '/learn/repos' },
-            { text: 'Governence', link: '/learn/governance' },
+            { text: 'Contributing', link: '/learn/contributing' },
+            { text: 'Governance', link: '/learn/governance' },
             { text: 'FIPs', link: '/learn/fips' },
           ],
-        },
-        { text: 'Ecosystem', link: '/learn/ecosystem' },
+        }
       ],
       '/developers/': [
         { text: 'Overview', link: '/developers/index' },

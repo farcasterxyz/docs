@@ -7,5 +7,5 @@ You can post messages, follow users and organize into communities called channel
 
 ### Learn 
 
-- [What is Farcaster?](/learn/what-is-farcaster/overview) - An overview of the protocol
+- [What is Farcaster?](/learn/what-is-farcaster) - An overview of the protocol
 - [Create your account]() - Sign up and start using Farcaster today. 
