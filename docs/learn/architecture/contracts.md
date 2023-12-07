@@ -20,7 +20,7 @@ The IdRegistry lets users register, transfer and recover Farcaster accounts. An 
 
 ### Storage Registry
 
-The Storage Registry lets account rent [storage](/docs/learn/messages.md#storage) by making a payment in Ethereum. The storage prices are set by admins in USD and converted to ETH using a Chainlink oracle. The price increases or decreases based on supply and demand. 
+The Storage Registry lets account rent [storage](../what-is-farcaster/messages.md#storage) by making a payment in Ethereum. The storage prices are set by admins in USD and converted to ETH using a Chainlink oracle. The price increases or decreases based on supply and demand. 
 
 ### Key Registry
 
