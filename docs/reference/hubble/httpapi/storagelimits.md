@@ -1,24 +1,22 @@
-
-
-# Storage Limits API
-
+# Storage API
 
 ## storageLimitsByFid
+
 Get an FID's storage limits.
 
 **Query Parameters**
 | Parameter | Description | Example |
 | --------- | ----------- | ------- |
-| fid       | The FID that's being requested | `fid=6833` |
-
+| fid | The FID that's being requested | `fid=6833` |
 
 **Example**
+
 ```bash
 curl http://127.0.0.1:2281/v1/storageLimitsByFid?fid=6833
 ```
 
-
 **Response**
+
 ```json
 {
   "limits": [

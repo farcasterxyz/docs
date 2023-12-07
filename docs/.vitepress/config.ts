@@ -26,8 +26,8 @@ export default defineConfig({
     nav: [
       { text: 'Learn', link: '/learn/index', activeMatch: '/learn/' },
       // { text: 'Developers', link: '/developers/index', activeMatch: '/developers/' },
-      // { text: 'Hub Runners', link: '/operators/hubble', activeMatch: '/operators/' },
-      // { text: 'Reference', link: '/reference/index', activeMatch: '/reference/' },
+      { text: 'Hub Runners', link: '/operators/hubble', activeMatch: '/operators/' },
+      { text: 'Reference', link: '/reference/index', activeMatch: '/reference/' },
       { text: 'Website', link: 'http://www.farcaster.xyz' },
     ],
     search: {
@@ -153,13 +153,13 @@ export default defineConfig({
             },
           ],
         },
-        {
-          text: 'Replicator',
-          items: [{ text: 'Overview', link: '/operators/replicator' }],
-        },
+        // {
+        //   text: 'Replicator',
+        //   items: [{ text: 'Overview', link: '/operators/replicator' }],
+        // },
       ],
       '/reference/': [
-        { text: 'Overview', link: '/reference/index' },
+        { text: 'Reference', items: [{ text: 'Overview', link: '/reference/index' }] },
         {
           text: 'Hubble',
           items: [
@@ -169,10 +169,6 @@ export default defineConfig({
               collapsed: true,
               items: [
                 { text: 'Messages', link: '/reference/hubble/datatypes/messages' },
-                {
-                  text: 'OnChainEvents',
-                  link: '/reference/hubble/datatypes/onchain_events',
-                },
                 { text: 'Events', link: '/reference/hubble/datatypes/events' },
               ],
             },
@@ -181,18 +177,18 @@ export default defineConfig({
               collapsed: true,
               items: [
                 { text: 'Using GRPC APIs', link: '/reference/hubble/grpcapi/grpcapi' },
-                { text: 'Info API', link: '/reference/hubble/grpcapi/info' },
                 { text: 'Casts API', link: '/reference/hubble/grpcapi/casts' },
                 { text: 'Reactions API', link: '/reference/hubble/grpcapi/reactions' },
                 { text: 'Links API', link: '/reference/hubble/grpcapi/links' },
                 { text: 'UserData API', link: '/reference/hubble/grpcapi/userdata' },
-                { text: 'FIDS API', link: '/reference/hubble/grpcapi/fids' },
-                { text: 'Storage API', link: '/reference/hubble/grpcapi/storagelimits' },
                 { text: 'Username Proofs API', link: '/reference/hubble/grpcapi/usernameproof' },
                 { text: 'Verifications API', link: '/reference/hubble/grpcapi/verification' },
-                { text: 'On Chain API', link: '/reference/hubble/grpcapi/onchain' },
                 { text: 'SubmitMessage API', link: '/reference/hubble/grpcapi/submitmessage' },
+                { text: 'Fids API', link: '/reference/hubble/grpcapi/fids' },
+                { text: 'Storage API', link: '/reference/hubble/grpcapi/storagelimits' },
+                { text: 'On Chain API', link: '/reference/hubble/grpcapi/onchain' },
                 { text: 'Events API', link: '/reference/hubble/grpcapi/events' },
+                { text: 'Sync API', link: '/reference/hubble/grpcapi/sync' },
               ],
             },
             {
@@ -205,12 +201,12 @@ export default defineConfig({
                 { text: 'Reactions API', link: '/reference/hubble/httpapi/reactions' },
                 { text: 'Links API', link: '/reference/hubble/httpapi/links' },
                 { text: 'UserData API', link: '/reference/hubble/httpapi/userdata' },
-                { text: 'FIDS API', link: '/reference/hubble/httpapi/fids' },
-                { text: 'Storage API', link: '/reference/hubble/httpapi/storagelimits' },
                 { text: 'Username Proofs API', link: '/reference/hubble/httpapi/usernameproof' },
                 { text: 'Verifications API', link: '/reference/hubble/httpapi/verification' },
-                { text: 'On Chain API', link: '/reference/hubble/httpapi/onchain' },
                 { text: 'SubmitMessage API', link: '/reference/hubble/httpapi/submitmessage' },
+                { text: 'Fids API', link: '/reference/hubble/httpapi/fids' },
+                { text: 'Storage API', link: '/reference/hubble/httpapi/storagelimits' },
+                { text: 'On Chain API', link: '/reference/hubble/httpapi/onchain' },
                 { text: 'Events API', link: '/reference/hubble/httpapi/events' },
               ],
             },
@@ -220,9 +216,11 @@ export default defineConfig({
           text: 'Smart Contracts',
           items: [
             { text: 'Overview', link: '/reference/contracts/index' },
-            { text: 'Id Registry API', link: '/reference/contracts/id-registry' },
-            { text: 'Key Registry API', link: '/reference/contracts/key-registry' },
-            { text: 'Storage Registry API', link: '/reference/contracts/storage-registry' },
+            { text: 'ID Gateway', link: '/reference/contracts/id-gateway' },
+            { text: 'ID Registry', link: '/reference/contracts/id-registry' },
+            { text: 'Key Gateway', link: '/reference/contracts/key-gateway' },
+            { text: 'Key Registry', link: '/reference/contracts/key-registry' },
+            { text: 'Storage Registry', link: '/reference/contracts/storage-registry' },
           ],
         },
         {
@@ -246,7 +244,7 @@ export default defineConfig({
         //   ],
         // },
 
-        { text: 'Replicator', items: [{ text: 'Overview', link: '/reference/replicator/index' }] },
+        // { text: 'Replicator', items: [{ text: 'Overview', link: '/reference/replicator/index' }] },
       ],
     },
     socialLinks: [
