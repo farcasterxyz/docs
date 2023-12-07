@@ -1,51 +1,20 @@
+# Storage API
 
-
-# Storage Limits API
-
-
-## storageLimitsByFid
 Get an FID's storage limits.
 
-**Query Parameters**
-| Parameter | Description | Example |
-| --------- | ----------- | ------- |
-| fid       | The FID that's being requested | `fid=6833` |
+| Method Name                  | Request Type | Response Type         | Description                                              |
+|------------------------------|--------------|-----------------------|----------------------------------------------------------|
+| GetCurrentStorageLimitsByFid | FidRequest   | StorageLimitsResponse | Returns current storage limits for all stores for an Fid |
 
+#### StorageLimitsResponse
 
-**Example**
-```bash
-curl http://127.0.0.1:2281/v1/storageLimitsByFid?fid=6833
-```
+| Field  | Type              | Label    | Description                   |
+|--------|-------------------|----------|-------------------------------|
+| limits | [StorageLimit](#) | repeated | Storage limits per store type |
 
+#### StorageLimit
 
-**Response**
-```json
-{
-  "limits": [
-    {
-      "storeType": "STORE_TYPE_CASTS",
-      "limit": 10000
-    },
-    {
-      "storeType": "STORE_TYPE_LINKS",
-      "limit": 5000
-    },
-    {
-      "storeType": "STORE_TYPE_REACTIONS",
-      "limit": 5000
-    },
-    {
-      "storeType": "STORE_TYPE_USER_DATA",
-      "limit": 100
-    },
-    {
-      "storeType": "STORE_TYPE_USERNAME_PROOFS",
-      "limit": 10
-    },
-    {
-      "storeType": "STORE_TYPE_VERIFICATIONS",
-      "limit": 50
-    }
-  ]
-}
-```
+| Field      | Type           | Label | Description                                            |
+|------------|----------------|-------|--------------------------------------------------------|
+| store_type | [StoreType](#) |       | The specific type being managed by the store           |
+| limit      | [uint64](#)    |       | The limit of the store type, scaled by the user's rent |

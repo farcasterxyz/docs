@@ -1,25 +1,22 @@
-# FIDs API
+# Fids API
 
+Used to retrieve a list of all fids
 
-## fids
-Get a list of all the FIDs
+| Method Name | Request Type | Response Type | Description                          |
+|-------------|--------------|---------------|--------------------------------------|
+| GetFids     | FidsRequest  | FidsResponse  | Returns a paginated list of all fids |
 
-**Query Parameters**
-| Parameter | Description | Example |
-| --------- | ----------- | ------- |
-|  | This endpoint accepts no parameters |  |
+## FidsRequest
 
+| Field      | Type              | Label    | Description |
+|------------|-------------------|----------|-------------|
+| page_size  | [uint32](#uint32) | optional |             |
+| page_token | [bytes](#bytes)   | optional |             |
+| reverse    | [bool](#bool)     | optional |             |
 
-**Example**
-```bash
-curl http://127.0.0.1:2281/v1/fids
-```
+## Fids Response
 
-
-**Response**
-```json
-{
-  "fids": [1, 2, 3, 4, 5, 6],
-  "nextPageToken": "AAAnEA=="
-}
-```
+| Field           | Type            | Label    | Description    |
+|-----------------|-----------------|----------|----------------|
+| fids            | [uint64](#)     | repeated | Array oif fids |
+| next_page_token | [bytes](#bytes) | optional |                |
