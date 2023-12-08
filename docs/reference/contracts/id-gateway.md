@@ -30,7 +30,7 @@ Register a new fid to the caller and pay for one or more units of storage. The c
 ## registerFor
 
 Register a new fid to a specific address and pay for one or more units of storage. The receiving
-address must provide an EIP-712 `Register` signature approving the registration. the receiver must not already own an fid.
+address must sign an EIP-712 `Register` message approving the registration. the receiver must not already own an fid.
 
 | Param Name   | type                 | Description                                            |
 | ------------ | -------------------- | ------------------------------------------------------ |
