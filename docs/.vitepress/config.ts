@@ -74,7 +74,7 @@ export default defineConfig({
           text: 'Development',
           items: [
             { text: 'Repositories', link: '/learn/repos' },
-            { text: 'Governence', link: '/learn/governance' },
+            { text: 'Governance', link: '/learn/governance' },
             { text: 'FIPs', link: '/learn/fips' },
           ],
         },
