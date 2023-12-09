@@ -1,6 +1,6 @@
 # Hubble troubleshooting
 
-## Fetch the hub logs
+## Fetch Hubble logs
 
 Using the hubble script, you can fetch the hub logs with the following command:
 
@@ -16,20 +16,11 @@ Or you can use docker-compose directly:
 $ sudo docker compose logs -f hubble
 ```
 
-## Restart the hub
+## Restart Hubble
 
 ```bash
 $ ./hubble down
 $ ./hubble up
-```
-
-## Upgrade the hub
-
-The hubble script sets up a crontab entry to automatically upgrade the hub every week, but
-you can also upgrade the hub manually with the following command:
-
-```bash
-$ ./hubble upgrade
 ```
 
 ## Reset the db
@@ -49,7 +40,7 @@ with communicating with other hubs.
 
 Check your firewall and NAT settings to ensure that ports 2282 (gossip) and 2283 (rpc, for sync) are accessible.
 
-You could also try bootstrapping the hub with a non-default peer by adding the follwing line to your `.env` file:
+You could also try bootstrapping the hub with a non-default peer by adding the following line to your `.env` file:
 
 ```dotenv
 BOOTSTRAP_NODE=/dns/hoyt.farcaster.xyz/tcp/2282
@@ -57,8 +48,12 @@ BOOTSTRAP_NODE=/dns/hoyt.farcaster.xyz/tcp/2282
 
 ## Is my hub in sync?
 
-Use the [grafana dashboard](/operators/monitoring) to monitor your hub. The Status tab will show the message sync
+Use the [grafana dashboard](/hubble/monitoring) to monitor your hub. The Status tab will show the message sync
 percent of your hub compared to it's peers. If this is less than 100%, try restarting the hub and waiting a while. If
 this
-persists, reach out on the [Hub Runners telegram group](https://t.me/farcasterdevchat) or file an issue on
+persists, reach out on the [Developer Chat](https://t.me/farcasterdevchat) or file an issue on
 the [hub repo](https://github.com/farcasterxyz/hub-monorepo/issues/new?assignees=&labels=&projects=&template=bug_report.md&title=bug%20%28hubble%29%3A).    
+
+## Managing your Peer ID
+
+Hubble has a key pair that it uses to sign peer-to-peer messages, which is stored in the `.hub` directory as a `...._id.protobuf` file. The name of the file contains the public key or Peer ID, while the contents contain the private key.

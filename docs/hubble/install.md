@@ -4,17 +4,16 @@ We recommend running Hubble on an always-on server that has [Docker](https://doc
 
 ## Requirements
 
-Hubble can be installed in 30 minutes, and a full sync can take 1-2 hours to complete. You'll need a machine that has: 
+Hubble can be set up in less than 30 minutes. You'll need a machine that has: 
 
 - 8 GB of RAM
 - 2 CPU cores or vCPUs
 - 20 GB of free storage
 - A public IP address with ports 2282 - 2285 exposed
+- RPC endpoints for Ethereum and Optimism Mainnet. (use [Alchemy](https://www.alchemy.com/) or [Infura](https://www.infura.io/))
+
 
 See [tutorials](./tutorials.html) for instructions on how to set up cloud providers to run Hubble.
-
-You will need RPC endpoints for Ethereum nodes on L2 OP Mainnet, L1 Mainnet and L1 Goerli. We recommend using a service like [Alchemy](https://www.alchemy.com/) or [Infura](https://www.infura.io/).
-
 
 ## Install via Script
 
@@ -30,7 +29,8 @@ Hubble will be installed into `~/hubble` and will be run via Docker in the backg
 
 ### Upgrading Hubble
 
-Upgrade Hubble to the latest version by running
+The Hubble script creates a crontab entry will automatically the hub every week. To upgrade manually, run: 
+
 
 ```bash
 cd ~/hubble && ./hubble.sh upgrade

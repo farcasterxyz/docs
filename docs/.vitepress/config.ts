@@ -26,7 +26,7 @@ export default defineConfig({
     nav: [
       { text: 'Learn', link: '/learn/index', activeMatch: '/learn/' },
       // { text: 'Developers', link: '/developers/index', activeMatch: '/developers/' },
-      { text: 'Hub Runners', link: '/operators/hubble', activeMatch: '/operators/' },
+      { text: 'Hubble', link: '/hubble/hubble', activeMatch: '/hubble/' },
       { text: 'Reference', link: '/reference/index', activeMatch: '/reference/' },
       { text: 'Website', link: 'http://www.farcaster.xyz' },
     ],
@@ -149,24 +149,24 @@ export default defineConfig({
           ],
         },
       ],
-      '/operators/': [
+      '/hubble/': [
         {
           text: 'Get Started',
           items: [
-            { text: 'Hubble', link: '/operators/hubble' },
-            { text: 'Installation', link: '/operators/install' },
-            { text: 'Networks', link: '/operators/networks' },
-            { text: 'Monitoring', link: '/operators/monitoring' },
-            { text: 'Tutorials', link: '/operators/tutorials' },
+            { text: 'Hubble', link: '/hubble/hubble' },
+            { text: 'Installation', link: '/hubble/install' },
+            { text: 'Networks', link: '/hubble/networks' },
+            { text: 'Monitoring', link: '/hubble/monitoring' },
+            { text: 'Tutorials', link: '/hubble/tutorials' },
             {
               text: 'Troubleshooting',
-              link: '/operators/troubleshooting',
+              link: '/hubble/troubleshooting',
             },
           ],
         },
         // {
         //   text: 'Replicator',
-        //   items: [{ text: 'Overview', link: '/operators/replicator' }],
+        //   items: [{ text: 'Overview', link: '/hubble/replicator' }],
         // },
       ],
       '/reference/': [
