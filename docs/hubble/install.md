@@ -1,10 +1,10 @@
 # Installation
 
-We recommend running Hubble on an always-on server that has [Docker](https://docs.docker.com/desktop/install/linux-install/) installed. 
+We recommend running Hubble on an always-on server that has [Docker](https://docs.docker.com/desktop/install/linux-install/) installed.
 
 ## Requirements
 
-Hubble can be set up in less than 30 minutes. You'll need a machine that has: 
+Hubble can be set up in less than 30 minutes. You'll need a machine that has:
 
 - 8 GB of RAM
 - 2 CPU cores or vCPUs
@@ -12,25 +12,23 @@ Hubble can be set up in less than 30 minutes. You'll need a machine that has:
 - A public IP address with ports 2282 - 2285 exposed
 - RPC endpoints for Ethereum and Optimism Mainnet. (use [Alchemy](https://www.alchemy.com/) or [Infura](https://www.infura.io/))
 
-
 See [tutorials](./tutorials.html) for instructions on how to set up cloud providers to run Hubble.
 
 ## Install via Script
 
-The install script is the simplest way to set up Hubble. 
+The install script is the simplest way to set up Hubble.
 
 ```bash
 curl -sSL https://download.thehubble.xyz/bootstrap.sh | bash
 ```
 
-*If you're using macOS, you'll need to have docker installed and running.*
+_If you're using macOS, you'll need to have docker installed and running._
 
 Hubble will be installed into `~/hubble` and will be run via Docker in the background, along with Grafana and Prometheus for [monitoring](monitoring.md). If you have trouble with the script, try [installing via docker](#install-via-docker).
 
 ### Upgrading Hubble
 
-The Hubble script creates a crontab entry will automatically the hub every week. To upgrade manually, run: 
-
+The Hubble script creates a crontab entry will automatically the hub every week. To upgrade manually, run:
 
 ```bash
 cd ~/hubble && ./hubble.sh upgrade
@@ -38,7 +36,7 @@ cd ~/hubble && ./hubble.sh upgrade
 
 ## Install via Docker
 
-Hubble can also be set up by running the docker image directly. To do this: 
+Hubble can also be set up by running the docker image directly. To do this:
 
 1. Check out the [hub-monorepo](https://github.com/farcasterxyz/hub-monorepo) locally.
 2. From the root of this folder navigate to `apps/hubble`
@@ -67,9 +65,9 @@ HUB_OPERATOR_FID=your-fid
 
 ```bash
 docker compose up hubble -d
-``` 
+```
 
-Docker compose will start a Hubble container that exposes ports for networking and writes data to `.hub` and `.rocks` directories. Hubble will now sync with the contracts and other hubble instances to download all messages on the network. 
+Docker compose will start a Hubble container that exposes ports for networking and writes data to `.hub` and `.rocks` directories. Hubble will now sync with the contracts and other hubble instances to download all messages on the network.
 
 7. To view the status of the sync and hubble, follow the logs
 
@@ -81,7 +79,7 @@ docker compose logs -f hubble
 
 ### Upgrading Hubble
 
-Navigate to `apps/hubble` in hub-monorepo and run: 
+Navigate to `apps/hubble` in hub-monorepo and run:
 
 ```bash
 git checkout main && git pull
@@ -90,7 +88,7 @@ docker compose stop && docker compose up -d --force-recreate --pull always
 
 ## Installing from source
 
-Hubble can also be built and run directly from source without Docker. 
+Hubble can also be built and run directly from source without Docker.
 
 #### Installing Dependencies
 
@@ -110,6 +108,7 @@ First, ensure that the following are installed globally on your machine:
 - `yarn test` to ensure that the test suite runs correctly
 
 #### Running Hubble
+
 To run the Hubble commands, go to the Hubble app (`cd apps/hubble`) and run the `yarn` commands.
 
 1. `yarn identity create` to create a ID
@@ -122,7 +121,7 @@ To upgrade hubble, find the latest [release tag](https://github.com/farcasterxyz
 
 ```bash
 git fetch --tags # to fetch the latest tags
-git checkout @farcaster/hubble@latest # Or use a specific version. 
+git checkout @farcaster/hubble@latest # Or use a specific version.
 yarn install && yarn build # in the root folder
 ```
 
@@ -146,12 +145,11 @@ docker compose exec hubble /bin/sh
 
 - If upgrading from 1.3.3 or below, please set `ETH_MAINNET_RPC_URL=your-ETH-mainnet-RPC-URL` (if using docker) or provide the `--eth-mainnet-rpc-url` flag (if not using docker)
 
-- If you're changing your Hub from one network to another, you'll need to delete your database contents: 
+- If you're changing your Hub from one network to another, you'll need to delete your database contents:
 
 ```bash
 docker compose stop && docker compose run --rm hubble yarn dbreset
 ```
-
 
 - To pull the image yourself, you can run:
 
@@ -164,5 +162,5 @@ docker pull farcasterxyz/hubble@v1.4.0
 ```
 
 - To set the Hub operator FID
-  * If you are running via docker or the script, please set this in your `.env` file: `HUB_OPERATOR_FID=your-fid`
-  * If you are running via source `yarn start --hub-operator-fid <your-fid>`
+  - If you are running via docker or the script, please set this in your `.env` file: `HUB_OPERATOR_FID=your-fid`
+  - If you are running via source `yarn start --hub-operator-fid <your-fid>`

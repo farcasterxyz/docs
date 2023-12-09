@@ -1,30 +1,30 @@
-
 # Links API
 
-The Links API will accept the following values for the `link_type` field. 
+The Links API will accept the following values for the `link_type` field.
 
-| String |  Description |
-| ------ |  ----------- |
+| String | Description                   |
+| ------ | ----------------------------- |
 | follow | Follow from FID to Target FID |
 
 ## linkById
+
 Get a link by its FID and target FID.
 
 **Query Parameters**
 | Parameter | Description | Example |
 | --------- | ----------- | ------- |
-| fid       | The FID of the link's originator | `fid=6833` |
+| fid | The FID of the link's originator | `fid=6833` |
 | target_fid | The FID of the target of the link | `target_fid=2` |
 | link_type | The type of link, as a string value| `link_type=follow` |
 
-
 **Example**
+
 ```bash
 curl http://127.0.0.1:2281/v1/linkById?fid=6833&target_fid=2&link_type=follow
 ```
 
-
 **Response**
+
 ```json
 {
   "data": {
@@ -45,24 +45,24 @@ curl http://127.0.0.1:2281/v1/linkById?fid=6833&target_fid=2&link_type=follow
 }
 ```
 
-
 ## linksByFid
+
 Get all links from a source FID
 
 **Query Parameters**
 | Parameter | Description | Example |
 | --------- | ----------- | ------- |
-| fid       | The FID of the reaction's creator | `fid=6833` |
+| fid | The FID of the reaction's creator | `fid=6833` |
 | link_type | The type of link, as a string value| `link_type=follow` |
 
-
 **Example**
+
 ```bash
 curl http://127.0.0.1:2281/v1/linksByFid?fid=6833
 ```
 
-
 **Response**
+
 ```json
 {
   "messages": [
@@ -82,29 +82,30 @@ curl http://127.0.0.1:2281/v1/linksByFid?fid=6833
       "signature": "qYsfX08mS...McYq6IYMl+ECw==",
       "signatureScheme": "SIGNATURE_SCHEME_ED25519",
       "signer": "0x0852c0...a06e999cdd"
-    },
+    }
   ],
   "nextPageToken": ""
 }
 ```
 
 ## linksByTargetFid
+
 Get all links to a target FID
 
 **Query Parameters**
 | Parameter | Description | Example |
 | --------- | ----------- | ------- |
-| target_fid       | The FID of the reaction's creator | `fid=6833` |
+| target_fid | The FID of the reaction's creator | `fid=6833` |
 | link_type | The type of link, as a string value| `link_type=follow` |
 
-
 **Example**
+
 ```bash
 curl http://127.0.0.1:2281/v1/linksByTargetFid?target_fid=6833
 ```
 
-
 **Response**
+
 ```json
 {
   "messages": [
@@ -124,7 +125,7 @@ curl http://127.0.0.1:2281/v1/linksByTargetFid?target_fid=6833
       "signature": "frIZJGIizv...qQd9QJyCg==",
       "signatureScheme": "SIGNATURE_SCHEME_ED25519",
       "signer": "0x59a04...6860ddfab"
-    },
+    }
   ],
   "nextPageToken": ""
 }

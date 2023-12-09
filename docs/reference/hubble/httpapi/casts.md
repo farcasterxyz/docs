@@ -1,23 +1,23 @@
-
 # Casts API
 
 ## castById
-Get a cast by its FID and Hash. 
+
+Get a cast by its FID and Hash.
 
 **Query Parameters**
 | Parameter | Description | Example |
 | --------- | ----------- | ------- |
-| fid       | The FID of the cast's creator | `fid=6833` |
-| hash      | The cast's hash | `hash=0xa48dd46161d8e57725f5e26e34ec19c13ff7f3b9` |
-
+| fid | The FID of the cast's creator | `fid=6833` |
+| hash | The cast's hash | `hash=0xa48dd46161d8e57725f5e26e34ec19c13ff7f3b9` |
 
 **Example**
+
 ```bash
 curl http://127.0.0.1:2281/v1/castById?fid=2&hash=0xd2b1ddc6c88e865a33cb1a565e0058d757042974
 ```
 
-
 **Response**
+
 ```json
 {
   "data": {
@@ -46,16 +46,16 @@ curl http://127.0.0.1:2281/v1/castById?fid=2&hash=0xd2b1ddc6c88e865a33cb1a565e00
 ```
 
 ## castsByFid
-Fetch all casts for authored by an FID. 
 
+Fetch all casts for authored by an FID.
 
 **Query Parameters**
 | Parameter | Description | Example |
 | --------- | ----------- | ------- |
-| fid       | The FID of the cast's creator | `fid=6833` |
-
+| fid | The FID of the cast's creator | `fid=6833` |
 
 **Example**
+
 ```bash
 curl http://127.0.0.1:2281/v1/castsByFid?fid=2
 ```
@@ -89,25 +89,27 @@ curl http://127.0.0.1:2281/v1/castsByFid?fid=2
 ```
 
 ## castsByParent
+
 Fetch all casts by parent cast's FID and Hash OR by the parent's URL
 
 **Query Parameters**
 | Parameter | Description | Example |
 | --------- | ----------- | ------- |
-| fid       | The FID of the parent cast | `fid=6833` |
-| hash      | The parent cast's hash | `hash=0xa48dd46161d8e57725f5e26e34ec19c13ff7f3b9` |
-| url       | The URL of the parent cast | `url=chain://eip155:1/erc721:0x39d89b649ffa044383333d297e325d42d31329b2` |
+| fid | The FID of the parent cast | `fid=6833` |
+| hash | The parent cast's hash | `hash=0xa48dd46161d8e57725f5e26e34ec19c13ff7f3b9` |
+| url | The URL of the parent cast | `url=chain://eip155:1/erc721:0x39d89b649ffa044383333d297e325d42d31329b2` |
 
 **Note**
 You can use either `?fid=...&hash=...` OR `?url=...` to query this endpoint
 
 **Example**
+
 ```bash
 curl http://127.0.0.1:2281/v1/castsByParent?fid=226&hash=0xa48dd46161d8e57725f5e26e34ec19c13ff7f3b9
 ```
 
-
 **Response**
+
 ```json
 {
   "messages": [
@@ -134,31 +136,32 @@ curl http://127.0.0.1:2281/v1/castsByParent?fid=226&hash=0xa48dd46161d8e57725f5e
       "signature": "MjKnOQCTW42K8+A...tRbJfia2JJBg==",
       "signatureScheme": "SIGNATURE_SCHEME_ED25519",
       "signer": "0x6f1e8758...7f04a3b500ba"
-    },
+    }
   ],
   "nextPageToken": ""
 }
 ```
 
-
 ## castsByMention
+
 Fetch all casts that mention an FID
 
 **Query Parameters**
 | Parameter | Description | Example |
 | --------- | ----------- | ------- |
-| fid       | The FID that is mentioned in a cast | `fid=6833` |
+| fid | The FID that is mentioned in a cast | `fid=6833` |
 
 **Note**
 Use the `mentionsPositions` to extract the offset in the cast text where the FID was mentioned
 
 **Example**
+
 ```bash
 curl http://127.0.0.1:2281/v1/castsByMention?fid=6833
 ```
 
-
 **Response**
+
 ```json
 {
   "messages": [
@@ -185,7 +188,7 @@ curl http://127.0.0.1:2281/v1/castsByMention?fid=6833
       "signature": "TOaWrSTmz+cyzPMFGvF...OeUznB0Ag==",
       "signatureScheme": "SIGNATURE_SCHEME_ED25519",
       "signer": "0x78ff9a768c...647b6d62558c"
-    },
+    }
   ],
   "nextPageToken": ""
 }

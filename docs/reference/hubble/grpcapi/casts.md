@@ -3,7 +3,7 @@
 Used to retrieve valid casts or tombstones for deleted casts
 
 | Method Name             | Request Type | Response Type    | Description                                                    |
-|-------------------------|--------------|------------------|----------------------------------------------------------------|
+| ----------------------- | ------------ | ---------------- | -------------------------------------------------------------- |
 | GetCast                 | CastId       | Message          | Returns a specific Cast                                        |
 | GetCastsByFid           | FidRequest   | MessagesResponse | Returns CastAdds for an Fid in reverse chron order             |
 | GetCastsByParent        | CastId       | MessagesResponse | Returns CastAdd replies to a given Cast in reverse chron order |
@@ -13,7 +13,7 @@ Used to retrieve valid casts or tombstones for deleted casts
 ## CastsByParentRequest
 
 | Field          | Type              | Label    | Description |
-|----------------|-------------------|----------|-------------|
+| -------------- | ----------------- | -------- | ----------- |
 | parent_cast_id | [CastId](#CastId) |          |             |
 | parent_url     | [string](#string) |          |             |
 | page_size      | [uint32](#uint32) | optional |             |

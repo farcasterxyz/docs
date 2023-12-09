@@ -19,14 +19,7 @@ curl http://127.0.0.1:2281/v1/fids
 
 ```json
 {
-  "fids": [
-    1,
-    2,
-    3,
-    4,
-    5,
-    6
-  ],
+  "fids": [1, 2, 3, 4, 5, 6],
   "nextPageToken": "AAAnEA=="
 }
 ```

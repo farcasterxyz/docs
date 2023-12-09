@@ -52,7 +52,7 @@ Use the [grafana dashboard](/hubble/monitoring) to monitor your hub. The Status 
 percent of your hub compared to it's peers. If this is less than 100%, try restarting the hub and waiting a while. If
 this
 persists, reach out on the [Developer Chat](https://t.me/farcasterdevchat) or file an issue on
-the [hub repo](https://github.com/farcasterxyz/hub-monorepo/issues/new?assignees=&labels=&projects=&template=bug_report.md&title=bug%20%28hubble%29%3A).    
+the [hub repo](https://github.com/farcasterxyz/hub-monorepo/issues/new?assignees=&labels=&projects=&template=bug_report.md&title=bug%20%28hubble%29%3A).
 
 ## Managing your Peer ID
 

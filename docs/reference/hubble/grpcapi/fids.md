@@ -3,13 +3,13 @@
 Used to retrieve a list of all fids
 
 | Method Name | Request Type | Response Type | Description                          |
-|-------------|--------------|---------------|--------------------------------------|
+| ----------- | ------------ | ------------- | ------------------------------------ |
 | GetFids     | FidsRequest  | FidsResponse  | Returns a paginated list of all fids |
 
 ## FidsRequest
 
 | Field      | Type              | Label    | Description |
-|------------|-------------------|----------|-------------|
+| ---------- | ----------------- | -------- | ----------- |
 | page_size  | [uint32](#uint32) | optional |             |
 | page_token | [bytes](#bytes)   | optional |             |
 | reverse    | [bool](#bool)     | optional |             |
@@ -17,6 +17,6 @@ Used to retrieve a list of all fids
 ## Fids Response
 
 | Field           | Type            | Label    | Description    |
-|-----------------|-----------------|----------|----------------|
+| --------------- | --------------- | -------- | -------------- |
 | fids            | [uint64](#)     | repeated | Array oif fids |
 | next_page_token | [bytes](#bytes) | optional |                |

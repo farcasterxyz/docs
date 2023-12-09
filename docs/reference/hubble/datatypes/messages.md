@@ -6,26 +6,26 @@ Documentation for messages produced by Hubble.
 
 A Message is a delta operation on the Farcaster network. The message protobuf is an envelope that wraps a MessageData object and contains a hash and signature which can verify its authenticity.
 
-| Field            | Type                                | Label | Description                                                       |
-| ---------------- | ----------------------------------- | ----- | ----------------------------------------------------------------- |
-| data             | [MessageData](#MessageData)         |       | Contents of the message. Alternatively, you can use the data_bytes to serialize the `MessageData`                                           |
-| hash             | bytes                               |       | Hash digest of data                                               |
-| hash_scheme      | [HashScheme](#HashScheme)           |       | Hash scheme that produced the hash digest                         |
-| signature        | bytes                               |       | Signature of the hash digest                                      |
-| signature_scheme | [SignatureScheme](#SignatureScheme) |       | Signature scheme that produced the signature                      |
-| signer           | bytes                               |       | Public key or address of the key pair that produced the signature |
-| data_bytes       | bytes                               |       | Alternate to the "data" field. If you are constructing the [MessageData](#MessageData) in a programing language other than Typescript, you can use this field to serialize the `MessageData` and calculate the `hash` and `signature` on these bytes. Optional. | 
+| Field            | Type                                | Label | Description                                                                                                                                                                                                                                                     |
+| ---------------- | ----------------------------------- | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| data             | [MessageData](#MessageData)         |       | Contents of the message. Alternatively, you can use the data_bytes to serialize the `MessageData`                                                                                                                                                               |
+| hash             | bytes                               |       | Hash digest of data                                                                                                                                                                                                                                             |
+| hash_scheme      | [HashScheme](#HashScheme)           |       | Hash scheme that produced the hash digest                                                                                                                                                                                                                       |
+| signature        | bytes                               |       | Signature of the hash digest                                                                                                                                                                                                                                    |
+| signature_scheme | [SignatureScheme](#SignatureScheme) |       | Signature scheme that produced the signature                                                                                                                                                                                                                    |
+| signer           | bytes                               |       | Public key or address of the key pair that produced the signature                                                                                                                                                                                               |
+| data_bytes       | bytes                               |       | Alternate to the "data" field. If you are constructing the [MessageData](#MessageData) in a programing language other than Typescript, you can use this field to serialize the `MessageData` and calculate the `hash` and `signature` on these bytes. Optional. |
 
 ### 1.1 MessageData
 
 A MessageData object contains properties common to all MessagesTypes and wraps a body object which contains properties specific to the MessageType.
 
-| Field     | Type                                                                                                                                                                                                                                                                                                                                                   | Label | Description                                    |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----- | ---------------------------------------------- |
-| type      | [MessageType](#MessageType)                                                                                                                                                                                                                                                                                                                            |       | Type of Message contained in the body          |
-| fid       | uint64                                                                                                                                                                                                                                                                                                                                                 |       | Farcaster ID of the user producing the message |
-| timestamp | uint32                                                                                                                                                                                                                                                                                                                                                 |       | Farcaster epoch timestamp in seconds           |
-| network   | [FarcasterNetwork](#FarcasterNetwork)                                                                                                                                                                                                                                                                                                                  |       | Farcaster network the message is intended for  |
+| Field     | Type                                                                                                                                                                                                                                                                                                                                    | Label | Description                                    |
+| --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- | ---------------------------------------------- |
+| type      | [MessageType](#MessageType)                                                                                                                                                                                                                                                                                                             |       | Type of Message contained in the body          |
+| fid       | uint64                                                                                                                                                                                                                                                                                                                                  |       | Farcaster ID of the user producing the message |
+| timestamp | uint32                                                                                                                                                                                                                                                                                                                                  |       | Farcaster epoch timestamp in seconds           |
+| network   | [FarcasterNetwork](#FarcasterNetwork)                                                                                                                                                                                                                                                                                                   |       | Farcaster network the message is intended for  |
 | body      | [CastAddBody](#CastAddBody), <br> [CastRemoveBody](#CastRemoveBody), <br> [ReactionBody](#ReactionBody), <br>[VerificationAddEthAddressBody](#VerificationAddEthAddressBody), <br>[VerificationRemoveBody](#VerificationRemoveBody), <br> [UserDataBody](#UserDataBody),<br> [LinkBody](#LinkBody),<br> [UserNameProof](#UserNameProof) | oneOf | Properties specific to the MessageType         |
 
 ### 1.2 HashScheme
@@ -51,19 +51,19 @@ Type of signature scheme used to sign the Message hash
 
 Type of the MessageBody
 
-| Name                                      | Number | Description                                               |
-| ----------------------------------------- | ------ | --------------------------------------------------------- |
-| MESSAGE_TYPE_NONE                         | 0      | Invalid default value                                     |
-| MESSAGE_TYPE_CAST_ADD                     | 1      | Add a new Cast                                            |
-| MESSAGE_TYPE_CAST_REMOVE                  | 2      | Remove an existing Cast                                   |
-| MESSAGE_TYPE_REACTION_ADD                 | 3      | Add a Reaction to a Cast                                  |
-| MESSAGE_TYPE_REACTION_REMOVE              | 4      | Remove a Reaction from a Cast                             |
-| MESSAGE_TYPE_LINK_ADD                     | 5      | Add a Link to a target                                    |
-| MESSAGE_TYPE_LINK_REMOVE                  | 6      | Remove a Link from a target                               |
-| MESSAGE_TYPE_VERIFICATION_ADD_ETH_ADDRESS | 7      | Add a Verification of an Ethereum Address                 |
-| MESSAGE_TYPE_VERIFICATION_REMOVE          | 8      | Remove a Verification                                     |
-| MESSAGE_TYPE_USER_DATA_ADD                | 11     | Add metadata about a user                                 |
-| MESSAGE_TYPE_USERNAME_PROOF               | 12     | Add or replace a username proof                           |
+| Name                                      | Number | Description                               |
+| ----------------------------------------- | ------ | ----------------------------------------- |
+| MESSAGE_TYPE_NONE                         | 0      | Invalid default value                     |
+| MESSAGE_TYPE_CAST_ADD                     | 1      | Add a new Cast                            |
+| MESSAGE_TYPE_CAST_REMOVE                  | 2      | Remove an existing Cast                   |
+| MESSAGE_TYPE_REACTION_ADD                 | 3      | Add a Reaction to a Cast                  |
+| MESSAGE_TYPE_REACTION_REMOVE              | 4      | Remove a Reaction from a Cast             |
+| MESSAGE_TYPE_LINK_ADD                     | 5      | Add a Link to a target                    |
+| MESSAGE_TYPE_LINK_REMOVE                  | 6      | Remove a Link from a target               |
+| MESSAGE_TYPE_VERIFICATION_ADD_ETH_ADDRESS | 7      | Add a Verification of an Ethereum Address |
+| MESSAGE_TYPE_VERIFICATION_REMOVE          | 8      | Remove a Verification                     |
+| MESSAGE_TYPE_USER_DATA_ADD                | 11     | Add metadata about a user                 |
+| MESSAGE_TYPE_USERNAME_PROOF               | 12     | Add or replace a username proof           |
 
 ### 1.5 Farcaster Network
 
@@ -94,7 +94,7 @@ Adds metadata about a user
 Type of UserData
 
 | Name                    | Number | Description                           |
-|-------------------------| ------ | ------------------------------------- |
+| ----------------------- | ------ | ------------------------------------- |
 | USER_DATA_TYPE_NONE     | 0      | Invalid default value                 |
 | USER_DATA_TYPE_PFP      | 1      | Profile Picture for the user          |
 | USER_DATA_TYPE_DISPLAY  | 2      | Display Name for the user             |
@@ -115,18 +115,17 @@ Adds a new Cast
 | embeds_deprecated  | string            | repeated | URLs to be embedded in the cast             |
 | mentions           | uint64            | repeated | Fids mentioned in the cast                  |
 | parent_cast_id     | [CastId](#CastId) |          | Parent cast of the cast                     |
-| parent_url         | string |          | Parent URL of the cast                                 |
+| parent_url         | string            |          | Parent URL of the cast                      |
 | text               | string            |          | Text of the cast                            |
 | mentions_positions | uint32            | repeated | Positions of the mentions in the text       |
 | embeds             | [Embed](#Embed)   | repeated | URLs or cast ids to be embedded in the cast |
 
 #### Embed
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| url | [string](#string) |  |  |
-| cast_id | [CastId](#CastId) |  |  |
-
+| Field   | Type              | Label | Description |
+| ------- | ----------------- | ----- | ----------- |
+| url     | [string](#string) |       |             |
+| cast_id | [CastId](#CastId) |       |             |
 
 ### 3.2 CastRemoveBody
 
@@ -169,20 +168,17 @@ Type of Reaction
 | REACTION_TYPE_LIKE   | 1      | Like the target cast                         |
 | REACTION_TYPE_RECAST | 2      | Share target cast to the user&#39;s audience |
 
-
 ## 5. Link
-
 
 ### 5.1 LinkBody
 
 Adds or removes a Link
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| type | [string](#string) |  | Type of link, &lt;= 8 characters |
+| Field            | Type              | Label    | Description                                                                                                             |
+| ---------------- | ----------------- | -------- | ----------------------------------------------------------------------------------------------------------------------- |
+| type             | [string](#string) |          | Type of link, &lt;= 8 characters                                                                                        |
 | displayTimestamp | [uint32](#uint32) | optional | User-defined timestamp that preserves original timestamp when message.data.timestamp needs to be updated for compaction |
-| target_fid | [uint64](#uint64) |  | The fid the link relates to |
-
+| target_fid       | [uint64](#uint64) |          | The fid the link relates to                                                                                             |
 
 ## 6. Verification
 

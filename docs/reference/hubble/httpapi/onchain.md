@@ -1,25 +1,23 @@
-
-
 # On Chain API
 
-
 ## onChainSignersByFid
-Get a list of signers provided by an FID 
+
+Get a list of signers provided by an FID
 
 **Query Parameters**
 | Parameter | Description | Example |
 | --------- | ----------- | ------- |
 | fid | The FID being requested | `fid=2` |
-| signer | The optional key of signer  | `signer=0x0852c07b5695ff94138b025e3f9b4788e06133f04e254f0ea0eb85a06e999cdd` |
-
+| signer | The optional key of signer | `signer=0x0852c07b5695ff94138b025e3f9b4788e06133f04e254f0ea0eb85a06e999cdd` |
 
 **Example**
+
 ```bash
 curl http://127.0.0.1:2281/v1/onChainSignersByFid?fid=6833
 ```
 
-
 **Response**
+
 ```json
 {
   "events": [
@@ -45,34 +43,33 @@ curl http://127.0.0.1:2281/v1/onChainSignersByFid?fid=6833
 }
 ```
 
-
-
 ## onChainEventsByFid
-Get a list of signers provided by an FID 
+
+Get a list of signers provided by an FID
 
 **Query Parameters**
 | Parameter | Description | Example |
 | --------- | ----------- | ------- |
 | fid | The FID being requested | `fid=2` |
-| event_type | The numeric of string value of the event type being requested. This parameter is required  | `event_type=1` OR `event_type=EVENT_TYPE_STORAGE_RENT` |
+| event_type | The numeric of string value of the event type being requested. This parameter is required | `event_type=1` OR `event_type=EVENT_TYPE_STORAGE_RENT` |
 
+The onChainEventsByFid API will accept the following values for the `event_type` field.
 
-The onChainEventsByFid API will accept the following values for the `event_type` field. 
-
-| String | Numerical value | 
-| ------ | --------------- | 
-| EVENT_TYPE_SIGNER | 1 |
-| EVENT_TYPE_SIGNER_MIGRATED | 2 |
-| EVENT_TYPE_ID_REGISTER | 3 |
-| EVENT_TYPE_STORAGE_RENT | 4 |
+| String                     | Numerical value |
+| -------------------------- | --------------- |
+| EVENT_TYPE_SIGNER          | 1               |
+| EVENT_TYPE_SIGNER_MIGRATED | 2               |
+| EVENT_TYPE_ID_REGISTER     | 3               |
+| EVENT_TYPE_STORAGE_RENT    | 4               |
 
 **Example**
+
 ```bash
 curl http://127.0.0.1:2281/v1/onChainEventsByFid?fid=3&event_type=1
 ```
 
-
 **Response**
+
 ```json
 {
   "events": [
@@ -93,28 +90,28 @@ curl http://127.0.0.1:2281/v1/onChainEventsByFid?fid=3&event_type=1
         "metadataType": 1
       },
       "txIndex": 0
-    },
+    }
   ]
 }
 ```
 
-
 ## onChainIdRegistryEventByAddress
+
 Get a list of on chain events for a given Address
 
 **Query Parameters**
 | Parameter | Description | Example |
 | --------- | ----------- | ------- |
-| address | The ETH address being requested  | `address=0x74232bf61e994655592747e20bdf6fa9b9476f79` |
-
+| address | The ETH address being requested | `address=0x74232bf61e994655592747e20bdf6fa9b9476f79` |
 
 **Example**
+
 ```bash
 curl http://127.0.0.1:2281/v1/onChainIdRegistryEventByAddress?address=0x74232bf61e994655592747e20bdf6fa9b9476f79
 ```
 
-
 **Response**
+
 ```json
 {
   "type": "EVENT_TYPE_ID_REGISTER",
