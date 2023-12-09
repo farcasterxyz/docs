@@ -1,8 +1,10 @@
 # Events
 
-The Hub emits events whenever it processes a message. Clients can subscribe to the hub using
-the [Events API](/reference/hubble/grpcapi/events) to get a live stream of changes to the hub. Historial events are
-available for 3 days, after which they are deleted.
+Events represent state changes, like a new message or contract event.
+
+Hubble emit events whenever it observes a state change. Since a hub may see messages in a different order than other hubs, events ordering is specific to each hub. Clients can subscribe to the hub using the [Events API](/reference/hubble/grpcapi/events) to get a live stream of changes to the hub.
+
+Hubble keeps event around for 3 days after which they are deleted to save space. To get older data, use the [GRPC](../grpcapi/grpcapi.md) or [HTTP](../httpapi/httpapi.md) APIs.
 
 ## HubEvent
 
