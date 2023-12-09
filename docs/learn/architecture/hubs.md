@@ -60,4 +60,4 @@ You may need a Hub if you are building an app that wants to read or write Farcas
 
 **2. Are there rewards for running a Hub?**
 
-No.  
+Farcaster does not provide rewards for Hubs and does not plan to. Warpcast, a company building on Farcaster, gives Hub runners minor rewards but may change this in the future.

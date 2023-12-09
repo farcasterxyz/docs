@@ -37,7 +37,7 @@ for more details.
 
 ## Deletion 
 
-An account can delete any of its messages at any time by publishing a corresponding delete message. Wherever possible, the delete will preserve privacy by removing the contents of the message and leaving a tombstone in its place. A deleted message will still count towards the account's storage limit until it expires by being pushed out by a newer message.
+An account can delete any of its messages at any time by publishing a corresponding delete message. Wherever possible, the delete will remove the contents of the message and leave a tombstone in its place. A deleted message will still count towards the account's storage limit until it expires by being pushed out by a newer message.
 
 ## Timestamps
 

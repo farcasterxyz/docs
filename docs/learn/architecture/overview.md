@@ -11,7 +11,7 @@ Farcaster's onchain systems are implemented as [contracts on OP Mainnet](./contr
 
 - Creating an account. 
 - Paying rent to store data on offchain systems. 
-- Authorizing light apps for an account. 
+- Authorizing connected apps for an account. 
 
 Actions are performed onchain only when security and consistency are critical. Use of onchain actions is kept at a minimum to reduce costs and improve performance.
 

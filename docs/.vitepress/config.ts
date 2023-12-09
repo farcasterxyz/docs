@@ -83,11 +83,11 @@ export default defineConfig({
           ],
         },
         {
-          text: 'Development',
+          text: 'Contributing',
           items: [
-            { text: 'Contributing', link: '/learn/contributing' },
-            { text: 'Governance', link: '/learn/governance' },
-            { text: 'FIPs', link: '/learn/fips' },
+            { text: 'Overview', link: '/learn/contributing/overview' },
+            { text: 'Governance', link: '/learn/contributing/governance' },
+            { text: 'FIPs', link: '/learn/contributing/fips' },
           ],
         }
       ],
