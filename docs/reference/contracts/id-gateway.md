@@ -2,7 +2,7 @@
 
 ## price
 
-Returns the price in wei to register an fid. This includes the price of 1 storage unit. To include additional storage units,
+Returns the price in wei to register an fid. This includes the price of 1 storage unit. To include additional storage units
 in the calculation, provide an optional `extraStorage` parameter.
 
 | Param Name   | type                 | Description                                                           |
@@ -11,7 +11,7 @@ in the calculation, provide an optional `extraStorage` parameter.
 
 ## nonces
 
-Returns the next unused nonce for an address. Used for generating an EIP-712 `Register` signature for [registerFor](#registerfor).
+Returns the next unused nonce for an address. Used for generating an EIP-712 [`Register`](#register-signature) signature for [registerFor](#registerfor).
 
 | Param Name | type      | Description                        |
 | ---------- | --------- | ---------------------------------- |
@@ -30,7 +30,7 @@ Register a new fid to the caller and pay for one or more units of storage. The c
 ## registerFor
 
 Register a new fid to a specific address and pay for one or more units of storage. The receiving
-address must sign an EIP-712 `Register` message approving the registration. the receiver must not already own an fid.
+address must sign an EIP-712 [`Register`](#register-signature) message approving the registration. the receiver must not already own an fid.
 
 | Param Name   | type                 | Description                                            |
 | ------------ | -------------------- | ------------------------------------------------------ |
@@ -115,3 +115,12 @@ export const readNonce = async () => {
 ```
 
 <<< @/examples/contracts/clients.ts
+
+:::
+
+## Errors
+
+| Error            | Selector   | Description                                                                                                  |
+| ---------------- | ---------- | ------------------------------------------------------------------------------------------------------------ |
+| InvalidSignature | `8baa579f` | The provided signature is invalid. It may be incorrectly formatted, or signed by the wrong address.          |
+| SignatureExpired | `0819bdcd` | The provided signature has expired. Collect a new signature from the signer with a later deadline timestamp. |

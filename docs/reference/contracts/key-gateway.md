@@ -130,3 +130,10 @@ export const readNonce = async () => {
 <<< @/examples/contracts/clients.ts
 
 :::
+
+## Errors
+
+| Error            | Selector   | Description                                                                                                  |
+| ---------------- | ---------- | ------------------------------------------------------------------------------------------------------------ |
+| InvalidSignature | `8baa579f` | The provided signature is invalid. It may be incorrectly formatted, or signed by the wrong address.          |
+| SignatureExpired | `0819bdcd` | The provided signature has expired. Collect a new signature from the signer with a later deadline timestamp. |

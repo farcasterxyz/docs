@@ -26,7 +26,7 @@ Returns the recovery address (`address`) of an fid. Returns the zero address if 
 
 ## idCounter
 
-Returns the current highest fid (`uint256`) that has been registered
+Returns the current highest fid (`uint256`) that has been registered.
 
 ## verifyFidSignature
 
@@ -53,7 +53,7 @@ Will revert if called directly, must be called via the [ID Gateway](/reference/c
 
 ## changeRecoveryAddress
 
-Changes the recovery address of `msg.sender` to a new address
+Change the recovery address of the caller's fid to a new address.
 
 | Param Name | type      | Description              |
 | ---------- | --------- | ------------------------ |
@@ -61,16 +61,16 @@ Changes the recovery address of `msg.sender` to a new address
 
 ## transfer
 
-Transfer the fid of the caller to a new address. The receiving address must sign an EIP-712 `Transfer` message accepting the transfer. The `to` address must not already own an fid.
+Transfer the fid of the caller to a new address. The receiving address must sign an EIP-712 [`Transfer`](#transfer-signature) message accepting the transfer. The `to` address must not already own an fid.
 
-| Param Name | type      | Description                                        |
-| ---------- | --------- | -------------------------------------------------- |
-| to         | `address` | The address to transfer the fid to                 |
-| deadline   | `uint256` | The deadline for the signature                     |
-| sig        | `bytes`   | EIP-712 `Transfer` signature from the `to` address |
+| Param Name | type      | Description                                                               |
+| ---------- | --------- | ------------------------------------------------------------------------- |
+| to         | `address` | The address to transfer the fid to                                        |
+| deadline   | `uint256` | The deadline for the signature                                            |
+| sig        | `bytes`   | EIP-712 [`Transfer`](#transfer-signature) signature from the `to` address |
 
 ::: warning
-Transferring an fid does not reset its recovery address. To transfer an fid and update its recovery address, call `transferAndChangeRecovery`. If you are receiving an fid from an untrusted sender, ensure its recovery address is cleared or changed on transfer.
+Transferring an fid does not reset its recovery address. To transfer an fid and update its recovery address, call [`transferAndChangeRecovery`](#transferandchangerecovery). If you are receiving an fid from an untrusted sender, ensure its recovery address is cleared or changed on transfer.
 :::
 
 ### Transfer signature
@@ -152,29 +152,29 @@ export const readNonce = async () => {
 
 ## transferFor
 
-Transfer the fid owned by the `from` address to the `to` address. The caller must provide two EIP-712 `Transfer` signatures: one from the `from` address authorizing the transfer out and one from the `to` address accepting the transfer in. These messages have the same format. The `to` address must not already own an fid.
+Transfer the fid owned by the `from` address to the `to` address. The caller must provide two EIP-712 [`Transfer`](#transfer-signature) signatures: one from the `from` address authorizing the transfer out and one from the `to` address accepting the transfer in. These messages have the same format. The `to` address must not already own an fid.
 
-| Param Name   | type      | Description                                           |
-| ------------ | --------- | ----------------------------------------------------- |
-| from         | `address` | The address to transfer the fid from                  |
-| to           | `address` | The address to transfer the fid to                    |
-| fromDeadline | `uint256` | The deadline for the signature                        |
-| fromSig      | `bytes`   | EIP-712 `Transfer` signature from the `from` address  |
-| toDeadline   | `uint256` | The deadline for the signature                        |
-| toSig        | `bytes`   | EIP-712 ` Transfer`` signature from the  `to` address |
+| Param Name   | type      | Description                                                                 |
+| ------------ | --------- | --------------------------------------------------------------------------- |
+| from         | `address` | The address to transfer the fid from                                        |
+| to           | `address` | The address to transfer the fid to                                          |
+| fromDeadline | `uint256` | The deadline for the signature                                              |
+| fromSig      | `bytes`   | EIP-712 [`Transfer`](#transfer-signature) signature from the `from` address |
+| toDeadline   | `uint256` | The deadline for the signature                                              |
+| toSig        | `bytes`   | EIP-712 [`Transfer`](#transfer-signature) signature from the `to` address   |
 
 ## transferAndChangeRecovery
 
 Transfer the fid of the caller to a new address, and change the fid's recovery address. This can be used to safely receive an fid transfer from an untrusted address.
 
-The receiving address must sign an EIP-712 `TransferAndChangeRecovery` message accepting the transfer. The `to` address must not already own an fid.
+The receiving address must sign an EIP-712 [`TransferAndChangeRecovery`](#transferandchangerecovery-signature) message accepting the transfer. The `to` address must not already own an fid.
 
-| Param Name | type      | Description                                                         |
-| ---------- | --------- | ------------------------------------------------------------------- |
-| to         | `address` | The address to transfer the fid to                                  |
-| recovery   | `address` | The new recovery address                                            |
-| deadline   | `uint256` | The deadline for the signature                                      |
-| sig        | `bytes`   | EIP-712 `TransferAndChangeRecovery` signature from the `to` address |
+| Param Name | type      | Description                                                                                       |
+| ---------- | --------- | ------------------------------------------------------------------------------------------------- |
+| to         | `address` | The address to transfer the fid to                                                                |
+| recovery   | `address` | The new recovery address                                                                          |
+| deadline   | `uint256` | The deadline for the signature                                                                    |
+| sig        | `bytes`   | EIP-712 [`TransferAndChangeRecovery`](#transferandchangerecovery) signature from the `to` address |
 
 ### TransferAndChangeRecovery signature
 
@@ -260,41 +260,50 @@ export const readNonce = async () => {
 
 Transfer the fid owned by the `from` address to the `to` address, and change the fid's recovery address. This can be used to safely receive an fid transfer from an untrusted address.
 
-The caller must provide two EIP-712 `TransferAndChangeRecovery` signatures: one from the `from` address authorizing the transfer out and one from the `to` address accepting the transfer in. These messages have the same format. The `to` address must not already own an fid.
+The caller must provide two EIP-712 [`TransferAndChangeRecovery`](#transferandchangerecovery-signature) signatures: one from the `from` address authorizing the transfer out and one from the `to` address accepting the transfer in. These messages have the same format. The `to` address must not already own an fid.
 
-| Param Name   | type      | Description                                                           |
-| ------------ | --------- | --------------------------------------------------------------------- |
-| from         | `address` | The address to transfer the fid from                                  |
-| to           | `address` | The address to transfer the fid to                                    |
-| fromDeadline | `uint256` | The deadline for the signature                                        |
-| fromSig      | `bytes`   | EIP-712 `TransferAndChangeRecovery` signature from the `from` address |
-| toDeadline   | `uint256` | The deadline for the signature                                        |
-| toSig        | `bytes`   | EIP-712 `TransferAndChangeRecovery` signature from the `to` address   |
+| Param Name   | type      | Description                                                                                                   |
+| ------------ | --------- | ------------------------------------------------------------------------------------------------------------- |
+| from         | `address` | The address to transfer the fid from                                                                          |
+| to           | `address` | The address to transfer the fid to                                                                            |
+| fromDeadline | `uint256` | The deadline for the signature                                                                                |
+| fromSig      | `bytes`   | EIP-712 [`TransferAndChangeRecovery`](#transferandchangerecovery-signature) signature from the `from` address |
+| toDeadline   | `uint256` | The deadline for the signature                                                                                |
+| toSig        | `bytes`   | EIP-712 [`TransferAndChangeRecovery`](#transferandchangerecovery-signature) signature from the `to` address   |
 
 ## recover
 
-Transfer a fid to a new address if caller is the recovery address for that fid. The receiving address must sign an EIP-712 `Transfer` message accepting the transfer.
+Transfer a fid to a new address if caller is the recovery address for that fid. The receiving address must sign an EIP-712 [`Transfer`](#transfer-signature) message accepting the transfer.
 
 The `to` address must not already own an fid.
 
-| Param Name | type      | Description                                        |
-| ---------- | --------- | -------------------------------------------------- |
-| from       | `address` | The address to transfer the fid from               |
-| to         | `address` | The address to transfer the fid to                 |
-| deadline   | `uint256` | The deadline for the signature                     |
-| sig        | `bytes`   | EIP-712 `Transfer` signature from the `to` address |
+| Param Name | type      | Description                                                               |
+| ---------- | --------- | ------------------------------------------------------------------------- |
+| from       | `address` | The address to transfer the fid from                                      |
+| to         | `address` | The address to transfer the fid to                                        |
+| deadline   | `uint256` | The deadline for the signature                                            |
+| sig        | `bytes`   | EIP-712 [`Transfer`](#transfer-signature) signature from the `to` address |
 
 ## recoverFor
 
-Transfer an fid to a new address with a signature from the fid's recovery address. The caller must provide two EIP-712 `Transfer` signatures: one from the recovery address authorizing the transfer out and one from the `to` address accepting the transfer in. These messages have the same format.
+Transfer an fid to a new address with a signature from the fid's recovery address. The caller must provide two EIP-712 [`Transfer`](#transfer-signature) signatures: one from the recovery address authorizing the transfer out and one from the `to` address accepting the transfer in. These messages have the same format.
 
 The `to` address must not already own an fid.
 
-| Param Name       | type      | Description                                            |
-| ---------------- | --------- | ------------------------------------------------------ |
-| from             | `address` | The address to transfer the fid from                   |
-| to               | `address` | The address to transfer the fid to                     |
-| recoveryDeadline | `uint256` | The deadline for the recovery signature                |
-| recoverySig      | `bytes`   | EIP-712 `Transfer` signature from the recovery address |
-| toDeadline       | `uint256` | The deadline for the receiver signature                |
-| toSig            | `bytes`   | EIP-712 ` Transfer`` signature from the  `to` address  |
+| Param Name       | type      | Description                                                                   |
+| ---------------- | --------- | ----------------------------------------------------------------------------- |
+| from             | `address` | The address to transfer the fid from                                          |
+| to               | `address` | The address to transfer the fid to                                            |
+| recoveryDeadline | `uint256` | The deadline for the recovery signature                                       |
+| recoverySig      | `bytes`   | EIP-712 [`Transfer`](#transfer-signature) signature from the recovery address |
+| toDeadline       | `uint256` | The deadline for the receiver signature                                       |
+| toSig            | `bytes`   | EIP-712 [`Transfer`](#transfer-signature) signature from the `to` address     |
+
+## Errors
+
+| Error            | Selector   | Description                                                                                                  |
+| ---------------- | ---------- | ------------------------------------------------------------------------------------------------------------ |
+| HasId            | `f90230a9` | Transfer or recovery `to` address already owns an fid.                                                       |
+| HasNoId          | `210b4b26` | Transfer or recover `from` address does not own an fid.                                                      |
+| InvalidSignature | `8baa579f` | The provided signature is invalid. It may be incorrectly formatted, or signed by the wrong address.          |
+| SignatureExpired | `0819bdcd` | The provided signature has expired. Collect a new signature from the signer with a later deadline timestamp. |
