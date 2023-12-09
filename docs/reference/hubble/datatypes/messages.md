@@ -1,10 +1,12 @@
 # Messages
 
-Documentation for messages produced by Hubble.
+A message is the fundamental data type in the Farcaster network.
+
+When an account takes an action like casting a public message, change its profile or verifying an Ethereum account, it generates a new messages
 
 ## 1. Message
 
-A Message is a delta operation on the Farcaster network. The message protobuf is an envelope that wraps a MessageData object and contains a hash and signature which can verify its authenticity.
+The message is a protobuf that contains the data, its hash and a signature from the author.
 
 | Field            | Type                                | Label | Description                                                                                                                                                                                                                                                     |
 | ---------------- | ----------------------------------- | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -18,7 +20,7 @@ A Message is a delta operation on the Farcaster network. The message protobuf is
 
 ### 1.1 MessageData
 
-A MessageData object contains properties common to all MessagesTypes and wraps a body object which contains properties specific to the MessageType.
+MessageData is a generic envelope that contains a type, fid, timestamp and network which must be present in all Farcaster messages. It also contains a body whose type is determined by the MessageType.
 
 | Field     | Type                                                                                                                                                                                                                                                                                                                                    | Label | Description                                    |
 | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- | ---------------------------------------------- |
@@ -78,11 +80,11 @@ Farcaster network the message is intended for
 
 ## 2. UserData
 
-A UserData is a delta that contains metadata information about the user.
+A UserData message represents user metadata (e.g. a profile picture url) .
 
 ### 2.1 UserDataBody
 
-Adds metadata about a user
+Body of a UserData message
 
 | Field | Type                          | Label | Description           |
 | ----- | ----------------------------- | ----- | --------------------- |
@@ -91,7 +93,7 @@ Adds metadata about a user
 
 ### 2.2 UserDataType
 
-Type of UserData
+Type of UserData message
 
 | Name                    | Number | Description                           |
 | ----------------------- | ------ | ------------------------------------- |
@@ -104,11 +106,11 @@ Type of UserData
 
 ## 3. Cast
 
-A Cast is a delta that represents a new public update from a user. Casts can be added and removed at any time by the user.
+A Cast message is a public post from a user.
 
 ### 3.1 CastAddBody
 
-Adds a new Cast
+Adds a new Cast message.
 
 | Field              | Type              | Label    | Description                                 |
 | ------------------ | ----------------- | -------- | ------------------------------------------- |
@@ -129,7 +131,7 @@ Adds a new Cast
 
 ### 3.2 CastRemoveBody
 
-Removes an existing Cast
+Removes an existing Cast message.
 
 | Field       | Type  | Label | Description                |
 | ----------- | ----- | ----- | -------------------------- |
@@ -146,7 +148,7 @@ Identifier used to look up a Cast
 
 ## 4. Reaction
 
-A Reaction is a delta that is applied by a user to a specific Cast.
+A Reaction message creates a relationship between an account and a cast. (e.g. like)
 
 ### 4.1 ReactionBody
 
@@ -170,6 +172,8 @@ Type of Reaction
 
 ## 5. Link
 
+A Link message creates a relationship between two users (e..g follow)
+
 ### 5.1 LinkBody
 
 Adds or removes a Link
@@ -182,11 +186,11 @@ Adds or removes a Link
 
 ## 6. Verification
 
-A Verification is a delta that contains a bi-directional signature proving that an fid has control over an Ethereum address.
+A Verification message is a proof of ownership of something.
 
 ### 6.1 VerificationAddEthAddressBody
 
-Adds a Verification of ownership of an Ethereum Address
+Adds a bi-directional signature proving that an fid has control over an Ethereum address.
 
 | Field         | Type  | Label | Description                                                   |
 | ------------- | ----- | ----- | ------------------------------------------------------------- |
