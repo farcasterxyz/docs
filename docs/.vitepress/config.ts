@@ -24,7 +24,7 @@ export default defineConfig({
   ],
   themeConfig: {
     nav: [
-      { text: 'Learn', link: '/learn/overview', activeMatch: '/learn/' },
+      { text: 'Learn', link: '/learn/what-is-farcaster/overview', activeMatch: '/learn/' },
       // { text: 'Developers', link: '/developers/index', activeMatch: '/developers/' },
       { text: 'Hubble', link: '/hubble/hubble', activeMatch: '/hubble/' },
       { text: 'Reference', link: '/reference/index', activeMatch: '/reference/' },
@@ -224,7 +224,7 @@ export default defineConfig({
           ],
         },
         {
-          text: 'Smart Contracts',
+          text: 'Contracts',
           items: [
             { text: 'Overview', link: '/reference/contracts/index' },
             { text: 'ID Gateway', link: '/reference/contracts/id-gateway' },

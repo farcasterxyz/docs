@@ -1,6 +1,6 @@
 # Overview
 
-Farcaster smart contracts are deployed on Optimism, and Ethereum layer 2 network. There are three core contracts,
+Farcaster contracts are deployed on Optimism, and Ethereum layer 2 network. There are three core contracts,
 ID registry, Key Registry and Storage Registry. Write access to the ID and Key registry is gated through the Gateway
 contracts. There is also a Bundler helper contract to make it easy to register an fid, add a key and rent storage in one
 transaction.

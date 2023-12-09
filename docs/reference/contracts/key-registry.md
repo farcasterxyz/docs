@@ -21,7 +21,7 @@ Returns an array of public keys (`bytes[]`) for an fid.
 | batchSize  | `uint256` (optional)                 | Batch size for pagination           |
 
 ::: warning
-Don't call this onchain! This function is very expensive for users with many keys, since it copies the entire key set to memory. It's meant to be called by offchain tools, not by other smart contracts.
+Don't call this onchain! This function is very expensive for users with many keys, since it copies the entire key set to memory. It's meant to be called by offchain tools, not by other contracts.
 :::
 
 ## keyDataOf
