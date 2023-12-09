@@ -1,20 +1,20 @@
-
-
 # SubmitMessage API
-The SubmitMessage API lets you submit signed Farcaster protocol messages to the Hub. Note that the message has to be sent as the encoded bytestream of the protobuf (`Message.enocde(msg).finish()` in typescript), as POST data to the endpoint. 
+
+The SubmitMessage API lets you submit signed Farcaster protocol messages to the Hub. Note that the message has to be sent as the encoded bytestream of the protobuf (`Message.enocde(msg).finish()` in typescript), as POST data to the endpoint.
 
 The encoding of the POST data has to be set to `application/octet-stream`. The endpoint returns the Message object as JSON if it was successfully submitted
 
 ## submitMessage
+
 Submit a signed protobuf-serialized message to the Hub
 
 **Query Parameters**
 | Parameter | Description | Example |
 | --------- | ----------- | ------- |
-|  | This endpoint accepts no parameters |  |
-
+| | This endpoint accepts no parameters | |
 
 **Example**
+
 ```bash
 curl -X POST "http://127.0.0.1:2281/v1/submitMessage" \
      -H "Content-Type: application/octet-stream" \
@@ -22,8 +22,8 @@ curl -X POST "http://127.0.0.1:2281/v1/submitMessage" \
 
 ```
 
-
 **Response**
+
 ```json
 {
   "data": {
@@ -52,10 +52,11 @@ curl -X POST "http://127.0.0.1:2281/v1/submitMessage" \
 ```
 
 ### Auth
-If the rpc auth has been enabled on the server (using `--rpc-auth username:password`), you will need to also pass in the username and password while calling `submitMessage` using HTTP Basic Auth. 
 
+If the rpc auth has been enabled on the server (using `--rpc-auth username:password`), you will need to also pass in the username and password while calling `submitMessage` using HTTP Basic Auth.
 
 **Example**
+
 ```bash
 curl -X POST "http://127.0.0.1:2281/v1/submitMessage" \
      -u "username:password" \
@@ -64,6 +65,7 @@ curl -X POST "http://127.0.0.1:2281/v1/submitMessage" \
 ```
 
 **JS Example**
+
 ```Javascript
 import axios from "axios";
 
@@ -85,8 +87,8 @@ try {
 ```
 
 ## Using with Rust, Go or other programing languages
-Messages need to be signed with a ED25519 signer belonging to the FID. If you are using a different programming language than Typescript, you can manually construct the `MessageData` object and serialize it to the `data_bytes` field of the message. Then, use the `data_bytes` to compute the `hash` and `signature`. Please see the [`rust-submitmessage` example](https://github.com/farcasterxyz/hub-monorepo/tree/main/packages/hub-web/examples) for more details
 
+Messages need to be signed with a ED25519 signer belonging to the FID. If you are using a different programming language than Typescript, you can manually construct the `MessageData` object and serialize it to the `data_bytes` field of the message. Then, use the `data_bytes` to compute the `hash` and `signature`. Please see the [`rust-submitmessage` example](https://github.com/farcasterxyz/hub-monorepo/tree/main/packages/hub-web/examples) for more details
 
 ```rust
 use ed25519_dalek::{SecretKey, Signer, SigningKey};
@@ -109,7 +111,7 @@ async fn main() {
     // Construct the cast add message data object
     let mut msg_data = MessageData::new();
     msg_data.set_field_type(message::MessageType::MESSAGE_TYPE_CAST_ADD);
-    msg_data.set_fid(fid);    
+    msg_data.set_fid(fid);
     msg_data.set_timestamp(
         (std::time::SystemTime::now()
             .duration_since(FARCASTER_EPOCH)
@@ -120,7 +122,7 @@ async fn main() {
     msg_data.set_cast_add_body(cast_add);
 
     let msg_data_bytes = msg_data.write_to_bytes().unwrap();
-    
+
     // Calculate the blake3 hash, trucated to 20 bytes
     let hash = blake3::hash(&msg_data_bytes).as_bytes()[0..20].to_vec();
 

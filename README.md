@@ -1,6 +1,6 @@
-# farcaster.xyz
+# docs.farcaster.xyz
 
-Homepage for the Farcaster Protocol
+Documentation for the Farcaster Protocol
 
 ### Getting Started
 

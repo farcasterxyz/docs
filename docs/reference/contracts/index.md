@@ -44,7 +44,7 @@ function call.
 ## Deployment Addresses
 
 | Contract         | Optimism Address                             | Etherscan Link                                                                             |
-|------------------|----------------------------------------------|--------------------------------------------------------------------------------------------|
+| ---------------- | -------------------------------------------- | ------------------------------------------------------------------------------------------ |
 | Id Registry      | `0x00000000fc6c5f01fc30151999387bb99a9f489b` | [link](https://optimistic.etherscan.io/address/0x00000000fc6c5f01fc30151999387bb99a9f489b) |
 | Key Registry     | `0x00000000Fc1237824fb747aBDE0FF18990E59b7e` | [link](https://optimistic.etherscan.io/address/0x00000000Fc1237824fb747aBDE0FF18990E59b7e) |
 | Storage Registry | `0x00000000fcCe7f938e7aE6D3c335bD6a1a7c593D` | [link](https://optimistic.etherscan.io/address/0x00000000fcCe7f938e7aE6D3c335bD6a1a7c593D) |

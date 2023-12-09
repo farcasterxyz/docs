@@ -78,9 +78,9 @@ Then make a POST request to `/transfers` with the following body:
 To generate the EIP-712 signature, use the following code:
 
 ```js
-import { makeUserNameProofClaim, EIP712Signer } from "@farcaster/hub-nodejs";
+import { makeUserNameProofClaim, EIP712Signer } from '@farcaster/hub-nodejs';
 
-const signer: EIP712Signer = undefined // Signer for the custody address (use appropriate subclass from hub-nodejs for ethers or viem)
+const signer: EIP712Signer = undefined; // Signer for the custody address (use appropriate subclass from hub-nodejs for ethers or viem)
 
 const claim = makeUserNameProofClaim({
   name: 'hubble',
@@ -105,4 +105,4 @@ curl -X POST https://fnames.farcaster.xyz/transfers \
 Once a name is registered, it still needs a [UserData](/reference/hubble/datatypes/messages#_2-userdata) message
 to be sent to the hub in order to actually
 set the username for the user. See examples in
-the [hub-nodejs](https://github.com/farcasterxyz/hub-monorepo/tree/main/packages/hub-nodejs/examples/write-data) repo. 
+the [hub-nodejs](https://github.com/farcasterxyz/hub-monorepo/tree/main/packages/hub-nodejs/examples/write-data) repo.

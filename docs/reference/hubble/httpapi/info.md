@@ -1,24 +1,23 @@
-
 # Info API
 
 ## info
-Get the Hub's info
 
+Get the Hub's info
 
 **Query Parameters**
 | Parameter | Description | Example |
 | --------- | ----------- | ------- |
 | dbstats | Whether to return DB stats | `dbstats=1` |
 
-
 **Example**
+
 ```bash
 curl http://127.0.0.1:2281/v1/info?dbstats=1
 
 ```
 
-
 **Response**
+
 ```json
 {
   "version": "1.5.5",

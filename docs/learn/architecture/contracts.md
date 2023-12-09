@@ -1,6 +1,6 @@
 # Contracts
 
-A user's Farcaster account is managed and secured onchain using a series of contracts. THey are deployed on OP Mainnet and there are three primary contracts: 
+A user's Farcaster account is managed and secured onchain using a series of contracts. THey are deployed on OP Mainnet and there are three primary contracts:
 
 - **Id Registry** - creates new accounts
 - **Storage Registry** - rents storage to accounts
@@ -20,17 +20,16 @@ The IdRegistry lets users register, transfer and recover Farcaster accounts. An 
 
 ### Storage Registry
 
-The Storage Registry lets account rent [storage](../what-is-farcaster/messages.md#storage) by making a payment in Ethereum. The storage prices are set by admins in USD and converted to ETH using a Chainlink oracle. The price increases or decreases based on supply and demand. 
+The Storage Registry lets account rent [storage](../what-is-farcaster/messages.md#storage) by making a payment in Ethereum. The storage prices are set by admins in USD and converted to ETH using a Chainlink oracle. The price increases or decreases based on supply and demand.
 
 ### Key Registry
 
-They Key Registry lets accounts issue keys to apps, so that they can publish messages on its behalf. Keys can be added or removed at any time. To add a key, an account must submit the public key of an EdDSA key pair along with a requestor signature. The requestor can be the account itself or an app that wants to operate on its behalf.    
+They Key Registry lets accounts issue keys to apps, so that they can publish messages on its behalf. Keys can be added or removed at any time. To add a key, an account must submit the public key of an EdDSA key pair along with a requestor signature. The requestor can be the account itself or an app that wants to operate on its behalf.
 
 ## Deployments
 
 | Contract        | Address                                                                                                                          |
-|-----------------|----------------------------------------------------------------------------------------------------------------------------------|
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------- |
 | IdRegistry      | [0x00000000fc6c5f01fc30151999387bb99a9f489b](https://optimistic.etherscan.io/address/0x00000000fc6c5f01fc30151999387bb99a9f489b) |
 | StorageRegistry | [0x00000000fcce7f938e7ae6d3c335bd6a1a7c593d](https://optimistic.etherscan.io/address/0x00000000fcce7f938e7ae6d3c335bd6a1a7c593d) |
 | KeyRegistry     | [0x00000000fc1237824fb747abde0ff18990e59b7e](https://optimistic.etherscan.io/address/0x00000000fc1237824fb747abde0ff18990e59b7e) |
-

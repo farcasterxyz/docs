@@ -7,7 +7,7 @@ available for 3 days, after which they are deleted.
 ## HubEvent
 
 | Field | Type                                                                                                                                                                                                                                        | Label | Description |
-|-------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------|-------------|
+| ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- | ----------- |
 | type  | [HubEventType](#HubEventType)                                                                                                                                                                                                               |       |             |
 | id    | [uint64](#uint64)                                                                                                                                                                                                                           |       |             |
 | body  | [MergeMessageBody](#mergemessagebody), <br> [PruneMessageBody](#prunemessagebody), <br> [RevokeMessageBody](#revokemessagebody), <br>[MergeUserNameProofBody](#mergeusernameproofbody), <br>[MergeOnChainEventBody](#mergeonchaineventbody) | oneOf |             |
@@ -15,7 +15,7 @@ available for 3 days, after which they are deleted.
 ## HubEventType
 
 | Name                                | Number | Description |
-|-------------------------------------|--------|-------------|
+| ----------------------------------- | ------ | ----------- |
 | HUB_EVENT_TYPE_NONE                 | 0      |             |
 | HUB_EVENT_TYPE_MERGE_MESSAGE        | 1      |             |
 | HUB_EVENT_TYPE_PRUNE_MESSAGE        | 2      |             |
@@ -28,7 +28,7 @@ available for 3 days, after which they are deleted.
 ## MergeMessageBody
 
 | Field            | Type                | Label    | Description |
-|------------------|---------------------|----------|-------------|
+| ---------------- | ------------------- | -------- | ----------- |
 | message          | [Message](#Message) |          |             |
 | deleted_messages | [Message](#Message) | repeated |             |
 
@@ -37,7 +37,7 @@ available for 3 days, after which they are deleted.
 ## MergeUserNameProofBody
 
 | Field                          | Type                            | Label | Description |
-|--------------------------------|---------------------------------|-------|-------------|
+| ------------------------------ | ------------------------------- | ----- | ----------- |
 | username_proof                 | [UserNameProof](#UserNameProof) |       |             |
 | deleted_username_proof         | [UserNameProof](#UserNameProof) |       |             |
 | username_proof_message         | [Message](#Message)             |       |             |
@@ -48,7 +48,7 @@ available for 3 days, after which they are deleted.
 ## PruneMessageBody
 
 | Field   | Type                | Label | Description |
-|---------|---------------------|-------|-------------|
+| ------- | ------------------- | ----- | ----------- |
 | message | [Message](#Message) |       |             |
 
 <a name="-RevokeMessageBody"></a>
@@ -56,7 +56,7 @@ available for 3 days, after which they are deleted.
 ## RevokeMessageBody
 
 | Field   | Type                | Label | Description |
-|---------|---------------------|-------|-------------|
+| ------- | ------------------- | ----- | ----------- |
 | message | [Message](#Message) |       |             |
 
 <a name="-MergeOnChainEventBody"></a>
@@ -64,7 +64,7 @@ available for 3 days, after which they are deleted.
 ## MergeOnChainEventBody
 
 | Field          | Type                          | Label | Description |
-|----------------|-------------------------------|-------|-------------|
+| -------------- | ----------------------------- | ----- | ----------- |
 | on_chain_event | [OnChainEvent](#OnChainEvent) |       |             |
 
 <a name="-HubEventType"></a>
@@ -72,7 +72,7 @@ available for 3 days, after which they are deleted.
 ## OnChainEvent
 
 | Field            | Type                                                                                                                                                                                               | Label | Description                          |
-|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------|--------------------------------------|
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- | ------------------------------------ |
 | type             | [OnChainEventType](#OnChainEventType)                                                                                                                                                              |       | The type of onchain event            |
 | chain_id         | [uint32](#)                                                                                                                                                                                        |       | The chain id for the event           |
 | block_number     | [uint32](#)                                                                                                                                                                                        |       | The block number for the event       |
@@ -89,7 +89,7 @@ available for 3 days, after which they are deleted.
 ## OnChainEventType
 
 | Name                       | Number | Description |
-|----------------------------|--------|-------------|
+| -------------------------- | ------ | ----------- |
 | EVENT_TYPE_NONE            | 0      |             |
 | EVENT_TYPE_SIGNER          | 1      |             |
 | EVENT_TYPE_SIGNER_MIGRATED | 2      |             |
@@ -101,7 +101,7 @@ available for 3 days, after which they are deleted.
 ## SignerEventBody
 
 | Field         | Type                                | Label | Description                                        |
-|---------------|-------------------------------------|-------|----------------------------------------------------|
+| ------------- | ----------------------------------- | ----- | -------------------------------------------------- |
 | key           | [bytes](#)                          |       | The bytes of the public key for the signer         |
 | key_type      | [uint32](#)                         |       | The type of the key (currently only set to 1)      |
 | event_type    | [SignerEventType](#SignerEventType) |       | The type of the signer event                       |
@@ -113,7 +113,7 @@ available for 3 days, after which they are deleted.
 ## SignerEventType
 
 | Name                          | Number | Description |
-|-------------------------------|--------|-------------|
+| ----------------------------- | ------ | ----------- |
 | SIGNER_EVENT_TYPE_NONE        | 0      |             |
 | SIGNER_EVENT_TYPE_ADD         | 1      |             |
 | SIGNER_EVENT_TYPE_REMOVE      | 2      |             |
@@ -124,7 +124,7 @@ available for 3 days, after which they are deleted.
 ## SignerMigratedEventBody
 
 | Field       | Type        | Label | Description                                             |
-|-------------|-------------|-------|---------------------------------------------------------|
+| ----------- | ----------- | ----- | ------------------------------------------------------- |
 | migrated_at | [uint32](#) |       | The timestamp at which hubs were migrated to OP mainnet |
 
 <a name="-SignerEventBody"></a>
@@ -132,7 +132,7 @@ available for 3 days, after which they are deleted.
 ## SignerEventBody
 
 | Field           | Type                                        | Label | Description                                      |
-|-----------------|---------------------------------------------|-------|--------------------------------------------------|
+| --------------- | ------------------------------------------- | ----- | ------------------------------------------------ |
 | to              | [bytes](#)                                  |       | The address the fid was registers/transferred to |
 | event_type      | [IdRegisterEventType](#IdRegisterEventType) |       | The type of the id register event                |
 | from            | [bytes](#)                                  |       | The address the transfer originated from         |
@@ -143,7 +143,7 @@ available for 3 days, after which they are deleted.
 ## IdRegisterEventType
 
 | Name                                   | Number | Description |
-|----------------------------------------|--------|-------------|
+| -------------------------------------- | ------ | ----------- |
 | ID_REGISTER_EVENT_TYPE_NONE            | 0      |             |
 | ID_REGISTER_EVENT_TYPE_REGISTER        | 0      |             |
 | ID_REGISTER_EVENT_TYPE_TRANSFER        | 0      |             |
@@ -154,14 +154,7 @@ available for 3 days, after which they are deleted.
 ## StorageRentEventBody
 
 | Field  | Type        | Label | Description                                               |
-|--------|-------------|-------|-----------------------------------------------------------|
+| ------ | ----------- | ----- | --------------------------------------------------------- |
 | payer  | [bytes](#)  |       | The address of the payer                                  |
 | units  | [uint32](#) |       | The number of units of storage purchased                  |
 | expiry | [uint32](#) |       | The timestamp at which these units of storage will expire |
-
-
-
-
- 
-
- 

@@ -1,10 +1,8 @@
-
-
 # Verifications API
 
-
 ## verificationsByFid
-Get a list of verifications provided by an FID 
+
+Get a list of verifications provided by an FID
 
 **Query Parameters**
 | Parameter | Description | Example |
@@ -12,14 +10,14 @@ Get a list of verifications provided by an FID
 | fid | The FID being requested | `fid=2` |
 | address | The optional ETH address to filter by | `address=0x91031dcfdea024b4d51e775486111d2b2a715871` |
 
-
 **Example**
+
 ```bash
 curl http://127.0.0.1:2281/v1/verificationsByFid?fid=2
 ```
 
-
 **Response**
+
 ```json
 {
   "messages": [
@@ -40,7 +38,7 @@ curl http://127.0.0.1:2281/v1/verificationsByFid?fid=2
       "signature": "bln1zIZM.../4riB9IVBQ==",
       "signatureScheme": "SIGNATURE_SCHEME_ED25519",
       "signer": "0x78ff9...b6d62558c"
-    },
+    }
   ],
   "nextPageToken": ""
 }

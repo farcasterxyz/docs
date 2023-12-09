@@ -1,25 +1,25 @@
-
 # Events API
+
 The events API returns events as they are merged into the Hub, which can be used to listen to Hub activity.
 
 ## eventById
-Get an event by its Id
 
+Get an event by its Id
 
 **Query Parameters**
 | Parameter | Description | Example |
 | --------- | ----------- | ------- |
 | event_id | The Hub Id of the event | `event_id=350909155450880` |
 
-
 **Example**
+
 ```bash
 curl http://127.0.0.1:2281/v1/eventById?id=350909155450880
 
 ```
 
-
 **Response**
+
 ```json
 {
   "type": "HUB_EVENT_TYPE_MERGE_USERNAME_PROOF",
@@ -38,6 +38,7 @@ curl http://127.0.0.1:2281/v1/eventById?id=350909155450880
 ```
 
 ## events
+
 Get a page of Hub events
 
 **Query Parameters**
@@ -49,13 +50,14 @@ Get a page of Hub events
 Hubs prune events older than 3 days, so not all historical events can be fetched via this API
 
 **Example**
+
 ```bash
 curl http://127.0.0.1:2281/v1/events?from_event_id=350909155450880
 
 ```
 
-
 **Response**
+
 ```json
 {
   "nextPageEventId": 350909170294785,
