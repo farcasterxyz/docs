@@ -24,7 +24,7 @@ export default defineConfig({
   ],
   themeConfig: {
     nav: [
-      { text: 'Learn', link: '/learn/index', activeMatch: '/learn/' },
+      { text: 'Learn', link: '/learn/overview', activeMatch: '/learn/' },
       // { text: 'Developers', link: '/developers/index', activeMatch: '/developers/' },
       { text: 'Hubble', link: '/hubble/hubble', activeMatch: '/hubble/' },
       { text: 'Reference', link: '/reference/index', activeMatch: '/reference/' },
