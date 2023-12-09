@@ -103,31 +103,6 @@ const signature = await walletClient.signTypedData({
 });
 ```
 
-```ts [metadata.ts]
-import { ViemLocalEip712Signer } from '@farcaster/hub-web';
-import { privateKeyToAccount } from 'viem/accounts';
-import { account } from './clients.ts';
-import { getDeadline } from './helpers.ts';
-import { getPublicKey } from './signer.ts';
-
-// App account
-export const appAccount = privateKeyToAccount('0x...');
-
-const deadline = getDeadline();
-const publicKey = await getPublicKey();
-
-const getMetadata = async () => {
-  const metadata = await eip712signer.getSignedKeyRequestMetadata({
-    requestFid: 9152n, // App fid
-    key: publicKey,
-    deadline,
-  });
-  if (metadata.isOk()) {
-    return metadata.value;
-  }
-};
-```
-
 ```ts [helpers.ts]
 import { KEY_GATEWAY_ADDRESS, keyGatewayABI } from '@farcaster/hub-web';
 import { publicClient, account } from './clients.ts';
@@ -148,39 +123,10 @@ export const readNonce = async () => {
 };
 ```
 
-```ts [signer.ts]
-import * as ed from '@noble/ed25519';
-import { NobleEd25519Signer } from '@farcaster/hub-web';
+<<< @/examples/contracts/metadata.ts
 
-const privateKeyBytes = ed.utils.randomPrivateKey();
-export const signer = new NobleEd25519Signer(privateKeyBytes);
+<<< @/examples/contracts/signer.ts
 
-const getPublicKey = async () => {
-  const signerKeyResult = await signer.getSignerKey();
-  if (signerKeyResult.isOk()) {
-    return signerKeyResult.value;
-  }
-};
-```
+<<< @/examples/contracts/clients.ts
 
-```ts [clients.ts]
-import { createWalletClient, createPublicClient, custom } from 'viem';
-import { privateKeyToAccount } from 'viem/accounts';
-import { optimism } from 'viem/chains';
-
-export const publicClient = createPublicClient({
-  chain: optimism,
-  transport: http(),
-});
-
-export const walletClient = createWalletClient({
-  chain: optimism,
-  transport: custom(window.ethereum),
-});
-
-// JSON-RPC Account
-export const [account] = await walletClient.getAddresses();
-
-// Local Account
-export const account = privateKeyToAccount('0x...');
-```
+:::
