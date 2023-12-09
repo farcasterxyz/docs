@@ -10,7 +10,7 @@ Returns the next unused nonce for an address. Used for generating EIP-712 signat
 
 ## add
 
-Add a key for the caller's fid. Sets the key state to `ADDED`. Reverts if the key is already registered for the caller's fid.
+Add a key for the caller's fid. Sets the key state to `Added`. Reverts if the key is already registered for the caller's fid.
 
 | Param Name   | type         | Description                                              |
 | ------------ | ------------ | -------------------------------------------------------- |
@@ -21,7 +21,7 @@ Add a key for the caller's fid. Sets the key state to `ADDED`. Reverts if the ke
 
 ## addFor
 
-Add a key on behalf of another fid owner by providing a signature. The owner of the fid must sign an EIP-712 `AddKey` message approving the key. Reverts if the key is already registered for the owner's fid.
+Add a key on behalf of another fid owner by providing a signature. The owner of the fid must sign an EIP-712 `Add` message approving the key. Reverts if the key is already registered for the owner's fid.
 
 | Param Name   | type         | Description                                              |
 | ------------ | ------------ | -------------------------------------------------------- |
