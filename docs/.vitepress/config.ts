@@ -232,6 +232,7 @@ export default defineConfig({
             { text: 'Key Gateway', link: '/reference/contracts/key-gateway' },
             { text: 'Key Registry', link: '/reference/contracts/key-registry' },
             { text: 'Storage Registry', link: '/reference/contracts/storage-registry' },
+            { text: 'Bundler', link: '/reference/contracts/bundler' },
           ],
         },
         {
