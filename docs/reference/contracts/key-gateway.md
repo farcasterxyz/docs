@@ -1,29 +1,37 @@
+---
+outline: [2, 3]
+---
+
 # Key Gateway
 
-## nonces
+## Read
+
+### nonces
 
 Returns the next unused nonce for an address. Used for generating EIP-712 signatures in [addFor](#addFor).
 
-| Param Name | type      | Description                        |
-| ---------- | --------- | ---------------------------------- |
-| owner      | `address` | The address to query the nonce for |
+| Parameter | type      | Description                        |
+| --------- | --------- | ---------------------------------- |
+| owner     | `address` | The address to query the nonce for |
 
-## add
+## Write
+
+### add
 
 Add a key for the caller's fid. Sets the key state to `Added`. Reverts if the key is already registered for the caller's fid.
 
-| Param Name   | type         | Description                                              |
+| Parameter    | type         | Description                                              |
 | ------------ | ------------ | -------------------------------------------------------- |
 | keyType      | `uint32` (1) | Must be set to 1, only key type supported currently      |
 | key          | `bytes`      | Bytes of the public key to add                           |
 | metadataType | `uint8` (1)  | Must be set to 1, only metadata type supported currently |
 | metadata     | `bytes`      | Signed key metadata                                      |
 
-## addFor
+### addFor
 
 Add a key on behalf of another fid owner by providing a signature. The owner of the fid must sign an EIP-712 `Add` message approving the key. Reverts if the key is already registered for the owner's fid.
 
-| Param Name   | type         | Description                                              |
+| Parameter    | type         | Description                                              |
 | ------------ | ------------ | -------------------------------------------------------- |
 | fidOwner     | `address`    | The address that owns the fid to add the key to          |
 | keyType      | `uint32` (1) | Must be set to 1, only key type supported currently      |
@@ -33,13 +41,13 @@ Add a key on behalf of another fid owner by providing a signature. The owner of 
 | deadline     | `uint256`    | Expiration timestamp of the signature                    |
 | sig          | `bytes`      | EIP-712 signature from `fidOwner`                        |
 
-### Add signature
+#### Add signature
 
 To add a key on behalf of another account, you must provide an EIP-712 typed signature from the account in the following format:
 
 `Add(address owner,uint32 keyType,bytes key,uint8 metadataType,bytes metadata,uint256 nonce,uint256 deadline)`
 
-| Param Name   | type         | Description                                                                                        |
+| Parameter    | type         | Description                                                                                        |
 | ------------ | ------------ | -------------------------------------------------------------------------------------------------- |
 | owner        | `address`    | The address that owns the fid to add the key to. The typed message must be signed by this address. |
 | keyType      | `uint32` (1) | Must be set to 1, only key type supported currently                                                |

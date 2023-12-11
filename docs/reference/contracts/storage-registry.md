@@ -1,10 +1,16 @@
+---
+outline: [2, 3]
+---
+
 # Storage Registry
 
-## unitPrice
+## Read
+
+### unitPrice
 
 Returns the price in wei (`uint256`) to register 1 unit of storage.
 
-## price
+### price
 
 Returns the price in wei (`uint256`) to register the given number of units of storage.
 
@@ -12,7 +18,9 @@ Returns the price in wei (`uint256`) to register the given number of units of st
 | ------------ | -------------------- | ---------------------------------------------------------------- |
 | extraStorage | `uint256` (optional) | The number of additional storage units to include in final price |
 
-## rent
+## Write
+
+### rent
 
 Rents the specified number of storage units for the given fid. Excess ether will be returned to the sender. The units are valid
 for 1 year from the time of registration.
@@ -23,7 +31,7 @@ for 1 year from the time of registration.
 | fid        | `uint256`       | The fid to credit the storage units to            |
 | units      | `uint256`       | The number of units of storage to purchase        |
 
-## batchRent
+### batchRent
 
 Rent storage for multiple fids in a single call. The caller must provide at least price(units) wei of payment where units is the sum of storage units requested across all fids. Excess ether will be returned to the sender. The units are valid for 1 year from the time of registration.
 

@@ -1,38 +1,46 @@
+---
+outline: [2, 3]
+---
+
 # ID Gateway
 
-## price
+## Read
+
+### price
 
 Returns the price in wei to register an fid. This includes the price of 1 storage unit. To include additional storage units
 in the calculation, provide an optional `extraStorage` parameter.
 
-| Param Name   | type                 | Description                                                           |
+| Parameter    | type                 | Description                                                           |
 | ------------ | -------------------- | --------------------------------------------------------------------- |
 | extraStorage | `uint256` (optional) | The number of additional storage units to include in calculated price |
 
-## nonces
+### nonces
 
 Returns the next unused nonce for an address. Used for generating an EIP-712 [`Register`](#register-signature) signature for [registerFor](#registerfor).
 
-| Param Name | type      | Description                        |
-| ---------- | --------- | ---------------------------------- |
-| owner      | `address` | The address to query the nonce for |
+| Parameter | type      | Description                        |
+| --------- | --------- | ---------------------------------- |
+| owner     | `address` | The address to query the nonce for |
 
-## register
+## Write
+
+### register
 
 Register a new fid to the caller and pay for one or more units of storage. The caller must not already own an fid.
 
-| Param Name   | type                 | Description                                            |
+| Parameter    | type                 | Description                                            |
 | ------------ | -------------------- | ------------------------------------------------------ |
 |              | `wei` (payable)      | The payable amount to transfer to pay for registration |
 | recovery     | `address`            | The recovery address for the newly registered fid      |
 | extraStorage | `uint256` (optional) | The number of additional storage units to rent         |
 
-## registerFor
+### registerFor
 
 Register a new fid to a specific address and pay for one or more units of storage. The receiving
 address must sign an EIP-712 [`Register`](#register-signature) message approving the registration. the receiver must not already own an fid.
 
-| Param Name   | type                 | Description                                            |
+| Parameter    | type                 | Description                                            |
 | ------------ | -------------------- | ------------------------------------------------------ |
 |              | `wei` (payable)      | The payable amount to transfer to pay for registration |
 | to           | `address`            | The address to register the fid to                     |
@@ -41,18 +49,18 @@ address must sign an EIP-712 [`Register`](#register-signature) message approving
 | sig          | `bytes`              | EIP-712 `Register` signature from the `to` address     |
 | extraStorage | `uint256` (optional) | The number of additional storage units to rent         |
 
-### Register signature
+#### Register signature
 
 To register an fid on behalf of another account, you must provide an EIP-712 typed signature from the receiving address in the following format:
 
 `Register(address to,address recovery,uint256 nonce,uint256 deadline)`
 
-| Param Name | type      | Description                                                                           |
-| ---------- | --------- | ------------------------------------------------------------------------------------- |
-| to         | `address` | The address to register the fid to. The typed message must be signed by this address. |
-| recovery   | `address` | The recovery address for the newly registered fid                                     |
-| nonce      | `uint256` | Current nonce of the `to` address                                                     |
-| deadline   | `uint256` | Expiration timestamp of the signature                                                 |
+| Parameter | type      | Description                                                                           |
+| --------- | --------- | ------------------------------------------------------------------------------------- |
+| to        | `address` | The address to register the fid to. The typed message must be signed by this address. |
+| recovery  | `address` | The recovery address for the newly registered fid                                     |
+| nonce     | `uint256` | Current nonce of the `to` address                                                     |
+| deadline  | `uint256` | Expiration timestamp of the signature                                                 |
 
 ::: code-group
 
