@@ -89,7 +89,7 @@ export default defineConfig({
             { text: 'Governance', link: '/learn/contributing/governance' },
             { text: 'FIPs', link: '/learn/contributing/fips' },
           ],
-        }
+        },
       ],
       '/developers/': [
         { text: 'Overview', link: '/developers/index' },
