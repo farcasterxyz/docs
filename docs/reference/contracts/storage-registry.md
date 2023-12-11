@@ -14,9 +14,9 @@ Returns the price in wei (`uint256`) to register 1 unit of storage.
 
 Returns the price in wei (`uint256`) to register the given number of units of storage.
 
-| Param Name   | type                 | Description                                                      |
-| ------------ | -------------------- | ---------------------------------------------------------------- |
-| extraStorage | `uint256` (optional) | The number of additional storage units to include in final price |
+| Param Name | type      | Description                 |
+| ---------- | --------- | --------------------------- |
+| units      | `uint256` | The number of storage units |
 
 ## Write
 
