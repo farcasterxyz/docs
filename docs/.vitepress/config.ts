@@ -233,6 +233,7 @@ export default defineConfig({
             { text: 'Key Registry', link: '/reference/contracts/key-registry' },
             { text: 'Storage Registry', link: '/reference/contracts/storage-registry' },
             { text: 'Bundler', link: '/reference/contracts/bundler' },
+            { text: 'Signed Key Request Validator', link: '/reference/contracts/signed-key-request-validator' },
           ],
         },
         {

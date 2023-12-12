@@ -19,7 +19,7 @@ in the calculation, use the `extraStorage` parameter.
 
 ### register
 
-Register an fid, add one or more signers, and rent storage in a single transaction.
+Register an fid, add one or more signers, and rent storage in a single transaction. For a detailed example of signup using the Bundler, see the [signup demo app](https://farcaster-signup-demo.vercel.app/bundler).
 
 | Parameter      | type                 | Description                                            |
 | -------------- | -------------------- | ------------------------------------------------------ |
@@ -57,5 +57,6 @@ The `SignerParams` struct includes signer key parameters and a KeyGateway [`Add`
 | Error            | Selector   | Description                                                                                                  |
 | ---------------- | ---------- | ------------------------------------------------------------------------------------------------------------ |
 | InvalidPayment   | `3c6b4b28` | The caller provided insufficient payment.                                                                    |
+| InvalidMetadata  | `bcecb64a` | The signed metadata provided with the key is invalid.                                                        |
 | InvalidSignature | `8baa579f` | The provided signature is invalid. It may be incorrectly formatted, or signed by the wrong address.          |
 | SignatureExpired | `0819bdcd` | The provided signature has expired. Collect a new signature from the signer with a later deadline timestamp. |
