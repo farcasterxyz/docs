@@ -31,18 +31,18 @@ Register a new fid to the caller and pay for one or more units of storage. The c
 
 | Parameter    | type                 | Description                                            |
 | ------------ | -------------------- | ------------------------------------------------------ |
-|              | `wei` (payable)      | The payable amount to transfer to pay for registration |
+| `msg.value`  | `wei`                | The payable amount to transfer to pay for registration |
 | recovery     | `address`            | The recovery address for the newly registered fid      |
 | extraStorage | `uint256` (optional) | The number of additional storage units to rent         |
 
 ### registerFor
 
 Register a new fid to a specific address and pay for one or more units of storage. The receiving
-address must sign an EIP-712 [`Register`](#register-signature) message approving the registration. the receiver must not already own an fid.
+address must sign an EIP-712 [`Register`](#register-signature) message approving the registration. The receiver must not already own an fid.
 
 | Parameter    | type                 | Description                                            |
 | ------------ | -------------------- | ------------------------------------------------------ |
-|              | `wei` (payable)      | The payable amount to transfer to pay for registration |
+| `msg.value`  | `wei`                | The payable amount to transfer to pay for registration |
 | to           | `address`            | The address to register the fid to                     |
 | recovery     | `address`            | The recovery address for the newly registered fid      |
 | deadline     | `uint256`            | Expiration timestamp of the signature                  |

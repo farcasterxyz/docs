@@ -57,7 +57,7 @@ const encodedData = await eip712signer.getSigneKeyRequestMetadata({
 ```
 
 ```ts [Viem]
-import { encodeAbiParameters } from 'viem';
+import { bytesToHex, encodeAbiParameters } from 'viem';
 import { signature } from './signature.ts';
 import { getDeadline } from './helpers.ts';
 
@@ -93,7 +93,7 @@ const encodedData = encodeAbiParameters(
     {
       requestFid: 9152n,
       requestSigner: '0x02ef790dd7993a35fd847c053eddae940d055596',
-      signature,
+      bytesToHex(signature),
       deadline,
     },
   ]
@@ -137,7 +137,7 @@ Validate encoded [`SignedKeyRequestMetadata`](#signedkeyrequestmetadata-struct).
 
 | Parameter | type      | Description                                                             |
 | --------- | --------- | ----------------------------------------------------------------------- |
-| fid       | `uint256` | User fid that will be associated with the key                           |
+| fid       | `uint256` | Primary fid that will be associated with the key                        |
 | key       | `bytes`   | Bytes of the public key to validate                                     |
 | sig       | `bytes`   | EIP-712 `SignedKeyRequest` signature from the entity requesting the key |
 
@@ -180,7 +180,7 @@ const signature = await eip712signer.signKeyRequest({
 
 ```ts [Viem]
 import { SIGNED_KEY_REQUEST_VALIDATOR_EIP_712_TYPES } from '@farcaster/hub-web';
-import { privateKeyToAccount } from 'viem/accounts';
+import { bytesToHex, privateKeyToAccount } from 'viem/accounts';
 import { getDeadline } from './helpers.ts';
 import { getPublicKey } from './signer.ts';
 
@@ -194,7 +194,7 @@ const signature = await appAccount.signTypedData({
   primaryType: 'SignedKeyRequest',
   message: {
     requestFid: 9152n,
-    key,
+    key: bytesToHex(key),
     deadline,
   },
 });
