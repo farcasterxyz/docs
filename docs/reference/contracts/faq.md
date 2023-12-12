@@ -14,6 +14,10 @@ To help debug EIP-712 signing, every contract that uses EIP-712 signatures expos
 
 ## Reference
 
+### Where is the full contract source code?
+
+The contracts repo is on Github [here](https://github.com/farcasterxyz/contracts).
+
 ### Where do I get contract ABIs?
 
 Find contract ABIs and deployment addresses [here](/reference/contracts/deployments.html#abis).
@@ -48,4 +52,4 @@ Call the [`keysOf`](https://optimistic.etherscan.io/address/0x00000000fc1237824f
 
 ### What is an app fid? How do I get one?
 
-An "app fid" is no different than any other Farcaster ID: it's simply an fid that represents an application rather than an individual user. You can register an app fid directly through the [Bundler](/reference/contracts/reference/bundler.md) or [IdGateway](/reference/contracts/reference/id-gateway.md), or use a Farcaster client to register an account for your app. Since you'll need to sign key request messages from the wallet that owns your app fid, keep the private key secure.
+An "app fid" is no different than any other Farcaster ID: it just represents an application rather than an individual user. You can register an app fid directly through the [Bundler](/reference/contracts/reference/bundler.md) or [IdGateway](/reference/contracts/reference/id-gateway.md), or use a Farcaster client to register an account for your app. Since you'll need to sign [key request metadata](/reference/contracts/reference/signed-key-request-validator.md) from the wallet that owns your app fid, keep the private key secure.
