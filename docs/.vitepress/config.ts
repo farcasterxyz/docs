@@ -227,13 +227,23 @@ export default defineConfig({
           text: 'Contracts',
           items: [
             { text: 'Overview', link: '/reference/contracts/index' },
-            { text: 'ID Gateway', link: '/reference/contracts/id-gateway' },
-            { text: 'ID Registry', link: '/reference/contracts/id-registry' },
-            { text: 'Key Gateway', link: '/reference/contracts/key-gateway' },
-            { text: 'Key Registry', link: '/reference/contracts/key-registry' },
-            { text: 'Storage Registry', link: '/reference/contracts/storage-registry' },
-            { text: 'Bundler', link: '/reference/contracts/bundler' },
-            { text: 'Signed Key Request Validator', link: '/reference/contracts/signed-key-request-validator' },
+            {
+              text: 'Contract Reference',
+              collapsed: true,
+              items: [
+                { text: 'ID Gateway', link: '/reference/contracts/reference/id-gateway' },
+                { text: 'ID Registry', link: '/reference/contracts/reference/id-registry' },
+                { text: 'Key Gateway', link: '/reference/contracts/reference/key-gateway' },
+                { text: 'Key Registry', link: '/reference/contracts/reference/key-registry' },
+                { text: 'Storage Registry', link: '/reference/contracts/reference/storage-registry' },
+                { text: 'Bundler', link: '/reference/contracts/reference/bundler' },
+                {
+                  text: 'Signed Key Request Validator',
+                  link: '/reference/contracts/reference/signed-key-request-validator',
+                },
+              ],
+            },
+            { text: 'Deployments', link: '/reference/contracts/deployments' },
           ],
         },
         {
