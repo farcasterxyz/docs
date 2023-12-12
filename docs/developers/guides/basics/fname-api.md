@@ -1,1 +1,0 @@
-# Querying fname server api

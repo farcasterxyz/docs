@@ -25,7 +25,7 @@ export default defineConfig({
   themeConfig: {
     nav: [
       { text: 'Learn', link: '/learn/what-is-farcaster/overview', activeMatch: '/learn/' },
-      // { text: 'Developers', link: '/developers/index', activeMatch: '/developers/' },
+      { text: 'Developers', link: '/developers/index', activeMatch: '/developers/' },
       { text: 'Hubble', link: '/hubble/hubble', activeMatch: '/hubble/' },
       { text: 'Reference', link: '/reference/index', activeMatch: '/reference/' },
       { text: 'Website', link: 'http://www.farcaster.xyz' },
@@ -102,51 +102,38 @@ export default defineConfig({
               collapsed: false,
               items: [
                 {
-                  text: 'Set up your local environment',
+                  text: 'Setting up and Connecting to Hubble',
                   link: '/developers/guides/basics/setting-up',
                 },
-                {
-                  text: 'Querying Hubble HTTP APIs',
-                  link: '/developers/guides/basics/hubble-api',
-                },
-                {
-                  text: 'Querying FName APIs',
-                  link: '/developers/guides/basics/fname-api',
-                },
-                { text: 'Replicate hubble data to postgres', link: '/developers/guides/basics/replicate' },
+                { text: 'Replicate Hubble data to postgres', link: '/developers/guides/basics/replicate' },
               ],
             },
             {
               text: 'Applications',
               collapsed: false,
               items: [
-                { text: 'Bot to respond to messages', link: '/developers/guides/applications/todo' },
-                { text: 'Sign up with ethereum wallet', link: '/developers/guides/applications/todo' },
-                { text: 'Read data with Farcaster Connect', link: '/developers/guides/applications/todo' },
-                { text: 'Write data with Farcaster Connect', link: '/developers/guides/applications/todo' },
+                { text: 'Generate a chronological feed for a user', link: '/developers/guides/applications/feed' },
+                { text: 'Create a bot to post messages to the hub', link: '/developers/guides/applications/bot' },
+                // { text: 'Build a farcaster client', link: '/developers/guides/applications/client' },
+                // { text: 'Read data with Farcaster Connect', link: '/developers/guides/applications/todo' },
+                // { text: 'Write data with Farcaster Connect', link: '/developers/guides/applications/todo' },
               ],
             },
             {
               text: 'Advanced',
               collapsed: false,
               items: [
-                { text: 'Transfer account to another address', link: '/developers/guides/applications/todo' },
-                { text: 'Transfer an fname to another account', link: '/developers/guides/applications/todo' },
-                { text: 'Create casts with embeds, mentions, etc', link: '/developers/guides/applications/todo' },
-                { text: 'How do I roll a signer?', link: '/developers/guides/applications/todo' },
+                { text: 'Create casts with embeds, mentions, etc', link: '/developers/guides/advanced/adv-casts' },
+                { text: 'Transfer FID to another address', link: '/developers/guides/advanced/transfer-fid' },
+                { text: 'Transfer an Fname to another FID', link: '/developers/guides/advanced/transfer-fname' },
+                // { text: 'How do I roll a signer?', link: '/developers/guides/applications/todo' },
               ],
             },
           ],
         },
         {
           text: 'Resources',
-          items: [
-            {
-              text: 'Utilities',
-              link: '/developers/utilities',
-            },
-            { text: 'Community', link: '/developers/community' },
-          ],
+          items: [{ text: 'Community', link: '/developers/community' }],
         },
       ],
       '/hubble/': [
