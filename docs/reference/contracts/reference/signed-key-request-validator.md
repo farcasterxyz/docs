@@ -4,11 +4,22 @@ outline: [2, 3]
 
 # Signed Key Request Validator
 
+The Signed Key Request Validator validates the signed metadata associated with keys. The Key Registry calls the validator before adding a key, to check that the provided Signed Key Request is valid.
+
+If you want to construct or check a Signed Key Request, use the Signed Key Request Validator.
+
+::: info What is a Signed Key Request?
+
+When a user adds a key to their account (the primary fid), it must include a signature from the person that requested it (the request fid). This enables anyone to identify who requested a specific key.
+
+Typically, the primary fid is the end user and the requesting fid is an app the user wishes to connect to.
+:::
+
 ## Read
 
 ### encodeMetadata
 
-Helper function to encode a [`SignedKeyRequestMetadata`](#signedkeyrequestmetadata-struct) struct. Returns ABI-encoded `bytes` that may be passed as the `metadata` parameter in calls to [add](/reference/contracts/key-gateway.html#add), [register](/reference/contracts/bundler.html#register), and other contract functions that require signed metadata.
+Convert a [`SignedKeyRequestMetadata`](#signedkeyrequestmetadata-struct) struct into `bytes` to pass into contract functions like [add](/reference/contracts/reference/key-gateway.html#add), [register](/reference/contracts/reference/bundler.html#register).
 
 | Parameter | type                       | Description                                     |
 | --------- | -------------------------- | ----------------------------------------------- |
@@ -16,13 +27,7 @@ Helper function to encode a [`SignedKeyRequestMetadata`](#signedkeyrequestmetada
 
 #### SignedKeyRequestMetadata struct
 
-The `SignedKeyRequestMetadata` struct includes information about the requesting fid, the requesting fid owner, and an EIP-712 [`SignedKeyRequest`](#signedkeyrequest-signature) signature from the requesting fid owner account.
-
-::: info Requesting fid vs primary fid
-The **requesting fid** is the fid of the app or individual requesting to add a key to another user's account. The **primary fid** is the fid of the end user. For example, if a user creates an account in Warpcast, Warpcast's fid is the requesting fid, and the fid in the end user's Warpcast wallet is the primary fid. Requesting fids identify which entities are associated with specific signer keys.
-
-In most cases, the requesting fid is owned by an application, and the primary fid is owned by an end user. However, it's possible to add a self managed key to the key registry, in which case the requesting fid and primary fid are the same.
-:::
+The `SignedKeyRequestMetadata` struct contains data to validate authenticity of a Signed Key Request: requesting fid, the requesting fid owner, and an EIP-712 [`SignedKeyRequest`](#signedkeyrequest-signature) signature.
 
 | Parameter     | type      | Description                                                                                          |
 | ------------- | --------- | ---------------------------------------------------------------------------------------------------- |
@@ -31,7 +36,7 @@ In most cases, the requesting fid is owned by an application, and the primary fi
 | signature     | `bytes`   | EIP-712 [`SignedKeyRequest`](#signedkeyrequest-signature) signature from the `requestSigner` address |
 | deadline      | `uint256` | Expiration timestamp of the signature                                                                |
 
-See below for code examples that demonstrate two methods of generating encoded `SignedKeyRequestMetadata`: using the `@farcaster/hub-web` library to sign and encode in a single step, or using Viem to sign and encode separately.
+See below for code examples that demonstrate two methods of generating encoded `SignedKeyRequestMetadata` — using the `@farcaster/hub-web` library to sign and encode in a single step, or using Viem to sign and encode separately.
 
 ::: code-group
 
@@ -133,7 +138,7 @@ export const getDeadline = () => {
 
 ### validate
 
-Validate encoded [`SignedKeyRequestMetadata`](#signedkeyrequestmetadata-struct). The KeyRegistry calls this validation function before adding a public key and reverts if the provided metadata is malformed or incorrectly signed. Entities who create and add keys to the KeyRegistry can call this function to verify their signed key metadata before providing it to the user or using it in an onchain transaction.
+Validate an encoded [`SignedKeyRequestMetadata`](#signedkeyrequestmetadata-struct). The KeyRegistry calls this function internally when a user adds a key to validate the Signed Key Request. If you are creating keys on behalf of users, you can call this function yourself to validate the Signed Key Request created by your app.
 
 | Parameter | type      | Description                                                             |
 | --------- | --------- | ----------------------------------------------------------------------- |
@@ -143,12 +148,12 @@ Validate encoded [`SignedKeyRequestMetadata`](#signedkeyrequestmetadata-struct).
 
 #### SignedKeyRequest signature
 
-The `SignedKeyRequest` message is an EIP-712 typed signature signed by the requesting fid owner (i.e. the app or user that generated the delegate signer keypair) in the following format:
+The `SignedKeyRequest` message is an EIP-712 typed signature signed by the requesting fid owner in the following format:
 
 `SignedKeyRequest(uint256 requestFid,bytes key,uint256 deadline)`
 
 ::: info Why sign metadata?
-The `SignedKeyRequest` signature proves that the requesting fid asked the primary fid to authorize a key pair. For example, when an application asks a user to authorize a new signer key by adding it to the KeyRegistry, the app signs a message proving that it made the request and includes it as key metadata emitted in a KeyRegistry event. This allows anyone to attribute a signer to the specific entity who requested it, which is useful for a wide range of things from knowing which apps are being used to filtering content based on the applications that generated them.
+The `SignedKeyRequest` signature proves that the requesting fid asked the primary fid to authorize a key pair. For example, when an app asks a user to add a new key, the app creates a Signed Key Request proving that it made the request and the KeyRegistry emits it in an onchain event. This allows anyone to attribute a signer to the specific person who requested it, which is useful for a wide range of things from knowing which apps are being used to filtering content based on the applications that generated them.
 :::
 
 | Parameter  | type      | Description                           |
@@ -211,3 +216,7 @@ export const getDeadline = () => {
 <<< @/examples/contracts/signer.ts
 
 :::
+
+## Source
+
+[`SignedKeyRequestValidator.sol`](https://github.com/farcasterxyz/contracts/blob/1aceebe916de446f69b98ba1745a42f071785730/src/validators/SignedKeyRequestValidator.sol)
