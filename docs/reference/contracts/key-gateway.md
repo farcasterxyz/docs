@@ -39,7 +39,7 @@ Add a key on behalf of another fid owner by providing a signature. The owner of 
 | metadataType | `uint8` (1)  | Must be set to 1, only metadata type supported currently |
 | metadata     | `bytes`      | Signed metadata bytes                                    |
 | deadline     | `uint256`    | Expiration timestamp of the signature                    |
-| sig          | `bytes`      | EIP-712 signature from `fidOwner`                        |
+| sig          | `bytes`      | EIP-712 `Add` signature from `fidOwner`                  |
 
 #### Add signature
 
@@ -143,5 +143,6 @@ export const readNonce = async () => {
 
 | Error            | Selector   | Description                                                                                                  |
 | ---------------- | ---------- | ------------------------------------------------------------------------------------------------------------ |
+| InvalidMetadata  | `bcecb64a` | The signed metadata provided with the key is invalid.                                                        |
 | InvalidSignature | `8baa579f` | The provided signature is invalid. It may be incorrectly formatted, or signed by the wrong address.          |
 | SignatureExpired | `0819bdcd` | The provided signature has expired. Collect a new signature from the signer with a later deadline timestamp. |

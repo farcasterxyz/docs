@@ -1,6 +1,5 @@
 import { ViemLocalEip712Signer } from '@farcaster/hub-web';
 import { privateKeyToAccount } from 'viem/accounts';
-import { account } from './clients.ts';
 import { getDeadline } from './helpers.ts';
 import { getPublicKey } from './signer.ts';
 
@@ -10,7 +9,8 @@ export const appAccount = privateKeyToAccount('0x...');
 const deadline = getDeadline();
 const publicKey = await getPublicKey();
 
-const getMetadata = async () => {
+export const getMetadata = async () => {
+  const eip712signer = new ViemLocalEip712Signer(appAccount);
   const metadata = await eip712signer.getSignedKeyRequestMetadata({
     requestFid: 9152n, // App fid
     key: publicKey,
