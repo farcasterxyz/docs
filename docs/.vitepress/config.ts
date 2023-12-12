@@ -231,6 +231,7 @@ export default defineConfig({
               ],
             },
             { text: 'Deployments', link: '/reference/contracts/deployments' },
+            { text: 'FAQ', link: '/reference/contracts/faq' },
           ],
         },
         {

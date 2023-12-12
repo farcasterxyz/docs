@@ -1,5 +1,7 @@
 # Deployments
 
+## Addresses
+
 All Farcaster contracts are deployed on Optimism mainnet. There is no testnet deployment.
 
 | Contract         | Optimism Address                             | Etherscan Link                                                                             |

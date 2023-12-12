@@ -1,4 +1,4 @@
-import { createWalletClient, createPublicClient, custom } from 'viem';
+import { createWalletClient, createPublicClient, custom, http } from 'viem';
 import { privateKeyToAccount } from 'viem/accounts';
 import { optimism } from 'viem/chains';
 
