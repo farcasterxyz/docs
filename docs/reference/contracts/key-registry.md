@@ -43,7 +43,7 @@ Returns the state (`uint8`) and keyType (`uint32`) of particular key for an fid.
 
 ### add
 
-Will revert if called directly, must be called via the [Key Gateway](/reference/contracts/key-gateway.md)
+Will revert if called directly. Must be called via the [Key Gateway](/reference/contracts/key-gateway.md)
 
 ### remove
 
@@ -60,8 +60,6 @@ Removing a signer key will delete all offchain messages associated with the sign
 ### removeFor
 
 Remove a key on behalf of another fid owner by providing a signature. The owner of the fid must sign an EIP-712 `Remove` message approving the removal. Reverts if the key does not exist or is already removed for the owner's fid.
-
-Removing a signer key will delete all messages associated with the signer.
 
 | Parameter | type      | Description                                     |
 | --------- | --------- | ----------------------------------------------- |
