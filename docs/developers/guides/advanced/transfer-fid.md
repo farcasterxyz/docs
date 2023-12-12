@@ -23,7 +23,7 @@ const signature = await eip712signer.signTransfer({
 
 const { request: transferRequest } = await walletClient.simulateContract({
   ...IdContract,
-  functionName: "transfer",
+  functionName: 'transfer',
   args: [account, deadline, signature], // to, deadline, signature
 });
 
@@ -76,5 +76,5 @@ export const readNonce = async () => {
 
 :::
 
-See the [ID Registry](/reference/contracts/id-registry#transfer) section for more
+See the [ID Registry](/reference/contracts/reference/id-registry#transfer) section for more
 details.
