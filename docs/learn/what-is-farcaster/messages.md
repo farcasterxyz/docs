@@ -28,7 +28,7 @@ An account can rent a unit of storage by making an onchain transaction to the St
 - 50 Profile Data
 - 50 Verifications
 
-If an account exceeds its limit for a message type, the oldest message is pruned to make space for the new one. User can keep using the network without paying for more storage and Hubs can keep the storage load under control. An account can always purchase more storage to increase its limits.
+If an account exceeds its limit for a message type, the oldest message is pruned to make space for the new one. The user can keep using the network without paying for more storage and Hubs can keep the storage load under control. An account can always purchase more storage to increase its limits.
 
 An account that lets its storage expire may lose all its messages. There is a 30-day grace period after a storage unit expires during which an account must renew or lose its messages.
 
@@ -41,4 +41,4 @@ An account can delete any of its messages at any time by publishing a correspond
 
 ## Timestamps
 
-A message has a timestamp but it is not trustworthy because it is reported by the user. It cannot have a timestamp far in the future, but it can be backdated. The trust model is like that of a blog, where you have to trust the author 's view of the time.
+A message has a timestamp but it is not trustworthy because it is reported by the user. It cannot have a timestamp far in the future, but it can be backdated. The trust model is like that of a blog, where you have to trust the author's view of the time.
