@@ -349,7 +349,7 @@ export const readNonce = async () => {
   return await publicClient.readContract({
     address: ID_REGISTRY_ADDRESS,
     abi: idRegistryABI,
-    functionName: 'nonce',
+    functionName: 'nonces',
     args: [account],
   });
 };
