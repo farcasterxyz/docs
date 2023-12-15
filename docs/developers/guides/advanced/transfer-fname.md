@@ -1,4 +1,15 @@
-# Transfer an Fname to another FID
+# Change your farcaster name
+
+::: info Pre-requisites
+
+- An Ethereum wallet containing an fid on Optimism mainnet. No ETH is required.
+
+:::
+
+::: warning Fname policies
+To prevent abuse, fnames can only be changed once in 28 days. See Fname
+policies [here](/learn/architecture/ens-names.html#offchain-ens-names-fnames). ENS names do not have this restriction.
+:::
 
 To transfer an fname, e.g. `hubble`, make a POST request to `/transfers` with the following body:
 

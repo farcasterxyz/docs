@@ -7,6 +7,14 @@ transfer.
 Registering an fname is a transfer from FID 0 to the user's fid. Transferring an fname is a transfer from the user's fid
 to another fid. Unregistering an fname is a transfer from the user's fid to fid 0.
 
+::: warning Registering an fname
+
+Note, when registering a new fname, calling this api is not sufficient. This only reserves the name to your fid. You
+must also submit a [UserDataAdd](/reference/hubble/datatypes/messages.html#_2-userdata) message to the hub
+to set this name as your username.
+
+:::
+
 ### Get Transfer History
 
 To get a history of all transfers, make a GET request to `/transfers`
