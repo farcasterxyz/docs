@@ -36,7 +36,7 @@ export default defineConfig({
     sidebar: {
       '/': [
         {
-          text: 'Introduction?',
+          text: 'Introduction',
           items: [
             {
               text: 'Getting Started',
