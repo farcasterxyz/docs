@@ -49,14 +49,16 @@ const decoded = decodeAbiParameters(
 );
 
 console.log(decoded);
-/* [
+/*
+[
   {
     requestFid: 9152n,
     requestSigner: '0x02ef790Dd7993A35fD847C053EDdAE940D055596',
     signature: '0xF185...69F4',
     deadline: 1702660853n
   }
-] */
+]
+*/
 ```
 
 :::
