@@ -401,6 +401,7 @@ messages have the [same format](#transferandchangerecovery-signature). The `to` 
 |--------------|-----------|---------------------------------------------------------------------------------------------------------------|
 | from         | `address` | The address to transfer the fid from                                                                          |
 | to           | `address` | The address to transfer the fid to                                                                            |
+| recovery     | `address` | The new recovery address                                                                                      |
 | fromDeadline | `uint256` | Signature deadline                                                                                            |
 | fromSig      | `bytes`   | EIP-712 [`TransferAndChangeRecovery`](#transferandchangerecovery-signature) signature from the `from` address |
 | toDeadline   | `uint256` | Signature deadline                                                                                            |
