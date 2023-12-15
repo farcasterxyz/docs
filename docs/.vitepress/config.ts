@@ -134,6 +134,7 @@ export default defineConfig({
                   text: 'Counting signups by day',
                   link: '/developers/guides/advanced/query-signups',
                 },
+                { text: 'Decode key metadata', link: '/developers/guides/advanced/decode-key-metadata' },
                 // { text: 'How do I roll a signer?', link: '/developers/guides/applications/todo' },
               ],
             },
