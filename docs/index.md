@@ -1,7 +1,7 @@
 ---
 next:
   text: 'Create Your Account'
-  link: '/intro/create-account.html'
+  link: '/intro/create-account'
 ---
 
 # Getting Started

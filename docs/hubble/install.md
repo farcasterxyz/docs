@@ -12,7 +12,7 @@ Hubble can be set up in less than 30 minutes. You'll need a machine that has:
 - A public IP address with ports 2282 - 2285 exposed
 - RPC endpoints for Ethereum and Optimism Mainnet. (use [Alchemy](https://www.alchemy.com/) or [Infura](https://www.infura.io/))
 
-See [tutorials](./tutorials.html) for instructions on how to set up cloud providers to run Hubble.
+See [tutorials](./tutorials) for instructions on how to set up cloud providers to run Hubble.
 
 ## Install via Script
 

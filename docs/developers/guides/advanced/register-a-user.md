@@ -11,12 +11,12 @@
 You can register a new user using the Bundler contract. To do so, you'll need to:
 
 1. Set up [Viem](https://viem.sh/) clients and [`@farcaster/hub-web`](https://www.npmjs.com/package/@farcaster/hub-web) signers.
-2. Register an [app fid](/reference/contracts/faq.html#what-is-an-app-fid-how-do-i-get-one) if your app does not already have one.
-3. Collect a [`Register`](/reference/contracts/reference/id-gateway.html#register-signature) signature from the user.
+2. Register an [app fid](/reference/contracts/faq#what-is-an-app-fid-how-do-i-get-one) if your app does not already have one.
+3. Collect a [`Register`](/reference/contracts/reference/id-gateway#register-signature) signature from the user.
 4. Create a new signer keypair for the user.
-5. Use your app account to create a [Signed Key Request](/reference/contracts/reference/signed-key-request-validator.html).
-6. Collect an [`Add`](/reference/contracts/reference/key-gateway.html#add-signature) signature from the user.
-7. Call the [Bundler](https://docs.farcaster.xyz/reference/contracts/reference/bundler.html#register) contract to register onchain.
+5. Use your app account to create a [Signed Key Request](/reference/contracts/reference/signed-key-request-validator).
+6. Collect an [`Add`](/reference/contracts/reference/key-gateway#add-signature) signature from the user.
+7. Call the [Bundler](https://docs.farcaster.xyz/reference/contracts/reference/bundler#register) contract to register onchain.
 
 ### 1. Set up clients and signers
 

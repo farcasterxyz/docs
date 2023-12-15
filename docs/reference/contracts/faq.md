@@ -4,7 +4,7 @@
 
 ### How do I generate an EIP-712 signature?
 
-See the contract reference docs for documentation on each EIP-712 signature, including Typescript [code examples](/reference/contracts/reference/id-gateway.html#register-signature).
+See the contract reference docs for documentation on each EIP-712 signature, including Typescript [code examples](/reference/contracts/reference/id-gateway#register-signature).
 
 If you're using Typescript/JS, the [`@farcaster/hub-web`](https://www.npmjs.com/package/@farcaster/hub-web) package includes tools for generating and working with EIP-712 signatures. To ensure you're using the correct addresses and typehashes, we recommend importing the ABIs and EIP-712 types from the [contracts module](https://github.com/farcasterxyz/hub-monorepo/tree/main/packages/core/src/eth/contracts) or using the provided [`Eip712Signer`](https://github.com/farcasterxyz/hub-monorepo/blob/main/packages/core/src/signers/eip712Signer.ts) helper.
 
@@ -22,7 +22,7 @@ The contracts repo is on Github [here](https://github.com/farcasterxyz/contracts
 
 ### Where do I get contract ABIs?
 
-Find contract ABIs and deployment addresses [here](/reference/contracts/deployments.html#abis).
+Find contract ABIs and deployment addresses [here](/reference/contracts/deployments#abis).
 
 ### Where can I find audit reports?
 

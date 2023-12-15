@@ -1,6 +1,6 @@
 # Decode key metadata
 
-When users add a new key to the Key Registry, the contract emits [encoded metadata](/reference/contracts/reference/signed-key-request-validator.html#signedkeyrequestmetadata-struct) in an event. You can use this metadata to determine who requested the key.
+When users add a new key to the Key Registry, the contract emits [encoded metadata](/reference/contracts/reference/signed-key-request-validator#signedkeyrequestmetadata-struct) in an event. You can use this metadata to determine who requested the key.
 
 To decode key metadata, you can use Viem's `decodeAbiParameters` function:
 
@@ -63,5 +63,5 @@ console.log(decoded);
 
 :::
 
-See the [Signed Key Request Validator](/reference/contracts/reference/signed-key-request-validator.html#signedkeyrequestmetadata-struct) reference for more
+See the [Signed Key Request Validator](/reference/contracts/reference/signed-key-request-validator#signedkeyrequestmetadata-struct) reference for more
 details.
