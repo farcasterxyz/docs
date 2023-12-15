@@ -1,4 +1,4 @@
-# Add a signer
+# Register a user
 
 ::: info Pre-requisites
 
@@ -8,14 +8,15 @@
 
 :::
 
-To add a signer key to a user's fid, you'll need to follow six steps:
+You can register a new user using the Bundler contract. To do so, you'll need to:
 
 1. Set up [Viem](https://viem.sh/) clients and [`@farcaster/hub-web`](https://www.npmjs.com/package/@farcaster/hub-web) signers.
 2. Register an [app fid](/reference/contracts/faq.html#what-is-an-app-fid-how-do-i-get-one) if your app does not already have one.
-3. Create a new signer keypair for the user.
-4. Use your app account to create a [Signed Key Request](/reference/contracts/reference/signed-key-request-validator.html).
-5. Collect an [`Add`](/reference/contracts/reference/key-gateway.html#add-signature) signature from the user.
-6. Call the [Key Gateway](https://docs.farcaster.xyz/reference/contracts/reference/key-gateway.html#addFor) contract to add the key onchain.
+3. Collect a [`Register`](/reference/contracts/reference/id-gateway.html#register-signature) signature from the user.
+4. Create a new signer keypair for the user.
+5. Use your app account to create a [Signed Key Request](/reference/contracts/reference/signed-key-request-validator.html).
+6. Collect an [`Add`](/reference/contracts/reference/key-gateway.html#add-signature) signature from the user.
+7. Call the [Bundler](https://docs.farcaster.xyz/reference/contracts/reference/bundler.html#register) contract to register onchain.
 
 ### 1. Set up clients and signers
 
@@ -32,10 +33,8 @@ import {
   idGatewayABI,
   idRegistryABI,
   NobleEd25519Signer,
-  KEY_GATEWAY_ADDRESS,
-  keyGatewayABI,
-  KEY_REGISTRY_ADDRESS,
-  keyRegistryABI,
+  BUNDLER_ADDRESS,
+  bundlerABI,
 } from '@farcaster/hub-nodejs';
 import { bytesToHex, createPublicClient, createWalletClient, http } from 'viem';
 import { privateKeyToAccount } from 'viem/accounts';
@@ -65,6 +64,8 @@ const getDeadline = () => {
   const oneHour = 60 * 60;
   return BigInt(now + oneHour);
 };
+
+const WARPCAST_RECOVERY_PROXY = '0x00000000FcB080a4D6c39a9354dA9EB9bC104cd7';
 ```
 
 ### 2. Register an app fid
@@ -97,7 +98,27 @@ const APP_FID = await publicClient.readContract({
 });
 ```
 
-### 3. Create a new signer keypair
+### 3. Collect a `Register` signature from the user.
+
+Collect an EIP-712 `Register` signature from the user. In a real world app, you'll likely collect this signature on your frontend, from the user's wallet. In a frontend context, you can us a `ViemEip712WalletSigner` to connect to a browser wallet rather than a local signer.
+
+```ts
+let nonce = await publicClient.readContract({
+  address: KEY_GATEWAY_ADDRESS,
+  abi: keyGatewayABI,
+  functionName: 'nonces',
+  args: [alice.address],
+});
+
+const registerSignature = await aliceSigner.signRegister({
+  to: alice.address,
+  recovery: WARPCAST_RECOVERY_PROXY,
+  nonce,
+  deadline,
+});
+```
+
+### 4. Create a new signer keypair
 
 Create a new Ed25519 signer keypair for the user. In a real app, ensure you keep the user's private key secret.
 
@@ -109,7 +130,7 @@ let signerPubKey = new Uint8Array();
 const signerKeyResult = await signer.getSignerKey();
 ```
 
-### 4. Use your app account to create a Signed Key Request
+### 5. Use your app account to create a Signed Key Request
 
 Create a Signed Key Request, signed by your app account. To do so, you can use the `getSignedKeyRequestMetadata` helper,
 which generates and signs the Signed Key Request.
@@ -126,23 +147,22 @@ if (signerKeyResult.isOk()) {
 }
 ```
 
-### 5. Collect an `Add` signature from the user.
+### 6. Collect an `Add` signature from the user.
 
-Collect an EIP-712 `Add` signature from the user to authorize adding a signer key to their fid. In a real world app,
-you'll likely collect this signature on your frontend, from the user's wallet. In a frontend context, you can us a `ViemEip712WalletSigner` to connect to a browser wallet rather than a local signer.
+Collect an EIP-712 `Add` signature from the user to authorize adding a signer key to their fid.
 
 ```ts
 if (signedKeyRequestMetadata.isOk()) {
   const metadata = bytesToHex(signedKeyRequestMetadata.value);
 
-  const aliceNonce = await publicClient.readContract({
+  nonce = await publicClient.readContract({
     address: KEY_GATEWAY_ADDRESS,
     abi: keyGatewayABI,
     functionName: 'nonces',
     args: [alice.address],
   });
 
-  const aliceSignature = await aliceSigner.signAdd({
+  const addSignature = await aliceSigner.signAdd({
     owner: alice.address,
     keyType: 1,
     key: signerPubKey,
@@ -154,18 +174,44 @@ if (signedKeyRequestMetadata.isOk()) {
 }
 ```
 
-### 6. Call the Key Gateway contract to add the key onchain.
+### 7. Call the Bundler contract to register onchain.
 
 Call the Key Gateway contract and provide the user's signature to add the key onchain.
 
 ```ts
 if (aliceSignature.isOk()) {
+  const price = await publicClient.readContract({
+    address: BUNDLER_ADDRESS,
+    abi: bundlerABI,
+    functionName: 'price',
+    args: [0n],
+  });
+
   const { request } = await publicClient.simulateContract({
     account: app,
-    address: KEY_GATEWAY_ADDRESS,
-    abi: keyGatewayABI,
-    functionName: 'addFor',
-    args: [alice.address, 1, bytesToHex(signerPubKey), 1, metadata, deadline, bytesToHex(aliceSignature.value)],
+    address: BUNDLER_ADDRESS,
+    abi: bundlerABI,
+    functionName: 'register',
+    args: [
+      {
+        to: alice.address,
+        recovery: WARPCAST_RECOVERY_PROXY,
+        sig: bytesTohex(registerSignature),
+        deadline,
+      },
+      [
+        {
+          keyType: 1,
+          key: bytesToHex(signerPubkey),
+          metadataType: 1,
+          metadata: metadata,
+          sig: bytesToHex(addSignature),
+          deadline,
+        },
+      ],
+      0n,
+    ],
+    value: price,
   });
   await walletClient.writeContract(request);
 }
@@ -187,10 +233,8 @@ import {
   idGatewayABI,
   idRegistryABI,
   NobleEd25519Signer,
-  KEY_GATEWAY_ADDRESS,
-  keyGatewayABI,
-  KEY_REGISTRY_ADDRESS,
-  keyRegistryABI,
+  BUNDLER_ADDRESS,
+  bundlerABI,
 } from '@farcaster/hub-nodejs';
 import { bytesToHex, createPublicClient, createWalletClient, http } from 'viem';
 import { privateKeyToAccount } from 'viem/accounts';
@@ -199,13 +243,6 @@ import { optimism } from 'viem/chains';
 const APP_PRIVATE_KEY = '0x00';
 const ALICE_PRIVATE_KEY = '0x00';
 
-/*******************************************************************************
- * Setup - Create local accounts, Viem clients, helpers, and constants.
- *******************************************************************************/
-
-/**
- * Create Viem public (read) and wallet (write) clients.
- */
 const publicClient = createPublicClient({
   chain: optimism,
   transport: http(),
@@ -216,27 +253,12 @@ const walletClient = createWalletClient({
   transport: http(),
 });
 
-/**
- * A local account representing your app. You'll
- * use this to sign key metadata and send
- * transactions on behalf of users.
- */
 const app = privateKeyToAccount(APP_PK);
 const appSigner = new ViemLocalEip712Signer(app);
-console.log('App:', app.address);
 
-/**
- * A local account representing Alice, a user.
- */
 const alice = privateKeyToAccount(ALICE_PK);
 const aliceSigner = new ViemLocalEip712Signer(alice);
-console.log('Alice:', alice.address);
 
-/**
- * A convenience function to generate a deadline timestamp one hour from now.
- * All Farcaster EIP-712 signatures include a deadline, a block timestamp
- * after which the signature is no longer valid.
- */
 const getDeadline = () => {
   const now = Math.floor(Date.now() / 1000);
   const oneHour = 60 * 60;
@@ -282,17 +304,26 @@ const APP_FID = await publicClient.readContract({
 });
 
 /*******************************************************************************
- * KeyGateway - addFor - Add a signer key to Alice's fid.
+ * Collect Register signature from Alice
  *******************************************************************************/
 
-/**
- * To add a signer key to Alice's fid, we need to follow four steps:
- *
- * 1. Create a new signer keypair for Alice.
- * 2. Use our app account to create a Signed Key Request.
- * 3. Collect Alice's `Add` signature.
- * 4. Call the contract to add the key onchain.
- */
+let nonce = await publicClient.readContract({
+  address: KEY_GATEWAY_ADDRESS,
+  abi: keyGatewayABI,
+  functionName: 'nonces',
+  args: [alice.address],
+});
+
+const registerSignature = await aliceSigner.signRegister({
+  to: alice.address,
+  recovery: WARPCAST_RECOVERY_PROXY,
+  nonce,
+  deadline,
+});
+
+/*******************************************************************************
+ * Collect Add signature from alice.
+ *******************************************************************************/
 
 /**
  *  1. Create an Ed25519 signer keypair for Alice and get the public key.
@@ -319,7 +350,7 @@ if (signerKeyResult.isOk()) {
     /**
      *  3. Read Alice's nonce from the Key Gateway.
      */
-    aliceNonce = await publicClient.readContract({
+    nonce = await publicClient.readContract({
       address: KEY_GATEWAY_ADDRESS,
       abi: keyGatewayABI,
       functionName: 'nonces',
@@ -329,7 +360,7 @@ if (signerKeyResult.isOk()) {
     /**
      *  Then, collect her `Add` signature.
      */
-    aliceSignature = await aliceSigner.signAdd({
+    const addSignature = await aliceSigner.signAdd({
       owner: alice.address,
       keyType: 1,
       key: signerPubKey,
@@ -341,14 +372,43 @@ if (signerKeyResult.isOk()) {
 
     if (aliceSignature.isOk()) {
       /**
-       *  Call `addFor` with Alice's signature and the signed key request.
+       *  Read the current registration price.
+       */
+      const price = await publicClient.readContract({
+        address: BUNDLER_ADDRESS,
+        abi: bundlerABI,
+        functionName: 'price',
+        args: [0n],
+      });
+
+      /**
+       *  Call `register` with Alice's signatures, registration, and key parameters.
        */
       const { request } = await publicClient.simulateContract({
         account: app,
-        address: KEY_GATEWAY_ADDRESS,
-        abi: keyGatewayABI,
-        functionName: 'addFor',
-        args: [alice.address, 1, bytesToHex(signerPubKey), 1, metadata, deadline, bytesToHex(aliceSignature.value)],
+        address: BUNDLER_ADDRESS,
+        abi: bundlerABI,
+        functionName: 'register',
+        args: [
+          {
+            to: alice.address,
+            recovery: WARPCAST_RECOVERY_PROXY,
+            sig: bytesTohex(registerSignature),
+            deadline,
+          },
+          [
+            {
+              keyType: 1,
+              key: bytesToHex(signerPubkey),
+              metadataType: 1,
+              metadata: metadata,
+              sig: bytesToHex(addSignature),
+              deadline,
+            },
+          ],
+          0n,
+        ],
+        value: price,
       });
       await walletClient.writeContract(request);
     }
@@ -358,5 +418,5 @@ if (signerKeyResult.isOk()) {
 
 :::
 
-See the [Key Registry](/reference/contracts/reference/id-registry#add) reference for more
+See the [Bundler](/reference/contracts/reference/bundler#register) reference for more
 details.

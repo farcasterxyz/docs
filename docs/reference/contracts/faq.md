@@ -8,6 +8,8 @@ See the contract reference docs for documentation on each EIP-712 signature, inc
 
 If you're using Typescript/JS, the [`@farcaster/hub-web`](https://www.npmjs.com/package/@farcaster/hub-web) package includes tools for generating and working with EIP-712 signatures. To ensure you're using the correct addresses and typehashes, we recommend importing the ABIs and EIP-712 types from the [contracts module](https://github.com/farcasterxyz/hub-monorepo/tree/main/packages/core/src/eth/contracts) or using the provided [`Eip712Signer`](https://github.com/farcasterxyz/hub-monorepo/blob/main/packages/core/src/signers/eip712Signer.ts) helper.
 
+See the "Working with EIP-712 signatures" [example app](https://github.com/farcasterxyz/hub-monorepo/tree/main/packages/hub-nodejs/examples/contract-signatures) in the hub monorepo for a reference that demonstrates each signature and contract call.
+
 ### How can I debug an invalid EIP-712 signature?
 
 To help debug EIP-712 signing, every contract that uses EIP-712 signatures exposes its [domain separator](https://optimistic.etherscan.io/address/0x00000000fc25870c6ed6b6c7e41fb078b7656f69#readContract#F3) and typehashes as [constants](https://optimistic.etherscan.io/address/0x00000000fc25870c6ed6b6c7e41fb078b7656f69#readContract#F1) along with a [hashTypedDataV4](https://optimistic.etherscan.io/address/0x00000000fc25870c6ed6b6c7e41fb078b7656f69#readContract#F6) helper view. If you're constructing signatures in Solidity or another low level language, you can use these to help debug.
