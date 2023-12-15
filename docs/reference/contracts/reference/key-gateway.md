@@ -24,26 +24,26 @@ Returns the next available nonce for an address. Used for generating EIP-712 sig
 
 Add a new key for the caller's fid and set its state to `Added`. Revert if the key is already registered.
 
-| Parameter    | type     | Description                                                                                                                            |
-| ------------ | -------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| keyType      | `uint32` | Must be set to `1`. This is currently the only supported `keyType`.                                                                    |
-| key          | `bytes`  | The public key to add                                                                                                                  |
-| metadataType | `uint8`  | Must be set to `1`. This is currenlty the only supported `metadataType`.                                                               |
-| metadata     | `bytes`  | Encoded [`SignedKeyRequestMetadata`](/reference/contracts/reference/signed-key-request-validator.html#signedkeyrequestmetadata-struct) |
+| Parameter    | type     | Description                                                                                                                       |
+| ------------ | -------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| keyType      | `uint32` | Must be set to `1`. This is currently the only supported `keyType`.                                                               |
+| key          | `bytes`  | The public key to add                                                                                                             |
+| metadataType | `uint8`  | Must be set to `1`. This is currenlty the only supported `metadataType`.                                                          |
+| metadata     | `bytes`  | Encoded [`SignedKeyRequestMetadata`](/reference/contracts/reference/signed-key-request-validator#signedkeyrequestmetadata-struct) |
 
 ### addFor
 
 Add a key on behalf of another fid by providing a signature. The owner must sign an EIP-712 `Add` message approving the key. Reverts if the key is already registered.
 
-| Parameter    | type      | Description                                                                                                                            |
-| ------------ | --------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| fidOwner     | `address` | Address of the fid owner                                                                                                               |
-| keyType      | `uint32`  | Must be set to `1`. This is currently the only supported `keyType`.                                                                    |
-| key          | `bytes`   | The public key to add                                                                                                                  |
-| metadataType | `uint8`   | Must be set to `1`. This is currenlty the only supported `metadataType`.                                                               |
-| metadata     | `bytes`   | Encoded [`SignedKeyRequestMetadata`](/reference/contracts/reference/signed-key-request-validator.html#signedkeyrequestmetadata-struct) |
-| deadline     | `uint256` | Signature expiration timestamp                                                                                                         |
-| sig          | `bytes`   | EIP-712 [`Add`](/reference/contracts/reference/key-gateway.html#add-signature) signature from `fidOwner`                               |
+| Parameter    | type      | Description                                                                                                                       |
+| ------------ | --------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| fidOwner     | `address` | Address of the fid owner                                                                                                          |
+| keyType      | `uint32`  | Must be set to `1`. This is currently the only supported `keyType`.                                                               |
+| key          | `bytes`   | The public key to add                                                                                                             |
+| metadataType | `uint8`   | Must be set to `1`. This is currenlty the only supported `metadataType`.                                                          |
+| metadata     | `bytes`   | Encoded [`SignedKeyRequestMetadata`](/reference/contracts/reference/signed-key-request-validator#signedkeyrequestmetadata-struct) |
+| deadline     | `uint256` | Signature expiration timestamp                                                                                                    |
+| sig          | `bytes`   | EIP-712 [`Add`](/reference/contracts/reference/key-gateway#add-signature) signature from `fidOwner`                               |
 
 #### Add signature
 
@@ -51,15 +51,15 @@ To add a key on behalf of another account, you must provide an EIP-712 typed sig
 
 `Add(address owner,uint32 keyType,bytes key,uint8 metadataType,bytes metadata,uint256 nonce,uint256 deadline)`
 
-| Parameter    | type      | Description                                                                                                                            |
-| ------------ | --------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| owner        | `address` | Address that owns the fid. The typed message must be signed by this address.                                                           |
-| keyType      | `uint32`  | Must be set to `1`. This is currently the only supported `keyType`.                                                                    |
-| key          | `bytes`   | The public key to add                                                                                                                  |
-| metadataType | `uint8`   | Must be set to `1`. This is currenlty the only supported `metadataType`.                                                               |
-| metadata     | `bytes`   | Encoded [`SignedKeyRequestMetadata`](/reference/contracts/reference/signed-key-request-validator.html#signedkeyrequestmetadata-struct) |
-| nonce        | `uint256` | Current nonce of the `owner` address                                                                                                   |
-| deadline     | `uint256` | Signature expiration timestamp                                                                                                         |
+| Parameter    | type      | Description                                                                                                                       |
+| ------------ | --------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| owner        | `address` | Address that owns the fid. The typed message must be signed by this address.                                                      |
+| keyType      | `uint32`  | Must be set to `1`. This is currently the only supported `keyType`.                                                               |
+| key          | `bytes`   | The public key to add                                                                                                             |
+| metadataType | `uint8`   | Must be set to `1`. This is currenlty the only supported `metadataType`.                                                          |
+| metadata     | `bytes`   | Encoded [`SignedKeyRequestMetadata`](/reference/contracts/reference/signed-key-request-validator#signedkeyrequestmetadata-struct) |
+| nonce        | `uint256` | Current nonce of the `owner` address                                                                                              |
+| deadline     | `uint256` | Signature expiration timestamp                                                                                                    |
 
 ::: code-group
 

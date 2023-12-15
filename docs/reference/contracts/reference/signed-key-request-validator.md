@@ -19,7 +19,7 @@ Typically, the primary fid is the end user and the requesting fid is an app the 
 
 ### encodeMetadata
 
-Convert a [`SignedKeyRequestMetadata`](#signedkeyrequestmetadata-struct) struct into `bytes` to pass into contract functions like [add](/reference/contracts/reference/key-gateway.html#add), [register](/reference/contracts/reference/bundler.html#register).
+Convert a [`SignedKeyRequestMetadata`](#signedkeyrequestmetadata-struct) struct into `bytes` to pass into contract functions like [add](/reference/contracts/reference/key-gateway#add), [register](/reference/contracts/reference/bundler#register).
 
 | Parameter | type                       | Description                                     |
 | --------- | -------------------------- | ----------------------------------------------- |

@@ -7,7 +7,7 @@
 :::
 
 To count the number of signups by day, we can use the `chain_events` table to query the number
-of [`ID_REGISTER`](/reference/hubble/datatypes/events.html#onchaineventtype) events
+of [`ID_REGISTER`](/reference/hubble/datatypes/events#onchaineventtype) events
 and group by day.
 
 ```sql

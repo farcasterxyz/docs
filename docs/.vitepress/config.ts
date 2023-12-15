@@ -22,6 +22,7 @@ export default defineConfig({
     ],
     ['meta', { name: 'twitter:site', content: '@farcaster_xyz' }],
   ],
+  cleanUrls: true,
   themeConfig: {
     nav: [
       { text: 'Learn', link: '/learn/what-is-farcaster/overview', activeMatch: '/learn/' },

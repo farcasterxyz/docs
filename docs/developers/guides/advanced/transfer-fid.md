@@ -10,7 +10,7 @@
 
 ::: warning
 Transferring an fid does not reset its recovery address. To transfer an fid and update its recovery address,
-call [`transferAndChangeRecovery`](/reference/contracts/reference/id-registry.html#transferandchangerecovery).
+call [`transferAndChangeRecovery`](/reference/contracts/reference/id-registry#transferandchangerecovery).
 :::
 
 To change the custody address of an FID to another address, you can call the `transfer` function on the ID registry

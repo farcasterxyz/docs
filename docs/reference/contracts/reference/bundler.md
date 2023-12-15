@@ -33,27 +33,27 @@ Register an fid, add one or more signers, and rent storage in a single step. For
 
 **RegistrationParams struct**
 
-The `RegistrationParams` struct includes registration parameters and an IdGateway [`Register`](/reference/contracts/reference/id-gateway.html#register-signature) signature from the fid recipient.
+The `RegistrationParams` struct includes registration parameters and an IdGateway [`Register`](/reference/contracts/reference/id-gateway#register-signature) signature from the fid recipient.
 
-| Parameter | type      | Description                                                                                                         |
-| --------- | --------- | ------------------------------------------------------------------------------------------------------------------- |
-| to        | `address` | Address to register the fid to                                                                                      |
-| recovery  | `address` | Recovery address for the new fid                                                                                    |
-| deadline  | `uint256` | Signature expiration timestamp signature                                                                            |
-| sig       | `bytes`   | EIP-712 [`Register`](/reference/contracts/reference/key-gateway.html#add-signature) signature from the `to` address |
+| Parameter | type      | Description                                                                                                    |
+| --------- | --------- | -------------------------------------------------------------------------------------------------------------- |
+| to        | `address` | Address to register the fid to                                                                                 |
+| recovery  | `address` | Recovery address for the new fid                                                                               |
+| deadline  | `uint256` | Signature expiration timestamp signature                                                                       |
+| sig       | `bytes`   | EIP-712 [`Register`](/reference/contracts/reference/key-gateway#add-signature) signature from the `to` address |
 
 **SignerParams struct**
 
-The `SignerParams` struct includes signer key parameters and a KeyGateway [`Add`](/reference/contracts/reference/key-gateway.html#add-signature) signature from the fid recipient. Callers may provide multiple `SignerParams` structs to add multiple signers at registration time.
+The `SignerParams` struct includes signer key parameters and a KeyGateway [`Add`](/reference/contracts/reference/key-gateway#add-signature) signature from the fid recipient. Callers may provide multiple `SignerParams` structs to add multiple signers at registration time.
 
-| Parameter    | type      | Description                                                                                                                            |
-| ------------ | --------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| keyType      | `uint32`  | Must be set to `1`. This is currently the only supported `keyType`.                                                                    |
-| key          | `bytes`   | Public key to add                                                                                                                      |
-| metadataType | `uint8`   | Must be set to `1`. This is currenlty the only supported `metadataType`.                                                               |
-| metadata     | `bytes`   | Encoded [`SignedKeyRequestMetadata`](/reference/contracts/reference/signed-key-request-validator.html#signedkeyrequestmetadata-struct) |
-| deadline     | `uint256` | Signature expiration timetamp                                                                                                          |
-| sig          | `bytes`   | EIP-712 [`Add`](/reference/contracts/reference/key-gateway.html#add-signature) signature from `registrationParams.to` address          |
+| Parameter    | type      | Description                                                                                                                       |
+| ------------ | --------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| keyType      | `uint32`  | Must be set to `1`. This is currently the only supported `keyType`.                                                               |
+| key          | `bytes`   | Public key to add                                                                                                                 |
+| metadataType | `uint8`   | Must be set to `1`. This is currenlty the only supported `metadataType`.                                                          |
+| metadata     | `bytes`   | Encoded [`SignedKeyRequestMetadata`](/reference/contracts/reference/signed-key-request-validator#signedkeyrequestmetadata-struct) |
+| deadline     | `uint256` | Signature expiration timetamp                                                                                                     |
+| sig          | `bytes`   | EIP-712 [`Add`](/reference/contracts/reference/key-gateway#add-signature) signature from `registrationParams.to` address          |
 
 ## Errors
 

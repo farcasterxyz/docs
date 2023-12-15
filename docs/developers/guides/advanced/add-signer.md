@@ -11,11 +11,11 @@
 To add a signer key to a user's fid, you'll need to follow six steps:
 
 1. Set up [Viem](https://viem.sh/) clients and [`@farcaster/hub-web`](https://www.npmjs.com/package/@farcaster/hub-web) signers.
-2. Register an [app fid](/reference/contracts/faq.html#what-is-an-app-fid-how-do-i-get-one) if your app does not already have one.
+2. Register an [app fid](/reference/contracts/faq#what-is-an-app-fid-how-do-i-get-one) if your app does not already have one.
 3. Create a new signer keypair for the user.
-4. Use your app account to create a [Signed Key Request](/reference/contracts/reference/signed-key-request-validator.html).
-5. Collect an [`Add`](/reference/contracts/reference/key-gateway.html#add-signature) signature from the user.
-6. Call the [Key Gateway](https://docs.farcaster.xyz/reference/contracts/reference/key-gateway.html#addFor) contract to add the key onchain.
+4. Use your app account to create a [Signed Key Request](/reference/contracts/reference/signed-key-request-validator).
+5. Collect an [`Add`](/reference/contracts/reference/key-gateway#add-signature) signature from the user.
+6. Call the [Key Gateway](https://docs.farcaster.xyz/reference/contracts/reference/key-gateway#addFor) contract to add the key onchain.
 
 ### 1. Set up clients and signers
 

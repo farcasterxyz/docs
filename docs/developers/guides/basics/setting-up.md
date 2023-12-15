@@ -6,7 +6,7 @@
 
 :::
 
-See [hubble installation](/hubble/install.html) for more information on how to set up a local hubble instance.
+See [hubble installation](/hubble/install) for more information on how to set up a local hubble instance.
 
 Once the hub is running, verify that you can query it by querying the http api:
 
@@ -58,4 +58,3 @@ Ok {
 ```
 
 For more details on the GRPC API, see the [grpc api reference](/reference/hubble/grpcapi/grpcapi).
- 
