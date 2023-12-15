@@ -1,7 +1,20 @@
-# Transfer FID to another account
+# Change your custody address
 
-To transfer an FID to another account, you can call the `transfer` function on the ID registry contract with an EIP-712
-signature from the receiving address.
+::: info Pre-requisites
+
+- An Ethereum wallet containing an fid on Optimism mainnet, with sufficient ETH for gas costs
+- An ethereum provider URL for OP Mainnet (e.g. via [Alchemy](https://www.alchemy.com/)
+  or [Infura](https://www.infura.io/)).
+
+:::
+
+::: warning
+Transferring an fid does not reset its recovery address. To transfer an fid and update its recovery address,
+call [`transferAndChangeRecovery`](/reference/contracts/reference/id-registry.html#transferandchangerecovery).
+:::
+
+To change the custody address of an FID to another address, you can call the `transfer` function on the ID registry
+contract with an EIP-712 signature from the receiving address.
 
 ::: code-group
 

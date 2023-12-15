@@ -1,11 +1,18 @@
 # Create casts with embeds, mentions, etc
 
+::: info Pre-requisites
+
+- Write access to a hubble instance
+- Private key of a signer registered to an fid
+
+:::
+
 The hub-nodejs library provides helper functions to create casts with embeds, mentions, emoji, etc. using
 the `makeCastAdd` function.
 
 ## Setup
 
-First import the function and set up constants
+First import the `makeCastAdd` function and set up constants
 
 ```
 import { makeCastAdd, NobleEd25519Signer, FarcasterNetwork } from "@farcaster/hub-nodejs";

@@ -102,32 +102,44 @@ export default defineConfig({
               collapsed: false,
               items: [
                 {
-                  text: 'Setting up and Connecting to Hubble',
+                  text: 'Connecting to Hubble',
                   link: '/developers/guides/basics/setting-up',
                 },
-                { text: 'Replicate Hubble data to postgres', link: '/developers/guides/basics/replicate' },
+                { text: 'Replicate to postgres', link: '/developers/guides/basics/replicate' },
+                { text: 'Create an Account', link: '/developers/guides/basics/account' },
               ],
             },
-            {
-              text: 'Applications',
-              collapsed: false,
-              items: [
-                { text: 'Generate a chronological feed for a user', link: '/developers/guides/applications/feed' },
-                { text: 'Create a bot to post messages to the hub', link: '/developers/guides/applications/bot' },
-                // { text: 'Build a farcaster client', link: '/developers/guides/applications/client' },
-                // { text: 'Read data with Farcaster Connect', link: '/developers/guides/applications/todo' },
-                // { text: 'Write data with Farcaster Connect', link: '/developers/guides/applications/todo' },
-              ],
-            },
+            // {
+            //   text: 'Applications',
+            //   collapsed: false,
+            //   items: [
+            //     { text: 'Generate a chronological feed for a user', link: '/developers/guides/applications/feed' },
+            //     { text: 'Create a bot to post messages to the hub', link: '/developers/guides/applications/bot' },
+            //     // { text: 'Build a farcaster client', link: '/developers/guides/applications/client' },
+            //     // { text: 'Read data with Farcaster Connect', link: '/developers/guides/applications/todo' },
+            //     // { text: 'Write data with Farcaster Connect', link: '/developers/guides/applications/todo' },
+            //   ],
+            // },
             {
               text: 'Advanced',
               collapsed: false,
               items: [
-                { text: 'Create casts with embeds, mentions, etc', link: '/developers/guides/advanced/adv-casts' },
-                { text: 'Transfer FID to another address', link: '/developers/guides/advanced/transfer-fid' },
-                { text: 'Transfer an Fname to another FID', link: '/developers/guides/advanced/transfer-fname' },
+                { text: 'Create casts with embedded content', link: '/developers/guides/advanced/adv-casts' },
+                { text: 'Create a cast in a channel', link: '/developers/guides/advanced/create-channel-casts' },
+                { text: 'Change your custody address', link: '/developers/guides/advanced/transfer-fid' },
+                { text: 'Change your farcaster name', link: '/developers/guides/advanced/transfer-fname' },
+                { text: 'Change your recovery address', link: '/developers/guides/advanced/change-recovery' },
+                { text: 'Fetch casts from a channel', link: '/developers/guides/advanced/fetch-channel-casts' },
+                {
+                  text: 'Counting signups by day',
+                  link: '/developers/guides/advanced/query-signups',
+                },
                 // { text: 'How do I roll a signer?', link: '/developers/guides/applications/todo' },
               ],
+            },
+            {
+              text: 'Hub Scripts',
+              items: [{ text: 'Submit casts to the hub', link: '/developers/guides/hub-scripts/casts' }],
             },
           ],
         },
@@ -255,7 +267,7 @@ export default defineConfig({
         //   ],
         // },
 
-        // { text: 'Replicator', items: [{ text: 'Overview', link: '/reference/replicator/index' }] },
+        { text: 'Replicator', items: [{ text: 'Schema', link: '/reference/replicator/schema' }] },
       ],
     },
     socialLinks: [

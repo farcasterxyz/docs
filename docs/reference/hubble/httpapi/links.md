@@ -1,9 +1,11 @@
 # Links API
 
+A Link represents a relationship between two users (e.g. follow)
+
 The Links API will accept the following values for the `link_type` field.
 
 | String | Description                   |
-| ------ | ----------------------------- |
+|--------|-------------------------------|
 | follow | Follow from FID to Target FID |
 
 ## linkById

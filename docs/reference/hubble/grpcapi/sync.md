@@ -1,7 +1,11 @@
 # Sync API
 
+These APIs are used by Hubs to synchronize their state with other Hubs. Not meant for use by external applications.
+
+## API
+
 | Method Name             | Request Type      | Response Type            | Description                                   |
-| ----------------------- | ----------------- | ------------------------ | --------------------------------------------- |
+|-------------------------|-------------------|--------------------------|-----------------------------------------------|
 | GetInfo                 | HubInfoRequest    | HubInfoResponse          | Returns metadata about the hub's state.       |
 | GetSyncStatus           | SyncStatusRequest | SyncStatusResponse       | Returns the hub's sync status.                |
 | GetAllSyncIdsByPrefix   | TrieNodePrefix    | SyncIds                  | Get all the SyncIds for a particular prefix   |
@@ -12,7 +16,7 @@
 ## HubInfoRequest
 
 | Field    | Type          | Label | Description |
-| -------- | ------------- | ----- | ----------- |
+|----------|---------------|-------|-------------|
 | db_stats | [bool](#bool) |       |             |
 
 ## HubInfoResponse
@@ -20,7 +24,7 @@
 Response Types for the Sync RPC Methods
 
 | Field      | Type                | Label | Description |
-| ---------- | ------------------- | ----- | ----------- |
+|------------|---------------------|-------|-------------|
 | version    | [string](#string)   |       |             |
 | is_syncing | [bool](#bool)       |       |             |
 | nickname   | [string](#string)   |       |             |
@@ -30,20 +34,20 @@ Response Types for the Sync RPC Methods
 ## SyncStatusRequest
 
 | Field  | Type              | Label    | Description |
-| ------ | ----------------- | -------- | ----------- |
+|--------|-------------------|----------|-------------|
 | peerId | [string](#string) | optional |             |
 
 ## SyncStatusResponse
 
 | Field       | Type                      | Label    | Description |
-| ----------- | ------------------------- | -------- | ----------- |
+|-------------|---------------------------|----------|-------------|
 | is_syncing  | [bool](#bool)             |          |             |
 | sync_status | [SyncStatus](#SyncStatus) | repeated |             |
 
 ## SyncStatus
 
 | Field                | Type              | Label | Description |
-| -------------------- | ----------------- | ----- | ----------- |
+|----------------------|-------------------|-------|-------------|
 | peerId               | [string](#string) |       |             |
 | inSync               | [string](#string) |       |             |
 | shouldSync           | [bool](#bool)     |       |             |
@@ -56,19 +60,19 @@ Response Types for the Sync RPC Methods
 ## TrieNodePrefix
 
 | Field  | Type            | Label | Description |
-| ------ | --------------- | ----- | ----------- |
+|--------|-----------------|-------|-------------|
 | prefix | [bytes](#bytes) |       |             |
 
 ## SyncIds
 
 | Field    | Type            | Label    | Description |
-| -------- | --------------- | -------- | ----------- |
+|----------|-----------------|----------|-------------|
 | sync_ids | [bytes](#bytes) | repeated |             |
 
 ## TrieNodeMetadataResponse
 
 | Field        | Type                                                  | Label    | Description |
-| ------------ | ----------------------------------------------------- | -------- | ----------- |
+|--------------|-------------------------------------------------------|----------|-------------|
 | prefix       | [bytes](#bytes)                                       |          |             |
 | num_messages | [uint64](#uint64)                                     |          |             |
 | hash         | [string](#string)                                     |          |             |
@@ -77,7 +81,7 @@ Response Types for the Sync RPC Methods
 ## TrieNodeSnapshotResponse
 
 | Field           | Type              | Label    | Description |
-| --------------- | ----------------- | -------- | ----------- |
+|-----------------|-------------------|----------|-------------|
 | prefix          | [bytes](#bytes)   |          |             |
 | excluded_hashes | [string](#string) | repeated |             |
 | num_messages    | [uint64](#uint64) |          |             |
@@ -86,7 +90,7 @@ Response Types for the Sync RPC Methods
 ## DbStats
 
 | Field            | Type              | Label | Description |
-| ---------------- | ----------------- | ----- | ----------- |
+|------------------|-------------------|-------|-------------|
 | num_messages     | [uint64](#uint64) |       |             |
 | num_fid_events   | [uint64](#uint64) |       |             |
 | num_fname_events | [uint64](#uint64) |       |             |
