@@ -30,7 +30,7 @@ Some popular connected apps include:
 - [Supercast](https://supercast.xyz/)
 - [Yup](https://yup.io/)
 - [Tiles](https://tiles.cool/)
-- [Opencast](https://tiles.cool/)
+- [Opencast](https://opencast.stephancill.co.za/)
 - [Farcord](https://farcord.com/)
 
 **Connected apps are not reviewed by Farcaster, use them at your own risk**

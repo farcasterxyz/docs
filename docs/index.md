@@ -1,3 +1,9 @@
+---
+next:
+  text: 'Create Your Account'
+  link: '/intro/create-account.html'
+---
+
 # Getting Started
 
 Farcaster is a decentralized social network built on Ethereum.
