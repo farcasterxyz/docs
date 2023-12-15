@@ -130,6 +130,7 @@ export default defineConfig({
                 { text: 'Change your farcaster name', link: '/developers/guides/advanced/transfer-fname' },
                 { text: 'Change your recovery address', link: '/developers/guides/advanced/change-recovery' },
                 { text: 'Fetch casts from a channel', link: '/developers/guides/advanced/fetch-channel-casts' },
+                { text: 'Create an address verification ', link: '/developers/guides/advanced/verify-address' },
                 {
                   text: 'Counting signups by day',
                   link: '/developers/guides/advanced/query-signups',
