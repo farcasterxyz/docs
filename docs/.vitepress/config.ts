@@ -135,6 +135,7 @@ export default defineConfig({
                   link: '/developers/guides/advanced/query-signups',
                 },
                 { text: 'Decode key metadata', link: '/developers/guides/advanced/decode-key-metadata' },
+                { text: 'Request and add a signer', link: '/developers/guides/advanced/add-signer' },
                 // { text: 'How do I roll a signer?', link: '/developers/guides/applications/todo' },
               ],
             },
