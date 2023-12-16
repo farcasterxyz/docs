@@ -31,7 +31,7 @@ order by count desc;
 
 First import the `makeCastAdd` function and set up constants
 
-```
+```ts
 
 import { makeCastAdd, NobleEd25519Signer, FarcasterNetwork } from "@farcaster/hub-nodejs";
 
@@ -39,8 +39,8 @@ const SIGNER_PRIVATE_KEY: Hex = "0x..."; // Your registered signer's private key
 const FID = -1; // Your fid
 const ed25519Signer = new NobleEd25519Signer(SIGNER_PRIVATE_KEY);
 const dataOptions = {
-fid: FID,
-network: FC_NETWORK,
+  fid: FID,
+  network: FC_NETWORK,
 };
 const FC_NETWORK = FarcasterNetwork.MAINNET;
 
