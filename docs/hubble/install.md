@@ -28,7 +28,7 @@ Hubble will be installed into `~/hubble` and will be run via Docker in the backg
 
 ### Upgrading Hubble
 
-The Hubble script creates a crontab entry will automatically the hub every week. To upgrade manually, run:
+The Hubble script creates a crontab entry and will automatically upgrade the hub every week. To upgrade manually, run:
 
 ```bash
 cd ~/hubble && ./hubble.sh upgrade
