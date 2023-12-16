@@ -14,7 +14,7 @@ the `makeCastAdd` function.
 
 First import the `makeCastAdd` function and set up constants
 
-```
+```ts
 import { makeCastAdd, NobleEd25519Signer, FarcasterNetwork } from "@farcaster/hub-nodejs";
 
 const SIGNER_PRIVATE_KEY: Hex = "0x..."; // Your registered signer's private key 

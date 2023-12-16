@@ -139,6 +139,7 @@ export default defineConfig({
                 { text: 'Decode key metadata', link: '/developers/guides/advanced/decode-key-metadata' },
                 { text: 'Add a signer', link: '/developers/guides/advanced/add-signer' },
                 { text: 'Register a user', link: '/developers/guides/advanced/register-a-user' },
+                { text: 'Lookup account by name', link: '/developers/guides/advanced/name-lookup' },
                 // { text: 'How do I roll a signer?', link: '/developers/guides/applications/todo' },
               ],
             },
