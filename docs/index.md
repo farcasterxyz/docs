@@ -25,3 +25,4 @@ You can post messages, follow users and organize into communities called channel
 - [Hubble APIs](./reference/hubble/architecture.md)
 - [Contract APIs](./reference/contracts/)
 - [Fname Registry APIs](./reference/fname/api.md)
+- [Warpcast APIs](/reference/warpcast/api)
