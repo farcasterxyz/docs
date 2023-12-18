@@ -274,6 +274,7 @@ export default defineConfig({
         // },
 
         { text: 'Replicator', items: [{ text: 'Schema', link: '/reference/replicator/schema' }] },
+        { text: 'Warpcast', items: [{ text: 'API Reference', link: '/reference/warpcast/api' }] },
       ],
     },
     socialLinks: [

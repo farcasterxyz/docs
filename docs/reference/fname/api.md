@@ -1,4 +1,4 @@
-# API Reference
+# FName Registry Server API Reference
 
 The [Fname registry](https://github.com/farcasterxyz/fname-registry) server is hosted at https://fnames.farcaster.xyz
 
