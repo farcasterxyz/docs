@@ -20,14 +20,16 @@ The return object is a JSON array where each channel has the following shape:
   "name": "lifehacks",
   "description": "Tips & tricks for a smoother life journey 🌟",
   "imageUrl": "https://i.imgur.com/Fe0Q1ZJ.png",
-  "leadFid": 17672
-}
+  "leadFid": 17672,
+  "createdAt": 1702759296
+},
 ```
 
 Properties:
 * `id` - The unique channel id that cannot be changed (called 'Name' when creating a channel)
 * `url` - The FIP-2 `parentUrl` used for main casts in the channel
 * `name` - The friendly name displayed to users (called 'Display name' when editing a channel)
-* `description` - The description of the channel
+* `description` - The description of the channel, if present
 * `imageUrl` - URL to the channel avatar
-* `loadFid` - The fid of the user who created the channel (called 'Host' in Warpcast)
+* `loadFid` - The fid of the user who created the channel, if present (called 'Host' in Warpcast)
+* `createdAt` - UNIX time when channel was created, in seconds
