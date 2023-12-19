@@ -1,15 +1,15 @@
 # Overview
 
 Farcaster contracts are deployed on Optimism, an Ethereum layer 2 network. There are three core contracts:
-ID registry, Key Registry, and Storage Registry. Write access to the ID and Key registry is gated through the Gateway
+Id Registry, Key Registry, and Storage Registry. Write access to the ID and Key registry is gated through the Gateway
 contracts. There is also a Bundler helper contract to make it easy to register an fid, add a key and rent storage in one
 transaction.
 
 ![contracts.png](/assets/contracts.png)
 
-## ID Registry
+## Id Registry
 
-The ID Registry contract is used to keep track of Farcaster IDs. It maps an fid to an owning Ethereum
+The Id Registry contract is used to keep track of Farcaster IDs. It maps an fid to an owning Ethereum
 address. The owner can also designate a "recovery address" which can be used to recover the fid if the owner loses
 access to the registering address. Registering an fid for the first time must be done through
 the [ID Gateway](#idgateway).

@@ -1,14 +1,8 @@
-# Add a signer
+# Create an account key
 
-::: info Pre-requisites
+An account can authorize account keys, which can create messages on its behalf.
 
-- An Ethereum wallet on Optimism mainnet, with sufficient ETH for gas costs
-- An ethereum provider URL for OP Mainnet (e.g. via [Alchemy](https://www.alchemy.com/)
-  or [Infura](https://www.infura.io/)).
-
-:::
-
-To add a signer key to a user's fid, you'll need to follow six steps:
+The owner of the account can revoke an account key at any time. To add an account key, you'll need to follow six steps:
 
 1. Set up [Viem](https://viem.sh/) clients and [`@farcaster/hub-web`](https://www.npmjs.com/package/@farcaster/hub-web) signers.
 2. Register an [app fid](/reference/contracts/faq#what-is-an-app-fid-how-do-i-get-one) if your app does not already have one.
@@ -16,6 +10,11 @@ To add a signer key to a user's fid, you'll need to follow six steps:
 4. Use your app account to create a [Signed Key Request](/reference/contracts/reference/signed-key-request-validator).
 5. Collect an [`Add`](/reference/contracts/reference/key-gateway#add-signature) signature from the user.
 6. Call the [Key Gateway](https://docs.farcaster.xyz/reference/contracts/reference/key-gateway#addFor) contract to add the key onchain.
+
+### Requirements
+
+- An ETH wallet on OP mainnet, with some ETH
+- An ETH RPC URL for OP Mainnet (e.g. via [Alchemy](https://www.alchemy.com/) or [Infura](https://www.infura.io/)).
 
 ### 1. Set up clients and signers
 
@@ -69,7 +68,7 @@ const getDeadline = () => {
 
 ### 2. Register an app fid
 
-Register an app fid if you don't already have one. To register an fid, you'll need to read the price from the ID Gateway, then call the ID Gateway and pay the registration price. You can read back your new FID from the ID Registry contract, or parse it from a `Register` event. Here, we'll read it from the registry contract.
+Register an app fid if you don't already have one. To register an fid, you'll need to read the price from the ID Gateway, then call the ID Gateway and pay the registration price. You can read back your new FID from the Id Registry contract, or parse it from a `Register` event. Here, we'll read it from the registry contract.
 
 ```ts
 const price = await publicClient.readContract({
@@ -272,7 +271,7 @@ const { request } = await publicClient.simulateContract({
 await walletClient.writeContract(request);
 
 /**
- *  Read the app fid from the ID Registry contract.
+ *  Read the app fid from the Id Registry contract.
  */
 const APP_FID = await publicClient.readContract({
   address: ID_REGISTRY_ADDRESS,

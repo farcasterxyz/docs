@@ -1,4 +1,4 @@
-# Register a user
+# Create an account
 
 ::: info Pre-requisites
 
@@ -70,7 +70,7 @@ const WARPCAST_RECOVERY_PROXY = '0x00000000FcB080a4D6c39a9354dA9EB9bC104cd7';
 
 ### 2. Register an app fid
 
-Register an app fid if you don't already have one. To register an fid, you'll need to read the price from the ID Gateway, then call the ID Gateway and pay the registration price. You can read back your new FID from the ID Registry contract, or parse it from a `Register` event. Here, we'll read it from the registry contract.
+Register an app fid if you don't already have one. To register an fid, you'll need to read the price from the ID Gateway, then call the ID Gateway and pay the registration price. You can read back your new FID from the Id Registry contract, or parse it from a `Register` event. Here, we'll read it from the registry contract.
 
 ```ts
 const price = await publicClient.readContract({
@@ -294,7 +294,7 @@ const { request } = await publicClient.simulateContract({
 await walletClient.writeContract(request);
 
 /**
- *  Read the app fid from the ID Registry contract.
+ *  Read the app fid from the Id Registry contract.
  */
 const APP_FID = await publicClient.readContract({
   address: ID_REGISTRY_ADDRESS,

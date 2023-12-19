@@ -1,29 +1,25 @@
-# Developer Overview
+# Getting Started
 
-To get started developing on top of the farcaster protocol, first you need to decide which hub to connect to. There are
-a few options:
+If you're new to building on Farcaster follow this guide to get up to speed quickly.
 
-- [Run your own hub](/hubble/install)
-- [Connect to a 3rd party hub](/hubble/hubble#hosted-instances)
+## 1. Set up a Hub
 
-## Basics
+Getting a hub set up lets you start querying data. Roughly speaking, a hub is to Farcaster what a node is to Ethereum.
 
-Once you have access to a hub, you can start interacting with the protocol. The following guides will help you get
-started:
+1. Choose between [self-hosting](/hubble/install) or using a [hosting service](/hubble/hubble#hosted-instances).
+2. Make your first [API call](/developers/guides/basics/setting-up) to fetch data.
 
-- [Connect to Hubble](/developers/guides/basics/setting-up) - How to query the Hub API
-- [Create an Account](/developers/guides/basics/account) - How to create a farcaster account through the smart contracts
+## 2. Hello World
 
-## Advanced
+The Hello World example will walk you through the basics of creating a new acccount and writing your first message.
 
-Once you have an account, you can do some more advanced things:
+1. If you've never used Farcaster, [start with Warpcast](../intro/create-account.md).
+2. If you've used Farcaster, complete the [Hello World](/developers/guides/basics/hello-world) example.
 
-- [Create a cast in a channel](/developers/guides/advanced/create-channel-casts) - How to create a cast in a channel
-- [Change your custody address](/developers/guides/advanced/transfer-fid) - How to change the custody address of an
-  FID
+## 3. Explore advanced topics
 
-## Hub Scripts
+Once you understand the basics, you can explore the advanced tutorials:
 
-Ready to run scripts to perform common tasks, like
-
-- [Submit casts to the hub](/developers/guides/hub-scripts/casts)
+- [Create accounts efficiently with a bundler](./guides/advanced/register-a-user.md)
+- [Create casts with mentions and embeds](./guides/advanced/adv-casts.md)
+- [Changing your recovery address](./guides/advanced/change-recovery.md)

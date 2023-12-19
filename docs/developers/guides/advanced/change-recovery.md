@@ -1,15 +1,16 @@
-# Change your recovery address
+# Change recovery address
 
-::: info Pre-requisites
+Accounts can configure a recovery address to protect against the loss of the custody address. The recovery address will be can change the custody address of the account.
 
-- An Ethereum wallet containing an fid on Optimism mainnet, with sufficient ETH for gas costs
-- An ethereum provider URL for OP Mainnet (e.g. via [Alchemy](https://www.alchemy.com/)
+### Requirements
+
+- An ETH wallet that has an fid on OP mainnet, with some ETH for gas costs
+- An ETH RPC URL for OP Mainnet (e.g. via [Alchemy](https://www.alchemy.com/)
   or [Infura](https://www.infura.io/)).
 
-:::
+### Change Address
 
-To change the recovery address of an FID to another address, you can call the `changeRecovery` function on the ID
-registry contract.
+Call the `changeRecovery` function on the Id Registry contract.
 
 ::: code-group
 
@@ -56,5 +57,5 @@ export const account = privateKeyToAccount('0x...');
 
 :::
 
-See the [ID Registry](/reference/contracts/reference/id-registry#transfer) section for more
+See the [Id Registry](/reference/contracts/reference/id-registry#transfer) section for more
 details.

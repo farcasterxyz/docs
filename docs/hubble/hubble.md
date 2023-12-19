@@ -26,4 +26,3 @@ httpapi_port: 2281
 gossipsub_port: 2282
 grpc_port: 2283
 ```
-

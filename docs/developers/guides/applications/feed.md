@@ -18,13 +18,13 @@ yarn add @farcaster/hub-nodejs
 First, let's set up some constants and create a client to connect to the hub.
 
 ```typescript
-import { getSSLHubRpcClient } from "@farcaster/hub-nodejs";
+import { getSSLHubRpcClient } from '@farcaster/hub-nodejs';
 
 /**
  * Populate the following constants with your own values
  */
 
-const HUB_URL = "nemes.farcaster.xyz:2283"; // URL of the Hub
+const HUB_URL = 'nemes.farcaster.xyz:2283'; // URL of the Hub
 const FIDS = [2, 3]; // User IDs to fetch casts for
 
 // const client = getInsecureHubRpcClient(HUB_URL); // Use this if you're not using SSL
@@ -49,7 +49,7 @@ fnameResults.map((result) =>
       const fname = uData.data.userDataBody.value;
       fidToFname.set(fid, fname);
     }
-  }),
+  })
 );
 ```
 
@@ -63,21 +63,21 @@ casts.
  * Returns a user's casts which are not replies to any other casts in reverse chronological order.
  */
 const getPrimaryCastsByFid = async (fid: number, client: HubRpcClient): HubAsyncResult<CastAddMessage[]> => {
-    const result = await client.getCastsByFid({ fid: fid, pageSize: 10, reverse: true });
-    if (result.isErr()) {
-      return err(result.error);
-    }
-    // Coerce Messages into Casts, should not actually filter out any messages
-    const casts = result.value.messages.filter(isCastAddMessage);
-    return ok(casts.filter((message) => !message.data.castAddBody.parentCastId));
-  };
+  const result = await client.getCastsByFid({ fid: fid, pageSize: 10, reverse: true });
+  if (result.isErr()) {
+    return err(result.error);
+  }
+  // Coerce Messages into Casts, should not actually filter out any messages
+  const casts = result.value.messages.filter(isCastAddMessage);
+  return ok(casts.filter((message) => !message.data.castAddBody.parentCastId));
+};
 
 // Fetch primary casts for each fid
 const castResultPromises = FIDS.map((fid) => getPrimaryCastsByFid(fid, client));
 const castsResult = Result.combine(await Promise.all(castResultPromises));
 
 if (castsResult.isErr()) {
-  console.error("Fetching casts failed");
+  console.error('Fetching casts failed');
   console.error(castsResult.error);
   return;
 }
@@ -100,7 +100,7 @@ const castToString = async (cast: CastAddMessage, nameMapping: Map<number, strin
   const bytes = new TextEncoder().encode(text);
 
   const decoder = new TextDecoder();
-  let textWithMentions = "";
+  let textWithMentions = '';
   let indexBytes = 0;
   for (let i = 0; i < mentions.length; i++) {
     textWithMentions += decoder.decode(bytes.slice(indexBytes, mentionsPositions[i]));
@@ -111,7 +111,7 @@ const castToString = async (cast: CastAddMessage, nameMapping: Map<number, strin
   textWithMentions += decoder.decode(bytes.slice(indexBytes));
 
   // Remove newlines from the message text
-  const textNoLineBreaks = textWithMentions.replace(/(\r\n|\n|\r)/gm, " ");
+  const textNoLineBreaks = textWithMentions.replace(/(\r\n|\n|\r)/gm, ' ');
 
   return `${fname}: ${textNoLineBreaks}\n${dateString}\n`;
 };
@@ -126,14 +126,14 @@ Finally, we can sort the casts by timestamp again (so they are interleaved corre
  * Compares two CastAddMessages by timestamp, in reverse chronological order.
  */
 const compareCasts = (a: CastAddMessage, b: CastAddMessage) => {
-    if (a.data.timestamp < b.data.timestamp) {
-      return 1;
-    }
-    if (a.data.timestamp > b.data.timestamp) {
-      return -1;
-    }
-    return 0;
-  };
+  if (a.data.timestamp < b.data.timestamp) {
+    return 1;
+  }
+  if (a.data.timestamp > b.data.timestamp) {
+    return -1;
+  }
+  return 0;
+};
 
 const sortedCasts = castsResult.value.flat().sort(compareCasts); // sort casts by timestamp
 const stringifiedCasts = await Promise.all(sortedCasts.map((c) => castToString(c, fidToFname, client))); // convert casts to printable strings

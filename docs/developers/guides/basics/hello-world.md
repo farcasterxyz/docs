@@ -1,22 +1,23 @@
-# Create an account
+# Hello World
 
-::: info Pre-requisites
+Create your Farcaster account programatically and publish your first "Hello World" message.
+
+The example shows you how to:
+
+- Make onchain transactions to create an account
+- Rent a storage unit so you can publish messages
+- Add an account key to sign messages
+- Acquire an fname for your account
+- Create, sign and publish messages
+
+This example can be checked out as a fully functional repository [here](https://github.com/farcasterxyz/hub-monorepo/tree/main/packages/hub-nodejs/examples/write-data).
+
+### Requirements
 
 - Write access to a hub (either your own, or a 3rd party hub)
-- An Ethereum wallet with about ~15$ USD of ETH bridged to [Optimism](https://www.optimism.io/)
-- An ethereum provider URL for OP Mainnet (e.g.via [Alchemy](https://www.alchemy.com/)
+- An ETH wallet with about ~10$ USD of ETH bridged to [Optimism](https://www.optimism.io/)
+- An ETH RPC URL for OP Mainnet (e.g.via [Alchemy](https://www.alchemy.com/)
   or [Infura](https://www.infura.io/)).
-
-:::
-
-This example will showcase how to sign up to the farcater network using the
-official [hub-nodejs](https://github.com/farcasterxyz/hub-monorepo/tree/main/packages/hub-nodejs) in typescript.
-
-First we will issue on chain transactions to register a new user, purchase storage and add a signer. Then we will
-acquire an fname and set it as our username and update our profile.
-
-See the full
-example [here](https://github.com/farcasterxyz/hub-monorepo/tree/main/packages/hub-nodejs/examples/write-data).
 
 ## 1. Set up constants
 
@@ -27,22 +28,22 @@ import {
   KEY_GATEWAY_ADDRESS,
   keyGatewayABI,
   ID_REGISTRY_ADDRESS,
-  idRegistryABI
+  idRegistryABI,
 } from '@farcaster/hub-web';
 
 /**
  * Populate the following constants with your own values
  */
-const MNEMONIC = "<REQUIRED>";
-const OP_PROVIDER_URL = "<REQUIRED>"; // Alchemy or Infura url
+const MNEMONIC = '<REQUIRED>';
+const OP_PROVIDER_URL = '<REQUIRED>'; // Alchemy or Infura url
 const RECOVERY_ADDRESS = zeroAddress; // Optional, using the default value means the account will not be recoverable later if the mnemonic is lost
 const SIGNER_PRIVATE_KEY: Hex = zeroAddress; // Optional, using the default means a new signer will be created each time
 
 // Note: nemes is the Farcaster team's mainnet hub, which is password protected to prevent abuse. Use a 3rd party hub
 // provider like https://neynar.com/ Or, run your own mainnet hub and broadcast to it permissionlessly.
-const HUB_URL = "nemes.farcaster.xyz:2283"; // URL + Port of the Hub
-const HUB_USERNAME = ""; // Username for auth, leave blank if not using TLS
-const HUB_PASS = ""; // Password for auth, leave blank if not using TLS
+const HUB_URL = 'nemes.farcaster.xyz:2283'; // URL + Port of the Hub
+const HUB_USERNAME = ''; // Username for auth, leave blank if not using TLS
+const HUB_PASS = ''; // Password for auth, leave blank if not using TLS
 const USE_SSL = false; // set to true if talking to a hub that uses SSL (3rd party hosted hubs or hubs that require auth)
 const FC_NETWORK = FarcasterNetwork.MAINNET; // Network of the Hub
 
@@ -51,7 +52,6 @@ const CHAIN = optimism;
 const IdGateway = { abi: idGatewayABI, address: ID_GATEWAY_ADDRESS, chain: CHAIN };
 const IdContract = { abi: idRegistryABI, address: ID_REGISTRY_ADDRESS, chain: CHAIN };
 const KeyContract = { abi: keyGatewayABI, address: KEY_GATEWAY_ADDRESS, chain: CHAIN };
-
 ```
 
 ## 2. Register and pay for storage
@@ -65,7 +65,7 @@ const getOrRegisterFid = async (): Promise<number> => {
   // Check if we already have an fid
   const existingFid = (await walletClient.readContract({
     ...IdContract,
-    functionName: "idOf",
+    functionName: 'idOf',
     args: [account.address],
   })) as bigint;
 
@@ -75,14 +75,14 @@ const getOrRegisterFid = async (): Promise<number> => {
 
   const price = await walletClient.readContract({
     ...IdGateway,
-    functionName: "price",
+    functionName: 'price',
   });
   if (balance < price) {
     throw new Error(`Insufficient balance to rent storage, required: ${price}, balance: ${balance}`);
   }
   const { request: registerRequest } = await walletClient.simulateContract({
     ...IdGateway,
-    functionName: "register",
+    functionName: 'register',
     args: [RECOVERY_ADDRESS],
     value: price,
   });
@@ -94,7 +94,7 @@ const getOrRegisterFid = async (): Promise<number> => {
     data: registerTxReceipt.logs[0].data,
     topics: registerTxReceipt.logs[0].topics,
   });
-  const fid = parseInt(registerLog.args["id"]);
+  const fid = parseInt(registerLog.args['id']);
   return fid;
 };
 
@@ -112,7 +112,7 @@ holding the fid. If this is not possible, register a separate fid for the app fi
 const getOrRegisterSigner = async (fid: number) => {
   if (SIGNER_PRIVATE_KEY !== zeroAddress) {
     // If a private key is provided, we assume the signer is already in the key registry
-    const privateKeyBytes = fromHex(SIGNER_PRIVATE_KEY, "bytes");
+    const privateKeyBytes = fromHex(SIGNER_PRIVATE_KEY, 'bytes');
     const publicKeyBytes = ed25519.getPublicKey(privateKeyBytes);
     return privateKeyBytes;
   }
@@ -131,7 +131,7 @@ const getOrRegisterSigner = async (fid: number) => {
 
   const { request: signerAddRequest } = await walletClient.simulateContract({
     ...KeyContract,
-    functionName: "add",
+    functionName: 'add',
     args: [1, publicKey, 1, metadata], // keyType, publicKey, metadataType, metadata
   });
 
@@ -166,7 +166,7 @@ const registerFname = async (fid: number) => {
   const userNameProofSignature = await walletClient.signTypedData({
     domain: USERNAME_PROOF_DOMAIN,
     types: USERNAME_PROOF_TYPE,
-    primaryType: "UserNameProof",
+    primaryType: 'UserNameProof',
     message: {
       name: fname,
       timestamp: BigInt(timestamp),
@@ -174,7 +174,7 @@ const registerFname = async (fid: number) => {
     },
   });
 
-  const response = await axios.post("https://fnames.farcaster.xyz/transfers", {
+  const response = await axios.post('https://fnames.farcaster.xyz/transfers', {
     name: fname, // Name to register
     from: 0, // Fid to transfer from (0 for a new registration)
     to: fid, // Fid to transfer to (0 to unregister)
@@ -205,7 +205,6 @@ const submitMessage = async (resultPromise: HubAsyncResult<Message>) => {
   await hubClient.submitMessage(result.value);
 };
 
-
 const signer = new NobleEd25519Signer(signerPrivateKey);
 const dataOptions = {
   fid: fid,
@@ -219,23 +218,15 @@ const userDataUsernameBody = {
 await submitMessage(makeUserDataAdd(userDataUsernameBody, dataOptions, signer));
 
 // Post a cast
-await submitMessage(makeCastAdd(
-  {
-    text: "Hello World!",
-  },
-  dataOptions,
-  signer,
-));
+await submitMessage(
+  makeCastAdd(
+    {
+      text: 'Hello World!',
+    },
+    dataOptions,
+    signer
+  )
+);
 ```
 
-Now, you can view your profile on any farcaster client. On Warcast, visit `https://warpcast.com/@<fname>`
-
-## Next steps
-
-Now you're ready to submit messages to the hub. See [the Messages reference](/reference/hubble/datatypes/messages) for
-more information on the different types of data
-that the hub supports.
-
-See [here](https://github.com/farcasterxyz/hub-monorepo/tree/main/packages/hub-nodejs/examples/make-cast)
-for examples on how to construct different kinds of casts.
-
+Now, you can view your profile on any farcaster client. To see it on Warpcast, visit `https://warpcast.com/@<fname>`

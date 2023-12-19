@@ -32,10 +32,9 @@ order by count desc;
 First import the `makeCastAdd` function and set up constants
 
 ```ts
+import { makeCastAdd, NobleEd25519Signer, FarcasterNetwork } from '@farcaster/hub-nodejs';
 
-import { makeCastAdd, NobleEd25519Signer, FarcasterNetwork } from "@farcaster/hub-nodejs";
-
-const SIGNER_PRIVATE_KEY: Hex = "0x..."; // Your registered signer's private key
+const SIGNER_PRIVATE_KEY: Hex = '0x...'; // Your registered signer's private key
 const FID = -1; // Your fid
 const ed25519Signer = new NobleEd25519Signer(SIGNER_PRIVATE_KEY);
 const dataOptions = {
@@ -43,7 +42,6 @@ const dataOptions = {
   network: FC_NETWORK,
 };
 const FC_NETWORK = FarcasterNetwork.MAINNET;
-
 ```
 
 ## Create a cast in a channel
@@ -51,14 +49,14 @@ const FC_NETWORK = FarcasterNetwork.MAINNET;
 ```typescript
 const channelCast = await makeCastAdd(
   {
-    text: "I love farcaster",
+    text: 'I love farcaster',
     embeds: [],
     embedsDeprecated: [],
     mentions: [],
     mentionsPositions: [],
-    parentUrl: "https://www.farcaster.xyz/",
+    parentUrl: 'https://www.farcaster.xyz/',
   },
   dataOptions,
-  ed25519Signer,
+  ed25519Signer
 );
-  ```
+```

@@ -55,4 +55,3 @@ limit 10;
 ## Schema
 
 For more information on the schema, see the [replicator schema](/reference/replicator/schema).
-

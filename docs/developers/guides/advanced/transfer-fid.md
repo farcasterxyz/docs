@@ -1,20 +1,18 @@
-# Change your custody address
+# Change custody address
 
-::: info Pre-requisites
+Accounts are owned by custody address which is an Ethereum address on OP Mainnet.
 
-- An Ethereum wallet containing an fid on Optimism mainnet, with sufficient ETH for gas costs
+A user may want to change this address for security reasons or to transfer ownership of the entire account.
+
+### Requirements
+
+- An ETH wallet that owns the account on OP mainnet, with some ETH
 - An ethereum provider URL for OP Mainnet (e.g. via [Alchemy](https://www.alchemy.com/)
   or [Infura](https://www.infura.io/)).
 
-:::
+### Change Custody Address
 
-::: warning
-Transferring an fid does not reset its recovery address. To transfer an fid and update its recovery address,
-call [`transferAndChangeRecovery`](/reference/contracts/reference/id-registry#transferandchangerecovery).
-:::
-
-To change the custody address of an FID to another address, you can call the `transfer` function on the ID registry
-contract with an EIP-712 signature from the receiving address.
+Call the `transfer` function on the Id Registry contract. The receiving address must provide an EIP-712 signature accepting the transfer.
 
 ::: code-group
 
@@ -89,5 +87,10 @@ export const readNonce = async () => {
 
 :::
 
-See the [ID Registry](/reference/contracts/reference/id-registry#transfer) section for more
+::: warning
+Transferring an fid does not reset its recovery address. To transfer an fid and update its recovery address,
+call [`transferAndChangeRecovery`](/reference/contracts/reference/id-registry#transferandchangerecovery).
+:::
+
+See the [Id Registry](/reference/contracts/reference/id-registry#transfer) section for more
 details.
