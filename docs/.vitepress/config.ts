@@ -93,65 +93,91 @@ export default defineConfig({
         },
       ],
       '/developers/': [
-        { text: 'Overview', link: '/developers/index' },
         {
           text: 'Guides',
           collapsed: false,
           items: [
+            { text: 'Overview', link: '/developers/index' },
             {
-              text: 'Getting Started',
-              collapsed: false,
+              text: 'Basics',
+              collapsed: true,
               items: [
-                {
-                  text: 'Connecting to Hubble',
-                  link: '/developers/guides/basics/setting-up',
-                },
-                { text: 'Replicate to postgres', link: '/developers/guides/basics/replicate' },
-                { text: 'Create an Account', link: '/developers/guides/basics/account' },
+                { text: 'Hello World', link: '/developers/guides/basics/hello-world' },
               ],
             },
-            // {
-            //   text: 'Applications',
-            //   collapsed: false,
-            //   items: [
-            //     { text: 'Generate a chronological feed for a user', link: '/developers/guides/applications/feed' },
-            //     { text: 'Create a bot to post messages to the hub', link: '/developers/guides/applications/bot' },
-            //     // { text: 'Build a farcaster client', link: '/developers/guides/applications/client' },
-            //     // { text: 'Read data with Farcaster Connect', link: '/developers/guides/applications/todo' },
-            //     // { text: 'Write data with Farcaster Connect', link: '/developers/guides/applications/todo' },
-            //   ],
-            // },
             {
-              text: 'Advanced',
+              text: 'Managing accounts',
+              collapsed: true,
+              items: [
+                { text: 'Create an account', link: '/developers/guides/advanced/register-a-user' },
+                { text: 'Create an account key', link: '/developers/guides/advanced/add-signer' },
+                { text: 'Find account by name', link: '/developers/guides/advanced/name-lookup' },
+                { text: 'Change farcaster name', link: '/developers/guides/advanced/transfer-fname' },
+                { text: 'Change custody address', link: '/developers/guides/advanced/transfer-fid' },
+                { text: 'Change recovery address', link: '/developers/guides/advanced/change-recovery' },
+                // { text: 'Rotate an account key', link: '/developers/guides/applications/todo' },
+              ],
+            },
+            {
+              text: 'Querying data',
+              collapsed: true,
+              items: [
+                // { text: 'Get account messages', link: '/developers/guides/advanced/todo' },
+                // { text: 'Get account profile', link: '/developers/guides/advanced/todo' },
+                {
+                  text: 'Query Hubble',
+                  link: '/developers/guides/basics/setting-up',
+                },
+                { text: 'Fetch channel casts', link: '/developers/guides/advanced/fetch-channel-casts' },
+              ],
+            },
+            {
+              text: 'Writing data',
+              collapsed: true,
+              items: [
+                { text: 'Create a cast', link: '/developers/guides/advanced/adv-casts' },
+                { text: 'Create a channel cast', link: '/developers/guides/advanced/create-channel-casts' },
+                // Rather than separate topics we might want to consider a page for  a topic "e.g. casts"
+                // which covers adding and deleting all kinds.
+                //
+                // { text: 'Remove a cast', link: '/developers/guides/advanced/todo' },
+                // { text: 'Create a reaction', link: '/developers/guides/advanced/todo' },
+                // { text: 'Remove a reaction', link: '/developers/guides/advanced/todo' },
+                // { text: 'Create a follow', link: '/developers/guides/advanced/todo' },
+                // { text: 'Remove a follow', link: '/developers/guides/advanced/todo' },
+                // { text: 'Update profile data', link: '/developers/guides/advanced/todo' },
+                // { text: 'Reset profile data', link: '/developers/guides/advanced/todo' },
+                { text: 'Create Ethereum verification ', link: '/developers/guides/advanced/verify-address' },
+                { text: 'Submit casts to the hub', link: '/developers/guides/hub-scripts/casts' }
+              ],
+            },
+            {
+              text: 'Building apps',
               collapsed: false,
               items: [
-                { text: 'Create casts with embedded content', link: '/developers/guides/advanced/adv-casts' },
-                { text: 'Create a cast in a channel', link: '/developers/guides/advanced/create-channel-casts' },
-                { text: 'Change your custody address', link: '/developers/guides/advanced/transfer-fid' },
-                { text: 'Change your farcaster name', link: '/developers/guides/advanced/transfer-fname' },
-                { text: 'Change your recovery address', link: '/developers/guides/advanced/change-recovery' },
-                { text: 'Fetch casts from a channel', link: '/developers/guides/advanced/fetch-channel-casts' },
-                { text: 'Create an address verification ', link: '/developers/guides/advanced/verify-address' },
+                { text: 'Replicate to Postgres', link: '/developers/guides/basics/replicate' },
+                // { text: 'Generate a chronological feed for a user', link: '/developers/guides/applications/feed' },
+                // { text: 'Create a bot to post messages to the hub', link: '/developers/guides/applications/bot' },
+                // { text: 'Build a farcaster client', link: '/developers/guides/applications/client' },
+                // { text: 'Read data with Farcaster Connect', link: '/developers/guides/applications/todo' },
+                // { text: 'Write data with Farcaster Connect', link: '/developers/guides/applications/todo' },
+              ],
+            },
+            {
+              text: 'Advanced',
+              collapsed: true,
+              items: [
                 {
                   text: 'Counting signups by day',
                   link: '/developers/guides/advanced/query-signups',
                 },
                 { text: 'Decode key metadata', link: '/developers/guides/advanced/decode-key-metadata' },
-                { text: 'Add a signer', link: '/developers/guides/advanced/add-signer' },
-                { text: 'Register a user', link: '/developers/guides/advanced/register-a-user' },
-                { text: 'Lookup account by name', link: '/developers/guides/advanced/name-lookup' },
-                // { text: 'How do I roll a signer?', link: '/developers/guides/applications/todo' },
+                // { text: 'Compact links', link: '/developers/guides/advanced/todo' },
+                // { text: 'Check storage usage', link: '/developers/guides/advanced/todo' },
+                // { text: 'Deploy contracts locally', link: '/developers/guides/advanced/todo' },
               ],
             },
-            {
-              text: 'Hub Scripts',
-              items: [{ text: 'Submit casts to the hub', link: '/developers/guides/hub-scripts/casts' }],
-            },
           ],
-        },
-        {
-          text: 'Resources',
-          items: [{ text: 'Community', link: '/developers/community' }],
         },
       ],
       '/hubble/': [
@@ -237,7 +263,7 @@ export default defineConfig({
               collapsed: true,
               items: [
                 { text: 'ID Gateway', link: '/reference/contracts/reference/id-gateway' },
-                { text: 'ID Registry', link: '/reference/contracts/reference/id-registry' },
+                { text: 'Id Registry', link: '/reference/contracts/reference/id-registry' },
                 { text: 'Key Gateway', link: '/reference/contracts/reference/key-gateway' },
                 { text: 'Key Registry', link: '/reference/contracts/reference/key-registry' },
                 { text: 'Storage Registry', link: '/reference/contracts/reference/storage-registry' },

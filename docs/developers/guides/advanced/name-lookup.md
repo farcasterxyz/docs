@@ -1,18 +1,10 @@
-# Lookup account by name
+# Find account by username
 
-::: info Pre-requisites
+If you have a user's name and want to find their account, you'll need to use one of these methods depending on what type of username they have.
 
-- Read access to a replicator database
+## Offchain ENS Names (Fnames)
 
-:::
-
-The hub itself does not directly index names to fids. So we need to use alternate methods to determine the fid for a
-username. There are two ways to look up the fid of an account,
-
-## Using the Fname registry
-
-If the username is a farcaster username (does not end with .eth), then you can query the FName
-registry like so:
+If the user has an offchain ens name like `@alice`, you'll need to call the [Fname Registry](/reference/fname/api#get-current-fname-or-fid).
 
 ```bash
 curl https://fnames.farcaster.xyz/transfers/current?name=farcaster | jq
@@ -32,15 +24,13 @@ curl https://fnames.farcaster.xyz/transfers/current?name=farcaster | jq
 }
 ```
 
-This will return the most recent transfer associated with the name if it is registered. The `to` field indicates the
-current fid that owns the name.
+This returns the most recent transfer associated with the name if it is registered. Note that the creation of an fname is a transfer from the zero address to the custody address. The `to` field indicates the current fid that owns the name.
 
-See [here](/reference/fname/api#get-current-fname-or-fid) for more details on the Fname registry API.
+## Onchain ENS Names
 
-## Using the replicator database
+If the user has an onchain ens name like `@alice.eth`, the easiest way to do it is with the Hubble [replicator](../basics/replicate.md). It indexes onchain and offchain data and lets you easily find what you're looking for.
 
-For ENS names, the easiest way to look up the fid is to query the `fnames` table in the replicator database. This is
-also applicable to fnames.
+Once you have it set up, query the `fnames` table in the replicator database for the account's fid:
 
 ```sql
 SELECT username, fid
@@ -50,6 +40,4 @@ order by updated_at desc
 limit 1;
 ```
 
-See [here](/reference/replicator/schema#fnames) for more details on the table schema.
-
-
+See [here](/reference/replicator/schema#fnames) for more details on the replicator table schema.

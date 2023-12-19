@@ -1,13 +1,13 @@
 ---
-outline: [ 2, 3 ]
+outline: [2, 3]
 ---
 
-# ID Registry
+# Id Registry
 
-The ID Registry records which fid is associated with which Ethereum address, and manages fid transfers and recoveries.
+The Id Registry records which fid is associated with which Ethereum address, and manages fid transfers and recoveries.
 
 If you want to read information about an fid, transfer or recover an fid, or manage an fid's recovery address, use the
-ID Registry.
+Id Registry.
 
 If you want to register a new fid, use the [ID Gateway](/reference/contracts/reference/id-gateway.md) instead.
 

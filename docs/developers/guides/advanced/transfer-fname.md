@@ -1,15 +1,18 @@
-# Change your farcaster name
+# Change farcaster name
 
-::: info Pre-requisites
+A user can change their offchain ENS name or fname without affecting their account's history. This can be done at most once in 28 days.
 
-- An Ethereum wallet containing an fid on Optimism mainnet. No ETH is required.
+::: warning
 
-:::
+- Fnames may be revoked if you violate the [usage policy](/learn/architecture/ens-names#offchain-ens-names-fnames).
+- Apps may lower your reputation if you change fnames often.
+  :::
 
-::: warning Fname policies
-To prevent abuse, fnames can only be changed once in 28 days. See Fname
-policies [here](/learn/architecture/ens-names#offchain-ens-names-fnames). ENS names do not have this restriction.
-:::
+### Requirements
+
+- An ETH wallet that owns the account on OP mainnet. No ETH is required.
+
+### Change username
 
 To transfer an fname, e.g. `hubble`, make a POST request to `/transfers` with the following body:
 

@@ -4,7 +4,7 @@ outline: [2, 3]
 
 # ID Gateway
 
-The ID Gateway registers new Farcaster IDs and adds them to the [ID Registry](/reference/contracts/reference/id-registry.md).
+The ID Gateway registers new Farcaster IDs and adds them to the [Id Registry](/reference/contracts/reference/id-registry.md).
 
 If you want to create a new Farcaster ID, use the ID Gateway.
 
