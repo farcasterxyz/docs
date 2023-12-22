@@ -113,4 +113,4 @@ curl -X POST https://fnames.farcaster.xyz/transfers \
 Once a name is registered, it still needs a [UserData](/reference/hubble/datatypes/messages#_2-userdata) message
 to be sent to the hub in order to actually
 set the username for the user. See examples in
-the [hub-nodejs](https://github.com/farcasterxyz/hub-monorepo/tree/main/packages/hub-nodejs/examples/write-data) repo.
+the [hub-nodejs](https://github.com/farcasterxyz/hub-monorepo/tree/main/packages/hub-nodejs/examples/hello-world) repo.

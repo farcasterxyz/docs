@@ -7,7 +7,7 @@ If you're new to building on Farcaster follow this guide to get up to speed quic
 Getting a hub set up lets you start querying data. Roughly speaking, a hub is to Farcaster what a node is to Ethereum.
 
 1. Choose between [self-hosting](/hubble/install) or using a [hosting service](/hubble/hubble#hosted-instances).
-2. Make your first [API call](/developers/guides/basics/setting-up) to fetch data.
+2. Make your first [API call](/developers/guides/querying/setting-up) to fetch data.
 
 ## 2. Hello World
 
@@ -20,6 +20,6 @@ The Hello World example will walk you through the basics of creating a new accco
 
 Once you understand the basics, you can explore the advanced tutorials:
 
-- [Create accounts efficiently with a bundler](./guides/advanced/register-a-user.md)
-- [Create casts with mentions and embeds](./guides/advanced/adv-casts.md)
-- [Changing your recovery address](./guides/advanced/change-recovery.md)
+- [Create accounts efficiently with a bundler](guides/accounts/register-a-user.md)
+- [Create casts with mentions and embeds](guides/writing/adv-casts.md)
+- [Changing your recovery address](guides/accounts/change-recovery.md)
