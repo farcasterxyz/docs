@@ -10,17 +10,17 @@
 
 You can register a new user using the Bundler contract. To do so, you'll need to:
 
-1. Set up [Viem](https://viem.sh/) clients and [`@farcaster/hub-web`](https://www.npmjs.com/package/@farcaster/hub-web) signers.
+1. Set up [Viem](https://viem.sh/) clients and [`@farcaster/hub-web`](https://www.npmjs.com/package/@farcaster/hub-web) account keys.
 2. Register an [app fid](/reference/contracts/faq#what-is-an-app-fid-how-do-i-get-one) if your app does not already have one.
 3. Collect a [`Register`](/reference/contracts/reference/id-gateway#register-signature) signature from the user.
-4. Create a new signer keypair for the user.
+4. Create a new account key pair for the user.
 5. Use your app account to create a [Signed Key Request](/reference/contracts/reference/signed-key-request-validator).
 6. Collect an [`Add`](/reference/contracts/reference/key-gateway#add-signature) signature from the user.
 7. Call the [Bundler](https://docs.farcaster.xyz/reference/contracts/reference/bundler#register) contract to register onchain.
 
-### 1. Set up clients and signers
+### 1. Set up clients and account keys
 
-First, set up Viem clients and `@farcaster/hub-web` signers. In this example, we'll use Viem local accounts and signers, but
+First, set up Viem clients and `@farcaster/hub-web` account keys. In this example, we'll use Viem local accounts and account keys, but
 you can also use `ViemWalletEip712Signer` to connect to a user's wallet rather than a local account.
 
 ```ts
@@ -54,10 +54,10 @@ const walletClient = createWalletClient({
 });
 
 const app = privateKeyToAccount(APP_PK);
-const appSigner = new ViemLocalEip712Signer(app);
+const accountKey = new ViemLocalEip712Signer(app);
 
 const alice = privateKeyToAccount(ALICE_PK);
-const aliceSigner = new ViemLocalEip712Signer(alice);
+const aliceAccountKey = new ViemLocalEip712Signer(alice);
 
 const getDeadline = () => {
   const now = Math.floor(Date.now() / 1000);
@@ -110,7 +110,7 @@ let nonce = await publicClient.readContract({
   args: [alice.address],
 });
 
-const registerSignature = await aliceSigner.signRegister({
+const registerSignature = await aliceAccountKey.signRegister({
   to: alice.address,
   recovery: WARPCAST_RECOVERY_PROXY,
   nonce,
@@ -118,16 +118,16 @@ const registerSignature = await aliceSigner.signRegister({
 });
 ```
 
-### 4. Create a new signer keypair
+### 4. Create a new account keypair
 
-Create a new Ed25519 signer keypair for the user. In a real app, ensure you keep the user's private key secret.
+Create a new Ed25519 account keypair for the user. In a real app, ensure you keep the user's private key secret.
 
 ```ts
 const privateKeyBytes = ed.utils.randomPrivateKey();
-const signer = new NobleEd25519Signer(privateKeyBytes);
+const accountKey = new NobleEd25519Signer(privateKeyBytes);
 
-let signerPubKey = new Uint8Array();
-const signerKeyResult = await signer.getSignerKey();
+let accountPubKey = new Uint8Array();
+const accountKeyResult = await accountKey.getSignerKey();
 ```
 
 ### 5. Use your app account to create a Signed Key Request
@@ -136,12 +136,12 @@ Create a Signed Key Request, signed by your app account. To do so, you can use t
 which generates and signs the Signed Key Request.
 
 ```ts
-if (signerKeyResult.isOk()) {
-  signerPubKey = signerKeyResult.value;
+if (accountKeyResult.isOk()) {
+  accountPubKey = accountKeyResult.value;
 
-  const signedKeyRequestMetadata = await appSigner.getSignedKeyRequestMetadata({
+  const signedKeyRequestMetadata = await accountKey.getSignedKeyRequestMetadata({
     requestFid: APP_FID,
-    key: signerPubKey,
+    key: accountPubKey,
     deadline,
   });
 }
@@ -149,7 +149,7 @@ if (signerKeyResult.isOk()) {
 
 ### 6. Collect an `Add` signature from the user.
 
-Collect an EIP-712 `Add` signature from the user to authorize adding a signer key to their fid.
+Collect an EIP-712 `Add` signature from the user to authorize adding an account key to their fid.
 
 ```ts
 if (signedKeyRequestMetadata.isOk()) {
@@ -162,10 +162,10 @@ if (signedKeyRequestMetadata.isOk()) {
     args: [alice.address],
   });
 
-  const addSignature = await aliceSigner.signAdd({
+  const addSignature = await aliceAccountKey.signAdd({
     owner: alice.address,
     keyType: 1,
-    key: signerPubKey,
+    key: accountPubKey,
     metadataType: 1,
     metadata,
     nonce,
@@ -202,7 +202,7 @@ if (aliceSignature.isOk()) {
       [
         {
           keyType: 1,
-          key: bytesToHex(signerPubkey),
+          key: bytesToHex(accountPubKey),
           metadataType: 1,
           metadata: metadata,
           sig: bytesToHex(addSignature),
@@ -254,10 +254,10 @@ const walletClient = createWalletClient({
 });
 
 const app = privateKeyToAccount(APP_PK);
-const appSigner = new ViemLocalEip712Signer(app);
+const accountKey = new ViemLocalEip712Signer(app);
 
 const alice = privateKeyToAccount(ALICE_PK);
-const aliceSigner = new ViemLocalEip712Signer(alice);
+const aliceAccountKey = new ViemLocalEip712Signer(alice);
 
 const getDeadline = () => {
   const now = Math.floor(Date.now() / 1000);
@@ -314,7 +314,7 @@ let nonce = await publicClient.readContract({
   args: [alice.address],
 });
 
-const registerSignature = await aliceSigner.signRegister({
+const registerSignature = await aliceAccountKey.signRegister({
   to: alice.address,
   recovery: WARPCAST_RECOVERY_PROXY,
   nonce,
@@ -326,22 +326,22 @@ const registerSignature = await aliceSigner.signRegister({
  *******************************************************************************/
 
 /**
- *  1. Create an Ed25519 signer keypair for Alice and get the public key.
+ *  1. Create an Ed25519 account keypair for Alice and get the public key.
  */
 const privateKeyBytes = ed.utils.randomPrivateKey();
-const signer = new NobleEd25519Signer(privateKeyBytes);
+const accountKey = new NobleEd25519Signer(privateKeyBytes);
 
-let signerPubKey = new Uint8Array();
-const signerKeyResult = await signer.getSignerKey();
-if (signerKeyResult.isOk()) {
-  signerPubKey = signerKeyResult.value;
+let accountPubKey = new Uint8Array();
+const accountKeyResult = await accountKey.getSignerKey();
+if (accountKeyResult.isOk()) {
+  accountPubKey = accountKeyResult.value;
 
   /**
    *  2. Generate a Signed Key Request from the app account.
    */
-  const signedKeyRequestMetadata = await appSigner.getSignedKeyRequestMetadata({
+  const signedKeyRequestMetadata = await accountKey.getSignedKeyRequestMetadata({
     requestFid: APP_FID,
-    key: signerPubKey,
+    key: accountPubKey,
     deadline,
   });
 
@@ -360,10 +360,10 @@ if (signerKeyResult.isOk()) {
     /**
      *  Then, collect her `Add` signature.
      */
-    const addSignature = await aliceSigner.signAdd({
+    const addSignature = await aliceAccountKey.signAdd({
       owner: alice.address,
       keyType: 1,
-      key: signerPubKey,
+      key: accountPubKey,
       metadataType: 1,
       metadata,
       nonce,
@@ -399,7 +399,7 @@ if (signerKeyResult.isOk()) {
           [
             {
               keyType: 1,
-              key: bytesToHex(signerPubkey),
+              key: bytesToHex(accountPubKey),
               metadataType: 1,
               metadata: metadata,
               sig: bytesToHex(addSignature),

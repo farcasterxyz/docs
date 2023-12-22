@@ -3,7 +3,7 @@
 ::: info Pre-requisites
 
 - Write access to a hubble instance
-- Private key of a signer registered to an fid
+- Private key of an account key registered to an fid
 - Local typescript development environment
 
 :::

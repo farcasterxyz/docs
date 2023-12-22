@@ -38,7 +38,7 @@ import {
 const MNEMONIC = '<REQUIRED>';
 const OP_PROVIDER_URL = '<REQUIRED>'; // Alchemy or Infura url
 const RECOVERY_ADDRESS = zeroAddress; // Optional, using the default value means the account will not be recoverable later if the mnemonic is lost
-const SIGNER_PRIVATE_KEY: Hex = zeroAddress; // Optional, using the default means a new signer will be created each time
+const ACCOUNT_KEY_PRIVATE_KEY: Hex = zeroAddress; // Optional, using the default means a new account key will be created each time
 
 // Note: nemes is the Farcaster team's mainnet hub, which is password protected to prevent abuse. Use a 3rd party hub
 // provider like https://neynar.com/ Or, run your own mainnet hub and broadcast to it permissionlessly.
@@ -102,18 +102,17 @@ const getOrRegisterFid = async (): Promise<number> => {
 const fid = await getOrRegisterFid();
 ```
 
-## 3. Add a signer
+## 3. Add an account key
 
-Now, we will add a signer to the key registry. Every signer must have a signed metadata field from the fid of the app
-requesting it.
+Now, we will add an account key to the key registry. Every account key must have a signed metadata field from the fid of the app requesting it.
 In our case, we will use our own fid. Note, this requires you to sign a message with the private key of the address
 holding the fid. If this is not possible, register a separate fid for the app fist and use that.
 
 ```typescript
-const getOrRegisterSigner = async (fid: number) => {
-  if (SIGNER_PRIVATE_KEY !== zeroAddress) {
-    // If a private key is provided, we assume the signer is already in the key registry
-    const privateKeyBytes = fromHex(SIGNER_PRIVATE_KEY, 'bytes');
+const getOrRegisterAccountKey = async (fid: number) => {
+  if (ACCOUNT_KEY_PRIVATE_KEY !== zeroAddress) {
+    // If a private key is provided, we assume the account key is already in the key registry
+    const privateKeyBytes = fromHex(ACCOUNT_KEY_PRIVATE_KEY, 'bytes');
     const publicKeyBytes = ed25519.getPublicKey(privateKeyBytes);
     return privateKeyBytes;
   }
@@ -136,14 +135,14 @@ const getOrRegisterSigner = async (fid: number) => {
     args: [1, publicKey, 1, metadata], // keyType, publicKey, metadataType, metadata
   });
 
-  const signerAddTxHash = await walletClient.writeContract(signerAddRequest);
-  await walletClient.waitForTransactionReceipt({ hash: signerAddTxHash });
-  // Sleeping 30 seconds to allow hubs to pick up the signer tx
+  const accountKeyAddTxHash = await walletClient.writeContract(signerAddRequest);
+  await walletClient.waitForTransactionReceipt({ hash: accountKeyAddTxHash });
+  // Sleeping 30 seconds to allow hubs to pick up the accountKey tx
   await new Promise((resolve) => setTimeout(resolve, 30000));
   return privateKey;
 };
 
-const signerPrivateKey = await getOrRegisterSigner(fid);
+const accountPrivateKey = await getOrRegisterAccountKey(fid);
 ```
 
 ## 4. Register an fname
@@ -206,7 +205,7 @@ const submitMessage = async (resultPromise: HubAsyncResult<Message>) => {
   await hubClient.submitMessage(result.value);
 };
 
-const signer = new NobleEd25519Signer(signerPrivateKey);
+const accountKey = new NobleEd25519Signer(accountPrivateKey);
 const dataOptions = {
   fid: fid,
   network: FC_NETWORK,
@@ -216,7 +215,7 @@ const userDataUsernameBody = {
   value: fname,
 };
 // Set the username
-await submitMessage(makeUserDataAdd(userDataUsernameBody, dataOptions, signer));
+await submitMessage(makeUserDataAdd(userDataUsernameBody, dataOptions, accountKey));
 
 // Post a cast
 await submitMessage(
@@ -225,7 +224,7 @@ await submitMessage(
       text: 'Hello World!',
     },
     dataOptions,
-    signer
+    accountKey
   )
 );
 ```

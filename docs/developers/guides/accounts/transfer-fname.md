@@ -33,14 +33,14 @@ To generate the EIP-712 signature, use the following code:
 ```js
 import { makeUserNameProofClaim, EIP712Signer } from '@farcaster/hub-nodejs';
 
-const signer: EIP712Signer = undefined; // Signer for the custody address (use appropriate subclass from hub-nodejs for ethers or viem)
+const accountKey: EIP712Signer = undefined; // Account Key for the custody address (use appropriate subclass from hub-nodejs for ethers or viem)
 
 const claim = makeUserNameProofClaim({
   name: 'hubble',
   owner: '0x...',
   timestamp: Math.floor(Date.now() / 1000),
 });
-const signature = (await signer.signUserNameProofClaim(claim))._unsafeUnwrap();
+const signature = (await accountKey.signUserNameProofClaim(claim))._unsafeUnwrap();
 ```
 
 Example request via curl:

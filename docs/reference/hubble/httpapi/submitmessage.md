@@ -88,7 +88,7 @@ try {
 
 ## Using with Rust, Go or other programing languages
 
-Messages need to be signed with a ED25519 signer belonging to the FID. If you are using a different programming language than Typescript, you can manually construct the `MessageData` object and serialize it to the `data_bytes` field of the message. Then, use the `data_bytes` to compute the `hash` and `signature`. Please see the [`rust-submitmessage` example](https://github.com/farcasterxyz/hub-monorepo/tree/main/packages/hub-web/examples) for more details
+Messages need to be signed with a Ed25519 account key belonging to the FID. If you are using a different programming language than Typescript, you can manually construct the `MessageData` object and serialize it to the `data_bytes` field of the message. Then, use the `data_bytes` to compute the `hash` and `signature`. Please see the [`rust-submitmessage` example](https://github.com/farcasterxyz/hub-monorepo/tree/main/packages/hub-web/examples) for more details
 
 ```rust
 use ed25519_dalek::{SecretKey, Signer, SigningKey};
