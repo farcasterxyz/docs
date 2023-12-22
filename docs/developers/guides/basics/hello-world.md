@@ -10,7 +10,8 @@ The example shows you how to:
 - Acquire an fname for your account
 - Create, sign and publish messages
 
-This example can be checked out as a fully functional repository [here](https://github.com/farcasterxyz/hub-monorepo/tree/main/packages/hub-nodejs/examples/write-data).
+This example can be checked out as a fully functional
+repository [here](https://github.com/farcasterxyz/hub-monorepo/tree/main/packages/hub-nodejs/examples/hello-world).
 
 ### Requirements
 

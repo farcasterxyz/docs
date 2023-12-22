@@ -100,55 +100,43 @@ export default defineConfig({
             { text: 'Overview', link: '/developers/index' },
             {
               text: 'Basics',
-              collapsed: true,
-              items: [
-                { text: 'Hello World', link: '/developers/guides/basics/hello-world' },
-              ],
+              collapsed: false,
+              items: [{ text: 'Hello World', link: '/developers/guides/basics/hello-world' }],
             },
             {
               text: 'Managing accounts',
-              collapsed: true,
+              collapsed: false,
               items: [
-                { text: 'Create an account', link: '/developers/guides/advanced/register-a-user' },
-                { text: 'Create an account key', link: '/developers/guides/advanced/add-signer' },
-                { text: 'Find account by name', link: '/developers/guides/advanced/name-lookup' },
-                { text: 'Change farcaster name', link: '/developers/guides/advanced/transfer-fname' },
-                { text: 'Change custody address', link: '/developers/guides/advanced/transfer-fid' },
-                { text: 'Change recovery address', link: '/developers/guides/advanced/change-recovery' },
-                // { text: 'Rotate an account key', link: '/developers/guides/applications/todo' },
+                { text: 'Create an account', link: '/developers/guides/accounts/register-a-user' },
+                { text: 'Create an account key', link: '/developers/guides/accounts/add-signer' },
+                { text: 'Find account by name', link: '/developers/guides/accounts/name-lookup' },
+                { text: 'Change farcaster name', link: '/developers/guides/accounts/transfer-fname' },
+                { text: 'Change custody address', link: '/developers/guides/accounts/transfer-fid' },
+                { text: 'Change recovery address', link: '/developers/guides/accounts/change-recovery' },
               ],
             },
             {
               text: 'Querying data',
-              collapsed: true,
+              collapsed: false,
               items: [
-                // { text: 'Get account messages', link: '/developers/guides/advanced/todo' },
-                // { text: 'Get account profile', link: '/developers/guides/advanced/todo' },
-                {
-                  text: 'Query Hubble',
-                  link: '/developers/guides/basics/setting-up',
-                },
-                { text: 'Fetch channel casts', link: '/developers/guides/advanced/fetch-channel-casts' },
+                { text: 'Get account messages', link: '/developers/guides/querying/fetch-casts' },
+                { text: 'Get account profile', link: '/developers/guides/querying/fetch-profile' },
+                { text: 'Fetch channel casts', link: '/developers/guides/querying/fetch-channel-casts' },
               ],
             },
             {
               text: 'Writing data',
-              collapsed: true,
+              collapsed: false,
               items: [
-                { text: 'Create a cast', link: '/developers/guides/advanced/adv-casts' },
-                { text: 'Create a channel cast', link: '/developers/guides/advanced/create-channel-casts' },
-                // Rather than separate topics we might want to consider a page for  a topic "e.g. casts"
-                // which covers adding and deleting all kinds.
-                //
-                // { text: 'Remove a cast', link: '/developers/guides/advanced/todo' },
-                // { text: 'Create a reaction', link: '/developers/guides/advanced/todo' },
-                // { text: 'Remove a reaction', link: '/developers/guides/advanced/todo' },
-                // { text: 'Create a follow', link: '/developers/guides/advanced/todo' },
-                // { text: 'Remove a follow', link: '/developers/guides/advanced/todo' },
-                // { text: 'Update profile data', link: '/developers/guides/advanced/todo' },
+                { text: 'Create a cast', link: '/developers/guides/writing/adv-casts' },
+                { text: 'Create a channel cast', link: '/developers/guides/writing/create-channel-casts' },
+                {
+                  text: 'Create reactions, follows, profile updates',
+                  link: '/developers/guides/writing/other-messages',
+                },
                 // { text: 'Reset profile data', link: '/developers/guides/advanced/todo' },
-                { text: 'Create Ethereum verification ', link: '/developers/guides/advanced/verify-address' },
-                { text: 'Submit casts to the hub', link: '/developers/guides/hub-scripts/casts' }
+                { text: 'Create Ethereum verification ', link: '/developers/guides/writing/verify-address' },
+                { text: 'Submit data to the hub', link: '/developers/guides/writing/casts' },
               ],
             },
             {
@@ -175,6 +163,7 @@ export default defineConfig({
                 // { text: 'Compact links', link: '/developers/guides/advanced/todo' },
                 // { text: 'Check storage usage', link: '/developers/guides/advanced/todo' },
                 // { text: 'Deploy contracts locally', link: '/developers/guides/advanced/todo' },
+                // { text: 'Rotate an account key', link: '/developers/guides/applications/todo' },
               ],
             },
           ],
