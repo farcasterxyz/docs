@@ -1,7 +1,7 @@
 ---
 next:
   text: 'Create Your Account'
-  link: '/intro/create-account'
+  link: '/learn/intro/create-account'
 ---
 
 # Getting Started
@@ -18,7 +18,7 @@ anyone can join or build on top of it today.
 
 ## Get Started
 
-- [Create your account](./intro/create-account.md) - Sign up and start using Farcaster today.
+- [Create your account](./learn/intro/create-account.md) - Sign up and start using Farcaster today.
 - [Write your first app](./developers/index.md) - Publish a "Hello World" message.
 
 ## API Reference

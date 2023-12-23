@@ -45,7 +45,7 @@ export default defineConfig({
             },
             {
               text: 'Create Your Account',
-              link: '/intro/create-account',
+              link: '/learn/intro/create-account',
             },
           ],
         },
