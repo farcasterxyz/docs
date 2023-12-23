@@ -4,6 +4,8 @@
   "main": "index.js",
   "license": "UNLICENSED",
   "devDependencies": {
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
     "prettier": "^2.8.7",
     "vitepress": "v1.0.0-alpha.73"
   },
@@ -12,6 +14,11 @@
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
     "lint": "prettier --config \"./.prettierrc.yml\" --write \"**/*.{json,md}\"",
-    "lint:check": "prettier --config \"./.prettierrc.yml\" --check \"**/*.{json,md}\""
+    "lint:check": "prettier --config \"./.prettierrc.yml\" --check \"**/*.{json,md}\"",
+    "postinstall": "husky install"
+  },
+  "lint-staged": {
+    "*.md": "prettier --config \"./.prettierrc.yml\" --write \"**/*.{json,md}\""
   }
+
 }
