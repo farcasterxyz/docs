@@ -20,5 +20,4 @@
   "lint-staged": {
     "*.md": "prettier --config \"./.prettierrc.yml\" --write \"**/*.{json,md}\""
   }
-
 }
