@@ -6,13 +6,15 @@ Farcaster has a hybrid architecture that stores identity onchain and data offcha
 
 ## Onchain
 
-Farcaster's onchain systems are implemented as [contracts on OP Mainnet](./contracts.md). Only a handful of actions are performed onchain, including:
+Farcaster's onchain systems are implemented as [contracts on OP Mainnet](./contracts.md). Actions are performed onchain only when security and consistency are critical. Use of onchain actions is kept at a minimum to reduce costs and improve performance.
 
-- Creating an account.
-- Paying rent to store data on offchain systems.
-- Authorizing connected apps for an account.
+Only a handful of actions are performed onchain, including:
 
-Actions are performed onchain only when security and consistency are critical. Use of onchain actions is kept at a minimum to reduce costs and improve performance.
+- Creating an [account](../what-is-farcaster/accounts.md).
+- Paying rent to [store data](../what-is-farcaster/messages.md#storage).
+- Adding account keys for [connected apps](../what-is-farcaster/apps.md#connected-apps).
+
+
 
 ## Offchain
 
