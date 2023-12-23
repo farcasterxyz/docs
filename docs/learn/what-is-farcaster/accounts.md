@@ -10,6 +10,12 @@ You'll need to get a username, rent storage and add a key before you can use you
 
 We recommend starting with [Warpcast](https://www.warpcast.com/), a special Farcaster wallet which will handle the entire flow for you. It also uses a separate Ethereum account to sign transactions, so you can keep your main Ethereum account secure.
 
+## Adding account keys
+
+Accounts can issue keys which let apps write messages on their behalf. Users will typically issue a key to each Farcaster app they use. 
+
+Keys are managed by the KeyRegistry contract. To add a key, you'll need to submit the public key of an EdDSA key pair along with a requestor signature. The requestor can be the account itself or an app that wants to operate on its behalf.
+
 ## Recovering an account
 
 Users often set up separate wallets for their social apps and it's easy to lose access. Farcaster lets any account specify a recovery address which can be used to recover the account. It can be configured when creating the account or anytime after.

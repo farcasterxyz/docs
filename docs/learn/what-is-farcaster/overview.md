@@ -8,7 +8,7 @@ Since Farcaster is public and decentralized, anyone can build an app to read and
 
 Learn more by diving into these concepts:
 
-- [Accounts](./accounts.md) - a representation of a user on Farcaster.
+- [Accounts](./accounts.md) - users on Farcaster.
 - [Usernames](./usernames.md) - human-readable names for accounts.
 - [Messages](./messages.md) - public interactions between accounts.
 - [Apps](./apps.md) - software that helps people create accounts, get usernames and post messages.

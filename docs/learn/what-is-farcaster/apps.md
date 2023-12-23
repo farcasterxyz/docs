@@ -1,4 +1,4 @@
-# Applications
+# Apps
 
 Using Farcaster requires an Ethereum wallet to register your account and UI to browse the network. If you are new, we recommend starting with Warpcast on [iOS](https://apps.apple.com/us/app/warpcast/id1600555445) or [Android](https://play.google.com/store/apps/details?id=com.farcaster.mobile&hl=en_US&gl=US)
 

@@ -19,14 +19,13 @@ anyone can join or build on top of it today.
 ## Get Started
 
 - [Create your account](./intro/create-account.md) - Sign up and start using Farcaster today.
-- [Install Hubble](./hubble/install.md) - Turn your computer or server into a Farcaster Hub.
+- [Write your first app](./developers/index.md) - Publish a "Hello World" message.
 
 ## API Reference
 
-- [Hubble APIs](./reference/hubble/architecture.md)
-- [Contract APIs](./reference/contracts/)
-- [Fname Registry APIs](./reference/fname/api.md)
-- [Warpcast APIs](/reference/warpcast/api)
+- [Contract APIs](./reference/contracts/) - Read account data and create new accounts on OP Mainnet.
+- [Hubble APIs](./reference/hubble/architecture.md) - Read and write message data to Farcaster.
+- [Fname Registry APIs](./reference/fname/api.md) - Create and lookup usernames for Farcaster.
 
 ## Contributing
 
