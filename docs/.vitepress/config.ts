@@ -107,11 +107,11 @@ export default defineConfig({
               text: 'Managing accounts',
               collapsed: false,
               items: [
-                { text: 'Create an account', link: '/developers/guides/accounts/register-a-user' },
-                { text: 'Create an account key', link: '/developers/guides/accounts/add-signer' },
-                { text: 'Find account by name', link: '/developers/guides/accounts/name-lookup' },
-                { text: 'Change farcaster name', link: '/developers/guides/accounts/transfer-fname' },
-                { text: 'Change custody address', link: '/developers/guides/accounts/transfer-fid' },
+                { text: 'Create an account', link: '/developers/guides/accounts/create-account' },
+                { text: 'Create an account key', link: '/developers/guides/accounts/create-account-key' },
+                { text: 'Find account by name', link: '/developers/guides/accounts/find-by-name' },
+                { text: 'Change farcaster name', link: '/developers/guides/accounts/change-fname' },
+                { text: 'Change custody address', link: '/developers/guides/accounts/change-custody' },
                 { text: 'Change recovery address', link: '/developers/guides/accounts/change-recovery' },
               ],
             },
@@ -128,22 +128,17 @@ export default defineConfig({
               text: 'Writing data',
               collapsed: false,
               items: [
-                { text: 'Create a cast', link: '/developers/guides/writing/adv-casts' },
-                { text: 'Create a channel cast', link: '/developers/guides/writing/create-channel-casts' },
-                {
-                  text: 'Create reactions, follows, profile updates',
-                  link: '/developers/guides/writing/other-messages',
-                },
-                // { text: 'Reset profile data', link: '/developers/guides/advanced/todo' },
-                { text: 'Create Ethereum verification ', link: '/developers/guides/writing/verify-address' },
-                { text: 'Submit data to the hub', link: '/developers/guides/writing/casts' },
+                { text: 'Create messages', link: '/developers/guides/writing/messages',},
+                { text: 'Create casts', link: '/developers/guides/writing/casts' },
+                { text: 'Create verifications ', link: '/developers/guides/writing/verify-address' },
+                { text: 'Submit messages', link: '/developers/guides/writing/submit-messages' },
               ],
             },
             {
               text: 'Building apps',
               collapsed: false,
               items: [
-                { text: 'Replicate to Postgres', link: '/developers/guides/basics/replicate' },
+                { text: 'Replicate to Postgres', link: '/developers/guides/apps/replicate' },
                 // { text: 'Generate a chronological feed for a user', link: '/developers/guides/applications/feed' },
                 // { text: 'Create a bot to post messages to the hub', link: '/developers/guides/applications/bot' },
                 // { text: 'Build a farcaster client', link: '/developers/guides/applications/client' },
@@ -248,10 +243,10 @@ export default defineConfig({
           items: [
             { text: 'Overview', link: '/reference/contracts/index' },
             {
-              text: 'Contract Reference',
+              text: 'Reference',
               collapsed: true,
               items: [
-                { text: 'ID Gateway', link: '/reference/contracts/reference/id-gateway' },
+                { text: 'Id Gateway', link: '/reference/contracts/reference/id-gateway' },
                 { text: 'Id Registry', link: '/reference/contracts/reference/id-registry' },
                 { text: 'Key Gateway', link: '/reference/contracts/reference/key-gateway' },
                 { text: 'Key Registry', link: '/reference/contracts/reference/key-registry' },

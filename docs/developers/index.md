@@ -21,6 +21,6 @@ The Hello World example will walk you through the basics of creating a new accco
 
 Once you understand the basics, you can explore the advanced tutorials:
 
-- [Create accounts efficiently with a bundler](guides/accounts/register-a-user.md)
-- [Create casts with mentions and embeds](guides/writing/adv-casts.md)
+- [Create accounts efficiently with a bundler](guides/accounts/create-account.md)
+- [Create casts with mentions and embeds](guides/writing/casts.md)
 - [Changing your recovery address](guides/accounts/change-recovery.md)
