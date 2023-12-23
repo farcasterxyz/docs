@@ -13,7 +13,7 @@ Getting a hub set up lets you start querying data. Roughly speaking, a hub is to
 
 The Hello World example will walk you through the basics of creating a new acccount and writing your first message.
 
-1. If you've never used Farcaster, [start with Warpcast](../intro/create-account.md).
+1. If you've never used Farcaster, [start with Warpcast](../learn/intro/create-account.md).
 2. If you've used Farcaster, complete the [Hello World](/developers/guides/basics/hello-world) example.
 3. If you've used Farcaster, complete the [Hello World](/developers/guides/basics/hello-world) example.
 
@@ -21,6 +21,6 @@ The Hello World example will walk you through the basics of creating a new accco
 
 Once you understand the basics, you can explore the advanced tutorials:
 
-- [Create accounts efficiently with a bundler](guides/accounts/register-a-user.md)
-- [Create casts with mentions and embeds](guides/writing/adv-casts.md)
+- [Create accounts efficiently with a bundler](guides/accounts/create-account.md)
+- [Create casts with mentions and embeds](guides/writing/casts.md)
 - [Changing your recovery address](guides/accounts/change-recovery.md)

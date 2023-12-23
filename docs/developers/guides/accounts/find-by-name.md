@@ -28,7 +28,7 @@ This returns the most recent transfer associated with the name if it is register
 
 ## Onchain ENS Names
 
-If the user has an onchain ens name like `@alice.eth`, the easiest way to do it is with the Hubble [replicator](../basics/replicate.md). It indexes onchain and offchain data and lets you easily find what you're looking for.
+If the user has an onchain ens name like `@alice.eth`, the easiest way to do it is with the Hubble [replicator](../apps/replicate.md). It indexes onchain and offchain data and lets you easily find what you're looking for.
 
 Once you have it set up, query the `fnames` table in the replicator database for the account's fid:
 
