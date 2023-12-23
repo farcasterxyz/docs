@@ -19,7 +19,8 @@ import {
   makeLinkRemove,
   makeReactionAdd,
   makeUserDataAdd,
-  NobleEd25519Signer, FarcasterNetwork
+  NobleEd25519Signer,
+  FarcasterNetwork,
 } from '@farcaster/hub-nodejs';
 
 const SIGNER_PRIVATE_KEY: Hex = '0x...'; // Your registered signer's private key
@@ -37,13 +38,13 @@ const FC_NETWORK = FarcasterNetwork.MAINNET;
 Likes are a type of reaction. To like a cast, you need to have the fid of the cast creator and the hash of the cast.
 
 ```typescript
-  const reactionAdd = await makeReactionAdd(
+const reactionAdd = await makeReactionAdd(
   {
     type: ReactionType.LIKE,
-    targetCastId: { fid: createdCast.data.fid, hash: createdCast.hash }
+    targetCastId: { fid: createdCast.data.fid, hash: createdCast.hash },
   },
   dataOptions,
-  ed25519Signer,
+  ed25519Signer
 );
 ```
 
@@ -53,13 +54,13 @@ Recasts are also a type of reaction, so we'll use the same function as above. To
 of the cast creator and the hash of the cast.
 
 ```typescript
-  const recast = await makeReactionAdd(
+const recast = await makeReactionAdd(
   {
     type: ReactionType.RECAST,
-    targetCastId: { fid: createdCast.data.fid, hash: createdCast.hash }
+    targetCastId: { fid: createdCast.data.fid, hash: createdCast.hash },
   },
   dataOptions,
-  ed25519Signer,
+  ed25519Signer
 );
 ```
 
@@ -71,10 +72,14 @@ the corresponding type and provide a value. There are different types of `UserDa
 
 ```typescript
 // Update user bio. Other fields are similar, just change the type. Value is always a string.
-const bioUpdate = await makeUserDataAdd({
-  type: UserDataType.BIO,
-  value: "new bio"
-}, dataOptions, ed25519Signer);
+const bioUpdate = await makeUserDataAdd(
+  {
+    type: UserDataType.BIO,
+    value: 'new bio',
+  },
+  dataOptions,
+  ed25519Signer
+);
 ```
 
 ## Follow a user
@@ -83,10 +88,14 @@ Follows are represented a Links, with type set to `follow`. To follow a user, yo
 wish to follow.
 
 ```typescript
-const follow = await makeLinkAdd({
-  type: "follow",
-  targetFid: 1
-}, dataOptions, ed25519Signer);
+const follow = await makeLinkAdd(
+  {
+    type: 'follow',
+    targetFid: 1,
+  },
+  dataOptions,
+  ed25519Signer
+);
 ```
 
 ## Unfollow a user
@@ -95,8 +104,12 @@ To unfollow a user, you need to create a `LinkRemove` message with type set to `
 to unfollow.
 
 ```typescript
-const unfollow = await makeLinkRemove({
-  type: "unfollow",
-  targetFid: 1
-}, dataOptions, ed25519Signer);
+const unfollow = await makeLinkRemove(
+  {
+    type: 'unfollow',
+    targetFid: 1,
+  },
+  dataOptions,
+  ed25519Signer
+);
 ```

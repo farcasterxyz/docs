@@ -18,7 +18,7 @@ If you want to register a new fid, use the [ID Gateway](/reference/contracts/ref
 Returns the fid (`uint256`) owned by an address, or returns zero if the address does not own an fid.
 
 | Parameter | type      | Description                     |
-|-----------|-----------|---------------------------------|
+| --------- | --------- | ------------------------------- |
 | owner     | `address` | The address to check for an fid |
 
 ### custodyOf
@@ -26,7 +26,7 @@ Returns the fid (`uint256`) owned by an address, or returns zero if the address 
 Returns the custody address (`address`) that owns a specific fid. Returns the zero address if the fid does not exist.
 
 | Parameter | type      | Description                   |
-|-----------|-----------|-------------------------------|
+| --------- | --------- | ----------------------------- |
 | fid       | `uint256` | The fid to find the owner for |
 
 ### recoveryOf
@@ -34,7 +34,7 @@ Returns the custody address (`address`) that owns a specific fid. Returns the ze
 Returns the recovery address (`address`) of an fid. Returns the zero address if the fid does not exist.
 
 | Parameter | type      | Description                              |
-|-----------|-----------|------------------------------------------|
+| --------- | --------- | ---------------------------------------- |
 | fid       | `uint256` | The fid to find the recovery address for |
 
 ### idCounter
@@ -46,7 +46,7 @@ Returns the highest registered fid (`uint256`) so far.
 Checks that a message was signed by the current custody address of an fid. Returns a `bool`.
 
 | Parameter      | type      | Description                           |
-|----------------|-----------|---------------------------------------|
+| -------------- | --------- | ------------------------------------- |
 | custodyAddress | `address` | The address to check the signature of |
 | fid            | `uint256` | The fid associated with the signature |
 | digest         | `bytes32` | Hashed signed data                    |
@@ -57,7 +57,7 @@ Checks that a message was signed by the current custody address of an fid. Retur
 Returns the next unused nonce (`uint256`) for an address. Used for generating EIP-712 signatures.
 
 | Parameter | type      | Description                      |
-|-----------|-----------|----------------------------------|
+| --------- | --------- | -------------------------------- |
 | owner     | `address` | The address to get the nonce for |
 
 ## Write
@@ -71,7 +71,7 @@ Will revert if called directly. Must be called via the [ID Gateway](/reference/c
 Change the recovery address for the caller's fid.
 
 | Parameter | type      | Description              |
-|-----------|-----------|--------------------------|
+| --------- | --------- | ------------------------ |
 | recovery  | `address` | The new recovery address |
 
 ### transfer
@@ -80,7 +80,7 @@ Transfer the caller's fid to a new address. The `to` address must sign an EIP-71
 message accepting the transfer. The `to` address must not already own an fid.
 
 | Parameter | type      | Description                                                               |
-|-----------|-----------|---------------------------------------------------------------------------|
+| --------- | --------- | ------------------------------------------------------------------------- |
 | to        | `address` | Address to transfer the fid to                                            |
 | deadline  | `uint256` | Signature deadline                                                        |
 | sig       | `bytes`   | EIP-712 [`Transfer`](#transfer-signature) signature from the `to` address |
@@ -99,7 +99,7 @@ the following format:
 `Transfer(uint256 fid,address to,uint256 nonce,uint256 deadline)`
 
 | Parameter | type      | Description                         |
-|-----------|-----------|-------------------------------------|
+| --------- | --------- | ----------------------------------- |
 | fid       | `uint256` | The fid being transferred           |
 | to        | `address` | The address receiving the fid.      |
 | nonce     | `uint256` | Current nonce of the signer address |
@@ -178,7 +178,7 @@ The receiving address must sign an EIP-712 [`TransferAndChangeRecovery`](#transf
 accepting the transfer. The `to` address must not already own an fid.
 
 | Parameter | type      | Description                                                                                       |
-|-----------|-----------|---------------------------------------------------------------------------------------------------|
+| --------- | --------- | ------------------------------------------------------------------------------------------------- |
 | to        | `address` | The address to transfer the fid to                                                                |
 | recovery  | `address` | The new recovery address                                                                          |
 | deadline  | `uint256` | Signature deadline                                                                                |
@@ -192,7 +192,7 @@ address in the following format:
 `TransferAndChangeRecovery(uint256 fid,address to,address recovery,uint256 nonce,uint256 deadline)`
 
 | Parameter | type      | Description                         |
-|-----------|-----------|-------------------------------------|
+| --------- | --------- | ----------------------------------- |
 | fid       | `uint256` | The fid being transferred           |
 | to        | `address` | The address receiving the fid       |
 | recovery  | `address` | The new recovery address            |
@@ -273,7 +273,7 @@ EIP-712 [`Transfer`](#transfer-signature) message accepting the transfer.
 The `to` address must not already own an fid.
 
 | Parameter | type      | Description                                                               |
-|-----------|-----------|---------------------------------------------------------------------------|
+| --------- | --------- | ------------------------------------------------------------------------- |
 | from      | `address` | The address to transfer the fid from                                      |
 | to        | `address` | The address to transfer the fid to                                        |
 | deadline  | `uint256` | Signature deadline                                                        |
@@ -285,7 +285,7 @@ Change the recovery address of an fid on behalf of the owner by providing a sign
 EIP-712 `ChangeRecoveryAddress` signature approving the change.
 
 | Parameter | type      | Description                                                                            |
-|-----------|-----------|----------------------------------------------------------------------------------------|
+| --------- | --------- | -------------------------------------------------------------------------------------- |
 | owner     | `address` | Address of the fid owner                                                               |
 | recovery  | `address` | The new recovery address                                                               |
 | deadline  | `uint256` | Signature deadline                                                                     |
@@ -299,7 +299,7 @@ the `owner` address in the following format:
 `ChangeRecoveryAddress(uint256 fid,address from,address to,uint256 nonce,uint256 deadline)`
 
 | Parameter | type      | Description                         |
-|-----------|-----------|-------------------------------------|
+| --------- | --------- | ----------------------------------- |
 | fid       | `uint256` | The owner's fid                     |
 | from      | `address` | The previous recovery address       |
 | to        | `address` | The new recovery address            |
@@ -380,7 +380,7 @@ from the `to` address accepting the transfer in. These messages have the [same f
 address must not already own an fid.
 
 | Parameter    | type      | Description                                                                 |
-|--------------|-----------|-----------------------------------------------------------------------------|
+| ------------ | --------- | --------------------------------------------------------------------------- |
 | from         | `address` | The address to transfer the fid from                                        |
 | to           | `address` | The address to transfer the fid to                                          |
 | fromDeadline | `uint256` | Signature deadline                                                          |
@@ -398,7 +398,7 @@ from the `from` address authorizing the transfer out and one from the `to` addre
 messages have the [same format](#transferandchangerecovery-signature). The `to` address must not already own an fid.
 
 | Parameter    | type      | Description                                                                                                   |
-|--------------|-----------|---------------------------------------------------------------------------------------------------------------|
+| ------------ | --------- | ------------------------------------------------------------------------------------------------------------- |
 | from         | `address` | The address to transfer the fid from                                                                          |
 | to           | `address` | The address to transfer the fid to                                                                            |
 | recovery     | `address` | The new recovery address                                                                                      |
@@ -416,7 +416,7 @@ from the `to` address accepting the transfer in. These messages have the [same f
 The `to` address must not already own an fid.
 
 | Parameter        | type      | Description                                                                   |
-|------------------|-----------|-------------------------------------------------------------------------------|
+| ---------------- | --------- | ----------------------------------------------------------------------------- |
 | from             | `address` | The address to transfer the fid from                                          |
 | to               | `address` | The address to transfer the fid to                                            |
 | recoveryDeadline | `uint256` | The deadline for the recovery signature                                       |
@@ -427,7 +427,7 @@ The `to` address must not already own an fid.
 ## Errors
 
 | Error            | Selector   | Description                                                                                                  |
-|------------------|------------|--------------------------------------------------------------------------------------------------------------|
+| ---------------- | ---------- | ------------------------------------------------------------------------------------------------------------ |
 | HasId            | `f90230a9` | The `to` address already owns an fid.                                                                        |
 | HasNoId          | `210b4b26` | The `from` address does not own an fid.                                                                      |
 | InvalidSignature | `8baa579f` | The provided signature is invalid. It may be incorrectly formatted, or signed by the wrong address.          |

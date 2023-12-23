@@ -55,16 +55,16 @@ position of the mention within the cast
  * "@dwr and @v are big fans of @farcaster"
  */
 const castWithMentions = await makeCastAdd(
-    {
-      text: ' and  are big fans of ',
-      embeds: [],
-      embedsDeprecated: [],
-      mentions: [3, 2, 1],
-      mentionsPositions: [0, 5, 22],
-    },
-    dataOptions,
-    ed25519Signer
-  );
+  {
+    text: ' and  are big fans of ',
+    embeds: [],
+    embedsDeprecated: [],
+    mentions: [3, 2, 1],
+    mentionsPositions: [0, 5, 22],
+  },
+  dataOptions,
+  ed25519Signer
+);
 ```
 
 ## Cast with embeds
@@ -76,16 +76,16 @@ const castWithMentions = await makeCastAdd(
  * "Hey @dwr, check this out!"
  */
 const castWithMentionsAndAttachment = await makeCastAdd(
-    {
-      text: 'Hey , check this out!',
-      embeds: [{ url: 'https://farcaster.xyz' }],
-      embedsDeprecated: [],
-      mentions: [3],
-      mentionsPositions: [4],
-    },
-    dataOptions,
-    ed25519Signer
-  );
+  {
+    text: 'Hey , check this out!',
+    embeds: [{ url: 'https://farcaster.xyz' }],
+    embedsDeprecated: [],
+    mentions: [3],
+    mentionsPositions: [4],
+  },
+  dataOptions,
+  ed25519Signer
+);
 ```
 
 ## Cast with emoji
@@ -97,16 +97,16 @@ const castWithMentionsAndAttachment = await makeCastAdd(
  * "🤓@farcaster can mention immediately after emoji"
  */
 const castWithEmojiAndMentions = await makeCastAdd(
-    {
-      text: '🤓 can mention immediately after emoji',
-      embeds: [],
-      embedsDeprecated: [],
-      mentions: [1],
-      mentionsPositions: [4],
-    },
-    dataOptions,
-    ed25519Signer
-  );
+  {
+    text: '🤓 can mention immediately after emoji',
+    embeds: [],
+    embedsDeprecated: [],
+    mentions: [1],
+    mentionsPositions: [4],
+  },
+  dataOptions,
+  ed25519Signer
+);
 ```
 
 ## Cast replying to a URL
@@ -118,17 +118,17 @@ const castWithEmojiAndMentions = await makeCastAdd(
  * "I think this is a great protocol 🚀"
  */
 const castReplyingToAUrl = await makeCastAdd(
-    {
-      text: 'I think this is a great protocol 🚀',
-      embeds: [],
-      embedsDeprecated: [],
-      mentions: [],
-      mentionsPositions: [],
-      parentUrl: 'https://www.farcaster.xyz/',
-    },
-    dataOptions,
-    ed25519Signer
-  );
+  {
+    text: 'I think this is a great protocol 🚀',
+    embeds: [],
+    embedsDeprecated: [],
+    mentions: [],
+    mentionsPositions: [],
+    parentUrl: 'https://www.farcaster.xyz/',
+  },
+  dataOptions,
+  ed25519Signer
+);
 ```
 
 ## Removing a cast
@@ -137,11 +137,11 @@ To remove as cast, we need to have the hash of the cast to remove. With that, su
 using `makeCastRemove`.
 
 ```typescript
-  const castRemove = await makeCastRemove(
+const castRemove = await makeCastRemove(
   {
     targetHash: castReplyingToAUrl._unsafeUnwrap().hash,
   },
   dataOptions,
-  ed25519Signer,
+  ed25519Signer
 );
 ```

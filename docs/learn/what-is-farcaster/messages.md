@@ -10,14 +10,13 @@ An account can generate a [key](./accounts.md#adding-account-keys) and give it t
 
 Accounts can publish five different kinds of messages to the network:
 
-| Type           | Description                                      | Example                                  |
-|----------------|--------------------------------------------------|------------------------------------------|
-| Casts          | Public messages that can be seen by anyone.      | "Hello world!"                           |
-| Reactions      | A relationship between an account and a cast.    | Alice liked Bob's cast.                  |
-| Links          | A relationship between two accounts.             | Alice follows Bob.                       |
-| Profile Data   | Metadata about the account.                      | Profile picture, display name.           |
-| Verifications  | A proof of ownership of something.               | An Ethereum address.                     |
-
+| Type          | Description                                   | Example                        |
+| ------------- | --------------------------------------------- | ------------------------------ |
+| Casts         | Public messages that can be seen by anyone.   | "Hello world!"                 |
+| Reactions     | A relationship between an account and a cast. | Alice liked Bob's cast.        |
+| Links         | A relationship between two accounts.          | Alice follows Bob.             |
+| Profile Data  | Metadata about the account.                   | Profile picture, display name. |
+| Verifications | A proof of ownership of something.            | An Ethereum address.           |
 
 ## Storage
 

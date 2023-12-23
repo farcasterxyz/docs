@@ -14,7 +14,6 @@ There are three main contracts deployed on OP Mainnet:
 
 ![Registry Contracts](/assets/registry-contracts.png)
 
-
 The contracts are deployed at the following addresses:
 
 | Contract        | Address                                                                                                                          |
@@ -22,10 +21,6 @@ The contracts are deployed at the following addresses:
 | IdRegistry      | [0x00000000fc6c5f01fc30151999387bb99a9f489b](https://optimistic.etherscan.io/address/0x00000000fc6c5f01fc30151999387bb99a9f489b) |
 | StorageRegistry | [0x00000000fcce7f938e7ae6d3c335bd6a1a7c593d](https://optimistic.etherscan.io/address/0x00000000fcce7f938e7ae6d3c335bd6a1a7c593d) |
 | KeyRegistry     | [0x00000000fc1237824fb747abde0ff18990e59b7e](https://optimistic.etherscan.io/address/0x00000000fc1237824fb747abde0ff18990e59b7e) |
-
-
-
-
 
 ### Id Registry
 

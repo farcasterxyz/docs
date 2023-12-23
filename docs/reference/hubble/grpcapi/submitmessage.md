@@ -5,5 +5,5 @@ Used to send a message to the Farcaster Hub. Valid messages are accepted and gos
 ## API
 
 | Method Name   | Request Type | Response Type | Description                  |
-|---------------|--------------|---------------|------------------------------|
+| ------------- | ------------ | ------------- | ---------------------------- |
 | SubmitMessage | Message      | Message       | Submits a Message to the Hub |
