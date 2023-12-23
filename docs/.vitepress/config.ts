@@ -274,6 +274,10 @@ export default defineConfig({
               text: 'API Reference',
               link: '/reference/fname/api',
             },
+            // {
+            //   text: 'Using the API',
+            //   link: '/reference/fname/todo',
+            // },
           ],
         },
         // {
@@ -288,7 +292,10 @@ export default defineConfig({
         //   ],
         // },
 
-        { text: 'Replicator', items: [{ text: 'Schema', link: '/reference/replicator/schema' }] },
+        { text: 'Replicator', items: [
+          { text: 'Schema', link: '/reference/replicator/schema' },
+          // { text: 'Index', link: '/reference/replicator/TODO' },
+        ] },
         { text: 'Warpcast', items: [{ text: 'API Reference', link: '/reference/warpcast/api' }] },
       ],
     },
