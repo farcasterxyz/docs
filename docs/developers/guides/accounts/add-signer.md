@@ -4,9 +4,9 @@ An account can authorize account keys, which can create messages on its behalf.
 
 The owner of the account can revoke an account key at any time. To add an account key, you'll need to follow six steps:
 
-1. Set up [Viem](https://viem.sh/) clients and [`@farcaster/hub-web`](https://www.npmjs.com/package/@farcaster/hub-web) signers.
+1. Set up [Viem](https://viem.sh/) clients and [`@farcaster/hub-web`](https://www.npmjs.com/package/@farcaster/hub-web) account key.
 2. Register an [app fid](/reference/contracts/faq#what-is-an-app-fid-how-do-i-get-one) if your app does not already have one.
-3. Create a new signer keypair for the user.
+3. Create a new account key for the user.
 4. Use your app account to create a [Signed Key Request](/reference/contracts/reference/signed-key-request-validator).
 5. Collect an [`Add`](/reference/contracts/reference/key-gateway#add-signature) signature from the user.
 6. Call the [Key Gateway](https://docs.farcaster.xyz/reference/contracts/reference/key-gateway#addFor) contract to add the key onchain.
@@ -16,9 +16,9 @@ The owner of the account can revoke an account key at any time. To add an accoun
 - An ETH wallet on OP mainnet, with some ETH
 - An ETH RPC URL for OP Mainnet (e.g. via [Alchemy](https://www.alchemy.com/) or [Infura](https://www.infura.io/)).
 
-### 1. Set up clients and signers
+### 1. Set up clients and account key
 
-First, set up Viem clients and `@farcaster/hub-web` signers. In this example, we'll use Viem local accounts and signers, but
+First, set up Viem clients and `@farcaster/hub-web` account key. In this example, we'll use Viem local accounts and account key, but
 you can also use `ViemWalletEip712Signer` to connect to a user's wallet rather than a local account.
 
 ```ts
@@ -54,10 +54,10 @@ const walletClient = createWalletClient({
 });
 
 const app = privateKeyToAccount(APP_PK);
-const appSigner = new ViemLocalEip712Signer(app);
+const accountKey = new ViemLocalEip712Signer(app);
 
 const alice = privateKeyToAccount(ALICE_PK);
-const aliceSigner = new ViemLocalEip712Signer(alice);
+const aliceAccountKey = new ViemLocalEip712Signer(alice);
 
 const getDeadline = () => {
   const now = Math.floor(Date.now() / 1000);
@@ -96,16 +96,16 @@ const APP_FID = await publicClient.readContract({
 });
 ```
 
-### 3. Create a new signer keypair
+### 3. Create a new account key
 
-Create a new Ed25519 signer keypair for the user. In a real app, ensure you keep the user's private key secret.
+Create a new Ed25519 key pair for the user. In a real app, ensure you keep the private key secret.
 
 ```ts
 const privateKeyBytes = ed.utils.randomPrivateKey();
-const signer = new NobleEd25519Signer(privateKeyBytes);
+const accountKey = new NobleEd25519Signer(privateKeyBytes);
 
-let signerPubKey = new Uint8Array();
-const signerKeyResult = await signer.getSignerKey();
+let accountPubKey = new Uint8Array();
+const accountKeyResult = await accountKey.getSignerKey();
 ```
 
 ### 4. Use your app account to create a Signed Key Request
@@ -114,12 +114,12 @@ Create a Signed Key Request, signed by your app account. To do so, you can use t
 which generates and signs the Signed Key Request.
 
 ```ts
-if (signerKeyResult.isOk()) {
-  signerPubKey = signerKeyResult.value;
+if (accountKeyResult.isOk()) {
+  accountPubKey = accountKeyResult.value;
 
-  const signedKeyRequestMetadata = await appSigner.getSignedKeyRequestMetadata({
+  const signedKeyRequestMetadata = await accountKey.getSignedKeyRequestMetadata({
     requestFid: APP_FID,
-    key: signerPubKey,
+    key: accountPubKey,
     deadline,
   });
 }
@@ -127,7 +127,7 @@ if (signerKeyResult.isOk()) {
 
 ### 5. Collect an `Add` signature from the user.
 
-Collect an EIP-712 `Add` signature from the user to authorize adding a signer key to their fid. In a real world app,
+Collect an EIP-712 `Add` signature from the user to authorize adding an account key to their fid. In a real world app,
 you'll likely collect this signature on your frontend, from the user's wallet. In a frontend context, you can us a `ViemEip712WalletSigner` to connect to a browser wallet rather than a local signer.
 
 ```ts
@@ -141,10 +141,10 @@ if (signedKeyRequestMetadata.isOk()) {
     args: [alice.address],
   });
 
-  const aliceSignature = await aliceSigner.signAdd({
+  const aliceSignature = await aliceAccountKey.signAdd({
     owner: alice.address,
     keyType: 1,
-    key: signerPubKey,
+    key: accountPubKey,
     metadataType: 1,
     metadata,
     nonce,
@@ -164,7 +164,7 @@ if (aliceSignature.isOk()) {
     address: KEY_GATEWAY_ADDRESS,
     abi: keyGatewayABI,
     functionName: 'addFor',
-    args: [alice.address, 1, bytesToHex(signerPubKey), 1, metadata, deadline, bytesToHex(aliceSignature.value)],
+    args: [alice.address, 1, bytesToHex(accountPubKey), 1, metadata, deadline, bytesToHex(aliceSignature.value)],
   });
   await walletClient.writeContract(request);
 }
@@ -221,14 +221,14 @@ const walletClient = createWalletClient({
  * transactions on behalf of users.
  */
 const app = privateKeyToAccount(APP_PK);
-const appSigner = new ViemLocalEip712Signer(app);
+const accountKey = new ViemLocalEip712Signer(app);
 console.log('App:', app.address);
 
 /**
  * A local account representing Alice, a user.
  */
 const alice = privateKeyToAccount(ALICE_PK);
-const aliceSigner = new ViemLocalEip712Signer(alice);
+const aliceAccountKey = new ViemLocalEip712Signer(alice);
 console.log('Alice:', alice.address);
 
 /**
@@ -281,35 +281,35 @@ const APP_FID = await publicClient.readContract({
 });
 
 /*******************************************************************************
- * KeyGateway - addFor - Add a signer key to Alice's fid.
+ * KeyGateway - addFor - Add an account key to Alice's fid.
  *******************************************************************************/
 
 /**
- * To add a signer key to Alice's fid, we need to follow four steps:
+ * To add an account key to Alice's fid, we need to follow four steps:
  *
- * 1. Create a new signer keypair for Alice.
+ * 1. Create a new account key pair for Alice.
  * 2. Use our app account to create a Signed Key Request.
  * 3. Collect Alice's `Add` signature.
  * 4. Call the contract to add the key onchain.
  */
 
 /**
- *  1. Create an Ed25519 signer keypair for Alice and get the public key.
+ *  1. Create an Ed25519 account key pair for Alice and get the public key.
  */
 const privateKeyBytes = ed.utils.randomPrivateKey();
-const signer = new NobleEd25519Signer(privateKeyBytes);
+const accountKey = new NobleEd25519Signer(privateKeyBytes);
 
-let signerPubKey = new Uint8Array();
-const signerKeyResult = await signer.getSignerKey();
-if (signerKeyResult.isOk()) {
-  signerPubKey = signerKeyResult.value;
+let accountPubKey = new Uint8Array();
+const accountKeyResult = await accountKey.getSignerKey();
+if (accountKeyResult.isOk()) {
+  accountPubKey = accountKeyResult.value;
 
   /**
    *  2. Generate a Signed Key Request from the app account.
    */
-  const signedKeyRequestMetadata = await appSigner.getSignedKeyRequestMetadata({
+  const signedKeyRequestMetadata = await accountKey.getSignedKeyRequestMetadata({
     requestFid: APP_FID,
-    key: signerPubKey,
+    key: accountPubKey,
     deadline,
   });
 
@@ -328,10 +328,10 @@ if (signerKeyResult.isOk()) {
     /**
      *  Then, collect her `Add` signature.
      */
-    aliceSignature = await aliceSigner.signAdd({
+    aliceSignature = await aliceAccountKey.signAdd({
       owner: alice.address,
       keyType: 1,
-      key: signerPubKey,
+      key: accountPubKey,
       metadataType: 1,
       metadata,
       nonce,
@@ -347,7 +347,7 @@ if (signerKeyResult.isOk()) {
         address: KEY_GATEWAY_ADDRESS,
         abi: keyGatewayABI,
         functionName: 'addFor',
-        args: [alice.address, 1, bytesToHex(signerPubKey), 1, metadata, deadline, bytesToHex(aliceSignature.value)],
+        args: [alice.address, 1, bytesToHex(accountPubKey), 1, metadata, deadline, bytesToHex(aliceSignature.value)],
       });
       await walletClient.writeContract(request);
     }

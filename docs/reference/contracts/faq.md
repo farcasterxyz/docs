@@ -46,7 +46,7 @@ Call the [`recoveryOf`](https://optimistic.etherscan.io/address/0x00000000fc6c5f
 
 Call the [`idOf`](https://optimistic.etherscan.io/address/0x00000000fc6c5f01fc30151999387bb99a9f489b#readContract#F14) function on the [IdRegistry](/reference/contracts/reference/id-registry.md).
 
-### How do I look up the signer keys for my fid?
+### How do I look up the account keys for my fid?
 
 Call the [`keysOf`](https://optimistic.etherscan.io/address/0x00000000fc1237824fb747abde0ff18990e59b7e#readContract#F16) function on the [KeyRegistry](/reference/contracts/reference/key-registry.md).
 

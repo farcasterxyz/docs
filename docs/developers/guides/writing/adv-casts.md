@@ -3,7 +3,7 @@
 ::: info Pre-requisites
 
 - Write access to a hubble instance
-- Private key of a signer registered to an fid
+- Private key of an app key registered to an fid
 
 :::
 
@@ -17,9 +17,9 @@ First import the `makeCastAdd` function and set up constants
 ```ts
 import { makeCastAdd, NobleEd25519Signer, FarcasterNetwork } from '@farcaster/hub-nodejs';
 
-const SIGNER_PRIVATE_KEY: Hex = '0x...'; // Your registered signer's private key
+const APP_KEY_PRIVATE_KEY: Hex = '0x...'; // Your registered app key's private key
 const FID = -1; // Your fid
-const ed25519Signer = new NobleEd25519Signer(SIGNER_PRIVATE_KEY);
+const ed25519Signer = new NobleEd25519Signer(APP_KEY_PRIVATE_KEY);
 const dataOptions = {
   fid: FID,
   network: FC_NETWORK,

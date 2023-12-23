@@ -2,7 +2,7 @@
 
 ## onChainSignersByFid
 
-Get a list of signers provided by an FID
+Get a list of account keys (signers) provided by an FID
 
 **Query Parameters**
 | Parameter | Description | Example |
@@ -45,7 +45,7 @@ curl http://127.0.0.1:2281/v1/onChainSignersByFid?fid=6833
 
 ## onChainEventsByFid
 
-Get a list of signers provided by an FID
+Get a list of account keys provided by an FID
 
 **Query Parameters**
 | Parameter | Description | Example |

@@ -40,7 +40,7 @@ Stores all registered FIDs on the Farcaster network.
 
 ## signers
 
-Stores all registered signers.
+Stores all registered account keys (signers).
 
  Column Name           | Data Type                  | Description                                                                                                  
 -----------------------|----------------------------|--------------------------------------------------------------------------------------------------------------

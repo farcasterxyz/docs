@@ -43,7 +43,7 @@ try {
 
 Responses from the API are encoded as `application/json`, and can be parsed as normal JSON objects.
 
-1. Hashes, ETH addresses, signers etc... are all encoded as hex strings starting with `0x`
+1. Hashes, ETH addresses, keys etc... are all encoded as hex strings starting with `0x`
 2. Signatures and other binary fields are encoded in base64
 3. Constants are encoded as their string types. For example, the `hashScheme` is encoded as `HASH_SCHEME_BLAKE3` which is equivalent to the `HASH_SCHEME_BLAKE3 = 1` from the protobuf schema.
 

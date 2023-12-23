@@ -22,7 +22,7 @@ Farcaster operates its own offchain namespace under `fcast.id`. Every Farcaster 
 
 ## Signers
 
-A Signer is a cryptographic key pair used to sign messages. Each account can have multiple signers, which is helpful if you want to share account ownership or use many apps simultaneously. Farcaster manages signers onchain using a KeyRegistry contract.
+A Signer is a cryptographic key pair used to sign messages. Each account can have multiple account keys, which is helpful if you want to share account ownership or use many apps simultaneously. Farcaster manages account keys onchain using a KeyRegistry contract.
 
 Signers are [Ed25519 keys](https://en.wikipedia.org/wiki/EdDSA#Ed25519) that are generated offchain. An account registers a signer by making a transaction to the KeyRegistry with the signer's public key. The private key can then be used to sign and publish messages to the network.
 
@@ -30,7 +30,7 @@ Signers are [Ed25519 keys](https://en.wikipedia.org/wiki/EdDSA#Ed25519) that are
 
 Messages are public updates to Farcaster. Updates can be making a post, following someone, or adding a profile picture. The network supports many message types, and each has its own properties, requirements, and semantics. Messages are stored entirely offchain on Farcaster Hubs.
 
-A message is encoded as a [protobuf](https://protobuf.dev/) and must be hashed and signed by the account's signer. Users can publish messages to Hubs as long as they have sufficient storage. Hubs check the validity of each message's signers before accepting them.
+A message is encoded as a [protobuf](https://protobuf.dev/) and must be hashed and signed by the account's signer. Users can publish messages to Hubs as long as they have sufficient storage. Hubs check the validity of each message's account keys before accepting them.
 
 ## Storage
 

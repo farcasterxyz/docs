@@ -1,16 +1,16 @@
 # OnChainEvents API
 
-Used to retrieve on chain events (id registry, signers, storage rent)
+Used to retrieve on chain events (id registry, keys, storage rent)
 
 ## API
 
 | Method Name                        | Request Type                    | Response Type        | Description                                                                                                 |
 |------------------------------------|---------------------------------|----------------------|-------------------------------------------------------------------------------------------------------------|
 | GetOnChainSigner                   | SignerRequest                   | OnChainEvent         | Returns the onchain event for an active signer for an Fid                                                   |
-| GetOnChainSignersByFid             | FidRequest                      | OnChainEventResponse | Returns all active signers add events for an Fid                                                            |
+| GetOnChainSignersByFid             | FidRequest                      | OnChainEventResponse | Returns all active account keys (signers) add events for an Fid                                                            |
 | GetIdRegistryOnChainEvent          | FidRequest                      | OnChainEvent         | Returns the most recent register/transfer on chain event for an fid                                         |
 | GetIdRegistryOnChainEventByAddress | IdRegistryEventByAddressRequest | OnChainEvent         | Returns the registration/transfer event by address if it exists (allows looking up fid by address)          |
-| GetOnChainEvents                   | OnChainEventRequest             | OnChainEventResponse | Returns all on chain events filtered by type for an Fid (includes inactive signers and expired rent events) |
+| GetOnChainEvents                   | OnChainEventRequest             | OnChainEventResponse | Returns all on chain events filtered by type for an Fid (includes inactive keys and expired rent events) |
 
 ## Signer Request
 

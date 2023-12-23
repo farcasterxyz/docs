@@ -22,7 +22,7 @@ Get the price in wei to register an fid, including 1 storage unit. To add additi
 
 ### register
 
-Register an fid, add one or more signers, and rent storage in a single step. For a detailed usage example, see the [signup demo app](https://farcaster-signup-demo.vercel.app/bundler).
+Register an fid, add one or more keys, and rent storage in a single step. For a detailed usage example, see the [signup demo app](https://farcaster-signup-demo.vercel.app/bundler).
 
 | Parameter      | type                 | Description                                   |
 | -------------- | -------------------- | --------------------------------------------- |
@@ -44,7 +44,7 @@ The `RegistrationParams` struct includes registration parameters and an IdGatewa
 
 **SignerParams struct**
 
-The `SignerParams` struct includes signer key parameters and a KeyGateway [`Add`](/reference/contracts/reference/key-gateway#add-signature) signature from the fid recipient. Callers may provide multiple `SignerParams` structs to add multiple signers at registration time.
+The `SignerParams` struct includes signer key parameters and a KeyGateway [`Add`](/reference/contracts/reference/key-gateway#add-signature) signature from the fid recipient. Callers may provide multiple `SignerParams` structs to add multiple keys at registration time.
 
 | Parameter    | type      | Description                                                                                                                       |
 | ------------ | --------- | --------------------------------------------------------------------------------------------------------------------------------- |
