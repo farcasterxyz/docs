@@ -8,7 +8,7 @@ To get involved, try looking up open issues in one of the repos below or join a 
 ## Repositories
 
 | Repository                                                       | Description                                  |
-|------------------------------------------------------------------|----------------------------------------------|
+| ---------------------------------------------------------------- | -------------------------------------------- |
 | [Protocol](https://github.com/farcasterxyz/protocol)             | Specification of the protocol                |
 | [Contracts](https://github.com/farcasterxyz/contracts)           | The canonical Farcaster contracts            |
 | [Hubble](https://github.com/farcasterxyz/hub-monorepo)           | A Farcaster Hub written in Rust + Typescript |

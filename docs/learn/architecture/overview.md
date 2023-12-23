@@ -14,8 +14,6 @@ Only a handful of actions are performed onchain, including:
 - Paying rent to [store data](../what-is-farcaster/messages.md#storage).
 - Adding account keys for [connected apps](../what-is-farcaster/apps.md#connected-apps).
 
-
-
 ## Offchain
 
 Farcaster's offchain system is a peer-to-peer network of servers called [Hubs](./hubs.md) which store user data. The majority of user actions are performed offchain. These include:

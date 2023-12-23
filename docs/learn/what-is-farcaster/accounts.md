@@ -12,7 +12,7 @@ We recommend starting with [Warpcast](https://www.warpcast.com/), a special Farc
 
 ## Adding account keys
 
-Accounts can issue keys which let apps write messages on their behalf. Users will typically issue a key to each Farcaster app they use. 
+Accounts can issue keys which let apps write messages on their behalf. Users will typically issue a key to each Farcaster app they use.
 
 Keys are managed by the KeyRegistry contract. To add a key, you'll need to submit the public key of an EdDSA key pair along with a requestor signature. The requestor can be the account itself or an app that wants to operate on its behalf.
 

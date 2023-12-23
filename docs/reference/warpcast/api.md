@@ -1,6 +1,7 @@
 # Warpcast API Reference
 
 ### Get All Channels
+
 Warpcast has the concept of channels which build upon FIP-2 (setting parentUrl to casts).
 You can read more about channels in the [documentation](https://www.notion.so/warpcast/Channels-4f249d22575348a5a0488b5d86f0dd1c?pvs=4).
 
@@ -26,10 +27,11 @@ The return object is a JSON array where each channel has the following shape:
 ```
 
 Properties:
-* `id` - The unique channel id that cannot be changed (called 'Name' when creating a channel)
-* `url` - The FIP-2 `parentUrl` used for main casts in the channel
-* `name` - The friendly name displayed to users (called 'Display name' when editing a channel)
-* `description` - The description of the channel, if present
-* `imageUrl` - URL to the channel avatar
-* `loadFid` - The fid of the user who created the channel, if present (called 'Host' in Warpcast)
-* `createdAt` - UNIX time when channel was created, in seconds
+
+- `id` - The unique channel id that cannot be changed (called 'Name' when creating a channel)
+- `url` - The FIP-2 `parentUrl` used for main casts in the channel
+- `name` - The friendly name displayed to users (called 'Display name' when editing a channel)
+- `description` - The description of the channel, if present
+- `imageUrl` - URL to the channel avatar
+- `loadFid` - The fid of the user who created the channel, if present (called 'Host' in Warpcast)
+- `createdAt` - UNIX time when channel was created, in seconds
