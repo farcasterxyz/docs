@@ -14,9 +14,9 @@ const params = authClient.parseSignInURI({
 
 ## Parameters
 
-| Parameter | Type     | Description                | Required |
-| --------- | -------- | -------------------------- | -------- |
-| `uri`     | `string` | Sign In With Farcater URI. | Yes      |
+| Parameter | Type     | Description                 | Required |
+| --------- | -------- | --------------------------- | -------- |
+| `uri`     | `string` | Sign In With Farcaster URI. | Yes      |
 
 ## Returns
 
