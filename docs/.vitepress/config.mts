@@ -281,18 +281,18 @@ export default defineConfig({
                   link: '/connect-kit/client/introduction',
                 },
                 {
-                  text: 'AppClient',
+                  text: 'App Actions',
                   collapsed: true,
                   items: [
                     {
-                      text: 'Introduction',
-                      link: '/connect-kit/client/app/introduction',
+                      text: 'AppClient',
+                      link: '/connect-kit/client/app/client',
                     },
                     {
                       text: 'connect',
                       link: '/connect-kit/client/app/connect',
                     },
-                    /*{
+                    {
                       text: 'status',
                       link: '/connect-kit/client/app/status',
                     },
@@ -303,16 +303,17 @@ export default defineConfig({
                     {
                       text: 'verifySignInMessage',
                       link: '/connect-kit/client/app/verify-sign-in-message',
-                    },*/
+                    },
+                    ,
                   ],
                 },
-                /*{
-                  text: 'AuthClient',
+                {
+                  text: 'Auth Actions',
                   collapsed: true,
                   items: [
                     {
-                      text: 'Introduction',
-                      link: '/connect-kit/client/auth/introduction',
+                      text: 'AuthClient',
+                      link: '/connect-kit/client/auth/client',
                     },
                     {
                       text: 'parseSignInURI',
@@ -327,7 +328,7 @@ export default defineConfig({
                       link: '/connect-kit/client/auth/authenticate',
                     },
                   ],
-                }, */
+                },
               ],
             },
           ],
