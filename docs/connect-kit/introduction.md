@@ -6,6 +6,8 @@ ConnectKit is a [React](https://react.dev/) library that makes it easy to add Si
 
 Click the "Sign in With Farcaster" button below, then scan the QR code with your phone to sign in with Farcaster.
 
+(On mobile? [Click here to try the demo](https://sign-in-with-farcaster-demo.replit.app/)).
+
 <iframe src="https://sign-in-with-farcaster-demo.replit.app/" width="700" height="600" />
 
 ## Features
