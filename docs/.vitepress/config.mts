@@ -14,21 +14,45 @@ export default defineConfig({
         content: 'Farcaster',
       },
     ],
-    ['meta', { property: 'og:image', content: 'https://farcaster.xyz/og-image.png' }],
+    [
+      'meta',
+      { property: 'og:image', content: 'https://farcaster.xyz/og-image.png' },
+    ],
     ['meta', { property: 'og:url', content: 'https://farcaster.xyz' }],
     [
       'meta',
-      { property: 'og:description', content: 'A protocol for building sufficiently decentralized social networks.' },
+      {
+        property: 'og:description',
+        content:
+          'A protocol for building sufficiently decentralized social networks.',
+      },
     ],
     ['meta', { name: 'twitter:site', content: '@farcaster_xyz' }],
   ],
   cleanUrls: true,
   themeConfig: {
     nav: [
-      { text: 'Learn', link: '/learn/what-is-farcaster/overview', activeMatch: '/learn/' },
-      { text: 'Developers', link: '/developers/index', activeMatch: '/developers/' },
+      {
+        text: 'Learn',
+        link: '/learn/what-is-farcaster/overview',
+        activeMatch: '/learn/',
+      },
+      {
+        text: 'Developers',
+        link: '/developers/index',
+        activeMatch: '/developers/',
+      },
+      {
+        text: 'ConnectKit',
+        link: '/connect-kit/introduction',
+        activeMatch: '/connect-kit/',
+      },
       { text: 'Hubble', link: '/hubble/hubble', activeMatch: '/hubble/' },
-      { text: 'Reference', link: '/reference/index', activeMatch: '/reference/' },
+      {
+        text: 'Reference',
+        link: '/reference/index',
+        activeMatch: '/reference/',
+      },
       { text: 'Website', link: 'http://www.farcaster.xyz' },
     ],
     search: {
@@ -101,44 +125,91 @@ export default defineConfig({
             {
               text: 'Basics',
               collapsed: false,
-              items: [{ text: 'Hello World', link: '/developers/guides/basics/hello-world' }],
+              items: [
+                {
+                  text: 'Hello World',
+                  link: '/developers/guides/basics/hello-world',
+                },
+              ],
             },
             {
               text: 'Managing accounts',
               collapsed: false,
               items: [
-                { text: 'Create an account', link: '/developers/guides/accounts/create-account' },
-                { text: 'Create an account key', link: '/developers/guides/accounts/create-account-key' },
-                { text: 'Find account by name', link: '/developers/guides/accounts/find-by-name' },
-                { text: 'Change farcaster name', link: '/developers/guides/accounts/change-fname' },
-                { text: 'Change custody address', link: '/developers/guides/accounts/change-custody' },
-                { text: 'Change recovery address', link: '/developers/guides/accounts/change-recovery' },
+                {
+                  text: 'Create an account',
+                  link: '/developers/guides/accounts/create-account',
+                },
+                {
+                  text: 'Create an account key',
+                  link: '/developers/guides/accounts/create-account-key',
+                },
+                {
+                  text: 'Find account by name',
+                  link: '/developers/guides/accounts/find-by-name',
+                },
+                {
+                  text: 'Change farcaster name',
+                  link: '/developers/guides/accounts/change-fname',
+                },
+                {
+                  text: 'Change custody address',
+                  link: '/developers/guides/accounts/change-custody',
+                },
+                {
+                  text: 'Change recovery address',
+                  link: '/developers/guides/accounts/change-recovery',
+                },
               ],
             },
             {
               text: 'Querying data',
               collapsed: false,
               items: [
-                { text: 'Get account messages', link: '/developers/guides/querying/fetch-casts' },
-                { text: 'Get account profile', link: '/developers/guides/querying/fetch-profile' },
-                { text: 'Fetch channel casts', link: '/developers/guides/querying/fetch-channel-casts' },
+                {
+                  text: 'Get account messages',
+                  link: '/developers/guides/querying/fetch-casts',
+                },
+                {
+                  text: 'Get account profile',
+                  link: '/developers/guides/querying/fetch-profile',
+                },
+                {
+                  text: 'Fetch channel casts',
+                  link: '/developers/guides/querying/fetch-channel-casts',
+                },
               ],
             },
             {
               text: 'Writing data',
               collapsed: false,
               items: [
-                { text: 'Create messages', link: '/developers/guides/writing/messages',},
-                { text: 'Create casts', link: '/developers/guides/writing/casts' },
-                { text: 'Create verifications ', link: '/developers/guides/writing/verify-address' },
-                { text: 'Submit messages', link: '/developers/guides/writing/submit-messages' },
+                {
+                  text: 'Create messages',
+                  link: '/developers/guides/writing/messages',
+                },
+                {
+                  text: 'Create casts',
+                  link: '/developers/guides/writing/casts',
+                },
+                {
+                  text: 'Create verifications ',
+                  link: '/developers/guides/writing/verify-address',
+                },
+                {
+                  text: 'Submit messages',
+                  link: '/developers/guides/writing/submit-messages',
+                },
               ],
             },
             {
               text: 'Building apps',
               collapsed: false,
               items: [
-                { text: 'Replicate to Postgres', link: '/developers/guides/apps/replicate' },
+                {
+                  text: 'Replicate to Postgres',
+                  link: '/developers/guides/apps/replicate',
+                },
                 // { text: 'Generate a chronological feed for a user', link: '/developers/guides/applications/feed' },
                 // { text: 'Create a bot to post messages to the hub', link: '/developers/guides/applications/bot' },
                 // { text: 'Build a farcaster client', link: '/developers/guides/applications/client' },
@@ -154,12 +225,115 @@ export default defineConfig({
                   text: 'Counting signups by day',
                   link: '/developers/guides/advanced/query-signups',
                 },
-                { text: 'Decode key metadata', link: '/developers/guides/advanced/decode-key-metadata' },
+                {
+                  text: 'Decode key metadata',
+                  link: '/developers/guides/advanced/decode-key-metadata',
+                },
                 // { text: 'Compact links', link: '/developers/guides/advanced/todo' },
                 // { text: 'Check storage usage', link: '/developers/guides/advanced/todo' },
                 // { text: 'Deploy contracts locally', link: '/developers/guides/advanced/todo' },
                 // { text: 'Rotate an account key', link: '/developers/guides/applications/todo' },
               ],
+            },
+          ],
+        },
+      ],
+      '/connect-kit/': [
+        {
+          text: 'Overview',
+          items: [{ text: 'Introduction', link: '/connect-kit/introduction' }],
+        },
+        {
+          text: 'Getting Started',
+          items: [
+            { text: 'Installation', link: '/connect-kit/installation' },
+            { text: 'ConnectButton', link: '/connect-kit/connect-button' },
+            {
+              text: 'ConnectKitProvider',
+              link: '/connect-kit/connect-kit-provider',
+            },
+          ],
+        },
+        {
+          text: 'Advanced',
+          items: [
+            {
+              text: 'Hooks',
+              collapsed: true,
+              items: [
+                { text: 'useSignIn', link: '/connect-kit/hooks/use-sign-in' },
+                {
+                  text: 'useSignInMessage',
+                  link: '/connect-kit/hooks/use-sign-in-message',
+                },
+                {
+                  text: 'useUserData',
+                  link: '/connect-kit/hooks/use-user-data',
+                },
+              ],
+            },
+            {
+              text: 'Client',
+              collapsed: true,
+              items: [
+                {
+                  text: 'Introduction',
+                  link: '/connect-kit/client/introduction',
+                },
+                {
+                  text: 'App Actions',
+                  collapsed: true,
+                  items: [
+                    {
+                      text: 'AppClient',
+                      link: '/connect-kit/client/app/client',
+                    },
+                    {
+                      text: 'connect',
+                      link: '/connect-kit/client/app/connect',
+                    },
+                    {
+                      text: 'status',
+                      link: '/connect-kit/client/app/status',
+                    },
+                    {
+                      text: 'watchStatus',
+                      link: '/connect-kit/client/app/watch-status',
+                    },
+                    {
+                      text: 'verifySignInMessage',
+                      link: '/connect-kit/client/app/verify-sign-in-message',
+                    },
+                    ,
+                  ],
+                },
+                {
+                  text: 'Auth Actions',
+                  collapsed: true,
+                  items: [
+                    {
+                      text: 'AuthClient',
+                      link: '/connect-kit/client/auth/client',
+                    },
+                    {
+                      text: 'parseSignInURI',
+                      link: '/connect-kit/client/auth/parse-sign-in-uri',
+                    },
+                    {
+                      text: 'buildSignInMessage',
+                      link: '/connect-kit/client/auth/build-sign-in-message',
+                    },
+                    {
+                      text: 'authenticate',
+                      link: '/connect-kit/client/auth/authenticate',
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              text: 'Example apps',
+              link: '/connect-kit/example-apps',
             },
           ],
         },
@@ -185,7 +359,10 @@ export default defineConfig({
         // },
       ],
       '/reference/': [
-        { text: 'Reference', items: [{ text: 'Overview', link: '/reference/index' }] },
+        {
+          text: 'Reference',
+          items: [{ text: 'Overview', link: '/reference/index' }],
+        },
         {
           text: 'Hubble',
           items: [
@@ -194,7 +371,10 @@ export default defineConfig({
               text: 'Data Types',
               collapsed: true,
               items: [
-                { text: 'Messages', link: '/reference/hubble/datatypes/messages' },
+                {
+                  text: 'Messages',
+                  link: '/reference/hubble/datatypes/messages',
+                },
                 { text: 'Events', link: '/reference/hubble/datatypes/events' },
               ],
             },
@@ -202,18 +382,45 @@ export default defineConfig({
               text: 'GRPC API',
               collapsed: true,
               items: [
-                { text: 'Using GRPC APIs', link: '/reference/hubble/grpcapi/grpcapi' },
+                {
+                  text: 'Using GRPC APIs',
+                  link: '/reference/hubble/grpcapi/grpcapi',
+                },
                 { text: 'Casts API', link: '/reference/hubble/grpcapi/casts' },
-                { text: 'Reactions API', link: '/reference/hubble/grpcapi/reactions' },
+                {
+                  text: 'Reactions API',
+                  link: '/reference/hubble/grpcapi/reactions',
+                },
                 { text: 'Links API', link: '/reference/hubble/grpcapi/links' },
-                { text: 'UserData API', link: '/reference/hubble/grpcapi/userdata' },
-                { text: 'Username Proofs API', link: '/reference/hubble/grpcapi/usernameproof' },
-                { text: 'Verifications API', link: '/reference/hubble/grpcapi/verification' },
-                { text: 'SubmitMessage API', link: '/reference/hubble/grpcapi/submitmessage' },
+                {
+                  text: 'UserData API',
+                  link: '/reference/hubble/grpcapi/userdata',
+                },
+                {
+                  text: 'Username Proofs API',
+                  link: '/reference/hubble/grpcapi/usernameproof',
+                },
+                {
+                  text: 'Verifications API',
+                  link: '/reference/hubble/grpcapi/verification',
+                },
+                {
+                  text: 'SubmitMessage API',
+                  link: '/reference/hubble/grpcapi/submitmessage',
+                },
                 { text: 'Fids API', link: '/reference/hubble/grpcapi/fids' },
-                { text: 'Storage API', link: '/reference/hubble/grpcapi/storagelimits' },
-                { text: 'On Chain API', link: '/reference/hubble/grpcapi/onchain' },
-                { text: 'Events API', link: '/reference/hubble/grpcapi/events' },
+                {
+                  text: 'Storage API',
+                  link: '/reference/hubble/grpcapi/storagelimits',
+                },
+                {
+                  text: 'On Chain API',
+                  link: '/reference/hubble/grpcapi/onchain',
+                },
+                {
+                  text: 'Events API',
+                  link: '/reference/hubble/grpcapi/events',
+                },
                 { text: 'Sync API', link: '/reference/hubble/grpcapi/sync' },
               ],
             },
@@ -221,19 +428,46 @@ export default defineConfig({
               text: 'HTTP API',
               collapsed: true,
               items: [
-                { text: 'Using HTTP APIs', link: '/reference/hubble/httpapi/httpapi' },
+                {
+                  text: 'Using HTTP APIs',
+                  link: '/reference/hubble/httpapi/httpapi',
+                },
                 { text: 'Info API', link: '/reference/hubble/httpapi/info' },
                 { text: 'Casts API', link: '/reference/hubble/httpapi/casts' },
-                { text: 'Reactions API', link: '/reference/hubble/httpapi/reactions' },
+                {
+                  text: 'Reactions API',
+                  link: '/reference/hubble/httpapi/reactions',
+                },
                 { text: 'Links API', link: '/reference/hubble/httpapi/links' },
-                { text: 'UserData API', link: '/reference/hubble/httpapi/userdata' },
-                { text: 'Username Proofs API', link: '/reference/hubble/httpapi/usernameproof' },
-                { text: 'Verifications API', link: '/reference/hubble/httpapi/verification' },
-                { text: 'SubmitMessage API', link: '/reference/hubble/httpapi/submitmessage' },
+                {
+                  text: 'UserData API',
+                  link: '/reference/hubble/httpapi/userdata',
+                },
+                {
+                  text: 'Username Proofs API',
+                  link: '/reference/hubble/httpapi/usernameproof',
+                },
+                {
+                  text: 'Verifications API',
+                  link: '/reference/hubble/httpapi/verification',
+                },
+                {
+                  text: 'SubmitMessage API',
+                  link: '/reference/hubble/httpapi/submitmessage',
+                },
                 { text: 'Fids API', link: '/reference/hubble/httpapi/fids' },
-                { text: 'Storage API', link: '/reference/hubble/httpapi/storagelimits' },
-                { text: 'On Chain API', link: '/reference/hubble/httpapi/onchain' },
-                { text: 'Events API', link: '/reference/hubble/httpapi/events' },
+                {
+                  text: 'Storage API',
+                  link: '/reference/hubble/httpapi/storagelimits',
+                },
+                {
+                  text: 'On Chain API',
+                  link: '/reference/hubble/httpapi/onchain',
+                },
+                {
+                  text: 'Events API',
+                  link: '/reference/hubble/httpapi/events',
+                },
               ],
             },
           ],
@@ -246,12 +480,30 @@ export default defineConfig({
               text: 'Reference',
               collapsed: true,
               items: [
-                { text: 'Id Gateway', link: '/reference/contracts/reference/id-gateway' },
-                { text: 'Id Registry', link: '/reference/contracts/reference/id-registry' },
-                { text: 'Key Gateway', link: '/reference/contracts/reference/key-gateway' },
-                { text: 'Key Registry', link: '/reference/contracts/reference/key-registry' },
-                { text: 'Storage Registry', link: '/reference/contracts/reference/storage-registry' },
-                { text: 'Bundler', link: '/reference/contracts/reference/bundler' },
+                {
+                  text: 'Id Gateway',
+                  link: '/reference/contracts/reference/id-gateway',
+                },
+                {
+                  text: 'Id Registry',
+                  link: '/reference/contracts/reference/id-registry',
+                },
+                {
+                  text: 'Key Gateway',
+                  link: '/reference/contracts/reference/key-gateway',
+                },
+                {
+                  text: 'Key Registry',
+                  link: '/reference/contracts/reference/key-registry',
+                },
+                {
+                  text: 'Storage Registry',
+                  link: '/reference/contracts/reference/storage-registry',
+                },
+                {
+                  text: 'Bundler',
+                  link: '/reference/contracts/reference/bundler',
+                },
                 {
                   text: 'Signed Key Request Validator',
                   link: '/reference/contracts/reference/signed-key-request-validator',
@@ -287,11 +539,17 @@ export default defineConfig({
         //   ],
         // },
 
-        { text: 'Replicator', items: [
-          { text: 'Schema', link: '/reference/replicator/schema' },
-          // { text: 'Index', link: '/reference/replicator/TODO' },
-        ] },
-        { text: 'Warpcast', items: [{ text: 'API Reference', link: '/reference/warpcast/api' }] },
+        {
+          text: 'Replicator',
+          items: [
+            { text: 'Schema', link: '/reference/replicator/schema' },
+            // { text: 'Index', link: '/reference/replicator/TODO' },
+          ],
+        },
+        {
+          text: 'Warpcast',
+          items: [{ text: 'API Reference', link: '/reference/warpcast/api' }],
+        },
       ],
     },
     socialLinks: [
