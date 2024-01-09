@@ -331,6 +331,10 @@ export default defineConfig({
                 },
               ],
             },
+            {
+              text: 'Example apps',
+              link: '/connect-kit/example-apps',
+            },
           ],
         },
       ],
