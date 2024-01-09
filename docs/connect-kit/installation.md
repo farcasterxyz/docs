@@ -7,7 +7,7 @@ npm install @farcaster/connect-kit viem ethers
 ```
 
 ::: tip
-ConnectKit is a [React](https://react.dev/) library. If you're using a different framework, take a look at the [client library](./client) instead.
+ConnectKit is a [React](https://react.dev/) library. If you're using a different framework, take a look at the [client library](./client/introduction.md) instead.
 :::
 
 ### Import
