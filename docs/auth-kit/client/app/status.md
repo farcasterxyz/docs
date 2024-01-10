@@ -1,6 +1,6 @@
 # `status`
 
-Get current status of a Farcaster Connect request.
+Get current status of a Farcaster Auth request.
 
 Returns the current state of the request, either `'pending'` if the user's Farcaster wallet app has not yet sent back a signature, or `'completed'` once the wallet app has returned a response.
 
@@ -14,9 +14,9 @@ const status = await appClient.status({
 
 ## Parameters
 
-| Parameter      | Type     | Description                      | Required | Example                                |
-| -------------- | -------- | -------------------------------- | -------- | -------------------------------------- |
-| `channelToken` | `string` | Farcaster Connect channel token. | Yes      | `8d0494d9-e0cf-402b-ab0a-394ac7fe07a0` |
+| Parameter      | Type     | Description                   | Required | Example                                |
+| -------------- | -------- | ----------------------------- | -------- | -------------------------------------- |
+| `channelToken` | `string` | Farcaster Auth channel token. | Yes      | `8d0494d9-e0cf-402b-ab0a-394ac7fe07a0` |
 
 ## Returns
 

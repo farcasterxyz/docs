@@ -16,18 +16,18 @@ const params = await authClient.authenticate({
 
 ## Parameters
 
-| Parameter      | Type     | Description                                                                                     | Required |
-| -------------- | -------- | ----------------------------------------------------------------------------------------------- | -------- |
-| `authKey`      | `string` | Farcaster Connect API key. Farcaster Connect v1 restricts calls to `/authenticate` to Warpcast. | Yes      |
-| `channelToken` | `string` | Farcaster Connect channel token.                                                                | Yes      |
-| `message`      | `string` | The Sign in With Farcaster message produced by your wallet app and signed by the user.          | Yes      |
-| `message`      | `string` | The Sign in With Farcaster message produced by your wallet app and signed by the user.          | Yes      |
-| `signature`    | `Hex`    | SIWE signature created by the wallet user's account.                                            | Yes      |
-| `fid`          | `number` | Wallet user's fid.                                                                              | Yes      |
-| `username`     | `string` | Wallet user's Farcaster username.                                                               | Yes      |
-| `bio`          | `string` | Wallet user's bio.                                                                              | Yes      |
-| `displayName`  | `string` | Wallet user's display name.                                                                     | Yes      |
-| `pfpUrl`       | `string` | Wallet user's profile photo URL.                                                                | Yes      |
+| Parameter      | Type     | Description                                                                               | Required |
+| -------------- | -------- | ----------------------------------------------------------------------------------------- | -------- |
+| `authKey`      | `string` | Farcaster Auth API key. Farcaster Auth v1 restricts calls to `/authenticate` to Warpcast. | Yes      |
+| `channelToken` | `string` | Farcaster Auth channel token.                                                             | Yes      |
+| `message`      | `string` | The Sign in With Farcaster message produced by your wallet app and signed by the user.    | Yes      |
+| `message`      | `string` | The Sign in With Farcaster message produced by your wallet app and signed by the user.    | Yes      |
+| `signature`    | `Hex`    | SIWE signature created by the wallet user's account.                                      | Yes      |
+| `fid`          | `number` | Wallet user's fid.                                                                        | Yes      |
+| `username`     | `string` | Wallet user's Farcaster username.                                                         | Yes      |
+| `bio`          | `string` | Wallet user's bio.                                                                        | Yes      |
+| `displayName`  | `string` | Wallet user's display name.                                                               | Yes      |
+| `pfpUrl`       | `string` | Wallet user's profile photo URL.                                                          | Yes      |
 
 ## Returns
 

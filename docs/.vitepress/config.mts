@@ -43,9 +43,9 @@ export default defineConfig({
         activeMatch: '/developers/',
       },
       {
-        text: 'ConnectKit',
-        link: '/connect-kit/introduction',
-        activeMatch: '/connect-kit/',
+        text: 'AuthKit',
+        link: '/auth-kit/introduction',
+        activeMatch: '/auth-kit/',
       },
       { text: 'Hubble', link: '/hubble/hubble', activeMatch: '/hubble/' },
       {
@@ -213,8 +213,8 @@ export default defineConfig({
                 // { text: 'Generate a chronological feed for a user', link: '/developers/guides/applications/feed' },
                 // { text: 'Create a bot to post messages to the hub', link: '/developers/guides/applications/bot' },
                 // { text: 'Build a farcaster client', link: '/developers/guides/applications/client' },
-                // { text: 'Read data with Farcaster Connect', link: '/developers/guides/applications/todo' },
-                // { text: 'Write data with Farcaster Connect', link: '/developers/guides/applications/todo' },
+                // { text: 'Read data with Farcaster Auth', link: '/developers/guides/applications/todo' },
+                // { text: 'Write data with Farcaster Auth', link: '/developers/guides/applications/todo' },
               ],
             },
             {
@@ -238,19 +238,22 @@ export default defineConfig({
           ],
         },
       ],
-      '/connect-kit/': [
+      '/auth-kit/': [
         {
           text: 'Overview',
-          items: [{ text: 'Introduction', link: '/connect-kit/introduction' }],
+          items: [{ text: 'Introduction', link: '/auth-kit/introduction' },{
+            text: 'Examples',
+            link: '/auth-kit/examples',
+          },],
         },
         {
           text: 'Getting Started',
           items: [
-            { text: 'Installation', link: '/connect-kit/installation' },
-            { text: 'ConnectButton', link: '/connect-kit/connect-button' },
+            { text: 'Installation', link: '/auth-kit/installation' },
+            { text: 'SignIn Button', link: '/auth-kit/sign-in-button' },
             {
-              text: 'ConnectKitProvider',
-              link: '/connect-kit/connect-kit-provider',
+              text: 'SignIn Provider',
+              link: '/auth-kit/sign-in-provider',
             },
           ],
         },
@@ -261,24 +264,24 @@ export default defineConfig({
               text: 'Hooks',
               collapsed: true,
               items: [
-                { text: 'useSignIn', link: '/connect-kit/hooks/use-sign-in' },
+                { text: 'useSignIn', link: '/auth-kit/hooks/use-sign-in' },
                 {
                   text: 'useSignInMessage',
-                  link: '/connect-kit/hooks/use-sign-in-message',
+                  link: '/auth-kit/hooks/use-sign-in-message',
                 },
                 {
                   text: 'useUserData',
-                  link: '/connect-kit/hooks/use-user-data',
+                  link: '/auth-kit/hooks/use-user-data',
                 },
               ],
             },
             {
-              text: 'Client',
+              text: 'Auth Client',
               collapsed: true,
               items: [
                 {
                   text: 'Introduction',
-                  link: '/connect-kit/client/introduction',
+                  link: '/auth-kit/client/introduction',
                 },
                 {
                   text: 'App Actions',
@@ -286,23 +289,23 @@ export default defineConfig({
                   items: [
                     {
                       text: 'AppClient',
-                      link: '/connect-kit/client/app/client',
+                      link: '/auth-kit/client/app/client',
                     },
                     {
                       text: 'connect',
-                      link: '/connect-kit/client/app/connect',
+                      link: '/auth-kit/client/app/connect',
                     },
                     {
                       text: 'status',
-                      link: '/connect-kit/client/app/status',
+                      link: '/auth-kit/client/app/status',
                     },
                     {
                       text: 'watchStatus',
-                      link: '/connect-kit/client/app/watch-status',
+                      link: '/auth-kit/client/app/watch-status',
                     },
                     {
                       text: 'verifySignInMessage',
-                      link: '/connect-kit/client/app/verify-sign-in-message',
+                      link: '/auth-kit/client/app/verify-sign-in-message',
                     },
                     ,
                   ],
@@ -313,27 +316,23 @@ export default defineConfig({
                   items: [
                     {
                       text: 'AuthClient',
-                      link: '/connect-kit/client/auth/client',
+                      link: '/auth-kit/client/auth/client',
                     },
                     {
                       text: 'parseSignInURI',
-                      link: '/connect-kit/client/auth/parse-sign-in-uri',
+                      link: '/auth-kit/client/auth/parse-sign-in-uri',
                     },
                     {
                       text: 'buildSignInMessage',
-                      link: '/connect-kit/client/auth/build-sign-in-message',
+                      link: '/auth-kit/client/auth/build-sign-in-message',
                     },
                     {
                       text: 'authenticate',
-                      link: '/connect-kit/client/auth/authenticate',
+                      link: '/auth-kit/client/auth/authenticate',
                     },
                   ],
                 },
               ],
-            },
-            {
-              text: 'Example apps',
-              link: '/connect-kit/example-apps',
             },
           ],
         },

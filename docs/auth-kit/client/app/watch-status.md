@@ -1,6 +1,6 @@
 # `watchStatus`
 
-Poll for the current status of a Farcaster Connect request.
+Poll for the current status of a Farcaster Auth request.
 
 When the status changes to `'complete'` this action resolves with the final channel value, including the Sign In With Farcaster message, signature, and user profile information.
 
@@ -20,7 +20,7 @@ const status = await appClient.watchStatus({
 
 | Parameter      | Type       | Description                                                                                                                                                                 | Required | Example                                |
 | -------------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | -------------------------------------- |
-| `channelToken` | `string`   | Farcaster Connect channel token.                                                                                                                                            | Yes      | `8d0494d9-e0cf-402b-ab0a-394ac7fe07a0` |
+| `channelToken` | `string`   | Farcaster Auth channel token.                                                                                                                                               | Yes      | `8d0494d9-e0cf-402b-ab0a-394ac7fe07a0` |
 | `timeout`      | `number`   | Polling timeout, in milliseconds. If the connect request is not completed before the timeout, `watchStatus` returns an error.                                               | No       | `300_000`                              |
 | `interval`     | `number`   | Polling interval, in milliseconds. The client will check for updates at this frequency.                                                                                     | No       | `1_000`                                |
 | `onResponse`   | `function` | Callback function invoked each time the client polls for an update and receives a response from the relay server. Receives the return value of the latest `status` request. | No       | `({ data }) => console.log(data.fid)`  |

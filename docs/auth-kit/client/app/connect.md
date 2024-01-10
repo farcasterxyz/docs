@@ -1,6 +1,6 @@
 # `connect`
 
-Create a Farcaster Connect relay channel.
+Create a Farcaster Auth relay channel.
 
 Returns a secret token identifying the channel, and a URI to display to the end user as a link or QR code.
 

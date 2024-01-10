@@ -1,19 +1,19 @@
-# Connect client
+# Auth client
 
-The `@farcaster/connect` library provides a framework agnostic client for Farcaster Connect. If you're not using React, want greater customizability, or want to interact with the Connect relay directly, you can use the Connect client library to build your own Sign in With Farcaster flow.
+The `@farcaster/auth` library provides a framework agnostic client for Farcaster Auth. If you're not using React, want greater customizability, or want to interact with the Connect relay directly, you can use the Auth client library to build your own Sign in With Farcaster flow.
 
 ## Getting Started
 
 ### Installation
 
-Install the Connect client and its peer dependencies [viem](https://viem.sh/) and [ethers](https://docs.ethers.org/v6/).
+Install the Auth client and its peer dependencies [viem](https://viem.sh/) and [ethers](https://docs.ethers.org/v6/).
 
 ```sh
-npm install @farcaster/connect viem ethers
+npm install @farcaster/auth viem ethers
 ```
 
 ::: tip
-Connect is a low level client library. If you're using React, take a look at [ConnectKit](../introduction) instead.
+Connect is a low level client library. If you're using React, take a look at [auth-kit](../introduction) instead.
 :::
 
 ### Create a client
@@ -21,7 +21,7 @@ Connect is a low level client library. If you're using React, take a look at [Co
 Set up a client with a Connect relay URL and Ethereum connector.
 
 ```tsx
-import { createAppClient, viem } from '@farcaster/connect';
+import { createAppClient, viem } from '@farcaster/auth';
 
 const appClient = createAppClient({
   relay: 'https://relay.farcaster.xyz',
@@ -35,7 +35,7 @@ Depending on the type of app you're building, you may use an `AppClient` or an `
 
 ### Consume actions
 
-Now that your client is set up, you can use it to interact with Farcaster Connect actions.
+Now that your client is set up, you can use it to interact with Farcaster Auth actions.
 
 ```tsx
 const { data: { channelToken } } = await appClient.connect({

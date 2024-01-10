@@ -5,7 +5,7 @@ Hook for reading information about the authenticated user.
 You can use this hook to read the authenticated user's profile information from other components inside your app.
 
 ```tsx
-import { useUserData } from '@farcaster/connect-kit';
+import { useUserData } from '@farcaster/auth-kit';
 
 function App {
   const {

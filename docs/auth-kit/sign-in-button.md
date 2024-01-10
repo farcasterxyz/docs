@@ -1,13 +1,13 @@
-# `ConnectButton`
+# `SignInButton`
 
 The main component. Renders a "Sign in With Farcaster" button that prompts the user to scan a QR code with their phone in a web browser or redirects on a mobile device. You can use the `onSuccess` callback prop or the `useUserData` hook to access the user's authentication status and profile information.
 
 ```tsx
-import { ConnectButton } from '@farcaster/connect-kit';
+import { SignInButton } from '@farcaster/auth-kit';
 
 export const Login = () => {
   return (
-    <ConnectButton
+    <SignInButton
       onSuccess={({ fid, username }) =>
         console.log(`Hello, ${username}! Your fid is ${fid}.`)
       }
@@ -29,18 +29,18 @@ export const Login = () => {
 | `onSuccess`        | `function` | Callback invoked when sign in is complete and the user is authenticated.            | None                  |
 | `onStatusResponse` | `function` | Callback invoked when the component receives a status update from the relay server. | None                  |
 | `onError`          | `function` | Error callback function.                                                            | None                  |
-| `debug`            | `boolean`  | Render a debug panel displaying internal ConnectKit state.                          | `false`               |
+| `debug`            | `boolean`  | Render a debug panel displaying internal auth-kit state.                            | `false`               |
 
 ## Examples
 
 ### Custom nonce
 
 ```tsx
-import { ConnectButton } from '@farcaster/connect-kit';
+import { SignInButton } from '@farcaster/auth-kit';
 
 export const Login = ({ nonce }: { nonce: string }) => {
   return (
-    <ConnectButton
+    <SignInButton
       nonce={nonce}
       onSuccess={({ fid, username }) =>
         console.log(`Hello, ${username}! Your fid is ${fid}.`)

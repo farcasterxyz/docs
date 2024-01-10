@@ -5,7 +5,7 @@ Hook for signing in a user. Connects to the relay server, generates a QR code an
 If you want to build your own sign in component with custom UI, use the `useSignIn` hook.
 
 ```tsx
-import { useSignIn } from "@farcaster/connect-kit";
+import { useSignIn } from "@farcaster/auth-kit";
 
 function App() {
   const {
