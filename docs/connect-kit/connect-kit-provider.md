@@ -2,6 +2,8 @@
 
 Wrap your application in a `ConnectKitProvider` to use Farcaster Connect. This provider component stores configuration information about your app and makes it available to ConnectKit components and hooks.
 
+**Note:** You must create a `ConnectKitProvider` to use Farcaster Connect.
+
 ```tsx
 const config = {
   domain: 'example.com',

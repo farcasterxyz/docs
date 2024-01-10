@@ -12,9 +12,7 @@ Install the Connect client and its peer dependencies [viem](https://viem.sh/) an
 npm install @farcaster/connect viem ethers
 ```
 
-::: tip
-Connect is a low level client library. If you're using React, take a look at [ConnectKit](../introduction) instead.
-:::
+**Note:** Connect is a low level client library. If you're using React, take a look at [ConnectKit](../introduction) instead.
 
 ### Create a client
 
@@ -29,9 +27,7 @@ const appClient = createAppClient({
 });
 ```
 
-::: tip
 Depending on the type of app you're building, you may use an `AppClient` or an `AuthClient`. If you're building a connected app and logging in users, use an _app client_. If you're building a Farcaster wallet app, use an _auth client_.
-:::
 
 ### Consume actions
 

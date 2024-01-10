@@ -2,6 +2,8 @@
 
 The main component. Renders a "Sign in With Farcaster" button that prompts the user to scan a QR code with their phone in a web browser or redirects on a mobile device. You can use the `onSuccess` callback prop or the `useUserData` hook to access the user's authentication status and profile information.
 
+**Note:** Make sure you've wrapped your application in a [`ConnectKitProvider`](./connect-kit-provider.md) to use the `ConnectButton` component.
+
 ```tsx
 import { ConnectButton } from '@farcaster/connect-kit';
 
