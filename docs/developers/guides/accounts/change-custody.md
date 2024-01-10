@@ -42,13 +42,21 @@ await walletClient.writeContract(transferRequest);
 ```
 
 ```ts [Viem]
-import { ID_REGISTRY_EIP_712_TYPES, idRegistryABI, ID_GATEWAY_ADDRESS } from '@farcaster/hub-web';
+import {
+  ID_REGISTRY_EIP_712_TYPES,
+  idRegistryABI,
+  ID_GATEWAY_ADDRESS,
+} from '@farcaster/hub-web';
 import { walletClient, account } from './clients.ts';
 import { readNonce, getDeadline } from './helpers.ts';
 
 const nonce = await readNonce();
 const deadline = getDeadline();
-const IdContract = { abi: idRegistryABI, address: ID_GATEWAY_ADDRESS, chain: optimism };
+const IdContract = {
+  abi: idRegistryABI,
+  address: ID_GATEWAY_ADDRESS,
+  chain: optimism,
+};
 
 const signature = await walletClient.signTypedData({
   account,

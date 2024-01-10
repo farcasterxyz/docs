@@ -39,7 +39,9 @@ Query the UserData for the provided FIDs, so we can show friendly usernames. Cac
 // Create a mapping of fids to fnames, which we'll need later to display messages
 const fidToFname = new Map<number, string>();
 
-const fnameResultPromises = FIDS.map((fid) => client.getUserData({ fid, userDataType: UserDataType.USERNAME }));
+const fnameResultPromises = FIDS.map((fid) =>
+  client.getUserData({ fid, userDataType: UserDataType.USERNAME })
+);
 const fnameResults = await Promise.all(fnameResultPromises);
 
 fnameResults.map((result) =>
@@ -62,8 +64,15 @@ casts.
 /**
  * Returns a user's casts which are not replies to any other casts in reverse chronological order.
  */
-const getPrimaryCastsByFid = async (fid: number, client: HubRpcClient): HubAsyncResult<CastAddMessage[]> => {
-  const result = await client.getCastsByFid({ fid: fid, pageSize: 10, reverse: true });
+const getPrimaryCastsByFid = async (
+  fid: number,
+  client: HubRpcClient
+): HubAsyncResult<CastAddMessage[]> => {
+  const result = await client.getCastsByFid({
+    fid: fid,
+    pageSize: 10,
+    reverse: true,
+  });
   if (result.isErr()) {
     return err(result.error);
   }
@@ -89,7 +98,11 @@ The raw cast data is not very readable. We'll write a function to convert the ti
 also resolve any mentions (only stored as fids and their location within the cast) to their fnames.
 
 ```typescript
-const castToString = async (cast: CastAddMessage, nameMapping: Map<number, string>, client: HubRpcClient) => {
+const castToString = async (
+  cast: CastAddMessage,
+  nameMapping: Map<number, string>,
+  client: HubRpcClient
+) => {
   const fname = nameMapping.get(cast.data.fid) ?? `${cast.data.fid}!`; // if the user doesn't have a username set, use their FID
 
   // Convert the timestamp to a human readable string
@@ -103,7 +116,9 @@ const castToString = async (cast: CastAddMessage, nameMapping: Map<number, strin
   let textWithMentions = '';
   let indexBytes = 0;
   for (let i = 0; i < mentions.length; i++) {
-    textWithMentions += decoder.decode(bytes.slice(indexBytes, mentionsPositions[i]));
+    textWithMentions += decoder.decode(
+      bytes.slice(indexBytes, mentionsPositions[i])
+    );
     const result = await getFnameFromFid(mentions[i], client);
     result.map((fname) => (textWithMentions += fname));
     indexBytes = mentionsPositions[i];
@@ -136,7 +151,9 @@ const compareCasts = (a: CastAddMessage, b: CastAddMessage) => {
 };
 
 const sortedCasts = castsResult.value.flat().sort(compareCasts); // sort casts by timestamp
-const stringifiedCasts = await Promise.all(sortedCasts.map((c) => castToString(c, fidToFname, client))); // convert casts to printable strings
+const stringifiedCasts = await Promise.all(
+  sortedCasts.map((c) => castToString(c, fidToFname, client))
+); // convert casts to printable strings
 
 for (const outputCast of stringifiedCasts) {
   console.log(outputCast);

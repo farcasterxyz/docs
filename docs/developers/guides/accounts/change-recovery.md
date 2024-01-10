@@ -29,10 +29,18 @@ await walletClient.writeContract(transferRequest);
 ```
 
 ```ts [clients.ts]
-import { ID_REGISTRY_EIP_712_TYPES, idRegistryABI, ID_GATEWAY_ADDRESS } from '@farcaster/hub-web';
+import {
+  ID_REGISTRY_EIP_712_TYPES,
+  idRegistryABI,
+  ID_GATEWAY_ADDRESS,
+} from '@farcaster/hub-web';
 import { walletClient, account } from './clients.ts';
 
-const IdContract = { abi: idRegistryABI, address: ID_GATEWAY_ADDRESS, chain: optimism };
+const IdContract = {
+  abi: idRegistryABI,
+  address: ID_GATEWAY_ADDRESS,
+  chain: optimism,
+};
 
 import { createWalletClient, createPublicClient, custom, http } from 'viem';
 import { privateKeyToAccount } from 'viem/accounts';
