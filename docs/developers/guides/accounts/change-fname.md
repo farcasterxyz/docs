@@ -40,7 +40,9 @@ const claim = makeUserNameProofClaim({
   owner: '0x...',
   timestamp: Math.floor(Date.now() / 1000),
 });
-const signature = (await accountKey.signUserNameProofClaim(claim))._unsafeUnwrap();
+const signature = (
+  await accountKey.signUserNameProofClaim(claim)
+)._unsafeUnwrap();
 ```
 
 Example request via curl:

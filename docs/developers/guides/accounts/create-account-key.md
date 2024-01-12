@@ -117,11 +117,13 @@ which generates and signs the Signed Key Request.
 if (accountKeyResult.isOk()) {
   accountPubKey = accountKeyResult.value;
 
-  const signedKeyRequestMetadata = await accountKey.getSignedKeyRequestMetadata({
-    requestFid: APP_FID,
-    key: accountPubKey,
-    deadline,
-  });
+  const signedKeyRequestMetadata = await accountKey.getSignedKeyRequestMetadata(
+    {
+      requestFid: APP_FID,
+      key: accountPubKey,
+      deadline,
+    }
+  );
 }
 ```
 
@@ -164,7 +166,15 @@ if (aliceSignature.isOk()) {
     address: KEY_GATEWAY_ADDRESS,
     abi: keyGatewayABI,
     functionName: 'addFor',
-    args: [alice.address, 1, bytesToHex(accountPubKey), 1, metadata, deadline, bytesToHex(aliceSignature.value)],
+    args: [
+      alice.address,
+      1,
+      bytesToHex(accountPubKey),
+      1,
+      metadata,
+      deadline,
+      bytesToHex(aliceSignature.value),
+    ],
   });
   await walletClient.writeContract(request);
 }
@@ -307,11 +317,13 @@ if (accountKeyResult.isOk()) {
   /**
    *  2. Generate a Signed Key Request from the app account.
    */
-  const signedKeyRequestMetadata = await accountKey.getSignedKeyRequestMetadata({
-    requestFid: APP_FID,
-    key: accountPubKey,
-    deadline,
-  });
+  const signedKeyRequestMetadata = await accountKey.getSignedKeyRequestMetadata(
+    {
+      requestFid: APP_FID,
+      key: accountPubKey,
+      deadline,
+    }
+  );
 
   if (signedKeyRequestMetadata.isOk()) {
     const metadata = bytesToHex(signedKeyRequestMetadata.value);
@@ -347,7 +359,15 @@ if (accountKeyResult.isOk()) {
         address: KEY_GATEWAY_ADDRESS,
         abi: keyGatewayABI,
         functionName: 'addFor',
-        args: [alice.address, 1, bytesToHex(accountPubKey), 1, metadata, deadline, bytesToHex(aliceSignature.value)],
+        args: [
+          alice.address,
+          1,
+          bytesToHex(accountPubKey),
+          1,
+          metadata,
+          deadline,
+          bytesToHex(aliceSignature.value),
+        ],
       });
       await walletClient.writeContract(request);
     }

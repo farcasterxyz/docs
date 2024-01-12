@@ -5,7 +5,7 @@ Hook for reading the Sign in With Farcaster message and signature used to authen
 If you're providing the message and signature to a backend API, you may want to use this hook.
 
 ```tsx
-import { useUserData } from '@farcaster/connect-kit';
+import { useUserData } from '@farcaster/auth-kit';
 
 function App() {
   const { message, signature } = useSignInMessage();
@@ -28,7 +28,7 @@ function App() {
 }
 ```
 
-| Parameter   | Description                                       |
-| ----------- | ------------------------------------------------- |
-| `message`   | SIWE message signed by the user.                  |
-| `signature` | Signature produced by the user's Warpcast wallet. |
+| Parameter   | Description                                        |
+| ----------- | -------------------------------------------------- |
+| `message`   | SIWE message signed by the user.                   |
+| `signature` | Signature produced by the user's Farcaster wallet. |

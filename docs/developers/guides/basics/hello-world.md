@@ -50,9 +50,21 @@ const FC_NETWORK = FarcasterNetwork.MAINNET; // Network of the Hub
 
 const CHAIN = optimism;
 
-const IdGateway = { abi: idGatewayABI, address: ID_GATEWAY_ADDRESS, chain: CHAIN };
-const IdContract = { abi: idRegistryABI, address: ID_REGISTRY_ADDRESS, chain: CHAIN };
-const KeyContract = { abi: keyGatewayABI, address: KEY_GATEWAY_ADDRESS, chain: CHAIN };
+const IdGateway = {
+  abi: idGatewayABI,
+  address: ID_GATEWAY_ADDRESS,
+  chain: CHAIN,
+};
+const IdContract = {
+  abi: idRegistryABI,
+  address: ID_REGISTRY_ADDRESS,
+  chain: CHAIN,
+};
+const KeyContract = {
+  abi: keyGatewayABI,
+  address: KEY_GATEWAY_ADDRESS,
+  chain: CHAIN,
+};
 ```
 
 ## 2. Register and pay for storage
@@ -79,7 +91,9 @@ const getOrRegisterFid = async (): Promise<number> => {
     functionName: 'price',
   });
   if (balance < price) {
-    throw new Error(`Insufficient balance to rent storage, required: ${price}, balance: ${balance}`);
+    throw new Error(
+      `Insufficient balance to rent storage, required: ${price}, balance: ${balance}`
+    );
   }
   const { request: registerRequest } = await walletClient.simulateContract({
     ...IdGateway,
@@ -88,7 +102,9 @@ const getOrRegisterFid = async (): Promise<number> => {
     value: price,
   });
   const registerTxHash = await walletClient.writeContract(registerRequest);
-  const registerTxReceipt = await walletClient.waitForTransactionReceipt({ hash: registerTxHash });
+  const registerTxReceipt = await walletClient.waitForTransactionReceipt({
+    hash: registerTxHash,
+  });
   // Now extract the FID from the logs
   const registerLog = decodeEventLog({
     abi: idRegistryABI,
@@ -135,7 +151,9 @@ const getOrRegisterAccountKey = async (fid: number) => {
     args: [1, publicKey, 1, metadata], // keyType, publicKey, metadataType, metadata
   });
 
-  const accountKeyAddTxHash = await walletClient.writeContract(signerAddRequest);
+  const accountKeyAddTxHash = await walletClient.writeContract(
+    signerAddRequest
+  );
   await walletClient.waitForTransactionReceipt({ hash: accountKeyAddTxHash });
   // Sleeping 30 seconds to allow hubs to pick up the accountKey tx
   await new Promise((resolve) => setTimeout(resolve, 30000));
@@ -154,7 +172,9 @@ Registering an fname requires a signature from the custody address of the fid.
 const registerFname = async (fid: number) => {
   try {
     // First check if this fid already has an fname
-    const response = await axios.get(`https://fnames.farcaster.xyz/transfers/current?fid=${fid}`);
+    const response = await axios.get(
+      `https://fnames.farcaster.xyz/transfers/current?fid=${fid}`
+    );
     const fname = response.data.transfer.username;
     return fname;
   } catch (e) {
@@ -215,7 +235,9 @@ const userDataUsernameBody = {
   value: fname,
 };
 // Set the username
-await submitMessage(makeUserDataAdd(userDataUsernameBody, dataOptions, accountKey));
+await submitMessage(
+  makeUserDataAdd(userDataUsernameBody, dataOptions, accountKey)
+);
 
 // Post a cast
 await submitMessage(

@@ -95,7 +95,9 @@ const claim = makeUserNameProofClaim({
   owner: '0x...',
   timestamp: Math.floor(Date.now() / 1000),
 });
-const signature = (await accountKey.signUserNameProofClaim(claim))._unsafeUnwrap();
+const signature = (
+  await accountKey.signUserNameProofClaim(claim)
+)._unsafeUnwrap();
 ```
 
 This is the exact same kind of signature used in the ENS UsernameProofs provided to hubs to prove ownership of an ENS
