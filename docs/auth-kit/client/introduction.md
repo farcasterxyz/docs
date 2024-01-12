@@ -1,5 +1,7 @@
 # Auth client
 
+[![NPM Version](https://img.shields.io/npm/v/@farcaster/auth-client)](https://www.npmjs.com/package/@farcaster/auth-client)
+
 The `@farcaster/auth-client` library provides a framework agnostic client for Farcaster Auth. If you're not using React, want greater customizability, or want to interact with the Farcaster Auth relay directly, you can use the Auth client library to build your own Sign in With Farcaster flow.
 
 ## Getting Started

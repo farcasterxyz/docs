@@ -1,5 +1,7 @@
 # AuthKit
 
+[![NPM Version](https://img.shields.io/npm/v/@farcaster/auth-kit)](https://www.npmjs.com/package/@farcaster/auth-kit)
+
 AuthKit is a React library that lets users log in to your app with a Farcaster account.
 
 <iframe src="https://sign-in-with-farcaster-demo.replit.app/" width="700" height="500" />
