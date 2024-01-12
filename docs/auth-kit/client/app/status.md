@@ -27,7 +27,7 @@ const status = await appClient.status({
         state: 'pending' | 'completed'
         nonce: string
         message?: string
-        signature?: `0x${string}`
+        signature?: Hex
         fid?: number
         username?: string
         bio?: string

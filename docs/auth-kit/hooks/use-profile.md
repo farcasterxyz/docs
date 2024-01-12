@@ -1,17 +1,17 @@
-# `useUserData`
+# `useProfile`
 
 Hook for reading information about the authenticated user.
 
 You can use this hook to read the authenticated user's profile information from other components inside your app.
 
 ```tsx
-import { useUserData } from '@farcaster/auth-kit';
+import { useProfile } from '@farcaster/auth-kit';
 
 function App {
   const {
     isAuthenticated,
     userData: { username, fid, bio, displayName, pfpUrl },
-  } = useUserData();
+  } = useProfile();
 
   return (
     <div>
@@ -32,12 +32,12 @@ function App {
 ```ts
   {
     isAuthenticated: boolean;
-    userData: {
-        fid: number;
-        username: string;
-        bio: string;
-        displayName: string;
-        pfpUrl: string;
+    userData?: {
+        fid?: number;
+        username?: string;
+        bio?: string;
+        displayName?: string;
+        pfpUrl?: string;
     },
   };
 ```

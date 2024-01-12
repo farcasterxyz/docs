@@ -28,7 +28,7 @@ function App() {
 }
 ```
 
-| Parameter   | Description                                       |
-| ----------- | ------------------------------------------------- |
-| `message`   | SIWE message signed by the user.                  |
-| `signature` | Signature produced by the user's Warpcast wallet. |
+| Parameter   | Description                                        |
+| ----------- | -------------------------------------------------- |
+| `message`   | SIWE message signed by the user.                   |
+| `signature` | Signature produced by the user's Farcaster wallet. |

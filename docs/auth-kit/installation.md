@@ -1,14 +1,12 @@
 # Installation
 
-Install auth-kit and its peer dependencies [viem](https://viem.sh/) and [ethers](https://docs.ethers.org/v6/).
+Install auth-kit and its peer dependency [viem](https://viem.sh/).
 
 ```sh
-npm install @farcaster/auth-kit viem ethers
+npm install @farcaster/auth-kit viem
 ```
 
-::: tip
-auth-kit is a [React](https://react.dev/) library. If you're using a different framework, take a look at the [client library](./client/introduction.md) instead.
-:::
+**Note:** auth-kit is a [React](https://react.dev/) library. If you're using a different framework, take a look at the [client library](./client/introduction.md) instead.
 
 ### 1. Import the libraries
 
@@ -16,13 +14,13 @@ Import auth-kit and CSS styles.
 
 ```tsx
 import '@farcaster/auth-kit/styles.css';
-import { SignInProvider } from '@farcaster/auth-kit';
+import { AuthKitProvider } from '@farcaster/auth-kit';
 import { SignInButton } from '@farcaster/auth-kit';
 ```
 
 ### 2. Configure your provider
 
-Configure a provider with an Optimism RPC URL, your app's domain and login URL and wrap your application in it.
+Configure a provider with an Optimism RPC URL, your app's domain and login URL, and wrap your application in it.
 
 ```tsx
 const config = {
@@ -32,7 +30,9 @@ const config = {
 };
 
 const App = () => {
-  return <SignInProvider config={config}>{/*   Your App   */}</SignInProvider>;
+  return (
+    <AuthKitProvider config={config}>{/*   Your App   */}</AuthKitProvider>
+  );
 };
 ```
 
@@ -46,18 +46,18 @@ export const Login = () => {
 };
 ```
 
-### 4. Read user details
+### 4. Read user profile
 
-Optionally, fetch details about the logged in user anywhere in your app with `useUserData`.
+Optionally, fetch details about the logged in user anywhere in your app with `useProfile`.
 
 ```tsx
-import { useUserData } from '@farcaster/auth-kit';
+import { useProfile } from '@farcaster/auth-kit';
 
 export const UserProfile = () => {
   const {
     isAuthenticated,
     userData: { username, fid },
-  } = useUserData();
+  } = useProfile();
   return (
     <div>
       {isAuthenticated ? (

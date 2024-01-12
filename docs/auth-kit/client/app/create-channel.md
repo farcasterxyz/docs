@@ -1,11 +1,11 @@
-# `connect`
+# `createChannel`
 
 Create a Farcaster Auth relay channel.
 
 Returns a secret token identifying the channel, and a URI to display to the end user as a link or QR code.
 
 ```ts
-const channel = await appClient.connect({
+const channel = await appClient.createChannel({
   siweUri: 'https://example.com/login',
   domain: 'example.com',
 });
@@ -29,7 +29,7 @@ const channel = await appClient.connect({
   response: Response;
   data: {
     channelToken: string;
-    connectURI: string;
+    url: string;
     nonce: string;
   }
   isError: boolean;
@@ -41,7 +41,7 @@ const channel = await appClient.connect({
 | ------------------- | ---------------------------------------------------------------------------------- |
 | `response`          | HTTP response from the Connect relay server.                                       |
 | `data.channelToken` | Connect relay channel token UUID.                                                  |
-| `data.connectURI`   | Sign in With Farcaster URL to present to the user. Links to Warpcast client in v1. |
+| `data.url`          | Sign in With Farcaster URL to present to the user. Links to Warpcast client in v1. |
 | `data.nonce`        | Random nonce included in the Sign in With Farcaster message.                       |
 | `isError`           | True when an error has occurred.                                                   |
 | `error`             | `Error` instance.                                                                  |

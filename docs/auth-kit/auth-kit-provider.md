@@ -1,6 +1,8 @@
-# `SignInProvider`
+# `AuthKitProvider`
 
-Wrap your application in a `SignInProvider` to use Farcaster Auth. This provider component stores configuration information about your app and makes it available to auth-kit components and hooks.
+Wrap your application in an `AuthKitProvider` to use Farcaster Auth. This provider component stores configuration information about your app and makes it available to auth-kit components and hooks.
+
+**Note:** You must create an `AuthKitProvider` to use Farcaster Connect. Don't forget to create one at the top level of your application.
 
 ```tsx
 const config = {
@@ -11,15 +13,19 @@ const config = {
 };
 
 const App = () => {
-  return <SignInProvider config={config}>{/*   Your App   */}</SignInProvider>;
+  return (
+    <AuthKitProvider config={config}>
+      {/*   Your App   */}
+    </SignInProvider>
+  );
 };
 ```
 
 # Props
 
-| Prop     | Type             | Required | Description                                           |
-| -------- | ---------------- | -------- | ----------------------------------------------------- |
-| `config` | `auth-kitConfig` | Yes      | Configuration object. See options in the table below. |
+| Prop     | Type            | Required | Description                                           |
+| -------- | --------------- | -------- | ----------------------------------------------------- |
+| `config` | `AuthKitConfig` | Yes      | Configuration object. See options in the table below. |
 
 `config` object options:
 

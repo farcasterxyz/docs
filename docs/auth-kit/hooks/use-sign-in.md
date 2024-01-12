@@ -52,9 +52,9 @@ function App() {
     isSuccess: boolean;
     isPolling: boolean;
     isError: boolean;
-    error: ConnectError;
+    error: AuthClientError;
     channelToken: string;
-    connectUri: string;
+    url: string;
     qrCodeUri: string;
     data: {
         state: "pending" | "complete";
@@ -78,10 +78,10 @@ function App() {
 | `isSuccess`        | True when the relay server returns a valid signature.                                                                              |
 | `isPolling`        | True when the relay state is `"pending"` and the app is polling the relay server for a response.                                   |
 | `isError`          | True when an error has occurred.                                                                                                   |
-| `error`            | `ConnectError` instance.                                                                                                           |
+| `error`            | `AuthClientError` instance.                                                                                                        |
 | `channelToken`     | Connect relay channel token.                                                                                                       |
-| `connectUri`       | Sign in With Farcaster URL to present to the user. Links to Warpcast in v1.                                                        |
-| `qrcodeUri`        | QR code image data URL encoding `connectUri`.                                                                                      |
+| `url`              | Sign in With Farcaster URL to present to the user. Links to Warpcast in v1.                                                        |
+| `qrcodeUri`        | QR code image data URL encoding `url`.                                                                                             |
 | `data.state`       | Status of the sign in request, either `"pending"` or `"complete"`                                                                  |
 | `data.nonce`       | Random nonce used in the SIWE message. If you don't provide a custom nonce as an argument to the hook, you should read this value. |
 | `data.message`     | The generated SIWE message.                                                                                                        |

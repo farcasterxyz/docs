@@ -1,13 +1,13 @@
-# App Client
+# Wallet Client
 
-If you're building a [connected app](https://docs.farcaster.xyz/learn/what-is-farcaster/apps#connected-apps) and want users to sign in with Farcaster, use an `AppClient`.
+If you're building a [wallet app](https://docs.farcaster.xyz/learn/what-is-farcaster/apps#wallet-apps) and receiving signature requests, use a `WalletClient`.
 
-You can use an `AppClient` to create a Farcaster Auth relay channel, generate a deep link to request a signature from the user's Farcaster wallet app, and verify the returned signature.
+You can use a `WalletClient` to parse an incoming Sign In With Farcaster request URL, build a Sign In With Farcaster message to present to the user, and submit the signed message to a Farcaster Auth relay channel.
 
 ```ts
-import { createAppClient, viemConnector } from '@farcaster/auth-client';
+import { createWalletClient, viemConnecter } from '@farcaster/auth-client';
 
-const appClient = createAppClient({
+const walletClient = createWalletClient({
   relay: 'https://relay.farcaster.xyz',
   ethereum: viem(),
 });

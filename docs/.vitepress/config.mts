@@ -252,8 +252,8 @@ export default defineConfig({
             { text: 'Installation', link: '/auth-kit/installation' },
             { text: 'SignIn Button', link: '/auth-kit/sign-in-button' },
             {
-              text: 'SignIn Provider',
-              link: '/auth-kit/sign-in-provider',
+              text: 'AuthKit Provider',
+              link: '/auth-kit/auth-kit-provider',
             },
           ],
         },
@@ -270,8 +270,8 @@ export default defineConfig({
                   link: '/auth-kit/hooks/use-sign-in-message',
                 },
                 {
-                  text: 'useUserData',
-                  link: '/auth-kit/hooks/use-user-data',
+                  text: 'useProfile',
+                  link: '/auth-kit/hooks/use-profile',
                 },
               ],
             },
@@ -292,8 +292,8 @@ export default defineConfig({
                       link: '/auth-kit/client/app/client',
                     },
                     {
-                      text: 'connect',
-                      link: '/auth-kit/client/app/connect',
+                      text: 'createChannel',
+                      link: '/auth-kit/client/app/create-channel',
                     },
                     {
                       text: 'status',
@@ -311,24 +311,24 @@ export default defineConfig({
                   ],
                 },
                 {
-                  text: 'Auth Actions',
+                  text: 'Wallet Actions',
                   collapsed: true,
                   items: [
                     {
-                      text: 'AuthClient',
-                      link: '/auth-kit/client/auth/client',
+                      text: 'WalletClient',
+                      link: '/auth-kit/client/wallet/client',
                     },
                     {
                       text: 'parseSignInURI',
-                      link: '/auth-kit/client/auth/parse-sign-in-uri',
+                      link: '/auth-kit/client/wallet/parse-sign-in-uri',
                     },
                     {
                       text: 'buildSignInMessage',
-                      link: '/auth-kit/client/auth/build-sign-in-message',
+                      link: '/auth-kit/client/wallet/build-sign-in-message',
                     },
                     {
                       text: 'authenticate',
-                      link: '/auth-kit/client/auth/authenticate',
+                      link: '/auth-kit/client/wallet/authenticate',
                     },
                   ],
                 },
