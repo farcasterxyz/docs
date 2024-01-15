@@ -11,9 +11,10 @@ function App() {
   const {
     signIn,
     qrCodeUri,
-    data: { username },
-    onSuccess: ({ fid }) => console.log("Your fid:", fid);
-  } = useSignIn();
+    data: { username }
+  } = useSignIn({
+    onSuccess: ({ fid }) => console.log("Your fid:", fid)
+  });
 
   return (
     <div>
