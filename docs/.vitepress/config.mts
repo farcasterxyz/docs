@@ -547,7 +547,10 @@ export default defineConfig({
         },
         {
           text: 'Warpcast',
-          items: [{ text: 'API Reference', link: '/reference/warpcast/api' }],
+          items: [
+            { text: 'API Reference', link: '/reference/warpcast/api' },
+            { text: 'Cast Composer Intents', link: '/reference/warpcast/cast-composer-intents' },
+          ],
         },
       ],
     },
