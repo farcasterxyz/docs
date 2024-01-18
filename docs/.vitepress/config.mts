@@ -550,6 +550,7 @@ export default defineConfig({
           items: [
             { text: 'API Reference', link: '/reference/warpcast/api' },
             { text: 'Cast Composer Intents', link: '/reference/warpcast/cast-composer-intents' },
+            { text: 'Embeds', link: '/reference/warpcast/embeds' },
           ],
         },
       ],
