@@ -39,6 +39,10 @@ try {
 }
 ```
 
+**OpenAPI Spec**
+
+An OpenAPI spec is provided for the Hubble REST API. It can be viewed [here](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/farcasterxyz/hub-monorepo/main/packages/hub-nodejs/spec.yaml).
+
 ## Response encoding
 
 Responses from the API are encoded as `application/json`, and can be parsed as normal JSON objects.
