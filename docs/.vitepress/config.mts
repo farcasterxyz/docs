@@ -28,6 +28,18 @@ export default defineConfig({
       },
     ],
     ['meta', { name: 'twitter:site', content: '@farcaster_xyz' }],
+    [
+      'script',
+      { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-DF7PJS3WBD' }
+    ],
+    [
+      'script',
+      {},
+      `window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-DF7PJS3WBD');`
+    ],
   ],
   cleanUrls: true,
   themeConfig: {
