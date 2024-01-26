@@ -40,23 +40,27 @@ const status = await appClient.watchStatus({
         bio?: string
         displayName?: string
         pfpUrl?: string
+        custody?: Hex;
+        verifications?: Hex[];
     }
     isError: boolean
     error: Error
 }
 ```
 
-| Parameter          | Description                                                                                                                        |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
-| `response`         | HTTP response from the Connect relay server.                                                                                       |
-| `data.state`       | Status of the sign in request, either `"pending"` or `"complete"`                                                                  |
-| `data.nonce`       | Random nonce used in the SIWE message. If you don't provide a custom nonce as an argument to the hook, you should read this value. |
-| `data.message`     | The generated SIWE message.                                                                                                        |
-| `data.signature`   | Hex signature produced by the user's Warpcast wallet.                                                                              |
-| `data.fid`         | User's Farcaster ID.                                                                                                               |
-| `data.username`    | User's Farcaster username.                                                                                                         |
-| `data.bio`         | User's Farcaster bio.                                                                                                              |
-| `data.displayName` | User's Farcaster display name.                                                                                                     |
-| `data.pfpUrl`      | User's Farcaster profile picture URL.                                                                                              |
-| `isError`          | True when an error has occurred.                                                                                                   |
-| `error`            | `Error` instance.                                                                                                                  |
+| Parameter            | Description                                                                                                                        |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `response`           | HTTP response from the Connect relay server.                                                                                       |
+| `data.state`         | Status of the sign in request, either `"pending"` or `"complete"`                                                                  |
+| `data.nonce`         | Random nonce used in the SIWE message. If you don't provide a custom nonce as an argument to the hook, you should read this value. |
+| `data.message`       | The generated SIWE message.                                                                                                        |
+| `data.signature`     | Hex signature produced by the user's Warpcast wallet.                                                                              |
+| `data.fid`           | User's Farcaster ID.                                                                                                               |
+| `data.username`      | User's Farcaster username.                                                                                                         |
+| `data.bio`           | User's Farcaster bio.                                                                                                              |
+| `data.displayName`   | User's Farcaster display name.                                                                                                     |
+| `data.pfpUrl`        | User's Farcaster profile picture URL.                                                                                              |
+| `data.custody`       | User's FID custody address.                                                                                                        |
+| `data.verifications` | List of user's verified addresses.                                                                                                 |
+| `isError`            | True when an error has occurred.                                                                                                   |
+| `error`              | `Error` instance.                                                                                                                  |
