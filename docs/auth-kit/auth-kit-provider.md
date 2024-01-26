@@ -25,14 +25,14 @@ const App = () => {
 
 | Prop     | Type            | Required | Description                                           |
 | -------- | --------------- | -------- | ----------------------------------------------------- |
-| `config` | `AuthKitConfig` | Yes      | Configuration object. See options in the table below. |
+| `config` | `AuthKitConfig` | No       | Configuration object. See options in the table below. |
 
 `config` object options:
 
 | Parameter | Type     | Required | Description                        | Default                       |
 | --------- | -------- | -------- | ---------------------------------- | ----------------------------- |
-| `domain`  | `string` | Yes      | The domain of your application.    | None                          |
-| `siweUri` | `string` | Yes      | The login URL of your application. | None                          |
+| `domain`  | `string` | No       | The domain of your application.    | `window.location.host`        |
+| `siweUri` | `string` | No       | The login URL of your application. | `window.location.href`        |
 | `relay`   | `string` | No       | Farcaster Auth relay server URL    | `https://relay.farcaster.xyz` |
 | `rpcUrl`  | `string` | No       | Optimism RPC server URL            | `https://mainnet.optimism.io` |
 | `version` | `string` | No       | Farcaster Auth version             | `v1`                          |

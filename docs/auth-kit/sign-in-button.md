@@ -31,6 +31,8 @@ export const Login = () => {
 | `onSuccess`        | `function` | Callback invoked when sign in is complete and the user is authenticated.            | None                  |
 | `onStatusResponse` | `function` | Callback invoked when the component receives a status update from the relay server. | None                  |
 | `onError`          | `function` | Error callback function.                                                            | None                  |
+| `onSignOut`        | `function` | Callback invoked when the user signs out.                                           | None                  |
+| `hideSignOut`      | `function` | Hide the Sign out button.                                                           | `false`               |
 | `debug`            | `boolean`  | Render a debug panel displaying internal auth-kit state.                            | `false`               |
 
 ## Examples

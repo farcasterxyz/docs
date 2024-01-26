@@ -10,7 +10,7 @@ import { useProfile } from '@farcaster/auth-kit';
 function App {
   const {
     isAuthenticated,
-    userData: { username, fid, bio, displayName, pfpUrl },
+    profile: { username, fid, bio, displayName, pfpUrl },
   } = useProfile();
 
   return (
@@ -32,21 +32,25 @@ function App {
 ```ts
   {
     isAuthenticated: boolean;
-    userData?: {
+    profile?: {
         fid?: number;
         username?: string;
         bio?: string;
         displayName?: string;
         pfpUrl?: string;
+        custody?: Hex;
+        verifications?: Hex[];
     },
   };
 ```
 
-| Parameter              | Description                      |
-| ---------------------- | -------------------------------- |
-| `isAuthenticated`      | True when the user is logged in. |
-| `userData.fid`         | User's Farcaster ID.             |
-| `userData.username`    | User's username.                 |
-| `userData.bio`         | User's bio text.                 |
-| `userData.displayName` | User's display name.             |
-| `userData.pfpUrl`      | User's profile picture URL.      |
+| Parameter               | Description                        |
+| ----------------------- | ---------------------------------- |
+| `isAuthenticated`       | True when the user is logged in.   |
+| `profile.fid`           | User's Farcaster ID.               |
+| `profile.username`      | User's username.                   |
+| `profile.bio`           | User's bio text.                   |
+| `profile.displayName`   | User's display name.               |
+| `profile.pfpUrl`        | User's profile picture URL.        |
+| `profile.custody`       | User's FID custody address.        |
+| `profile.verifications` | List of user's verified addresses. |

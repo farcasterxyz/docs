@@ -5,15 +5,15 @@ Hook for signing in a user. Connects to the relay server, generates a QR code an
 If you want to build your own sign in component with custom UI, use the `useSignIn` hook.
 
 ```tsx
-import { useSignIn } from "@farcaster/auth-kit";
+import { useSignIn } from '@farcaster/auth-kit';
 
 function App() {
   const {
     signIn,
     qrCodeUri,
-    data: { username }
+    data: { username },
   } = useSignIn({
-    onSuccess: ({ fid }) => console.log("Your fid:", fid)
+    onSuccess: ({ fid }) => console.log('Your fid:', fid),
   });
 
   return (
@@ -49,7 +49,10 @@ function App() {
 ```ts
   {
     signIn: () => void;
+    signOut: () => void;
+    connect: () => void;
     reconnect: () => void;
+    isConnected: boolean;
     isSuccess: boolean;
     isPolling: boolean;
     isError: boolean;
@@ -57,6 +60,7 @@ function App() {
     channelToken: string;
     url: string;
     qrCodeUri: string;
+    appClient: AppClient;
     data: {
         state: "pending" | "complete";
         nonce: string;
@@ -67,29 +71,37 @@ function App() {
         bio: string;
         displayName: string;
         pfpUrl: string;
+        custody?: Hex;
+        verifications?: Hex[];
     },
     validSignature: boolean;
   };
 ```
 
-| Parameter          | Description                                                                                                                        |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
-| `signIn`           | Call this function to connect to the relay and begin polling for a signature.                                                      |
-| `reconnect`        | Reconnect to the relay and try again. Call this in the event of an error.                                                          |
-| `isSuccess`        | True when the relay server returns a valid signature.                                                                              |
-| `isPolling`        | True when the relay state is `"pending"` and the app is polling the relay server for a response.                                   |
-| `isError`          | True when an error has occurred.                                                                                                   |
-| `error`            | `AuthClientError` instance.                                                                                                        |
-| `channelToken`     | Connect relay channel token.                                                                                                       |
-| `url`              | Sign in With Farcaster URL to present to the user. Links to Warpcast in v1.                                                        |
-| `qrcodeUri`        | QR code image data URL encoding `url`.                                                                                             |
-| `data.state`       | Status of the sign in request, either `"pending"` or `"complete"`                                                                  |
-| `data.nonce`       | Random nonce used in the SIWE message. If you don't provide a custom nonce as an argument to the hook, you should read this value. |
-| `data.message`     | The generated SIWE message.                                                                                                        |
-| `data.signature`   | Hex signature produced by the user's Warpcast wallet.                                                                              |
-| `data.fid`         | User's Farcaster ID.                                                                                                               |
-| `data.username`    | User's Farcaster username.                                                                                                         |
-| `data.bio`         | User's Farcaster bio.                                                                                                              |
-| `data.displayName` | User's Farcaster display name.                                                                                                     |
-| `data.pfpUrl`      | User's Farcaster profile picture URL.                                                                                              |
-| `validSignature`   | True when the signature returned by the relay server is valid.                                                                     |
+| Parameter            | Description                                                                                                                        |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `signIn`             | Call this function following `connect` to begin polling for a signature.                                                           |
+| `signOut`            | Call this function to clear the AuthKit state and sign out the user.                                                               |
+| `connect`            | Connect to the auth relay and create a channel.                                                                                    |
+| `reconnect`          | Reconnect to the relay and try again. Call this in the event of an error.                                                          |
+| `isConnected`        | True if AuthKit is connected to the relay server and has an active channel.                                                        |
+| `isSuccess`          | True when the relay server returns a valid signature.                                                                              |
+| `isPolling`          | True when the relay state is `"pending"` and the app is polling the relay server for a response.                                   |
+| `isError`            | True when an error has occurred.                                                                                                   |
+| `error`              | `AuthClientError` instance.                                                                                                        |
+| `channelToken`       | Connect relay channel token.                                                                                                       |
+| `url`                | Sign in With Farcaster URL to present to the user. Links to Warpcast in v1.                                                        |
+| `qrcodeUri`          | QR code image data URL encoding `url`.                                                                                             |
+| `appClient`          | Underlying `AppClient` instance.                                                                                                   |
+| `data.state`         | Status of the sign in request, either `"pending"` or `"complete"`                                                                  |
+| `data.nonce`         | Random nonce used in the SIWE message. If you don't provide a custom nonce as an argument to the hook, you should read this value. |
+| `data.message`       | The generated SIWE message.                                                                                                        |
+| `data.signature`     | Hex signature produced by the user's Warpcast wallet.                                                                              |
+| `data.fid`           | User's Farcaster ID.                                                                                                               |
+| `data.username`      | User's Farcaster username.                                                                                                         |
+| `data.bio`           | User's Farcaster bio.                                                                                                              |
+| `data.displayName`   | User's Farcaster display name.                                                                                                     |
+| `data.pfpUrl`        | User's Farcaster profile picture URL.                                                                                              |
+| `data.custody`       | User's FID custody address.                                                                                                        |
+| `data.verifications` | List of user's verified addresses.                                                                                                 |
+| `validSignature`     | True when the signature returned by the relay server is valid.                                                                     |
