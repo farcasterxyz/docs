@@ -4,7 +4,7 @@
 
 AuthKit is a React library that lets users log in to your app with a Farcaster account.
 
-<iframe src="https://sign-in-with-farcaster-demo.replit.app/" width="700" height="500" />
+<iframe src="https://farcaster-auth-kit-vite-demo.replit.app/" width="700" height="500" />
 
 Click "Sign in With Farcaster" above to try it out on web or click [here](https://sign-in-with-farcaster-demo.replit.app/) for mobile.
 
