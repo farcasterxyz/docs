@@ -26,7 +26,7 @@ Alice's message is validated by checking that it has a valid signature from one 
 
 ### Storage
 
-Alice's message is then check for conflicts before being stored in the Hub. Conflicts can occur for many reasons:
+Alice's message is then checked for conflicts before being stored in the Hub. Conflicts can occur for many reasons:
 
 1. The hub already has a copy of the message.
 2. The hub has a later message from Alice deleting this message.
