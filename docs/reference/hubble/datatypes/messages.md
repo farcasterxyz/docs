@@ -2,7 +2,8 @@
 
 A message is the fundamental data type in the Farcaster network.
 
-When an account takes an action like casting a public message, change its profile or verifying an Ethereum account, it generates a new messages
+When an account takes an action like casting a public message, change its profile or verifying an Ethereum account, it
+generates a new messages
 
 ## 1. Message
 
@@ -20,7 +21,8 @@ The message is a protobuf that contains the data, its hash and a signature from 
 
 ### 1.1 MessageData
 
-MessageData is a generic envelope that contains a type, fid, timestamp and network which must be present in all Farcaster messages. It also contains a body whose type is determined by the MessageType.
+MessageData is a generic envelope that contains a type, fid, timestamp and network which must be present in all
+Farcaster messages. It also contains a body whose type is determined by the MessageType.
 
 | Field     | Type                                                                                                                                                                                                                                                                                                                                    | Label | Description                                    |
 | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- | ---------------------------------------------- |
@@ -205,3 +207,19 @@ Removes a Verification of any type
 | Field   | Type  | Label | Description                           |
 | ------- | ----- | ----- | ------------------------------------- |
 | address | bytes |       | Address of the Verification to remove |
+
+## 7. Frame Action
+
+Represents an action performed by a user on a frame. This message is not stored on the hubs and cannot be submitted,
+only validated.
+
+### 7.1 FrameActionBody
+
+A user action on a frame
+
+| Field        | Type              | Label | Description                                           |
+| ------------ | ----------------- | ----- | ----------------------------------------------------- |
+| url          | bytes             |       | The original url of the frame as embedded in the cast |
+| button_index | uint32            |       | The button that was pressed (indexed from 1)          |
+| cast_id      | [CastId](#CastId) |       | The cast id that hosted the frame                     |
+| input_text   | bytes             |       | Any text the user input as part of the action         |

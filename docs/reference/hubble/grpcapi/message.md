@@ -10,7 +10,7 @@ network.
 | SubmitMessage   | Message      | Message            | Submits a Message to the Hub                                 |
 | ValidateMessage | Message      | ValidationResponse | Validates a Message on the Hub without merging and gossiping |
 
-## ValidationResponse Response
+## ValidationResponse
 
 | Field   | Type    | Label | Description                                   |
 | ------- | ------- | ----- | --------------------------------------------- |
