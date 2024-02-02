@@ -1,8 +1,11 @@
-# SubmitMessage API
+# Message API
 
-The SubmitMessage API lets you submit signed Farcaster protocol messages to the Hub. Note that the message has to be sent as the encoded bytestream of the protobuf (`Message.enocde(msg).finish()` in typescript), as POST data to the endpoint.
+The Message API lets you validate and submit signed Farcaster protocol messages to the Hub. Note that the message has to
+be sent as the encoded bytestream of the protobuf (`Message.encode(msg).finish()` in typescript), as POST data to the
+endpoint.
 
-The encoding of the POST data has to be set to `application/octet-stream`. The endpoint returns the Message object as JSON if it was successfully submitted
+The encoding of the POST data has to be set to `application/octet-stream`. The endpoint returns the Message object as
+JSON if it was successfully submitted or validated
 
 ## submitMessage
 
@@ -53,7 +56,8 @@ curl -X POST "http://127.0.0.1:2281/v1/submitMessage" \
 
 ### Auth
 
-If the rpc auth has been enabled on the server (using `--rpc-auth username:password`), you will need to also pass in the username and password while calling `submitMessage` using HTTP Basic Auth.
+If the rpc auth has been enabled on the server (using `--rpc-auth username:password`), you will need to also pass in the
+username and password while calling `submitMessage` using HTTP Basic Auth.
 
 **Example**
 
@@ -72,23 +76,91 @@ import axios from "axios";
 const url = `http://127.0.0.1:2281/v1/submitMessage`;
 
 const postConfig = {
-    headers: { "Content-Type": "application/octet-stream" },
-    auth: { username: "username", password: "password" },
+  headers: { "Content-Type": "application/octet-stream" },
+  auth: { username: "username", password: "password" },
 };
 
 // Encode the message into a Buffer (of bytes)
 const messageBytes = Buffer.from(Message.encode(castAdd).finish());
 
 try {
-    const response = await axios.post(url, messageBytes, postConfig);
+  const response = await axios.post(url, messageBytes, postConfig);
 } catch (e) {
-    // handle errors...
+  // handle errors...
+}
+```
+
+## validateMessage
+
+Validate a signed protobuf-serialized message with the Hub. This can be used to verify that the hub will consider the
+message valid. Or to validate message that cannot be submitted (e.g. Frame actions)
+
+::: details
+The hub validates the following for all messages:
+
+- The fid is registered
+- The signer is active and registered to the fid
+- The message hash is correct
+- The signature is valid and corresponds to the signer
+- Any other message specific validation
+
+For FrameAction messages, note that the hub does not validate the castId is actually an existing cast. Nor
+does it validate the frame url matches the embedded url in the cast. Make sure to check for this if it's
+important for your application.
+
+:::
+
+**Query Parameters**
+| Parameter | Description | Example |
+| --------- | ----------- | ------- |
+| | This endpoint accepts no parameters | |
+
+**Example**
+
+```bash
+curl -X POST "http://127.0.0.1:2281/v1/validateMessage" \
+     -H "Content-Type: application/octet-stream" \
+     --data-binary "@message.encoded.protobuf"
+
+```
+
+**Response**
+
+```json
+{
+  "valid": true,
+  "message": {
+    "data": {
+      "type": "MESSAGE_TYPE_FRAME_ACTION",
+      "fid": 2,
+      "timestamp": 48994466,
+      "network": "FARCASTER_NETWORK_MAINNET",
+      "frameActionBody": {
+        "url": "https://fcpolls.com/polls/1",
+        "buttonIndex": 2,
+        "castId": {
+          "fid": 226,
+          "hash": "0xa48dd46161d8e57725f5e26e34ec19c13ff7f3b9"
+        }
+      }
+    },
+    "hash": "0xd2b1ddc6c88e865a33cb1a565e0058d757042974",
+    "hashScheme": "HASH_SCHEME_BLAKE3",
+    "signature": "3msLXzxB4eEYe...dHrY1vkxcPAA==",
+    "signatureScheme": "SIGNATURE_SCHEME_ED25519",
+    "signer": "0x78ff9a...58c"
+  }
 }
 ```
 
 ## Using with Rust, Go or other programing languages
 
-Messages need to be signed with a Ed25519 account key belonging to the FID. If you are using a different programming language than Typescript, you can manually construct the `MessageData` object and serialize it to the `data_bytes` field of the message. Then, use the `data_bytes` to compute the `hash` and `signature`. Please see the [`rust-submitmessage` example](https://github.com/farcasterxyz/hub-monorepo/tree/main/packages/hub-web/examples) for more details
+Messages need to be signed with a Ed25519 account key belonging to the FID. If you are using a different programming
+language
+than Typescript, you can manually construct the `MessageData` object and serialize it to the `data_bytes` field of the
+message. Then, use the `data_bytes` to compute the `hash` and `signature`. Please see
+the [`rust-submitmessage` example](https://github.com/farcasterxyz/hub-monorepo/tree/main/packages/hub-web/examples) for
+more details
 
 ```rust
 use ed25519_dalek::{SecretKey, Signer, SigningKey};

@@ -416,8 +416,8 @@ export default defineConfig({
                   link: '/reference/hubble/grpcapi/verification',
                 },
                 {
-                  text: 'SubmitMessage API',
-                  link: '/reference/hubble/grpcapi/submitmessage',
+                  text: 'Message API',
+                  link: '/reference/hubble/grpcapi/message',
                 },
                 { text: 'Fids API', link: '/reference/hubble/grpcapi/fids' },
                 {
@@ -463,8 +463,8 @@ export default defineConfig({
                   link: '/reference/hubble/httpapi/verification',
                 },
                 {
-                  text: 'SubmitMessage API',
-                  link: '/reference/hubble/httpapi/submitmessage',
+                  text: 'Message API',
+                  link: '/reference/hubble/httpapi/message',
                 },
                 { text: 'Fids API', link: '/reference/hubble/httpapi/fids' },
                 {
