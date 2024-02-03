@@ -1,4 +1,4 @@
-# Fidss API
+# Fids API
 
 ## fids
 
