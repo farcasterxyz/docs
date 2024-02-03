@@ -1,12 +1,10 @@
 # Overview
 
-This section provides a detailed API and technical reference for various components of the Farcaster protocol.
+The reference sections documents API's, standards and protocols used commonly used by Farcaster developers.
 
-- [Hubble](/reference/hubble/architecture) - For Hub architecture, data types, APIs
-- [Contracts](/reference/contracts/index) - Smart contract architecture, deployment addresses, ABIs
-- [FName Registry Server](/reference/fname/api) - Farcaster's offchain ENS registry API
-- [Replicator](/reference/replicator/schema) - Database schema for the replicator
-
-Additionally, here are APIs with data that that's not in the protocol (yet) that could be useful for app developers:
-
-- [Warpcast](/reference/warpcast/api) - Warpcast APIs
+- [Frames](/reference/frames/specification) - A specification for writing and rendering frames.
+- [Warpcast](/reference/warpcast/api) - An overview of Warpcast APIs that are publicly available.
+- [Hubble](/reference/hubble/architecture) - A design overview and API reference for Farcaster Hubs.
+- [Replicator](/reference/replicator/schema) - An overview and schema for the replicator.
+- [Contracts](/reference/contracts/index) - A design overview and ABI reference for Farcaster contracts.
+- [FName Registry Server](/reference/fname/api) - An overview and API reference for the Farcaster Name Server.

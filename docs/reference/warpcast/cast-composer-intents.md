@@ -1,4 +1,4 @@
-# Warpcast Cast Composer Intens
+# Warpcast Cast Intents
 
 Warpcast intents enable builders to direct authenticated users to a pre-filled cast composer.
 

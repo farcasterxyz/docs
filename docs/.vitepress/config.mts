@@ -381,6 +381,20 @@ export default defineConfig({
           items: [{ text: 'Overview', link: '/reference/index' }],
         },
         {
+          text: 'Frames',
+          items: [
+            { text: 'Specification', link: '/reference/frames/spec' },
+          ],
+        },
+        {
+          text: 'Warpcast',
+          items: [
+            { text: 'Channel APIs', link: '/reference/warpcast/api' },
+            { text: 'Cast Intents', link: '/reference/warpcast/cast-composer-intents' },
+            { text: 'Embeds', link: '/reference/warpcast/embeds' },
+          ],
+        },
+        {
           text: 'Hubble',
           items: [
             { text: 'Architecture', link: '/reference/hubble/architecture' },
@@ -490,6 +504,14 @@ export default defineConfig({
           ],
         },
         {
+          text: 'Hubble Replicator',
+          items: [
+            { text: 'Schema', link: '/reference/replicator/schema' },
+            // { text: 'Index', link: '/reference/replicator/TODO' },
+          ],
+        },
+
+        {
           text: 'Contracts',
           items: [
             { text: 'Overview', link: '/reference/contracts/index' },
@@ -555,22 +577,6 @@ export default defineConfig({
         //     },
         //   ],
         // },
-
-        {
-          text: 'Replicator',
-          items: [
-            { text: 'Schema', link: '/reference/replicator/schema' },
-            // { text: 'Index', link: '/reference/replicator/TODO' },
-          ],
-        },
-        {
-          text: 'Warpcast',
-          items: [
-            { text: 'API Reference', link: '/reference/warpcast/api' },
-            { text: 'Cast Composer Intents', link: '/reference/warpcast/cast-composer-intents' },
-            { text: 'Embeds', link: '/reference/warpcast/embeds' },
-          ],
-        },
       ],
     },
     socialLinks: [
