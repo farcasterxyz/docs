@@ -68,8 +68,14 @@ export default defineConfig({
       { text: 'Website', link: 'http://www.farcaster.xyz' },
     ],
     search: {
-      provider: 'local',
-    },
+      provider: 'algolia',
+      options: {
+        appId: 'ADFEMXTYRR',
+        apiKey: '53a9b47bf4d93ee8fa655fec4274538b',
+        indexName: 'farcaster',
+        insights: true, 
+      }
+    },    
     sidebar: {
       '/': [
         {
