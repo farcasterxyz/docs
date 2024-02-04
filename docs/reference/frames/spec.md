@@ -1,4 +1,4 @@
-# Frames
+# Frame Specification
 
 A frame is a set of `<meta>` tags returned within the header of an HTML page. If a page contains all required frame properties, Farcaster apps will render the page as a frame. The frame `<meta>` tags extend the [OpenGraph protocol](https://ogp.me/).
 

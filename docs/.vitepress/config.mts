@@ -114,6 +114,10 @@ export default defineConfig({
               text: 'Apps',
               link: '/learn/what-is-farcaster/apps',
             },
+            {
+              text: 'Frames',
+              link: '/learn/what-is-farcaster/frames',
+            },
           ],
         },
         {
@@ -233,6 +237,16 @@ export default defineConfig({
                 // { text: 'Build a farcaster client', link: '/developers/guides/applications/client' },
                 // { text: 'Read data with Farcaster Auth', link: '/developers/guides/applications/todo' },
                 // { text: 'Write data with Farcaster Auth', link: '/developers/guides/applications/todo' },
+              ],
+            },
+            {
+              text: 'Creating frames',
+              collapsed: false,
+              items: [
+                {
+                  text: 'Create a poll frame',
+                  link: '/developers/guides/frames/poll',
+                },
               ],
             },
             {
