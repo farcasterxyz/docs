@@ -12,5 +12,5 @@ Creating a frame is simple — choose an image to show and add buttons the user 
 
 ### Learn More
 
-- Build a frame with a [tutorial](../..//developers/guides/frames/poll.md).
+- Build a frame with a [tutorial](../../developers/guides/frames/poll.md).
 - Read the [Frame specification](../../reference/frames/spec.md).
