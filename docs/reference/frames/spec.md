@@ -64,21 +64,22 @@ A frame property is a meta tag with a property and a content value. The properti
 
 ### Required Properties
 
-| Key              | Type   | Description                                                                                                                                                                                     |
-| ---------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `fc:frame`       | string | A valid frame version string. The string must be a release date (e.g. `"2020-01-01"`) or `"vNext. Apps must ignore versions they do not understand. Currently, the only valid version is vNext. |
-| `fc:frame:image` | URL    | An image which should have an aspect ratio of 1.91:1                                                                                                                                            |
-| `og:image`       | URL    | An image which should have an aspect ratio of 1.91:1. Fallback for clients that do not support frames.                                                                                          |
+| Key              | Description                                                                                                                                                                               |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `fc:frame`       | A valid frame version string. The string must be a release date (e.g. 2020-01-01) or vNext. Apps must ignore versions they do not understand. Currently, the only valid version is vNext. |
+| `fc:frame:image` | An image which should have an aspect ratio of 1.91:1 or 1:1                                                                                                                               |
+| `og:image`       | An image which should have an aspect ratio of 1.91:1. Fallback for clients that do not support frames.                                                                                    |
 
 ### Optional Properties
 
-| Key                           | Type   | Description                                                                                                                                                                                                                                                                          |
-| ----------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `fc:frame:button:$idx`        | string | A 256-byte string which is the label of the button at position $idx. A page may contain 0 to 4 buttons. If more than 1 button is present, the idx values must be in sequence starting from 1 (e.g., 1, 2, 3). If a broken sequence is present (e.g., 1, 2, 4), the frame is invalid. |
-| `fc:frame:post_url`           | URL    | A 256-byte string which contains a valid URL to send the Signature Packet. to.                                                                                                                                                                                                       |
-| `fc:frame:button:$idx:action` | string | Must be `post`, `post_redirect`, or `link`. Defaults to `post` if no value was specified.                                                                                                                                                                                            |
-| `fc:frame:button:$idx:target` | string | Action target URL. Required for action type `link`.                                                                                                                                                                                                                                  |
-| `fc:frame:input:text`         | string | Adding this property enables the text field. The content is a 32-byte label that is shown to the user (e.g., Enter a message).                                                                                                                                                       |
+| Key                           | Description                                                                                                                                                                                                                                                                          |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `fc:frame:button:$idx`        | A 256-byte string which is the label of the button at position $idx. A page may contain 0 to 4 buttons. If more than 1 button is present, the idx values must be in sequence starting from 1 (e.g., 1, 2, 3). If a broken sequence is present (e.g., 1, 2, 4), the frame is invalid. |
+| `fc:frame:post_url`           | A 256-byte string which contains a valid URL to send the Signature Packet to.                                                                                                                                                                                                        |
+| `fc:frame:button:$idx:action` | Must be `post`, `post_redirect`or `mint`. Defaults to `post` if no value was specified.                                                                                                                                                                                              |
+| `fc:frame:button:$idx:target` | A 256-byte string which determines the target of the action.                                                                                                                                                                                                                         |
+| `fc:frame:input:text`         | Adding this property enables the text field. The content is a 32-byte label that is shown to the user (e.g., Enter a message).                                                                                                                                                       |
+| `fc:frame:image:aspect_ratio` | Must be either `1.91:1` or `1:1`. Defaults to `1.91:1`                                                                                                                                                                                                                               |
 
 ### Images
 
@@ -88,11 +89,13 @@ There are a few rules for serving images in `fc:frame:image` tags:
 - The type of image must be jpg, png or gif.
 - The image source must either be an external resource with content headers or a data URI.
 
-Clients may resize larger images or crop those that do not fit in their aspect ratio. SVG images are forbidden because they can contain scripts and clients must do extra work to sanitize them.
+Clients may resize larger images or crop those that do not fit in their aspect ratio. SVG images are not because they can contain scripts and extra work must be done by clients to sanitize them.
 
-## Rendering frames
+## Displaying frames in a feed
 
 Farcaster apps are responsible for rendering frames to users and proxying their interactions back to the frame server on their behalf.
+
+### Parsing Frames
 
 When a URL is encountered embedded in a cast:
 
@@ -101,6 +104,8 @@ When a URL is encountered embedded in a cast:
 3. If the frame tags are invalid or absent, apps must fallback to OpenGraph tags.
 4. If OG tags are also absent, apps must render a placeholder error message.
 
+### Rendering Frames
+
 Apps may render frames any time they are showing a cast to a viewer. The following rules apply to the rendering of frames:
 
 1. Buttons must be displayed in ascending index order below the image.
@@ -108,18 +113,34 @@ Apps may render frames any time they are showing a cast to a viewer. The followi
 3. Button with `post_redirect` action must be visually marked to users.
 4. Text inputs must be displayed above the buttons and below the image.
 5. Text input labels must be shown above or inside the text input.
+6. Apps must respect the aspect ratio set in the `fc:frame:input:text` property.
 
-A user may click any of the buttons in the Frame. When this happens, apps must:
+If the button is a `mint` action, the following rules also apply:
+
+1. Must validate that a [CAIP-10](https://github.com/ChainAgnostic/CAIPs/blob/main/CAIPs/caip-10.md) URL is present in the `target` property.
+2. Must display the item as an NFT, if all the properties are valid.
+
+### Handling Clicks
+
+If the button clicked is a `post` or `post_redirect`, apps must:
 
 1. Construct a Frame Signature Packet.
-2. POST the packet to the `post_url` if present, and the cast's embed URL otherwise.
-3. Wait at least 5 seconds for a response from the frame server.
+2. POST the packet to `fc:frame:button:$idx:action:target` if present
+3. POST the packet to `fc:frame:post_url` if target was not present.
+4. POST the packet to or the frame's embed URL if neither target nor action were present.
+5. Wait at least 5 seconds for a response from the frame server.
+
+If the button clicked is a `mint`, apps should:
+
+1. Allow the user to mint the NFT or open an external page that allows this functionality.
+
+### Handling Responses
 
 Applications will receive responses from frame servers after a POST request is submitted. The following rules apply to the handling of these responses:
 
-1. If the button was a `post` button, treat all non-200 responses as errors.
-2. If the button was a `post_redirect` button, treat all non-30X responses as errors.
-3. If handling a 30X response, apps must redirect the user to the Location header url.
+1. If the button action was `post`, treat all non-200 responses as errors.
+2. If the button action was `post_redirect`, treat all non-30X responses as errors.
+3. If handling a 30X response, apps must redirect the user to the url location value.
 4. If handling a 30X response, apps must ensure the url starts with `http://` or `https://`.
 5. If handling a 30X response, warn the user before directing them to an untrusted site.
 
@@ -155,7 +176,6 @@ message FrameActionBody {
   CastId cast_id = 3;     // The cast which contained the frame URĽ
   bytes input_text = 4;   // The text from the user input (if any)
 }
-
 
 // MessageType and MessageData are extended to support the FrameAction
 
@@ -215,7 +235,7 @@ If you are unsure, always read the signed message by sending it into the `valida
 }
 ```
 
-The Signed Message can be validated by calling the `validateMessage` API on Hubs, as shown in the script below. See the [Hub HTTP API](https://docs.farcaster.xyz/reference/hubble/httpapi/submitmessage) for reference. The hub (assuming it’s fully in sync) will validate the following:
+The Signed Message can be validated by calling the `validateMessage` API on Hubs, as shown in the script below. See the [Hub HTTP API](../../reference/hubble/httpapi/message#validatemessage) for reference. The hub (assuming it’s fully in sync) will validate the following:
 
 - the fid is a valid, registered farcaster fid
 - the signer is currently active and associated with the fid
@@ -229,14 +249,20 @@ Hubs perform important validations in addition to verifying a signature packet's
 Although it may be possible to validate an Ed25519 signature onchain, a valid signature is insufficient to fully authenticate a frame message packet. Applications must also check that the fid is valid, the signer key is active, and the message body is valid. Outside of OP mainnet, it is difficult to perform these validations onchain.
 :::
 
-## Improvement Proposals
+## vNext Changelog
+
+| Date   | Change                                                                                                                                                        |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2/8/24 | Frames can have [NFT mint buttons](https://warpcast.notion.site/Frames-Mint-action-Public-cea0d2249e3e41dbafb2e9ab23107275) and images with 1:1 aspect ratio. |
+| 2/6/24 | Frames can define [simple links to external pages](https://warpcast.notion.site/Frames-External-Links-Public-60c9900cffae4e2fb1b6aae3d4601c15?pvs=4).         |
+| 2/2/24 | Frames can [accept text input](https://warpcast.notion.site/Frames-Text-Input-Public-27c9f0d61903486d89b6d932dd0d6a22).                                       |
+
+## vNext Proposed Changes
 
 The following ideas are being explored actively as extensions to the frame specification:
 
-- A simpler redirect system to make it easy for frames to redirect users.
+- A transaction button, to allow frames to execute transactions for users.
 - A refresh period, to bust the cache for the original frame url.
 - An idempotency key, to prevent duplicate requests.
 - An authentication system, to let users log into other applications via frames.
-- A transaction button, to allow frames to execute transactions for users.
-- A square image, to allow for more flexibility in image sizes.
 - A JSON response type, to allow for more flexibility in frame responses.
