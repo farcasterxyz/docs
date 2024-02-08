@@ -34,7 +34,7 @@ If an account exceeds its limit for a message type, the oldest message is pruned
 
 An account that lets its storage expire may lose all its messages. There is a 30-day grace period after a storage unit expires during which an account must renew or lose its messages.
 
-The price and size of each storage unit is re-calculated periodically to balance growth and quality of the network. See [FIP-8](https://github.com/farcasterxyz/protocol/discussions/98)
+The price and size of each storage unit is re-calculated periodically to balance growth and quality of the network. See [FIP-6](https://github.com/farcasterxyz/protocol/discussions/98)
 for more details.
 
 ## Deletion
