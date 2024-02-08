@@ -122,7 +122,7 @@ const fid = await getOrRegisterFid();
 
 Now, we will add an account key to the key registry. Every account key must have a signed metadata field from the fid of the app requesting it.
 In our case, we will use our own fid. Note, this requires you to sign a message with the private key of the address
-holding the fid. If this is not possible, register a separate fid for the app fist and use that.
+holding the fid. If this is not possible, register a separate fid for the app first and use that.
 
 ```typescript
 const getOrRegisterAccountKey = async (fid: number) => {
@@ -165,7 +165,7 @@ const accountPrivateKey = await getOrRegisterAccountKey(fid);
 
 ## 4. Register an fname
 
-Now that the on-chain actions are complete, let's register an fname using the farcater off-chain fname registry.
+Now that the on-chain actions are complete, let's register an fname using the farcaster off-chain fname registry.
 Registering an fname requires a signature from the custody address of the fid.
 
 ```typescript
