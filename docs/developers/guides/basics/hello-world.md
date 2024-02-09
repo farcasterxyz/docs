@@ -31,6 +31,7 @@ import {
   ID_REGISTRY_ADDRESS,
   idRegistryABI,
 } from '@farcaster/hub-web';
+import { optimism } from 'viem/chains';
 
 /**
  * Populate the following constants with your own values
