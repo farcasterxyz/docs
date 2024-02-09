@@ -6,10 +6,10 @@ We recommend running Hubble on an always-on server that has [Docker](https://doc
 
 Hubble can be set up in less than 30 minutes. You'll need a machine that has:
 
-- 8 GB of RAM
-- 2 CPU cores or vCPUs
-- 20 GB of free storage
-- A public IP address with ports 2282 - 2285 exposed
+- 16 GB of RAM
+- 4 CPU cores or vCPUs
+- 40 GB of free storage
+- A public IP address with ports 2281 - 2283 exposed
 - RPC endpoints for Ethereum and Optimism Mainnet. (use [Alchemy](https://www.alchemy.com/) or [Infura](https://www.infura.io/))
 
 See [tutorials](./tutorials) for instructions on how to set up cloud providers to run Hubble.
