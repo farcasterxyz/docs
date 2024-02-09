@@ -52,6 +52,8 @@ A frame enters Farcaster when a user creates a cast and embeds the frame URL in 
 
 ## Constructing a frame
 
+A frame must include required properties and may contain optional properties. Frames can be validated using the [Frame Validator](https://warpcast.com/~/developers/frames) tool provided by Warpcast.
+
 ### Properties
 
 A frame property is a meta tag with a property and a content value. The properties are always prefixed with `fc:frame`.
@@ -76,7 +78,7 @@ A frame property is a meta tag with a property and a content value. The properti
 | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `fc:frame:button:$idx`        | A 256-byte string which is the label of the button at position $idx. A page may contain 0 to 4 buttons. If more than 1 button is present, the idx values must be in sequence starting from 1 (e.g., 1, 2, 3). If a broken sequence is present (e.g., 1, 2, 4), the frame is invalid. |
 | `fc:frame:post_url`           | A 256-byte string which contains a valid URL to send the Signature Packet to.                                                                                                                                                                                                        |
-| `fc:frame:button:$idx:action` | Must be `post`, `post_redirect`or `mint`. Defaults to `post` if no value was specified.                                                                                                                                                                                              |
+| `fc:frame:button:$idx:action` | Must be `post`, `post_redirect`, `mint` or `link`. Defaults to `post` if not specified.                                                                                                                                                                                              |
 | `fc:frame:button:$idx:target` | A 256-byte string which determines the target of the action.                                                                                                                                                                                                                         |
 | `fc:frame:input:text`         | Adding this property enables the text field. The content is a 32-byte label that is shown to the user (e.g., Enter a message).                                                                                                                                                       |
 | `fc:frame:image:aspect_ratio` | Must be either `1.91:1` or `1:1`. Defaults to `1.91:1`                                                                                                                                                                                                                               |
@@ -110,10 +112,14 @@ Apps may render frames any time they are showing a cast to a viewer. The followi
 
 1. Buttons must be displayed in ascending index order below the image.
 2. Buttons may be displayed in multiple rows if space is a constraint.
-3. Button with `post_redirect` action must be visually marked to users.
-4. Text inputs must be displayed above the buttons and below the image.
-5. Text input labels must be shown above or inside the text input.
-6. Apps must respect the aspect ratio set in the `fc:frame:input:text` property.
+3. Text inputs must be displayed above the buttons and below the image.
+4. Text input labels must be shown above or inside the text input.
+5. Apps must respect the aspect ratio set in the `fc:frame:image:aspect_ratio` property.
+
+If the button is a `post_redirect` or `link` action:
+
+1. It must be visually marked with a redirect symbol.
+2. Users should be warned when leaving the app for untrusted sites.
 
 If the button is a `mint` action, the following rules also apply:
 
@@ -251,11 +257,14 @@ Although it may be possible to validate an Ed25519 signature onchain, a valid si
 
 ## vNext Changelog
 
-| Date   | Change                                                                                                                                                        |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 2/8/24 | Frames can have [NFT mint buttons](https://warpcast.notion.site/Frames-Mint-action-Public-cea0d2249e3e41dbafb2e9ab23107275) and images with 1:1 aspect ratio. |
-| 2/6/24 | Frames can define [simple links to external pages](https://warpcast.notion.site/Frames-External-Links-Public-60c9900cffae4e2fb1b6aae3d4601c15?pvs=4).         |
-| 2/2/24 | Frames can [accept text input](https://warpcast.notion.site/Frames-Text-Input-Public-27c9f0d61903486d89b6d932dd0d6a22).                                       |
+| Date    | Change                                                                                                                                                        |
+| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2/8/24  | Frames can have [NFT mint buttons](https://warpcast.notion.site/Frames-Mint-action-Public-cea0d2249e3e41dbafb2e9ab23107275) and images with 1:1 aspect ratio. |
+| 2/6/24  | Frames can define [simple links to external pages](https://warpcast.notion.site/Frames-External-Links-Public-60c9900cffae4e2fb1b6aae3d4601c15?pvs=4).         |
+| 2/2/24  | Frames can [accept text input](https://warpcast.notion.site/Frames-Text-Input-Public-27c9f0d61903486d89b6d932dd0d6a22).                                       |
+| 1/30/24 | Frames [validator](https://warpcast.com/~/developers/frames) launched.                                                                                        |
+| 1/29/24 | Frames support redirecting after the post action.                                                                                                             |
+| 1/26/24 | Frames launched.                                                                                                                                              |
 
 ## vNext Proposed Changes
 
