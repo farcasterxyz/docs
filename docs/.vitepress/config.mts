@@ -146,7 +146,7 @@ export default defineConfig({
             { text: 'Overview', link: '/developers/index' },
             {
               text: 'Basics',
-              collapsed: false,
+              collapsed: true,
               items: [
                 {
                   text: 'Hello World',
@@ -154,9 +154,20 @@ export default defineConfig({
                 },
               ],
             },
+
+            {
+              text: 'Creating frames',
+              collapsed: true,
+              items: [
+                {
+                  text: 'Create a poll frame',
+                  link: '/developers/guides/frames/poll',
+                },
+              ],
+            },
             {
               text: 'Managing accounts',
-              collapsed: false,
+              collapsed: true,
               items: [
                 {
                   text: 'Create an account',
@@ -186,7 +197,7 @@ export default defineConfig({
             },
             {
               text: 'Querying data',
-              collapsed: false,
+              collapsed: true,
               items: [
                 {
                   text: 'Get account messages',
@@ -204,7 +215,7 @@ export default defineConfig({
             },
             {
               text: 'Writing data',
-              collapsed: false,
+              collapsed: true,
               items: [
                 {
                   text: 'Create messages',
@@ -226,7 +237,7 @@ export default defineConfig({
             },
             {
               text: 'Building apps',
-              collapsed: false,
+              collapsed: true,
               items: [
                 {
                   text: 'Replicate to Postgres',
@@ -237,16 +248,6 @@ export default defineConfig({
                 // { text: 'Build a farcaster client', link: '/developers/guides/applications/client' },
                 // { text: 'Read data with Farcaster Auth', link: '/developers/guides/applications/todo' },
                 // { text: 'Write data with Farcaster Auth', link: '/developers/guides/applications/todo' },
-              ],
-            },
-            {
-              text: 'Creating frames',
-              collapsed: false,
-              items: [
-                {
-                  text: 'Create a poll frame',
-                  link: '/developers/guides/frames/poll',
-                },
               ],
             },
             {
