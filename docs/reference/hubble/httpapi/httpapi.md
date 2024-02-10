@@ -53,7 +53,7 @@ Responses from the API are encoded as `application/json`, and can be parsed as n
 
 ## Timestamps
 
-Messages contain a timestamp, which is the _Farcaster Epoch Timestamp_ (and not the Unix Epoch).
+Messages contain timestamps which are seconds since the Farcaster Epoch, which began on Jan 1, 2021 00:00:00 UTC.
 
 ## Paging
 
