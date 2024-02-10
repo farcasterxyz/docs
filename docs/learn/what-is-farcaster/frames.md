@@ -16,7 +16,7 @@ A collection of the most popular utilities for creating and managing frames.
 
 ### Learning
 
-- [Specification](<(../../reference/frames/spec.md).>) - A formal specification for the Frame standard.
+- [Specification](../../reference/frames/spec.md) - A formal specification for the Frame standard.
 - [Video: Frames 101](https://youtu.be/rp9X8rAPzPM?si=PWm3vBFCTtaoE_Ua) - A beginner's guide to frames.
 - [Tutorial: Polls](../../developers/guides/frames/poll.md) - Create a simple poll with frames.
 
