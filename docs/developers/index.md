@@ -15,7 +15,6 @@ The Hello World example will walk you through the basics of creating a new accco
 
 1. If you've never used Farcaster, [start with Warpcast](../learn/intro/create-account.md).
 2. If you've used Farcaster, complete the [Hello World](/developers/guides/basics/hello-world) example.
-3. If you've used Farcaster, complete the [Hello World](/developers/guides/basics/hello-world) example.
 
 ## 3. Explore advanced topics
 
