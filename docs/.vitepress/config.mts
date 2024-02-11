@@ -118,6 +118,10 @@ export default defineConfig({
               text: 'Apps',
               link: '/learn/what-is-farcaster/apps',
             },
+            {
+              text: 'Channels',
+              link: '/learn/what-is-farcaster/channels',
+            },
           ],
         },
         {
