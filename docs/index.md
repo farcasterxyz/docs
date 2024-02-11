@@ -6,18 +6,21 @@ next:
 
 # Getting Started
 
-Farcaster is a decentralized social network built on Ethereum.
+Farcaster is a [sufficiently decentralized](https://www.varunsrinivasan.com/2022/01/11/sufficient-decentralization-for-social-networks) social network built on Ethereum.
 
-You can post messages, follow users and organize into communities called channels. The protocol is open-source and
-anyone can join or build on top of it today.
+It is a public social network similar to Twitter and Reddit. Users can create profiles, post "casts" and follow others. They own their accounts and relationships with other users and are free to move between different apps.
 
-If you're not on Farcaster, get started by [creating your account](./learn/intro/create-account.md).
+:::tip Join Farcaster
+If you're not on Farcaster, get started by [creating your account](https://www.warpcast.com/) with Warpcast.
+:::
 
 ## Learn
 
-- [What is Farcaster?](./learn/what-is-farcaster/overview.md) - An overview of the Farcaster protocol.
-- [Frames](./learn/what-is-farcaster/frames.md) - Mini-apps that run inside Farcaster.
-- [Architecture](./learn/architecture/overview.md) - A breakdown of Farcaster's onchain and offchain systems.
+If you want to learn more, get started by diving into these concepts:
+
+- [Farcaster 101](https://www.youtube.com/playlist?list=PL0eq1PLf6eUdm35v_840EGLXkVJDhxhcF) - a walkthrough of the Farcaster protocol in short, 5 minute videos.
+- [Core Concepts](./learn/what-is-farcaster/accounts.md) - learn about the building blocks of Farcaster, starting with accounts.
+- [Architecture](./learn/architecture/overview.md) - a breakdown of Farcaster's onchain and offchain systems.
 
 ## Tutorials
 
@@ -29,7 +32,8 @@ Find more how-tos, guide and tutorials like this in the [developers](./developer
 
 ## Documentation
 
-- [Frame Spec](./reference/frames/spec.md) - Specifications for writing and rendering frames in Farcaster.
+- [Farcaster Spec](https://github.com/farcasterxyz/protocol) - Specifications for Farcaster, including its contracts and hubs.
+- [Frame Spec](./reference/frames/spec.md) - Specifications for writing and rendering frames in Farcaster apps.
 - [Hubble APIs](./reference/hubble/architecture.md) - Read and write message data to Farcaster network via Hubs.
 - [Warpcast APIs](./reference/warpcast/api) - Access data in Warpcast, a client from the Farcaster team.
 - [Contract ABIs](./reference/contracts/) - Read account data and create new accounts onchain.
