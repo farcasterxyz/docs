@@ -43,4 +43,31 @@ An account can delete messages at any time by publishing a corresponding delete 
 
 ## Timestamps
 
-A message has a timestamp but it is not trustworthy because it is reported by the user. It cannot have a timestamp far in the future, but it can be backdated. The trust model is like that of a blog, where you have to trust the author's view of the time.
+Messages have timestamps which count seconds from the Farcaster Epoch, which began on `Jan 1, 2021 00:00:00 UTC`. Using a recent epoch makes timestamps and messages much smaller, which is important for the network.
+
+Timestamps are unverified and can be backdated by users, similar to a blog post. They cannot be more than 15 minutes into the future, as the network will reject such messages.
+
+## Resources
+
+### Specifications
+
+- [Messages](https://github.com/farcasterxyz/protocol/blob/main/docs/SPECIFICATION.md#2-message-specifications) - the atomic unit of change on Farcaster
+- [CRDTs](https://github.com/farcasterxyz/protocol/blob/main/docs/SPECIFICATION.md#31-crdts) - rules for keeping messages in sync on the network
+- [Storage Registry](https://github.com/farcasterxyz/protocol/blob/main/docs/SPECIFICATION.md#13-storage-registry) - contract to acquire storage units
+
+### APIs
+
+- [Get Casts](../../reference/hubble/httpapi/casts) - fetch an account's casts from a hub
+- [Get Reactions](../../reference/hubble/httpapi/reactions) - fetch an account's reactions from a hub
+- [Get Links](../../reference/hubble/httpapi/links) - fetch an account's links or follows from a hub
+- [Get UserData](../../reference/hubble/httpapi/userdata) - fetch an account's profile data from a hub
+- [Submit Message](../../reference/hubble/httpapi/message#submitmessage) - broadcast a message to the hub network
+- [Validate Message](../../reference/hubble/httpapi/message#validatemessage) - verify a message's authenticity with a hub
+- [Storage Registry](../../reference/contracts/reference/storage-registry) - Acquire or check storage units for an account
+
+### Tutorials
+
+- [Get casts](../../developers/guides/querying/fetch-casts) - Get an account's casts from a hub.
+- [Get profile](../../developers/guides/querying/fetch-profile) - Get an account's profile from a hub.
+- [Create common message types](../../developers/guides/writing/messages) - Create casts, links, reactions and userdata.
+- [Create casts with advanced features](../../developers/guides/writing/casts) - Create casts with embeds, emoji and mentions.

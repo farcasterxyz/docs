@@ -32,3 +32,20 @@ Some popular connected apps include:
 - [Farcord](https://farcord.com/)
 
 **Connected apps are not reviewed by Farcaster, use them at your own risk**
+
+## Resources
+
+### Tools
+
+- [Hubble](../../hubble/hubble.md) - a farcaster hub for reading and writing messages.
+- [Replicator](https://github.com/farcasterxyz/hub-monorepo/tree/main/apps/replicator) - a tool to sync a hub to a postgres database.
+
+### Tutorials
+
+- [Set up hubble](../..//hubble/install#install-via-script) - run a farcaster hub.
+- [Set up replicator](../../developers/guides/apps/replicate) - sync a hub to postgres for easy querying.
+- [Schema for replication](../../reference/replicator/schema) - schema for a replicator's postgres tables.
+
+### Services
+
+- [Neynar](https://neynar.com/) - infrastructure and services for building farcaster apps.

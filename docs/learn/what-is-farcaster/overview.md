@@ -11,4 +11,5 @@ Learn more by diving into these concepts:
 - [Accounts](./accounts.md) - users on Farcaster.
 - [Usernames](./usernames.md) - human-readable names for accounts.
 - [Messages](./messages.md) - public interactions between accounts.
+- [Frames](./frames.md) - mini-apps that run inside farcaster clients.
 - [Apps](./apps.md) - software that helps people create accounts, get usernames and post messages.
