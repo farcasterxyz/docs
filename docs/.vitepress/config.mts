@@ -111,12 +111,12 @@ export default defineConfig({
               link: '/learn/what-is-farcaster/messages',
             },
             {
-              text: 'Apps',
-              link: '/learn/what-is-farcaster/apps',
-            },
-            {
               text: 'Frames',
               link: '/learn/what-is-farcaster/frames',
+            },
+            {
+              text: 'Apps',
+              link: '/learn/what-is-farcaster/apps',
             },
           ],
         },
