@@ -46,7 +46,7 @@ export default defineConfig({
     nav: [
       {
         text: 'Learn',
-        link: '/learn/what-is-farcaster/overview',
+        link: '/',
         activeMatch: '/learn/',
       },
       {
@@ -85,19 +85,11 @@ export default defineConfig({
               text: 'Getting Started',
               link: '/index',
             },
-            {
-              text: 'Create Your Account',
-              link: '/learn/intro/create-account',
-            },
           ],
         },
         {
-          text: 'What is Farcaster?',
+          text: 'Core Concepts',
           items: [
-            {
-              text: 'Overview',
-              link: '/learn/what-is-farcaster/overview',
-            },
             {
               text: 'Accounts',
               link: '/learn/what-is-farcaster/accounts',
@@ -115,12 +107,12 @@ export default defineConfig({
               link: '/learn/what-is-farcaster/frames',
             },
             {
-              text: 'Apps',
-              link: '/learn/what-is-farcaster/apps',
-            },
-            {
               text: 'Channels',
               link: '/learn/what-is-farcaster/channels',
+            },
+            {
+              text: 'Apps',
+              link: '/learn/what-is-farcaster/apps',
             },
           ],
         },
