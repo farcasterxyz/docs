@@ -136,10 +136,15 @@ export default defineConfig({
       ],
       '/developers/': [
         {
-          text: 'Guides',
-          collapsed: false,
+          text: 'Introduction',
           items: [
             { text: 'Overview', link: '/developers/index' },
+            { text: 'Resources', link: '/developers/resources' },
+          ],
+        },
+        {
+          text: 'Guides',
+          items: [
             {
               text: 'Basics',
               collapsed: true,
@@ -512,15 +517,18 @@ export default defineConfig({
                 },
               ],
             },
+            {
+              text: 'Replicator Schema', 
+              link: '/reference/replicator/schema' 
+            },
           ],
         },
-        {
-          text: 'Hubble Replicator',
-          items: [
-            { text: 'Schema', link: '/reference/replicator/schema' },
+        // {
+          // text: 'Hubble Replicator',
+          // items: [
             // { text: 'Index', link: '/reference/replicator/TODO' },
-          ],
-        },
+          // ],
+        // },
 
         {
           text: 'Contracts',
