@@ -1,25 +1,29 @@
 # Getting Started
 
-If you're new to building on Farcaster follow this guide to get up to speed quickly.
+## Create frames
 
-## 1. Set up a Hub
+Learn how to build frames, which are mini-apps that run inside a Farcaster feed.
 
-Getting a hub set up lets you start querying data. Roughly speaking, a hub is to Farcaster what a node is to Ethereum.
+- [Overview](/learn/what-is-farcaster/frames) - Understand what a frame is and how it works
+- [Frame Speedrun](https://www.youtube.com/watch?v=JAIr8kyBxxU&list=PL0eq1PLf6eUecQKFj0pUFfO0fwm0k4zE4&index=2) - create your first frame in 5 minutes
+- [Specification](/reference/frames/spec) - A formal specification for the Frame standard
 
-1. Choose between [self-hosting](/hubble/install) or using a [hosting service](/hubble/hubble#hosted-instances).
-2. Make your first [API call](/developers/guides/querying/setting-up) to fetch data.
+## Sign in with Farcaster
 
-## 2. Hello World
+Make it easy for users to sign in to your app with their Farcaster account.
 
-The Hello World example will walk you through the basics of creating a new acccount and writing your first message.
+- [Examples](/auth-kit/examples.md) - see Sign in with Farcaster (SIWF) in action
+- [AuthKit](/auth-kit/installation.md) - a React toolkit to integrate SIWF
+- [FIP-11](https://github.com/farcasterxyz/protocol/discussions/110) - the formal standard for SWIF
 
-1. If you've never used Farcaster, [start with Warpcast](https://www.warpcast.com/).
-2. If you've used Farcaster, complete the [Hello World](/developers/guides/basics/hello-world) example.
+## Analyze Farcaster data
 
-## 3. Explore advanced topics
+Sync the Farcaster network to a local machine so you can run queries on the data.
 
-Once you understand the basics, you can explore the advanced tutorials:
+- [Run a hub](/hubble/install.md) - get realtime access to Farcaster data on your machine.
+- [Write your first hub query](./guides/querying/fetch-casts.md) - get an account's casts from a hub.
+- [Set up the replicator](./guides/apps/replicate.md) - sync a hub to a postgres database to run advanced queries.
 
-- [Create accounts efficiently with a bundler](guides/accounts/create-account.md)
-- [Create casts with mentions and embeds](guides/writing/casts.md)
-- [Changing your recovery address](guides/accounts/change-recovery.md)
+## Write to Farcaster
+
+- [Hello World](/developers/guides/basics/hello-world) - programatically create an account and publish a cast.

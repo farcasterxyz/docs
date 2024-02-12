@@ -7,4 +7,4 @@ The reference sections documents API's, standards and protocols used commonly us
 - [Hubble](/reference/hubble/architecture) - A design overview and API reference for Farcaster Hubs.
 - [Replicator](/reference/replicator/schema) - An overview and schema for the replicator.
 - [Contracts](/reference/contracts/index) - A design overview and ABI reference for Farcaster contracts.
-- [FName Registry Server](/reference/fname/api) - An overview and API reference for the Farcaster Name Server.
+- [FName Registry](/reference/fname/api) - An overview and API reference for the Farcaster Name Server.

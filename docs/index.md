@@ -34,11 +34,7 @@ Find more how-tos, guide and tutorials like this in the [developers](./developer
 
 - [Farcaster Spec](https://github.com/farcasterxyz/protocol) - Specifications for Farcaster, including its contracts and hubs.
 - [Frame Spec](./reference/frames/spec.md) - Specifications for writing and rendering frames in Farcaster apps.
-- [Hubble APIs](./reference/hubble/architecture.md) - Read and write message data to Farcaster network via Hubs.
-- [Warpcast APIs](./reference/warpcast/api) - Access data in Warpcast, a client from the Farcaster team.
-- [Contract ABIs](./reference/contracts/) - Read account data and create new accounts onchain.
-
-Find more documentation for core systems in the [reference](./reference/) section.
+- [APIs](./reference/index) - Docs for API's and ABI's for onchain and offchain systems.
 
 ## Contributing
 

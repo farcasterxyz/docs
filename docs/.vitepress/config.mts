@@ -512,15 +512,18 @@ export default defineConfig({
                 },
               ],
             },
+            {
+              text: 'Replicator Schema', 
+              link: '/reference/replicator/schema' 
+            },
           ],
         },
-        {
-          text: 'Hubble Replicator',
-          items: [
-            { text: 'Schema', link: '/reference/replicator/schema' },
+        // {
+          // text: 'Hubble Replicator',
+          // items: [
             // { text: 'Index', link: '/reference/replicator/TODO' },
-          ],
-        },
+          // ],
+        // },
 
         {
           text: 'Contracts',
