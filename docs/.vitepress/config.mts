@@ -136,10 +136,15 @@ export default defineConfig({
       ],
       '/developers/': [
         {
-          text: 'Guides',
-          collapsed: false,
+          text: 'Introduction',
           items: [
             { text: 'Overview', link: '/developers/index' },
+            { text: 'Resources', link: '/developers/resources' },
+          ],
+        },
+        {
+          text: 'Guides',
+          items: [
             {
               text: 'Basics',
               collapsed: true,
