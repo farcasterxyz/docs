@@ -1,6 +1,6 @@
 # Generate a chronological feed for a user
 
-This example will showcase how to read data from the farcater network using the
+This example will showcase how to read data from the Farcaster network using the
 official [hub-nodejs](https://github.com/farcasterxyz/hub-monorepo/tree/main/packages/hub-nodejs) in typescript.
 
 We will create a simple feed of casts from a list of FIDs and display them in reverse chronological order.
