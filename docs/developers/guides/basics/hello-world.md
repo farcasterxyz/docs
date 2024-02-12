@@ -30,7 +30,10 @@ import {
   keyGatewayABI,
   ID_REGISTRY_ADDRESS,
   idRegistryABI,
+  FarcasterNetwork,
 } from '@farcaster/hub-web';
+import { zeroAddress } from 'viem';
+import { optimism } from 'viem/chains';
 
 /**
  * Populate the following constants with your own values
