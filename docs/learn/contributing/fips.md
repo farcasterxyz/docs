@@ -26,5 +26,6 @@ the [discussions board](https://github.com/farcasterxyz/protocol/discussions/cat
 | 8   | [Verifications for Contract Wallets](https://github.com/farcasterxyz/protocol/discussions/109)          | @horsefacts, @sanjay, @eulerlagrange.eth |
 | 9   | [Globally Unique Verifications](https://github.com/farcasterxyz/protocol/discussions/114)               | @sanjay, @v                              |
 | 10  | [Gateways](https://github.com/farcasterxyz/protocol/discussions/133)                                    | @horsefacts, @sanjay, @v                 |
+| 11  | [Sign in with Farcaster](https://github.com/farcasterxyz/protocol/discussions/110)                      | @deodad, @horsefacts, @sanjay, @v        |
 | 12  | [Pricing schedule for flexible storage](https://github.com/farcasterxyz/protocol/discussions/126)       | @v                                       |
 | 13  | [Canonical serialization for hashing messages](https://github.com/farcasterxyz/protocol/discussions/87) | @sanjay, @adityapk                       |
