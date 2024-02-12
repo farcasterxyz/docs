@@ -65,7 +65,6 @@ export default defineConfig({
         link: '/reference/index',
         activeMatch: '/reference/',
       },
-      { text: 'Website', link: 'http://www.farcaster.xyz' },
     ],
     search: {
       provider: 'algolia',
