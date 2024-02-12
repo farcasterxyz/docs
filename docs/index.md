@@ -1,7 +1,7 @@
 ---
 next:
   text: 'Create Your Account'
-  link: '/learn/intro/create-account'
+  link: '/learn/what-is-farcaster/accounts'
 ---
 
 # Getting Started
