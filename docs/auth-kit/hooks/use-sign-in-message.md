@@ -5,7 +5,7 @@ Hook for reading the Sign in With Farcaster message and signature used to authen
 If you're providing the message and signature to a backend API, you may want to use this hook.
 
 ```tsx
-import { useUserData } from '@farcaster/auth-kit';
+import { useSignInMessage } from '@farcaster/auth-kit';
 
 function App() {
   const { message, signature } = useSignInMessage();
