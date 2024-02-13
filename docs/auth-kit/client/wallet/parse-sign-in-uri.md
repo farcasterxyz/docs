@@ -7,7 +7,7 @@ Returns the parsed parameters. Your app should use these to construct a Sign In 
 Returns an error if URI is invalid.
 
 ```ts
-const params = authClient.parseSignInURI({
+const params = walletClient.parseSignInURI({
   uri: 'farcaster://connect?channelToken=76be6229-bdf7-4ad2-930a-540fb2de1e08&nonce=ESsxs6MaFio7OvqWb&siweUri=https%3A%2F%2Fexample.com%2Flogin&domain=example.com',
 });
 ```
