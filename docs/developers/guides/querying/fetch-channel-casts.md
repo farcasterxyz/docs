@@ -8,7 +8,7 @@
 
 To fetch casts from a channel, Hubble provides a `getCastsByParent` api call.
 
-For example, to query all casts to the etehreurm channel:
+For example, to query all casts to the ethereum channel:
 
 ```bash
 $ curl http://localhost:2281/v1/castsByParent\?fid\=1\&url\="https://ethereum.org" | jq " .messages | limit(10;.[]) | .data.castAddBody.text"
