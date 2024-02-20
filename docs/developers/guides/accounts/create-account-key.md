@@ -14,7 +14,7 @@ The owner of the account can revoke an account key at any time. To add an accoun
 ### Requirements
 
 - An ETH wallet on OP mainnet, with some ETH
-- An ETH RPC URL for OP Mainnet (e.g. via [Alchemy](https://www.alchemy.com/) or [Infura](https://www.infura.io/)).
+- An ETH RPC URL for OP Mainnet (e.g. via [Alchemy](https://www.alchemy.com/),[Infura](https://www.infura.io/) or [QuickNode](https://www.quicknode.com/)).
 
 ### 1. Set up clients and account key
 
