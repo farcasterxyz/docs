@@ -5,8 +5,7 @@ Accounts can configure a recovery address to protect against the loss of the cus
 ### Requirements
 
 - An ETH wallet that has an fid on OP mainnet, with some ETH for gas costs
-- An ETH RPC URL for OP Mainnet (e.g. via [Alchemy](https://www.alchemy.com/)
-  or [Infura](https://www.infura.io/)).
+- An ETH RPC URL for OP Mainnet (e.g. via [Alchemy](https://www.alchemy.com/),[Infura](https://www.infura.io/) or [QuickNode](https://www.quicknode.com/)).
 
 ### Change Address
 

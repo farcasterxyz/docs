@@ -3,8 +3,7 @@
 ::: info Pre-requisites
 
 - An Ethereum wallet on Optimism mainnet, with sufficient ETH for gas costs
-- An ethereum provider URL for OP Mainnet (e.g. via [Alchemy](https://www.alchemy.com/)
-  or [Infura](https://www.infura.io/)).
+- An ethereum provider URL for OP Mainnet ((e.g. via [Alchemy](https://www.alchemy.com/),[Infura](https://www.infura.io/) or [QuickNode](https://www.quicknode.com/)).
 
 :::
 

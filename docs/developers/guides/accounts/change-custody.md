@@ -7,8 +7,7 @@ A user may want to change this address for security reasons or to transfer owner
 ### Requirements
 
 - An ETH wallet that owns the account on OP mainnet, with some ETH
-- An ethereum provider URL for OP Mainnet (e.g. via [Alchemy](https://www.alchemy.com/)
-  or [Infura](https://www.infura.io/)).
+- An ethereum provider URL for OP Mainnet (e.g. via [Alchemy](https://www.alchemy.com/),[Infura](https://www.infura.io/) or [QuickNode](https://www.quicknode.com/)).
 
 ### Change Custody Address
 
