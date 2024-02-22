@@ -21,6 +21,7 @@ The frame server:
 - Must return a valid frame in the HTML `<head>` section.
 - Should return a valid HTML `<body>`, in case the user clicks through to the frame in a browser.
 - Should not include dynamic content in the initial frame, since it is cached by Farcaster clients.
+- Must not include an `fc:frame:state` tag.
 
 ### Response Frames
 
@@ -82,6 +83,7 @@ A frame property is a meta tag with a property and a content value. The properti
 | `fc:frame:button:$idx:target` | A 256-byte string which determines the target of the action.                                                                                                                                                                                                                         |
 | `fc:frame:input:text`         | Adding this property enables the text field. The content is a 32-byte label that is shown to the user (e.g., Enter a message).                                                                                                                                                       |
 | `fc:frame:image:aspect_ratio` | Must be either `1.91:1` or `1:1`. Defaults to `1.91:1`                                                                                                                                                                                                                               |
+| `fc:frame:state`              | A string containing serialized state (e.g. JSON) passed to the frame server. May be up to 4096 bytes.                                                                                                                                                                                |
 
 ### Images
 
@@ -181,6 +183,7 @@ message FrameActionBody {
   bytes button_index = 2; // The index of the button that was clicked
   CastId cast_id = 3;     // The cast which contained the frame URĽ
   bytes input_text = 4;   // The text from the user input (if any)
+  bytes state = 5;        // Serialized frame state value
 }
 
 // MessageType and MessageData are extended to support the FrameAction
@@ -205,6 +208,8 @@ A FrameActionBody in a message `m` is valid only if it passes these validation
 3. `m.data.body.type` must be a valid `UserDataType`
 4. `m.data.body.url`  must be <= 256 bytes
 5. `m.data.body.button_index` index must be ≥1 and ≤4.
+6. `m.data.body.input_text`  must be <= 256 bytes
+7. `m.data.body.state`  must be <= 4096 bytes
 
 ### Frame Signature Packet
 
@@ -230,6 +235,7 @@ If you are unsure, always read the signed message by sending it into the `valida
     "network": 1,
     "buttonIndex": 2,
     "inputText": "hello world", // "" if requested and no input, undefined if input not requested
+    "state": "{\"counter\":1}",
     "castId": {
       "fid": 226,
       "hash": "0xa48dd46161d8e57725f5e26e34ec19c13ff7f3b9"
