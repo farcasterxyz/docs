@@ -93,6 +93,11 @@ There are a few rules for serving images in `fc:frame:image` tags:
 
 Clients may resize larger images or crop those that do not fit in their aspect ratio. SVG images are not because they can contain scripts and extra work must be done by clients to sanitize them.
 
+Frame servers can use cache headers to refresh images and offer more dynamic first frame experiences:
+
+- Frame servers can use the `max-age` directive in the HTTP `Cache-Control` header to ensure images in the initial frame refresh automatically. A lower `max-age` ensures images update regularly without user interactions.
+- App developers should respect cache headers set by the original frame image, and their image proxy implementations should not interfere with durations.
+
 ## Displaying frames in a feed
 
 Farcaster apps are responsible for rendering frames to users and proxying their interactions back to the frame server on their behalf.
