@@ -223,3 +223,4 @@ A user action on a frame
 | button_index | uint32            |       | The button that was pressed (indexed from 1)          |
 | cast_id      | [CastId](#CastId) |       | The cast id that hosted the frame                     |
 | input_text   | bytes             |       | Any text the user input as part of the action         |
+| state        | bytes             |       | Serialized state passed from frame to server          |
