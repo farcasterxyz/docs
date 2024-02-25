@@ -21,7 +21,7 @@ The frame server:
 - Must return a valid frame in the HTML `<head>` section.
 - Should return a valid HTML `<body>`, in case the user clicks through to the frame in a browser.
 - Should not include dynamic content in the initial frame, since it is cached by Farcaster clients.
-- Must not include an `fc:frame:state` tag.
+- Should not include an `fc:frame:state` tag.
 
 ### Response Frames
 
@@ -235,7 +235,7 @@ If you are unsure, always read the signed message by sending it into the `valida
     "network": 1,
     "buttonIndex": 2,
     "inputText": "hello world", // "" if requested and no input, undefined if input not requested
-    "state": "{\"counter\":1}",
+    "state": "%7B%22counter%22%3A1%7D",
     "castId": {
       "fid": 226,
       "hash": "0xa48dd46161d8e57725f5e26e34ec19c13ff7f3b9"
