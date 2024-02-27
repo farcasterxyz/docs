@@ -3,7 +3,7 @@
 Submit a Sign In With Farcaster message, user signature, and profile data to the Connect relay server.
 
 ```ts
-const params = await authClient.authenticate({
+const params = await walletClient.authenticate({
   message: 'example.com wants you to sign in with your Ethereum account…',
   signature: '0x9335c3055d47780411a3fdabad293c68c84ea350a11794cdc811fd5…',
   fid: 1,

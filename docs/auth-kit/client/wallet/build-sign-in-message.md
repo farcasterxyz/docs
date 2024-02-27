@@ -7,7 +7,7 @@ Adds required Sign In With Farcaster message attributes to any provided paramete
 Returns a `SiweMessage` object and the message as a string.
 
 ```ts
-const { siweMessage, message } = authClient.buildSignInMessage({
+const { siweMessage, message } = walletClient.buildSignInMessage({
   address: '0x63C378DDC446DFf1d831B9B96F7d338FE6bd4231',
   fid: 1,
   uri: 'https://example.com/login',

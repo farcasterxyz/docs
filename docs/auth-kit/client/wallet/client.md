@@ -9,7 +9,7 @@ import { createWalletClient, viemConnecter } from '@farcaster/auth-client';
 
 const walletClient = createWalletClient({
   relay: 'https://relay.farcaster.xyz',
-  ethereum: viem(),
+  ethereum: viemConnecter(),
 });
 ```
 
