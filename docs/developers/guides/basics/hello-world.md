@@ -17,7 +17,7 @@ repository [here](https://github.com/farcasterxyz/hub-monorepo/tree/main/package
 
 - Write access to a hub (either your own, or a 3rd party hub)
 - An ETH wallet with about ~10$ USD of ETH bridged to [Optimism](https://www.optimism.io/)
-- An ETH RPC URL for OP Mainnet (e.g. via [Alchemy](https://www.alchemy.com/),[Infura](https://www.infura.io/) or [QuickNode](https://www.quicknode.com/)).
+- An ETH RPC URL for OP Mainnet (e.g. via [Alchemy](https://www.alchemy.com/), [Infura](https://www.infura.io/) or [QuickNode](https://www.quicknode.com/)).
 
 ## 1. Set up constants
 
