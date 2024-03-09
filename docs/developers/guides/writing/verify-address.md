@@ -4,7 +4,7 @@
 
 - Write access to a hubble instance
 - Private key of an account key registered to an fid
-- An ethereum provider URL for OP Mainnet (e.g. via [Alchemy](https://www.alchemy.com/),[Infura](https://www.infura.io/) or [QuickNode](https://www.quicknode.com/)).
+- An ethereum provider URL for OP Mainnet (e.g. via [Alchemy](https://www.alchemy.com/), [Infura](https://www.infura.io/) or [QuickNode](https://www.quicknode.com/)).
 
 :::
 
