@@ -16,7 +16,7 @@ const App = () => {
   return (
     <AuthKitProvider config={config}>
       {/*   Your App   */}
-    </SignInProvider>
+    </AuthKitProvider>
   );
 };
 ```
