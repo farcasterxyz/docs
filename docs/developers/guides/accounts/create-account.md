@@ -28,12 +28,13 @@ import {
   ID_GATEWAY_ADDRESS,
   ID_REGISTRY_ADDRESS,
   ViemLocalEip712Signer,
-  ViemEip712Signer,
   idGatewayABI,
   idRegistryABI,
   NobleEd25519Signer,
   BUNDLER_ADDRESS,
   bundlerABI,
+  KEY_GATEWAY_ADDRESS,
+  keyGatewayABI,
 } from '@farcaster/hub-nodejs';
 import { bytesToHex, createPublicClient, createWalletClient, http } from 'viem';
 import { privateKeyToAccount } from 'viem/accounts';
@@ -52,17 +53,13 @@ const walletClient = createWalletClient({
   transport: http(),
 });
 
-const app = privateKeyToAccount(APP_PK);
-const accountKey = new ViemLocalEip712Signer(app);
+const app = privateKeyToAccount(APP_PRIVATE_KEY);
+const appAccountKey = new ViemLocalEip712Signer(app as any);
 
-const alice = privateKeyToAccount(ALICE_PK);
-const aliceAccountKey = new ViemLocalEip712Signer(alice);
+const alice = privateKeyToAccount(ALICE_PRIVATE_KEY);
+const aliceAccountKey = new ViemLocalEip712Signer(alice as any);
 
-const getDeadline = () => {
-  const now = Math.floor(Date.now() / 1000);
-  const oneHour = 60 * 60;
-  return BigInt(now + oneHour);
-};
+const deadline = BigInt(Math.floor(Date.now() / 1000) + 3600); // set the signatures' deadline to 1 hour from now
 
 const WARPCAST_RECOVERY_PROXY = '0x00000000FcB080a4D6c39a9354dA9EB9bC104cd7';
 ```
@@ -109,12 +106,19 @@ let nonce = await publicClient.readContract({
   args: [alice.address],
 });
 
-const registerSignature = await aliceAccountKey.signRegister({
-  to: alice.address,
+const registerSignatureResult = await aliceAccountKey.signRegister({
+  to: alice.address as `0x${string}`,
   recovery: WARPCAST_RECOVERY_PROXY,
   nonce,
   deadline,
 });
+
+let registerSignature;
+if (registerSignatureResult.isOk()) {
+  registerSignature = registerSignatureResult.value;
+} else {
+  throw new Error('Failed to generate register signature');
+}
 ```
 
 ### 4. Create a new account keypair
@@ -138,13 +142,12 @@ which generates and signs the Signed Key Request.
 if (accountKeyResult.isOk()) {
   accountPubKey = accountKeyResult.value;
 
-  const signedKeyRequestMetadata = await accountKey.getSignedKeyRequestMetadata(
-    {
+  const signedKeyRequestMetadata =
+    await appAccountKey.getSignedKeyRequestMetadata({
       requestFid: APP_FID,
       key: accountPubKey,
       deadline,
-    }
-  );
+    });
 }
 ```
 
@@ -163,8 +166,8 @@ if (signedKeyRequestMetadata.isOk()) {
     args: [alice.address],
   });
 
-  const addSignature = await aliceAccountKey.signAdd({
-    owner: alice.address,
+  const addSignatureResult = await aliceAccountKey.signAdd({
+    owner: alice.address as `0x${string}`,
     keyType: 1,
     key: accountPubKey,
     metadataType: 1,
@@ -180,7 +183,9 @@ if (signedKeyRequestMetadata.isOk()) {
 Call the Key Gateway contract and provide the user's signature to add the key onchain.
 
 ```ts
-if (aliceSignature.isOk()) {
+if (addSignatureResult.isOk()) {
+  const addSignature = addSignatureResult.value;
+
   const price = await publicClient.readContract({
     address: BUNDLER_ADDRESS,
     abi: bundlerABI,
@@ -197,7 +202,7 @@ if (aliceSignature.isOk()) {
       {
         to: alice.address,
         recovery: WARPCAST_RECOVERY_PROXY,
-        sig: bytesTohex(registerSignature),
+        sig: bytesToHex(registerSignature),
         deadline,
       },
       [
@@ -206,7 +211,7 @@ if (aliceSignature.isOk()) {
           key: bytesToHex(accountPubKey),
           metadataType: 1,
           metadata: metadata,
-          sig: bytesToHex(addSignature),
+          sig: bytesToHex(addSignature.value),
           deadline,
         },
       ],
@@ -230,12 +235,13 @@ import {
   ID_GATEWAY_ADDRESS,
   ID_REGISTRY_ADDRESS,
   ViemLocalEip712Signer,
-  ViemEip712Signer,
   idGatewayABI,
   idRegistryABI,
   NobleEd25519Signer,
   BUNDLER_ADDRESS,
   bundlerABI,
+  KEY_GATEWAY_ADDRESS,
+  keyGatewayABI,
 } from '@farcaster/hub-nodejs';
 import { bytesToHex, createPublicClient, createWalletClient, http } from 'viem';
 import { privateKeyToAccount } from 'viem/accounts';
@@ -246,25 +252,23 @@ const ALICE_PRIVATE_KEY = '0x00';
 
 const publicClient = createPublicClient({
   chain: optimism,
-  transport: http(),
+  transport: http('http://localhost:8545'),
 });
 
 const walletClient = createWalletClient({
   chain: optimism,
-  transport: http(),
+  transport: http('http://localhost:8545'),
 });
 
-const app = privateKeyToAccount(APP_PK);
-const accountKey = new ViemLocalEip712Signer(app);
+const app = privateKeyToAccount(APP_PRIVATE_KEY);
+const appAccountKey = new ViemLocalEip712Signer(app as any);
 
-const alice = privateKeyToAccount(ALICE_PK);
-const aliceAccountKey = new ViemLocalEip712Signer(alice);
+const alice = privateKeyToAccount(ALICE_PRIVATE_KEY);
+const aliceAccountKey = new ViemLocalEip712Signer(alice as any);
 
-const getDeadline = () => {
-  const now = Math.floor(Date.now() / 1000);
-  const oneHour = 60 * 60;
-  return BigInt(now + oneHour);
-};
+const deadline = BigInt(Math.floor(Date.now() / 1000) + 3600); // set the signatures' deadline to 1 hour from now
+
+const WARPCAST_RECOVERY_PROXY = '0x00000000FcB080a4D6c39a9354dA9EB9bC104cd7';
 
 /*******************************************************************************
  * IdGateway - register - Register an app FID.
@@ -315,12 +319,19 @@ let nonce = await publicClient.readContract({
   args: [alice.address],
 });
 
-const registerSignature = await aliceAccountKey.signRegister({
-  to: alice.address,
+const registerSignatureResult = await aliceAccountKey.signRegister({
+  to: alice.address as `0x${string}`,
   recovery: WARPCAST_RECOVERY_PROXY,
   nonce,
   deadline,
 });
+
+let registerSignature;
+if (registerSignatureResult.isOk()) {
+  registerSignature = registerSignatureResult.value;
+} else {
+  throw new Error('Failed to generate register signature');
+}
 
 /*******************************************************************************
  * Collect Add signature from alice.
@@ -340,13 +351,12 @@ if (accountKeyResult.isOk()) {
   /**
    *  2. Generate a Signed Key Request from the app account.
    */
-  const signedKeyRequestMetadata = await accountKey.getSignedKeyRequestMetadata(
-    {
+  const signedKeyRequestMetadata =
+    await appAccountKey.getSignedKeyRequestMetadata({
       requestFid: APP_FID,
       key: accountPubKey,
       deadline,
-    }
-  );
+    });
 
   if (signedKeyRequestMetadata.isOk()) {
     const metadata = bytesToHex(signedKeyRequestMetadata.value);
@@ -363,8 +373,8 @@ if (accountKeyResult.isOk()) {
     /**
      *  Then, collect her `Add` signature.
      */
-    const addSignature = await aliceAccountKey.signAdd({
-      owner: alice.address,
+    const addSignatureResult = await aliceAccountKey.signAdd({
+      owner: alice.address as `0x${string}`,
       keyType: 1,
       key: accountPubKey,
       metadataType: 1,
@@ -373,7 +383,8 @@ if (accountKeyResult.isOk()) {
       deadline,
     });
 
-    if (aliceSignature.isOk()) {
+    if (addSignatureResult.isOk()) {
+      const addSignature = addSignatureResult.value;
       /**
        *  Read the current registration price.
        */
@@ -396,7 +407,7 @@ if (accountKeyResult.isOk()) {
           {
             to: alice.address,
             recovery: WARPCAST_RECOVERY_PROXY,
-            sig: bytesTohex(registerSignature),
+            sig: bytesToHex(registerSignature),
             deadline,
           },
           [
