@@ -404,7 +404,7 @@ export default defineConfig({
         {
           text: 'Warpcast',
           items: [
-            { text: 'Channel APIs', link: '/reference/warpcast/api' },
+            { text: 'APIs', link: '/reference/warpcast/api' },
             { text: 'Cast Intents', link: '/reference/warpcast/cast-composer-intents' },
             { text: 'Embeds', link: '/reference/warpcast/embeds' },
           ],
