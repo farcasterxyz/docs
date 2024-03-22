@@ -429,3 +429,4 @@ The following ideas are being explored actively as extensions to the frame speci
 - A refresh period, to bust the cache for the original frame url.
 - An authentication system, to let users log into other applications via frames.
 - A JSON response type, to allow for more flexibility in frame responses.
+- [A light-weight way for frames to surface application errors to users](https://warpcast.notion.site/Frames-Errors-ddc965b097d44d9ea03ddf98498597c6?pvs=74)
