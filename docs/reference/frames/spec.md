@@ -75,15 +75,138 @@ A frame property is a meta tag with a property and a content value. The properti
 
 ### Optional Properties
 
-| Key                           | Description                                                                                                                                                                                                                                                                          |
-| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `fc:frame:button:$idx`        | A 256-byte string which is the label of the button at position $idx. A page may contain 0 to 4 buttons. If more than 1 button is present, the idx values must be in sequence starting from 1 (e.g., 1, 2, 3). If a broken sequence is present (e.g., 1, 2, 4), the frame is invalid. |
-| `fc:frame:post_url`           | A 256-byte string which contains a valid URL to send the Signature Packet to.                                                                                                                                                                                                        |
-| `fc:frame:button:$idx:action` | Must be `post`, `post_redirect`, `mint` or `link`. Defaults to `post` if not specified.                                                                                                                                                                                              |
-| `fc:frame:button:$idx:target` | A 256-byte string which determines the target of the action.                                                                                                                                                                                                                         |
-| `fc:frame:input:text`         | Adding this property enables the text field. The content is a 32-byte label that is shown to the user (e.g., Enter a message).                                                                                                                                                       |
-| `fc:frame:image:aspect_ratio` | Must be either `1.91:1` or `1:1`. Defaults to `1.91:1`                                                                                                                                                                                                                               |
-| `fc:frame:state`              | A string containing serialized state (e.g. JSON) passed to the frame server. May be up to 4096 bytes.                                                                                                                                                                                |
+| Key                             | Description                                                                                                                                                                                                                                                                          |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `fc:frame:post_url`             | A 256-byte string which contains a valid URL to send the Signature Packet to.                                                                                                                                                                                                        |
+| `fc:frame:button:$idx`          | A 256-byte string which is the label of the button at position $idx. A page may contain 0 to 4 buttons. If more than 1 button is present, the idx values must be in sequence starting from 1 (e.g., 1, 2, 3). If a broken sequence is present (e.g., 1, 2, 4), the frame is invalid. |
+| `fc:frame:button:$idx:action`   | Must be `post`, `post_redirect`, `link`, `mint` or `tx`. Defaults to `post` if not specified. See [Button Actions](#button-actions) for details on each action.                                                                                                                      |
+| `fc:frame:button:$idx:target`   | A 256-byte string which determines the target of the action.                                                                                                                                                                                                                         |
+| `fc:frame:button:$idx:post_url` | A 256-byte string that defines a button-specific URL to send the Signature Packet to. If set, this overrides `fc:frame:post_url`.                                                                                                                                                    |
+| `fc:frame:input:text`           | Adding this property enables the text field. The content is a 32-byte label that is shown to the user (e.g., Enter a message).                                                                                                                                                       |
+| `fc:frame:image:aspect_ratio`   | Must be either `1.91:1` or `1:1`. Defaults to `1.91:1`                                                                                                                                                                                                                               |
+| `fc:frame:state`                | A string containing serialized state (e.g. JSON) passed to the frame server. May be up to 4096 bytes.                                                                                                                                                                                |
+
+## Button Actions
+
+### `post`
+
+```html
+<meta name="fc:frame:post_url" content="https://frame.example.com/start" />
+<meta name="fc:frame:button:1" content="Start" />
+```
+
+The `post` action sends an HTTP POST request to the frame or button `post_url`. This is the default button type.
+
+The frame server receives a Signature Packet in the POST body, which includes information about which button was clicked, text input, and the cast context. The frame server must respond with a 200 OK and another frame.
+
+### `post_redirect`
+
+```html
+<meta name="fc:frame:post_url" content="https://frame.example.com/redirect" />
+<meta name="fc:frame:button:1" content="Redirect" />
+<meta name="fc:frame:button:1:action" content="post_redirect" />
+```
+
+The `post_redirect` action sends an HTTP POST request to the frame or button `post_url`. You can use this action to redirect to a URL based on frame state or user input.
+
+The frame server receives a Signature Packet in the POST body. The frame server must respond with a 302 Found and Location header that starts with `http://` or `https://`.
+
+### `link`
+
+```html
+<meta name="fc:frame:button:1" content="Farcaster Docs" />
+<meta name="fc:frame:button:1:action" content="link" />
+<meta name="fc:frame:button:1:target" content="https://docs.farcaster.xyz" />
+```
+
+The `link` action redirects the user to an external URL. You can use this action to redirect to a URL without handling a POST request to the frame server.
+
+Clients do not make a request to the frame server for `link` actions. Instead, they redirect the user to the `target` URL.
+
+### `mint`
+
+```html
+<meta name="fc:frame:button:1" content="Mint" />
+<meta name="fc:frame:button:1:action" content="mint" />
+<meta
+  name="fc:frame:button:1:target"
+  content="eip155:8453:0xf5a3b6dee033ae5025e4332695931cadeb7f4d2b:1"
+/>
+```
+
+The `mint` action allows the user to mint an NFT. Clients that support relaying or initiating onchain transactions may enhance the mint button by relaying a transaction or interacting with the user's walletl. Clients that do not fall back to linking to an external URL.
+
+The `target` property must be a valid `CAIP-10` address, plus an optional token ID.
+
+### `tx`
+
+```html
+<meta property="fc:frame:button:1" content="Transaction" />
+<meta property="fc:frame:button:1:action" content="tx" />
+<meta
+  property="fc:frame:button:1:target"
+  content="https://frame.example.com/get_tx_data"
+/>
+<meta
+  property="fc:frame:button:1:post_url"
+  content="https://frame.example.com/tx_callback"
+/>
+```
+
+The `tx` action allows a frame to send a transaction request to the user's connected wallet. Unlike other action types, `tx` actions have several steps.
+
+First, the client makes a POST request to the `target` URL to fetch data about the transaction. The frame server receives a Signature Packet in the POST body, including the address of the connected wallet. The frame server must respond with a 200 OK and a JSON response describing the transaction:
+
+```json
+{
+  chainId: "eip155:10",
+  method: "eth_sendTransaction",
+  params: {
+    abi: [...], // JSON ABI of the function selector and any errors
+    to: "0x00000000fcCe7f938e7aE6D3c335bD6a1a7c593D",
+    data: "0x783a112b0000000000000000000000000000000000000000000000000000000000000e250000000000000000000000000000000000000000000000000000000000000001",
+    value: "984316556204476",
+  },
+};
+```
+
+The client forwards this transaction data to the user's wallet. If the user signs the transaction, the client makes a POST request to the `post_url` with a Signature Packet that includes the transaction hash. The frame server must respond with a 200 OK and another frame. The frame server must monitor the transaction hash to determine if the transaction succeeds, reverts, or times out.
+
+**Transaction Data Response Type**
+
+A transaction data response must match the following `TransactionTargetResponse` type with:
+
+- `chainId`: A CAIP-2 chain ID to identify the tx network (e.g. Ethereum mainnet)
+- `method`: A method ID to identify the type of tx request. (e.g. `"eth_sendTransaction"`)
+- `attribution`: Optional. Return `false` to omit the [calldata attribution suffix](https://www.notion.so/Frame-Transactions-Public-9d9f9f4f527249519a41bd8d16165f73?pvs=21). If this value is `undefined` or `true`, clients will append the attribution suffix.
+- `params`: Specific parameters for `chainId` and `method`
+
+```ts
+type TransactionTargetResponse {
+  chainId: string;
+  method: "eth_sendTransaction";
+  attribution?: boolean;
+  params: EthSendTransactionParams;
+}
+```
+
+**Ethereum Params**
+
+If the method is `eth_sendTransaction` and the chain is an Ethereum EVM chain, the param must be of type `EthSendTransactionParams`:
+
+- `to`: transaction to address
+- `abi`: JSON ABI which **must** include encoded function type and **should** include potential error types. Can be empty.
+- `value`: value of ether to send with the transaction in wei. Optional.
+- `data`: transaction calldata. Optional.
+
+```ts
+type EthSendTransactionParams {
+  abi: Abi | [];
+  to: Hex;
+  value?: string;
+  data?: Hex;
+}
+```
 
 ### Images
 
@@ -128,10 +251,15 @@ If the button is a `post_redirect` or `link` action:
 1. It must be visually marked with a redirect symbol.
 2. Users should be warned when leaving the app for untrusted sites.
 
-If the button is a `mint` action, the following rules also apply:
+If the button is a `mint` action:
 
 1. Must validate that a [CAIP-10](https://github.com/ChainAgnostic/CAIPs/blob/main/CAIPs/caip-10.md) URL is present in the `target` property.
 2. Must display the item as an NFT, if all the properties are valid.
+
+If the button is a `tx` action:
+
+1. Must visually indicate that a `tx` button will request a wallet transaction.
+2. Must display the button label provided by the frame.
 
 ### Handling Clicks
 
@@ -159,13 +287,14 @@ Applications will receive responses from frame servers after a POST request is s
 
 ## Securing frames
 
-Frames are highly sandboxed environments that do not allow direct access to Ethereum wallets. However, there are still some security concerns that must be addressed by both frame developers and apps that implement frames.
+There are important security concerns that must be addressed by both frame developers and apps that implement frames.
 
 ### Frame Developers
 
 1. Sanitize all input received from the user via text inputs.
 2. Verify the signature of a frame signature packet.
 3. Validate the origin URL in the frame signature packet.
+4. Load transaction calldata only from trusted origins.
 
 ### App Developers
 
@@ -173,6 +302,13 @@ Frames are highly sandboxed environments that do not allow direct access to Ethe
 2. Sanitize redirect URLs to ensure they start with `http://` or `https://`.
 3. Only accept data URIs if they are images.
 4. Avoid rendering SVGs as they may contain executable code.
+
+Apps should consider the following mechanisms to protect users against malicious transactions:
+
+1. Transaction simulation.
+2. Domain allowlisting and banlisting to stop known attackers.
+3. Social graph analysis to detect potential bad or untrusted actors.
+4. Educating users about the potential dangerous of transactions and using a wallet with limited balances.
 
 ## Data Structures
 
@@ -184,11 +320,13 @@ When a frame button is clicked, the Farcaster app must generate a `FrameAction` 
 
 ```proto
 message FrameActionBody {
-  bytes frame_url = 1;    // The URL of the frame app
-  bytes button_index = 2; // The index of the button that was clicked
-  CastId cast_id = 3;     // The cast which contained the frame URĽ
-  bytes input_text = 4;   // The text from the user input (if any)
-  bytes state = 5;        // Serialized frame state value
+  bytes frame_url = 1;      // The URL of the frame app
+  bytes button_index = 2;   // The index of the button that was clicked
+  CastId cast_id = 3;       // The cast which contained the frame URĽ
+  bytes input_text = 4;     // The text from the user input (if any)
+  bytes state = 5;          // Serialized frame state value
+  bytes transaction_id = 6; // Transaction ID
+  bytes address = 7;        // User's connected address
 }
 
 // MessageType and MessageData are extended to support the FrameAction
@@ -215,6 +353,8 @@ A FrameActionBody in a message `m` is valid only if it passes these validation
 5. `m.data.body.button_index` index must be ≥1 and ≤4.
 6. `m.data.body.input_text`  must be <= 256 bytes
 7. `m.data.body.state`  must be <= 4096 bytes
+8. `m.data.body.transaction_id`  must be <= 256 bytes
+9. `m.data.body.address`  must be <= 64 bytes
 
 ### Frame Signature Packet
 
@@ -241,6 +381,8 @@ If you are unsure, always read the signed message by sending it into the `valida
     "buttonIndex": 2,
     "inputText": "hello world", // "" if requested and no input, undefined if input not requested
     "state": "%7B%22counter%22%3A1%7D",
+    "transactionId": "0x83afec0f72e32d2409ceb7443dc9e01443d0dec6d38ab454bf20918cf633a455",
+    "address": "0xf6ea479f30a71cc8cb28dc28f9a94246e1edc492",
     "castId": {
       "fid": 226,
       "hash": "0xa48dd46161d8e57725f5e26e34ec19c13ff7f3b9"
@@ -268,23 +410,22 @@ Although it may be possible to validate an Ed25519 signature onchain, a valid si
 
 ## vNext Changelog
 
-| Date    | Change                                                                                                                                                        |
-| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 2/25/24 | Frames can pass [state](https://www.notion.so/warpcast/Frames-State-Public-f3de69c1d12944e583a37204c98d25d9) to the frame server.                             |
-| 2/23/24 | Frames can use HTTP cache headers to refresh their initial image.                                                                                             |
-| 2/8/24  | Frames can have [NFT mint buttons](https://warpcast.notion.site/Frames-Mint-action-Public-cea0d2249e3e41dbafb2e9ab23107275) and images with 1:1 aspect ratio. |
-| 2/6/24  | Frames can define [simple links to external pages](https://warpcast.notion.site/Frames-External-Links-Public-60c9900cffae4e2fb1b6aae3d4601c15?pvs=4).         |
-| 2/2/24  | Frames can [accept text input](https://warpcast.notion.site/Frames-Text-Input-Public-27c9f0d61903486d89b6d932dd0d6a22).                                       |
-| 1/30/24 | Frames [validator](https://warpcast.com/~/developers/frames) launched.                                                                                        |
-| 1/29/24 | Frames support redirecting after the post action.                                                                                                             |
-| 1/26/24 | Frames launched.                                                                                                                                              |
+| Date    | Change                                                                                                                                                                                          |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 3/8/24  | Frames can request [transactions](https://www.notion.so/warpcast/Frame-Transactions-Public-9d9f9f4f527249519a41bd8d16165f73#c1c3182208ce4ae4a7ffa72129b9795a) from the user's connected wallet. |
+| 2/25/24 | Frames can pass [state](https://www.notion.so/warpcast/Frames-State-Public-f3de69c1d12944e583a37204c98d25d9) to the frame server.                                                               |
+| 2/23/24 | Frames can use HTTP cache headers to refresh their initial image.                                                                                                                               |
+| 2/8/24  | Frames can have [NFT mint buttons](https://warpcast.notion.site/Frames-Mint-action-Public-cea0d2249e3e41dbafb2e9ab23107275) and images with 1:1 aspect ratio.                                   |
+| 2/6/24  | Frames can define [simple links to external pages](https://warpcast.notion.site/Frames-External-Links-Public-60c9900cffae4e2fb1b6aae3d4601c15?pvs=4).                                           |
+| 2/2/24  | Frames can [accept text input](https://warpcast.notion.site/Frames-Text-Input-Public-27c9f0d61903486d89b6d932dd0d6a22).                                                                         |
+| 1/30/24 | Frames [validator](https://warpcast.com/~/developers/frames) launched.                                                                                                                          |
+| 1/29/24 | Frames support redirecting after the post action.                                                                                                                                               |
+| 1/26/24 | Frames launched.                                                                                                                                                                                |
 
 ## vNext Proposed Changes
 
 The following ideas are being explored actively as extensions to the frame specification:
 
-- A transaction button, to allow frames to execute transactions for users.
 - A refresh period, to bust the cache for the original frame url.
-- An idempotency key, to prevent duplicate requests.
 - An authentication system, to let users log into other applications via frames.
 - A JSON response type, to allow for more flexibility in frame responses.
