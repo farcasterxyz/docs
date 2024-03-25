@@ -30,8 +30,9 @@ When a user clicks a button on a frame, the app makes a POST request to the fram
 When a frame server receives a POST request:
 
 - It must respond within 5 seconds.
-- It must respond with a 200 OK and another frame, on a `post` button click.
-- It must respond with a 302 OK and a Location header, on a `post_redirect` button click.
+- It must respond with a 200 OK and another frame, on a `post` button click to indicate success.
+- It must respond with a 302 OK and a Location header, on a `post_redirect` button click to indicate success.
+- It may respond with 4XX status, `content-type: application/json` header, and JSON body containing a `message` property that is <= 90 characters to indicate an application-level error.
 - Any Location header provided must contain a URL that starts with `http://` or `https://`.
 
 ### Best Practices
@@ -284,6 +285,7 @@ Applications will receive responses from frame servers after a POST request is s
 3. If handling a 30X response, apps must redirect the user to the url location value.
 4. If handling a 30X response, apps must ensure the url starts with `http://` or `https://`.
 5. If handling a 30X response, warn the user before directing them to an untrusted site.
+6. If handling an application-level error response, display the `message` to end-user.
 
 ## Securing frames
 
