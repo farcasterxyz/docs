@@ -414,7 +414,7 @@ Although it may be possible to validate an Ed25519 signature onchain, a valid si
 
 | Date    | Change                                                                                                                                                                                          |
 | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 3/25/24 | Frames can surface [application-level errors](https://warpcast.notion.site/Frames-Errors-ddc965b097d44d9ea03ddf98498597c6?pvs=74) to users.
+| 3/25/24 | Frames can surface [application-level errors](https://warpcast.notion.site/Frames-Errors-ddc965b097d44d9ea03ddf98498597c6?pvs=74) to users.                                                     |
 | 3/8/24  | Frames can request [transactions](https://www.notion.so/warpcast/Frame-Transactions-Public-9d9f9f4f527249519a41bd8d16165f73#c1c3182208ce4ae4a7ffa72129b9795a) from the user's connected wallet. |
 | 2/25/24 | Frames can pass [state](https://www.notion.so/warpcast/Frames-State-Public-f3de69c1d12944e583a37204c98d25d9) to the frame server.                                                               |
 | 2/23/24 | Frames can use HTTP cache headers to refresh their initial image.                                                                                                                               |
@@ -432,4 +432,3 @@ The following ideas are being explored actively as extensions to the frame speci
 - A refresh period, to bust the cache for the original frame url.
 - An authentication system, to let users log into other applications via frames.
 - A JSON response type, to allow for more flexibility in frame responses.
-

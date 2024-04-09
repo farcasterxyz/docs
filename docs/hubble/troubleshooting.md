@@ -2,10 +2,10 @@
 
 ## Fetch Hubble logs
 
-Using the hubble script, you can fetch the hub logs with the following command:
+From the hubble folder, fetch logs with the following command:
 
 ```bash
-$ ./hubble logs
+$ ./hubble.sh logs
 ```
 
 Or you can use docker-compose directly:
@@ -18,9 +18,11 @@ $ sudo docker compose logs -f hubble
 
 ## Restart Hubble
 
+From the hubble folder, spin up and down the instance with the following commands
+
 ```bash
-$ ./hubble down
-$ ./hubble up
+$ ./hubble.sh down
+$ ./hubble.sh up
 ```
 
 ## Reset the db
@@ -29,7 +31,7 @@ The best way to reset the db is to delete the `.rocks` directory entirely, which
 snapshot and re-sync from there.
 
 ```bash
-$ ./hubble down # Ensure the hub is not running
+$ ./hubble.sh down # Ensure the hub is not running
 $ rm -rf .rocks # make sure you are in the hub directory
 ```
 
