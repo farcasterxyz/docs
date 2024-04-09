@@ -184,7 +184,7 @@ Returns: an array of objects:
 }
 ```
 
-Channel-follower object properties:
+Object properties:
 
 - All properties documented in the "Get All Channels" endpoint above
 - `followedAt` - UNIX time when channel was followed, in seconds
@@ -202,7 +202,7 @@ Parameters:
 - `fid` - the fid of the user
 - `channelId` - the id of the channel
 
-Returns: a single boolean property `following`, indicating whether the channel is followed.
+Returns: 2 properties:
 
 ```json
 {
@@ -212,6 +212,11 @@ Returns: a single boolean property `following`, indicating whether the channel i
   }
 }
 ```
+
+Properties:
+
+- `following` - indicates whether the channel is followed
+- `followedAt` - UNIX time when channel was followed, in seconds (optional, only present when channel is followed)
 
 ## Get All Power Badge Users
 
