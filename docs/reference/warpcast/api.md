@@ -68,7 +68,6 @@ Channel object properties:
 - `hostFids` - the fids of the of the channel hosts, if present
 - `createdAt` - UNIX time when channel was created, in seconds
 - `followerCount` - number of users following the channel
-  <br/>
 
 ### Get Channel
 
@@ -80,7 +79,7 @@ curl 'https://api.warpcast.com/v1/channel?channelId=welcome' | jq
 
 Parameters:
 
-- `channelId`: the id of the channel
+- `channelId` - the id of the channel
 
 Returns: a single channel object, as documented in the "Get All Channels" endpoint above.
 
@@ -112,16 +111,32 @@ curl 'https://api.warpcast.com/v1/channel-followers?channelId=books' | jq
 
 Parameters:
 
-- `channelId`: the id of the channel
+- `channelId` - the id of the channel
 
-Returns: an array of fids:
+Returns: two arrays:
+
+- `users` - objects with properties:
+  - `fid` - the fid of the user
+  - `followedAt` - UNIX time when channel was followed, in seconds
+- (**DEPRECATED, will be removed soon**) `fids` - the fids of the users
 
 ```json
 {
   "result": {
+    "users": [
+      {
+        "fid": 466624,
+        "followedAt": 1712685183
+      },
+      {
+        "fid": 469283,
+        "followedAt": 1712685067
+      },
+      ...
+    ],
     "fids": [
-      377075,
-      446827,
+      466624,
+      469283,
       ...
     ]
   },
@@ -139,9 +154,9 @@ curl 'https://api.warpcast.com/v1/user-following-channels?fid=3' | jq
 
 Parameters:
 
-- `fid`: the fid of the user
+- `fid` - the fid of the user
 
-Returns: an array of channel objects, as documented in the "Get All Channels" endpoint above.
+Returns: an array of objects:
 
 ```json
 {
@@ -159,7 +174,8 @@ Returns: an array of channel objects, as documented in the "Get All Channels" en
           3
         ],
         "createdAt": 1712162074,
-        "followerCount": 8445
+        "followerCount": 17034,
+        "followedAt": 1712162620
       },
       ...
     ]
@@ -167,6 +183,11 @@ Returns: an array of channel objects, as documented in the "Get All Channels" en
   "next": { "cursor": "..." }
 }
 ```
+
+Channel-follower object properties:
+
+- All properties documented in the "Get All Channels" endpoint above
+- `followedAt` - UNIX time when channel was followed, in seconds
 
 ### Get User Following Channel Status
 
@@ -178,15 +199,16 @@ curl 'https://api.warpcast.com/v1/user-channel?fid=3&channelId=books' | jq
 
 Parameters:
 
-- `fid`: the fid of the user
-- `channelId`: the id of the channel
+- `fid` - the fid of the user
+- `channelId` - the id of the channel
 
 Returns: a single boolean property `following`, indicating whether the channel is followed.
 
 ```json
 {
   "result": {
-    "following": true
+    "following": true,
+    "followedAt": 1687943747
   }
 }
 ```
