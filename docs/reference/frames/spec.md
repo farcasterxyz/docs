@@ -191,6 +191,16 @@ type TransactionTargetResponse {
 }
 ```
 
+**Supported Chains**
+
+| Network      | Chain ID         |
+| ------------ | ---------------- |
+| Ethereum     | `eip155:1`       |
+| Optimism     | `eip155:10`      |
+| Base         | `eip155:8453`    |
+| Zora         | `eip155:7777777` |
+| Base Sepolia | `eip155:84532`   |
+
 **Ethereum Params**
 
 If the method is `eth_sendTransaction` and the chain is an Ethereum EVM chain, the param must be of type `EthSendTransactionParams`:
