@@ -244,3 +244,48 @@ Returns: a JSON array with fids of users who currently hold a power badge:
 ```
 
 Warpcast recalculates badge ownership once every week, on Tuesdays at 12:00:00 UTC.
+
+## Get Farcaster actions
+
+Retrieve a list of Farcaster actions. Paginated.
+
+```bash
+curl 'https://api.warpcast.com/v2/discover-actions?list=top&limit=10' | jq
+```
+
+Parameters:
+
+- `list` - the list to retrieve. Must be `'top'`, a list ordered by total users.
+
+Returns: An array of action objects:
+
+```json
+{
+  "result": {
+    "actions": [
+      {
+        "name": "Upthumb",
+        "icon": "thumbsup",
+        "description": "Give casts 'upthumbs' and see them on a leaderboard.",
+        "aboutUrl": "https://github.com/horsefacts/upthumbs",
+        "actionUrl": "https://upthumbs.app/api/upthumb",
+        "action": {
+          "actionType": "post",
+          "postUrl": "https://upthumbs.app/api/upthumb"
+        }
+      }
+    ]
+  },
+  "next": { "cursor": "..." }
+}
+```
+
+Properties:
+
+- `name` - action name
+- `icon` - an [Octicon](https://primer.style/foundations/icons) identifying the action
+- `description` - a short text description of the action
+- `aboutUrl` - external link to a page with additional instructions or source code
+- `actionUrl` - action metadata URL. Clients retrieve metadata with a GET to this URL.
+- `action.actionType` - action type, only `'post'`
+- `action.postUrl` - action POST URL. Clients POSt signed messages to this URL.
