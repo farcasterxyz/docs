@@ -72,9 +72,9 @@ export default defineConfig({
         appId: 'ADFEMXTYRR',
         apiKey: '53a9b47bf4d93ee8fa655fec4274538b',
         indexName: 'farcaster',
-        insights: true, 
+        insights: true,
       }
-    },    
+    },
     sidebar: {
       '/': [
         {
@@ -402,6 +402,12 @@ export default defineConfig({
           ],
         },
         {
+          text: 'Actions',
+          items: [
+            { text: 'Specification', link: '/reference/actions/spec' },
+          ],
+        },
+        {
           text: 'Warpcast',
           items: [
             { text: 'APIs', link: '/reference/warpcast/api' },
@@ -517,8 +523,8 @@ export default defineConfig({
               ],
             },
             {
-              text: 'Replicator Schema', 
-              link: '/reference/replicator/schema' 
+              text: 'Replicator Schema',
+              link: '/reference/replicator/schema'
             },
           ],
         },
