@@ -1,10 +1,10 @@
 # Actions Specification
 
-Actions let developers create custom buttons which users can install into their action bar on any Farcaster application.
+Actions let developers create custom buttons which users can install into their action bar on any Farcaster application. Think browser extensions, but for casts.
 
 Like [Frames](../frames/spec.md), actions are an open standard for extending casts with new kinds of interactions. Actions and frames are composable, enabling developers to create interactive, authenticated applications that work across Farcaster clients.
 
-Developers have used actions to add features like translation, moderation tools, and tipping to Farcaster clients.
+So far, developers have used actions to add features like translation, moderation tools, and tipping to Farcaster clients.
 
 ## Defining actions
 
@@ -15,7 +15,9 @@ The action server must define two routes:
 - A GET route that returns metadata about the action
 - A POST route to handle action requests
 
-### Action metadata
+Farcaster clients load the GET route to get information about the action, and make requests to the POST route when users click the action button in feed.
+
+## Metadata route
 
 Action servers must respond to an HTTP GET requests to their metadata URL with a 200 OK and a JSON body in the following format:
 
@@ -32,7 +34,7 @@ Action servers must respond to an HTTP GET requests to their metadata URL with a
 }
 ```
 
-#### Properties
+### Properties
 
 | Key              | Description                                                                                                                                                                 |
 | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -43,7 +45,7 @@ Action servers must respond to an HTTP GET requests to their metadata URL with a
 | `action.type`    | Action type. Must be `'post'`.                                                                                                                                              |
 | `action.postUrl` | Optional action handler URL. If not provided, clients will POST to the same URL as the action metadata route.                                                               |
 
-### Action handler
+## Handler route
 
 When a user clicks a cast action button in the feed, clients make a POST request to the action handler with a signed message. Actions use the same [Frame signature message](../frames/spec.md#frame-signature-packet) format as Farcaster frames.
 
@@ -55,9 +57,11 @@ In this message:
 
 Action servers may respond with either a short message, a frame URL, or an error.
 
-#### Message response type
+### Message response type
 
 The message response type displays a short message and optional external link. It's suitable for simple single step interactions.
+
+![Message actions](/assets/actions/message_type.png)
 
 An action server may return 200 OK and a JSON body in the following format to display a message:
 
@@ -70,15 +74,18 @@ An action server may return 200 OK and a JSON body in the following format to di
 ```
 
 **Properties**
-| Key | Description |
-| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `type` | Must be `message`. |
-| `message` | A short message, less than 80 characters. |
-| `link` | An optional URL. Must be `http://` or `https://` protocol. If present, clients must display the message as an external link to this URL. |
 
-#### Frame response type
+| Key       | Description                                                                                                                              |
+| --------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `type`    | Must be `message`.                                                                                                                       |
+| `message` | A short message, less than 80 characters.                                                                                                |
+| `link`    | An optional URL. Must be `http://` or `https://` protocol. If present, clients must display the message as an external link to this URL. |
+
+### Frame response type
 
 The frame response type allows cast actions to display a [Frame](../frames/spec.md). It's useful for complex multi-step interactions.
+
+![Frame actions](/assets/actions/frame_type.png)
 
 An action server may return 200 OK and a JSON body in the following format to display a frame:
 
@@ -90,12 +97,13 @@ An action server may return 200 OK and a JSON body in the following format to di
 ```
 
 **Properties**
-| Key | Description |
-| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `type` | Must be `frame`. |
+
+| Key        | Description                                                                                                  |
+| ---------- | ------------------------------------------------------------------------------------------------------------ |
+| `type`     | Must be `frame`.                                                                                             |
 | `frameUrl` | URL of the frame to display. Clients must show the frame in a special context, like a modal or bottom sheet. |
 
-#### Error response type
+### Error response type
 
 An action server may return a 4xx response with a message to display an error:
 
@@ -106,11 +114,14 @@ An action server may return a 4xx response with a message to display an error:
 ```
 
 **Properties**
-| Key | Description |
-| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+| Key       | Description                                     |
+| --------- | ----------------------------------------------- |
 | `message` | A short error message, less than 80 characters. |
 
-## Adding actions
+## Client implementation
+
+### Adding actions
 
 Clients must allow users to enable cast actions by clicking a deep link URL. For example, in Warpcast:
 
@@ -128,3 +139,38 @@ When a user enables a cast action, clients must:
 - Allow the user to remove unwanted or unused actions.
 
 Clients should show a confirmation screen which gives the user more context about what the action does. This screen should warn the user if installing this action will replace a previous action.
+
+### Displaying actions
+
+Clients must display actions alongside casts and allow the user to click/tap to interact.
+
+#### Handling clicks
+
+When the user clicks an action, the client must make a POST reques to the action’s `postUrl` with a signed frame message.
+
+In this message, clients must:
+
+- Set `frame_url` to the cast action `postUrl`.
+- Set `button_index` to `1`.
+- Set `cast_id` to the id of the cast from which the user initiated the action.
+- Otherwise, follow the existing format for Frame messages.
+
+#### Displaying responses
+
+The action server may send a short text response, a frame, or an error back to clients.
+
+When a client receives an action response, it must:
+
+1. Validate the response format:
+   - Type frame:
+     - must include `frameUrl`
+     - `frameUrl` must begin with `https://`
+   - Type message:
+     - must include a `message` string < 80 characters
+2. If the response is type message or error, display it.
+3. If the response is type frame, POST a Frame message to the returned `frameUrl`:
+   - Set `buttonIndex` to 1
+   - Set `castId` in the Frame message body to the ID of the cast that was clicked
+4. Parse the response as a Frame and display it in a special context, like a bottom sheet or modal
+
+Clients must allow the user to close the Frame once interaction is completed.
