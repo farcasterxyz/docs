@@ -2,8 +2,6 @@
 
 This page documents public APIs provided by Warpcast with information that is not available on the protocol.
 
-**Authentication**: All endpoints are unauthenticated.
-
 **Pagination**: paginated endpoints return a `next.cursor` property next to the `result` object. This parameter should be sent
 back to fetch the next page. An optional `limit` parameter can be used to specify the page size.
 
@@ -217,6 +215,352 @@ Properties:
 
 - `following` - indicates whether the channel is followed
 - `followedAt` - UNIX time when channel was followed, in seconds (optional, only present when channel is followed)
+
+> [!WARNING]
+> The below Channel Endpoints require Authorization header, the Authorization is of type `Bearer` so you will need to obtain a Bearer token for the user from the frontend.
+
+### Update Channel Display Name
+
+Change the channel name programmatically.
+
+```bash
+curl --request PATCH 'https://client.warpcast.com/v2/channels-owned' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer [bearer_token]'
+--data '{"key": "books", "name": "books_new"}' | jq
+```
+
+Body:
+
+- `key` - The channel id
+- `name` - The name you want the channel to have
+
+Returns: 1 property:
+
+```json
+{
+  "result": {
+    "success": true
+  }
+}
+```
+
+Properties:
+
+- `success` - Whether the channel name change operation was succesful or not
+
+### Update Channel Description
+
+Change the channel description programmatically.
+
+```bash
+curl --request PATCH 'https://client.warpcast.com/v2/channels-owned' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer [bearer_token]'
+--data '{"key":"books", "description": "This is the books channel"}' | jq
+```
+
+Body:
+
+- `key` - The channel id
+- `description` - The description you want the channel to have
+
+Returns: 1 property:
+
+```json
+{
+  "result": {
+    "success": true
+  }
+}
+```
+
+Properties:
+
+- `success` - Whether the channel description change operation was succesful or not
+
+### Update Channel Norms
+
+Change the channel norms programmatically.
+
+```bash
+curl --request PATCH 'https://client.warpcast.com/v2/channels-owned' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer [bearer_token]'
+--data '{"key":"books", "norms": "No movie talk allowed"}' | jq
+```
+
+Body:
+
+- `key` - The channel id
+- `norms` - The norms you want the channel to have
+
+Returns: 1 property:
+
+```json
+{
+  "result": {
+    "success": true
+  }
+}
+```
+
+Properties:
+
+- `success` - Whether the channel norms change operation was succesful or not
+
+### Manage Channel Co-Host
+
+Manage channel co-host programmatically.
+
+```bash
+curl --request PATCH 'https://client.warpcast.com/v2/channels-owned' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer [bearer_token]'
+--data '{"key":"books", "hostUpdates": [{"hostFid": "3", "action": "remove"}]}' | jq
+```
+
+Body:
+
+- `key` - The channel id
+- `hostUpdates` - An array of objects, each object containing the following properties
+  - `hostFid` - `fid` of the host you want to remove
+  - `action` - `remove` for removing a co-host, `add` to add co-host
+
+Returns: 1 property:
+
+```json
+{
+  "result": {
+    "success": true
+  }
+}
+```
+
+Properties:
+
+- `success` - Whether the channel co-host removal or addition operation was succesful or not
+
+### Manage Channel Pass Price
+
+Manage channel pass price programmatically.
+
+```bash
+curl --request PATCH 'https://client.warpcast.com/v2/channels-owned' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer [bearer_token]'
+--data '{"key":"books", "passPriceWarps": 100}' | jq
+```
+
+Body:
+
+- `key` - The channel id
+- `passPriceWarps` - The price of pass in warps. (-1 to disable passes)
+
+Returns: 1 property:
+
+```json
+{
+  "result": {
+    "success": true
+  }
+}
+```
+
+Properties:
+
+- `success` - Whether the channel pass price change operation was succesful or not
+
+### Manage Channel's Trending Feed
+
+Enable or Disable channel's trending feed programmatically.
+
+```bash
+curl --request PATCH 'https://client.warpcast.com/v2/channels-owned' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer [bearer_token]'
+--data '{"key":"books", "trendingFeedEnabled": true}' | jq
+```
+
+Body:
+
+- `key` - The channel id
+- `trendingFeedEnabled`
+  - `true` to enable trending feed
+  - `false` to disable trending feed
+
+Returns: 1 property:
+
+```json
+{
+  "result": {
+    "success": true
+  }
+}
+```
+
+Properties:
+
+- `success` - Whether the trending feed enable or disable operation was succesful or not
+
+### Pin A Cast On A Channel
+
+Pin a cast in the channel programatically.
+
+```bash
+curl --request PUT 'https://client.warpcast.com/v2/boost-cast' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer [bearer_token]'
+--data '{"castHash":"0x688b3d004555e179e89b982c13db2a94458d9c86", "isPinned": true}' | jq
+```
+
+Body:
+
+- `castHash` - The full cast hash of the cast to be pinned
+- `isPinned`
+  - `true` to pin the cast
+
+Returns: 1 property:
+
+```json
+{
+  "result": {
+    "success": true
+  }
+}
+```
+
+Properties:
+
+- `success` - Whether the pinning the cast operation was succesful or not
+
+### Unpin A Cast On A Channel
+
+Pin a cast in the channel programatically.
+
+```bash
+curl --request DELETE 'https://client.warpcast.com/v2/boost-cast' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer [bearer_token]'
+--data '{"castHash":"0x688b3d004555e179e89b982c13db2a94458d9c86"}' | jq
+```
+
+Body:
+
+- `castHash` - The full cast hash of the cast to be pinned
+
+Returns: 1 property:
+
+```json
+{
+  "result": {
+    "success": true
+  }
+}
+```
+
+Properties:
+
+- `success` - Whether the unpinning the cast operation was succesful or not
+
+### Hide Cast From Channel
+
+Hide a cast from the channel programatically.
+
+```bash
+curl --request PUT 'https://client.warpcast.com/v2/debug-cast-embeds' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer [bearer_token]'
+--data '{"castHash":"0x688b3d004555e179e89b982c13db2a94458d9c86", "downVote": true, "isWarning": false}' | jq
+```
+
+Body:
+
+- `castHash` - The full cast hash of the cast to hide
+- `downVote`
+  - `true` to hide the cast
+  - `false` to unhide the cast
+- `isWarning`
+  - `true` to warn and hide the cast
+  - `false` to unhide the cast
+
+Returns: 1 property:
+
+```json
+{
+  "result": {
+    "success": true
+  }
+}
+```
+
+Properties:
+
+- `success` - Whether the hide cast operation was succesful or not
+
+### Warn The User & Hide The Cast
+
+Warn the user and hide the cast of the user programatically.
+
+```bash
+curl --request PUT 'https://client.warpcast.com/v2/debug-cast-embeds' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer [bearer_token]'
+--data '{"castHash":"0x688b3d004555e179e89b982c13db2a94458d9c86", "downVote": true, "isWarning": true}' | jq
+```
+
+Body:
+
+- `castHash` - The full cast hash of the cast to hide
+- `downVote`
+  - `true` to hide the cast
+  - `false` to unhide the cast
+- `isWarning`
+  - `true` to warn and hide the cast
+  - `false` to unwarn the cast
+
+Returns: 1 property:
+
+```json
+{
+  "result": {
+    "success": true
+  }
+}
+```
+
+Properties:
+
+- `success` - Whether the warn and hide cast operation was succesful or not
+
+### Report A Cast
+
+Report a cast in the channel programatically.
+
+```bash
+curl --request POST 'https://client.warpcast.com/v2/report-cast' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer [bearer_token]'
+--data '{"castHash":"0x688b3d004555e179e89b982c13db2a94458d9c86"}' | jq
+```
+
+Body:
+
+- `castHash` - The full cast hash of the cast to report
+
+Returns: 1 property:
+
+```json
+{
+  "result": {
+    "success": true
+  }
+}
+```
+
+Properties:
+
+- `success` - Whether the report cast operation was succesful or not
 
 ## Get All Power Badge Users
 
