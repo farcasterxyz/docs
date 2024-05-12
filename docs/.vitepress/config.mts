@@ -30,7 +30,10 @@ export default defineConfig({
     ['meta', { name: 'twitter:site', content: '@farcaster_xyz' }],
     [
       'script',
-      { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-DF7PJS3WBD' }
+      {
+        async: '',
+        src: 'https://www.googletagmanager.com/gtag/js?id=G-DF7PJS3WBD',
+      },
     ],
     [
       'script',
@@ -38,11 +41,13 @@ export default defineConfig({
       `window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-DF7PJS3WBD');`
+      gtag('config', 'G-DF7PJS3WBD');`,
     ],
   ],
   cleanUrls: true,
   themeConfig: {
+    // Anchors in Table of Contents for all levels of headings
+    outline: 'deep',
     nav: [
       {
         text: 'Learn',
@@ -73,7 +78,7 @@ export default defineConfig({
         apiKey: '53a9b47bf4d93ee8fa655fec4274538b',
         indexName: 'farcaster',
         insights: true,
-      }
+      },
     },
     sidebar: {
       '/': [
@@ -274,10 +279,13 @@ export default defineConfig({
       '/auth-kit/': [
         {
           text: 'Overview',
-          items: [{ text: 'Introduction', link: '/auth-kit/introduction' },{
-            text: 'Examples',
-            link: '/auth-kit/examples',
-          },],
+          items: [
+            { text: 'Introduction', link: '/auth-kit/introduction' },
+            {
+              text: 'Examples',
+              link: '/auth-kit/examples',
+            },
+          ],
         },
         {
           text: 'Getting Started',
@@ -397,21 +405,20 @@ export default defineConfig({
         },
         {
           text: 'Frames',
-          items: [
-            { text: 'Specification', link: '/reference/frames/spec' },
-          ],
+          items: [{ text: 'Specification', link: '/reference/frames/spec' }],
         },
         {
           text: 'Actions',
-          items: [
-            { text: 'Specification', link: '/reference/actions/spec' },
-          ],
+          items: [{ text: 'Specification', link: '/reference/actions/spec' }],
         },
         {
           text: 'Warpcast',
           items: [
             { text: 'APIs', link: '/reference/warpcast/api' },
-            { text: 'Cast Intents', link: '/reference/warpcast/cast-composer-intents' },
+            {
+              text: 'Cast Intents',
+              link: '/reference/warpcast/cast-composer-intents',
+            },
             { text: 'Embeds', link: '/reference/warpcast/embeds' },
           ],
         },
@@ -524,15 +531,15 @@ export default defineConfig({
             },
             {
               text: 'Replicator Schema',
-              link: '/reference/replicator/schema'
+              link: '/reference/replicator/schema',
             },
           ],
         },
         // {
-          // text: 'Hubble Replicator',
-          // items: [
-            // { text: 'Index', link: '/reference/replicator/TODO' },
-          // ],
+        // text: 'Hubble Replicator',
+        // items: [
+        // { text: 'Index', link: '/reference/replicator/TODO' },
+        // ],
         // },
 
         {
