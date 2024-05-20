@@ -135,7 +135,7 @@ Clients do not make a request to the frame server for `link` actions. Instead, t
 />
 ```
 
-The `mint` action allows the user to mint an NFT. Clients that support relaying or initiating onchain transactions may enhance the mint button by relaying a transaction or interacting with the user's walletl. Clients that do not fall back to linking to an external URL.
+The `mint` action allows the user to mint an NFT. Clients that support relaying or initiating onchain transactions may enhance the mint button by relaying a transaction or interacting with the user's wallet. Clients that do not fall back to linking to an external URL.
 
 The `target` property must be a valid `CAIP-10` address, plus an optional token ID.
 
