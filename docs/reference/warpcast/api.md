@@ -44,10 +44,12 @@ Returns: an array of channel objects:
         "description": "A place to welcome new users to Farcaster! Share how you know each other, tag folks that should meet them, and add a photo or two!",
         "imageUrl": "https://ipfs.decentralized-content.com/ipfs/bafkreieraqfkny7bttxd7h7kmnz6zy76vutst3qbjgjxsjnvrw7z3i2n7i",
         "leadFid": 1593,
+        // Deprecated in favor of moderatorFid
         "hostFids": [
           1593,
           187961
         ],
+        "moderatorFid": 5448,
         "createdAt": 1691015606,
         "followerCount": 3622
       },
@@ -57,15 +59,18 @@ Returns: an array of channel objects:
 }
 ```
 
+**Note**: `hostFids` is
 Channel object properties:
 
-- `id` - The unique channel id that cannot be changed (called 'Name' when creating a channel)
-- `url` - The FIP-2 `parentUrl` used for main casts in the channel
-- `name` - The friendly name displayed to users (called 'Display name' when editing a channel)
-- `description` - The description of the channel, if present
+- `id` - unique channel id that cannot be changed (called 'Name' when creating a channel)
+- `url` - FIP-2 `parentUrl` used for main casts in the channel
+- `name` - friendly name displayed to users (called 'Display name' when editing a channel)
+- `description` - description of the channel, if present
 - `imageUrl` - URL to the channel avatar
-- `leadFid` - The fid of the user who created the channel, if present
-- `hostFids` - the fids of the of the channel hosts, if present
+- `leadFid` - fid of the user who created the channel, if present
+- `hostFids` - **(Deprecated)** The fids of the channel hosts, if present. Starting on May 23, 2024, channels are moving away from
+  hosts to a moderator, returned as `moderatorFid`. `hostFids` will be removed a few weeks later.
+- `moderatorFid` - fid of the user who moderates the main channel feed, if present
 - `createdAt` - UNIX time when channel was created, in seconds
 - `followerCount` - number of users following the channel
 
@@ -94,6 +99,7 @@ Returns: a single channel object, as documented in the "Get All Channels" endpoi
       "imageUrl": "https://ipfs.decentralized-content.com/ipfs/bafkreieraqfkny7bttxd7h7kmnz6zy76vutst3qbjgjxsjnvrw7z3i2n7i",
       "leadFid": 1593,
       "hostFids": [1593, 187961],
+      "moderatorFid": 5448,
       "createdAt": 1691015606,
       "followerCount": 3622
     }
@@ -173,6 +179,7 @@ Returns: an array of objects:
           2,
           3
         ],
+        "moderatorFid": 5448,
         "createdAt": 1712162074,
         "followerCount": 17034,
         "followedAt": 1712162620
