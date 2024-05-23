@@ -196,11 +196,13 @@ type TransactionTargetResponse {
 | Network      | Chain ID           |
 | ------------ | ------------------ |
 | Ethereum     | `eip155:1`         |
-| Optimism     | `eip155:10`        |
+| Arbitrum     | `eip155:42161`     |
 | Base         | `eip155:8453`      |
-| Zora         | `eip155:7777777`   |
-| Degen        | `eip155:666666666` |
 | Base Sepolia | `eip155:84532`     |
+| Degen        | `eip155:666666666` |
+| Gnosis       | `eip155:100`       |
+| Optimism     | `eip155:10`        |
+| Zora         | `eip155:7777777`   |
 
 **Ethereum Params**
 
