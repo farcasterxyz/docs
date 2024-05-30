@@ -7,7 +7,7 @@
     "husky": "^8.0.3",
     "lint-staged": "^15.2.0",
     "prettier": "^2.8.7",
-    "vitepress": "1.0.0-rc.41"
+    "vitepress": "^1.2.2"
   },
   "scripts": {
     "docs:dev": "vitepress dev docs",
