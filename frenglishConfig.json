@@ -2,6 +2,6 @@
     "originLanguage": "en",
     "languages": ["fr"],
     "rules": "",
-    "translationPaths": ["docs/learn/*"],
+    "translationPaths": ["docs/locales/*"],
     "autoMergeToBaseBranch": false
 }
