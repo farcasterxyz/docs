@@ -1,7 +1,7 @@
 {
     "originLanguage": "en",
     "languages": ["fr"],
-    "rules": "Do not translate 'Frenglish' ",
+    "rules": "",
     "translationPaths": ["docs/learn/*"],
     "autoMergeToBaseBranch": false
 }
