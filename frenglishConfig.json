@@ -1,6 +1,6 @@
 {
   "originLanguage": "en",
-  "languages": ["fr"],
+  "languages": ["fr, ja"],
   "rules": "Do not translate 'Farcaster'.  When translating off-chain and on-chain, consider that it means not on the blockchain, i.e. something you do on a server, or on the blockchain, i.e. it requires a transaciton.",
   "translationPaths": ["docs/locales/*"],
   "autoMergeToBaseBranch": false
