@@ -1,26 +1,21 @@
-# Architecture
+# アーキテクチャ
 
-Farcaster a une architecture hybride qui stocke l'identité onchain et les données offchain.
+Farcasterは、アイデンティティをオンチェーンに、データをオフチェーンに保存するハイブリッドアーキテクチャを持っています。
 
-![Architecture](/assets/architecture.png)
+![アーキテクチャ](/assets/architecture.png)
 
-## Onchain
+## オンチェーン
 
-Les systèmes onchain de Farcaster sont implémentés sous forme de [contrats sur OP Mainnet](./contracts.md). Les actions sont effectuées onchain uniquement lorsque la sécurité et la cohérence sont critiques. L'utilisation des actions onchain est maintenue au minimum pour réduire les coûts et améliorer les performances.
+Farcasterのオンチェーンシステムは[OP Mainnetの契約](./contracts.md)として実装されています。セキュリティと一貫性が重要な場合にのみオンチェーンでアクションが実行されます。コストを削減し、パフォーマンスを向上させるために、オンチェーンアクションの使用は最小限に抑えられています。
 
-Seules quelques actions sont effectuées onchain, notamment :
+オンチェーンで実行されるアクションはごくわずかで、以下を含みます：
 
-- Créer un [compte](../what-is-farcaster/accounts.md).
-- Payer un loyer pour [stocker des données](../what-is-farcaster/messages.md#storage).
-- Ajouter des clés de compte pour [applications connectées](../what-is-farcaster/apps.md#connected-apps).
+- [アカウント](../what-is-farcaster/accounts.md)の作成。\n- データを[保存する](../what-is-farcaster/messages.md#storage)ための料金の支払い。\n- [接続されたアプリ](../what-is-farcaster/apps.md#connected-apps)のためのアカウントキーの追加。
 
-## Offchain
+## オフチェーン
 
-Le système offchain de Farcaster est un réseau peer-to-peer de serveurs appelés [Hubs](./hubs.md) qui stockent les données des utilisateurs. La majorité des actions des utilisateurs sont effectuées offchain. Celles-ci incluent :
+Farcasterのオフチェーンシステムは、ユーザーデータを保存する[ハブ](./hubs.md)と呼ばれるサーバーのピアツーピアネットワークです。ユーザーのアクションの大部分はオフチェーンで実行されます。これには以下が含まれます：
 
-- Publier un nouveau message public.
-- Suivre un autre utilisateur.
-- Réagir à un post.
-- Mettre à jour votre photo de profil.
+- 新しい公開メッセージの投稿。\n- 他のユーザーのフォロー。\n- 投稿へのリアクション。\n- プロフィール画像の更新。
 
-Les actions sont effectuées offchain lorsque la performance et le coût sont critiques. L'utilisation des actions offchain est généralement préférée lorsque la cohérence n'est pas une exigence stricte. Les systèmes offchain atteignent la sécurité en s'appuyant sur les signatures des systèmes onchain.
+パフォーマンスとコストが重要な場合にアクションはオフチェーンで実行されます。一貫性が厳密な要件でない場合、オフチェーンアクションの使用が一般的に推奨されます。オフチェーンシステムはオンチェーンシステムからの署名に依存することでセキュリティを確保します。

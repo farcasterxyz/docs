@@ -1,29 +1,29 @@
-# Comptes
+# アカウント
 
-Un compte Farcaster vous permet de configurer un nom d'utilisateur, une photo de profil et de publier de courts messages texte appelés casts. Toute adresse Ethereum peut enregistrer un compte Farcaster en effectuant une transaction onchain.
+Farcasterアカウントを使用すると、ユーザー名、プロフィール画像を設定し、キャストと呼ばれる短文メッセージを公開できます。任意のEthereumアドレスはオンチェーントランザクションを行うことでFarcasterアカウントを登録できます。
 
-## Créer un compte
+## アカウントの作成
 
-Un compte Farcaster est créé en appelant le contrat IdGateway. Il attribuera un nouvel ID Farcaster ou fid à votre adresse Ethereum.
+FarcasterアカウントはIdGateway契約を呼び出すことで作成されます。これにより、Ethereumアドレスに新しいFarcaster IDまたはfidが割り当てられます。
 
-Vous devrez obtenir un nom d'utilisateur, louer un espace de stockage et ajouter une clé avant de pouvoir utiliser votre compte. Ces étapes nécessitent de nombreuses signatures et transactions onchain et peuvent être fastidieuses avec un portefeuille Ethereum régulier.
+アカウントを使用する前に、ユーザー名を取得し、ストレージをレンタルし、キーを追加する必要があります。これらのステップには多くの署名とオンチェーントランザクションが必要で、通常のEthereumウォレットでは煩雑です。
 
-Nous recommandons de commencer avec [Warpcast](https://www.warpcast.com/), un portefeuille Farcaster spécial qui gérera l'ensemble du processus pour vous. Il utilise également un compte Ethereum séparé pour signer les transactions, afin que vous puissiez garder votre compte Ethereum principal sécurisé.
+最初は[Warpcast](https://www.warpcast.com/)を使用することをお勧めします。これはFarcaster専用のウォレットで、全体のフローを処理します。また、トランザクションに署名するために別のEthereumアカウントを使用するため、メインのEthereumアカウントを安全に保つことができます。
 
-## Ajouter des clés de compte
+## アカウントキーの追加
 
-Les comptes peuvent émettre des clés qui permettent aux applications d'écrire des messages en leur nom. Les utilisateurs émettent généralement une clé pour chaque application Farcaster qu'ils utilisent.
+アカウントは、アプリが代わりにメッセージを送信できるようにキーを発行できます。ユーザーは通常、使用する各Farcasterアプリにキーを発行します。
 
-Les clés sont gérées par le contrat KeyRegistry. Pour ajouter une clé, vous devrez soumettre la clé publique d'une paire de clés EdDSA ainsi qu'une signature du demandeur. Le demandeur peut être le compte lui-même ou une application qui souhaite opérer en son nom.
+キーはKeyRegistry契約によって管理されます。キーを追加するには、EdDSAキーの公開鍵とリクエスター署名を提出する必要があります。リクエスターはアカウント自体またはその代わりに操作したいアプリであることができます。
 
-## Récupérer un compte
+## アカウントの回復
 
-Les utilisateurs configurent souvent des portefeuilles séparés pour leurs applications sociales et il est facile de perdre l'accès. Farcaster permet à tout compte de spécifier une adresse de récupération qui peut être utilisée pour récupérer le compte. Elle peut être configurée lors de la création du compte ou à tout moment par la suite.
+ユーザーはソーシャルアプリ用に別々のウォレットを設定することが多く、アクセスを失うのは簡単です。Farcasterでは、任意のアカウントが回復アドレスを指定でき、アカウントを回復するために使用できます。これはアカウント作成時またはその後いつでも設定できます。
 
-Les utilisateurs peuvent définir l'adresse de récupération sur des services de confiance comme Warpcast ou ils peuvent la gérer eux-mêmes en utilisant un portefeuille Ethereum régulier.
+ユーザーはWarpcastのような信頼できるサービスに回復アドレスを設定するか、通常のEthereumウォレットを使用して自分で管理できます。
 
-## Ressources
+## リソース
 
-### Spécifications
+### 仕様
 
-- [Spécifications des contrats](https://github.com/farcasterxyz/protocol/blob/main/docs/SPECIFICATION.md#1-smart-contracts) - Les contrats onchain qui gèrent les comptes Farcaster, les clés de compte et les adresses de récupération.
+- [契約仕様](https://github.com/farcasterxyz/protocol/blob/main/docs/SPECIFICATION.md#1-smart-contracts) - Farcasterアカウント、アカウントキー、および回復アドレスを管理するオンチェーン契約。

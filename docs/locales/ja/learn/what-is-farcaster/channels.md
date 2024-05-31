@@ -1,67 +1,67 @@
-# Channels
+# チャンネル
 
-Un canal est un espace public pour votre communauté afin d'avoir des conversations autour d'un sujet.
+チャンネルは、コミュニティが特定のトピックについて会話するための公共の場です。
 
-Créer un canal démarre un nouveau flux pour votre communauté. Les gens peuvent rejoindre, caster et trouver d'autres personnes intéressantes. Cela déclenche des conversations qui n'auraient pas lieu autrement sur le flux principal.
+チャンネルを作成すると、コミュニティのための新しいフィードが始まります。人々は参加し、投稿し、他の興味深い人々を見つけることができます。これにより、ホームフィードでは起こらないような会話が生まれます。
 
-:::warning Fonctionnalité expérimentale
-Les canaux sont en cours de prototypage dans Warpcast et ne sont pas entièrement pris en charge par le protocole Farcaster. Ils pourraient être intégrés au protocole à l'avenir si la fonctionnalité est jugée réussie ou ils pourraient être supprimés entièrement.
+:::warning Experimental Feature
+チャンネルはWarpcastでプロトタイプされており、Farcasterプロトコルでは完全にサポートされていません。この機能が成功と見なされた場合、将来的にプロトコルに移行される可能性がありますが、完全に削除される可能性もあります。
 :::
 
-## Hébergement de canaux
+## チャンネルのホスティング
 
-N'importe qui peut créer un canal en payant des frais dans Warpcast et en choisissant un nom de canal. Le nom doit comporter moins de 16 caractères et ne peut contenir que des lettres minuscules et des chiffres. Le créateur d'un canal est appelé un hôte et peut inviter d'autres co-hôtes à gérer le canal. Les hôtes ont des privilèges spéciaux comme :
+誰でもWarpcastで料金を支払い、チャンネル名を選ぶことでチャンネルのホストを作成できます。名前は16文字以内で、小文字のアルファベットと数字のみを含むことができます。チャンネルの作成者はホストと呼ばれ、他の共同ホストを招待してチャンネルを運営することができます。ホストには以下の特別な権限があります:
 
-1. Définir les "normes du canal" que tout le monde doit accepter en rejoignant.
-2. Épingler ou masquer des casts dans un canal.
-3. Bloquer d'autres utilisateurs de caster dans leur canal.
-4. Définir une image de canal, une description et d'autres métadonnées.
+1. 参加者が同意しなければならない「チャンネル規範」を定義する。
+2. チャンネル内のキャストをピン留めまたは非表示にする。
+3. 他のユーザーがチャンネル内でキャストするのをブロックする。
+4. チャンネルの画像、説明、およびその他のメタデータを設定する。
 
-Les métadonnées des canaux ne font pas partie du protocole et sont stockées dans Warpcast tant que les canaux sont en phase expérimentale.
+チャンネルのメタデータはプロトコルの一部ではなく、チャンネルが実験段階にある間はWarpcastに保存されます。
 
-## Caster dans les canaux
+## チャンネルでのキャスト
 
-N'importe qui peut poster dans un canal en utilisant Warpcast et en sélectionnant le canal lors de la création du cast. Warpcast définit automatiquement le `parentUrl` du cast à `https://warpcast.com/~/channel/<name>`. Un cast est considéré comme "dans un canal" si son `parentUrl` est l'URI du canal ou un autre cast qui est "dans un canal".
+誰でもWarpcastを使用してキャストを作成する際にチャンネルを選択することで、チャンネルに投稿できます。Warpcastは自動的にキャストの`parentUrl`を`https://warpcast.com/~/channel/<name>`に設定します。キャストの`parentUrl`がチャンネルのURIまたは「チャンネル内」にある他のキャストのURIである場合、そのキャストは「チャンネル内」にあると見なされます。
 
-Les casts de canal font partie du protocole et sont stockés sur les hubs. En utilisant un réplicateur, vous pouvez récupérer tous les casts dans un canal en filtrant le champ `parentUrl` pour l'URL FIP-2 du canal.
+チャンネルキャストはプロトコルの一部であり、ハブに保存されます。レプリケーターを使用して、チャンネルのFIP-2 URLの`parentUrl`フィールドをフィルタリングすることで、チャンネル内のすべてのキャストを取得できます。
 
-## Suivre des canaux
+## チャンネルのフォロー
 
-N'importe qui peut suivre un canal comme un utilisateur. Un utilisateur verra les casts d'un canal suivi dans son flux principal lorsqu'il utilise Warpcast.
+誰でもユーザーと同じようにチャンネルをフォローできます。ユーザーはWarpcastを使用しているときに、フォローしているチャンネルからのキャストをホームフィードで見ることができます。
 
-Les suivis de canaux ne font pas partie du protocole et sont stockés dans Warpcast tant que les canaux sont en phase expérimentale.
+チャンネルフォローはプロトコルの一部ではなく、チャンネルが実験段階にある間はWarpcastに保存されます。
 
-## Visibilité des casts
+## キャストの可視性
 
-Si un utilisateur cast dans un canal, Warpcast fera :
+ユーザーがチャンネルでキャストすると、Warpcastは以下を行います:
 
-1. Enverra toujours les casts aux flux principaux de tout utilisateur qui suit le canal.
-2. Enverra généralement les casts aux flux principaux de tout utilisateur qui suit l'auteur.
+1. チャンネルをフォローしているすべてのユーザーのホームフィードにキャストを常に送信します。
+2. 通常、著者をフォローしているすべてのユーザーのホームフィードにキャストを送信します。
 
-La détermination pour (2) est faite en fonction des préférences de l'utilisateur, du contenu du canal et d'autres données du graphe social. Cet algorithme est encore en cours de réglage et sera documenté une fois qu'il sera stable.
+(2)の判断は、ユーザーの好み、チャンネルの内容、およびその他のソーシャルグラフデータに基づいて行われます。このアルゴリズムはまだ微調整中であり、安定したら文書化されます。
 
-## Politique d'utilisation
+## 使用ポリシー
 
-Warpcast peut supprimer votre canal et NE remboursera PAS vos warps si :
+Warpcastは以下の場合にチャンネルを削除し、ワープの返金を行いません。
 
-1. Votre profil ou canal usurpe l'identité de quelqu'un.
-2. Vous squattez un canal sans l'utiliser.
-3. Vous violez les termes et conditions de Warpcast ou les règles de l'app store.
+1. プロフィールまたはチャンネルが誰かを偽装している場合。
+2. チャンネルを使用せずに占有している場合。
+3. Warpcastの利用規約またはアプリストアの規則に違反した場合。
 
 ## FAQ
 
-**Pourquoi les hôtes de canal sont-ils autorisés à masquer et bannir ? N'est-ce pas de la censure ?**
+**なぜチャンネルホストは非表示や禁止が許可されているのですか？これは検閲ではありませんか？**
 
-Les canaux ne sont pas des espaces publics ouverts à tous, ils sont détenus et modérés par leurs créateurs. Vous êtes toujours libre de créer votre propre canal à tout moment avec ses propres règles.
+チャンネルは誰でも自由に使える公共の場ではなく、作成者によって所有および管理されています。いつでも自分のルールで新しいチャンネルを開始することができます。
 
-**Pourquoi y a-t-il des frais pour créer des canaux ?**
+**なぜチャンネル作成に料金がかかるのですか？**
 
-Les frais découragent les gens de squatter des noms courts et de ne pas utiliser les canaux.
+料金は、短い名前を占有して使用しない人を抑制するためです。
 
-**Quel est l'avantage de créer un canal ?**
+**チャンネルを作成する利点は何ですか？**
 
-Créer un canal aide également à développer votre audience :
+チャンネルを開始することは、あなたのオーディエンスを増やすのにも役立ちます:
 
-1. Warpcast enverra une notification à vos abonnés à propos de votre canal.
-2. Votre canal sera promu auprès des utilisateurs qui suivent des canaux similaires.
-3. Les utilisateurs qui suivent votre canal verront les casts du canal dans leur flux principal.
+1. Warpcastはフォロワーにあなたのチャンネルについて通知を送信します。
+2. あなたのチャンネルは、類似のチャンネルをフォローしているユーザーにプロモートされます。
+3. あなたのチャンネルをフォローしているユーザーは、ホームフィードでチャンネルキャストを確認できます。

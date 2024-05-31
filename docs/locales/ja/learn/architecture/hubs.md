@@ -1,55 +1,61 @@
-# Hubs
+# ハブ
 
-Les hubs sont un réseau distribué de serveurs qui stockent et valident les données de Farcaster.
+ハブは、Farcasterデータを保存および検証する分散型ネットワークのサーバー群です。
 
-Un ordinateur peut exécuter un logiciel pour devenir un hub Farcaster. Il télécharge les données Farcaster onchain depuis Ethereum et les données Farcaster offchain depuis d'autres hubs. Chaque hub stocke une copie de toutes les données Farcaster qui peuvent être accessibles via une API.
+コンピュータはソフトウェアを実行してFarcasterハブになることができます。これにより、EthereumからオンチェーンのFarcasterデータをダウンロードし、他のハブからオフチェーンのFarcasterデータをダウンロードします。各ハブは、APIを介してアクセスできるすべてのFarcasterデータのコピーを保存します。
 
-Les hubs vous permettent de lire et d'écrire des données sur Farcaster, et toute personne construisant une application Farcaster devra en utiliser un. N'importe qui peut faire fonctionner un hub sur son ordinateur portable ou sur un serveur cloud. Un guide complet pour configurer et exécuter un hub est disponible [ici](https://www.thehubble.xyz).
+ハブを使用すると、Farcasterにデータを読み書きでき、Farcasterアプリを構築する人は誰でもハブと通信する必要があります。誰でも自分のラップトップやクラウドサーバーでハブを実行できます。ハブのセットアップと実行に関する完全なガイドは[こちら](https://www.thehubble.xyz)で利用できます。
 
-## Conception
+## 設計
 
-Un hub commence par synchroniser les données des contrats Farcaster sur la blockchain Optimism. Il prend connaissance du compte de chaque utilisateur et de leurs clés de compte.
+ハブは、Optimismブロックチェーン上のFarcasterコントラクトからデータを同期することから始まります。これにより、各ユーザーのアカウントとそのアカウントキーを認識します。
 
-Le cycle de vie d'un message Farcaster ressemble à ceci :
+Farcasterメッセージのライフサイクルは次のようになります：
 
-1. Alice crée un nouveau message \"Hello World!\".\n2. Alice (ou son application) signe le message avec une clé de compte.\n3. Alice (ou son application) télécharge le message sur un hub.\n4. Le hub vérifie la validité du message.\n5. Le hub envoie le message aux hubs pairs via le gossip.
+1. アリスが新しい「Hello World!」メッセージを作成します。
+2. アリス（または彼女のアプリ）がアカウントキーでメッセージに署名します。
+3. アリス（または彼女のアプリ）がメッセージをハブにアップロードします。
+4. ハブがメッセージの有効性を確認します。
+5. ハブがピアハブにゴシッププロトコルを使ってメッセージを送信します。
 
 ![Hub](/assets/hub.png)
 
-### Validation
+### 検証
 
-Le message d'Alice est validé en vérifiant qu'il a une signature valide d'une de ses clés de compte. Le hub s'assure également que le message respecte les exigences du type de message. Par exemple, un message public ou \"cast\" doit être inférieur à 320 octets. Les exigences des types de messages sont spécifiées en détail dans la spécification du protocole.
+アリスのメッセージは、彼女のアカウントキーの1つからの有効な署名があるかどうかを確認することで検証されます。ハブはまた、メッセージがメッセージタイプの要件を満たしていることを確認します。例えば、公開メッセージまたは「キャスト」は320バイト未満でなければなりません。メッセージタイプの要件はプロトコル仕様に詳細に記載されています。
 
-### Stockage
+### ストレージ
 
-Le message d'Alice est ensuite vérifié pour les conflits avant d'être stocké dans le hub. Les conflits peuvent survenir pour de nombreuses raisons :
+次に、アリスのメッセージは競合がないか確認され、ハブに保存されます。競合は多くの理由で発生する可能性があります：
 
-1. Le hub a déjà une copie du message.\n2. Le hub a un message plus récent d'Alice supprimant ce message.\n3. Alice n'a payé que pour 5000 casts, et c'est son 5001ème cast.
+1. ハブがすでにメッセージのコピーを持っている。
+2. ハブがアリスからこのメッセージを削除する後のメッセージを持っている。
+3. アリスが5000キャストのレンタル料しか支払っておらず、これは彼女の5001番目のキャストである。
 
-Les conflits sont résolus de manière déterministe et asynchrone en utilisant des CRDT. Par exemple, si Alice n'a pas d'espace pour stocker des messages, son message le plus ancien sera supprimé.
+競合はCRDTを使用して決定論的かつ非同期に解決されます。例えば、アリスがメッセージを保存するスペースがない場合、彼女の最も古いメッセージが削除されます。
 
-### Réplication
+### レプリケーション
 
-Les hubs se synchronisent en utilisant un processus en deux phases : gossip et synchronisation différentielle. Lorsqu'un hub reçoit et stocke un message, il le diffuse immédiatement à ses pairs. Le gossip est effectué en utilisant le protocole gossipsub de libp2p et est sujet à des pertes. Les hubs sélectionnent ensuite périodiquement un pair aléatoire et effectuent une synchronisation différentielle pour trouver les messages perdus. Le processus de synchronisation différentielle compare les merkle tries des hachages de messages pour trouver efficacement les messages perdus.
+ハブはゴシップと差分同期の2段階プロセスを使用して同期します。ハブがメッセージを受信して保存すると、すぐにピアにゴシップします。ゴシップはlibp2pのgossipsubプロトコルを使用して行われ、損失が発生する可能性があります。その後、ハブは定期的にランダムなピアを選択し、差分同期を実行してドロップされたメッセージを見つけます。差分同期プロセスは、メッセージハッシュのメルクリートライを比較して効率的にドロップされたメッセージを見つけます。
 
-### Cohérence
+### 一貫性
 
-Les hubs sont dits avoir une forte cohérence éventuelle. Si un hub est déconnecté, il peut être écrit et se rétablira en toute sécurité lorsqu'il se reconnectera. Cela diffère des blockchains où un nœud déconnecté ne peut pas confirmer les transactions. L'inconvénient est que les messages peuvent arriver dans le désordre. Par exemple, la réponse de Bob à Alice pourrait apparaître avant son message \"Hello World\".
+ハブは強い最終的一貫性を持つと言われています。ハブが切断されても、書き込みが可能で、オンラインになると安全に回復します。これは、切断されたノードがトランザクションを確認できないブロックチェーンとは異なります。欠点は、メッセージが順不同で到着する可能性があることです。例えば、ボブのアリスへの返信が彼女の「Hello World」メッセージの前に表示されることがあります。
 
-### Évaluation des pairs
+### ピアスコアリング
 
-Les hubs surveillent les pairs et évaluent leur comportement. Si un pair n'accepte pas les messages valides, prend du retard ou diffuse trop, il peut être ignoré par ses pairs.
+ハブはピアを監視し、その行動をスコアリングします。ピアが有効なメッセージを受け入れない場合、遅れる場合、またはゴシップが多すぎる場合、ピアによって無視される可能性があります。
 
-### Implémentations
+### 実装
 
-- [Hubble](https://www.thehubble.xyz) - une implémentation de hub en Typescript et Rust
+- [Hubble](https://www.thehubble.xyz) - TypescriptとRustで実装されたハブ
 
 ## FAQ
 
-**1. Pourquoi devrais-je exécuter un hub ?**
+**1. なぜハブを実行する必要があるのですか？**
 
-Vous pourriez avoir besoin d'un hub si vous construisez une application qui souhaite lire ou écrire des données Farcaster.
+Farcasterデータを読み書きするアプリを構築している場合、ハブが必要になるかもしれません。
 
-**2. Y a-t-il des récompenses pour exécuter un hub ?**
+**2. ハブを実行することで報酬はありますか？**
 
-Farcaster ne fournit pas de récompenses pour les hubs et ne prévoit pas de le faire. Warpcast, une entreprise construisant sur Farcaster, donne de petites récompenses aux opérateurs de hubs mais cela pourrait changer à l'avenir.
+Farcasterはハブに報酬を提供しておらず、今後もその予定はありません。Farcaster上で構築している会社であるWarpcastは、ハブランナーに少額の報酬を提供していますが、将来的にこれを変更する可能性があります。

@@ -1,39 +1,39 @@
-# Frames
+# フレーム
 
-Un cadre vous permet de transformer n'importe quel flux en une application interactive.
+フレームを使用すると、任意のキャストをインタラクティブなアプリに変えることができます。
 
-C'est une norme pour créer des expériences interactives et authentifiées sur Farcaster. Créez des sondages, des flux en direct ou des galeries interactives dans Warpcast ou tout autre client FC.
+これは、Farcaster上でインタラクティブで認証された体験を作成するための標準です。Warpcastや他のFCクライアント内で投票、ライブフィード、インタラクティブギャラリーを作成できます。
 
-Les cadres étendent la norme OpenGraph et transforment les intégrations statiques en expériences interactives. Le diagramme ci-dessous montre la différence entre un OG standard et un cadre OG dans Warpcast.
+フレームはOpenGraph標準を拡張し、静的な埋め込みをインタラクティブな体験に変えます。以下の図は、Warpcast内の標準OGとフレームOGの違いを示しています。
 
-![Frames vs OG](/assets/frame_og.png)
+![フレーム vs OG](/assets/frame_og.png)
 
-Créer un cadre est simple — choisissez une image à afficher et ajoutez des boutons sur lesquels l'utilisateur peut cliquer. Si un bouton est cliqué, vous recevez un rappel et pouvez envoyer une autre image avec davantage de boutons.
+フレームの作成は簡単です。表示する画像を選択し、ユーザーがクリックできるボタンを追加します。ボタンがクリックされると、コールバックを受け取り、さらにボタンを含む別の画像を送信できます。
 
-## Ressources
+## リソース
 
-Une collection des utilitaires les plus populaires pour créer et gérer des cadres.
+フレームの作成と管理に最も人気のあるユーティリティのコレクション。
 
-### Outils
+### ツール
 
-- [Vercel OG](https://vercel.com/docs/functions/og-image-generation) - Utilisez satori et resvg-js pour générer des images PNG à partir de HTML et CSS.
-- [Warpcast Frame Validator](https://warpcast.com/~/developers/frames) - Un débogueur pour tester les cadres dans l'interface utilisateur de Warpcast.
-- [Neynar](https://docs.neynar.com/docs/how-to-build-farcaster-frames-with-neynar) - Infrastructure et outils pour les serveurs de cadres.
+- [Vercel OG](https://vercel.com/docs/functions/og-image-generation) - satoriとresvg-jsを使用してHTMLとCSSからPNG画像を生成します。
+- [Warpcast Frame Validator](https://warpcast.com/~/developers/frames) - Warpcast UIでフレームをテストするためのデバッガー。
+- [Neynar](https://docs.neynar.com/docs/how-to-build-farcaster-frames-with-neynar) - フレームサーバーのためのインフラとツール。
 
-### Frameworks
+### フレームワーク
 
-- [onchainkit](https://github.com/coinbase/onchainkit) - Un kit d'outils React pour créer des cadres
-- [frames.js](https://framesjs.org/) - Un modèle Next.js pour créer et déboguer des cadres.
-- [Simplest Frame](https://github.com/depatchedmode/simplest-frame) - un modèle de cadre sans framework.
-- [frog](https://frog.fm) - framework pour cadres.
+- [onchainkit](https://github.com/coinbase/onchainkit) - フレームを作成するためのReactツールキット。
+- [frames.js](https://framesjs.org/) - フレームを構築およびデバッグするためのNext.jsテンプレート。
+- [Simplest Frame](https://github.com/depatchedmode/simplest-frame) - ゼロフレームワークのフレームテンプレート。
+- [frog](https://frog.fm) - フレームのためのフレームワーク。
 
-### Exemples
+### 例
 
-- [Linktree](https://replit.com/@soren/Linktree-Frame?v=1) - un cadre simple qui renvoie à quatre autres pages.
-- [Onchain Cow](https://github.com/WillPapper/On-Chain-Cow-Farcaster-Frame) - un jeu de type cow clicker.
-- [FC Polls](https://github.com/farcasterxyz/fc-polls) - créer et gérer des sondages dans des cadres.
-- [Claim or Mint](https://github.com/horsefacts/base-mint-with-warps) - permet aux utilisateurs de réclamer un NFT s'ils remplissent certains critères.
+- [Linktree](https://replit.com/@soren/Linktree-Frame?v=1) - 他の4つのページにリンクするシンプルなフレーム。
+- [Onchain Cow](https://github.com/WillPapper/On-Chain-Cow-Farcaster-Frame) - 牛クリックゲームのようなゲーム。
+- [FC Polls](https://github.com/farcasterxyz/fc-polls) - フレーム内で投票を作成および実行します。
+- [Claim or Mint](https://github.com/horsefacts/base-mint-with-warps) - 特定の条件を満たすとNFTを請求できるようにします。
 
 <br/>
 
-Une liste plus détaillée de ressources peut être trouvée sur [awesome-frames](https://github.com/davidfurlong/awesome-frames).
+より詳細なリソースリストは[awesome-frames](https://github.com/davidfurlong/awesome-frames)で見つけることができます。

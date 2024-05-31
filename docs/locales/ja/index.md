@@ -4,28 +4,24 @@ next:
   link: '/learn/what-is-farcaster/accounts'
 ---
 
-# Commencer
+# 始めに
 
-Farcaster est un réseau social [suffisamment décentralisé](https://www.varunsrinivasan.com/2022/01/11/sufficient-decentralization-for-social-networks) construit sur Ethereum.
+FarcasterはEthereum上に構築された[十分に分散化された](https://www.varunsrinivasan.com/2022/01/11/sufficient-decentralization-for-social-networks)ソーシャルネットワークです。
 
-C'est un réseau social public similaire à Twitter et Reddit. Les utilisateurs peuvent créer des profils, publier des "casts" et suivre d'autres personnes. Ils possèdent leurs comptes et leurs relations avec d'autres utilisateurs et sont libres de passer d'une application à l'autre.
+これはTwitterやRedditに似た公共のソーシャルネットワークです。ユーザーはプロフィールを作成し、「キャスト」を投稿し、他のユーザーをフォローすることができます。ユーザーは自分のアカウントと他のユーザーとの関係を所有し、異なるアプリ間を自由に移動することができます。
 
-:::tip Rejoindre Farcaster
-Si vous n'êtes pas sur Farcaster, commencez par [créer votre compte](https://www.warpcast.com/) avec Warpcast.
-:::
+:::tip Farcasterに参加する\nFarcasterに参加していない場合は、Warpcastで[アカウントを作成](https://www.warpcast.com/)して始めてください。\n:::
 
-## Apprendre
+## 学ぶ
 
-Si vous voulez en savoir plus, commencez par explorer ces concepts :
+もっと学びたい場合は、以下のコンセプトから始めてください：
 
-- [Farcaster 101](https://www.youtube.com/playlist?list=PL0eq1PLf6eUdm35v_840EGLXkVJDhxhcF) - une présentation du protocole Farcaster en courtes vidéos de 5 minutes.
-- [Concepts de base](./learn/what-is-farcaster/accounts.md) - apprenez les éléments de base de Farcaster, en commençant par les comptes.
-- [Architecture](./learn/architecture/overview.md) - une répartition des systèmes onchain et offchain de Farcaster.
+- [Farcaster 101](https://www.youtube.com/playlist?list=PL0eq1PLf6eUdm35v_840EGLXkVJDhxhcF) - Farcasterプロトコルの短い5分間のビデオによるウォークスルー。\n- [コアコンセプト](./learn/what-is-farcaster/accounts.md) - アカウントから始めるFarcasterの基本構造について学びます。\n- [アーキテクチャ](./learn/architecture/overview.md) - Farcasterのオンチェーンおよびオフチェーンシステムの内訳。
 
-## Documentation
+## ドキュメント
 
-- [Spécification de Farcaster](https://github.com/farcasterxyz/protocol) - Spécifications de Farcaster, y compris ses contrats et hubs.
+- [Farcaster仕様](https://github.com/farcasterxyz/protocol) - Farcasterの契約やハブを含む仕様。
 
-## Contribuer
+## 貢献
 
-Pour en savoir plus sur la façon de contribuer au protocole, y compris ce site de documentation, consultez la section [Contribuer](./learn/contributing/overview.md).
+プロトコルへの貢献方法について学ぶには、このドキュメントサイトを含む[貢献](./learn/contributing/overview.md)セクションをチェックしてください。

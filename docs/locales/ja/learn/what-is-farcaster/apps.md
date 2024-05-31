@@ -1,44 +1,44 @@
-# Applications
+# アプリ
 
-Utiliser Farcaster nécessite un portefeuille Ethereum pour enregistrer votre compte et une interface utilisateur pour naviguer sur le réseau. Si vous êtes nouveau, nous vous recommandons de commencer avec Warpcast sur [iOS](https://apps.apple.com/us/app/warpcast/id1600555445) ou [Android](https://play.google.com/store/apps/details?id=com.farcaster.mobile&hl=en_US&gl=US)
+Farcasterを使用するには、アカウントを登録するためのEthereumウォレットとネットワークを閲覧するためのUIが必要です。初めての方には、[iOS](https://apps.apple.com/us/app/warpcast/id1600555445)または[Android](https://play.google.com/store/apps/details?id=com.farcaster.mobile&hl=en_US&gl=US)のWarpcastから始めることをお勧めします。
 
-Il existe deux types d'applications :
+アプリには2種類あります：
 
-1. **Application de portefeuille** - permet de s'inscrire, d'ajouter des applications connectées, de publier et de parcourir des messages.
-2. **Application connectée** - permet uniquement de publier et de parcourir des messages.
+1. **ウォレットアプリ** - サインアップ、接続アプリの追加、メッセージの投稿と閲覧が可能。
+2. **接続アプリ** - メッセージの投稿と閲覧のみが可能。
 
-## Applications de portefeuille
+## ウォレットアプリ
 
-Les utilisateurs doivent installer une application de portefeuille pour commencer avec Farcaster. Ils peuvent effectuer des actions onchain et offchain comme s'inscrire, ajouter des applications connectées, publier des messages et suivre des utilisateurs.
+ユーザーはFarcasterを始めるためにウォレットアプリをインストールする必要があります。これにより、サインアップ、接続アプリの追加、メッセージの投稿などのオンチェーンおよびオフチェーンのアクションを実行できます。
 
-Une application de portefeuille contrôle l'adresse Ethereum qui possède le compte. Elle a le contrôle sur le compte et peut effectuer toute action en votre nom, donc n'utilisez qu'une application de portefeuille en laquelle vous avez confiance.
+ウォレットアプリはアカウントを所有するEthereumアドレスを管理します。アカウントを管理し、ユーザーの代わりに任意のアクションを実行できるため、信頼できるウォレットアプリのみを使用してください。
 
 ### Warpcast
 
-Warpcast est une application de portefeuille développée par l'équipe Farcaster. Elle dispose d'une application web et mobile, bien que l'inscription ne soit disponible que sur mobile.
+WarpcastはFarcasterチームによって開発されたウォレットアプリです。ウェブアプリとモバイルアプリがありますが、サインアップはモバイルでのみ可能です。
 
-- Télécharger : [iOS](https://apps.apple.com/us/app/warpcast/id1600555445), [Android](https://play.google.com/store/apps/details?id=com.farcaster.mobile&hl=en_US&gl=US)
+- ダウンロード: [iOS](https://apps.apple.com/us/app/warpcast/id1600555445), [Android](https://play.google.com/store/apps/details?id=com.farcaster.mobile&hl=en_US&gl=US)
 
-## Applications connectées
+## 接続アプリ
 
-Les applications connectées ne peuvent être ajoutées qu'une fois qu'un utilisateur s'est inscrit avec une application de portefeuille. Elles peuvent effectuer des actions offchain sur Farcaster comme écrire des messages, suivre des comptes et naviguer.
+接続アプリは、ユーザーがウォレットアプリでサインアップした後にのみ追加できます。これにより、キャストの作成、アカウントのフォロー、閲覧などのオフチェーンアクションをFarcaster上で実行できます。
 
-Une application connectée contrôle une clé d'application accordée par l'application de portefeuille. Les utilisateurs peuvent ajouter de nombreuses applications connectées à leur compte et les supprimer à tout moment. Une application connectée malveillante ne peut pas prendre le contrôle de votre compte et toutes les actions qu'elle entreprend peuvent être annulées par votre application de portefeuille.
+接続アプリはウォレットアプリによって付与されたアプリキーを管理します。ユーザーはアカウントに多くの接続アプリを追加し、いつでも削除できます。悪意のある接続アプリはアカウントを制御できず、実行されたアクションはウォレットアプリによって取り消すことができます。
 
-Quelques applications connectées populaires incluent :
+いくつかの人気のある接続アプリには以下が含まれます：
 
 - [Supercast](https://supercast.xyz/)
 - [Yup](https://yup.io/)
 - [Farcord](https://farcord.com/)
 
-**Les applications connectées ne sont pas examinées par Farcaster, utilisez-les à vos propres risques**
+**接続アプリはFarcasterによってレビューされていないため、自己責任で使用してください**
 
-## Ressources
+## リソース
 
-### Outils
+### ツール
 
-- [Replicator](https://github.com/farcasterxyz/hub-monorepo/tree/main/apps/replicator) - un outil pour synchroniser un hub avec une base de données postgres.
+- [Replicator](https://github.com/farcasterxyz/hub-monorepo/tree/main/apps/replicator) - ハブをPostgresデータベースに同期するためのツール。
 
-### Services
+### サービス
 
-- [Neynar](https://neynar.com/) - infrastructure et services pour créer des applications Farcaster.
+- [Neynar](https://neynar.com/) - Farcasterアプリを構築するためのインフラとサービス。

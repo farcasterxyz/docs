@@ -1,10 +1,7 @@
-# Gouvernance
+# ガバナンス
 
-Farcaster adopte le [rough consensus and running code](https://en.wikipedia.org/wiki/Rough_consensus) comme modèle de gouvernance. Les changements se produisent lorsque quelqu'un fait une proposition, obtient l'adhésion et livre du code en cours d'exécution. Selon le changement, différents groupes doivent être convaincus :
+Farcasterはそのガバナンスモデルとして[ラフコンセンサスと実行コード](https://en.wikipedia.org/wiki/Rough_consensus)を採用しています。変更は誰かが提案を行い、賛同を得て実行可能なコードを出荷することで行われます。変更の内容に応じて、異なるグループを説得する必要があります：
 
-1. **Développeurs**, qui choisissent d'intégrer les changements dans les hubs et les contrats.
-2. **Opérateurs de hubs**, qui choisissent de déployer ces changements sur leurs hubs.
-3. **Développeurs d'applications**, qui choisissent les hubs qu'ils lisent.
-4. **Utilisateurs**, qui choisissent les applications qu'ils veulent utiliser.
+1. **プロトコル開発者**、ハブや契約に変更をマージするかどうかを選択するプロトコル開発者。\n2. **ハブ運営者**、その変更を自分のハブにデプロイするかどうかを選択します。\n3. **アプリ開発者**、どのハブからデータを読み取るかを選択します。\n4. **ユーザー**、使用したいアプリを選択します。
 
-Le consensus émerge des personnes acceptant ou rejetant le nouveau code. Farcaster n'aura pas de processus de vote contraignant, de rôles officiels ou de droit de veto pour qui que ce soit. Avoir trop de structure ossifie les systèmes, encourage la politique et ralentit le progrès. Le rough consensus favorise l'action, encourage la diversité des points de vue et maximise la décentralisation, ce qui est essentiel pour un protocole de longue durée. La plupart des changements se produisent via le processus [FIP](./fips.md).
+コンセンサスは新しいコードを受け入れるか拒否するかによって形成されます。Farcasterには拘束力のある投票プロセス、公式の役割、または誰かのための拒否権はありません。過剰な構造はシステムを硬直化させ、政治的な駆け引きを助長し、進展を遅らせます。ラフコンセンサスは行動を重視し、多様な視点を奨励し、分散化を最大化します。これは長寿命のプロトコルにとって不可欠です。ほとんどの変更は[FIP](./fips.md)プロセスを通じて行われます。

@@ -1,43 +1,43 @@
-# Noms d'utilisateur
+# ユーザーネーム
 
-Un compte Farcaster a besoin d'un nom d'utilisateur pour être trouvé et mentionné par d'autres utilisateurs. Farcaster utilise le [Ethereum Name Service](https://ens.domains/) pour gérer les noms d'utilisateur.
+Farcasterアカウントには、他のユーザーが見つけて言及できるようにするためのユーザーネームが必要です。Farcasterは[Ethereum Name Service](https://ens.domains/)を使用してユーザーネームを管理します。
 
-Les noms d'utilisateur ENS sont détenus par des adresses Ethereum, tout comme les comptes Farcaster. La différence est qu'une adresse peut posséder plusieurs noms ENS, donc le compte Farcaster doit spécifier le nom qu'il souhaite utiliser. Les noms doivent comporter moins de 17 caractères et ne contenir que des lettres minuscules, des chiffres ou des tirets pour éviter les attaques par homoglyphes.
+ENSユーザーネームは、Farcasterアカウントと同様にEthereumアドレスによって所有されます。違いは、1つのアドレスが複数のENSネームを所有できるため、Farcasterアカウントは使用したい名前を指定する必要があることです。名前は17文字未満で、小文字のアルファベット、数字、またはハイフンのみを使用する必要があります。これは同形異義文字攻撃を防ぐためです。
 
-## Changer de nom d'utilisateur
+## ユーザーネームの変更
 
-Un compte Farcaster peut changer de nom d'utilisateur à tout moment. Changer de nom d'utilisateur n'affecte pas votre historique ou vos abonnés.
+Farcasterアカウントは、いつでも異なるユーザーネームに変更することができます。名前を変更しても、履歴やフォロワーには影響しません。
 
-Il est sûr de changer de nom d'utilisateur quelques fois par an. Mais changer de nom d'utilisateur plus souvent peut amener les utilisateurs ou les applications à perdre confiance en votre compte. Si vous souhaitez changer un indicateur public, envisagez de changer plutôt votre nom d'affichage.
+年に数回名前を変更するのは安全です。しかし、頻繁に名前を変更すると、ユーザーやアプリがアカウントを信頼しなくなる可能性があります。公開表示名を変更したい場合は、表示名を変更することを検討してください。
 
-## Noms offchain vs onchain
+## オフチェーン vs オンチェーンネーム
 
-Un compte peut choisir entre deux types de noms d'utilisateur :
+アカウントは2種類のユーザーネームから選択できます：
 
-- **Noms ENS offchain** : gratuits et contrôlés par Farcaster. (par exemple, @alice)
-- **Noms ENS onchain** : payants et contrôlés par votre portefeuille. (par exemple, @alice.eth)
+- **オフチェーンENSネーム**: 無料でFarcasterによって管理されます。（例：@alice）
+- **オンチェーンENSネーム**: 費用がかかり、ウォレットによって管理されます。（例：@alice.eth）
 
-Choisissez un nom ENS offchain si vous voulez commencer rapidement et que vous n'avez pas de nom ENS onchain. Un compte peut toujours passer à un nom onchain plus tard. Il est recommandé d'utiliser une application comme Warpcast pour configurer cela pour vous.
+すぐに始めたい場合やオンチェーンENSネームを持っていない場合は、オフチェーンENSネームを選択してください。アカウントは後でいつでもオンチェーンネームにアップグレードできます。これを設定するには、Warpcastのようなアプリを使用することをお勧めします。
 
-![Noms d'utilisateur](/assets/usernames.png)
+![Usernames](/assets/usernames.png)
 
-### Noms ENS offchain
+### オフチェーンENSネーム
 
-- Les noms ENS offchain, également appelés fnames, sont gratuits et émis par Farcaster.
-- Tout compte Ethereum peut obtenir un fname unique en appelant le [Registre Fname](/learn/architecture/ens-names).
-- Les fnames sont gratuits mais peuvent être révoqués par Farcaster à tout moment.
+- オフチェーンENSネーム、またはfnameと呼ばれるものは無料でFarcasterによって発行されます。
+- 任意のEthereumアカウントは[Fname Registry](/learn/architecture/ens-names)を呼び出すことで一意のfnameを取得できます。
+- Fnameは無料ですが、Farcasterによっていつでも取り消される可能性があります。
 
-### Noms ENS onchain
+### オンチェーンENS fname
 
-- Les noms ENS onchain, également appelés noms .eth, sont onchain et émis par ENS.
-- Tout compte Ethereum peut obtenir un ENS en appelant le [Registre ENS](https://docs.ens.domains/dapp-developer-guide/the-ens-registry).
-- Les noms ne sont pas gratuits mais ils ne peuvent pas être révoqués par Farcaster.
+- オンチェーンENSネーム、または.ethネームと呼ばれるものはオンチェーンであり、ENSによって発行されます。
+- 任意のEthereumアカウントは[ENS Registry](https://docs.ens.domains/dapp-developer-guide/the-ens-registry)を呼び出すことでENSを取得できます。
+- 名前は無料ではありませんが、Farcasterによって取り消されることはありません。
 
-## Ressources
+## リソース
 
-### Spécifications
+### 仕様
 
-- [Nom Farcaster](https://github.com/farcasterxyz/protocol/blob/main/docs/SPECIFICATION.md#5-fname-specifications) - Un nom ENS offchain ENSIP-10 utilisable dans Farcaster.
-- [UserData: Nom d'utilisateur](https://github.com/farcasterxyz/protocol/blob/main/docs/SPECIFICATION.md#23-user-data) - Définit une preuve de nom d'utilisateur valide comme nom d'utilisateur actuel.
-- [Preuve de nom d'utilisateur](https://github.com/farcasterxyz/protocol/blob/main/docs/SPECIFICATION.md#17-username-proof) - Prouve la propriété d'un nom d'utilisateur onchain ou offchain.
-- [Vérifications](https://github.com/farcasterxyz/protocol/blob/main/docs/SPECIFICATION.md#25-verifications) - Prouve la propriété d'une adresse, nécessaire pour les preuves de nom d'utilisateur onchain.
+- [Farcaster Name](https://github.com/farcasterxyz/protocol/blob/main/docs/SPECIFICATION.md#5-fname-specifications) - Farcaster内で使用可能なENSIP-10オフチェーンENSネーム。
+- [UserData: Username](https://github.com/farcasterxyz/protocol/blob/main/docs/SPECIFICATION.md#23-user-data) - 現在のユーザーネームとして有効なUsername Proofを設定します。
+- [Username Proof](https://github.com/farcasterxyz/protocol/blob/main/docs/SPECIFICATION.md#17-username-proof) - オンチェーンまたはオフチェーンのユーザーネームの所有権を証明します。
+- [Verifications](https://github.com/farcasterxyz/protocol/blob/main/docs/SPECIFICATION.md#25-verifications) - オンチェーンのUsername Proofに必要なアドレスの所有権を証明します。

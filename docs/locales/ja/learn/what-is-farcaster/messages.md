@@ -1,55 +1,55 @@
-# Messages
+# メッセージ
 
-Les comptes Farcaster interagissent en signant et publiant des messages. Alice peut créer un message disant "_Hello @bob_" et le signer avec sa clé.
+Farcasterアカウントは、メッセージに署名して公開することによってやり取りします。アリスは「_Hello @bob_」というメッセージを作成し、自分のキーで署名することができます。
 
-Les messages sont stockés sur un réseau peer-to-peer de hubs. Un hub dans le réseau Farcaster est appelé un hub, et chaque hub stocke une copie de l'ensemble du réseau. Un utilisateur peut publier un message sur un hub et il se propagera à l'ensemble du réseau en quelques secondes. Le format compact des messages de Farcaster et le modèle de cohérence éventuelle permettent à cette architecture de s'adapter à des millions d'utilisateurs.
+メッセージはノードのピアツーピアネットワークに保存されます。Farcasterネットワークのノードはハブと呼ばれ、各ハブはネットワーク全体のコピーを保存します。アカウントは1つのハブにメッセージを公開すると、数秒でネットワーク全体に伝播します。Farcasterのコンパクトなメッセージ形式と最終的に整合性のあるモデルにより、このアーキテクチャは数百万のユーザーにスケールできます。
 
-Un compte peut générer une [clé](./accounts.md#adding-account-keys) et la fournir à une application qui peut l'utiliser pour signer des messages. Les utilisateurs peuvent utiliser plusieurs applications avec le même compte, chacune pouvant avoir sa propre clé. Séparer les clés de signature des clés de propriété aide à sécuriser le compte.
+アカウントは[キー](./accounts.md#adding-account-keys)を生成し、それをアプリに渡してメッセージに署名することができます。アカウントは同じアカウントで複数のアプリを使用でき、各アプリケーションは独自のキーを持つことができます。署名キーを所有キーから分離することで、アカウントのセキュリティを保つことができます。
 
-## Types
+## 種類
 
-Les comptes peuvent publier cinq types différents de messages sur le réseau :
+アカウントはネットワークに5種類のメッセージを公開できます:
 
-| Type          | Description                                   | Exemple                        |
+| 種類          | 説明                                   | 例                        |
 | ------------- | --------------------------------------------- | ------------------------------ |
-| Casts         | Messages publics visibles par tous.           | "Hello world!"                 |
-| Reactions     | Une relation entre un compte et un cast.      | Alice a aimé le cast de Bob.   |
-| Links         | Une relation entre deux comptes.              | Alice suit Bob.                |
-| Profile Data  | Métadonnées sur le compte.                    | Photo de profil, nom d'affichage. |
-| Verifications | Une preuve de possession de quelque chose.    | Une adresse Ethereum.          |
+| キャスト         | 誰でも見られる公開メッセージ。   | "Hello world!"                 |
+| リアクション     | アカウントとキャストの関係。 | アリスがボブのキャストを気に入った。        |
+| リンク         | 2つのアカウント間の関係。          | アリスがボブをフォローしている。             |
+| プロフィールデータ  | アカウントに関するメタデータ。                   | プロフィール画像、表示名。 |
+| 検証 | 何かの所有権の証明。            | イーサリアムアドレス。           |
 
-## Stockage
+## ストレージ
 
-Le fait de facturer un loyer empêche les utilisateurs de spammer le réseau.
+アカウントはFarcasterネットワークにメッセージを保持するためにレンタル料を支払う必要があります。レンタル料を課すことで、アカウントがネットワークをスパムするのを防ぎます。
 
-Un compte peut louer une unité de stockage en effectuant une transaction onchain vers le registre de stockage. Une unité de stockage coûte aujourd'hui 7 $, dure un an et permet à chaque compte de stocker un certain nombre de messages de chaque type. Les limites pour chaque type aujourd'hui sont :
+アカウントはストレージレジストリにオンチェーントランザクションを行うことでストレージユニットをレンタルできます。ストレージユニットの現在の価格は$7で、1年間有効であり、各アカウントが各種類のメッセージを一定数保存できるようにします。現在の各種類の制限は以下の通りです:
 
-- 5000 Casts
-- 2500 Reactions
-- 2500 Links
-- 50 Profile Data
-- 50 Verifications
+- 5000 キャスト
+- 2500 リアクション
+- 2500 リンク
+- 50 プロフィールデータ
+- 50 検証
 
-Si un compte dépasse sa limite pour un type de message, le message le plus ancien est supprimé pour faire de la place pour le nouveau. L'utilisateur peut continuer à utiliser le réseau sans payer pour plus de stockage et les hubs peuvent garder la charge de stockage sous contrôle. Un compte peut toujours acheter plus de stockage pour augmenter ses limites.
+アカウントがメッセージタイプの制限を超えた場合、最も古いメッセージが削除され、新しいメッセージのためのスペースが作られます。アカウントは追加のストレージを支払わずにネットワークを使用し続けることができ、ハブはストレージの負荷を管理できます。アカウントは常に追加のストレージを購入して制限を増やすことができます。
 
-Un compte qui laisse expirer son stockage peut perdre tous ses messages. Il y a une période de grâce de 30 jours après l'expiration d'une unité de stockage pendant laquelle un compte doit renouveler ou perdre ses messages.
+ストレージが期限切れになったアカウントはすべてのメッセージを失う可能性があります。ストレージユニットの期限が切れた後、アカウントは30日間の猶予期間があり、その間に更新しないとメッセージを失います。
 
-Le prix et la taille de chaque unité de stockage sont recalculés périodiquement pour équilibrer la croissance et la qualité du réseau. Voir [FIP-6](https://github.com/farcasterxyz/protocol/discussions/98) pour plus de détails.
+各ストレージユニットの価格とサイズは、ネットワークの成長と品質のバランスを取るために定期的に再計算されます。詳細については[FIP-6](https://github.com/farcasterxyz/protocol/discussions/98)を参照してください。
 
-## Suppression
+## 削除
 
-Un compte peut supprimer des messages à tout moment en publiant un message de suppression correspondant. Le message de suppression supprimera le contenu du message original, laissant un marqueur de suppression à sa place. Un message supprimé comptera toujours dans la limite de stockage du compte jusqu'à ce qu'il expire en étant remplacé par un message plus récent.
+アカウントは対応する削除メッセージを公開することで、いつでもメッセージを削除できます。削除メッセージは元のメッセージの内容を削除し、その場所に墓石を残します。削除されたメッセージは、新しいメッセージによって押し出されるまで、アカウントのストレージ制限にカウントされ続けます。
 
-## Horodatages
+## タイムスタンプ
 
-Les messages ont des horodatages qui comptent les secondes depuis l'époque Farcaster, qui a commencé le `1er janvier 2021 00:00:00 UTC`. Utiliser une époque récente rend les horodatages et les messages beaucoup plus petits, ce qui est important pour le réseau.
+メッセージにはFarcasterエポックからの秒数をカウントするタイムスタンプがあります。Farcasterエポックは`2021年1月1日 00:00:00 UTC`に始まりました。最近のエポックを使用することで、タイムスタンプとメッセージが非常に小さくなり、ネットワークにとって重要です。
 
-Les horodatages ne sont pas vérifiés et peuvent être antidatés par les utilisateurs, similaire à un article de blog. Ils ne peuvent pas être plus de 15 minutes dans le futur, car le réseau rejettera de tels messages.
+タイムスタンプは未検証であり、ブログ投稿のようにアカウントによってバックデートすることができます。未来の15分以上先には設定できません。ネットワークはそのようなメッセージを拒否します。
 
-## Ressources
+## リソース
 
-### Spécifications
+### 仕様
 
-- [Messages](https://github.com/farcasterxyz/protocol/blob/main/docs/SPECIFICATION.md#2-message-specifications) - l'unité atomique de changement sur Farcaster
-- [CRDTs](https://github.com/farcasterxyz/protocol/blob/main/docs/SPECIFICATION.md#31-crdts) - règles pour garder les messages synchronisés sur le réseau
-- [Storage Registry](https://github.com/farcasterxyz/protocol/blob/main/docs/SPECIFICATION.md#13-storage-registry) - contrat pour acquérir des unités de stockage
+- [メッセージ](https://github.com/farcasterxyz/protocol/blob/main/docs/SPECIFICATION.md#2-message-specifications) - Farcasterの変更の原子単位
+- [CRDTs](https://github.com/farcasterxyz/protocol/blob/main/docs/SPECIFICATION.md#31-crdts) - ネットワーク上でメッセージを同期させるためのルール
+- [ストレージレジストリ](https://github.com/farcasterxyz/protocol/blob/main/docs/SPECIFICATION.md#13-storage-registry) - ストレージユニットを取得するための契約
