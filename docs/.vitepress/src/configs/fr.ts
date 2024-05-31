@@ -64,7 +64,7 @@ export const frConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
                 { text: 'Overview', link: '/locales/fr/learn/architecture/overview' },
                 { text: 'Contracts', link: '/locales/fr/learn/architecture/contracts' },
                 { text: 'Hubs', link: '/locales/fr/learn/architecture/hubs' },
-                { text: 'ENS Names', link: '/locales/fr/learn/architecture/frs-names' },
+                { text: 'ENS Names', link: '/locales/fr/learn/architecture/ens-names' },
               ],
             },
             {
