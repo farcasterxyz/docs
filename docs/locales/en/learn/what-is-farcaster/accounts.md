@@ -27,22 +27,3 @@ Users can set the recovery address to trusted services like Warpcast or they can
 ### Specifications
 
 - [Contract Specifications](https://github.com/farcasterxyz/protocol/blob/main/docs/SPECIFICATION.md#1-smart-contracts) - The onchain contracts that manage Farcaster accounts, account keys and recovery addresses.
-
-### APIs
-
-- [IdRegistry](../../reference/contracts/reference/id-registry) - Lookup account data onchain.
-- [IdGateway](../../reference/contracts/reference/id-gateway) - Create accounts onchain.
-- [KeyRegistry](../../reference/contracts/reference/key-registry) - Lookup account key data onchain.
-- [KeyGateway](../../reference/contracts/reference/key-gateway) - Create account keys onchain.
-- [Get Farcaster Ids](../../reference/hubble/httpapi/fids) - Fetch a list of all registered account fids from a hub.
-- [Get account keys](../../reference/hubble/httpapi/onchain#onchainsignersbyfid) - Fetch the account keys (signers) for an account from a hub.
-
-### Tutorials
-
-- [Create an account](../../developers/guides/accounts/create-account.md) - Create a new account on Farcaster.
-- [Create an account key](../../developers/guides/accounts/create-account-key.md) - Create a new account key for your account.
-- [Find account by username](../../developers/guides/accounts/find-by-name.md) - Find an account by its username.
-- [Change custody address](../../developers/guides/accounts/change-custody.md) - Change the address that owns your account.
-- [Change recovery address](../../developers/guides/accounts/change-recovery.md) - Change the address that recovers your account.
-- [Find account key requestor](../../developers/guides/advanced/decode-key-metadata.md) - Find the app that the user granted an account key to.
-- [Query signups from replicator](../../developers/guides/advanced/query-signups.md) - Query the number of signups from the replicator.

@@ -65,9 +65,3 @@ Starting a channel also helps grow your audience:
 1. Warpcast will send your followers a notification about your channel.
 2. Your channel will be promoted to users who follow similar channels.
 3. Users who follow your channel will see channel casts in their home feed.
-
-## Resources
-
-### APIs
-
-- [Warpcast Channel APIs](../../reference/warpcast/api.md) - fetch a list of all known channels

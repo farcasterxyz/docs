@@ -14,12 +14,6 @@ Creating a frame is simple — choose an image to show and add buttons the user 
 
 A collection of the most popular utilities for creating and managing frames.
 
-### Learning
-
-- [Specification](../../reference/frames/spec.md) - A formal specification for the Frame standard.
-- [Video: Frames 101](https://youtu.be/rp9X8rAPzPM?si=PWm3vBFCTtaoE_Ua) - A beginner's guide to frames.
-- [Tutorial: Polls](../../developers/guides/frames/poll.md) - Create a simple poll with frames.
-
 ### Tools
 
 - [Vercel OG](https://vercel.com/docs/functions/og-image-generation) - Use satori and resvg-js to generate PNG images from HTML and CSS.
