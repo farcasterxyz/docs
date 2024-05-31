@@ -25,7 +25,7 @@ export const frConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
               items: [
                 {
                   text: 'Getting Started',
-                  link: '/index',
+                  link: '/locales/fr/index',
                 },
               ],
             },
