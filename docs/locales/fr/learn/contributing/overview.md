@@ -1,6 +1,6 @@
 # Contribuer
 
-Farcaster accueille les contributions de toutes tailles de la communauté. Le protocole doit remercier plus de 100 contributeurs qui nous ont aidés jusqu'à présent.
+Farcaster accueille les contributions de toutes tailles de la communauté. Le protocole remercie plus de 100 contributeurs qui nous ont aidés jusqu'à présent.
 
 Pour vous impliquer, essayez de consulter les problèmes ouverts dans l'un des dépôts ci-dessous ou rejoignez un appel des développeurs.
 
@@ -16,13 +16,11 @@ Pour vous impliquer, essayez de consulter les problèmes ouverts dans l'un des d
 
 ## Documentation
 
-Ce site sert de hub central pour la documentation sur le protocole. Si vous avez des commentaires, veuillez ouvrir un problème ou
-créer une pull request sur [farcasterxyz/docs](https://github.com/farcasterxyz/docs)
+Ce site sert de centre principal pour la documentation sur le protocole. Si vous avez des commentaires, veuillez ouvrir un problème ou créer une pull request sur [farcasterxyz/docs](https://github.com/farcasterxyz/docs)
 
 ## Appels de développeurs
 
-Nous organisons un appel des développeurs bi-hebdomadaire pour discuter des changements à venir du protocole. L'appel est ouvert à tous et est un
-excellent moyen de s'impliquer.
+Nous organisons un appel bimensuel pour les développeurs afin de discuter des changements à venir du protocole. L'appel est ouvert à tous et est un excellent moyen de s'impliquer.
 
 - [Invitation au calendrier](https://calendar.google.com/calendar/u/0?cid=NjA5ZWM4Y2IwMmZiMWM2ZDYyMTkzNWM1YWNkZTRlNWExN2YxOWQ2NDU3NTA3MjQwMTk3YmJlZGFjYTQ3MjZlOEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t) -
   Invitation au calendrier pour rejoindre les appels à venir.
