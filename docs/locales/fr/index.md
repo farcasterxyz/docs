@@ -17,8 +17,8 @@ Si vous n'êtes pas sur Farcaster, commencez par [créer votre compte](https://w
 Si vous voulez en savoir plus, commencez par explorer ces concepts :
 
 - [Farcaster 101](https://www.youtube.com/playlist?list=PL0eq1PLf6eUdm35v_840EGLXkVJDhxhcF) - une présentation du protocole Farcaster en courtes vidéos de 5 minutes.
-- [Concepts de base](/learn/what-is-farcaster/accounts.md) - apprenez les bases de Farcaster, en commençant par les comptes.
-- [Architecture](/learn/architecture/overview.md) - une analyse des systèmes sur la blockchain et hors chaîne de Farcaster.
+- [Concepts de base](./learn/what-is-farcaster/accounts.md) - apprenez les bases de Farcaster, en commençant par les comptes.
+- [Architecture](./learn/architecture/overview.md) - une analyse des systèmes sur la blockchain et hors chaîne de Farcaster.
 
 ## Documentation
 
@@ -27,4 +27,4 @@ Si vous voulez en savoir plus, commencez par explorer ces concepts :
 ## Contribuer
 
 Pour en savoir plus sur la façon de contribuer au protocole, y compris à ce site de documentation, consultez
-la section [Contribuer](/learn/contributing/overview.md).
+la section [Contribuer](./learn/contributing/overview.md).

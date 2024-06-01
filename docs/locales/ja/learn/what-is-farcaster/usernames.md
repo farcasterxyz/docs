@@ -24,7 +24,7 @@ Farcaster アカウントは、いつでも異なるユーザーネームに変�
 ### オフチェーン ENS ネーム
 
 - オフチェーン ENS ネーム、または fname と呼ばれるものは無料で Farcaster によって発行されます。
-- 任意の Ethereum アカウントは[Fname Registry](/learn/architecture/ens-names)を呼び出すことで一意の fname を取得できます。
+- 任意の Ethereum アカウントは[Fname Registry](./learn/architecture/ens-names)を呼び出すことで一意の fname を取得できます。
 - Fname は無料ですが、Farcaster によっていつでも取り消される可能性があります。
 
 ### オンチェーン ENS fname

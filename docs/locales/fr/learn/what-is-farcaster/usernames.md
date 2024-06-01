@@ -20,7 +20,7 @@ Un compte peut choisir entre deux types de noms d'utilisateur :
 ### Noms ENS hors chaîne
 
 - Les noms ENS hors chaîne, également appelés fnames, sont gratuits et délivrés par Farcaster.
-- Tout compte Ethereum peut obtenir un fname unique en appelant le [Registre Fname](/learn/architecture/ens-names).
+- Tout compte Ethereum peut obtenir un fname unique en appelant le [Registre Fname](./learn/architecture/ens-names).
 - Les fnames sont gratuits mais peuvent être révoqués par Farcaster à tout moment.
 
 ### Noms ENS sur chaîne

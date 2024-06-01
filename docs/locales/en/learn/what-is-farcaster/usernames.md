@@ -24,7 +24,7 @@ Choose an offchain ENS name if you want to get started quickly and don't have an
 ### Offchain ENS Names
 
 - Offchain ENS names, also called fnames, are free and issued by Farcaster.
-- Any Ethereum account can get one unique fname by calling the [Fname Registry](/learn/architecture/ens-names).
+- Any Ethereum account can get one unique fname by calling the Fname Registry.
 - Fnames are free but they can be revoked by Farcaster at any time.
 
 ### Onchain ENS fnames
