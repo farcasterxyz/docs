@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitepress';
 import { enConfig } from './src/configs/en'
 import { frConfig } from './src/configs/fr'
+import { jaConfig } from './src/configs/ja'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -129,5 +130,6 @@ export default defineConfig({
   locales: {
     root: { label: 'English', lang: 'en', link: '/locales/en/', ...enConfig },
     fr: { label: 'French', lang: 'fr', link: '/locales/fr/', ...frConfig },
+    ja: { label: 'Japanese', lang: 'ja', link: '/locales/ja/', ...jaConfig },
 },
 });
