@@ -193,16 +193,22 @@ type TransactionTargetResponse {
 
 **Supported Chains**
 
-| Network      | Chain ID           |
-| ------------ | ------------------ |
-| Ethereum     | `eip155:1`         |
-| Arbitrum     | `eip155:42161`     |
-| Base         | `eip155:8453`      |
-| Base Sepolia | `eip155:84532`     |
-| Degen        | `eip155:666666666` |
-| Gnosis       | `eip155:100`       |
-| Optimism     | `eip155:10`        |
-| Zora         | `eip155:7777777`   |
+| Network  | Chain ID           |
+| -------- | ------------------ |
+| Ethereum | `eip155:1`         |
+| Arbitrum | `eip155:42161`     |
+| Base     | `eip155:8453`      |
+| Degen    | `eip155:666666666` |
+| Gnosis   | `eip155:100`       |
+| Optimism | `eip155:10`        |
+| Zora     | `eip155:7777777`   |
+
+| Testnet          | Chain ID          |
+| ---------------- | ----------------- |
+| Sepolia          | `eip155:11155111` |
+| Arbitrum Sepolia | `eip155:421614`   |
+| Base Sepolia     | `eip155:84532`    |
+| Optimism Sepolia | `eip155:11155420` |
 
 **Ethereum Params**
 
