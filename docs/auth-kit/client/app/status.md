@@ -1,6 +1,6 @@
 # `status`
 
-Get current status of a Farcaster Auth request.
+Get the current status of a Farcaster Auth request.
 
 Returns the current state of the request, either `'pending'` if the user's Farcaster wallet app has not yet sent back a signature, or `'completed'` once the wallet app has returned a response.
 
