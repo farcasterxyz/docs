@@ -43,6 +43,6 @@ const { siweMessage, message } = authClient.buildSignInMessage({
 | Parameter     | Description                                       |
 | ------------- | ------------------------------------------------- |
 | `siweMessage` | Constructed Sign In With Ethereum message object. |
-| `message`     | SIWE message serizalized as a string.             |
+| `message`     | SIWE message serialized as a string.             |
 | `isError`     | True when an error has occurred.                  |
 | `error`       | `Error` instance.                                 |
