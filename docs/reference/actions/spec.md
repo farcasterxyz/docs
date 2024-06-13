@@ -19,7 +19,7 @@ Farcaster clients load the GET route to get information about the action, and ma
 
 ## Metadata route
 
-Action servers must respond to an HTTP GET requests to their metadata URL with a 200 OK and a JSON body in the following format:
+Action servers must respond to an HTTP GET request to their metadata URL with a 200 OK and a JSON body in the following format:
 
 ```json
 {
@@ -146,7 +146,7 @@ Clients must display actions alongside casts and allow the user to click/tap to 
 
 #### Handling clicks
 
-When the user clicks an action, the client must make a POST reques to the action’s `postUrl` with a signed frame message.
+When the user clicks an action, the client must make a POST request to the action’s `postUrl` with a signed frame message.
 
 In this message, clients must:
 
