@@ -27,7 +27,7 @@ $ ./hubble.sh up
 
 ## Reset the db
 
-The best way to reset the db is to delete the `.rocks` directory entirely, which is force the hub to fetch the latest
+The best way to reset the db is to delete the `.rocks` directory entirely, which forces the hub to fetch the latest
 snapshot and re-sync from there.
 
 ```bash
@@ -51,7 +51,7 @@ BOOTSTRAP_NODE=/dns/hoyt.farcaster.xyz/tcp/2282
 ## Is my hub in sync?
 
 Use the [grafana dashboard](/hubble/monitoring) to monitor your hub. The Status tab will show the message sync
-percent of your hub compared to it's peers. If this is less than 100%, try restarting the hub and waiting a while. If
+percent of your hub compared to its peers. If this is less than 100%, try restarting the hub and waiting a while. If
 this
 persists, reach out on the [Developer Chat](https://t.me/farcasterdevchat) or file an issue on
 the [hub repo](https://github.com/farcasterxyz/hub-monorepo/issues/new?assignees=&labels=&projects=&template=bug_report.md&title=bug%20%28hubble%29%3A).
