@@ -28,7 +28,7 @@ Add a new key for the caller's fid and set its state to `Added`. Revert if the k
 | ------------ | -------- | --------------------------------------------------------------------------------------------------------------------------------- |
 | keyType      | `uint32` | Must be set to `1`. This is currently the only supported `keyType`.                                                               |
 | key          | `bytes`  | The public key to add                                                                                                             |
-| metadataType | `uint8`  | Must be set to `1`. This is currenlty the only supported `metadataType`.                                                          |
+| metadataType | `uint8`  | Must be set to `1`. This is currently the only supported `metadataType`.                                                          |
 | metadata     | `bytes`  | Encoded [`SignedKeyRequestMetadata`](/reference/contracts/reference/signed-key-request-validator#signedkeyrequestmetadata-struct) |
 
 ### addFor
@@ -40,7 +40,7 @@ Add a key on behalf of another fid by providing a signature. The owner must sign
 | fidOwner     | `address` | Address of the fid owner                                                                                                          |
 | keyType      | `uint32`  | Must be set to `1`. This is currently the only supported `keyType`.                                                               |
 | key          | `bytes`   | The public key to add                                                                                                             |
-| metadataType | `uint8`   | Must be set to `1`. This is currenlty the only supported `metadataType`.                                                          |
+| metadataType | `uint8`   | Must be set to `1`. This is currently the only supported `metadataType`.                                                          |
 | metadata     | `bytes`   | Encoded [`SignedKeyRequestMetadata`](/reference/contracts/reference/signed-key-request-validator#signedkeyrequestmetadata-struct) |
 | deadline     | `uint256` | Signature expiration timestamp                                                                                                    |
 | sig          | `bytes`   | EIP-712 [`Add`](/reference/contracts/reference/key-gateway#add-signature) signature from `fidOwner`                               |
@@ -56,7 +56,7 @@ To add a key on behalf of another account, you must provide an EIP-712 typed sig
 | owner        | `address` | Address that owns the fid. The typed message must be signed by this address.                                                      |
 | keyType      | `uint32`  | Must be set to `1`. This is currently the only supported `keyType`.                                                               |
 | key          | `bytes`   | The public key to add                                                                                                             |
-| metadataType | `uint8`   | Must be set to `1`. This is currenlty the only supported `metadataType`.                                                          |
+| metadataType | `uint8`   | Must be set to `1`. This is currently the only supported `metadataType`.                                                          |
 | metadata     | `bytes`   | Encoded [`SignedKeyRequestMetadata`](/reference/contracts/reference/signed-key-request-validator#signedkeyrequestmetadata-struct) |
 | nonce        | `uint256` | Current nonce of the `owner` address                                                                                              |
 | deadline     | `uint256` | Signature expiration timestamp                                                                                                    |

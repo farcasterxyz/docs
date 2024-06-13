@@ -3,7 +3,7 @@
 Farcaster uses ENS names as human readable identifiers for accounts. Two kinds of ENS names are supported:
 
 - **Offchain ENS Names**: free and controlled by farcaster. (e.g. @alice)
-- **Onchain ENS Names**: costs money and controlled by your wallet. (e.g. @alice.eth)
+- **Onchain ENS Names**: costs money and is controlled by your wallet. (e.g. @alice.eth)
 
 ENS names can only be used on Farcaster if they are <= 16 characters and contain only lowercase letters, numbers and hyphens.
 
@@ -34,7 +34,7 @@ Registering an fname is free but subject to the following policy:
 2. Names that haven't been used for 60+ days may be reclaimed.
 3. Names that are registered for the sole purpose of resale may be reclaimed.
 
-Decisions are made by the Farcaster team and often require human judgement. Users who want a name that is fully under their control should use an onchain ENS name.
+Decisions are made by the Farcaster team and often require human judgment. Users who want a name that is fully under their control should use an onchain ENS name.
 
 ### Registry
 
