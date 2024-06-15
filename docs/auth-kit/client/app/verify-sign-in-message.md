@@ -37,7 +37,7 @@ const { data, success, fid } = await appClient.verifySignInMessage({
 | Parameter | Description                                     |
 | --------- | ----------------------------------------------- |
 | `data`    | Parsed SIWF message, as a `SiweMessage` object. |
-| `success` | True if provided signature is valid.            |
+| `success` | True if the provided signature is valid.            |
 | `fid`     | FID of the user.                                |
 | `isError` | True when an error has occurred.                |
 | `error`   | `Error` instance.                               |
