@@ -2,7 +2,7 @@
 
 ## Client Side
 
-A frontend-only app which lets users Sign in with Farcaster and shows them their profile picture and username.
+A frontend-only app that lets users Sign in with Farcaster and shows them their profile picture and username.
 
 <iframe src="https://farcaster-auth-kit-vite-demo.replit.app/" width="700" height="500" />
 
@@ -10,7 +10,7 @@ A frontend-only app which lets users Sign in with Farcaster and shows them their
 
 ## Server Side
 
-A Next.js app which lets users Sign in with Farcaster and handles sessions server-side.
+A Next.js app that lets users Sign in with Farcaster and handles sessions server-side.
 
 <iframe src="https://farcaster-auth-kit-next-auth-demo.replit.app/" width="700" height="500" />
 
