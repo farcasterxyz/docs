@@ -24,17 +24,21 @@ const status = await appClient.status({
 {
     response: Response
     data: {
-        state: 'pending' | 'completed'
-        nonce: string
-        message?: string
-        signature?: Hex
-        fid?: number
-        username?: string
-        bio?: string
-        displayName?: string
-        pfpUrl?: string
-        custody?: Hex;
-        verifications?: Hex[];
+      state: "pending";
+      nonce: string;
+    } | {
+      state: "completed";
+      nonce: string;
+      url: string;
+      message: string;
+      signature: `0x${string}`;
+      fid: number;
+      username?: string;
+      bio?: string;
+      displayName?: string;
+      pfpUrl?: string;
+      verifications?: Hex[];
+      custody?: Hex;
     }
     isError: boolean
     error: Error
