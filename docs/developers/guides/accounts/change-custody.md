@@ -31,7 +31,7 @@ const signature = await eip712signer.signTransfer({
   deadline,
 });
 
-const { request: transferRequest } = await walletClient.simulateContract({
+const { request: transferRequest } = await publicClient.simulateContract({
   ...IdContract,
   functionName: 'transfer',
   args: [account, deadline, signature], // to, deadline, signature
@@ -84,7 +84,7 @@ export const readNonce = async () => {
   return await publicClient.readContract({
     address: ID_REGISTRY_ADDRESS,
     abi: idRegistryABI,
-    functionName: 'nonce',
+    functionName: 'nonces',
     args: [account],
   });
 };
