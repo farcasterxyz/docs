@@ -31,7 +31,7 @@ Polls require data to be signed so that we know that the vote wasn’t spoofed. 
 
 ### Responding to button clicks with a new frame
 
-After the response is verified and the vote is recorded, we need to send the poll results to the user. The server generates an image which shows the results of the poll with a tool like [satori](https://github.com/vercel/satori). It then responds to the POST with a 200 OK which includes a new frame with the results wrapped in a HTML object. Here’s how you would do this in a framework like Node.js
+After the response is verified and the vote is recorded, we need to send the poll results to the user. The server generates an image which shows the results of the poll with a tool like [satori](https://github.com/vercel/satori). It then responds to the POST with a 200 OK which includes a new frame with the results wrapped in an HTML object. Here’s how you would do this in a framework like Node.js
 
 ```javascript
 res.status(200).send(`

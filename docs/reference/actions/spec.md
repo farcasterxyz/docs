@@ -19,7 +19,7 @@ Farcaster clients load the GET route to get information about the action, and ma
 
 ## Metadata route
 
-Action servers must respond to an HTTP GET requests to their metadata URL with a 200 OK and a JSON body in the following format:
+Action servers must respond to an HTTP GET request to their metadata URL with a 200 OK and a JSON body in the following format:
 
 ```json
 {

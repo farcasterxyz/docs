@@ -6,7 +6,7 @@ and [Python's PEPs](https://peps.python.org/pep-0001/). Anyone can write an FIP 
 
 1. A process, like the protocol's release schedule
 2. A standard, like URIs for onchain assets
-3. A implementation, like adding a new protocol feature
+3. An implementation, like adding a new protocol feature
 
 Read more about FIP's
 in [FIP-0: A proposal for making proposals](https://github.com/farcasterxyz/protocol/discussions/82). A list of

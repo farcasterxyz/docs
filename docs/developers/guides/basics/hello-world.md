@@ -1,6 +1,6 @@
 # Hello World
 
-Create your Farcaster account programatically and publish your first "Hello World" message.
+Create your Farcaster account programmatically and publish your first "Hello World" message.
 
 The example shows you how to:
 

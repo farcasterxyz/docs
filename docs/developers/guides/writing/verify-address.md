@@ -4,11 +4,12 @@
 
 - Write access to a hubble instance
 - Private key of an account key registered to an fid
-- An ethereum provider URL for OP Mainnet (e.g. via [Alchemy](https://www.alchemy.com/), [Infura](https://www.infura.io/) or [QuickNode](https://www.quicknode.com/)).
+- An Ethereum provider URL for OP Mainnet (e.g. via [Alchemy](https://www.alchemy.com/),[Infura](https://www.infura.io/) or [QuickNode](https://www.quicknode.com/)).
+
 
 :::
 
-To create a [Verification](https://docs.farcaster.xyz/reference/hubble/datatypes/messages.html#_6-verification) proving ownership of an external Ethereum address, you can use an `Eip712Signer` to sign a verification messsage, and the `makeVerificationAddEthAddress` function to construct a message to send to a Hub.
+To create a [Verification](https://docs.farcaster.xyz/reference/hubble/datatypes/messages.html#_6-verification) proving ownership of an external Ethereum address, you can use an `Eip712Signer` to sign a verification message, and the `makeVerificationAddEthAddress` function to construct a message to send to a Hub.
 
 First, set up clients and account keys:
 
