@@ -25,7 +25,7 @@ const App = () => {
 
 | Prop     | Type            | Required | Description                                           |
 | -------- | --------------- | -------- | ----------------------------------------------------- |
-| `config` | `AuthKitConfig` | No       | Configuration object. See options in the table below. |
+| `config` | `AuthKitConfig` | No       | Configuration object. See the options in the table below. |
 
 `config` object options:
 

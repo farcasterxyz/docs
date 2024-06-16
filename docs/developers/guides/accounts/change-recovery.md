@@ -1,6 +1,6 @@
 # Change recovery address
 
-Accounts can configure a recovery address to protect against the loss of the custody address. The recovery address will be can change the custody address of the account.
+Accounts can configure a recovery address to protect against the loss of the custody address. The recovery address will change the custody address of the account.
 
 ### Requirements
 

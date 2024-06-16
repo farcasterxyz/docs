@@ -95,7 +95,7 @@ export const readNonce = async () => {
 :::
 
 ::: warning
-Transferring an fid does not reset its recovery address. To transfer an fid and update its recovery address,
+Transferring a fid does not reset its recovery address. To transfer a fid and update its recovery address,
 call [`transferAndChangeRecovery`](/reference/contracts/reference/id-registry#transferandchangerecovery).
 :::
 
