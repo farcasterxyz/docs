@@ -26,4 +26,4 @@ Sync the Farcaster network to a local machine so you can run queries on the data
 
 ## Write to Farcaster
 
-- [Hello World](/developers/guides/basics/hello-world) - programatically create an account and publish a cast.
+- [Hello World](/developers/guides/basics/hello-world) - programmatically create an account and publish a cast.

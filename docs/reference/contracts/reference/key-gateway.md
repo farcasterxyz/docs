@@ -28,7 +28,7 @@ Add a new key for the caller's fid and set its state to `Added`. Revert if the k
 | ------------ | -------- | --------------------------------------------------------------------------------------------------------------------------------- |
 | keyType      | `uint32` | Must be set to `1`. This is currently the only supported `keyType`.                                                               |
 | key          | `bytes`  | The public key to add                                                                                                             |
-| metadataType | `uint8`  | Must be set to `1`. This is currenlty the only supported `metadataType`.                                                          |
+| metadataType | `uint8`  | Must be set to `1`. This is currently the only supported `metadataType`.                                                          |
 | metadata     | `bytes`  | Encoded [`SignedKeyRequestMetadata`](/reference/contracts/reference/signed-key-request-validator#signedkeyrequestmetadata-struct) |
 
 ### addFor

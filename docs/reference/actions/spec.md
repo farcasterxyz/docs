@@ -146,7 +146,7 @@ Clients must display actions alongside casts and allow the user to click/tap to 
 
 #### Handling clicks
 
-When the user clicks an action, the client must make a POST reques to the action’s `postUrl` with a signed frame message.
+When the user clicks an action, the client must make a POST request to the action’s `postUrl` with a signed frame message.
 
 In this message, clients must:
 
