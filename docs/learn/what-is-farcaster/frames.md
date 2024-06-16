@@ -28,17 +28,17 @@ A collection of the most popular utilities for creating and managing frames.
 
 ### Frameworks
 
-- [onchainkit](https://github.com/coinbase/onchainkit) - A React toolkit to create frames
+- [onchainkit](https://github.com/coinbase/onchainkit) - A React toolkit to create frames.
 - [frames.js](https://framesjs.org/) - A Next.js template for building and debugging frames.
-- [Simplest Frame](https://github.com/depatchedmode/simplest-frame) - a zero-framework frame template.
+- [Simplest Frame](https://github.com/depatchedmode/simplest-frame) - A zero-framework frame template.
 - [frog](https://frog.fm) - framework for frames.
 
 ### Examples
 
-- [Linktree](https://replit.com/@soren/Linktree-Frame?v=1) - a simple frame that links to four other pages.
-- [Onchain Cow](https://github.com/WillPapper/On-Chain-Cow-Farcaster-Frame) - a cow clicker-like game.
-- [FC Polls](https://github.com/farcasterxyz/fc-polls) - create and run polls within frames.
-- [Claim or Mint](https://github.com/horsefacts/base-mint-with-warps) - lets users claim an NFT if the meet certain criteria.
+- [Linktree](https://replit.com/@soren/Linktree-Frame?v=1) - A simple frame that links to four other pages.
+- [Onchain Cow](https://github.com/WillPapper/On-Chain-Cow-Farcaster-Frame) - A cow clicker-like game.
+- [FC Polls](https://github.com/farcasterxyz/fc-polls) - Create and run polls within frames.
+- [Claim or Mint](https://github.com/horsefacts/base-mint-with-warps) - Lets users claim an NFT if they meet certain criteria.
 
 <br/>
 
