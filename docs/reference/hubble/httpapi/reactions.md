@@ -110,7 +110,7 @@ Get all reactions to a cast
 **Example**
 
 ```bash
-curl http://127.0.0.1:2281/v1/reactionsByCast?fid=2&reaction_type=1
+curl http://127.0.0.1:2281/v1/reactionsByCast?target_fid=2&reaction_type=1&target_hash=0x7363f449bfb0e7f01c5a1cc0054768ed5146abc0
 ```
 
 **Response**
