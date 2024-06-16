@@ -7,7 +7,7 @@ A user may want to change this address for security reasons or to transfer owner
 ### Requirements
 
 - An ETH wallet that owns the account on OP mainnet, with some ETH
-- An ethereum provider URL for OP Mainnet (e.g. via [Alchemy](https://www.alchemy.com/),[Infura](https://www.infura.io/) or [QuickNode](https://www.quicknode.com/)).
+- An ethereum provider URL for OP Mainnet (e.g. via [Alchemy](https://www.alchemy.com/), [Infura](https://www.infura.io/) or [QuickNode](https://www.quicknode.com/)).
 
 ### Change Custody Address
 
@@ -31,7 +31,7 @@ const signature = await eip712signer.signTransfer({
   deadline,
 });
 
-const { request: transferRequest } = await walletClient.simulateContract({
+const { request: transferRequest } = await publicClient.simulateContract({
   ...IdContract,
   functionName: 'transfer',
   args: [account, deadline, signature], // to, deadline, signature
@@ -84,7 +84,7 @@ export const readNonce = async () => {
   return await publicClient.readContract({
     address: ID_REGISTRY_ADDRESS,
     abi: idRegistryABI,
-    functionName: 'nonce',
+    functionName: 'nonces',
     args: [account],
   });
 };

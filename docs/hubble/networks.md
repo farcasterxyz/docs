@@ -16,9 +16,16 @@ Testnet is a sandbox environment for developers to test new features. Dummy mess
 Set the following variables in your .env file in `apps/hubble`:
 
 ```sh
-
 FC_NETWORK_ID=2
 BOOTSTRAP_NODE=/dns/testnet1.farcaster.xyz/tcp/2282
+```
+
+If running from source code, add these arguments to the `yarn start` command
+
+```sh
+yarn start ... \
+    -n 2 \
+    -b /dns/testnet1.farcaster.xyz/tcp/2282
 ```
 
 ## Mainnet
@@ -30,4 +37,12 @@ Set the following variables in your .env file in `apps/hubble`:
 ```sh
 FC_NETWORK_ID=1
 BOOTSTRAP_NODE=/dns/nemes.farcaster.xyz/tcp/2282
+```
+
+If running from source code, add these arguments to the `yarn start` command
+
+```sh
+yarn start ... \
+    -n 1 \
+    -b /dns/nemes.farcaster.xyz/tcp/2282
 ```

@@ -67,3 +67,5 @@ typings/
 # Vitepress configuration files
 docs/.vitepress/dist 
 docs/.vitepress/cache
+
+.DS_Store
