@@ -14,6 +14,7 @@ Resources are often from third parties and are not reviewed. Use them at your ow
 
 - [@frame-js/frames](https://framesjs.org/) - next.js template for building and debugging frames.
 - [@coinbase/onchainkit](https://github.com/coinbase/onchainkit) - react toolkit to create frames.
+- [@frog](https://frog.fm) - framework for frames.
 
 ### Apps
 

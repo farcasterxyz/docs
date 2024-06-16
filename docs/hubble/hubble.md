@@ -1,6 +1,6 @@
 # Hubble
 
-Hubble is an implementation of the [Farcaster Hub Protocol](https://github.com/farcasterxyz/protocol), written
+[Hubble](https://github.com/farcasterxyz/hub-monorepo) is an implementation of the [Farcaster Hub Protocol](https://github.com/farcasterxyz/protocol), written
 in [TypeScript](https://www.typescriptlang.org/) and [Rust](https://www.rust-lang.org/).
 
 Hubble creates a private instance of Farcaster on your machine. It peers with other instances and downloads a copy of
@@ -14,6 +14,7 @@ network.
 Hubble instances can also be hosted for you by other service providers.
 
 - [Hubs x Neynar](https://hubs.neynar.com/)
+- [Hubs X Pinata](https://pinata.cloud/pinata-hub)
 
 ## Public Instances
 

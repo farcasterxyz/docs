@@ -1,6 +1,6 @@
 # `status`
 
-Get current status of a Farcaster Auth request.
+Get the current status of a Farcaster Auth request.
 
 Returns the current state of the request, either `'pending'` if the user's Farcaster wallet app has not yet sent back a signature, or `'completed'` once the wallet app has returned a response.
 
@@ -24,17 +24,21 @@ const status = await appClient.status({
 {
     response: Response
     data: {
-        state: 'pending' | 'completed'
-        nonce: string
-        message?: string
-        signature?: Hex
-        fid?: number
-        username?: string
-        bio?: string
-        displayName?: string
-        pfpUrl?: string
-        custody?: Hex;
-        verifications?: Hex[];
+      state: "pending";
+      nonce: string;
+    } | {
+      state: "completed";
+      nonce: string;
+      url: string;
+      message: string;
+      signature: `0x${string}`;
+      fid: number;
+      username?: string;
+      bio?: string;
+      displayName?: string;
+      pfpUrl?: string;
+      verifications?: Hex[];
+      custody?: Hex;
     }
     isError: boolean
     error: Error

@@ -1,11 +1,11 @@
 # Change recovery address
 
-Accounts can configure a recovery address to protect against the loss of the custody address. The recovery address will be can change the custody address of the account.
+Accounts can configure a recovery address to protect against the loss of the custody address. The recovery address will change the custody address of the account.
 
 ### Requirements
 
 - An ETH wallet that has an fid on OP mainnet, with some ETH for gas costs
-- An ETH RPC URL for OP Mainnet (e.g. via [Alchemy](https://www.alchemy.com/),[Infura](https://www.infura.io/) or [QuickNode](https://www.quicknode.com/)).
+- An ETH RPC URL for OP Mainnet (e.g. via [Alchemy](https://www.alchemy.com/), [Infura](https://www.infura.io/) or [QuickNode](https://www.quicknode.com/)).
 
 ### Change Address
 

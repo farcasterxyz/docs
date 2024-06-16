@@ -1,6 +1,6 @@
 # Create casts
 
-Creating simple casts is covered in the [messages](./messages.md) tutorial. This tutorial covers advanced topics like mentions, embeds, emoji, replies and channels.
+Creating simple casts is covered in the [messages](./messages.md) tutorial. This tutorial covers advanced topics like mentions, embeds, emojis, replies and channels.
 
 ## Setup
 
@@ -43,7 +43,7 @@ A cast can have up to 2 embeds which can each be up to 256 bytes long. No other 
  */
 const castWithMentionsAndAttachment = await makeCastAdd(
   {
-    text: 'Hey , check this out!',
+    text: 'Hey, check this out!',
     embeds: [{ url: 'https://farcaster.xyz' }],
     embedsDeprecated: [],
     mentions: [3],
@@ -56,13 +56,13 @@ const castWithMentionsAndAttachment = await makeCastAdd(
 
 ## Emoji
 
-Emoji can be included directly in the text of a cast and be rendered by clients.
+Emojis can be included directly in the text of a cast and be rendered by clients.
 
 Since an emoji character often takes up multiple bytes but renders as a single character, it has an impact on how mention positions and cast length should be calculated.
 
 ```typescript
 /**
- * A cast with emoji and mentions
+ * A cast with emojis and mentions
  *
  * "🤓@farcaster can mention immediately after emoji"
  */

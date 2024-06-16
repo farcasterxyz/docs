@@ -8,7 +8,7 @@ A Farcaster account is created by calling the IdGateway contract. It will assign
 
 You'll need to get a username, rent storage and add a key before you can use your account. These steps require many signatures and onchain transactions and can be tedious with a regular Ethereum wallet.
 
-We recommend starting with [Warpcast](https://www.warpcast.com/), a special Farcaster wallet which will handle the entire flow for you. It also uses a separate Ethereum account to sign transactions, so you can keep your main Ethereum account secure.
+We recommend starting with [Warpcast](https://www.warpcast.com/), a special Farcaster client software which will handle the entire flow for you. It also uses a separate Ethereum account to sign transactions, so you can keep your main Ethereum account secure.
 
 ## Adding account keys
 
@@ -33,7 +33,7 @@ Users can set the recovery address to trusted services like Warpcast or they can
 - [IdRegistry](../../reference/contracts/reference/id-registry) - Lookup account data onchain.
 - [IdGateway](../../reference/contracts/reference/id-gateway) - Create accounts onchain.
 - [KeyRegistry](../../reference/contracts/reference/key-registry) - Lookup account key data onchain.
-- [KeyRegistry](../../reference/contracts/reference/key-gateway) - Create account keys onchain.
+- [KeyGateway](../../reference/contracts/reference/key-gateway) - Create account keys onchain.
 - [Get Farcaster Ids](../../reference/hubble/httpapi/fids) - Fetch a list of all registered account fids from a hub.
 - [Get account keys](../../reference/hubble/httpapi/onchain#onchainsignersbyfid) - Fetch the account keys (signers) for an account from a hub.
 

@@ -73,7 +73,7 @@ To create casts with embeds, mentions, channels emoji, see the [casts](../writin
 
 Reactions are strongly typed relationships between a user and a cast (e.g. a like).
 
-A user "likes" a cast by producing a ReactionAdd message with type set to `like` and the target set to the hash of the cast and the fid of it's author.
+A user "likes" a cast by producing a ReactionAdd message with type set to `like` and the target set to the hash of the cast and the fid of its author.
 
 ```typescript
 const reactionAdd = await makeReactionAdd(

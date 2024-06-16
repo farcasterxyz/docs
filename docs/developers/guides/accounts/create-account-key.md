@@ -14,7 +14,7 @@ The owner of the account can revoke an account key at any time. To add an accoun
 ### Requirements
 
 - An ETH wallet on OP mainnet, with some ETH
-- An ETH RPC URL for OP Mainnet (e.g. via [Alchemy](https://www.alchemy.com/),[Infura](https://www.infura.io/) or [QuickNode](https://www.quicknode.com/)).
+- An ETH RPC URL for OP Mainnet (e.g. via [Alchemy](https://www.alchemy.com/), [Infura](https://www.infura.io/) or [QuickNode](https://www.quicknode.com/)).
 
 ### 1. Set up clients and account key
 
@@ -27,14 +27,11 @@ import {
   ID_GATEWAY_ADDRESS,
   ID_REGISTRY_ADDRESS,
   ViemLocalEip712Signer,
-  ViemEip712Signer,
   idGatewayABI,
   idRegistryABI,
   NobleEd25519Signer,
   KEY_GATEWAY_ADDRESS,
   keyGatewayABI,
-  KEY_REGISTRY_ADDRESS,
-  keyRegistryABI,
 } from '@farcaster/hub-nodejs';
 import { bytesToHex, createPublicClient, createWalletClient, http } from 'viem';
 import { privateKeyToAccount } from 'viem/accounts';
@@ -53,17 +50,15 @@ const walletClient = createWalletClient({
   transport: http(),
 });
 
-const app = privateKeyToAccount(APP_PK);
-const accountKey = new ViemLocalEip712Signer(app);
+const app = privateKeyToAccount(APP_PRIVATE_KEY);
+const appAccountKey = new ViemLocalEip712Signer(app as any);
 
-const alice = privateKeyToAccount(ALICE_PK);
-const aliceAccountKey = new ViemLocalEip712Signer(alice);
+const alice = privateKeyToAccount(ALICE_PRIVATE_KEY);
+const aliceAccountKey = new ViemLocalEip712Signer(alice as any);
 
-const getDeadline = () => {
-  const now = Math.floor(Date.now() / 1000);
-  const oneHour = 60 * 60;
-  return BigInt(now + oneHour);
-};
+const deadline = BigInt(Math.floor(Date.now() / 1000) + 3600); // set the signatures' deadline to 1 hour from now
+
+const WARPCAST_RECOVERY_PROXY = '0x00000000FcB080a4D6c39a9354dA9EB9bC104cd7';
 ```
 
 ### 2. Register an app fid
@@ -117,13 +112,12 @@ which generates and signs the Signed Key Request.
 if (accountKeyResult.isOk()) {
   accountPubKey = accountKeyResult.value;
 
-  const signedKeyRequestMetadata = await accountKey.getSignedKeyRequestMetadata(
-    {
+  const signedKeyRequestMetadata =
+    await appAccountKey.getSignedKeyRequestMetadata({
       requestFid: APP_FID,
       key: accountPubKey,
       deadline,
-    }
-  );
+    });
 }
 ```
 
@@ -144,7 +138,7 @@ if (signedKeyRequestMetadata.isOk()) {
   });
 
   const aliceSignature = await aliceAccountKey.signAdd({
-    owner: alice.address,
+    owner: alice.address as `0x${string}`,
     keyType: 1,
     key: accountPubKey,
     metadataType: 1,
@@ -192,14 +186,11 @@ import {
   ID_GATEWAY_ADDRESS,
   ID_REGISTRY_ADDRESS,
   ViemLocalEip712Signer,
-  ViemEip712Signer,
   idGatewayABI,
   idRegistryABI,
   NobleEd25519Signer,
   KEY_GATEWAY_ADDRESS,
   keyGatewayABI,
-  KEY_REGISTRY_ADDRESS,
-  keyRegistryABI,
 } from '@farcaster/hub-nodejs';
 import { bytesToHex, createPublicClient, createWalletClient, http } from 'viem';
 import { privateKeyToAccount } from 'viem/accounts';
@@ -230,27 +221,25 @@ const walletClient = createWalletClient({
  * use this to sign key metadata and send
  * transactions on behalf of users.
  */
-const app = privateKeyToAccount(APP_PK);
-const accountKey = new ViemLocalEip712Signer(app);
+const app = privateKeyToAccount(APP_PRIVATE_KEY);
+const appAccountKey = new ViemLocalEip712Signer(app as any);
 console.log('App:', app.address);
 
 /**
  * A local account representing Alice, a user.
  */
-const alice = privateKeyToAccount(ALICE_PK);
-const aliceAccountKey = new ViemLocalEip712Signer(alice);
+const alice = privateKeyToAccount(ALICE_PRIVATE_KEY);
+const aliceAccountKey = new ViemLocalEip712Signer(alice as any);
 console.log('Alice:', alice.address);
 
 /**
- * A convenience function to generate a deadline timestamp one hour from now.
+ * Generate a deadline timestamp one hour from now.
  * All Farcaster EIP-712 signatures include a deadline, a block timestamp
  * after which the signature is no longer valid.
  */
-const getDeadline = () => {
-  const now = Math.floor(Date.now() / 1000);
-  const oneHour = 60 * 60;
-  return BigInt(now + oneHour);
-};
+const deadline = BigInt(Math.floor(Date.now() / 1000) + 3600); // set the signatures' deadline to 1 hour from now
+
+const WARPCAST_RECOVERY_PROXY = '0x00000000FcB080a4D6c39a9354dA9EB9bC104cd7';
 
 /*******************************************************************************
  * IdGateway - register - Register an app FID.
@@ -317,20 +306,19 @@ if (accountKeyResult.isOk()) {
   /**
    *  2. Generate a Signed Key Request from the app account.
    */
-  const signedKeyRequestMetadata = await accountKey.getSignedKeyRequestMetadata(
-    {
+  const signedKeyRequestMetadata =
+    await appAccountKey.getSignedKeyRequestMetadata({
       requestFid: APP_FID,
       key: accountPubKey,
       deadline,
-    }
-  );
+    });
 
   if (signedKeyRequestMetadata.isOk()) {
     const metadata = bytesToHex(signedKeyRequestMetadata.value);
     /**
      *  3. Read Alice's nonce from the Key Gateway.
      */
-    aliceNonce = await publicClient.readContract({
+    const aliceNonce = await publicClient.readContract({
       address: KEY_GATEWAY_ADDRESS,
       abi: keyGatewayABI,
       functionName: 'nonces',
@@ -340,13 +328,13 @@ if (accountKeyResult.isOk()) {
     /**
      *  Then, collect her `Add` signature.
      */
-    aliceSignature = await aliceAccountKey.signAdd({
-      owner: alice.address,
+    const aliceSignature = await aliceAccountKey.signAdd({
+      owner: alice.address as `0x${string}`,
       keyType: 1,
       key: accountPubKey,
       metadataType: 1,
       metadata,
-      nonce,
+      nonce: aliceNonce,
       deadline,
     });
 

@@ -4,6 +4,8 @@ Hubble ships with a default Grafana configuration to monitor sync and perf.
 
 If you used the install script, open localhost:3000 in a browser to see your dashboard. If you used docker manually or installed from source, you may need to set this up yourself.
 
+If you've set hubble up on a remote server, set up an ssh tunnel with `ssh -L 3000:localhost:3000 xyz@1.1.1.1` and then open localhost:3000 in a browser to see your dashboards.
+
 ## Setting up monitoring
 
 1. Start grafana and statsd

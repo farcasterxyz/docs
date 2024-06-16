@@ -1,16 +1,16 @@
 # `useSignIn`
 
-Hook for signing in a user. Connects to the relay server, generates a QR code and sign in link to present to the user, and polls the relay server for the user's Farcaster wallet signature.
+Hook for signing in a user. Connects to the relay server, generates a sign in link to present to the user, and polls the relay server for the user's Farcaster wallet signature.
 
-If you want to build your own sign in component with custom UI, use the `useSignIn` hook.
+If you want to build your own sign in component with a custom UI, use the `useSignIn` hook.
 
 ```tsx
-import { useSignIn } from '@farcaster/auth-kit';
+import { useSignIn, QRCode } from '@farcaster/auth-kit';
 
 function App() {
   const {
     signIn,
-    qrCodeUri,
+    url,
     data: { username },
   } = useSignIn({
     onSuccess: ({ fid }) => console.log('Your fid:', fid),
@@ -19,9 +19,9 @@ function App() {
   return (
     <div>
       <button onClick={signIn}>Sign In</button>
-      {qrCodeUri && (
+      {url && (
         <span>
-          Scan this: <img src={qrCodeUri} />
+          Scan this: <QRCode uri={url} />
         </span>
       )}
       {username && `Hello, ${username}!`}
@@ -59,7 +59,6 @@ function App() {
     error: AuthClientError;
     channelToken: string;
     url: string;
-    qrCodeUri: string;
     appClient: AppClient;
     data: {
         state: "pending" | "complete";
@@ -91,7 +90,6 @@ function App() {
 | `error`              | `AuthClientError` instance.                                                                                                        |
 | `channelToken`       | Connect relay channel token.                                                                                                       |
 | `url`                | Sign in With Farcaster URL to present to the user. Links to Warpcast in v1.                                                        |
-| `qrcodeUri`          | QR code image data URL encoding `url`.                                                                                             |
 | `appClient`          | Underlying `AppClient` instance.                                                                                                   |
 | `data.state`         | Status of the sign in request, either `"pending"` or `"complete"`                                                                  |
 | `data.nonce`         | Random nonce used in the SIWE message. If you don't provide a custom nonce as an argument to the hook, you should read this value. |

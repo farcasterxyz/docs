@@ -56,7 +56,7 @@ import { useProfile } from '@farcaster/auth-kit';
 export const UserProfile = () => {
   const {
     isAuthenticated,
-    userData: { username, fid },
+    profile: { username, fid },
   } = useProfile();
   return (
     <div>
