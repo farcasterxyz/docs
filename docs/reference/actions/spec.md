@@ -98,10 +98,10 @@ An action server may return 200 OK and a JSON body in the following format to di
 
 **Properties**
 
-| Key        | Description                                                                                                  |
-| ---------- | ------------------------------------------------------------------------------------------------------------ |
-| `type`     | Must be `frame`.                                                                                             |
-| `frameUrl` | URL of the frame to display. Clients must show the frame in a special context, like a modal or bottom sheet. |
+| Key        | Description                                                                                                                   |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `type`     | Must be `frame`.                                                                                                              |
+| `frameUrl` | URL of the frame to display. 256-byte string. Clients must show the frame in a special context, like a modal or bottom sheet. |
 
 ### Error response type
 
