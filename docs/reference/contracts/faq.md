@@ -54,4 +54,14 @@ Call the [`keysOf`](https://optimistic.etherscan.io/address/0x00000000fc1237824f
 
 ### What is an app fid? How do I get one?
 
-An "app fid" is no different than any other Farcaster ID: it just represents an application rather than an individual user. You can register an app fid directly through the [Bundler](/reference/contracts/reference/bundler.md) or [IdGateway](/reference/contracts/reference/id-gateway.md), or use a Farcaster client to register an account for your app. Since you'll need to sign [key request metadata](/reference/contracts/reference/signed-key-request-validator.md) from the wallet that owns your app fid, keep the private key secure.
+**What is an FID?**
+
+An FID (Farcaster ID) is a unique identifier used to distinguish applications and users. With an FID, apps and users can be identified and differentiated.
+
+**Why is an FID necessary?**
+
+To create or post anything on the Farcaster platform, an FID is essential for identifying your app or user.
+
+**How do I get one?**
+
+You can register an app fid directly through the [Bundler](/reference/contracts/reference/bundler.md) or [IdGateway](/reference/contracts/reference/id-gateway.md), or use a Farcaster client to register an account for your app. Since you'll need to sign [key request metadata](/reference/contracts/reference/signed-key-request-validator.md) from the wallet that owns your app fid, keep the private key secure.
