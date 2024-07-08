@@ -26,7 +26,7 @@ https://warpcast.com/~/compose?text=Hello%20@farcaster!&embeds[]=https://farcast
 https://warpcast.com/~/compose?text=Hello%20world!&channelKey=farcaster
 ```
 
-#### Reply with cast text, to a cast with hash
+#### Reply with cast text to a cast with hash
 
 ```bash
 https://warpcast.com/~/compose?text=Looks%20good!&parentCastHash=0x09455067393562d3296bcbc2ec1c2d6bba8ac1f1
