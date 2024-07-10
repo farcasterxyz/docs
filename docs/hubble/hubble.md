@@ -24,7 +24,7 @@ The Farcaster team runs an instance of Hubble for use by the public. This isn't 
 read-only for now.
 
 ```bash
-url: nemes.farcaster.xyz
+url: hoyt.farcaster.xyz
 httpapi_port: 2281
 gossipsub_port: 2282
 grpc_port: 2283
