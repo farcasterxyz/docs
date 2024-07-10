@@ -154,40 +154,81 @@ The `target` property must be a valid `CAIP-10` address, plus an optional token 
 />
 ```
 
-The `tx` action allows a frame to send a transaction request to the user's connected wallet. Unlike other action types, `tx` actions have several steps.
+The `tx` action allows a frame to request the user takes an action in their connected wallet. Unlike other action types, `tx` actions have multiple steps.
 
-First, the client makes a POST request to the `target` URL to fetch data about the transaction. The frame server receives a Signature Packet in the POST body, including the address of the connected wallet. The frame server must respond with a 200 OK and a JSON response describing the transaction:
+First, the client makes a POST request to the `target` URL to fetch data about the wallet action. The frame server receives a Signature Packet in the POST body, including the address of the connected wallet. The frame server must respond with a 200 OK and a JSON response describing the wallet action:
 
 ```json
 {
-  chainId: "eip155:10",
   method: "eth_sendTransaction",
+  chainId: "eip155:10",
   params: {
     abi: [...], // JSON ABI of the function selector and any errors
     to: "0x00000000fcCe7f938e7aE6D3c335bD6a1a7c593D",
     data: "0x783a112b0000000000000000000000000000000000000000000000000000000000000e250000000000000000000000000000000000000000000000000000000000000001",
     value: "984316556204476",
   },
-};
+}
 ```
 
-The client forwards this transaction data to the user's wallet. If the user signs the transaction, the client makes a POST request to the `post_url` with a Signature Packet that includes the transaction hash. The frame server must respond with a 200 OK and another frame. The frame server must monitor the transaction hash to determine if the transaction succeeds, reverts, or times out.
+The client uses this data to request an action in the user's wallet. If the user signs completes the action, the client makes a POST request to the `post_url` with a Signature Packet that includes the transaction or signature hash. The frame server must respond with a 200 OK and another frame. The frame server may monitor the transaction hash to determine if the transaction succeeds, reverts, or times out.
 
-**Transaction Data Response Type**
+#### Wallet Action Response Type
 
-A transaction data response must match the following `TransactionTargetResponse` type with:
+A wallet action response must be one of the following:
+
+##### EthSendTransactionAction
 
 - `chainId`: A CAIP-2 chain ID to identify the tx network (e.g. Ethereum mainnet)
-- `method`: A method ID to identify the type of tx request. (e.g. `"eth_sendTransaction"`)
+- `method`: Must be `"eth_sendTransaction"`
 - `attribution`: Optional. Return `false` to omit the [calldata attribution suffix](https://www.notion.so/Frame-Transactions-Public-9d9f9f4f527249519a41bd8d16165f73?pvs=21). If this value is `undefined` or `true`, clients will append the attribution suffix.
-- `params`: Specific parameters for `chainId` and `method`
+- `params`: 
+    - `to`: transaction to address
+    - `abi`: JSON ABI which **must** include encoded function type and **should** include potential error types. Can be empty.
+    - `value`: value of ether to send with the transaction in wei. Optional.
+    - `data`: transaction calldata. Optional.
 
 ```ts
-type TransactionTargetResponse {
+type EthSendTransactionAction = {
   chainId: string;
   method: "eth_sendTransaction";
-  attribution?: boolean;
-  params: EthSendTransactionParams;
+  attribution?: boolean; 
+  params: {
+    abi: Abi | [];
+    to: string;
+    value?: string;
+    data?: string;
+  }
+}
+```
+
+##### EthSignTypedDataV4
+
+See [EIP-712](https://eips.ethereum.org/EIPS/eip-712).
+
+- `chainId`: A CAIP-2 chain ID to identify the tx network (e.g. Ethereum mainnet)
+- `method`: Must be `"eth_signTypedData_v4"`
+- `params`: 
+    - `domain`: the typed domain
+    - `types`: the type definitions for the typed data
+    - `primaryType`: the primary type to extract from types and use in value.
+    - `message`: type typed message
+
+```ts
+type EthSignTypedDataV4Action = {
+  chainId: string;
+  method: "eth_signTypedData_v4";
+  params: {
+    domain: {
+      name?: string;
+      version?: string;
+      chainId?: number;
+      verifyingContract?: string;
+    };
+    types: Record<string, unknown>;
+    primaryType: string;
+    message: Record<string, unknown>;
+  }
 }
 ```
 
@@ -209,24 +250,6 @@ type TransactionTargetResponse {
 | Arbitrum Sepolia | `eip155:421614`   |
 | Base Sepolia     | `eip155:84532`    |
 | Optimism Sepolia | `eip155:11155420` |
-
-**Ethereum Params**
-
-If the method is `eth_sendTransaction` and the chain is an Ethereum EVM chain, the param must be of type `EthSendTransactionParams`:
-
-- `to`: transaction to address
-- `abi`: JSON ABI which **must** include encoded function type and **should** include potential error types. Can be empty.
-- `value`: value of ether to send with the transaction in wei. Optional.
-- `data`: transaction calldata. Optional.
-
-```ts
-type EthSendTransactionParams {
-  abi: Abi | [];
-  to: Hex;
-  value?: string;
-  data?: Hex;
-}
-```
 
 ### Images
 
