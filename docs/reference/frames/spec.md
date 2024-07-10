@@ -259,7 +259,7 @@ There are a few rules for serving images in `fc:frame:image` tags:
 - The type of image must be jpg, png or gif.
 - The image source must either be an external resource with content headers or a data URI.
 
-Clients may resize larger images or crop those that do not fit in their aspect ratio. SVG images are not because they can contain scripts and extra work must be done by clients to sanitize them.
+Clients may resize larger images or crop those that do not fit in their aspect ratio. SVG images are not allowed because they can contain scripts and extra work must be done by clients to sanitize them.
 
 Frame servers can use cache headers to refresh images and offer more dynamic first frame experiences:
 
