@@ -212,7 +212,7 @@ See [EIP-712](https://eips.ethereum.org/EIPS/eip-712).
     - `domain`: the typed domain
     - `types`: the type definitions for the typed data
     - `primaryType`: the primary type to extract from types and use in value.
-    - `message`: type typed message
+    - `message`: typed message
 
 ```ts
 type EthSignTypedDataV4Action = {
