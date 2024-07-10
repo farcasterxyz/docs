@@ -9,6 +9,8 @@ the entire network. Messages uploaded to your Hubble instance will be broadcast 
 We recommend running Hubble if you are building an app, need access to the latest data or want to help decentralize the
 network.
 
+> ⚠️ **NOTE**: There are NO rewards for running a Hubble instance
+
 ## Hosted Instances
 
 Hubble instances can also be hosted for you by other service providers.
