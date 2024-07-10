@@ -411,6 +411,7 @@ export default defineConfig({
           text: 'Warpcast',
           items: [
             { text: 'APIs', link: '/reference/warpcast/api' },
+            { text: 'Signer Requests', link: '/reference/warpcast/signer-requests' },
             { text: 'Cast Intents', link: '/reference/warpcast/cast-composer-intents' },
             { text: 'Direct Casts', link: '/reference/warpcast/direct-casts' },
             { text: 'Embeds', link: '/reference/warpcast/embeds' },
