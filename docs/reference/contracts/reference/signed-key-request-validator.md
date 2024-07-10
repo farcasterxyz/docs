@@ -54,7 +54,7 @@ const deadline = getDeadline();
 // The getSignedKeyRequestMetadata helper generates a SignedKeyRequest
 // signature and returns an ABI-encoded SignedKeyRequest metadata struct.
 const eip712Signer = new ViemLocalEip712Signer(appAccount);
-const encodedData = await eip712Signer.getSigneKeyRequestMetadata({
+const encodedData = await eip712Signer.getSignedKeyRequestMetadata({
   requestFid: 9152n,
   key,
   deadline,
