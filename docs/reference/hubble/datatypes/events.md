@@ -12,7 +12,7 @@ Hubble keeps event around for 3 days after which they are deleted to save space.
 | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- | ----------- |
 | type  | [HubEventType](#HubEventType)                                                                                                                                                                                                               |       |             |
 | id    | [uint64](#uint64)                                                                                                                                                                                                                           |       |             |
-| body  | [MergeMessageBody](#mergemessagebody), <br> [PruneMessageBody](#prunemessagebody), <br> [RevokeMessageBody](#revokemessagebody), <br>[MergeUserNameProofBody](#mergeusernameproofbody), <br>[MergeOnChainEventBody](#mergeonchaineventbody) | oneOf |             |
+| body  | [MergeMessageBody](#mergemessagebody), <br> [PruhoytsageBody](#pruhoytsagebody), <br> [RevokeMessageBody](#revokemessagebody), <br>[MergeUserNameProofBody](#mergeusernameproofbody), <br>[MergeOnChainEventBody](#mergeonchaineventbody) | oneOf |             |
 
 ## HubEventType
 
@@ -45,9 +45,9 @@ Hubble keeps event around for 3 days after which they are deleted to save space.
 | username_proof_message         | [Message](#Message)             |       |             |
 | deleted_username_proof_message | [Message](#Message)             |       |             |
 
-<a name="-PruneMessageBody"></a>
+<a name="-PruhoytsageBody"></a>
 
-## PruneMessageBody
+## PruhoytsageBody
 
 | Field   | Type                | Label | Description |
 | ------- | ------------------- | ----- | ----------- |
