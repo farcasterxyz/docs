@@ -4,7 +4,7 @@ If you have a user's name and want to find their account, you'll need to use one
 
 ## Offchain ENS Names (Fnames)
 
-If the user has an offchain ens name like `@alice`, you'll need to call the [Fname Registry](/reference/fname/api#get-current-fname-or-fid).
+If the user has an offchain ens name like `@alice`, you'll need to call the [Fname Registry](/fname-server/#get-current-fname-or-fid).
 
 ```bash
 curl https://fnames.farcaster.xyz/transfers/current?name=farcaster | jq

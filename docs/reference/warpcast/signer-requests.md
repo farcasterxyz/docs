@@ -5,6 +5,7 @@ If your application wants to write data to Farcaster on behalf of a user, the ap
 ## Guide
 
 ### Prerequisites
+
 - a registered FID
 
 ### 1. An authenciated user clicks "Connect with Warpcast" in your app
@@ -19,6 +20,7 @@ user. In the next steps, you will prompt the user to approve this keypair to
 sign Farcaster messages on their behalf.
 
 It's important that:
+
 - the private key is stored securely and never exposed
 - the key pair can be retrieved and used to sign messages when the user returns
 
@@ -31,29 +33,29 @@ applications that generated them.
 **Example code:**
 
 ```ts
-import * as ed from "@noble/ed25519";
-import { mnemonicToAccount, signTypedData } from "viem/accounts";
+import * as ed from '@noble/ed25519';
+import { mnemonicToAccount, signTypedData } from 'viem/accounts';
 
 /*** EIP-712 helper code ***/
 
 const SIGNED_KEY_REQUEST_VALIDATOR_EIP_712_DOMAIN = {
-  name: "Farcaster SignedKeyRequestValidator",
-  version: "1",
+  name: 'Farcaster SignedKeyRequestValidator',
+  version: '1',
   chainId: 10,
-  verifyingContract: "0x00000000fc700472606ed4fa22623acf62c60553",
+  verifyingContract: '0x00000000fc700472606ed4fa22623acf62c60553',
 } as const;
 
 const SIGNED_KEY_REQUEST_TYPE = [
-  { name: "requestFid", type: "uint256" },
-  { name: "key", type: "bytes" },
-  { name: "deadline", type: "uint256" },
+  { name: 'requestFid', type: 'uint256' },
+  { name: 'key', type: 'bytes' },
+  { name: 'deadline', type: 'uint256' },
 ] as const;
 
 /*** Generating a keypair ***/
 
 const privateKey = ed.utils.randomPrivateKey();
 const publicKeyBytes = await ed.getPublicKey(privateKey);
-const key = "0x" + Buffer.from(publicKeyBytes).toString("hex");
+const key = '0x' + Buffer.from(publicKeyBytes).toString('hex');
 
 /*** Generating a Signed Key Request signature ***/
 
@@ -66,7 +68,7 @@ const signature = await account.signTypedData({
   types: {
     SignedKeyRequest: SIGNED_KEY_REQUEST_TYPE,
   },
-  primaryType: "SignedKeyRequest",
+  primaryType: 'SignedKeyRequest',
   message: {
     requestFid: BigInt(appFid),
     key,
@@ -83,20 +85,20 @@ setting this to 24 hours.
 
 ### 3. App uses the public key + SignedKeyRequest signature to initiate a Signed Key Request using the Warpcast API
 
-The app calls the Warpcast backend which returns a deeplink  and a session token that can be used to check the status of the request.
+The app calls the Warpcast backend which returns a deeplink and a session token that can be used to check the status of the request.
 
 ```ts
 /*** Creating a Signed Key Request ***/
 
-const warpcastApi = "https://api.warpcast.com";
+const warpcastApi = 'https://api.warpcast.com';
 const { token, deeplinkUrl } = await axios
-    .post(`${warpcastApi}/v2/signed-key-requests`, {
-      key: publicKey,
-      requestFid: fid,
-      signature,
-      deadline,
-    })
-    .then((response) => response.data.result.signedKeyRequest);
+  .post(`${warpcastApi}/v2/signed-key-requests`, {
+    key: publicKey,
+    requestFid: fid,
+    signature,
+    deadline,
+  })
+  .then((response) => response.data.result.signedKeyRequest);
 
 // deeplinkUrl should be presented to the user
 // token should be used to poll
@@ -111,11 +113,11 @@ to after they complete the request.
 Note: if your app is PWA or web app do not include this value as the user will
 brought to a session that has no state.
 
-***Sponsorships**
+**\*Sponsorships**
 
 You can sponsor the onchain fees for the user. See [Sponsoring a signer](#sponsoring-a-signer) below.
 
-### 4. Application presents the deep link from the response to the user 
+### 4. Application presents the deep link from the response to the user
 
 The app presents the deeplink which will prompt the user to open the Warpcast
 app and authorize the signer request (screenshots at the bottom). The app
@@ -128,9 +130,9 @@ Warpcast installed on:
 **Example code**
 
 ```ts
-import QRCode from "react-qr-code";
+import QRCode from 'react-qr-code';
 
-const DeepLinkQRCode = (deepLinkUrl) => <QRCode value={deepLinkUrl} />
+const DeepLinkQRCode = (deepLinkUrl) => <QRCode value={deepLinkUrl} />;
 ```
 
 ### 5. Application begins polling Signer Request endpoint using token
@@ -140,13 +142,13 @@ the user to complete the signer request flow. The application can poll the
 signer request resource and look for the data that indicates the user has
 completed the request:
 
-```ts
+````ts
 const poll = async (token: string) => {
   while (true) {
     // sleep 1s
     await new Promise((r) => setTimeout(r, 2000));
 
-    console.log("polling signed key request");
+    console.log('polling signed key request');
     const signedKeyRequest = await axios
       .get(`${warpcastApi}/v2/signed-key-request`, {
         params: {
@@ -155,8 +157,8 @@ const poll = async (token: string) => {
       })
       .then((response) => response.data.result);
 
-    if (signedKeyRequest.state === "completed") {
-      console.log("Signed Key Request completed:", signedKeyRequest);
+    if (signedKeyRequest.state === 'completed') {
+      console.log('Signed Key Request completed:', signedKeyRequest);
 
       /**
        * At this point the signer has been registered onchain and you can start submitting
@@ -172,86 +174,86 @@ const poll = async (token: string) => {
 };
 
 poll(token);
-```
+````
 
 ### 6. User opens the link and completes Signer Request flow in Warpcast
 
 When the user approves the request in Warpcast, an onchain transaction will be
-made that grants write permissions to that signer. Once that completes your app 
+made that grants write permissions to that signer. Once that completes your app
 should indicate success and can being writing messages using the newly added key.
 
 ### Reference implementation
 
-```ts
-import * as ed from "@noble/ed25519";
-import { Hex } from "viem";
-import { mnemonicToAccount } from "viem/accounts";
-import axios from "axios";
-import * as qrcode from "qrcode-terminal";
+````ts
+import * as ed from '@noble/ed25519';
+import { Hex } from 'viem';
+import { mnemonicToAccount } from 'viem/accounts';
+import axios from 'axios';
+import * as qrcode from 'qrcode-terminal';
 
 /*** EIP-712 helper code ***/
 
 const SIGNED_KEY_REQUEST_VALIDATOR_EIP_712_DOMAIN = {
-  name: "Farcaster SignedKeyRequestValidator",
-  version: "1",
+  name: 'Farcaster SignedKeyRequestValidator',
+  version: '1',
   chainId: 10,
-  verifyingContract: "0x00000000fc700472606ed4fa22623acf62c60553",
+  verifyingContract: '0x00000000fc700472606ed4fa22623acf62c60553',
 } as const;
 
 const SIGNED_KEY_REQUEST_TYPE = [
-  { name: "requestFid", type: "uint256" },
-  { name: "key", type: "bytes" },
-  { name: "deadline", type: "uint256" },
+  { name: 'requestFid', type: 'uint256' },
+  { name: 'key', type: 'bytes' },
+  { name: 'deadline', type: 'uint256' },
 ] as const;
 
 (async () => {
-		/*** Generating a keypair ***/
-		
-		const privateKey = ed.utils.randomPrivateKey();
-		const publicKeyBytes = await ed.getPublicKey(privateKey);
-		const key = "0x" + Buffer.from(publicKeyBytes).toString("hex");
-		
-		/*** Generating a Signed Key Request signature ***/
-		
-		const appFid = process.env.APP_FID;
-		const account = mnemonicToAccount(process.env.APP_MNEMONIC);
-		
-		const deadline = Math.floor(Date.now() / 1000) + 86400; // signature is valid for 1 day
-		const signature = await account.signTypedData({
-			domain: SIGNED_KEY_REQUEST_VALIDATOR_EIP_712_DOMAIN,
-			types: {
-			  SignedKeyRequest: SIGNED_KEY_REQUEST_TYPE,
-			},
-			primaryType: "SignedKeyRequest",
-			message: {
-			  requestFid: BigInt(appFid),
-			  key,
-			  deadline: BigInt(deadline),
-			},
-		});
-		
-		/*** Creating a Signed Key Request ***/
-		
-		const warpcastApi = "https://api.warpcast.com";
-		const { token, deeplinkUrl } = await axios
-		  .post(`${warpcastApi}/v2/signed-key-requests`, {
-		    key,
-		    requestFid: appFid,
-		    signature,
-		    deadline,
-		  })
-		  .then((response) => response.data.result.signedKeyRequest);
-		
+  /*** Generating a keypair ***/
+
+  const privateKey = ed.utils.randomPrivateKey();
+  const publicKeyBytes = await ed.getPublicKey(privateKey);
+  const key = '0x' + Buffer.from(publicKeyBytes).toString('hex');
+
+  /*** Generating a Signed Key Request signature ***/
+
+  const appFid = process.env.APP_FID;
+  const account = mnemonicToAccount(process.env.APP_MNEMONIC);
+
+  const deadline = Math.floor(Date.now() / 1000) + 86400; // signature is valid for 1 day
+  const signature = await account.signTypedData({
+    domain: SIGNED_KEY_REQUEST_VALIDATOR_EIP_712_DOMAIN,
+    types: {
+      SignedKeyRequest: SIGNED_KEY_REQUEST_TYPE,
+    },
+    primaryType: 'SignedKeyRequest',
+    message: {
+      requestFid: BigInt(appFid),
+      key,
+      deadline: BigInt(deadline),
+    },
+  });
+
+  /*** Creating a Signed Key Request ***/
+
+  const warpcastApi = 'https://api.warpcast.com';
+  const { token, deeplinkUrl } = await axios
+    .post(`${warpcastApi}/v2/signed-key-requests`, {
+      key,
+      requestFid: appFid,
+      signature,
+      deadline,
+    })
+    .then((response) => response.data.result.signedKeyRequest);
+
   qrcode.generate(deeplinkUrl, console.log);
-  console.log("scan this with your phone");
-  console.log("deep link:", deeplinkUrl);
+  console.log('scan this with your phone');
+  console.log('deep link:', deeplinkUrl);
 
   const poll = async (token: string) => {
     while (true) {
       // sleep 1s
       await new Promise((r) => setTimeout(r, 2000));
 
-      console.log("polling signed key request");
+      console.log('polling signed key request');
       const signedKeyRequest = await axios
         .get(`${warpcastApi}/v2/signed-key-request`, {
           params: {
@@ -260,8 +262,8 @@ const SIGNED_KEY_REQUEST_TYPE = [
         })
         .then((response) => response.data.result);
 
-      if (signedKeyRequest.state === "completed") {
-        console.log("Signed Key Request completed:", signedKeyRequest);
+      if (signedKeyRequest.state === 'completed') {
+        console.log('Signed Key Request completed:', signedKeyRequest);
 
         /**
          * At this point the signer has been registered onchain and you can start submitting
@@ -278,8 +280,7 @@ const SIGNED_KEY_REQUEST_TYPE = [
 
   await poll(token);
 })();
-
-```
+````
 
 ## API
 
@@ -294,7 +295,7 @@ Create a signed key requests.
 - `deadline` - Unix timestamp signature is valid until
 - `signature` - [SignedKeyRequest](https://docs.farcaster.xyz/reference/contracts/reference/signed-key-request-validator#signed-key-request-validator) signature from the requesting application
 - `redirectUrl` - Optional. Url to redirect to after the signer is approved. Note: this should only be used when requesting a signer from a native mobile application.
-- `sponsorship` - 
+- `sponsorship` -
 
 **Sample response:**
 
@@ -341,7 +342,6 @@ Get the state of a signed key requests.
 }
 ```
 
-
 **Sample response after approval but before transaction is confirmed:**
 
 ```json
@@ -386,7 +386,7 @@ sponsored by including an additional `sponsorship` field in the request body.
 type SignedKeyRequestSponsorship = {
   sponsorFid: number;
   signature: string; // sponsorship signature by sponsorFid
-}
+};
 
 type SignedKeyRequestBody = {
   key: string;
@@ -394,7 +394,7 @@ type SignedKeyRequestBody = {
   deadline: number;
   signature: string; // key request signature by requestFid
   sponsorship?: SignedKeyRequestSponsorship;
-}
+};
 ```
 
 To create a `SignedKeyRequestSponsorship`:
@@ -405,7 +405,9 @@ To create a `SignedKeyRequestSponsorship`:
 ```ts
 // sponsoringAccount is Viem account instance for the sponsoring FID's custody address
 // signedKeyRequestSignature is the EIP-712 signature signed by the requesting FID
-const sponsorSignature = sponsoringAccount.signMessage({ message: { raw: signedKeyRequestSignature }});
+const sponsorSignature = sponsoringAccount.signMessage({
+  message: { raw: signedKeyRequestSignature },
+});
 ```
 
-When the user opens the signed key request in Warpcast they will the onchain fees have been sponsored by your application. 
+When the user opens the signed key request in Warpcast they will the onchain fees have been sponsored by your application.

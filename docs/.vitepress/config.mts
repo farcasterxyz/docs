@@ -46,24 +46,62 @@ export default defineConfig({
     nav: [
       {
         text: 'Learn',
-        link: '/',
-        activeMatch: '/learn/',
+        link: '/learn/'
       },
       {
-        text: 'Developers',
-        link: '/developers/index',
-        activeMatch: '/developers/',
+        text: 'Build',
+        items: [
+          {
+            text: 'Frames',
+            link: '/frames/',
+          },
+          {
+            text: 'Sign In with Farcaster',
+            link: '/auth-kit/',
+          },
+          {
+            text: 'Connect to Farcaster',
+            link: '/reference/warpcast/signer-requests',
+          },
+          {
+            text: 'Actions',
+            link: '/actions/',
+          },
+          {
+            text: 'Protocol',
+            link: '/protocol/',
+          },
+        ],
       },
-      {
-        text: 'AuthKit',
-        link: '/auth-kit/introduction',
-        activeMatch: '/auth-kit/',
-      },
-      { text: 'Hubble', link: '/hubble/hubble', activeMatch: '/hubble/' },
       {
         text: 'Reference',
-        link: '/reference/index',
-        activeMatch: '/reference/',
+        activeMatch: '/reference',
+        items: [
+          {
+            text: 'Frames',
+            link: '/reference/frames',
+          },
+          {
+            text: 'AuthKit',
+            link: '/auth-kit/',
+          },
+          { 
+            text: 'Warpcast APIs', 
+            link: '/warpcast/', 
+          },
+          { 
+            text: 'Hubble', 
+            link: '/hubble/', 
+          },
+          { 
+            text: 'FName Server', 
+            link: '/fname-server/', 
+          },
+          { 
+            text: 'Contracts', 
+            link: '/reference/contracts', 
+          },
+        ]
       },
     ],
     search: {
@@ -76,6 +114,67 @@ export default defineConfig({
       }
     },
     sidebar: {
+      '/actions/': [
+        {
+          text: 'Specification',
+          link: '/actions/',
+        },
+      ],
+      '/fname-server/': [
+        {
+          text: 'API Reference',
+          link: '/fname-server/',
+        },
+      ],
+      '/frames/': [
+        {
+          text: 'Overview',
+          link: '/frames/',
+        },
+        {
+          text: 'Tutorials',
+          link: '/frames/tutorial',
+          items: [
+            { 
+              text: "Basics",
+              link: '/frames/basics',
+            },
+            { 
+              text: "Minting",
+              link: '/frames/minting',
+            },
+            { 
+              text: "Transactions",
+              link: '/frames/transactions',
+            },
+            { 
+              text: "Signatures",
+              link: '/frames/signatures',
+            },
+            { 
+              text: "State",
+              link: '/frames/state',
+            },
+          ]
+        },
+        {
+          text: 'Reference',
+          items: [
+            {
+              text: 'UI/UX Guidelines',
+              link: '/frames/ui-ux-guidelines',
+            },
+            {
+              text: 'Specification',
+              link: '/frames/spec',
+            },
+            {
+              text: 'Resources',
+              link: '/frames/resources',
+            },
+          ]
+        }
+      ],
       '/': [
         {
           text: 'Introduction',
@@ -274,10 +373,16 @@ export default defineConfig({
       '/auth-kit/': [
         {
           text: 'Overview',
-          items: [{ text: 'Introduction', link: '/auth-kit/introduction' },{
-            text: 'Examples',
-            link: '/auth-kit/examples',
-          },],
+          items: [
+            { 
+              text: 'Introduction', 
+              link: '/auth-kit/' 
+            },
+            {
+              text: 'Examples',
+              link: '/auth-kit/examples',
+            },
+          ],
         },
         {
           text: 'Getting Started',
@@ -374,7 +479,7 @@ export default defineConfig({
         {
           text: 'Get Started',
           items: [
-            { text: 'Hubble', link: '/hubble/hubble' },
+            { text: 'Overview', link: '/hubble/' },
             { text: 'Installation', link: '/hubble/install' },
             { text: 'Networks', link: '/hubble/networks' },
             { text: 'Monitoring', link: '/hubble/monitoring' },
@@ -385,51 +490,19 @@ export default defineConfig({
             },
           ],
         },
-        // {
-        //   text: 'Replicator',
-        //   items: [{ text: 'Overview', link: '/hubble/replicator' }],
-        // },
-      ],
-      '/reference/': [
         {
-          text: 'Reference',
-          items: [{ text: 'Overview', link: '/reference/index' }],
-        },
-        {
-          text: 'Frames',
+          text: 'Documentation',
           items: [
-            { text: 'Specification', link: '/reference/frames/spec' },
-          ],
-        },
-        {
-          text: 'Actions',
-          items: [
-            { text: 'Specification', link: '/reference/actions/spec' },
-          ],
-        },
-        {
-          text: 'Warpcast',
-          items: [
-            { text: 'APIs', link: '/reference/warpcast/api' },
-            { text: 'Signer Requests', link: '/reference/warpcast/signer-requests' },
-            { text: 'Cast Intents', link: '/reference/warpcast/cast-composer-intents' },
-            { text: 'Direct Casts', link: '/reference/warpcast/direct-casts' },
-            { text: 'Embeds', link: '/reference/warpcast/embeds' },
-          ],
-        },
-        {
-          text: 'Hubble',
-          items: [
-            { text: 'Architecture', link: '/reference/hubble/architecture' },
+            { text: 'Architecture', link: '/hubble/architecture' },
             {
               text: 'Data Types',
               collapsed: true,
               items: [
                 {
                   text: 'Messages',
-                  link: '/reference/hubble/datatypes/messages',
+                  link: '/hubble/datatypes/messages',
                 },
-                { text: 'Events', link: '/reference/hubble/datatypes/events' },
+                { text: 'Events', link: '/hubble/datatypes/events' },
               ],
             },
             {
@@ -438,44 +511,44 @@ export default defineConfig({
               items: [
                 {
                   text: 'Using GRPC APIs',
-                  link: '/reference/hubble/grpcapi/grpcapi',
+                  link: '/hubble/grpcapi/grpcapi',
                 },
-                { text: 'Casts API', link: '/reference/hubble/grpcapi/casts' },
+                { text: 'Casts API', link: '/hubble/grpcapi/casts' },
                 {
                   text: 'Reactions API',
-                  link: '/reference/hubble/grpcapi/reactions',
+                  link: '/hubble/grpcapi/reactions',
                 },
-                { text: 'Links API', link: '/reference/hubble/grpcapi/links' },
+                { text: 'Links API', link: '/hubble/grpcapi/links' },
                 {
                   text: 'UserData API',
-                  link: '/reference/hubble/grpcapi/userdata',
+                  link: '/hubble/grpcapi/userdata',
                 },
                 {
                   text: 'Username Proofs API',
-                  link: '/reference/hubble/grpcapi/usernameproof',
+                  link: '/hubble/grpcapi/usernameproof',
                 },
                 {
                   text: 'Verifications API',
-                  link: '/reference/hubble/grpcapi/verification',
+                  link: '/hubble/grpcapi/verification',
                 },
                 {
                   text: 'Message API',
-                  link: '/reference/hubble/grpcapi/message',
+                  link: '/hubble/grpcapi/message',
                 },
-                { text: 'Fids API', link: '/reference/hubble/grpcapi/fids' },
+                { text: 'Fids API', link: '/hubble/grpcapi/fids' },
                 {
                   text: 'Storage API',
-                  link: '/reference/hubble/grpcapi/storagelimits',
+                  link: '/hubble/grpcapi/storagelimits',
                 },
                 {
                   text: 'On Chain API',
-                  link: '/reference/hubble/grpcapi/onchain',
+                  link: '/hubble/grpcapi/onchain',
                 },
                 {
                   text: 'Events API',
-                  link: '/reference/hubble/grpcapi/events',
+                  link: '/hubble/grpcapi/events',
                 },
-                { text: 'Sync API', link: '/reference/hubble/grpcapi/sync' },
+                { text: 'Sync API', link: '/hubble/grpcapi/sync' },
               ],
             },
             {
@@ -484,43 +557,43 @@ export default defineConfig({
               items: [
                 {
                   text: 'Using HTTP APIs',
-                  link: '/reference/hubble/httpapi/httpapi',
+                  link: '/hubble/httpapi/httpapi',
                 },
-                { text: 'Info API', link: '/reference/hubble/httpapi/info' },
-                { text: 'Casts API', link: '/reference/hubble/httpapi/casts' },
+                { text: 'Info API', link: '/hubble/httpapi/info' },
+                { text: 'Casts API', link: '/hubble/httpapi/casts' },
                 {
                   text: 'Reactions API',
-                  link: '/reference/hubble/httpapi/reactions',
+                  link: '/hubble/httpapi/reactions',
                 },
-                { text: 'Links API', link: '/reference/hubble/httpapi/links' },
+                { text: 'Links API', link: '/hubble/httpapi/links' },
                 {
                   text: 'UserData API',
-                  link: '/reference/hubble/httpapi/userdata',
+                  link: '/hubble/httpapi/userdata',
                 },
                 {
                   text: 'Username Proofs API',
-                  link: '/reference/hubble/httpapi/usernameproof',
+                  link: '/hubble/httpapi/usernameproof',
                 },
                 {
                   text: 'Verifications API',
-                  link: '/reference/hubble/httpapi/verification',
+                  link: '/hubble/httpapi/verification',
                 },
                 {
                   text: 'Message API',
-                  link: '/reference/hubble/httpapi/message',
+                  link: '/hubble/httpapi/message',
                 },
-                { text: 'Fids API', link: '/reference/hubble/httpapi/fids' },
+                { text: 'Fids API', link: '/hubble/httpapi/fids' },
                 {
                   text: 'Storage API',
-                  link: '/reference/hubble/httpapi/storagelimits',
+                  link: '/hubble/httpapi/storagelimits',
                 },
                 {
                   text: 'On Chain API',
-                  link: '/reference/hubble/httpapi/onchain',
+                  link: '/hubble/httpapi/onchain',
                 },
                 {
                   text: 'Events API',
-                  link: '/reference/hubble/httpapi/events',
+                  link: '/hubble/httpapi/events',
                 },
               ],
             },
@@ -530,80 +603,52 @@ export default defineConfig({
             },
           ],
         },
-        // {
-          // text: 'Hubble Replicator',
-          // items: [
-            // { text: 'Index', link: '/reference/replicator/TODO' },
-          // ],
-        // },
-
-        {
-          text: 'Contracts',
-          items: [
-            { text: 'Overview', link: '/reference/contracts/index' },
-            {
-              text: 'Reference',
-              collapsed: true,
-              items: [
-                {
-                  text: 'Id Gateway',
-                  link: '/reference/contracts/reference/id-gateway',
-                },
-                {
-                  text: 'Id Registry',
-                  link: '/reference/contracts/reference/id-registry',
-                },
-                {
-                  text: 'Key Gateway',
-                  link: '/reference/contracts/reference/key-gateway',
-                },
-                {
-                  text: 'Key Registry',
-                  link: '/reference/contracts/reference/key-registry',
-                },
-                {
-                  text: 'Storage Registry',
-                  link: '/reference/contracts/reference/storage-registry',
-                },
-                {
-                  text: 'Bundler',
-                  link: '/reference/contracts/reference/bundler',
-                },
-                {
-                  text: 'Signed Key Request Validator',
-                  link: '/reference/contracts/reference/signed-key-request-validator',
-                },
-              ],
-            },
-            { text: 'Deployments', link: '/reference/contracts/deployments' },
-            { text: 'FAQ', link: '/reference/contracts/faq' },
-          ],
-        },
-        {
-          text: 'FName Server',
-          items: [
-            {
-              text: 'API Reference',
-              link: '/reference/fname/api',
-            },
-            // {
-            //   text: 'Using the API',
-            //   link: '/reference/fname/todo',
-            // },
-          ],
-        },
-        // {
-        //   text: 'Protocol Specification',
-        //   collapsed: true,
-        //   items: [
-        //     { text: 'Overview', link: '/reference/protocol/overview' },
-        //     {
-        //       text: 'Specification',
-        //       link: '/reference/protocol/specification',
-        //     },
-        //   ],
-        // },
       ],
+      '/reference/warpcast/': [
+        { text: 'APIs', link: '/reference/warpcast/' },
+        { text: 'Signers', link: '/reference/warpcast/signer-requests' },
+        { text: 'Cast Intents', link: '/reference/warpcast/cast-composer-intents' },
+        { text: 'Direct Casts', link: '/reference/warpcast/direct-casts' },
+        { text: 'Embeds', link: '/reference/warpcast/embeds' },
+      ],
+      '/reference/contracts/': [
+          { text: 'Overview', link: '/reference/contracts/index' },
+          {
+            text: 'Contracts',
+            items: [
+              {
+                text: 'Id Gateway',
+                link: '/reference/contracts/reference/id-gateway',
+              },
+              {
+                text: 'Id Registry',
+                link: '/reference/contracts/reference/id-registry',
+              },
+              {
+                text: 'Key Gateway',
+                link: '/reference/contracts/reference/key-gateway',
+              },
+              {
+                text: 'Key Registry',
+                link: '/reference/contracts/reference/key-registry',
+              },
+              {
+                text: 'Storage Registry',
+                link: '/reference/contracts/reference/storage-registry',
+              },
+              {
+                text: 'Bundler',
+                link: '/reference/contracts/reference/bundler',
+              },
+              {
+                text: 'Signed Key Request Validator',
+                link: '/reference/contracts/reference/signed-key-request-validator',
+              },
+            ],
+          },
+          { text: 'Deployments', link: '/reference/contracts/deployments' },
+          { text: 'FAQ', link: '/reference/contracts/faq' },
+        ],
     },
     socialLinks: [
       { icon: 'github', link: 'https://github.com/farcasterxyz/protocol' },

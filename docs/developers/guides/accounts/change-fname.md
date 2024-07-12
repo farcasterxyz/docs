@@ -54,4 +54,4 @@ curl -X POST https://fnames.farcaster.xyz/transfers \
 '{"name": "hubble", "owner": "0x...", "signature": "0x...", "from": 123, "to": 321, "timestamp": 1641234567, fid: 123}'
 ```
 
-See [here](/reference/fname/api.md) for more details on the Fname registry API.
+See [here](/fname-server/) for more details on the Fname registry API.

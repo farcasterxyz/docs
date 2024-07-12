@@ -52,18 +52,18 @@ Both will return the same transfers object:
 
 ```json
 {
-    "transfers": [
-        {
-            "id": 1,
-            "timestamp": 1628882891,
-            "username": "farcaster",
-            "owner": "0x8773442740c17c9d0f0b87022c722f9a136206ed",
-            "from": 0,
-            "to": 1,
-            "user_signature": "0xa6fdd2a69deab5633636f32a30a54b21b27dff123e6481532746eadca18cd84048488a98ca4aaf90f4d29b7e181c4540b360ba0721b928e50ffcd495734ef8471b",
-            "server_signature": "0xb7181760f14eda0028e0b647ff15f45235526ced3b4ae07fcce06141b73d32960d3253776e62f761363fb8137087192047763f4af838950a96f3885f3c2289c41b"
-        }
-    ]
+  "transfers": [
+    {
+      "id": 1,
+      "timestamp": 1628882891,
+      "username": "farcaster",
+      "owner": "0x8773442740c17c9d0f0b87022c722f9a136206ed",
+      "from": 0,
+      "to": 1,
+      "user_signature": "0xa6fdd2a69deab5633636f32a30a54b21b27dff123e6481532746eadca18cd84048488a98ca4aaf90f4d29b7e181c4540b360ba0721b928e50ffcd495734ef8471b",
+      "server_signature": "0xb7181760f14eda0028e0b647ff15f45235526ced3b4ae07fcce06141b73d32960d3253776e62f761363fb8137087192047763f4af838950a96f3885f3c2289c41b"
+    }
+  ]
 }
 ```
 

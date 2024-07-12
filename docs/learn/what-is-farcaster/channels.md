@@ -70,4 +70,4 @@ Starting a channel also helps grow your audience:
 
 ### APIs
 
-- [Warpcast Channel APIs](../../reference/warpcast/api.md) - fetch a list of all known channels
+- [Warpcast Channel APIs](../../reference/warpcast/) - fetch a list of all known channels

@@ -1,42 +1,57 @@
 ---
-next:
-  text: 'Create Your Account'
-  link: '/learn/what-is-farcaster/accounts'
+layout: home
+
+hero:
+  name: Farcaster
+  text: For Developers
+  tagline: Build and distribute applications on Farcaster
+  actions:
+    - theme: brand
+      text: Build a frame
+      link: /frames
+    - theme: alt
+      text: Explore social sign-in
+      link: /auth-kit/
+    - theme: alt
+      text: Learn about the protocol
+      link: /learn/
+
+features:
+  - title: Frames
+    details: Build bite-sized social experiences that are distributed directly in social feeds
+    link: /frames
+    linkText: Build
+  - title: Social Sign In
+    details: Add Sign In with Farcaster your app and leverage the Farcaster social graph
+    link: /auth-kit/
+    linkText: Explore
+  - title: Open Social Primitives
+    details: Permissionlessly read from and write to the Farcaster network
+    link: /learn/
+    linkText: Learn
 ---
 
-# Getting Started
+## Create a frame
 
-Farcaster is a [sufficiently decentralized](https://www.varunsrinivasan.com/2022/01/11/sufficient-decentralization-for-social-networks) social network built on Ethereum.
+Learn how to build frames, which are mini-apps that run inside a Farcaster feed.
 
-It is a public social network similar to Twitter and Reddit. Users can create profiles, post "casts" and follow others. They own their accounts and relationships with other users and are free to move between different apps.
-
-:::tip Join Farcaster
-If you're not on Farcaster, get started by [creating your account](https://www.warpcast.com/) with Warpcast.
-:::
-
-## Learn
-
-If you want to learn more, get started by diving into these concepts:
-
-- [Farcaster 101](https://www.youtube.com/playlist?list=PL0eq1PLf6eUdm35v_840EGLXkVJDhxhcF) - a walkthrough of the Farcaster protocol in short, 5 minute videos.
-- [Core Concepts](./learn/what-is-farcaster/accounts.md) - learn about the building blocks of Farcaster, starting with accounts.
-- [Architecture](./learn/architecture/overview.md) - a breakdown of Farcaster's onchain and offchain systems.
-
-## Tutorials
-
+- [Overview](/learn/what-is-farcaster/frames) - Understand what a frame is and how it works
 - [Build your first frame](./developers/guides/frames/poll.md) - Make mini-apps that run inside Farcaster.
-- [Sign in with Farcaster](./auth-kit/installation.md) - Let users login to your app with their Farcaster account.
-- [Write your first app](./developers/index.md) - Publish a "Hello World" message to Farcaster.
+- [Frame Speedrun](https://www.youtube.com/watch?v=JAIr8kyBxxU&list=PL0eq1PLf6eUecQKFj0pUFfO0fwm0k4zE4&index=2) - Watch a frame get built and deployed in 5 minutes
+- [Specification](/reference/frames/spec) - A formal specification for the Frame standard
 
-Find more how-tos, guide and tutorials like this in the [developers](./developers/) section.
+## Add Sign in with Farcaster
 
-## Documentation
+Make it easy for users to sign in to your app with their Farcaster account.
 
-- [Farcaster Spec](https://github.com/farcasterxyz/protocol) - Specifications for Farcaster, including its contracts and hubs.
-- [Frame Spec](./reference/frames/spec.md) - Specifications for writing and rendering frames in Farcaster apps.
-- [APIs](./reference/index) - Docs for API's and ABI's for onchain and offchain systems.
+- [Examples](/auth-kit/examples.md) - see Sign In with Farcaster (SIWF) in action
+- [AuthKit](/auth-kit/installation.md) - a React toolkit to add SIWF to your app
+- [FIP-11](https://github.com/farcasterxyz/protocol/discussions/110) - the formal standard for SWIF
 
-## Contributing
+## Analyze Farcaster data
 
-To learn about how to contribute to the protocol, including this documentation site, check out
-the [Contributing](./learn/contributing/overview.md) section.
+Sync the Farcaster network to a local machine so you can run queries on the data.
+
+- [Run a hub](/hubble/install.md) - get realtime access to Farcaster data on your machine.
+- [Write your first hub query](/developers/guides/querying/fetch-casts.md) - get an account's casts from a hub.
+- [Set up the replicator](/developers/guides/apps/replicate.md) - sync a hub to a postgres database to run advanced queries.

@@ -40,7 +40,7 @@ Decisions are made by the Farcaster team and often require human judgment. Users
 
 Fnames are issued as offchain names under the subdomain `fcast.id`.
 
-Bob can register the offchain ENS name `bob.fcast.id` and use it on any Farcaster app with the shorthand `@bob`. The name can be registered by making a signed request to the Fname Registry server. See the [FName API reference](/reference/fname/api) for more details on how to query and create fnames.
+Bob can register the offchain ENS name `bob.fcast.id` and use it on any Farcaster app with the shorthand `@bob`. The name can be registered by making a signed request to the Fname Registry server. See the [FName API reference](/fname-server/) for more details on how to query and create fnames.
 
 To learn more about how fnames work, see [ENSIP-16](https://docs.ens.domains/ens-improvement-proposals/ensip-16-offchain-metadata)
 and [ERC-3668](https://eips.ethereum.org/EIPS/eip-3668).

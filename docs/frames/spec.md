@@ -438,7 +438,7 @@ If you are unsure, always read the signed message by sending it into the `valida
 }
 ```
 
-The Signed Message can be validated by calling the `validateMessage` API on Hubs, as shown in the script below. See the [Hub HTTP API](../../reference/hubble/httpapi/message#validatemessage) for reference. The hub (assuming it’s fully in sync) will validate the following:
+The Signed Message can be validated by calling the `validateMessage` API on Hubs, as shown in the script below. See the [Hub HTTP API](/reference/hubble/httpapi/message#validatemessage) for reference. The hub (assuming it’s fully in sync) will validate the following:
 
 - the fid is a valid, registered farcaster fid
 - the signer is currently active and associated with the fid

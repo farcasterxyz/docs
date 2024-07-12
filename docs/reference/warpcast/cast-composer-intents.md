@@ -32,7 +32,6 @@ https://warpcast.com/~/compose?text=Hello%20world!&channelKey=farcaster
 https://warpcast.com/~/compose?text=Looks%20good!&parentCastHash=0x09455067393562d3296bcbc2ec1c2d6bba8ac1f1
 ```
 
-
 #### Additional details
 
 - Embeds are any valid URLs
