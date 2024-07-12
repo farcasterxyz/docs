@@ -31,7 +31,7 @@ Some popular connected apps include:
 - [Yup](https://yup.io/)
 - [Farcord](https://farcord.com/)
 
-**Connected apps are not reviewed by Farcaster, use them at your own risk**
+**Connected apps are not reviewed by Farcaster, for security purposes use them at your own risk**
 
 ## Resources
 
