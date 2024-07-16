@@ -14,17 +14,15 @@ const config = {
 
 const App = () => {
   return (
-    <AuthKitProvider config={config}>
-      {/*   Your App   */}
-    </AuthKitProvider>
+    <AuthKitProvider config={config}>{/*   Your App   */}</AuthKitProvider>
   );
 };
 ```
 
 # Props
 
-| Prop     | Type            | Required | Description                                           |
-| -------- | --------------- | -------- | ----------------------------------------------------- |
+| Prop     | Type            | Required | Description                                               |
+| -------- | --------------- | -------- | --------------------------------------------------------- |
 | `config` | `AuthKitConfig` | No       | Configuration object. See the options in the table below. |
 
 `config` object options:
