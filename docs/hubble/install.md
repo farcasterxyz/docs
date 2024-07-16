@@ -8,7 +8,7 @@ Hubble can be set up in less than 30 minutes. You'll need a machine that has:
 
 - 16 GB of RAM
 - 4 CPU cores or vCPUs
-- 40 GB of free storage
+- 200 GB of free storage
 - A public IP address with ports 2281 - 2283 exposed
 - RPC endpoints for Ethereum and Optimism Mainnet. (use [Alchemy](https://www.alchemy.com/), [Infura](https://www.infura.io/), or [QuickNode](https://www.quicknode.com/))
 
