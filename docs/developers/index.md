@@ -1,4 +1,6 @@
-# Getting Started
+:::tip Join the conversation
+Ask questions and hang out with other Farcaster developers in the [/fc-devs](https://warpcast.com/~/channel/fc-devs) channel on Farcaster.
+:::
 
 ## Create frames
 
