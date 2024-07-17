@@ -51,8 +51,20 @@ export default defineConfig({
       },
       {
         text: 'Developers',
-        link: '/developers/index',
-        activeMatch: '/developers/',
+        items: [
+          {
+            text: 'Overview',
+            link: '/developers/',
+          },
+          {
+            text: 'Frames',
+            link: '/developers/frames/getting-started',
+          },
+          {
+            text: 'Protocol',
+            link: '/developers/guides/accounts/create-account',
+          }
+        ]
       },
       {
         text: 'AuthKit',
@@ -134,37 +146,32 @@ export default defineConfig({
         },
       ],
       '/developers/': [
+        { text: 'Overview', link: '/developers/' },
+        { text: 'Resources', link: '/developers/resources' },
         {
-          text: 'Introduction',
+          text: 'Frames',
           items: [
-            { text: 'Overview', link: '/developers/index' },
-            { text: 'Resources', link: '/developers/resources' },
-          ],
+            {
+              text: 'Getting Started',
+              link: '/developers/frames/getting-started',
+            },
+            {
+              text: 'Best Practices',
+              link: '/developers/frames/best-practices',
+            },
+            {
+              text: 'Patterns & Pitfalls',
+              link: '/developers/frames/patterns-pitfalls',
+            },
+            {
+              text: 'Resources',
+              link: '/developers/frames/resources',
+            },
+          ]
         },
         {
-          text: 'Guides',
+          text: 'Farcaster Protocol',
           items: [
-            {
-              text: 'Basics',
-              collapsed: true,
-              items: [
-                {
-                  text: 'Hello World',
-                  link: '/developers/guides/basics/hello-world',
-                },
-              ],
-            },
-
-            {
-              text: 'Creating frames',
-              collapsed: true,
-              items: [
-                {
-                  text: 'Create a poll frame',
-                  link: '/developers/guides/frames/poll',
-                },
-              ],
-            },
             {
               text: 'Managing accounts',
               collapsed: true,
@@ -217,6 +224,10 @@ export default defineConfig({
               text: 'Writing data',
               collapsed: true,
               items: [
+                {
+                  text: 'Create an account',
+                  link: '/developers/guides/writing/accounts',
+                },
                 {
                   text: 'Create messages',
                   link: '/developers/guides/writing/messages',

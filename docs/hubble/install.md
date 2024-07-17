@@ -10,8 +10,8 @@ Hubble can be set up in less than 30 minutes. You'll need a machine that has:
 - 4 CPU cores or vCPUs
 - 200 GB of free storage
 - A public IP address with ports 2281 - 2283 exposed
-- RPC endpoints for Ethereum and Optimism Mainnet. (use [Alchemy](https://www.alchemy.com/), [Infura](https://www.infura.io/),  [QuickNode](https://www.quicknode.com/), or run your own [Ethereum](https://geth.ethereum.org/docs/getting-started) & [Optimism](https://docs.optimism.io/builders/node-operators/tutorials/mainnet) nodes)
-  > ⚠️  **NOTE**: There's been a surge in Hubble users who violated [Alchemy Terms of Service](https://www.alchemy.com/terms-conditions/terms). As a result, [Alchemy](https://www.alchemy.com/) may block requests from new hubs. Paid subscriptions, alternative providers or your own nodes may be used instead. Please be aware that there are NO rewards or economic incentives for running a Hubble instance.
+- RPC endpoints for Ethereum and Optimism Mainnet. (use [Alchemy](https://www.alchemy.com/), [Infura](https://www.infura.io/), [QuickNode](https://www.quicknode.com/), or run your own [Ethereum](https://geth.ethereum.org/docs/getting-started) & [Optimism](https://docs.optimism.io/builders/node-operators/tutorials/mainnet) nodes)
+  > ⚠️ **NOTE**: There's been a surge in Hubble users who violated [Alchemy Terms of Service](https://www.alchemy.com/terms-conditions/terms). As a result, [Alchemy](https://www.alchemy.com/) may block requests from new hubs. Paid subscriptions, alternative providers or your own nodes may be used instead. Please be aware that there are NO rewards or economic incentives for running a Hubble instance.
 
 See [tutorials](./tutorials) for instructions on how to set up cloud providers to run Hubble.
 

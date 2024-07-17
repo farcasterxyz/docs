@@ -24,9 +24,9 @@ If you want to learn more, get started by diving into these concepts:
 
 ## Tutorials
 
-- [Build your first frame](./developers/guides/frames/poll.md) - Make mini-apps that run inside Farcaster.
-- [Sign in with Farcaster](./auth-kit/installation.md) - Let users login to your app with their Farcaster account.
-- [Write your first app](./developers/index.md) - Publish a "Hello World" message to Farcaster.
+- [Build your first frame](./developers/frames/getting-started) - Make mini-apps that run inside Farcaster.
+- [Sign in with Farcaster](./auth-kit/installation) - Let users login to your app with their Farcaster account.
+- [Write your first app](./developers/index) - Publish a "Hello World" message to Farcaster.
 
 Find more how-tos, guide and tutorials like this in the [developers](./developers/) section.
 
