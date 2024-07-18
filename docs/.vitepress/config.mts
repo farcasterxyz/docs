@@ -160,8 +160,8 @@ export default defineConfig({
               link: '/developers/frames/best-practices',
             },
             {
-              text: 'Patterns & Pitfalls',
-              link: '/developers/frames/patterns-pitfalls',
+              text: 'Advanced',
+              link: '/developers/frames/advanced',
             },
             {
               text: 'Resources',

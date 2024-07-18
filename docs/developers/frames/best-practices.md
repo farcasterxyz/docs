@@ -54,7 +54,14 @@ this can drastically reduce render time.
 #### Respond to requests as quickly as possible
 
 Don't perform long-running computations like interacting with an LLM while the
-user is waiting for the next Frame to load. Instead, [perform long-running computations in the background](./patterns-pitfalls#long-running).
+user is waiting for the next Frame to load. See [perform long-running computations in the background](#long-running).
+
+#### Perform long-running computations in the background {#long-running}
+
+If your Frame needs to perform a long-running computation like interacting with
+an LLM or sending an onchain transaction, it should be done in the "background"
+by immediately respond with a frame that tells the user an action is being
+taken and let's the user refresh to check the status.
 
 #### Use a local copy of Farcaster data {#local-farcaster-data}
 
