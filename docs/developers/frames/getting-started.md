@@ -46,7 +46,7 @@ bun install // install depedencies
 bun run dev // start dev server
 ```
 
-::: tip
+::: info
 This guide uses Frog + Vercel but frames can be built and deployed in any
 number of ways. You can check out popular alternatives like [frame.js](https://framesjs.org/)
 on the [Frame Developer Resources](./resources) page.
@@ -66,7 +66,7 @@ with a message echoing your choice.
 
 ### Deploy the frame
 
-::: tip
+::: info
 This project was scaffolded for deployment with Vercel since it's a popular and
 easy option. If you'd like to deploy your Frame another way check out the [Frog
 Platforms documentation](https://frog.fm/platforms/bun).
