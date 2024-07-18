@@ -1,23 +1,20 @@
 ---
-title: Frame Resources / Farcaster
+title: Frame Resources / Farcaster Docs
 ---
 
 # Frame Resources
 
 An opinionated collection of popular resources for building Frames.
 
-#### Learning plan
+#### Learning
 
-1. Learn the basics by watching the [Frames 101](https://youtu.be/rp9X8rAPzPM?si=PWm3vBFCTtaoE_Ua).
-2. Reading through the formal [Frames Specification](../../reference/frames/spec).
-3. Learn by doing with guides from [frames.js](https://framesjs.org/guides/create-frame) or [frog](https://framesjs.org/guides/create-frame).
-4. Join the Farcaster developer community in the [/fc-devs](https://warpcast.com/~/channel/fc-devs) channel on Farcaster.
-
-#### Other learning resources
-
+- [/fc-devs](https://warpcast.com/~/channel/fc-devs) - Farcaster developer channel
+- [Frames Specification](./spec) - official Frames specification
+- [Frames.js Guide](https://framesjs.org/guides/create-frame) - guides from Frames.js
+- [Frog Guides](https://framesjs.org/guides/create-frame) - guides from Frog
 - [Frame Interface Guidelines (FIG)](https://github.com/paradigmxyz/Fig) - guidance and best practices for building frames
 - [Pinata Tutorials](https://docs.pinata.cloud/farcaster/frames#frame-tutorials) - tutorials for building frames that leverage IPFS
-- [frames.js examples](https://framesjs.org/examples/basic) - a collection of 20+ examples that cover basic and advanced topics
+- [Frames.js Examples](https://framesjs.org/examples/basic) - a collection of 20+ examples that cover basic and advanced topics
 
 #### Frameworks
 
@@ -31,6 +28,7 @@ An opinionated collection of popular resources for building Frames.
 
 - [Warpcast Frame Validator](https://warpcast.com/~/developers/frames) - a debugger for testing frames in Warpcast
 - [Neynar](https://docs.neynar.com/docs/how-to-build-farcaster-frames-with-neynar) - infrastructure and tools for frame servers
+- [Neynar Frame Studio](https://neynar.com/nfs) - build no-code Frames
 - [Pinata](https://docs.pinata.cloud/farcaster/frames) - Frame analytics, hub APIs, and more
 - [Airstack Frames SDK](https://github.com/Airstack-xyz/airstack-frames-sdk) - integrate onchain data into Frames
 - [Vercel OG](https://vercel.com/docs/functions/og-image-generation) - use satori and resvg-js to generate PNG images from HTML and CSS

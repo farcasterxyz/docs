@@ -1,3 +1,15 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/learn/what-is-farcaster/frames",
+      "destination": "/developers/frames/",
+      "permanent": true
+    },
+    {
+      "source": "/reference/frames/spec",
+      "destination": "/developers/frames/spec",
+      "permanent": true
+    }
+  ]
 }

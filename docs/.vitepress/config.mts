@@ -51,20 +51,7 @@ export default defineConfig({
       },
       {
         text: 'Developers',
-        items: [
-          {
-            text: 'Overview',
-            link: '/developers/',
-          },
-          {
-            text: 'Frames',
-            link: '/developers/frames/getting-started',
-          },
-          {
-            text: 'Protocol',
-            link: '/developers/guides/accounts/create-account',
-          }
-        ]
+        link: '/developers/',
       },
       {
         text: 'AuthKit',
@@ -115,7 +102,7 @@ export default defineConfig({
             },
             {
               text: 'Frames',
-              link: '/learn/what-is-farcaster/frames',
+              link: '/developers/frames/',
             },
             {
               text: 'Channels',
@@ -152,8 +139,16 @@ export default defineConfig({
           text: 'Frames',
           items: [
             {
+              text: 'Introduction',
+              link: '/developers/frames/',
+            },
+            {
               text: 'Getting Started',
               link: '/developers/frames/getting-started',
+            },
+            {
+              text: 'Specification',
+              link: '/developers/frames/spec',
             },
             {
               text: 'Best Practices',
@@ -291,7 +286,7 @@ export default defineConfig({
           },],
         },
         {
-          text: 'Getting Started',
+          text: 'Quickstart',
           items: [
             { text: 'Installation', link: '/auth-kit/installation' },
             { text: 'SignIn Button', link: '/auth-kit/sign-in-button' },
@@ -409,7 +404,7 @@ export default defineConfig({
         {
           text: 'Frames',
           items: [
-            { text: 'Specification', link: '/reference/frames/spec' },
+            { text: 'Specification', link: '/developers/frames/spec' },
           ],
         },
         {
@@ -603,17 +598,6 @@ export default defineConfig({
             // },
           ],
         },
-        // {
-        //   text: 'Protocol Specification',
-        //   collapsed: true,
-        //   items: [
-        //     { text: 'Overview', link: '/reference/protocol/overview' },
-        //     {
-        //       text: 'Specification',
-        //       link: '/reference/protocol/specification',
-        //     },
-        //   ],
-        // },
       ],
     },
     socialLinks: [

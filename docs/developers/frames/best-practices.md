@@ -11,7 +11,7 @@ These best practices assume a prior knowledge of Frames. If you're looking for
 general information about building Frames check out these resources:
 
 - [Getting Started](./getting-started)
-- [Frames Specification](/reference/frames/spec)
+- [Frames Specification](./spec)
 - guides from [frames.js](https://framesjs.org/guides/create-frame) or [frog](https://frog.fm/concepts/overview)
   :::
 

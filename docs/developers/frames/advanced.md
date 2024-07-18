@@ -1,5 +1,5 @@
 ---
-title: Frames Advanced Topics / Farcaster
+title: Frames Advanced Topics / Farcaster Docs
 ---
 
 # Advanced Topics

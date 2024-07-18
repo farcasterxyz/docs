@@ -1,5 +1,5 @@
 ---
-title: Getting Started with Frames / Farcaster
+title: Getting Started with Frames / Farcaster Docs
 ---
 
 # Getting Started
@@ -8,7 +8,7 @@ title: Getting Started with Frames / Farcaster
 If you'd prefer to learn more about Frames before building one we recommend the following resources:
 
 - [watch a quick primer on Frames](https://youtu.be/rp9X8rAPzPM?si=PWm3vBFCTtaoE_Ua)
-- [read the Frames Specification](/reference/frames/spec)
+- [read the Frames Specification](./spec)
   :::
 
 Let's use Frog to go from 0 to 1 in less than a minute. At the end of this we'll have:
