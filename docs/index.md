@@ -1,9 +1,3 @@
----
-next:
-  text: 'Create Your Account'
-  link: '/learn/what-is-farcaster/accounts'
----
-
 # Getting Started
 
 Farcaster is a [sufficiently decentralized](https://www.varunsrinivasan.com/2022/01/11/sufficient-decentralization-for-social-networks) social network built on Ethereum.
@@ -24,16 +18,16 @@ If you want to learn more, get started by diving into these concepts:
 
 ## Tutorials
 
-- [Build your first frame](./developers/guides/frames/poll.md) - Make mini-apps that run inside Farcaster.
-- [Sign in with Farcaster](./auth-kit/installation.md) - Let users login to your app with their Farcaster account.
-- [Write your first app](./developers/index.md) - Publish a "Hello World" message to Farcaster.
+- [Build your first frame](./developers/frames/getting-started) - Make mini-apps that run inside Farcaster.
+- [Sign in with Farcaster](./auth-kit/installation) - Let users login to your app with their Farcaster account.
+- [Write your first app](./developers/index) - Publish a "Hello World" message to Farcaster.
 
 Find more how-tos, guide and tutorials like this in the [developers](./developers/) section.
 
 ## Documentation
 
 - [Farcaster Spec](https://github.com/farcasterxyz/protocol) - Specifications for Farcaster, including its contracts and hubs.
-- [Frame Spec](./reference/frames/spec.md) - Specifications for writing and rendering frames in Farcaster apps.
+- [Frame Spec](./developers/frames/spec.md) - Specifications for writing and rendering frames in Farcaster apps.
 - [APIs](./reference/index) - Docs for API's and ABI's for onchain and offchain systems.
 
 ## Contributing

@@ -51,8 +51,7 @@ export default defineConfig({
       },
       {
         text: 'Developers',
-        link: '/developers/index',
-        activeMatch: '/developers/',
+        link: '/developers/',
       },
       {
         text: 'AuthKit',
@@ -103,7 +102,7 @@ export default defineConfig({
             },
             {
               text: 'Frames',
-              link: '/learn/what-is-farcaster/frames',
+              link: '/developers/frames/',
             },
             {
               text: 'Channels',
@@ -134,37 +133,40 @@ export default defineConfig({
         },
       ],
       '/developers/': [
+        { text: 'Overview', link: '/developers/' },
+        { text: 'Resources', link: '/developers/resources' },
         {
-          text: 'Introduction',
+          text: 'Frames',
           items: [
-            { text: 'Overview', link: '/developers/index' },
-            { text: 'Resources', link: '/developers/resources' },
-          ],
+            {
+              text: 'Introduction',
+              link: '/developers/frames/',
+            },
+            {
+              text: 'Getting Started',
+              link: '/developers/frames/getting-started',
+            },
+            {
+              text: 'Specification',
+              link: '/developers/frames/spec',
+            },
+            {
+              text: 'Best Practices',
+              link: '/developers/frames/best-practices',
+            },
+            {
+              text: 'Advanced',
+              link: '/developers/frames/advanced',
+            },
+            {
+              text: 'Resources',
+              link: '/developers/frames/resources',
+            },
+          ]
         },
         {
-          text: 'Guides',
+          text: 'Farcaster Protocol',
           items: [
-            {
-              text: 'Basics',
-              collapsed: true,
-              items: [
-                {
-                  text: 'Hello World',
-                  link: '/developers/guides/basics/hello-world',
-                },
-              ],
-            },
-
-            {
-              text: 'Creating frames',
-              collapsed: true,
-              items: [
-                {
-                  text: 'Create a poll frame',
-                  link: '/developers/guides/frames/poll',
-                },
-              ],
-            },
             {
               text: 'Managing accounts',
               collapsed: true,
@@ -217,6 +219,10 @@ export default defineConfig({
               text: 'Writing data',
               collapsed: true,
               items: [
+                {
+                  text: 'Create an account',
+                  link: '/developers/guides/writing/accounts',
+                },
                 {
                   text: 'Create messages',
                   link: '/developers/guides/writing/messages',
@@ -280,7 +286,7 @@ export default defineConfig({
           },],
         },
         {
-          text: 'Getting Started',
+          text: 'Quickstart',
           items: [
             { text: 'Installation', link: '/auth-kit/installation' },
             { text: 'SignIn Button', link: '/auth-kit/sign-in-button' },
@@ -398,7 +404,7 @@ export default defineConfig({
         {
           text: 'Frames',
           items: [
-            { text: 'Specification', link: '/reference/frames/spec' },
+            { text: 'Specification', link: '/developers/frames/spec' },
           ],
         },
         {
@@ -592,17 +598,6 @@ export default defineConfig({
             // },
           ],
         },
-        // {
-        //   text: 'Protocol Specification',
-        //   collapsed: true,
-        //   items: [
-        //     { text: 'Overview', link: '/reference/protocol/overview' },
-        //     {
-        //       text: 'Specification',
-        //       link: '/reference/protocol/specification',
-        //     },
-        //   ],
-        // },
       ],
     },
     socialLinks: [

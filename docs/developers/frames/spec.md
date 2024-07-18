@@ -35,14 +35,6 @@ When a frame server receives a POST request:
 - It may respond with 4XX status, `content-type: application/json` header, and JSON body containing a `message` property that is <= 90 characters to indicate an application-level error.
 - Any Location header provided must contain a URL that starts with `http://` or `https://`.
 
-### Best Practices
-
-Follow these best practices to work around the limitations of frames:
-
-- Start your initial frame with a load button if you must show dynamic content.
-- Add timestamps or UUIDs to image urls on subsequent frames to bust caches.
-- Return a frame with a "refresh" button if your response takes > 5 seconds.
-
 ### Rendering Frames
 
 A frame enters Farcaster when a user creates a cast and embeds the frame URL in it. An app that wants to support frames must:

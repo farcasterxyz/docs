@@ -6,9 +6,9 @@ Ask questions and hang out with other Farcaster developers in the [/fc-devs](htt
 
 Learn how to build frames, which are mini-apps that run inside a Farcaster feed.
 
-- [Overview](/learn/what-is-farcaster/frames) - Understand what a frame is and how it works
-- [Frame Speedrun](https://www.youtube.com/watch?v=JAIr8kyBxxU&list=PL0eq1PLf6eUecQKFj0pUFfO0fwm0k4zE4&index=2) - create your first frame in 5 minutes
-- [Specification](/reference/frames/spec) - A formal specification for the Frame standard
+- [Introduction](/developers/frames/) - understand what a frame is and how it works
+- [Getting Started](/developers/frames/getting-started) - Build your first Frame
+- [Specification](/developers/frames/spec) - a formal specification for the Frame standard
 
 ## Sign in with Farcaster
 

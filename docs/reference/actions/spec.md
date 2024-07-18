@@ -2,7 +2,7 @@
 
 Actions let developers create custom buttons which users can install into their action bar on any Farcaster application. Think browser extensions, but for casts.
 
-Like [Frames](../frames/spec.md), actions are an open standard for extending casts with new kinds of interactions. Actions and frames are composable, enabling developers to create interactive, authenticated applications that work across Farcaster clients.
+Like [Frames](/developers/frames/spec), actions are an open standard for extending casts with new kinds of interactions. Actions and frames are composable, enabling developers to create interactive, authenticated applications that work across Farcaster clients.
 
 So far, developers have used actions to add features like translation, moderation tools, and tipping to Farcaster clients.
 
@@ -47,7 +47,7 @@ Action servers must respond to an HTTP GET request to their metadata URL with a 
 
 ## Handler route
 
-When a user clicks a cast action button in the feed, clients make a POST request to the action handler with a signed message. Actions use the same [Frame signature message](../frames/spec.md#frame-signature-packet) format as Farcaster frames.
+When a user clicks a cast action button in the feed, clients make a POST request to the action handler with a signed message. Actions use the same [Frame signature message](/developers/frames/spec#frame-signature-packet) format as Farcaster frames.
 
 In this message:
 
@@ -83,7 +83,7 @@ An action server may return 200 OK and a JSON body in the following format to di
 
 ### Frame response type
 
-The frame response type allows cast actions to display a [Frame](../frames/spec.md). It's useful for complex multi-step interactions.
+The frame response type allows cast actions to display a [Frame](/developers/frames/spec). It's useful for complex multi-step interactions.
 
 ![Frame actions](/assets/actions/frame_type.png)
 
