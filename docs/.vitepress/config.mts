@@ -412,7 +412,7 @@ export default defineConfig({
           items: [
             { text: 'APIs', link: '/reference/warpcast/api' },
             { text: 'Signer Requests', link: '/reference/warpcast/signer-requests' },
-            { text: 'Cast Intents', link: '/reference/warpcast/cast-composer-intents' },
+            { text: 'Intent URLs', link: '/reference/warpcast/cast-composer-intents' },
             { text: 'Direct Casts', link: '/reference/warpcast/direct-casts' },
             { text: 'Embeds', link: '/reference/warpcast/embeds' },
           ],
@@ -606,6 +606,12 @@ export default defineConfig({
       ],
     },
     socialLinks: [
+      { 
+        icon: {
+          svg: '<svg width="163" height="147" viewBox="0 0 163 147" fill="none" xmlns="http://www.w3.org/2000/svg"> <g clip-path="url(#clip0_591_6431)"> <rect width="163" height="147" fill="white"/> <path d="M27.7993 0H132.288V20.861H162L155.773 41.7271H150.501V126.139C153.145 126.139 155.291 128.258 155.291 130.877V136.567H156.25C158.899 136.567 161.046 138.691 161.046 141.31V147H107.361V141.31C107.361 138.691 109.507 136.567 112.156 136.567H113.115V130.877C113.115 128.6 114.739 126.699 116.901 126.241L116.8 79.6641C115.105 61.0547 99.2969 46.4699 80.0434 46.4699C60.79 46.4699 44.9822 61.0547 43.2873 79.6641L43.1858 126.2C45.7434 126.577 48.8898 128.528 48.8898 130.877V136.567H49.8489C52.4928 136.567 54.6394 138.691 54.6394 141.31V147H0.95912V141.31C0.95912 138.691 3.10572 136.567 5.74965 136.567H6.70877V130.877C6.70877 128.258 8.85537 126.139 11.5044 126.139V41.7271H6.23174L0 20.861H27.7993V0Z" fill="#3C3C43" fill-opacity="0.78"/> </g> <defs> <clipPath id="clip0_591_6431"> <rect width="163" height="147" fill="white"/> </clipPath> </defs> </svg>',
+        },
+        link: 'https://warpcast.com/~/channel/fc-devs' 
+      },
       { icon: 'github', link: 'https://github.com/farcasterxyz/protocol' },
       { icon: 'twitter', link: 'https://twitter.com/farcaster_xyz' },
       { icon: 'youtube', link: 'https://www.youtube.com/@farcasterxyz' },

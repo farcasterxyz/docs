@@ -38,34 +38,27 @@ provider "google" {
   project = "$YOUR_PROJECT_ID"
   region  = "us-central1"
 }
-
 resource "google_compute_instance" "farcaster-hub-vm" {
   name         = "farcaster-hub-vm"
   machine_type = "e2-standard-4"  # 4 vCPUs, 16 GB memory
   zone         = "us-central1-a"  # Specify the zone here
-
-
   boot_disk {
     initialize_params {
       image = "ubuntu-2004-focal-v20231213"  # Ubuntu 20.04 LTS image URL
       size = 160  # 160 GB disk size
     }
   }
-
   network_interface {
     network = "default"
     access_config {
       // This will assign a public IP address to the instance
     }
   }
-
   tags = ["allow-farcaster-p2p-ports"]  # For firewall rule
-
   metadata = {
     # You can add any additional metadata here if needed
   }
 }
-
 resource "google_compute_firewall" "farcaster-p2p-ports" {
   name    = "farcaster-p2p-ports"
   network = "default"
@@ -75,7 +68,6 @@ resource "google_compute_firewall" "farcaster-p2p-ports" {
     protocol = "tcp"
     ports    = ["2282-2285"]
   }
-
   source_ranges = ["0.0.0.0/0"]
 }
 ```

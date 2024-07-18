@@ -171,7 +171,7 @@ First, the client makes a POST request to the `target` URL to fetch data about t
 }
 ```
 
-The client uses this data to request an action in the user's wallet. If the user signs completes the action, the client makes a POST request to the `post_url` with a Signature Packet that includes the transaction or signature hash. The frame server must respond with a 200 OK and another frame. The frame server may monitor the transaction hash to determine if the transaction succeeds, reverts, or times out.
+The client uses this data to request an action in the user's wallet. If the user completes the action, the client makes a POST request to the `post_url` with a Signature Packet that includes the transaction or signature hash in `transaction_id` and the address used in `address`. The frame server must respond with a 200 OK and another frame. The frame server may monitor the transaction hash to determine if the transaction succeeds, reverts, or times out.
 
 #### Wallet Action Response Type
 
@@ -182,24 +182,24 @@ A wallet action response must be one of the following:
 - `chainId`: A CAIP-2 chain ID to identify the tx network (e.g. Ethereum mainnet)
 - `method`: Must be `"eth_sendTransaction"`
 - `attribution`: Optional. Return `false` to omit the [calldata attribution suffix](https://www.notion.so/Frame-Transactions-Public-9d9f9f4f527249519a41bd8d16165f73?pvs=21). If this value is `undefined` or `true`, clients will append the attribution suffix.
-- `params`: 
-    - `to`: transaction to address
-    - `abi`: JSON ABI which **must** include encoded function type and **should** include potential error types. Can be empty.
-    - `value`: value of ether to send with the transaction in wei. Optional.
-    - `data`: transaction calldata. Optional.
+- `params`:
+  - `to`: transaction to address
+  - `abi`: JSON ABI which **must** include encoded function type and **should** include potential error types. Can be empty.
+  - `value`: value of ether to send with the transaction in wei. Optional.
+  - `data`: transaction calldata. Optional.
 
 ```ts
 type EthSendTransactionAction = {
   chainId: string;
-  method: "eth_sendTransaction";
-  attribution?: boolean; 
+  method: 'eth_sendTransaction';
+  attribution?: boolean;
   params: {
     abi: Abi | [];
     to: string;
     value?: string;
     data?: string;
-  }
-}
+  };
+};
 ```
 
 ##### EthSignTypedDataV4
@@ -208,16 +208,16 @@ See [EIP-712](https://eips.ethereum.org/EIPS/eip-712).
 
 - `chainId`: A CAIP-2 chain ID to identify the tx network (e.g. Ethereum mainnet)
 - `method`: Must be `"eth_signTypedData_v4"`
-- `params`: 
-    - `domain`: the typed domain
-    - `types`: the type definitions for the typed data
-    - `primaryType`: the primary type to extract from types and use in value.
-    - `message`: typed message
+- `params`:
+  - `domain`: the typed domain
+  - `types`: the type definitions for the typed data
+  - `primaryType`: the primary type to extract from types and use in value.
+  - `message`: typed message
 
 ```ts
 type EthSignTypedDataV4Action = {
   chainId: string;
-  method: "eth_signTypedData_v4";
+  method: 'eth_signTypedData_v4';
   params: {
     domain: {
       name?: string;
@@ -228,8 +228,8 @@ type EthSignTypedDataV4Action = {
     types: Record<string, unknown>;
     primaryType: string;
     message: Record<string, unknown>;
-  }
-}
+  };
+};
 ```
 
 **Supported Chains**
@@ -456,6 +456,8 @@ Although it may be possible to validate an Ed25519 signature onchain, a valid si
 
 | Date    | Change                                                                                                                                                                                          |
 | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 7/10/24 | Frames should include the address that took a wallet action when posting back to target.                                                                                                        |
+| 7/10/24 | Frames can request [EIP-712 signatures](https://www.notion.so/warpcast/Frames-Wallet-Signatures-debe97a82e2643d094d4088f1badd791?pm=c).                                                         |
 | 3/25/24 | Frames can surface [application-level errors](https://warpcast.notion.site/Frames-Errors-ddc965b097d44d9ea03ddf98498597c6?pvs=74) to users.                                                     |
 | 3/8/24  | Frames can request [transactions](https://www.notion.so/warpcast/Frame-Transactions-Public-9d9f9f4f527249519a41bd8d16165f73#c1c3182208ce4ae4a7ffa72129b9795a) from the user's connected wallet. |
 | 2/25/24 | Frames can pass [state](https://www.notion.so/warpcast/Frames-State-Public-f3de69c1d12944e583a37204c98d25d9) to the frame server.                                                               |
