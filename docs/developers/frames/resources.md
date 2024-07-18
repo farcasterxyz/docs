@@ -10,13 +10,14 @@ An opinionated collection of popular resources for building Frames.
 
 1. Learn the basics by watching the [Frames 101](https://youtu.be/rp9X8rAPzPM?si=PWm3vBFCTtaoE_Ua).
 2. Reading through the formal [Frames Specification](../../reference/frames/spec).
-3. Learn by doing with guides from [frames.js](https://framesjs.org/guides/create-frame) or [frog](https://frog.fm/concepts/overview).
+3. Learn by doing with guides from [frames.js](https://framesjs.org/guides/create-frame) or [frog](https://framesjs.org/guides/create-frame).
 4. Join the Farcaster developer community in the [/fc-devs](https://warpcast.com/~/channel/fc-devs) channel on Farcaster.
 
 #### Other learning resources
 
 - [Frame Interface Guidelines (FIG)](https://github.com/paradigmxyz/Fig) - guidance and best practices for building frames
 - [Pinata Tutorials](https://docs.pinata.cloud/farcaster/frames#frame-tutorials) - tutorials for building frames that leverage IPFS
+- [frames.js examples](https://framesjs.org/examples/basic) - a collection of 20+ examples that cover basic and advanced topics
 
 #### Frameworks
 
@@ -34,14 +35,6 @@ An opinionated collection of popular resources for building Frames.
 - [Airstack Frames SDK](https://github.com/Airstack-xyz/airstack-frames-sdk) - integrate onchain data into Frames
 - [Vercel OG](https://vercel.com/docs/functions/og-image-generation) - use satori and resvg-js to generate PNG images from HTML and CSS
 
-#### Examples
-
-- [frames.js examples](https://framesjs.org/examples/basic) - a collection of 20+ examples that cover basic and advanced topics
-- [Linktree](https://replit.com/@soren/Linktree-Frame?v=1) - A simple frame that links to four other pages.
-- [Onchain Cow](https://github.com/WillPapper/On-Chain-Cow-Farcaster-Frame) - A cow clicker-like game.
-- [FC Polls](https://github.com/farcasterxyz/fc-polls) - Create and run polls within frames.
-- [Claim or Mint](https://github.com/horsefacts/base-mint-with-warps) - Lets users claim an NFT if they meet certain criteria.
-
 <br/>
 
-A more detailed list of resources can be found at [awesome-frames](https://github.com/davidfurlong/awesome-frames).
+A more extensive list of resources can be found at [awesome-frames](https://github.com/davidfurlong/awesome-frames).
