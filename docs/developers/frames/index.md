@@ -16,7 +16,7 @@ They can be used to create rich in-feed experiences for web applications:
 Or standalone experiences like polls and games:
 
 - spot and mint wild animals on a live-feed of a watering hole in the Namib Desert with [Safaricaster](https://warpcast.com/mattkim/0x3d165bb8)
-- make an onchain payment to another user with [Paybot](app.paycaster.co)
+- make an onchain payment to another user with [Paybot](https://app.paycaster.co)
 - RSPV to an [Eventcaster](https://warpcast.com/toadyhawk.eth/0xcb4aefe8) event
 - [Yoink](https://warpcast.com/horsefacts.eth/0x70019199) the flag in this simple yet viral social game
 
