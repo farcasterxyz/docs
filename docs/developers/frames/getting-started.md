@@ -1,5 +1,5 @@
 ---
-title: Getting Started with Frames / Farcaster Docs
+title: Getting Started with Frames
 ---
 
 # Getting Started

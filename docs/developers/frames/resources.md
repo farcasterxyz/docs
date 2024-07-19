@@ -1,5 +1,5 @@
 ---
-title: Frame Resources / Farcaster Docs
+title: Frame Resources
 ---
 
 # Frame Resources

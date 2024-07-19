@@ -1,4 +1,4 @@
-import { defineConfig } from 'vitepress';
+import { HeadConfig, defineConfig } from 'vitepress';
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -7,13 +7,6 @@ export default defineConfig({
   head: [
     ['link', { rel: 'icon', type: 'image/png', href: '/icon.png' }],
     ['meta', { property: 'og:type', content: 'website' }],
-    [
-      'meta',
-      {
-        property: 'og:title',
-        content: 'Farcaster',
-      },
-    ],
     [
       'meta',
       { property: 'og:image', content: 'https://farcaster.xyz/og-image.png' },
@@ -41,6 +34,31 @@ export default defineConfig({
       gtag('config', 'G-DF7PJS3WBD');`
     ],
   ],
+  transformHead(context) {
+    const extras: HeadConfig[] = [
+      [
+        'meta',
+        {
+          name: 'og:title',
+          content: context.pageData.frontmatter.layout === 'home' ? `Farcaster Docs`: `${context.pageData.title} / Farcaster Docs`
+        }
+      ]
+    ];
+
+    if (context.pageData.description !== '') {
+      extras.push(
+        [
+          'meta',
+          {
+            name: 'og:description',
+            content: context.pageData.description
+          }
+        ]
+      );
+    }
+
+    return extras;
+  },
   cleanUrls: true,
   themeConfig: {
     nav: [
@@ -161,6 +179,15 @@ export default defineConfig({
             {
               text: 'Resources',
               link: '/developers/frames/resources',
+            },
+          ]
+        },
+        {
+          text: 'Sign In with Farcaster',
+          items: [
+            {
+              text: 'Introduction',
+              link: '/developers/siwf/',
             },
           ]
         },

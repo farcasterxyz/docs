@@ -1,3 +1,7 @@
+---
+title: Frame Specification
+---
+
 # Frame Specification
 
 Frames are a standard for creating interactive and authenticated experiences on Farcaster, embeddable in any Farcaster client.
