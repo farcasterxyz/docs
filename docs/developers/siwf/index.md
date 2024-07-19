@@ -22,6 +22,6 @@ a streamlined onboarding experience and social-powered features.
 
 ## Next Steps
 
-- [integrate SIWF to your app today with [AuthKit](/auth-kit/).
+- integrate SIWF to your app today with [AuthKit](/auth-kit/).
 - read about the underlying standard in [FIP-11: Sign In With
   Farcaster](https://github.com/farcasterxyz/protocol/discussions/110)
