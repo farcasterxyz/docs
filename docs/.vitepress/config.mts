@@ -2,8 +2,9 @@ import { HeadConfig, defineConfig } from 'vitepress';
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: 'Farcaster',
-  description: 'Protocol homepage',
+  title: 'Farcaster Docs',
+  titleTemplate: ':title / Farcaster Docs',
+  description: 'Documentation for the Farcaster protocol',
   head: [
     ['link', { rel: 'icon', type: 'image/png', href: '/icon.png' }],
     ['meta', { property: 'og:type', content: 'website' }],

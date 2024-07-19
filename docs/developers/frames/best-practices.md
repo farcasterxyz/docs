@@ -1,5 +1,5 @@
 ---
-title: Frame Best Practices / Farcaster
+title: Frame Best Practices
 ---
 
 # Frame Best Practices
