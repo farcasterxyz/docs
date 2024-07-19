@@ -65,8 +65,7 @@ export default defineConfig({
     nav: [
       {
         text: 'Learn',
-        link: '/',
-        activeMatch: '/learn/',
+        link: '/learn/',
       },
       {
         text: 'Developers',
@@ -74,14 +73,12 @@ export default defineConfig({
       },
       {
         text: 'AuthKit',
-        link: '/auth-kit/introduction',
-        activeMatch: '/auth-kit/',
+        link: '/auth-kit/',
       },
       { text: 'Hubble', link: '/hubble/hubble', activeMatch: '/hubble/' },
       {
         text: 'Reference',
-        link: '/reference/index',
-        activeMatch: '/reference/',
+        link: '/reference/',
       },
     ],
     search: {
@@ -94,13 +91,13 @@ export default defineConfig({
       }
     },
     sidebar: {
-      '/': [
+      '/learn/': [
         {
           text: 'Introduction',
           items: [
             {
               text: 'Getting Started',
-              link: '/index',
+              link: '/learn/',
             },
           ],
         },
