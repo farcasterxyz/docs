@@ -14,7 +14,7 @@ Install the Auth client and its peer dependency [viem](https://viem.sh/).
 npm install @farcaster/auth-client viem
 ```
 
-**Note:** This is a low level client library. If you're using React, take a look at [auth-kit](../introduction) instead.
+**Note:** This is a low level client library. If you're using React, take a look at [auth-kit](../) instead.
 
 ### Create a client
 
