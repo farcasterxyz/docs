@@ -4,12 +4,9 @@ title: Getting Started with Frames
 
 # Getting Started
 
-::: tip
-If you'd prefer to learn more about Frames before building one we recommend the following resources:
-
-- [watch a quick primer on Frames](https://youtu.be/rp9X8rAPzPM?si=PWm3vBFCTtaoE_Ua)
-- [read the Frames Specification](./spec)
-  :::
+::: info Not ready to build?
+If you'd prefer to learn more about Frames before building one, jump ahead to the [Frames Specifcation](./spec).
+:::
 
 Let's use Frog to go from 0 to 1 in less than a minute. At the end of this we'll have:
 
