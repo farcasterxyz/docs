@@ -19,6 +19,7 @@ Or standalone experiences like polls and games:
 - make an onchain payment to another user with [Paybot](https://app.paycaster.co)
 - RSPV to an [Eventcaster](https://warpcast.com/toadyhawk.eth/0xcb4aefe8) event
 - [Yoink](https://warpcast.com/horsefacts.eth/0x70019199) the flag in this simple yet viral social game
+- generate a [Waifu NFT](https://warpcast.com/horsefacts.eth/0xbc7d33ca) based on your Farcaster profile
 
 ### Farcaster 101
 
