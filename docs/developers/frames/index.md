@@ -1,5 +1,5 @@
 ---
-title: Frames Introduction / Farcaster Docs
+title: Frames Introduction
 ---
 
 # Frames Introduction
