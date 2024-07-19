@@ -9,7 +9,7 @@ hero:
       text: Build a frame
       link: /developers/frames/
     - theme: alt
-      text: Explore social sign in
+      text: Explore Sign In with Farcaster
       link: /developers/siwf/
     - theme: alt
       text: Learn about the protocol
@@ -24,12 +24,12 @@ Learn how to build frames, which are mini-apps that run inside a Farcaster feed.
 - [Build your first frame](/developers/frames/getting-started) - Make mini-apps that run inside Farcaster.
 - [Specification](/developers/frames/spec) - A formal specification for the Frame standard.
 
-### Explore social sign-in
+### Explore Sign In with Farcaster
 
 Allow users to Sign In with Farcaster and leverage social data in your app.
 
-- [Introduction](/developers/siwf/) - Learn about Sign In with Farcaster (SIWF).
-- [Add SWIF with AuthKit](/auth-kit/installation) - a React toolkit to add SIWF to your app.
+- [Introduction](/developers/siwf/) - Learn about Sign In with Farcaster.
+- [Add SIWF using AuthKit](/auth-kit/installation) - a React toolkit to add SIWF to your app.
 - [Examples](/auth-kit/examples) - see Sign In with Farcaster in action.
 
 ### Analyze Farcaster data
