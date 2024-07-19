@@ -190,6 +190,10 @@ export default defineConfig({
               text: 'Introduction',
               link: '/developers/siwf/',
             },
+            {
+              text: 'AuthKit',
+              link: '/auth-kit/',
+            },
           ]
         },
         {
@@ -640,4 +644,7 @@ export default defineConfig({
       { icon: 'youtube', link: 'https://www.youtube.com/@farcasterxyz' },
     ],
   },
+  vite: {
+    assetsInclude: ['**/*.avifs'],
+  }
 });
