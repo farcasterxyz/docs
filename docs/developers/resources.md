@@ -23,6 +23,9 @@ Resources are often from third parties and are not reviewed. Use them at your ow
 ### Hubs
 
 - [@farcaster/hub-nodejs](https://www.npmjs.com/package/@farcaster/hub-nodejs) - lightweight, fast Typescript interface for Farcaster Hubs.
+- [@farcaster/shuttle](https://www.npmjs.com/package/@farcaster/shuttle) - package that streams Hubble events to Postgres.
+- [@farcaster/hub-web](https://www.npmjs.com/package/@farcaster/hub-web) - browser client library for Hubble.
+- [@farcaster/core](https://www.npmjs.com/package/@farcaster/core) - shared code between all Packages.
 
 ### Onchain
 
