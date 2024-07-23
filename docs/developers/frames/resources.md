@@ -10,6 +10,7 @@ An opinionated collection of popular resources for building Frames.
 
 - [/fc-devs](https://warpcast.com/~/channel/fc-devs) - Farcaster developer channel
 - [Frames Specification](./spec) - official Frames specification
+- [dTech Zero to Hero Getting Started Guides](https://dtech.vision/farcaster/frames/)
 - [Frames.js Guide](https://framesjs.org/guides/create-frame) - guides from Frames.js
 - [Frog Guides](https://framesjs.org/guides/create-frame) - guides from Frog
 - [Frame Interface Guidelines (FIG)](https://github.com/paradigmxyz/Fig) - guidance and best practices for building frames
