@@ -42,9 +42,9 @@ const OP_PROVIDER_URL = '<REQUIRED>'; // Alchemy or Infura url
 const RECOVERY_ADDRESS = zeroAddress; // Optional, using the default value means the account will not be recoverable later if the mnemonic is lost
 const ACCOUNT_KEY_PRIVATE_KEY: Hex = zeroAddress; // Optional, using the default means a new account key will be created each time
 
-// Note: nemes is the Farcaster team's mainnet hub, which is password protected to prevent abuse. Use a 3rd party hub
+// Note: hoyt is the Farcaster team's mainnet hub, which is password protected to prevent abuse. Use a 3rd party hub
 // provider like https://neynar.com/ Or, run your own mainnet hub and broadcast to it permissionlessly.
-const HUB_URL = 'nemes.farcaster.xyz:2283'; // URL + Port of the Hub
+const HUB_URL = 'hoyt.farcaster.xyz:2283'; // URL + Port of the Hub
 const HUB_USERNAME = ''; // Username for auth, leave blank if not using TLS
 const HUB_PASS = ''; // Password for auth, leave blank if not using TLS
 const USE_SSL = false; // set to true if talking to a hub that uses SSL (3rd party hosted hubs or hubs that require auth)

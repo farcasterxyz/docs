@@ -36,7 +36,7 @@ Set the following variables in your .env file in `apps/hubble`:
 
 ```sh
 FC_NETWORK_ID=1
-BOOTSTRAP_NODE=/dns/nemes.farcaster.xyz/tcp/2282
+BOOTSTRAP_NODE=/dns/hoyt.farcaster.xyz/tcp/2282
 ```
 
 If running from source code, add these arguments to the `yarn start` command
@@ -44,5 +44,5 @@ If running from source code, add these arguments to the `yarn start` command
 ```sh
 yarn start ... \
     -n 1 \
-    -b /dns/nemes.farcaster.xyz/tcp/2282
+    -b /dns/hoyt.farcaster.xyz/tcp/2282
 ```

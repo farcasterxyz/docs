@@ -24,7 +24,7 @@ import { getSSLHubRpcClient } from '@farcaster/hub-nodejs';
  * Populate the following constants with your own values
  */
 
-const HUB_URL = 'nemes.farcaster.xyz:2283'; // URL of the Hub
+const HUB_URL = 'hoyt.farcaster.xyz:2283'; // URL of the Hub
 const FIDS = [2, 3]; // User IDs to fetch casts for
 
 // const client = getInsecureHubRpcClient(HUB_URL); // Use this if you're not using SSL
