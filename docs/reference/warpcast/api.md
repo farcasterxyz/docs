@@ -296,3 +296,52 @@ Properties:
 - `actionUrl` - action metadata URL. Clients retrieve metadata with a GET to this URL.
 - `action.actionType` - action type, only `'post'`
 - `action.postUrl` - action POST URL. Clients POSt signed messages to this URL.
+
+## Get Farcaster composer actions
+
+Retrieve a list of Farcaster composer actions. Paginated.
+
+```bash
+curl 'https://api.warpcast.com/v2/discover-composer-actions?list=top&limit=10' | jq
+```
+
+Parameters:
+
+- `list` - the list to retrieve. Must be one of:
+  - `'top'`, a list ordered by total users.
+  - `'featured'`, a list curated by Warpcast.
+
+Returns: An array of composer action objects:
+
+```json
+{
+  "result": {
+    "actions": [
+      {
+        "name": "Poll",
+        "icon": "list-unordered",
+        "description": "Create a poll",
+        "aboutUrl": "https://poll.example.com/",
+        "imageUrl": "https://poll.example.com/images/logo.png",
+        "actionUrl": "https://poll.example.com/api/action/",
+        "action": {
+          "actionType": "post",
+          "postUrl": "https://poll.ecample.com/api/action/"
+        }
+      }
+    ]
+  },
+  "next": { "cursor": "..." }
+}
+```
+
+Properties:
+
+- `name` - action name
+- `icon` - an [Octicon](https://primer.style/foundations/icons) identifying the action
+- `description` - a short text description of the action
+- `aboutUrl` - external link to a page with additional instructions or source code
+- `imageUrl` - external link to an action logo image.
+- `actionUrl` - action metadata URL. Clients retrieve metadata with a GET to this URL.
+- `action.actionType` - action type, only `'post'`
+- `action.postUrl` - action POST URL. Clients POSt signed messages to this URL.
