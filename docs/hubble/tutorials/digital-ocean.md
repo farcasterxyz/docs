@@ -2,7 +2,7 @@
 
 ## 1. **Launch Droplet**
 
-*You should expect to pay roughly $70 / month for a Droplet instance that can run Hubble.*
+_You should expect to pay roughly $70 / month for a Droplet instance that can run Hubble._
 
 1. In DigitalOcean **Create > Droplet**
 2. Choose Image **Ubuntu**
@@ -15,9 +15,8 @@
 
 1. Launch a Console
 
-<figure><img src="../assets/digital_ocean_console.png" /></figure> 
+<figure><img src="/assets/digital_ocean_console.png" /></figure>
 
 ## 3. **Setup and run Hubble**
 
 Follow the remaining instructions on [running hubble in the cloud](https://github.com/farcasterxyz/hub-monorepo/tree/main/apps/hubble#2-set-up-the-environment)
-
