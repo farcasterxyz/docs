@@ -16,16 +16,16 @@ Make it easy for users to sign in to your app with their Farcaster account.
 
 - [Examples](/auth-kit/examples.md) - see Sign in with Farcaster (SIWF) in action
 - [AuthKit](/auth-kit/installation.md) - a React toolkit to integrate SIWF
-- [FIP-11](https://github.com/farcasterxyz/protocol/discussions/110) - the formal standard for SWIF
+- [FIP-11](https://github.com/farcasterxyz/protocol/discussions/110) - the formal standard for SIWF
 
 ## Analyze Farcaster data
 
 Sync the Farcaster network to a local machine so you can run queries on the data.
 
-- [Run a hub](/hubble/install.md) - get realtime access to Farcaster data on your machine.
-- [Write your first hub query](./guides/querying/fetch-casts.md) - get an account's casts from a hub.
-- [Set up the replicator](./guides/apps/replicate.md) - sync a hub to a postgres database to run advanced queries.
+- [Run a hub](/hubble/install.md) - get realtime access to Farcaster data on your machine
+- [Write your first hub query](./guides/querying/fetch-casts.md) - get an account's casts from a hub
+- [Set up the replicator](./guides/apps/replicate.md) - sync a hub to a postgres database to run advanced queries
 
 ## Write to Farcaster
 
-- [Hello World](/developers/guides/basics/hello-world) - programmatically create an account and publish a cast.
+- [Hello World](/developers/guides/basics/hello-world) - programmatically create an account and publish a cast
