@@ -309,7 +309,7 @@ export default defineConfig({
       '/auth-kit/': [
         {
           text: 'Overview',
-          items: [{ text: 'Introduction', link: '/auth-kit/introduction' },{
+          items: [{ text: 'Introduction', link: '/auth-kit/' },{
             text: 'Examples',
             link: '/auth-kit/examples',
           },],
