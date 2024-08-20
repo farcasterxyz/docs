@@ -9,7 +9,7 @@ Advanced topics for building sophisticated Farcaster Frames.
 #### Making the initial Frame image dynamic
 
 When a Frame is shared in a cast the metadata for it will generally be scraped
-and cached so that it can be rendered into user's feeds without additional
+and cached so that it can be rendered into users feeds without additional
 loading. This means whatever URL is set on the initial frame will always be
 rendered.
 
@@ -19,7 +19,7 @@ In order to make the initial image dynamic you'll need to:
 - set an appropriate cache header
 
 An example, imagine you want to build a frame where the initial frame shows the
-current price of ETH. For the initial frame you'd set an a static image url
+current price of ETH. For the initial frame you'd set a static image url
 like `https://example.xyz/eth-price.png`. When a GET request is made to this endpoint:
 
 - the server fetches the latest ETH price from a cache
@@ -41,11 +41,11 @@ image for cases when you're unable to generate the image, you should set
 As an example, let's say you generate a dynamic image at `/img/eth-price` that
 shows a 24hr chart for the price of ETH. Normally you want this image to be
 cached for 5 minutes. However, if the ETH price data is unavailable and you
-render an fallback image you don't want the request cached so that you can try
+render a fallback image you don't want the request cached so that you can try
 again in subsequent requests.
 
 #### Data persistence
 
-[Vercel KV](https://vercel.com/docs/storage/vercel-kv) and [Cloudflare Wokers
+[Vercel KV](https://vercel.com/docs/storage/vercel-kv) and [Cloudflare Workers
 KV](https://developers.cloudflare.com/kv/) are convenient options for adding a
 simple persistence layer to your Frame server.

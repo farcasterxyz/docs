@@ -32,7 +32,7 @@ the [performance best practices](#performance).
 
 #### Use reusable styles and components
 
-Building set of reusable styles and components can help you move fast and build
+Building a set of reusable styles and components can help you move fast and build
 consistent interfaces.
 
 [FrogUI](https://frog.fm/ui) is an extension of the Frog Framework that provides a theme-able
@@ -71,7 +71,7 @@ locally.
 
 ::: warning Advanced
 Maintaining a replicated database is a non-trivial amount of work. Consider
-fetching data from a provider like Neynar, Pinata, or Airstack unless your
+fetching data from a provider like Neynar, Pinata, or Airstack unless you're
 willing to pay this cost.
 :::
 
