@@ -450,6 +450,7 @@ export default defineConfig({
             { text: 'Intent URLs', link: '/reference/warpcast/cast-composer-intents' },
             { text: 'Direct Casts', link: '/reference/warpcast/direct-casts' },
             { text: 'Embeds', link: '/reference/warpcast/embeds' },
+            { text: 'Videos', link: '/reference/warpcast/videos' },
           ],
         },
         {
