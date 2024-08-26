@@ -9,7 +9,7 @@
 
 You can register a new user using the Bundler contract. To do so, you'll need to:
 
-1. Set up [Viem](https://viem.sh/) clients and [`@farcaster/hub-web`](https://www.npmjs.com/package/@farcaster/hub-web) account keys.
+1. Set up [Viem](https://viem.sh/) clients and [`@farcaster/hub-nodejs`](https://www.npmjs.com/package/@farcaster/hub-nodejs) account keys.
 2. Register an [app fid](/reference/contracts/faq#what-is-an-app-fid-how-do-i-get-one) if your app does not already have one.
 3. Collect a [`Register`](/reference/contracts/reference/id-gateway#register-signature) signature from the user.
 4. Create a new account key pair for the user.
@@ -19,7 +19,7 @@ You can register a new user using the Bundler contract. To do so, you'll need to
 
 ### 1. Set up clients and account keys
 
-First, set up Viem clients and `@farcaster/hub-web` account keys. In this example, we'll use Viem local accounts and account keys, but
+First, set up Viem clients and `@farcaster/hub-nodejs` account keys. In this example, we'll use Viem local accounts and account keys, but
 you can also use `ViemWalletEip712Signer` to connect to a user's wallet rather than a local account.
 
 ```ts

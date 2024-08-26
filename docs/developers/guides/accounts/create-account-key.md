@@ -4,7 +4,7 @@ An account can authorize account keys, which can create messages on its behalf.
 
 The owner of the account can revoke an account key at any time. To add an account key, you'll need to follow six steps:
 
-1. Set up [Viem](https://viem.sh/) clients and [`@farcaster/hub-web`](https://www.npmjs.com/package/@farcaster/hub-web) account key.
+1. Set up [Viem](https://viem.sh/) clients and [`@farcaster/hub-nodejs`](https://www.npmjs.com/package/@farcaster/hub-nodejs) account key.
 2. Register an [app fid](/reference/contracts/faq#what-is-an-app-fid-how-do-i-get-one) if your app does not already have one.
 3. Create a new account key for the user.
 4. Use your app account to create a [Signed Key Request](/reference/contracts/reference/signed-key-request-validator).
@@ -18,7 +18,7 @@ The owner of the account can revoke an account key at any time. To add an accoun
 
 ### 1. Set up clients and account key
 
-First, set up Viem clients and `@farcaster/hub-web` account key. In this example, we'll use Viem local accounts and account key, but
+First, set up Viem clients and `@farcaster/hub-nodejs` account key. In this example, we'll use Viem local accounts and account key, but
 you can also use `ViemWalletEip712Signer` to connect to a user's wallet rather than a local account.
 
 ```ts
