@@ -239,6 +239,7 @@ type EthSignTypedDataV4Action = {
 | Gnosis   | `eip155:100`       |
 | Optimism | `eip155:10`        |
 | Zora     | `eip155:7777777`   |
+| Polygon  | `eip155:137`       |
 
 | Testnet          | Chain ID          |
 | ---------------- | ----------------- |
