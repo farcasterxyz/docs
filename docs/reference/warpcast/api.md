@@ -4,8 +4,9 @@ This page documents public APIs provided by Warpcast with information that is no
 
 **Authentication**: All endpoints are unauthenticated.
 
-**Pagination**: paginated endpoints return a `next.cursor` property next to the `result` object. This parameter should be sent
-back to fetch the next page. An optional `limit` parameter can be used to specify the page size.
+**Pagination**: paginated endpoints return a `next.cursor` property next to the `result` object. To fetch the
+next page, send the value as a `cursor` query parameter. An optional `limit` query parameter can be used to
+specify the page size.
 
 ```json
 {
@@ -44,11 +45,6 @@ Returns: an array of channel objects:
         "description": "A place to welcome new users to Farcaster! Share how you know each other, tag folks that should meet them, and add a photo or two!",
         "imageUrl": "https://ipfs.decentralized-content.com/ipfs/bafkreieraqfkny7bttxd7h7kmnz6zy76vutst3qbjgjxsjnvrw7z3i2n7i",
         "leadFid": 1593,
-        // Deprecated in favor of moderatorFid
-        "hostFids": [
-          1593,
-          187961
-        ],
         "moderatorFid": 5448,
         "createdAt": 1691015606,
         "followerCount": 3622
@@ -59,7 +55,6 @@ Returns: an array of channel objects:
 }
 ```
 
-**Note**: `hostFids` is
 Channel object properties:
 
 - `id` - unique channel id that cannot be changed (called 'Name' when creating a channel)
@@ -68,8 +63,6 @@ Channel object properties:
 - `description` - description of the channel, if present
 - `imageUrl` - URL to the channel avatar
 - `leadFid` - fid of the user who created the channel, if present
-- `hostFids` - **(Deprecated)** The fids of the channel hosts, if present. Starting on May 23, 2024, channels are moving away from
-  hosts to a moderator, returned as `moderatorFid`. `hostFids` will be removed a few weeks later.
 - `moderatorFid` - fid of the user who moderates the main channel feed, if present
 - `createdAt` - UNIX time when channel was created, in seconds
 - `followerCount` - number of users following the channel
@@ -98,7 +91,6 @@ Returns: a single channel object, as documented in the "Get All Channels" endpoi
       "description": "A place to welcome new users to Farcaster! Share how you know each other, tag folks that should meet them, and add a photo or two!",
       "imageUrl": "https://ipfs.decentralized-content.com/ipfs/bafkreieraqfkny7bttxd7h7kmnz6zy76vutst3qbjgjxsjnvrw7z3i2n7i",
       "leadFid": 1593,
-      "hostFids": [1593, 187961],
       "moderatorFid": 5448,
       "createdAt": 1691015606,
       "followerCount": 3622
@@ -175,10 +167,6 @@ Returns: an array of objects:
         "description": "Important updates about things happening in Farcaster",
         "imageUrl": "https://i.imgur.com/YnnrPaH.png",
         "leadFid": 2,
-        "hostFids": [
-          2,
-          3
-        ],
         "moderatorFid": 5448,
         "createdAt": 1712162074,
         "followerCount": 17034,
@@ -345,3 +333,41 @@ Properties:
 - `actionUrl` - action metadata URL. Clients retrieve metadata with a GET to this URL.
 - `action.actionType` - action type, only `'post'`
 - `action.postUrl` - action POST URL. Clients POSt signed messages to this URL.
+
+## Get Blocked Users
+
+Warpcast allows users to block others from replying, quoting and mentioning them.
+
+This endpoint provides access to all blocked users. Paginated, in reverse chronological order by block creation time.
+
+```bash
+curl https://api.warpcast.com/v1/blocked-users | jq
+```
+
+Parameters:
+
+- `blockerFid` (**optional**) - limit the response to only blocks by a specific user
+
+Returns: an array of blocked users:
+
+```json
+{
+  "result": {
+    "blockedUsers": [
+      {
+        "blockerFid": 5,
+        "blockedFid": 10,
+        "createdAt": 1724854521
+      },
+      ...
+    ]
+  },
+  "next": { "cursor": "..." }
+}
+```
+
+Properties:
+
+- `blockerFid` - the user who created the block
+- `blockedFid` - the user who is blocked (cannot reply to, quote or mention the `blockerFid`)
+- `createdAt` - UNIX time when channel was created, in seconds
