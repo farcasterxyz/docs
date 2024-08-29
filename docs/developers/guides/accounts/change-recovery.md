@@ -4,7 +4,7 @@ Accounts can configure a recovery address to protect against the loss of the cus
 
 ### Requirements
 
-- An ETH wallet that has an fid on OP mainnet, with some ETH for gas costs
+- An ETH wallet that has an FID on OP Mainnet, with some ETH for gas costs.
 - An ETH RPC URL for OP Mainnet (e.g. via [Alchemy](https://www.alchemy.com/), [Infura](https://www.infura.io/) or [QuickNode](https://www.quicknode.com/)).
 
 ### Change Address
@@ -21,7 +21,7 @@ const newRecoveryAddress = '0x...';
 const { request: transferRequest } = await walletClient.simulateContract({
   ...IdContract,
   functionName: 'changeRecovery',
-  args: [newRecoveryAddress], // new recovery address
+  args: [newRecoveryAddress], // New recovery address
 });
 
 await walletClient.writeContract(transferRequest);

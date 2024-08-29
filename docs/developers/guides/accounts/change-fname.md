@@ -1,30 +1,30 @@
-# Change farcaster name
+# Change Farcaster name
 
-A user can change their offchain ENS name or fname without affecting their account's history. This can be done at most once in 28 days.
+A user can change their off-chain ENS name or Fname without affecting their account's history. This can be done at most once in 28 days.
 
 ::: warning
 
 - Fnames may be revoked if you violate the [usage policy](/learn/architecture/ens-names#offchain-ens-names-fnames).
-- Apps may lower your reputation if you change fnames often.
+- Apps may lower your reputation if you change Fnames often.
   :::
 
 ### Requirements
 
-- An ETH wallet that owns the account on OP mainnet. No ETH is required.
+- An ETH wallet that owns the account on OP Mainnet. No ETH is required.
 
 ### Change username
 
-To transfer an fname, e.g. `hubble`, make a POST request to `/transfers` with the following body:
+To transfer an Fname, e.g. `Hubble`, make a POST request to `/transfers` with the following body:
 
 ```yaml
 {
   "name": "hubble", // Name to transfer
-  "from": 123,  // Fid to transfer from
-  "to": 321, // Fid to transfer to
-  "fid": 123, // Fid making the request (must match from)
-  "owner": "0x...", // Custody address of fid making the request
+  "from": 123,  // FID to transfer from
+  "to": 321, // FID to transfer to
+  "fid": 123, // FID making the request (must match from)
+  "owner": "0x...", // Custody address of FID making the request
   "timestamp": 1641234567,  // Current timestamp in seconds
-  "signature": "0x..."  // EIP-712 signature signed by the custody address of the fid
+  "signature": "0x..."  // EIP-712 signature signed by the custody address of the FID
 }
 ```
 

@@ -5,15 +5,15 @@ An account can authorize account keys, which can create messages on its behalf.
 The owner of the account can revoke an account key at any time. To add an account key, you'll need to follow six steps:
 
 1. Set up [Viem](https://viem.sh/) clients and [`@farcaster/hub-web`](https://www.npmjs.com/package/@farcaster/hub-web) account key.
-2. Register an [app fid](/reference/contracts/faq#what-is-an-app-fid-how-do-i-get-one) if your app does not already have one.
+2. Register an [app FID](/reference/contracts/faq#what-is-an-app-fid-how-do-i-get-one) if your app does not already have one.
 3. Create a new account key for the user.
 4. Use your app account to create a [Signed Key Request](/reference/contracts/reference/signed-key-request-validator).
 5. Collect an [`Add`](/reference/contracts/reference/key-gateway#add-signature) signature from the user.
-6. Call the [Key Gateway](https://docs.farcaster.xyz/reference/contracts/reference/key-gateway#addFor) contract to add the key onchain.
+6. Call the [Key Gateway](https://docs.farcaster.xyz/reference/contracts/reference/key-gateway#addFor) contract to add the key on-chain.
 
 ### Requirements
 
-- An ETH wallet on OP mainnet, with some ETH
+- An ETH wallet on OP Mainnet, with some ETH.
 - An ETH RPC URL for OP Mainnet (e.g. via [Alchemy](https://www.alchemy.com/), [Infura](https://www.infura.io/) or [QuickNode](https://www.quicknode.com/)).
 
 ### 1. Set up clients and account key
@@ -56,14 +56,14 @@ const appAccountKey = new ViemLocalEip712Signer(app as any);
 const alice = privateKeyToAccount(ALICE_PRIVATE_KEY);
 const aliceAccountKey = new ViemLocalEip712Signer(alice as any);
 
-const deadline = BigInt(Math.floor(Date.now() / 1000) + 3600); // set the signatures' deadline to 1 hour from now
+const deadline = BigInt(Math.floor(Date.now() / 1000) + 3600); // Set the signatures' deadline to 1 hour from now
 
 const WARPCAST_RECOVERY_PROXY = '0x00000000FcB080a4D6c39a9354dA9EB9bC104cd7';
 ```
 
-### 2. Register an app fid
+### 2. Register an app FID
 
-Register an app fid if you don't already have one. To register an fid, you'll need to read the price from the ID Gateway, then call the ID Gateway and pay the registration price. You can read back your new FID from the Id Registry contract, or parse it from a `Register` event. Here, we'll read it from the registry contract.
+Register an app FID if you don't already have one. To register an FID, you'll need to read the price from the ID Gateway, then call the ID Gateway and pay the registration price. You can read back your new FID from the Id Registry contract, or parse it from a `Register` event. Here, we'll read it from the registry contract.
 
 ```ts
 const price = await publicClient.readContract({
@@ -123,7 +123,7 @@ if (accountKeyResult.isOk()) {
 
 ### 5. Collect an `Add` signature from the user.
 
-Collect an EIP-712 `Add` signature from the user to authorize adding an account key to their fid. In a real world app,
+Collect an EIP-712 `Add` signature from the user to authorize adding an account key to their FID. In a real world app,
 you'll likely collect this signature on your frontend, from the user's wallet. In a frontend context, you can us a `ViemEip712WalletSigner` to connect to a browser wallet rather than a local signer.
 
 ```ts
@@ -149,9 +149,9 @@ if (signedKeyRequestMetadata.isOk()) {
 }
 ```
 
-### 6. Call the Key Gateway contract to add the key onchain.
+### 6. Call the Key Gateway contract to add the key on-chain.
 
-Call the Key Gateway contract and provide the user's signature to add the key onchain.
+Call the Key Gateway contract and provide the user's signature to add the key on-chain.
 
 ```ts
 if (aliceSignature.isOk()) {
@@ -237,7 +237,7 @@ console.log('Alice:', alice.address);
  * All Farcaster EIP-712 signatures include a deadline, a block timestamp
  * after which the signature is no longer valid.
  */
-const deadline = BigInt(Math.floor(Date.now() / 1000) + 3600); // set the signatures' deadline to 1 hour from now
+const deadline = BigInt(Math.floor(Date.now() / 1000) + 3600); // Set the signatures' deadline to 1 hour from now
 
 const WARPCAST_RECOVERY_PROXY = '0x00000000FcB080a4D6c39a9354dA9EB9bC104cd7';
 
@@ -280,16 +280,16 @@ const APP_FID = await publicClient.readContract({
 });
 
 /*******************************************************************************
- * KeyGateway - addFor - Add an account key to Alice's fid.
+ * KeyGateway - addFor - Add an account key to Alice's FID.
  *******************************************************************************/
 
 /**
- * To add an account key to Alice's fid, we need to follow four steps:
+ * To add an account key to Alice's FID, we need to follow four steps:
  *
  * 1. Create a new account key pair for Alice.
  * 2. Use our app account to create a Signed Key Request.
  * 3. Collect Alice's `Add` signature.
- * 4. Call the contract to add the key onchain.
+ * 4. Call the contract to add the key on-chain.
  */
 
 /**

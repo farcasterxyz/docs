@@ -6,8 +6,8 @@ A user may want to change this address for security reasons or to transfer owner
 
 ### Requirements
 
-- An ETH wallet that owns the account on OP mainnet, with some ETH
-- An ethereum provider URL for OP Mainnet (e.g. via [Alchemy](https://www.alchemy.com/), [Infura](https://www.infura.io/) or [QuickNode](https://www.quicknode.com/)).
+- An ETH wallet that owns the account on OP Mainnet, with some ETH.
+- An Ethereum provider URL for OP Mainnet (e.g. via [Alchemy](https://www.alchemy.com/), [Infura](https://www.infura.io/) or [QuickNode](https://www.quicknode.com/)).
 
 ### Change Custody Address
 
@@ -95,7 +95,7 @@ export const readNonce = async () => {
 :::
 
 ::: warning
-Transferring a fid does not reset its recovery address. To transfer a fid and update its recovery address,
+Transferring a FID does not reset its recovery address. To transfer a FID and update its recovery address,
 call [`transferAndChangeRecovery`](/reference/contracts/reference/id-registry#transferandchangerecovery).
 :::
 

@@ -2,7 +2,7 @@
 
 Hubs are a distributed network of servers that store and validate Farcaster data.
 
-A computer can run software to become a Farcaster hub. It will download onchain Farcaster data from Ethereum and offchain Farcaster data from other Hubs. Each Hub stores a copy of all Farcaster data which can be accessed over an API.
+A computer can run software to become a Farcaster Hub. It will download on-chain Farcaster data from Ethereum and off-chain Farcaster data from other Hubs. Each Hub stores a copy of all Farcaster data, which can be accessed over an API.
 
 Hubs let you read and write data to Farcaster, and anyone building a Farcaster app will need to talk to one. Anyone can run a Hub on their laptop or on a cloud server. A full guide to setting up and running a Hub is available [here](https://www.thehubble.xyz).
 
@@ -15,32 +15,32 @@ The lifecycle of a Farcaster message looks like this:
 1. Alice creates a new "Hello World!" message.
 2. Alice (or her app) signs the message with an account key.
 3. Alice (or her app) uploads the message to a Hub.
-4. The hub checks the message's validity.
-5. The hub sends the message to peer hubs over gossip.
+4. The Hub checks the message's validity.
+5. The Hub sends the message to peer hubs over gossip.
 
 ![Hub](/assets/hub.png)
 
 ### Validation
 
-Alice's message is validated by checking that it has a valid signature from one of her account keys. The hub also ensures that the message obeys the requirements of the message type. for example, a public message or "cast" must be less than 320 bytes. Message type requirements are specified in detail in the protocol spec
+Alice's message is validated by checking that it has a valid signature from one of her account keys. The Hub also ensures that the message obeys the requirements of the message type. For example, a public message or "cast" must be less than 320 bytes. Message type requirements are specified in detail in the [protocol spec](https://github.com/farcasterxyz/protocol/blob/main/docs/SPECIFICATION.md).
 
 ### Storage
 
 Alice's message is then checked for conflicts before being stored in the Hub. Conflicts can occur for many reasons:
 
-1. The hub already has a copy of the message.
-2. The hub has a later message from Alice deleting this message.
+1. The Hub already has a copy of the message.
+2. The Hub has a later message from Alice deleting this message.
 3. Alice has only paid rent for 5000 casts, and this is her 5001st cast.
 
-Conflicts are resolved deterministically and asynchronously using CRDTs. For example, if Alice has no space to store messages, her oldest message will be removed.
+Conflicts are resolved deterministically and asynchronously using CRDTs (Conflict-free Replicated Data Types). For example, if Alice has no space to store messages, her oldest message will be removed.
 
 ### Replication
 
-Hubs sync using a two-phase process - gossip and diff sync. When a Hub receives and stores a message, it immediately gossips it to its peers. Gossip is performed using libp2p's gossipsub protocol and is lossy. Hubs then periodically select a random peer and perform a diff sync to find dropped messages. The diff sync process compares merkle tries of message hashes to efficiently find dropped messages.
+Hubs sync using a two-phase process: gossip and diff sync. When a Hub receives and stores a message, it immediately gossips it to its peers. Gossip is performed using libp2p's gossipsub protocol and is lossy. Hubs then periodically select a random peer and perform a diff sync to find dropped messages. The diff sync process compares merkle tries of message hashes to efficiently find dropped messages.
 
 ### Consistency
 
-Hubs are said to have strong eventual consistency. If a Hub is disconnected, it can be written to it and will recover safely when it comes online. This is unlike blockchains where a node that is disconnected cannot confirm transactions. The downside is that messages may arrive out of order. For example, Bob's reply to Alice might appear before her "Hello World" message.
+Hubs are said to have strong eventual consistency. If a Hub is disconnected, it can be written to it and will recover safely when it comes online. This is unlike blockchains where a node that is disconnected cannot confirm transactions. The downside is that messages may arrive out of order. For example, Bob's reply to Alice might appear before her "Hello World!" message.
 
 ### Peer Scoring
 
@@ -48,7 +48,7 @@ Hubs monitor peers and score their behavior. If a peer doesn't accept valid mess
 
 ### Implementations
 
-- [Hubble](https://www.thehubble.xyz) - a Hub implementation in Typescript and Rust
+- [Hubble](https://www.thehubble.xyz) - a Hub implementation in TypeScript and Rust
 
 ## FAQ
 
