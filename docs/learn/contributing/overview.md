@@ -30,6 +30,3 @@ great way to get involved.
 - [Recordings](https://www.youtube.com/watch?v=lmGXWP5m1_Y&list=PL0eq1PLf6eUeZnPtyKMS6uN9I5iRIlnvq) - watch recordings
   of previous calls.
 
-## Community
-
-- [Developer Telegram](https://t.me/farcasterdevchat) - Public chat for developer support.
