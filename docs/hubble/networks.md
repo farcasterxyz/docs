@@ -4,7 +4,7 @@ A Farcaster account must choose which network it posts its messages to. Any acco
 
 There are two main networks:
 
-- **Testnet**- the latest beta release intended for developers
+- **Testnet** - the latest beta release intended for developers
 - **Mainnet** - the stable version that everyone uses
 
 When [installing your hub](./install.md), you'll need to choose a network to connect to.

@@ -16,7 +16,7 @@ network.
 Hubble instances can also be hosted for you by other service providers.
 
 - [Hubs x Neynar](https://hubs.neynar.com/)
-- [Hubs X Pinata](https://pinata.cloud/pinata-hub)
+- [Hubs x Pinata](https://pinata.cloud/pinata-hub)
 
 ## Public Instances
 
