@@ -12,7 +12,7 @@ Hubble keeps event around for 3 days after which they are deleted to save space.
 | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- | ----------- |
 | type  | [HubEventType](#HubEventType)                                                                                                                                                                                                               |       |             |
 | id    | [uint64](#uint64)                                                                                                                                                                                                                           |       |             |
-| body  | [MergeMessageBody](#mergemessagebody), <br> [prunemessagebody](#PruneMessageBody), <br> [RevokeMessageBody](#revokemessagebody), <br>[MergeUserNameProofBody](#mergeusernameproofbody), <br>[MergeOnChainEventBody](#mergeonchaineventbody) | oneOf |             |
+| body  | [MergeMessageBody](#mergemessagebody), <br> [PruneMessageBody](#prunemessagebody), <br> [RevokeMessageBody](#revokemessagebody), <br>[MergeUserNameProofBody](#mergeusernameproofbody), <br>[MergeOnChainEventBody](#mergeonchaineventbody) | oneOf |             |
 
 ## HubEventType
 
