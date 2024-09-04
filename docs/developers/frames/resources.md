@@ -23,6 +23,7 @@ An opinionated collection of popular resources for building Frames.
 - [frames.js](https://framesjs.org/) - build, debug, and render Frames
 - [onchainkit](https://github.com/coinbase/onchainkit) - A React toolkit to create frames
 - [simplest frame](https://github.com/depatchedmode/simplest-frame) - zero-cost, zero-framework Frame template
+- [framebuilder](https://framebuilder.xyz) - No-Code Farcaster Frames Builder
 
 #### Developer tools
 
