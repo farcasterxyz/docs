@@ -1,6 +1,6 @@
 # Change Farcaster name
 
-A user can change their off-chain ENS name or Fname without affecting their account's history. This can be done at most once in 28 days.
+A user can change their offchain ENS name or Fname without affecting their account's history. This can be done at most once in 28 days.
 
 ::: warning
 

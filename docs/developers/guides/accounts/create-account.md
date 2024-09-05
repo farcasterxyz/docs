@@ -15,7 +15,7 @@ You can register a new user using the Bundler contract. To do so, you'll need to
 4. Create a new account key pair for the user.
 5. Use your app account to create a [Signed Key Request](/reference/contracts/reference/signed-key-request-validator).
 6. Collect an [`Add`](/reference/contracts/reference/key-gateway#add-signature) signature from the user.
-7. Call the [Bundler](https://docs.farcaster.xyz/reference/contracts/reference/bundler#register) contract to register on-chain.
+7. Call the [Bundler](https://docs.farcaster.xyz/reference/contracts/reference/bundler#register) contract to register onchain.
 
 ### 1. Set up clients and account keys
 
@@ -178,9 +178,9 @@ if (signedKeyRequestMetadata.isOk()) {
 }
 ```
 
-### 7. Call the Bundler contract to register on-chain.
+### 7. Call the Bundler contract to register onchain.
 
-Call the Key Gateway contract and provide the user's signature to add the key on-chain.
+Call the Key Gateway contract and provide the user's signature to add the key onchain.
 
 ```ts
 if (addSignatureResult.isOk()) {

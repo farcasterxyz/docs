@@ -2,9 +2,9 @@
 
 If you have a user's name and want to find their account, you'll need to use one of these methods depending on what type of username they have.
 
-## Off-chain ENS Names (Fnames)
+## Offchain ENS Names (Fnames)
 
-If the user has an off-chain ENS name like `@alice`, you'll need to call the [Fname Registry](/reference/fname/api#get-current-fname-or-fid).
+If the user has an offchain ENS name like `@alice`, you'll need to call the [Fname Registry](/reference/fname/api#get-current-fname-or-fid).
 
 ```bash
 curl https://fnames.farcaster.xyz/transfers/current?name=farcaster | jq
@@ -26,9 +26,9 @@ curl https://fnames.farcaster.xyz/transfers/current?name=farcaster | jq
 
 This returns the most recent transfer associated with the name if it is registered. Note that the creation of an Fname is a transfer from the zero address to the custody address. The `to` field indicates the current FID that owns the name.
 
-## On-chain ENS Names
+## Onchain ENS Names
 
-If the user has an on-chain ENS name like `@alice.eth`, the easiest way to do it is with the Hubble [replicator](../apps/replicate.md). It indexes on-chain and off-chain data and lets you easily find what you're looking for.
+If the user has an onchain ENS name like `@alice.eth`, the easiest way to do it is with the Hubble [replicator](../apps/replicate.md). It indexes onchain and offchain data and lets you easily find what you're looking for.
 
 Once you have it set up, query the `fnames` table in the replicator database for the account's FID:
 

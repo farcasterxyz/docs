@@ -2,7 +2,7 @@
 
 Hubs are a distributed network of servers that store and validate Farcaster data.
 
-A computer can run software to become a Farcaster Hub. It will download on-chain Farcaster data from Ethereum and off-chain Farcaster data from other Hubs. Each Hub stores a copy of all Farcaster data, which can be accessed over an API.
+A computer can run software to become a Farcaster Hub. It will download onchain Farcaster data from Ethereum and offchain Farcaster data from other Hubs. Each Hub stores a copy of all Farcaster data, which can be accessed over an API.
 
 Hubs let you read and write data to Farcaster, and anyone building a Farcaster app will need to talk to one. Anyone can run a Hub on their laptop or on a cloud server. A full guide to setting up and running a Hub is available [here](https://www.thehubble.xyz).
 

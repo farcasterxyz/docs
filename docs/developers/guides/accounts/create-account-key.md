@@ -9,7 +9,7 @@ The owner of the account can revoke an account key at any time. To add an accoun
 3. Create a new account key for the user.
 4. Use your app account to create a [Signed Key Request](/reference/contracts/reference/signed-key-request-validator).
 5. Collect an [`Add`](/reference/contracts/reference/key-gateway#add-signature) signature from the user.
-6. Call the [Key Gateway](https://docs.farcaster.xyz/reference/contracts/reference/key-gateway#addFor) contract to add the key on-chain.
+6. Call the [Key Gateway](https://docs.farcaster.xyz/reference/contracts/reference/key-gateway#addFor) contract to add the key onchain.
 
 ### Requirements
 
@@ -149,9 +149,9 @@ if (signedKeyRequestMetadata.isOk()) {
 }
 ```
 
-### 6. Call the Key Gateway contract to add the key on-chain.
+### 6. Call the Key Gateway contract to add the key onchain.
 
-Call the Key Gateway contract and provide the user's signature to add the key on-chain.
+Call the Key Gateway contract and provide the user's signature to add the key onchain.
 
 ```ts
 if (aliceSignature.isOk()) {
@@ -270,7 +270,7 @@ const { request } = await publicClient.simulateContract({
 await walletClient.writeContract(request);
 
 /**
- *  Read the app fid from the Id Registry contract.
+ *  Read the app FID from the Id Registry contract.
  */
 const APP_FID = await publicClient.readContract({
   address: ID_REGISTRY_ADDRESS,
@@ -289,7 +289,7 @@ const APP_FID = await publicClient.readContract({
  * 1. Create a new account key pair for Alice.
  * 2. Use our app account to create a Signed Key Request.
  * 3. Collect Alice's `Add` signature.
- * 4. Call the contract to add the key on-chain.
+ * 4. Call the contract to add the key onchain.
  */
 
 /**
