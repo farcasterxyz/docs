@@ -250,7 +250,7 @@ export default defineConfig({
               items: [
                 {
                   text: 'Create an account',
-                  link: '/developers/guides/writing/accounts',
+                  link: '/developers/guides/accounts/create-account',
                 },
                 {
                   text: 'Create messages',
