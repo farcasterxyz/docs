@@ -2,15 +2,15 @@
 
 ::: info Pre-requisites
 
-- An Ethereum wallet on Optimism mainnet, with sufficient ETH for gas costs
-- An ethereum provider URL for OP Mainnet ((e.g. via [Alchemy](https://www.alchemy.com/), [Infura](https://www.infura.io/) or [QuickNode](https://www.quicknode.com/)).
+- An Ethereum wallet on OP Mainnet, with sufficient ETH for gas costs.
+- An Ethereum provider URL for OP Mainnet (e.g. via [Alchemy](https://www.alchemy.com/), [Infura](https://www.infura.io/) or [QuickNode](https://www.quicknode.com/)).
 
 :::
 
 You can register a new user using the Bundler contract. To do so, you'll need to:
 
 1. Set up [Viem](https://viem.sh/) clients and [`@farcaster/hub-web`](https://www.npmjs.com/package/@farcaster/hub-web) account keys.
-2. Register an [app fid](/reference/contracts/faq#what-is-an-app-fid-how-do-i-get-one) if your app does not already have one.
+2. Register an [app FID](/reference/contracts/faq#what-is-an-app-fid-how-do-i-get-one) if your app does not already have one.
 3. Collect a [`Register`](/reference/contracts/reference/id-gateway#register-signature) signature from the user.
 4. Create a new account key pair for the user.
 5. Use your app account to create a [Signed Key Request](/reference/contracts/reference/signed-key-request-validator).
@@ -59,14 +59,14 @@ const appAccountKey = new ViemLocalEip712Signer(app as any);
 const alice = privateKeyToAccount(ALICE_PRIVATE_KEY);
 const aliceAccountKey = new ViemLocalEip712Signer(alice as any);
 
-const deadline = BigInt(Math.floor(Date.now() / 1000) + 3600); // set the signatures' deadline to 1 hour from now
+const deadline = BigInt(Math.floor(Date.now() / 1000) + 3600); // Set the signatures' deadline to 1 hour from now
 
 const WARPCAST_RECOVERY_PROXY = '0x00000000FcB080a4D6c39a9354dA9EB9bC104cd7';
 ```
 
-### 2. Register an app fid
+### 2. Register an app FID
 
-Register an app fid if you don't already have one. To register an fid, you'll need to read the price from the ID Gateway, then call the ID Gateway and pay the registration price. You can read back your new FID from the Id Registry contract, or parse it from a `Register` event. Here, we'll read it from the registry contract.
+Register an app FID if you don't already have one. To register an FID, you'll need to read the price from the ID Gateway, then call the ID Gateway and pay the registration price. You can read back your new FID from the Id Registry contract, or parse it from a `Register` event. Here, we'll read it from the registry contract.
 
 ```ts
 const price = await publicClient.readContract({
@@ -153,7 +153,7 @@ if (accountKeyResult.isOk()) {
 
 ### 6. Collect an `Add` signature from the user.
 
-Collect an EIP-712 `Add` signature from the user to authorize adding an account key to their fid.
+Collect an EIP-712 `Add` signature from the user to authorize adding an account key to their FID.
 
 ```ts
 if (signedKeyRequestMetadata.isOk()) {
@@ -266,7 +266,7 @@ const appAccountKey = new ViemLocalEip712Signer(app as any);
 const alice = privateKeyToAccount(ALICE_PRIVATE_KEY);
 const aliceAccountKey = new ViemLocalEip712Signer(alice as any);
 
-const deadline = BigInt(Math.floor(Date.now() / 1000) + 3600); // set the signatures' deadline to 1 hour from now
+const deadline = BigInt(Math.floor(Date.now() / 1000) + 3600); // Set the signatures' deadline to 1 hour from now
 
 const WARPCAST_RECOVERY_PROXY = '0x00000000FcB080a4D6c39a9354dA9EB9bC104cd7';
 
@@ -334,7 +334,7 @@ if (registerSignatureResult.isOk()) {
 }
 
 /*******************************************************************************
- * Collect Add signature from alice.
+ * Collect Add signature from Alice.
  *******************************************************************************/
 
 /**
