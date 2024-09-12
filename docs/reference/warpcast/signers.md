@@ -156,7 +156,7 @@ const poll = async (token: string) => {
           token,
         },
       })
-      .then((response) => response.data.result);
+      .then((response) => response.data.result.signedKeyRequest);
 
     if (signedKeyRequest.state === 'completed') {
       console.log('Signed Key Request completed:', signedKeyRequest);
@@ -261,7 +261,7 @@ const SIGNED_KEY_REQUEST_TYPE = [
             token,
           },
         })
-        .then((response) => response.data.result);
+        .then((response) => response.data.result.signedKeyRequest);
 
       if (signedKeyRequest.state === 'completed') {
         console.log('Signed Key Request completed:', signedKeyRequest);
