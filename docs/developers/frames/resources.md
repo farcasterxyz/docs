@@ -11,7 +11,7 @@ An opinionated collection of popular resources for building Frames.
 - [/fc-devs](https://warpcast.com/~/channel/fc-devs) - Farcaster developer channel
 - [Frames Specification](./spec) - official Frames specification
 - [Frames.js Guide](https://framesjs.org/guides/create-frame) - guides from Frames.js
-- [Frog Guides](https://framesjs.org/guides/create-frame) - guides from Frog
+- [Frog Guides](https://frog.fm/getting-started) - guides from Frog
 - [Frame Interface Guidelines (FIG)](https://github.com/paradigmxyz/Fig) - guidance and best practices for building frames
 - [Pinata Tutorials](https://docs.pinata.cloud/farcaster/frames#frame-tutorials) - tutorials for building frames that leverage IPFS
 - [Frames.js Examples](https://framesjs.org/examples/basic) - a collection of 20+ examples that cover basic and advanced topics
