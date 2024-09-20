@@ -167,7 +167,7 @@ const accountPrivateKey = await getOrRegisterAccountKey(fid);
 
 ## 4. Register an fname
 
-Now that the on-chain actions are complete, let's register an fname using the farcaster off-chain fname registry.
+Now that the onchain actions are complete, let's register an fname using the farcaster offchain fname registry.
 Registering an fname requires a signature from the custody address of the fid.
 
 ```typescript
