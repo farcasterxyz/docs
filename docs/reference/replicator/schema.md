@@ -221,7 +221,7 @@ Stores how many units of storage each FID has purchased, and when it expires.
 | updated_at     | `timestamp with time zone` | When the row was last updated.                                                                               |
 | rented_at      | `timestamp with time zone` | Message timestamp in UTC.                                                                                    |
 | expires_at     | `timestamp with time zone` | When this storage allocation will expire.                                                                    |
-| chain_event_id | `uuid`                     | ID of the row in the `chain_events` table representing the onchain event where storage was allocated.       |
+| chain_event_id | `uuid`                     | ID of the row in the `chain_events` table representing the onchain event where storage was allocated.        |
 | fid            | `bigint`                   | FID that owns the storage.                                                                                   |
 | units          | `smallint`                 | Number of storage units allocated.                                                                           |
 | payer          | `bytea`                    | Wallet address that paid for the storage.                                                                    |

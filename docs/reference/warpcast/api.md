@@ -32,7 +32,18 @@ List all Warpcast channels. There are no parameters and no pagination.
 curl https://api.warpcast.com/v2/all-channels | jq
 ```
 
-Returns: an array of channel objects:
+Returns: a `channels` array wtih properties:
+
+- `id` - unique channel id that cannot be changed (called 'Name' when creating a channel)
+- `url` - FIP-2 `parentUrl` used for main casts in the channel
+- `name` - friendly name displayed to users (called 'Display name' when editing a channel)
+- `description` - description of the channel, if present
+- `imageUrl` - URL to the channel avatar
+- `leadFid` - fid of the user who created the channel, if present
+- `moderatorFid` - (**deprecated**) fid of the user who moderates the main channel feed, if present
+- `moderatorFids` - fids of the moderators (under new channel membership scheme)
+- `createdAt` - UNIX time when channel was created, in seconds
+- `followerCount` - number of users following the channel
 
 ```json
 {
@@ -46,6 +57,10 @@ Returns: an array of channel objects:
         "imageUrl": "https://ipfs.decentralized-content.com/ipfs/bafkreieraqfkny7bttxd7h7kmnz6zy76vutst3qbjgjxsjnvrw7z3i2n7i",
         "leadFid": 1593,
         "moderatorFid": 5448,
+        "moderatorFids": [
+          5448,
+          3
+        ],
         "createdAt": 1691015606,
         "followerCount": 3622
       },
@@ -54,18 +69,6 @@ Returns: an array of channel objects:
   }
 }
 ```
-
-Channel object properties:
-
-- `id` - unique channel id that cannot be changed (called 'Name' when creating a channel)
-- `url` - FIP-2 `parentUrl` used for main casts in the channel
-- `name` - friendly name displayed to users (called 'Display name' when editing a channel)
-- `description` - description of the channel, if present
-- `imageUrl` - URL to the channel avatar
-- `leadFid` - fid of the user who created the channel, if present
-- `moderatorFid` - fid of the user who moderates the main channel feed, if present
-- `createdAt` - UNIX time when channel was created, in seconds
-- `followerCount` - number of users following the channel
 
 ### Get Channel
 
@@ -92,6 +95,7 @@ Returns: a single channel object, as documented in the "Get All Channels" endpoi
       "imageUrl": "https://ipfs.decentralized-content.com/ipfs/bafkreieraqfkny7bttxd7h7kmnz6zy76vutst3qbjgjxsjnvrw7z3i2n7i",
       "leadFid": 1593,
       "moderatorFid": 5448,
+      "moderatorFids": [5448, 3],
       "createdAt": 1691015606,
       "followerCount": 3622
     }
@@ -111,12 +115,10 @@ Parameters:
 
 - `channelId` - the id of the channel
 
-Returns: two arrays:
+Returns: a `users` array with properties:
 
-- `users` - objects with properties:
-  - `fid` - the fid of the user
-  - `followedAt` - UNIX time when channel was followed, in seconds
-- (**DEPRECATED, will be removed soon**) `fids` - the fids of the users
+- `fid` - the fid of the user
+- `followedAt` - UNIX time when channel was followed, in seconds
 
 ```json
 {
@@ -132,11 +134,6 @@ Returns: two arrays:
       },
       ...
     ],
-    "fids": [
-      466624,
-      469283,
-      ...
-    ]
   },
   "next": { "cursor": "..." }
 }
@@ -154,7 +151,10 @@ Parameters:
 
 - `fid` - the fid of the user
 
-Returns: an array of objects:
+Returns: a `channels` array with properties:
+
+- All properties documented in the "Get All Channels" endpoint above
+- `followedAt` - UNIX time when channel was followed, in seconds
 
 ```json
 {
@@ -168,6 +168,10 @@ Returns: an array of objects:
         "imageUrl": "https://i.imgur.com/YnnrPaH.png",
         "leadFid": 2,
         "moderatorFid": 5448,
+        "moderatorFids": [
+          5448,
+          3
+        ],
         "createdAt": 1712162074,
         "followerCount": 17034,
         "followedAt": 1712162620
@@ -178,11 +182,6 @@ Returns: an array of objects:
   "next": { "cursor": "..." }
 }
 ```
-
-Object properties:
-
-- All properties documented in the "Get All Channels" endpoint above
-- `followedAt` - UNIX time when channel was followed, in seconds
 
 ### Get User Following Channel Status
 
@@ -199,6 +198,9 @@ Parameters:
 
 Returns: 2 properties:
 
+- `following` - indicates whether the channel is followed
+- `followedAt` - UNIX time when channel was followed, in seconds (optional, only present when channel is followed)
+
 ```json
 {
   "result": {
@@ -207,11 +209,6 @@ Returns: 2 properties:
   }
 }
 ```
-
-Properties:
-
-- `following` - indicates whether the channel is followed
-- `followedAt` - UNIX time when channel was followed, in seconds (optional, only present when channel is followed)
 
 ## Get All Power Badge Users
 
