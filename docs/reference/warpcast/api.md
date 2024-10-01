@@ -44,6 +44,8 @@ Returns: a `channels` array wtih properties:
 - `moderatorFids` - fids of the moderators (under new channel membership scheme)
 - `createdAt` - UNIX time when channel was created, in seconds
 - `followerCount` - number of users following the channel
+- `memberCount` - number of members of the channel, including the owner and moderators
+- `pinnedCastHash` - hash of the cast pinned in the channel, if present
 
 ```json
 {
@@ -62,7 +64,9 @@ Returns: a `channels` array wtih properties:
           3
         ],
         "createdAt": 1691015606,
-        "followerCount": 3622
+        "followerCount": 3622,
+        "membercount": 123,
+        "pinnedcasthash": "0x3349beda5fb6232ab50d7b0e4d49da3d56814771"
       },
       ...
     ]
@@ -97,7 +101,9 @@ Returns: a single channel object, as documented in the "Get All Channels" endpoi
       "moderatorFid": 5448,
       "moderatorFids": [5448, 3],
       "createdAt": 1691015606,
-      "followerCount": 3622
+      "followerCount": 3622,
+      "membercount": 123,
+      "pinnedcasthash": "0x3349beda5fb6232ab50d7b0e4d49da3d56814771"
     }
   }
 }
