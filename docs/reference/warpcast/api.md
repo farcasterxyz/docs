@@ -61,11 +61,10 @@ await got.post(
 )
 ```
 
-
 ## Concepts
 
-* Channels: Warpcast has the concept of channels which build upon FIP-2 (setting `parentUrl` on casts). You can read more
-about channels in the [documentation](https://www.notion.so/warpcast/Channels-4f249d22575348a5a0488b5d86f0dd1c?pvs=4).
+- Channels: Warpcast has the concept of channels which build upon FIP-2 (setting `parentUrl` on casts). You can read more
+  about channels in the [documentation](https://www.notion.so/warpcast/Channels-4f249d22575348a5a0488b5d86f0dd1c?pvs=4).
 
 ## Get All Channels
 
@@ -86,6 +85,9 @@ Returns: a `channels` array with properties:
 - `followerCount` - number of users following the channel
 - `memberCount` - number of members of the channel, including the owner and moderators
 - `pinnedCastHash` - hash of the cast pinned in the channel, if present
+- `externalLink` - external link that appears in the header in Warpcast, if present, with 2 properties:
+  - `title` - title shown in the channel header
+  - `url` - url of the link
 
 ```json
 {
@@ -104,8 +106,12 @@ Returns: a `channels` array with properties:
         ],
         "createdAt": 1691015606,
         "followerCount": 3622,
-        "membercount": 123,
-        "pinnedcasthash": "0x3349beda5fb6232ab50d7b0e4d49da3d56814771"
+        "memberCount": 123,
+        "pinnedCastHash": "0x3349beda5fb6232ab50d7b0e4d49da3d56814771",
+        "externalLink": {
+          "title": "Join",
+          "url": "https://www.some.com"
+        }
       },
       ...
     ]
@@ -144,8 +150,12 @@ Returns: a single channel object, as documented in the "Get All Channels" endpoi
       "moderatorFids": [5448, 3],
       "createdAt": 1691015606,
       "followerCount": 3622,
-      "membercount": 123,
-      "pinnedcasthash": "0x3349beda5fb6232ab50d7b0e4d49da3d56814771"
+      "memberCount": 123,
+      "pinnedCastHash": "0x3349beda5fb6232ab50d7b0e4d49da3d56814771",
+      "externalLink": {
+        "title": "Join",
+        "url": "https://www.some.com"
+      }
     }
   }
 }
@@ -487,8 +497,8 @@ Body parameters:
 - `channelId` - id of channel to invite user to
 - `inviteFid` - fid of the user to invite
 - `role` - either of:
-    - `member`: invites the user to be a member. The user must already follow either the channel or the user calling the endpoint. The caller must be a channel moderator or the channel owner.
-    - `moderator`: invites a user to be a moderator. The user must already be a channel member (i.e. has accepted a prior `member` invitation). The caller must be the channel owner. The number of active moderators + outstanding moderator invites cannot go above 10 (you’ll get an error).
+  - `member`: invites the user to be a member. The user must already follow either the channel or the user calling the endpoint. The caller must be a channel moderator or the channel owner.
+  - `moderator`: invites a user to be a moderator. The user must already be a channel member (i.e. has accepted a prior `member` invitation). The caller must be the channel owner. The number of active moderators + outstanding moderator invites cannot go above 10 (you’ll get an error).
 
 Returns:
 
@@ -519,8 +529,8 @@ Body parameters:
 - `channelId` - id of channel to remove user from
 - `removeFid` - fid of the user to remove
 - `role` - either of:
-    - `member`: removes user from member role or revokes an existing member invitation. If the user was removed, the user is blocked from becoming a member again via a link (i.e. to become a member again, they have to be invited by a moderator). If only an invitation was revoked, the user is not blocked from becoming a member via a link. The caller must be a channel moderator or the channel owner.
-    - `moderator`: removes user from moderator role or revokes an existing moderator invitation. The caller must be the channel owner.
+  - `member`: removes user from member role or revokes an existing member invitation. If the user was removed, the user is blocked from becoming a member again via a link (i.e. to become a member again, they have to be invited by a moderator). If only an invitation was revoked, the user is not blocked from becoming a member via a link. The caller must be a channel moderator or the channel owner.
+  - `moderator`: removes user from moderator role or revokes an existing moderator invitation. The caller must be the channel owner.
 
 Returns:
 
@@ -809,48 +819,4 @@ Example:
 
 ```bash
 curl 'https://api.warpcast.com/v1/blocked-users'
-```
-
-# Unauthenticated APIs
-
-
-
-# Authenticated APIs
-
-These endpoints are authenticated with a self-signed auth token signed with an App Key for an FID:
-
-```tsx
-import { NobleEd25519Signer } from "@farcaster/hub-nodejs";
-
-// private / public keys of an App Key you are holding for an FID
-const fid = 6841; //replace
-const privateKey = 'secret'; // replace
-const publicKey = 'pubkey'; // replace
-const signer = new NobleEd25519Signer(privateKey);
-
-const header = {
-	fid,
-	type: 'app_key',
-	key: publicKey
-};
-const encodedHeader = Buffer.from(JSON.stringify(header)).toString('base64url');
-
-const payload = { exp: Math.floor(Date.now() / 1000) + 300 }; // 5 minutes
-const encodedPayload = Buffer.from(JSON.stringify(payload)).toString('base64url');
-
-const signatureResult = await signer.signMessageHash(Buffer.from(`${encodedHeader}.${encodedPayload}`, 'utf-8'));
-const encodedSignature = Buffer.from(signatureResult.value).toString("base64url");
-
-const authToken = encodedHeader + "." + encodedPayload "." + encodedSignature;
-
-await got.post(
-  "https://api.warpcast.com/fc/channel-follows",
-  {
-	  body: { channelKey: 'evm' }
-	  headers: {
-	    'Content-Type': 'application/json',
-	    'Authorization': 'Bearer ' + authToken;
-	  }
-	}
-)
 ```
