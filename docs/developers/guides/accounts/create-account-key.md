@@ -365,5 +365,5 @@ if (accountKeyResult.isOk()) {
 
 :::
 
-See the [Key Registry](/reference/contracts/reference/id-registry#add) reference for more
+See the [Key Registry](/reference/contracts/reference/key-registry#add) reference for more
 details.
