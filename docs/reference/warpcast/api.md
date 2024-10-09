@@ -651,37 +651,6 @@ curl -X DELETE \
   https://api.warpcast.com/fc/pinned-casts
 ```
 
-Example:
-
-```bash
-curl 'https://api.warpcast.com/v2/power-badge-users'
-```
-
-## Get All Power Badge Users
-
-`GET /v2/power-badge-users`
-
-Warpcast grants power badges to users who are active, interesting to others and not spammy.
-You can read more about power badges in the [documentation](https://warpcast.notion.site/Power-Badge-d81fea2e953e4dafae7c85295ffaf3ae).
-
-This endpoint provides the list of all users who currently hold a power badge. No parameters. Not paginated. Not authenticated.
-
-Warpcast recalculates badge ownership once every week, on Tuesdays at 12:00:00 UTC.
-
-Returns: a `fids` array with the fids of users who currently hold a power badge:
-
-```json
-{
-  "result": {
-    "fids": [
-      1,
-      2,
-      ...
-    ]
-  }
-}
-```
-
 ## Get Farcaster actions
 
 `GET /v2/discover-actions`
