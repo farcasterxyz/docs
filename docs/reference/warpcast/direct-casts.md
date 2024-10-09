@@ -12,7 +12,7 @@ This page documents public APIs provided by Warpcast for direct casts. Direct ca
 Intents enable developers to direct authenticated users to a pre-filled direct cast composer via a URL.
 
 ```bash
-https://warpcast.com/~/inbox//create/[fid]?text=[message]
+https://warpcast.com/~/inbox/create/[fid]?text=[message]
 
 https://warpcast.com/~/inbox/create/1?text=gm
 ```
