@@ -798,6 +798,10 @@ curl 'https://api.warpcast.com/v1/blocked-users'
 
 List of account verifications attested by Warpcast. Ordered by the time when the verification occurred, descending. Paginated. Not authenticated.
 
+Query parameters:
+
+- `fid` (**optional**) - limit the response to specific user
+
 Returns: a `verifications` array:
 
 - `fid` - account Farcaster id
