@@ -789,3 +789,41 @@ Example:
 ```bash
 curl 'https://api.warpcast.com/v1/blocked-users'
 ```
+
+## Get Account Verifications
+
+`GET /fc/account-verifications`
+
+### This endpoint is not stable (beta) and very likely to have breaking changes in the future.
+
+List of account verifications attested by Warpcast. Ordered by the time when the verification occurred, descending. Paginated. Not authenticated.
+
+Returns: a `verifications` array:
+
+- `fid` - account Farcaster id
+- `platform` - platform of the verification `'x'`
+- `platformUsername` - string value representing platform username
+- `verifiedAt` - UNIX time when verification took place, in seconds
+
+```json
+{
+  "result": {
+    "verifications": [
+      {
+        "fid": 3,
+        "platform": "x",
+        "platformUsername": "dwr",
+        "verifiedAt": 1728505748
+      },
+      ...
+    ]
+  },
+  "next": { "cursor": "..." }
+}
+```
+
+Example:
+
+```bash
+curl 'https://api.warpcast.com/fc/account-verifications'
+```
