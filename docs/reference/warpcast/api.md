@@ -32,12 +32,12 @@ import { NobleEd25519Signer } from "@farcaster/hub-nodejs";
 const fid = 6841; //replace
 const privateKey = 'secret'; // replace
 const publicKey = 'pubkey'; // replace
-const signer = new NobleEd25519Signer(privateKey);
+const signer = new NobleEd25519Signer(new Uint8Array(Buffer.from(privateKey)));
 
 const header = {
-	fid,
-	type: 'app_key',
-	key: publicKey
+  fid,
+  type: 'app_key',
+  key: publicKey
 };
 const encodedHeader = Buffer.from(JSON.stringify(header)).toString('base64url');
 
@@ -45,9 +45,13 @@ const payload = { exp: Math.floor(Date.now() / 1000) + 300 }; // 5 minutes
 const encodedPayload = Buffer.from(JSON.stringify(payload)).toString('base64url');
 
 const signatureResult = await signer.signMessageHash(Buffer.from(`${encodedHeader}.${encodedPayload}`, 'utf-8'));
+if (signatureResult.isErr()) {
+  throw new Error("Failed to sign message");
+}
+
 const encodedSignature = Buffer.from(signatureResult.value).toString("base64url");
 
-const authToken = encodedHeader + "." + encodedPayload "." + encodedSignature;
+const authToken = encodedHeader + "." + encodedPayload + "." + encodedSignature;
 
 await got.post(
   "https://api.warpcast.com/fc/channel-follows",
