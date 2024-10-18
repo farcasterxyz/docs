@@ -91,6 +91,7 @@ Returns: a `channels` array with properties:
 - `followerCount` - number of users following the channel
 - `memberCount` - number of members of the channel, including the owner and moderators
 - `pinnedCastHash` - hash of the cast pinned in the channel, if present
+- `publicCasting` - `true`/`false` indicating whether channel allows anybody to cast into it, or only members
 - `externalLink` - external link that appears in the header in Warpcast, if present, with 2 properties:
   - `title` - title shown in the channel header
   - `url` - url of the link
@@ -122,6 +123,7 @@ Returns: a `channels` array with properties:
         "followerCount": 2361,
         "memberCount": 300,
         "pinnedCastHash": "0x3ef52987ccacd89af096a753c07efcd55a93e143",
+        "publicCasting": false,
         "externalLink": {
           "title": "/creatorssupport",
           "url": "https://warpcast.com/~/channel/creators-support"
@@ -169,6 +171,7 @@ Returns: a single channel object, as documented in the "Get All Channels" endpoi
       "followerCount": 2361,
       "memberCount": 300,
       "pinnedCastHash": "0x3ef52987ccacd89af096a753c07efcd55a93e143",
+      "publicCasting": false,
       "externalLink": {
         "title": "/creatorssupport",
         "url": "https://warpcast.com/~/channel/creators-support"
@@ -179,7 +182,7 @@ Returns: a single channel object, as documented in the "Get All Channels" endpoi
 ```
 
 ```bash
-curl 'https://api.warpcast.com/v1/channel?channelId=welcome'
+curl 'https://api.warpcast.com/v1/channel?channelId=illustrations'
 ```
 
 ## Get Channel Followers
@@ -866,7 +869,7 @@ curl 'https://api.warpcast.com/v2/discover-composer-actions?list=top&limit=10'
 
 ## Get Blocked Users
 
-`GET /v1/blocked-users`
+`GET /fc/blocked-users`
 
 Warpcast allows users to block others from replying, quoting and mentioning them.
 
@@ -901,7 +904,55 @@ Returns: a `blockedUsers` array with properties:
 Example:
 
 ```bash
-curl 'https://api.warpcast.com/v1/blocked-users'
+curl 'https://api.warpcast.com/fc/blocked-users'
+```
+
+## Block User
+
+`POST /fc/blocked-users`
+
+Block a user. Authenticated.
+
+Body parameters:
+
+- `blockFid` - the fid of the user to block
+
+Returns:
+
+- `success: true`
+
+Example:
+
+```bash
+curl -X POST \
+  -H 'Content-Type: application/json' \
+  -H 'Authorization: Bearer <Auth Token>' \
+  -d '{ "blockFid": 1234 }' \
+  https://api.warpcast.com/fc/blocked-users
+```
+
+## Unblock User
+
+`DELETE /fc/blocked-users`
+
+Unblock a user. Authenticated.
+
+Body parameters:
+
+- `unblockFid` - the fid of the user to unblock
+
+Returns:
+
+- `success: true`
+
+Example:
+
+```bash
+curl -X DELETE \
+  -H 'Content-Type: application/json' \
+  -H 'Authorization: Bearer <Auth Token>' \
+  -d '{ "unblockFid": 1234 }' \
+  https://api.warpcast.com/fc/blocked-users
 ```
 
 ## Get Account Verifications
