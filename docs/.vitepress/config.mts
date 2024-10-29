@@ -305,6 +305,15 @@ export default defineConfig({
             },
           ],
         },
+        {
+          text: 'Third party services',
+          items: [
+            {
+              text: 'Neynar',
+              link: '/reference/third-party/neynar/index',
+            }
+          ]
+        }
       ],
       '/auth-kit/': [
         {
@@ -628,6 +637,15 @@ export default defineConfig({
             // },
           ],
         },
+        {
+          text: 'Third party services',
+          items: [
+            {
+              text: 'Neynar',
+              link: '/reference/third-party/neynar/index',
+            },
+          ],
+        }
       ],
     },
     socialLinks: [
