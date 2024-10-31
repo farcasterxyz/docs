@@ -8,7 +8,7 @@ If your application wants to write data to Farcaster on behalf of a user, the ap
 
 - a registered FID
 
-### 1. An authenciated user clicks "Connect with Warpcast" in your app
+### 1. An authenticated user clicks "Connect with Warpcast" in your app
 
 Once your app can identify and authenticate a user you can present them with
 the option to connect with Warpcast.
