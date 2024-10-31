@@ -4,7 +4,7 @@ title: Sign In with Farcaster
 
 # Introduction
 
-Sign In with Farcaster (SIWF) is way for users to sign into any app using their
+Sign In with Farcaster (SIWF) is a way for users to sign into any app using their
 Farcaster identity.
 
 When a user signs into your application with Farcaster you'll be able to use
@@ -16,7 +16,7 @@ a streamlined onboarding experience and social-powered features.
 1. Show a "Sign in with Farcaster" button to the user.
 2. Wait for the user to click, scan a QR code and approve the request in Warpcast.
 3. Receive and verify a signature from Warpcast.
-4. Show the logged in user's profile picture and username.
+4. Show the logged-in user's profile picture and username.
 
 ![Sign In with Farcaste demo](./siwf_demo.avifs)
 
