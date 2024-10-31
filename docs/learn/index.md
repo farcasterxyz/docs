@@ -2,7 +2,7 @@
 
 Farcaster is a [sufficiently decentralized](https://www.varunsrinivasan.com/2022/01/11/sufficient-decentralization-for-social-networks) social network built on Ethereum.
 
-It is a public social network similar to Twitter and Reddit. Users can create profiles, post "casts" and follow others. They own their accounts and relationships with other users and are free to move between different apps.
+It is a public social network similar to Twitter and Reddit. Users can create profiles, post "casts" and follow others. They own their accounts and relationships with other users.There and are free to move between different apps.
 
 :::tip Join Farcaster
 If you're not on Farcaster, get started by [creating your account](https://www.warpcast.com/) with Warpcast.
@@ -19,10 +19,10 @@ If you want to learn more, get started by diving into these concepts:
 ## Tutorials
 
 - [Build your first frame](/developers/frames/getting-started) - Make mini-apps that run inside Farcaster.
-- [Sign in with Farcaster](/auth-kit/installation) - Let users login to your app with their Farcaster account.
+- [Sign in with Farcaster](/auth-kit/installation) - Let users log in to your app with their Farcaster account.
 - [Write your first app](/developers/index) - Publish a "Hello World" message to Farcaster.
 
-Find more how-tos, guide and tutorials like this in the [developers](/developers/) section.
+Find more how-tos, guides and tutorials like this in the [developers](/developers/) section.
 
 ## Documentation
 
