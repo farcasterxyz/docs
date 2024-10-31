@@ -181,7 +181,7 @@ poll(token);
 
 When the user approves the request in Warpcast, an onchain transaction will be
 made that grants write permissions to that signer. Once that completes your app
-should indicate success and can being writing messages using the newly added key.
+should indicate success and can begin writing messages using the newly added key.
 
 #### Reference implementation
 
@@ -359,7 +359,7 @@ Get the state of a signed key requests.
 }
 ```
 
-**Sample response after after transaction is confirmed:**
+**Sample response after transaction is confirmed:**
 
 ```json
 {
