@@ -20,5 +20,5 @@ Used to retrieve a list of all fids
 
 | Field           | Type            | Label    | Description    |
 | --------------- | --------------- | -------- | -------------- |
-| fids            | [uint64](#)     | repeated | Array oif fids |
+| fids            | [uint64](#)     | repeated | Array of fids |
 | next_page_token | [bytes](#bytes) | optional |                |
