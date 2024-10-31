@@ -7,7 +7,7 @@ You can use this hook to read the authenticated user's profile information from 
 ```tsx
 import { useProfile } from '@farcaster/auth-kit';
 
-function App {
+function App() {
   const {
     isAuthenticated,
     profile: { username, fid, bio, displayName, pfpUrl },
