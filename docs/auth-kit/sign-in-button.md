@@ -22,7 +22,7 @@ export const Login = () => {
 
 | Prop               | Type       | Description                                                                         | Default               |
 | ------------------ | ---------- | ----------------------------------------------------------------------------------- | --------------------- |
-| `timeout`          | `number`   | Return an error after polling for this long.                                        | `300_000` (5 minutes) |
+| `timeout`          | `number`   | Return an error after polling for this long.                                        | `300000` (5 minutes) |
 | `interval`         | `number`   | Poll the relay server for updates at this interval.                                 | `1500` (1.5 seconds)  |
 | `nonce`            | `string`   | A random nonce to include in the Sign In With Farcaster message.                    | None                  |
 | `notBefore`        | `string`   | Time when the message becomes valid. ISO 8601 datetime string.                      | None                  |
