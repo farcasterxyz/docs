@@ -18,7 +18,7 @@ An opinionated collection of popular resources for building Frames.
 
 #### Frameworks
 
-- [frog](https://frog.fm) - minimal & lightweight framework Farcaster Frames
+- [frog](https://frog.fm) - minimal & lightweight framework for Farcaster Frames
 - [FrogUI](https://frog.fm/ui) - type-safe layout and styling primitives
 - [frames.js](https://framesjs.org/) - build, debug, and render Frames
 - [onchainkit](https://github.com/coinbase/onchainkit) - A React toolkit to create frames
