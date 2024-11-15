@@ -178,6 +178,10 @@ export default defineConfig({
               text: 'Resources',
               link: '/developers/frames/resources',
             },
+            {
+              text: 'App Frames',
+              link: '/developers/frames/app-frames',
+            },
           ]
         },
         {
