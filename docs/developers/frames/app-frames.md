@@ -226,11 +226,3 @@ Prompt the user to follow a channel:
 ```tsx
 type FollowChannel = (options: { channelKey: string }) => Promise<void>;
 ```
-
-# FAQs
-
----
-
-**When can I start building an App Frame?**
-
-We are shooting to have an SDK and playground that developers can use to start building their App Frames by the end of next week (November 15th).
