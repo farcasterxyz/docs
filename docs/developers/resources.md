@@ -34,6 +34,10 @@ Resources are often from third parties and are not reviewed. Use them at your ow
 - [Dune: Farcaster](https://dune.com/pixelhack/farcaster) - @pixelhack's dashboard for network stats
 - [Dune: Farcaster User Onchain Activities](https://dune.com/yesyes/farcaster-users-onchain-activities) - dashboard of farcaster user's onchain activity
 
+## Learning
+
+- [dTech Farcaster Tutorials](https://dtech.vision/farcaster)
+
 ## Open Source Examples
 
 - [quikcast](https://github.com/farcasterxyz/quikcast) - an end-to-end connected app implementation for Farcaster
@@ -42,3 +46,4 @@ Resources are often from third parties and are not reviewed. Use them at your ow
 ## Services
 
 - [Neynar](https://neynar.com/) - infrastructure and services for building farcaster apps.
+- [dTech](https://dtech.vision) - Farcaster Development and Consulting Agency
