@@ -10,6 +10,6 @@ While some applications can be written by directly querying Hubble, most serious
 in a more structured way.
 
 [Shuttle](https://github.com/farcasterxyz/hub-monorepo/tree/main/packages/shuttle) is a package
-be used to mirror Hubble's data to a Postgres DB for convenient access to the underlying data.
+that can be used to mirror Hubble's data to a Postgres DB for convenient access to the underlying data.
 
 Check out the documentation for more information.
