@@ -660,7 +660,7 @@ export default defineConfig({
         link: 'https://warpcast.com/~/channel/fc-devs' 
       },
       { icon: 'github', link: 'https://github.com/farcasterxyz/protocol' },
-      { icon: 'twitter', link: 'https://twitter.com/farcaster_xyz' },
+      { icon: 'twitter', link: 'https://x.com/farcaster_xyz' },
       { icon: 'youtube', link: 'https://www.youtube.com/@farcasterxyz' },
     ],
   },
