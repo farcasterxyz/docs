@@ -7,11 +7,11 @@
  * The primitive colors used for accent colors. These colors are referenced
  * by functional colors such as "Text", "Background", or "Brand".
  *
- * Each colors have exact same color scale system with 3 levels of solid
+ * Each color have exact same color scale system with 3 levels of solid
  * colors with different brightness, and 1 soft color.
  *
  * - `XXX-1`: The most solid color used mainly for colored text. It must
- *   satisfy the contrast ratio against when used on top of `XXX-soft`.
+ *   satisfy the contrast ratio  when used on top of `XXX-soft`.
  *
  * - `XXX-2`: The color used mainly for hover state of the button.
  *

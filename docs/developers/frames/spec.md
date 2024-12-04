@@ -403,7 +403,7 @@ A signature packet is a JSON object sent to the Frame server when a button is cl
 
 1. **Signed Message** — an authenticated protobuf that represents the user action. This message must be unpacked by a farcaster hub to read the data inside.
 
-2. **Unsigned Message** — an unathenticated JSON object that represents the user action. can be read directly.
+2. **Unsigned Message** — an unauthenticated JSON object that represents the user action. can be read directly.
 
 ::: warning
 Unsigned messages can be spoofed and should usually be ignored. It is only safe to use them if you are performing an unauthenticated request.
@@ -415,7 +415,7 @@ If you are unsure, always read the signed message by sending it into the `valida
 {
   "untrustedData": {
     "fid": 2,
-    "url": "https://fcpolls.com/polls/1",
+    "URL": "https://fcpolls.com/polls/1",
     "messageHash": "0xd2b1ddc6c88e865a33cb1a565e0058d757042974",
     "timestamp": 1706243218,
     "network": 1,

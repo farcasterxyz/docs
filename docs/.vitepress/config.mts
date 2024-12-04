@@ -409,7 +409,6 @@ export default defineConfig({
                       text: 'verifySignInMessage',
                       link: '/auth-kit/client/app/verify-sign-in-message',
                     },
-                    ,
                   ],
                 },
                 {
