@@ -5,7 +5,7 @@ title: Getting Started with Frames v2
 # Getting Started
 
 ::: info Not ready to build?
-If you'd prefer to learn more about the new spec before building a frame, jump ahead to the [Specifcation](./spec).
+If you'd prefer to learn more about the new spec before building a frame, jump ahead to the [Specification](./spec).
 :::
 
 ## Video demo
