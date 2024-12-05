@@ -4,7 +4,7 @@ Hubble serves a HTTP API on port 2281 by default.
 
 ## Using the API
 
-The API can be called from any programing language or browser by making a normal HTTP request.
+The API can be called from any programming language or browser by making a normal HTTP request.
 
 **View the API responses in a browser**
 
@@ -127,4 +127,4 @@ You can set a custom CORS header in the HTTP server by using the `--http-cors-or
 
 ## Limitations
 
-The HTTP API currently does not support any of the Sync APIs that are available in the gRPC vesion. When Hubs sync with each other, they will use the gRPC APIs instead of the HTTP APIs.
+The HTTP API currently does not support any of the Sync APIs that are available in the gRPC version. When Hubs sync with each other, they will use the gRPC APIs instead of the HTTP APIs.
