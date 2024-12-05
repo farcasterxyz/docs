@@ -17,9 +17,9 @@ $ curl http://localhost:2281/v1/castsByParent\?fid\=1\&url\="https://ethereum.or
 "Pretty amazing that even during a bear market, the 30 day average burn gives us deflationary ETH. \n\nSource: Ultrasound.Money"
 "So, Ethereum is frequently called the Base Layer or L1 when talking about scalability.\n\nBut how can you call the whole Ethereum + Ethereum L2s + L3s that commit to Ethereum L2s?\n\nWe’re building a unified multi-chain explorer for that, but we don’t know how to call it: https://ethereum.routescan.io"
 "This, we're already doing.\n\nBut we call it, the Full-Index Ecosystem Explorer."
-". By subdomains do you mean more specific namespaces, e.g. Farcaster fnames being name.farcaster.eth?\n\nMy guess is if the root .eth namespace is available it will command higher status and value.\n\nhttps://twitter.com/0xfoobar/status/1687209523239604230"
+". By subdomains do you mean more specific namespaces, e.g. Farcaster fnames being name.farcaster.eth?\n\nMy guess is if the root .eth namespace is available it will command higher status and value.\n\nhttps://x.com/0xfoobar/status/1687209523239604230"
 "what are the best examples of DAOs with independent core working groups/multisigs?"
-"Anyone here use Rabby?\n\nhttps://twitter.com/0xfoobar/status/1687474090150416385"
+"Anyone here use Rabby?\n\nhttps://x.com/0xfoobar/status/1687474090150416385"
 "Who needs stablecoins when we have ETH"
 "782,672 active + pending validators! 🤯 \n\n(also... I haven't proposed a block for a few months)"
 ```
@@ -47,11 +47,11 @@ Using the GRPC API:
     '\n' +
     'My guess is if the root .eth namespace is available it will command higher status and value.\n' +
     '\n' +
-    'https://twitter.com/0xfoobar/status/1687209523239604230',
+    'https://x.com/0xfoobar/status/1687209523239604230',
   'what are the best examples of DAOs with independent core working groups/multisigs?',
   'Anyone here use Rabby?\n' +
     '\n' +
-    'https://twitter.com/0xfoobar/status/1687474090150416385',
+    'https://x.com/0xfoobar/status/1687474090150416385',
   'Who needs stablecoins when we have ETH',
   '782,672 active + pending validators! 🤯 \n' +
     '\n' +
