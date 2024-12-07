@@ -5,11 +5,11 @@ If you're building a [wallet app](https://docs.farcaster.xyz/learn/what-is-farca
 You can use a `WalletClient` to parse an incoming Sign In With Farcaster request URL, build a Sign In With Farcaster message to present to the user, and submit the signed message to a Farcaster Auth relay channel.
 
 ```ts
-import { createWalletClient, viemConnecter } from '@farcaster/auth-client';
+import { createWalletClient, viemConnector } from '@farcaster/auth-client';
 
 const walletClient = createWalletClient({
   relay: 'https://relay.farcaster.xyz',
-  ethereum: viemConnecter(),
+  ethereum: viemConnector(),
 });
 ```
 
