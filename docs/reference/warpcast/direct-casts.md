@@ -1,6 +1,6 @@
 # Direct Casts
 
-This page documents public APIs provided by Warpcast for direct casts. Direct casts are currently not part of the protcol. There are plans to add direct casts to the protocol later this year.
+This page documents public APIs provided by Warpcast for direct casts. Direct casts are currently not part of the protocol. There are plans to add direct casts to the protocol later this year.
 
 #### Send / write API for direct casts
 
