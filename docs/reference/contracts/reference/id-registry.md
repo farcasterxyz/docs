@@ -304,7 +304,7 @@ the `owner` address in the following format:
 | from      | `address` | The previous recovery address       |
 | to        | `address` | The new recovery address            |
 | nonce     | `uint256` | Current nonce of the signer address |
-| deadline  | `uint256` | Signature expiraiton timestamp      |
+| deadline  | `uint256` | Signature expiration timestamp      |
 
 ::: code-group
 
