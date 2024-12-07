@@ -193,6 +193,10 @@ export default defineConfig({
               link: '/developers/frames/v2/getting-started',
             },
             {
+              text: 'Notifications & Webhooks',
+              link: '/developers/frames/v2/notifications_webhooks',
+            },
+            {
               text: 'Specification',
               link: '/developers/frames/v2/spec',
             },

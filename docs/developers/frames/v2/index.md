@@ -28,6 +28,7 @@ New features include:
 ## Next Steps
 
 1. [Build a v2 frame](./getting-started)
-2. [Browse Frames v2 resources](./resources)
-3. Read the draft [Frames v2 Specification](./spec).
-4. Follow Frames v2 updates in the [/frames-v2](https://warpcast.com/~/channel/frames-v2) channel on Farcaster.
+2. [Use notifications and webhooks](./notifications_webhooks)
+3. [Browse Frames v2 resources](./resources)
+4. Read the draft [Frames v2 Specification](./spec).
+5. Follow Frames v2 updates in the [/frames-v2](https://warpcast.com/~/channel/frames-v2) channel on Farcaster.
