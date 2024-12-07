@@ -52,7 +52,7 @@ The `SignerParams` struct includes signer key parameters and a KeyGateway [`Add`
 | key          | `bytes`   | Public key to add                                                                                                                 |
 | metadataType | `uint8`   | Must be set to `1`. This is currently the only supported `metadataType`.                                                          |
 | metadata     | `bytes`   | Encoded [`SignedKeyRequestMetadata`](/reference/contracts/reference/signed-key-request-validator#signedkeyrequestmetadata-struct) |
-| deadline     | `uint256` | Signature expiration timetamp                                                                                                     |
+| deadline     | `uint256` | Signature expiration timestamp                                                                                                     |
 | sig          | `bytes`   | EIP-712 [`Add`](/reference/contracts/reference/key-gateway#add-signature) signature from `registrationParams.to` address          |
 
 ## Errors
