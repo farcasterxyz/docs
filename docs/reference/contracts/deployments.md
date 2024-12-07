@@ -15,5 +15,4 @@ All Farcaster contracts are deployed on Optimism mainnet. There is no testnet de
 
 ## ABIs
 
-The ABIs for the contracts are available via etherscan links above, or from the
-the [`@farcaster/core`](https://github.com/farcasterxyz/hub-monorepo/tree/main/packages/core/src/eth/contracts/abis) package.
+The ABIs for the contracts are available via etherscan links above, or from the [`@farcaster/core`](https://github.com/farcasterxyz/hub-monorepo/tree/main/packages/core/src/eth/contracts/abis) package.

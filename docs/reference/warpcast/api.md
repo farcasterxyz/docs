@@ -23,7 +23,7 @@ specify the page size.
 
 ## Authentication
 
-Authenticated endpoints use a self-signed token, signed an an App Key for FID:
+Authenticated endpoints use a self-signed token, signed as an App Key for FID:
 
 ```tsx
 import { NobleEd25519Signer } from "@farcaster/hub-nodejs";

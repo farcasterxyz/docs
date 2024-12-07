@@ -174,7 +174,7 @@ Type of Reaction
 
 ## 5. Link
 
-A Link message creates a relationship between two users (e..g follow)
+A Link message creates a relationship between two users (e.g. follow)
 
 ### 5.1 LinkBody
 
