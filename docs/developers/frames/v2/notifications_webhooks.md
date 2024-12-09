@@ -124,7 +124,7 @@ export type SendNotificationResponse = z.infer<
 
 The request is a JSON consisting of:
 
-- `notificationId`: a UUIDv4 identifier that will be passed back to the frame via context
+- `notificationId`: a UUIDv4 identifier that servers as an idempotency key and will be passed back to the frame via context. A Farcaster client should deliver only one notification per user per `notificationId`, even if called multiple times.
 - `title`: title of the notification, max 32 characters
 - `body`: body of the notification, max 128 characters
 - `targetUrl`: the target frame URL to open when a user clicks the notification. It must match the domain for which the notification token was issued. Max 256 characters.
@@ -134,7 +134,7 @@ Note that client servers may impose a rate limit per `token`, e.g. 5 sends per 5
 
 The response from the client server must be an HTTP 200 OK, with a `result` object that contains 3 arrays:
 
-- `successfulTokens`: tokens for which the notification succeeded
+- `successfulTokens`: tokens for which the notification succeeded, including those for which the request is a duplicate (same `notificationId` used before)
 - `invalidTokens`: tokens which are no longer valid and should never be used again. This could happen if the user disabled notifications.
 - `rateLimitedTokens`: tokens for which the rate limit was exceeded. Frame server can try later.
 
@@ -163,7 +163,7 @@ If the domain manifest includes a `webhookUrl`, the Farcaster client backend wil
 - Enabled notifications (`notifications-enabled`)
 - Disables notifications (`notifications-disabled`)
 
-Events use the [JSON Farcaster Signature](https://github.com/farcasterxyz/protocol/discussions/208) format and are signed with the app key of the user. The data you'll receive is:
+Events use the [JSON Farcaster Signature](https://github.com/farcasterxyz/protocol/discussions/208) format, signed with the app key of the user. The data you'll receive is:
 
 ```ts
 {
@@ -173,7 +173,15 @@ Events use the [JSON Farcaster Signature](https://github.com/farcasterxyz/protoc
 }
 ```
 
-All 3 values are `base64url` encoded. The payload and header can be decoded to JSON, where the payload is different per event.
+All 3 values are `base64url` encoded. The payload and header can be decoded to JSON.
+
+The `header` JSON has 3 properties:
+
+- `fid`: the FID of the user triggering the event
+- `type`: the type of signature, always `app_key`
+- `key`: the app key (onchain signer) public key
+
+The `payload` JSON differs per event, see below.
 
 [Example code to process webhook events](https://github.com/farcasterxyz/frames-v2-demo/blob/7905a24b7cd254a77a7e1a541288379b444bc23e/src/app/api/webhook/route.ts)
 
