@@ -2,7 +2,19 @@
 title: Frames v2 Specification
 ---
 
-# Frames v2 Specification
+# Problem
+
+Developers want users to discover and use their onchain apps. Farcaster was great for discovery but not so much for usage. If you found an app in your feed, you had to click the link, load a page and connect it to a wallet. It was navigable on desktop, but nearly impossible on mobile even for advanced users.
+
+Frames launched in Jan 2024 and make this a bit better. When a user clicked on a frame, the developer knew the identity of the user and their wallet address. They could send things to the users wallet and the user could take actions through a limited set of interactions. This was neat and we saw a lot of apps built, but there were some limitations that caused their usage to peter out:
+
+- Frames were small and interactions were limited, which made many apps impossible to build.
+- Frames had to be rendered as images which were slow to generate.
+- Frames were ephemeral and users couldn't get back to them.
+
+A new frame standard that allows interactive applications, onchain transactions and user notifications would enable many new kinds of social applications.
+
+# Specification
 
 A frame is full-screen application that renders inside a Farcaster app.
 
@@ -50,7 +62,7 @@ type FrameEmbed = {
 
   // Button attributes
   button: {
-    // Button text. Required.
+    // Button text — max length of 32 characters
     // Example: "Yoink Flag"
     title: string;
 
@@ -59,7 +71,7 @@ type FrameEmbed = {
       // Action type. Must be "launch_frame".
       type: 'launch_frame';
 
-      // App name.
+      // App name — max length of 32 characters
       // Example: "Yoink!"
       name: string;
 
@@ -129,7 +141,7 @@ type FrameConfig = {
   // Example: "0.0.0"
   version: string;
 
-  // App name. Required.
+  // App name. Required. Max length of 32 characters.
   // Example: "Yoink!"
   name: string;
 
@@ -229,7 +241,7 @@ The frame SDK manages frame-client communication over a `window.postMessage` cha
 Contains information about the context from which the frame was launched.
 
 ```tsx
-type LaunchContext = CastEmbedLaunchContext | FrameLocationNotificationContext;
+type LaunchContext = CastEmbedLaunchContext | NotificationLaunchContext;
 ```
 
 **Cast Embed**
@@ -277,12 +289,12 @@ type CastEmbedLaunchContext = {
 ```
 
 ```tsx
-export type FrameLocationNotificationContext = {
+type NotificationLaunchContext = {
   type: 'notification';
   notification: {
-    notificationId: string;
     title: string;
     body: string;
+    id: string;
   };
 };
 ```
@@ -472,19 +484,19 @@ Request the user to add the frame, which adds it to the user's favorites list an
 ```
 
 ```tsx
-export type FrameNotificationDetails = {
+type FrameNotificationDetails = {
   url: string;
   token: string;
 };
 
 export type AddFrameResult =
   | {
-      added: true;
+      type: 'success';
       notificationDetails?: FrameNotificationDetails;
     }
   | {
-      added: false;
-      reason: 'invalid-domain-manifest' | 'rejected-by-user';
+      type: 'error';
+      errorReason: 'invalid-domain-manifest' | 'rejected-by-user';
     };
 
 export type AddFrame = () => Promise<AddFrameResult>;
@@ -497,16 +509,18 @@ There are 2 expected failure conditions which the frame should gracefully handle
 
 ## Feature: Events
 
-If the domain manifest includes a `webhookUrl`, the Farcaster client backend will POST events informing the frame when the user:
+The Farcaster client server POSTs 4 types of events to the frame server at the `webhookUrl` specified in its frame manifest:
 
-- Adds the frame to the client (`frame-added`)
-- Removes the frame from the client which disables notifications (`frame-removed`)
-- Enabled notifications (`notifications-enabled`)
-- Disables notifications (`notifications-disabled`)
+- `frame-added`
+- `frame-removed`
+- `notifications-enabled`
+- `notifications-disabled`
 
-Events use the [JSON Farcaster Signature](https://github.com/farcasterxyz/protocol/discussions/208) format and are signed with the app key of the user. The data you'll receive is:
+The body looks like this:
 
-```ts
+Events use the [JSON Farcaster Signature](https://github.com/farcasterxyz/protocol/discussions/208) format and are signed with the app key of the user. The final format is:
+
+```
 {
   header: string;
   payload: string;
@@ -518,9 +532,13 @@ All 3 values are `base64url` encoded. The payload and header can be decoded to J
 
 ### `frame-added`: frame added to a client
 
-Sent when the user adds the frame to their Farcaster client (whether or not this was triggered by an `addFrame()` prompt).
+This event may happen when an open frame calls `actions.addFrame` to prompt the user to favorite it, or when the frame is closed and the user adds the frame elsewhere in the client application (e.g. from a catalog).
 
-The optional `notificationDetails` object provides the `token` and `url` if the client equates adding to enabling notifications (Warpcast does this).
+Adding a frame includes enabling notifications.
+
+The Farcaster app server generates a unique `notificationToken` and sends it together with the `notificationUrl` that the frame must call, to both the Farcaster app client and the frame server. Client apps must generate unique tokens for each user.
+
+The app client then resolves the `actions.addFrame` promise so the frame can react immediately (without having to check its server).
 
 This is the flow for an open frame:
 
@@ -532,7 +550,7 @@ This is the flow when the frame is not open; only the backend part runs:
 
 Webhook payload:
 
-```json
+```
 {
   "event": "frame-added",
   "notificationDetails": {
@@ -551,13 +569,13 @@ type EventFrameAddedPayload = {
 
 ### `frame-removed`: user removed frame from client
 
-Sent when a user removes a frame, which means that any notification tokens for that fid and client app (based on signer requester) should be considered invalid:
+A user can remove a frame, which means that any notification tokens for that fid and client app (based on signer requester) should be considered invalid:
 
 ![Screenshot 2024-11-26 at 16 02 40](https://github.com/user-attachments/assets/079dfb74-77e4-47c8-b2e7-1b4628d1f162)
 
 Webhook payload:
 
-```json
+```
 {
   "event": "frame-removed"
 }
@@ -565,13 +583,13 @@ Webhook payload:
 
 ### `notifications-disabled`: user disabled notifications
 
-Sent when a disables frame notifications from e.g. a settings panel in the client app. Any notification tokens for that fid and client app (based on signer requester) should be considered invalid:
+A user can disable frame notifications from e.g. a settings panel in the client app. Any notification tokens for that fid and client app (based on signer requester) should be considered invalid:
 
 ![Screenshot 2024-11-26 at 16 03 04](https://github.com/user-attachments/assets/bcca0f58-3656-4a8c-bff8-8feda97bdc54)
 
 Webhook payload:
 
-```json
+```
 {
   "event": "notifications-disabled"
 }
@@ -579,13 +597,13 @@ Webhook payload:
 
 ### `notifications-enabled`: user enabled notifications
 
-Sent when a user enables frame notifications (e.g. after disabling them, or if this is a separate step from adding a frame to the client). The payload includes a new `token` and `url`:
+A user can enable frame notifications (e.g. after disabling them). The client backend again sends a `notificationUrl` and a `token`, with a backend-only flow:
 
 ![Screenshot 2024-11-26 at 16 02 48](https://github.com/user-attachments/assets/3ead1768-2efc-4785-9d4a-3a399f2dd0e6)
 
 Webhook payload:
 
-```json
+```
 {
   "event": "notifications-enabled",
   "notificationDetails": {
@@ -610,28 +628,28 @@ The frame server is given an authentication token and a URL which they can use t
 
 ![Screenshot 2024-11-27 at 16 50 36](https://github.com/user-attachments/assets/9b23ca16-a173-49a9-aa9f-7bc80c8abcf8)
 
-The frame server POSTs to the `url` JSON payload consisting of:
+The frame server calls the `notificationUrl` with:
 
-- `notificationId`: a UUIDv4 identifier that will be passed back to the frame via context
-- `title`: title of the notification, max 32 characters
-- `body`: body of the notification, max 128 characters
-- `targetUrl`: the target frame URL to open when a user clicks the notification. It must match the domain for which the notification token was issued. Max 256 characters.
-- `tokens`: an array of tokens (for that `url`) to send the notification to. Max 100 per call.
+- `notificationId`: a UUIDv4 identifier of the notification that will be passed back to the frame app via context.
+- `title`: title of the notification, max length of 32 characters
+- `body`: body of the notification
+- `targetUrl`: the target frame URL to open when a user clicks the notification. It must match the domain for which the notification token was issued.
+- `tokens`: an array of tokens (for that `notificationUrl`) to send the notification to. Client servers may impose a limit here, e.g. max 10000 tokens.
 
-Note that client servers may impose a rate limit per `token`, e.g. 5 sends per 5 minutes.
+Client servers may also impose a rate limit per `token`, e.g. 5 sends per 5 minutes.
 
-The response from the client server must be an HTTP 200 OK, with a `result` object that contains 3 arrays:
+The response from the client server must be an HTTP 200 OK, with the following 3 arrays:
 
-- `successfulTokens`: tokens for which the notification succeeded
-- `invalidTokens`: tokens which are no longer valid and should never be used again. This could happen if the user disabled notifications.
+- `successTokens`: tokens for which the notification succeeded
+- `invalidTokens`: tokens which are no longer valid and should never be used again. This could happen if the user disabled notifications but for some reason the frame server has no record of it.
 - `rateLimitedTokens`: tokens for which the rate limit was exceeded. Frame server can try later.
 
-Once a user clicks the notification, the Farcaster client will:
+Once a user has been notified, when clicking the notification the client app will:
 
 - Open `targetUrl`
-- Set the `context.location` to a `FrameLocationNotificationContext`
+- Set the context to the notification, see `NotificationLaunchContext`
 
-Farcaster clients should:
+Farcaster apps should:
 
 1. Display a list of added frames somewhere in their UI, allowing the user to enable/disable notifications.
 2. Show notifications from added frames along with other in-app notifications.
