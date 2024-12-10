@@ -39,7 +39,7 @@ pnpm create frog -t vercel
 Complete the prompts and follow the instructions:
 
 ```
-bun install // install depedencies
+bun install // install dependencies
 bun run dev // start dev server
 ```
 
