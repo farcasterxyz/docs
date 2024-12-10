@@ -47,7 +47,7 @@ Choose an offchain ENS name if you want to get started quickly and don't have an
 - [UserData API](../../reference/hubble/httpapi/userdata) - Fetch the UserData for a user's current username.
 - [Username Proofs API](../../reference/hubble/httpapi/usernameproof) - Fetch a user's Username Proofs from a hub.
 - [Verification Proofs API](../../reference/hubble/httpapi/verification) - Fetch a user's Verifications from a hub.
-- [Fname Registry API](../../reference/fname/api.md) - Register and track fname ownership programatically.
+- [Fname Registry API](../../reference/fname/api.md) - Register and track fname ownership programmatically.
 
 ### Tutorials
 
