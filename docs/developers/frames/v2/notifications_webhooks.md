@@ -221,7 +221,7 @@ Webhook payload:
 {
   "event": "frame-added",
   "notificationDetails": {
-    "url": "https://api.warpcast.com/v1/frame-notification",
+    "url": "https://api.warpcast.com/v1/frame-notifications",
     "token": "a05059ef2415c67b08ecceb539201cbc6"
   }
 }
@@ -268,7 +268,7 @@ Webhook payload:
 {
   "event": "notifications-enabled",
   "notificationDetails": {
-    "url": "https://api.warpcast.com/v1/frame-notification",
+    "url": "https://api.warpcast.com/v1/frame-notifications",
     "token": "a05059ef2415c67b08ecceb539201cbc6"
   }
 }
