@@ -464,7 +464,7 @@ Asks the user to add the frame to the Farcaster app, which allows the user to in
 
 ### actions.addFrame
 
-Request the user to add the frame, which adds it to the user's favorites list and allows the frame server to send in-app notifications to the user. The Farcaster client is expected to prompt the user for confirmation. Per session, only a single prompt should be shown (repeated calls to `addFrame()` should immediately result in a. `rejected-by-user` error). When the client supports notifications, returns a `notificationDetails` object with a notification callback URL and token.
+Request the user to add the frame, which adds it to the user's favorites list and allows the frame server to send in-app notifications to the user. The Farcaster client is expected to prompt the user for confirmation. Per session, only a single prompt should be shown (repeated calls to `addFrame()` should immediately result in a. `rejected_by_user` error). When the client supports notifications, returns a `notificationDetails` object with a notification callback URL and token.
 
 ![https://github.com/user-attachments/assets/cdc36744-7a20-4666-996b-ad2003f0afb9](https://github.com/user-attachments/assets/cdc36744-7a20-4666-996b-ad2003f0afb9)
 
@@ -492,7 +492,7 @@ export type AddFrameResult =
     }
   | {
       type: 'error';
-      errorReason: 'invalid-domain-manifest' | 'rejected-by-user';
+      errorReason: 'invalid_domain_manifest' | 'rejected_by_user';
     };
 
 export type AddFrame = () => Promise<AddFrameResult>;
@@ -500,17 +500,17 @@ export type AddFrame = () => Promise<AddFrameResult>;
 
 There are 2 expected failure conditions which the frame should gracefully handle:
 
-- `invalid-domain-manifest`: The frame domain manifest is invalid. The frame developer should use the developer tools to validate and fix their manifest.
-- `rejected-by-user`: Returned when the user rejects/dismisses the prompt asking them to add the frame, or the frame has triggered `addFrame()` more than once per session.
+- `invalid_domain_manifest`: The frame domain manifest is invalid. The frame developer should use the developer tools to validate and fix their manifest.
+- `rejected_by_user`: Returned when the user rejects/dismisses the prompt asking them to add the frame, or the frame has triggered `addFrame()` more than once per session.
 
 ## Feature: Events
 
 The Farcaster client server POSTs 4 types of events to the frame server at the `webhookUrl` specified in its frame manifest:
 
-- `frame-added`
-- `frame-removed`
-- `notifications-enabled`
-- `notifications-disabled`
+- `frame_added`
+- `frame_removed`
+- `notifications_enabled`
+- `notifications_disabled`
 
 The body looks like this:
 
@@ -526,7 +526,7 @@ Events use the [JSON Farcaster Signature](https://github.com/farcasterxyz/protoc
 
 All 3 values are `base64url` encoded. The payload and header can be decoded to JSON, where the payload is different per event.
 
-### `frame-added`: frame added to a client
+### `frame_added`: frame added to a client
 
 This event may happen when an open frame calls `actions.addFrame` to prompt the user to favorite it, or when the frame is closed and the user adds the frame elsewhere in the client application (e.g. from a catalog).
 
@@ -558,12 +558,12 @@ Webhook payload:
 
 ```tsx
 type EventFrameAddedPayload = {
-  event: 'frame-added';
+  event: 'frame_added';
   notificationDetails?: FrameNotificationDetails;
 };
 ```
 
-### `frame-removed`: user removed frame from client
+### `frame_removed`: user removed frame from client
 
 A user can remove a frame, which means that any notification tokens for that fid and client app (based on signer requester) should be considered invalid:
 
@@ -577,7 +577,7 @@ Webhook payload:
 }
 ```
 
-### `notifications-disabled`: user disabled notifications
+### `notifications_disabled`: user disabled notifications
 
 A user can disable frame notifications from e.g. a settings panel in the client app. Any notification tokens for that fid and client app (based on signer requester) should be considered invalid:
 
@@ -587,11 +587,11 @@ Webhook payload:
 
 ```
 {
-  "event": "notifications-disabled"
+  "event": "notifications_disabled"
 }
 ```
 
-### `notifications-enabled`: user enabled notifications
+### `notifications_enabled`: user enabled notifications
 
 A user can enable frame notifications (e.g. after disabling them). The client backend again sends a `notificationUrl` and a `token`, with a backend-only flow:
 
@@ -611,7 +611,7 @@ Webhook payload:
 
 ```tsx
 type EventNotificationsEnabledPayload = {
-  event: 'notifications-enabled';
+  event: 'notifications_enabled';
   notificationDetails: FrameNotificationDetails;
 };
 ```
@@ -626,7 +626,7 @@ The frame server is given an authentication token and a URL which they can use t
 
 The frame server calls the `notificationUrl` with:
 
-- `notificationId`: a UUIDv4 identifier of the notification that will be passed back to the frame app via context.
+- `notificationId`: a string (max size 128) that servers as an idempotency key and will be passed back to the frame via context. A Farcaster client should deliver only one notification per user per `notificationId`, even if called multiple times.
 - `title`: title of the notification, max length of 32 characters
 - `body`: body of the notification
 - `targetUrl`: the target frame URL to open when a user clicks the notification. It must match the domain for which the notification token was issued.

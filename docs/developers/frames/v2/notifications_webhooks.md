@@ -6,20 +6,19 @@ title: Frames v2 Notifications & Webhooks
 
 Frames v2 allow developers to send notifications to users who have "added" the frame to their Farcaster client and enabled notifications.
 
-In Warpcast, these are **in-app notifications** that trigger the red on the notifications tab. At this stage there is no support for push notifications.
+In Warpcast, these are **in-app notifications** that trigger the red dot on the notifications tab. At this stage there is no support for push notifications.
 
 The steps to successfully send a notification are:
 
-1. Sets a valid domain manifest so that the frame is eligible to be added to a Farcaster client and use notifications.
-2. Have a user add the frame to their Farcaster client. You can trigger a prompt via the `addFrame` action.
-3. Receive a notification `url` and `token`, either as a result of the `addFrame` action or via a webhook. Save these to persistent storage.
+1. Set up a valid domain manifest
+2. Have a user add the frame to their Farcaster client. You can trigger a prompt via the `addFrame` action
+3. Receive a notification `url` and `token` and save these to persistent storage.
 4. Send a notification by POSTing to the `url` using the `token`
-
-You should also listen for webhooks that tell you when a user adds/removes the frame and enables/disables notifications.
+5. Listen for webhooks that tell you when a user adds/removes the frame and enables/disables notifications
 
 ## Create a Farcaster Domain Manifest
 
-A Farcaster domain manifest is required for a frame to be eligible to be added to a Farcaster clients and send notifications. It looks like this:
+A Farcaster domain manifest is required for a frame to be eligible to be added to Farcaster clients and send notifications. It looks like this:
 
 ```json
 {
@@ -48,32 +47,11 @@ To generate and validate a domain manifest:
 
 2. Go to Settings > Developer > Domains, enter your domain name, and press "Generate domain manifest". Make sure that "Include frame definition" is checked. This creates a signature associating the domain with your Farcaster account and copies the manifest JSON.
 
-3. Complete the frame details in the JSON and validate it by pasting it in the "Verify Domain Manifest" section. The `webhookUrl` is a full endpoint on your side that Farcaster clients will use to POST events. It is required for your app to be able to send notifications.
+3. Complete the frame details in the JSON and validate it by pasting it in the "Verify Domain Manifest" section. The `webhookUrl` is an endpoint on your side that Farcaster clients will use to POST events. It is required for your app to be able to send notifications.
 
 4. Host the manifest at path `/.well-known/farcaster.json` on your server. Sub-paths are not supported: the `.well-known` directory needs to be at the root of the domain.
 
 5. Once the manifest is live on your domain, use the "Check domain status" button in the domain developer tools to validate the manifest from your server.
-
-A valid domain manifest looks like this:
-
-```json
-{
-  "accountAssociation": {
-    "header": "eyJmaWQiOjM2MjEsInR5cGUiOiJjdXN0b2R5Iiwia2V5IjoiMHgyY2Q4NWEwOTMyNjFmNTkyNzA4MDRBNkVBNjk3Q2VBNENlQkVjYWZFIn0",
-    "payload": "eyJkb21haW4iOiJ5b2luay5wYXJ0eSJ9",
-    "signature": "MHgwZmJiYWIwODg3YTU2MDFiNDU3MzVkOTQ5MDRjM2Y1NGUxMzVhZTQxOGEzMWQ5ODNhODAzZmZlYWNlZWMyZDYzNWY4ZTFjYWU4M2NhNTAwOTMzM2FmMTc1NDlmMDY2YTVlOWUwNTljNmZiNDUxMzg0Njk1NzBhODNiNjcyZWJjZTFi"
-  },
-  "frame": {
-    "version": "0.0.0",
-    "name": "Yoink!",
-    "iconUrl": "https://yoink.party/logo.png",
-    "splashImageUrl": "https://yoink.party/logo.png",
-    "splashBackgroundColor": "#f5f0ec",
-    "homeUrl": "https://yoink.party/framesV2/",
-    "webhookUrl": "https://yoink.party/api/webhook"
-  }
-}
-```
 
 ## Have users add your frame to their Farcaster client
 
@@ -105,12 +83,12 @@ export type AddFrameResult =
     }
   | {
       added: false;
-      reason: 'invalid-domain-manifest' | 'rejected-by-user';
+      reason: 'invalid_domain_manifest' | 'rejected_by_user';
     };
 ```
 
-- When `added: true` is returned, the user just added your frame (approved) or the frame was already added before (user was not prompted). The optional `notificationDetails` object provides the `token` and `url`. Warpcast always provides these when a user first adds a frame, and on subsequent calls provided that the user has not disabled notifications.
-- When `added: false` is returned, the user either rejected the request or your domain manifest is invalid. You can only prompt a user once while a frame is open. Subsequent `addFrame` calls will directly resolve with `reason: "rejected-by-user"` without prompting the user.
+- When `added: true` is returned, the user just added your frame (approved) or the frame was already added before (user was not prompted). The optional `notificationDetails` object provides the `token` and `url`. Warpcast always provides these when a user first adds a frame, and on subsequent calls provided that the user has not disabled notifications. If you did not get `notificationDetails` when adding an app, ensure your domain manifest has a `webhookUrl`.
+- When `added: false` is returned, the user either rejected the request or your domain manifest is invalid. You can only prompt a user once while a frame is open. Subsequent `addFrame` calls will directly resolve with `reason: "rejected_by_user"` without prompting the user.
 
 ## Send notifications
 
@@ -122,7 +100,7 @@ Here are the types:
 
 ```ts
 export const sendNotificationRequestSchema = z.object({
-  notificationId: z.string().uuid(),
+  notificationId: z.string().max(128),
   title: z.string().max(32),
   body: z.string().max(128),
   targetUrl: z.string().max(256),
@@ -146,7 +124,7 @@ export type SendNotificationResponse = z.infer<
 
 The request is a JSON consisting of:
 
-- `notificationId`: a UUIDv4 identifier that servers as an idempotency key and will be passed back to the frame via context. A Farcaster client should deliver only one notification per user per `notificationId`, even if called multiple times.
+- `notificationId`: a string (max size 128) that servers as an idempotency key and will be passed back to the frame via context. A Farcaster client should deliver only one notification per user per `notificationId`, even if called multiple times.
 - `title`: title of the notification, max 32 characters
 - `body`: body of the notification, max 128 characters
 - `targetUrl`: the target frame URL to open when a user clicks the notification. It must match the domain for which the notification token was issued. Max 256 characters.
@@ -180,10 +158,10 @@ export type FrameLocationNotificationContext = {
 
 Farcast clients will POST events to your `webhookUrl` informing you when a user:
 
-- Adds the frame to the client (`frame-added`)
-- Removes the frame from the client which disables notifications (`frame-removed`)
-- Enabled notifications (`notifications-enabled`)
-- Disables notifications (`notifications-disabled`)
+- Adds the frame to the client (`frame_added`)
+- Removes the frame from the client which disables notifications (`frame_removed`)
+- Enabled notifications (`notifications_enabled`)
+- Disables notifications (`notifications_disabled`)
 
 Your endpoint should return a 200 response. It is up to Farcaster clients how often and for how long they retry in case of errors.
 
@@ -209,7 +187,7 @@ The `payload` JSON differs per event, see below.
 
 [Example code to process webhook events](https://github.com/farcasterxyz/frames-v2-demo/blob/7905a24b7cd254a77a7e1a541288379b444bc23e/src/app/api/webhook/route.ts)
 
-### `frame-added`: frame added to a client
+### `frame_added`: frame added to a client
 
 Sent when the user adds the frame to their Farcaster client (whether or not this was triggered by an `addFrame()` prompt).
 
@@ -219,7 +197,7 @@ Webhook payload:
 
 ```json
 {
-  "event": "frame-added",
+  "event": "frame_added",
   "notificationDetails": {
     "url": "https://api.warpcast.com/v1/frame-notifications",
     "token": "a05059ef2415c67b08ecceb539201cbc6"
@@ -229,12 +207,12 @@ Webhook payload:
 
 ```tsx
 type EventFrameAddedPayload = {
-  event: 'frame-added';
+  event: 'frame_added';
   notificationDetails?: FrameNotificationDetails;
 };
 ```
 
-### `frame-removed`: user removed frame from client
+### `frame_removed`: user removed frame from client
 
 Sent when a user removes a frame, which means that any notification tokens for that fid and client app (based on signer requester) should be considered invalid:
 
@@ -242,11 +220,11 @@ Webhook payload:
 
 ```json
 {
-  "event": "frame-removed"
+  "event": "frame_removed"
 }
 ```
 
-### `notifications-disabled`: user disabled notifications
+### `notifications_disabled`: user disabled notifications
 
 Sent when a disables frame notifications from e.g. a settings panel in the client app. Any notification tokens for that fid and client app (based on signer requester) should be considered invalid:
 
@@ -254,11 +232,11 @@ Webhook payload:
 
 ```json
 {
-  "event": "notifications-disabled"
+  "event": "notifications_disabled"
 }
 ```
 
-### `notifications-enabled`: user enabled notifications
+### `notifications_enabled`: user enabled notifications
 
 Sent when a user enables frame notifications (e.g. after disabling them, or if this is a separate step from adding a frame to the client). The payload includes a new `token` and `url`:
 
@@ -266,7 +244,7 @@ Webhook payload:
 
 ```json
 {
-  "event": "notifications-enabled",
+  "event": "notifications_enabled",
   "notificationDetails": {
     "url": "https://api.warpcast.com/v1/frame-notifications",
     "token": "a05059ef2415c67b08ecceb539201cbc6"
@@ -276,7 +254,7 @@ Webhook payload:
 
 ```tsx
 type EventNotificationsEnabledPayload = {
-  event: 'notifications-enabled';
+  event: 'notifications_enabled';
   notificationDetails: FrameNotificationDetails;
 };
 ```
