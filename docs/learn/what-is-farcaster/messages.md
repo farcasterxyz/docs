@@ -70,4 +70,4 @@ Timestamps are unverified and can be backdated by users, similar to a blog post.
 - [Get casts](../../developers/guides/querying/fetch-casts) - Get an account's casts from a hub.
 - [Get profile](../../developers/guides/querying/fetch-profile) - Get an account's profile from a hub.
 - [Create common message types](../../developers/guides/writing/messages) - Create casts, links, reactions and userdata.
-- [Create casts with advanced features](../../developers/guides/writing/casts) - Create casts with embeds, emoji and mentions.
+- [Create casts with advanced features](../../developers/guides/writing/casts) - Create casts with embeds, emojis and mentions.
