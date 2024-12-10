@@ -2,18 +2,6 @@
 title: Frames v2 Specification
 ---
 
-# Problem
-
-Developers want users to discover and use their onchain apps. Farcaster was great for discovery but not so much for usage. If you found an app in your feed, you had to click the link, load a page and connect it to a wallet. It was navigable on desktop, but nearly impossible on mobile even for advanced users.
-
-Frames launched in Jan 2024 and make this a bit better. When a user clicked on a frame, the developer knew the identity of the user and their wallet address. They could send things to the users wallet and the user could take actions through a limited set of interactions. This was neat and we saw a lot of apps built, but there were some limitations that caused their usage to peter out:
-
-- Frames were small and interactions were limited, which made many apps impossible to build.
-- Frames had to be rendered as images which were slow to generate.
-- Frames were ephemeral and users couldn't get back to them.
-
-A new frame standard that allows interactive applications, onchain transactions and user notifications would enable many new kinds of social applications.
-
 # Specification
 
 A frame is full-screen application that renders inside a Farcaster app.
@@ -350,7 +338,15 @@ Indicates that the application is fully loaded and ready to displayed to users. 
 ```
 
 ```tsx
-type Ready: () => Promise<void>;
+type Ready = (
+  options: Partial<{
+    /**
+     * Disable native gestures. Use this option if your frame uses gestures
+     * that conflict with native gestures.
+     */
+    disableNativeGestures: boolean;
+  }>
+) => Promise<void>;
 ```
 
 ### actions.openUrl
@@ -515,8 +511,6 @@ The Farcaster client server POSTs 4 types of events to the frame server at the `
 - `frame-removed`
 - `notifications-enabled`
 - `notifications-disabled`
-
-Your endpoint should return a 200 response. It is up to Farcaster clients how often and for how long they retry in case of errors.
 
 The body looks like this:
 
