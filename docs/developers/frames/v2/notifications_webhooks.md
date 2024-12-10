@@ -12,7 +12,8 @@ The steps to successfully send a notification are:
 2. Have a user add the frame to their Farcaster client. You can trigger a prompt via the `addFrame` action.
 3. Receive a notification `url` and `token`, either as a result of the `addFrame` action or via a webhook. Save these to persistent storage.
 4. Send a notification by POSTing to the `url` using the `token`
-5. Optionally, listen for webhooks that tell you when a user adds/removes the frame and enables/disables notifications.
+
+You should also listen for webhooks that tell you when a user adds/removes the frame and enables/disables notifications.
 
 ## Create a Farcaster Domain Manifest
 
@@ -45,22 +46,41 @@ To generate and validate a domain manifest:
 
 2. Go to Settings > Developer > Domains, enter your domain name, and press "Generate domain manifest". Make sure that "Include frame definition" is checked. This creates a signature associating the domain with your Farcaster account and copies the manifest JSON.
 
-3. Complete the frame details in the JSON and validate it by pasting it in the "Verify Domain Manifest" section. The `webhookUrl` is optional but highly recommended even if you are not immediately processing the events.
+3. Complete the frame details in the JSON and validate it by pasting it in the "Verify Domain Manifest" section. The `webhookUrl` is a full endpoint on your side that Farcaster clients will use to POST events. It is required for your app to be able to send notifications.
 
 4. Host the manifest at path `/.well-known/farcaster.json` on your server. Sub-paths are not supported: the `.well-known` directory needs to be at the root of the domain.
 
 5. Once the manifest is live on your domain, use the "Check domain status" button in the domain developer tools to validate the manifest from your server.
 
-A domain manifest looks like:
+A valid domain manifest looks like this:
+
+```json
+{
+  "accountAssociation": {
+    "header": "eyJmaWQiOjM2MjEsInR5cGUiOiJjdXN0b2R5Iiwia2V5IjoiMHgyY2Q4NWEwOTMyNjFmNTkyNzA4MDRBNkVBNjk3Q2VBNENlQkVjYWZFIn0",
+    "payload": "eyJkb21haW4iOiJ5b2luay5wYXJ0eSJ9",
+    "signature": "MHgwZmJiYWIwODg3YTU2MDFiNDU3MzVkOTQ5MDRjM2Y1NGUxMzVhZTQxOGEzMWQ5ODNhODAzZmZlYWNlZWMyZDYzNWY4ZTFjYWU4M2NhNTAwOTMzM2FmMTc1NDlmMDY2YTVlOWUwNTljNmZiNDUxMzg0Njk1NzBhODNiNjcyZWJjZTFi"
+  },
+  "frame": {
+    "version": "0.0.0",
+    "name": "Yoink!",
+    "iconUrl": "https://yoink.party/logo.png",
+    "splashImageUrl": "https://yoink.party/logo.png",
+    "splashBackgroundColor": "#f5f0ec",
+    "homeUrl": "https://yoink.party/framesV2/",
+    "webhookUrl": "https://yoink.party/api/webhook"
+  }
+}
+```
 
 ## Have users add your frame to their Farcaster client
 
 For a frame to send notifications, it needs to first be added by a user to their Farcaster client, and then notifications need to be enabled. Warpcast always enables notifications when a frame is added so a 2nd step is not needed.
 
-When notifications are enabled, the Farcaster client generates a unique `token` for the user. This token is communicated to the frame together with a `url` that the frame must call. There are 2 channels:
+When notifications are enabled, the Farcaster client generates a unique `token` for the user. This token is communicated to the frame together with a `url` that the frame must call. There are 2 way to get these:
 
-- The return value of the `addFrame` call (see below)
-- A webhook, so that you can get the `token` and `url` when the frame is added but not open, and when a user re-enables notification (see below)
+- The return value when calling `addFrame` (see below)
+- Via a webhook, so that you can get the `token` and `url` when the frame is added but not open, and when a user re-enables notification (see below)
 
 The `token` and `url` need to be saved to persistent storage.
 
@@ -130,7 +150,7 @@ The request is a JSON consisting of:
 - `targetUrl`: the target frame URL to open when a user clicks the notification. It must match the domain for which the notification token was issued. Max 256 characters.
 - `tokens`: an array of tokens (for that `url`) to send the notification to. Max 100 per call.
 
-Note that client servers may impose a rate limit per `token`, e.g. 5 sends per 5 minutes.
+Note that client servers may impose rate limits per `token`.
 
 The response from the client server must be an HTTP 200 OK, with a `result` object that contains 3 arrays:
 
@@ -156,12 +176,14 @@ export type FrameLocationNotificationContext = {
 
 ## Listen for webhooks to get updates
 
-If the domain manifest includes a `webhookUrl`, the Farcaster client backend will POST events informing the frame when the user:
+Farcast clients will POST events to your `webhookUrl` informing you when a user:
 
 - Adds the frame to the client (`frame-added`)
 - Removes the frame from the client which disables notifications (`frame-removed`)
 - Enabled notifications (`notifications-enabled`)
 - Disables notifications (`notifications-disabled`)
+
+Your endpoint should return a 200 response. It is up to Farcaster clients how often and for how long they retry in case of errors.
 
 Events use the [JSON Farcaster Signature](https://github.com/farcasterxyz/protocol/discussions/208) format, signed with the app key of the user. The data you'll receive is:
 
