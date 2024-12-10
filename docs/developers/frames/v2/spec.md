@@ -516,6 +516,8 @@ The Farcaster client server POSTs 4 types of events to the frame server at the `
 - `notifications-enabled`
 - `notifications-disabled`
 
+Your endpoint should return a 200 response. It is up to Farcaster clients how often and for how long they retry in case of errors.
+
 The body looks like this:
 
 Events use the [JSON Farcaster Signature](https://github.com/farcasterxyz/protocol/discussions/208) format and are signed with the app key of the user. The final format is:
