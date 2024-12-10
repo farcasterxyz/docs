@@ -6,6 +6,8 @@ title: Frames v2 Notifications & Webhooks
 
 Frames v2 allow developers to send notifications to users who have "added" the frame to their Farcaster client and enabled notifications.
 
+In Warpcast, these are **in-app notifications** that trigger the red on the notifications tab. At this stage there is no support for push notifications.
+
 The steps to successfully send a notification are:
 
 1. Sets a valid domain manifest so that the frame is eligible to be added to a Farcaster client and use notifications.
