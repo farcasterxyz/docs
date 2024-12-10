@@ -44,13 +44,16 @@ type FrameEmbed = {
   // Example: "next"
   version: 'next';
 
-  // Frame image. Must be 3:2 aspect ratio. Must be less than 10 MB.
+  // Frame image.
+  // Max 512 characters.
+  // Image must be 3:2 aspect ratio and less than 10 MB.
   // Example: "https://yoink.party/img/start.png"
   imageUrl: string;
 
   // Button attributes
   button: {
-    // Button text — max length of 32 characters
+    // Button text.
+    // Max length of 32 characters.
     // Example: "Yoink Flag"
     title: string;
 
@@ -59,15 +62,19 @@ type FrameEmbed = {
       // Action type. Must be "launch_frame".
       type: 'launch_frame';
 
-      // App name — max length of 32 characters
+      // App name
+      // Max length of 32 characters.
       // Example: "Yoink!"
       name: string;
 
       // Frame launch URL.
+      // Max 512 characters.
       // Example: "https://yoink.party/"
       url: string;
 
-      // 200x200px splash image URL. Must be less than 1MB.
+      // Splash image URL.
+      // Max 512 characters.
+      // Image must be 200x200px and less than 1MB.
       // Example: "https://yoink.party/img/splash.png"
       splashImageUrl: string;
 
@@ -126,22 +133,27 @@ The domain in the signed object must match the domain the manifest is served fro
 ```tsx
 type FrameConfig = {
   // Manifest version. Required.
-  // Example: "0.0.0"
-  version: string;
+  version: '1';
 
-  // App name. Required. Max length of 32 characters.
+  // App name. Required.
+  // Max length of 32 characters.
   // Example: "Yoink!"
   name: string;
 
-  // Default launch URL. Required
+  // Default launch URL. Required.
+  // Max 512 characters.
   // Example: "https://yoink.party/"
   homeUrl: string;
 
-  // 200x200px frame application icon URL. Must be less than 1MB.
+  // Frame application icon URL.
+  // Max 512 characters.
+  // Image must be 200x200px and less than 1MB.
   // Example: "https://yoink.party/img/icon.png"
   iconUrl: string;
 
-  // 200x200px splash image URL. Must be less than 1MB.
+  // Splash image URL.
+  // Max 512 characters.
+  // Image must be 200x200px and less than 1MB.
   // Example: "https://yoink.party/img/splash.png"
   splashImageUrl?: string;
 
@@ -150,6 +162,7 @@ type FrameConfig = {
   splashBackgroundColor?: string;
 
   // URL to which clients will POST events.
+  // Max 512 characters.
   // Required if the frame application uses notifications.
   // Example: "https://yoink.party/webhook"
   webhookUrl?: string;
