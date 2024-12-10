@@ -17,7 +17,7 @@ The message is a protobuf that contains the data, its hash and a signature from 
 | signature        | bytes                               |       | Signature of the hash digest                                                                                                                                                                                                                                    |
 | signature_scheme | [SignatureScheme](#SignatureScheme) |       | Signature scheme that produced the signature                                                                                                                                                                                                                    |
 | signer           | bytes                               |       | Public key or address of the key pair that produced the signature                                                                                                                                                                                               |
-| data_bytes       | bytes                               |       | Alternate to the "data" field. If you are constructing the [MessageData](#MessageData) in a programing language other than Typescript, you can use this field to serialize the `MessageData` and calculate the `hash` and `signature` on these bytes. Optional. |
+| data_bytes       | bytes                               |       | Alternate to the "data" field. If you are constructing the [MessageData](#MessageData) in a programming language other than Typescript, you can use this field to serialize the `MessageData` and calculate the `hash` and `signature` on these bytes. Optional. |
 
 ### 1.1 MessageData
 
