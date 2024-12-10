@@ -403,7 +403,7 @@ A signature packet is a JSON object sent to the Frame server when a button is cl
 
 1. **Signed Message** — an authenticated protobuf that represents the user action. This message must be unpacked by a farcaster hub to read the data inside.
 
-2. **Unsigned Message** — an unathenticated JSON object that represents the user action. can be read directly.
+2. **Unsigned Message** — an unauthenticated JSON object that represents the user action. can be read directly.
 
 ::: warning
 Unsigned messages can be spoofed and should usually be ignored. It is only safe to use them if you are performing an unauthenticated request.
