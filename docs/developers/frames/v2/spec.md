@@ -473,7 +473,7 @@ Request the user to add the frame, which adds it to the user's favorites list an
 {
   "type": "success",
   "notificationDetails": {
-    "url": "https://api.warpcast.com/v1/frame-notification",
+    "url": "https://api.warpcast.com/v1/frame-notifications",
     "token": "a05059ef2415c67b08ecceb539201cbc6"
   }
 }
@@ -550,7 +550,7 @@ Webhook payload:
 {
   "event": "frame-added",
   "notificationDetails": {
-    "url": "https://api.warpcast.com/v1/frame-notification",
+    "url": "https://api.warpcast.com/v1/frame-notifications",
     "token": "a05059ef2415c67b08ecceb539201cbc6"
   }
 }
@@ -603,7 +603,7 @@ Webhook payload:
 {
   "event": "notifications-enabled",
   "notificationDetails": {
-    "url": "https://api.warpcast.com/v1/frame-notification",
+    "url": "https://api.warpcast.com/v1/frame-notifications",
     "token": "a05059ef2415c67b08ecceb539201cbc6"
   }
 }
