@@ -452,6 +452,14 @@ export default defineConfig({
             { text: 'Monitoring', link: '/hubble/monitoring' },
             { text: 'Tutorials', link: '/hubble/tutorials' },
             {
+              text: 'Packages',
+              collapsed: true,
+              items: [
+                { text: 'Hub Web', link: '/hubble/packages/hub-web' },
+                { text: 'Hub NodeJs', link: '/hubble/packages/hub-nodejs' },
+              ],
+            },
+            {
               text: 'Troubleshooting',
               link: '/hubble/troubleshooting',
             },
