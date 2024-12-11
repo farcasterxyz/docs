@@ -16,6 +16,12 @@ The steps to successfully send a notification are:
 4. Send a notification by POSTing to the `url` using the `token`
 5. Listen for webhooks that tell you when a user adds/removes the frame and enables/disables notifications
 
+The Frames V2 Demo frame has all of the above, specifically take a look at:
+
+- [Handling webhooks](https://github.com/farcasterxyz/frames-v2-demo/blob/main/src/app/api/webhook/route.ts)
+- [Saving tokens to Redis](https://github.com/farcasterxyz/frames-v2-demo/blob/main/src/lib/kv.ts)
+- [Sending notifications](https://github.com/farcasterxyz/frames-v2-demo/blob/main/src/lib/notifs.ts)
+
 ## Create a Farcaster Domain Manifest
 
 A Farcaster domain manifest is required for a frame to be eligible to be added to Farcaster clients and send notifications. It looks like this:
@@ -64,6 +70,8 @@ When notifications are enabled, the Farcaster client generates a unique `token` 
 
 The `token` and `url` need to be saved to persistent storage.
 
+[Example code to save the token to an Upstash Redis](https://github.com/farcasterxyz/frames-v2-demo/blob/main/src/lib/kv.ts)
+
 ## Prompt users to add your frame to their Farcaster client
 
 You can use the `addFrame` action while a user is using your frame to prompt them to add it to their Farcaster client.
@@ -94,7 +102,7 @@ export type AddFrameResult =
 
 Once you have a `url` and `token`, you can send notifications by POSTing to the `url`. Note that you have to do separate POSTs for each Farcaster client (= unique `url`).
 
-[Example code to send a notification](https://github.com/farcasterxyz/frames-v2-demo/blob/7905a24b7cd254a77a7e1a541288379b444bc23e/src/app/api/send-notification/route.ts#L25-L65)
+[Example code to send a notification](https://github.com/farcasterxyz/frames-v2-demo/blob/main/src/lib/notifs.ts#L32-L64)
 
 Here are the types:
 
@@ -185,7 +193,7 @@ The `header` JSON has 3 properties:
 
 The `payload` JSON differs per event, see below.
 
-[Example code to process webhook events](https://github.com/farcasterxyz/frames-v2-demo/blob/7905a24b7cd254a77a7e1a541288379b444bc23e/src/app/api/webhook/route.ts)
+[Example code to process webhook events, using Neynar to verify the app key](https://github.com/farcasterxyz/frames-v2-demo/blob/main/src/app/api/webhook/route.ts)
 
 ### `frame_added`: frame added to a client
 
