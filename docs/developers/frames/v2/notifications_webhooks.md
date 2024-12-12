@@ -156,7 +156,7 @@ export type FrameLocationNotificationContext = {
 
 ## Listen for webhooks to get updates
 
-Farcast clients will POST events to your `webhookUrl` informing you when a user:
+Farcaster clients will POST events to your `webhookUrl` informing you when a user:
 
 - Adds the frame to the client (`frame_added`)
 - Removes the frame from the client which disables notifications (`frame_removed`)
