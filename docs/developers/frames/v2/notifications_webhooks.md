@@ -18,7 +18,7 @@ The steps to successfully send a notification are:
 
 The [Frames V2 Demo frame](https://github.com/farcasterxyz/frames-v2-demo) has all of the above:
 
-- [Handles webhooks](<(https://github.com/farcasterxyz/frames-v2-demo/blob/main/src/app/api/webhook/route.ts)>) leveraging the [`@farcaster/frame-node`](https://github.com/farcasterxyz/frames/tree/main/packages/frame-node) library that makes this very easy
+- [Handles webhooks](https://github.com/farcasterxyz/frames-v2-demo/blob/main/src/app/api/webhook/route.ts) leveraging the [`@farcaster/frame-node`](https://github.com/farcasterxyz/frames/tree/main/packages/frame-node) library that makes this very easy
 - [Saves notification tokens to Redis](https://github.com/farcasterxyz/frames-v2-demo/blob/main/src/lib/kv.ts)
 - [Sends notifications](https://github.com/farcasterxyz/frames-v2-demo/blob/main/src/lib/notifs.ts)
 
