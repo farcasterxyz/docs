@@ -27,7 +27,7 @@ An opinionated collection of popular resources for building Frames.
 
 #### Developer tools
 
-- [Warpcast Frame Validator](https://warpcast.com/~/developers/frames) - a debugger for testing frames in Warpcast
+- [Warpcast Frame Validator](https://warpcast.com/~/developers/frames-legacy) - a debugger for testing frames in Warpcast
 - [Neynar](https://docs.neynar.com/docs/how-to-build-farcaster-frames-with-neynar) - infrastructure and tools for frame servers
 - [Neynar Frame Studio](https://neynar.com/nfs) - build no-code Frames
 - [Pinata](https://docs.pinata.cloud/farcaster/frames) - Frame analytics, hub APIs, and more
