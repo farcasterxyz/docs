@@ -23,7 +23,7 @@ title: Frames v2 Resources
 
 ### Tools
 
-- [Frame Playground](https://warpcast.com/~/developers/frame-playground) - Frame developer tools (Warpcast mobile only)
+- [Frame Playground](https://warpcast.com/~/developers/frames) - Warpcast Frame developer tools
 - [Frame SDK](https://github.com/farcasterxyz/frames/) - Frame SDK JavaScript library
 
 #### Learning
