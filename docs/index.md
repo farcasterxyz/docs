@@ -7,7 +7,7 @@ hero:
   actions:
     - theme: brand
       text: Build a frame
-      link: /developers/frames/
+      link: /developers/frames/v2/
     - theme: alt
       text: Explore Sign In with Farcaster
       link: /developers/siwf/

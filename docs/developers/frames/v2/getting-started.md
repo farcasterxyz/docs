@@ -10,6 +10,10 @@ If you'd prefer to learn more about the new spec before building a frame, jump a
 
 ## Video demo
 
+::: info Heads up!
+This video is slightly outdated. The text tutorial below removes a few steps.
+:::
+
 Here's a full walkthrough of creating a frames v2 app:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/5wAbo_YsuC4?si=-dOyKXgouz60ElmW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -20,26 +24,25 @@ The following tutorial is based on the [Frames v2 Demo](https://github.com/farca
 
 ### Setup and dependencies
 
-We'll start with a fresh NextJS app:
+We'll start with a fresh NextJS app, and accept all the default config options.
 
 ```bash
 $ yarn create next-app
-✔ What is your project named? … frames-v2-demo
-✔ Would you like to use TypeScript? … No / Yes
-✔ Would you like to use ESLint? … No / Yes
-✔ Would you like to use Tailwind CSS? … No / Yes
-✔ Would you like your code inside a `src/` directory? … No / Yes
-✔ Would you like to use App Router? (recommended) … No / Yes
-✔ Would you like to use Turbopack for next dev? … No / Yes
-✔ Would you like to customize the import alias (@/* by default)? … No / Yes
-✔ What import alias would you like configured? … ~/*
+✔ What is your project named? … (frames-v2-demo)
+✔ Would you like to use TypeScript? … (Yes)
+✔ Would you like to use ESLint? … (No)
+✔ Would you like to use Tailwind CSS? … (Yes)
+✔ Would you like your code inside a \`src/\` directory? … (Yes)
+✔ Would you like to use App Router? \(recommended\) … (Yes)
+✔ Would you like to use Turbopack for next dev? … (No)
+✔ Would you like to customize the import alias \(@/* by default\)? … (No)
 Creating a new Next.js app in /Users/horsefacts/Projects/frames-v2-demo.
 ```
 
-Next, install frame related dependencies. We'll need the official frame SDK:
+Next, install frame related dependencies.
 
 ```bash
-$ yarn add @farcaster/frame-sdk
+$ yarn add @farcaster/frame-sdk @farcaster/frame-react
 ```
 
 We'll also need [Wagmi](https://wagmi.sh/) to handle wallet interactions. Let's install it and its dependencies.
@@ -52,7 +55,7 @@ OK, we're ready to get started!
 
 ### Configuring providers
 
-We'll need to set up a custom Wagmi connector in order to interact with the user's Farcaster wallet. Since the frames SDK is a frontend only package, we'll also need to use client components and [Next dynamic imports](https://nextjs.org/docs/pages/building-your-application/optimizing/lazy-loading#nextdynamic) in a few places.
+We'll need to set up a custom Wagmi connector in order to interact with the user's Farcaster wallet.
 
 First, let's create a custom connector component at `lib/connector.ts`. We'll use this to connect to the user's Farcaster wallet from our app.
 
@@ -153,17 +156,22 @@ export function frameConnector() {
 }
 ```
 
-Next, let's create a provider component that handles our Wagmi configuration. Create `components/providers/WagmiProvider.tsx`.
+Next, let's create a provider component that handles our Wagmi and Frame SDK configuration. Create `components/ClientProviders.tsx`.
 
 We'll configure our client with Base as a connected network and use the `frameConnector` that we just created:
 
 ```tsx
-import { createConfig, http, WagmiProvider } from 'wagmi';
-import { base } from 'wagmi/chains';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { frameConnector } from '~/lib/connector';
+'use client';
 
-export const config = createConfig({
+import { FrameProvider } from '@farcaster/frame-react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { WagmiProvider } from 'wagmi';
+import { createConfig, http } from 'wagmi';
+import { base } from 'wagmi/chains';
+
+import { frameConnector } from '@/lib/connector';
+
+export const wagmiConfig = createConfig({
   chains: [base],
   transports: {
     [base.id]: http(),
@@ -173,45 +181,26 @@ export const config = createConfig({
 
 const queryClient = new QueryClient();
 
-export default function Provider({ children }: { children: React.ReactNode }) {
+export function ClientProviders({ children }: { children: React.ReactNode }) {
   return (
-    <WagmiProvider config={config}>
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    <WagmiProvider config={wagmiConfig}>
+      <QueryClientProvider client={queryClient}>
+        <FrameProvider>{children}</FrameProvider>
+      </QueryClientProvider>
     </WagmiProvider>
   );
 }
 ```
 
-Now let's create a top-level `Providers` component that will include all our required providers. In this simple demo app, we'll just be adding Wagmi, but this is where you might also add other providers necessary for your own app.
-
-Create `app/providers.tsx`:
-
-```tsx
-'use client';
-
-import dynamic from 'next/dynamic';
-
-const WagmiProvider = dynamic(
-  () => import('~/components/providers/WagmiProvider'),
-  {
-    ssr: false,
-  }
-);
-
-export function Providers({ children }: { children: React.ReactNode }) {
-  return <WagmiProvider>{children}</WagmiProvider>;
-}
-```
-
-Note two new things here: since the SDK relies on the browser `window`, we need to define this as a client component with `"use client";` and use a dynamic import to import `WagmiProvider`.
+The reason we need to create a separate `ClientProviders` component is because the Frame SDK relies on the browser `window` object, which is not available on the server. This is why we need `'use client'` at the top of the file.
 
 Finally, let's add this providers component to our app layout. Edit `app/layout.tsx`:
 
 ```tsx
 import type { Metadata } from 'next';
 
-import '~/app/globals.css';
-import { Providers } from '~/app/providers';
+import '@/app/globals.css';
+import { Providers } from '@/app/providers';
 
 export const metadata: Metadata = {
   title: 'Farcaster Frames v2 Demo',
@@ -226,7 +215,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Providers>{children}</Providers>
+        <ClientProviders>{children}</ClientProviders>
       </body>
     </html>
   );
@@ -237,36 +226,35 @@ OK, setup is all done, let's do something more interesting...
 
 ### Creating the app
 
-Let's create a component for our app's `homeUrl` page. Create `app/components/Demo.tsx`.
+Let's create a simple page for our app's `homeUrl`. Navigate to `src/app/page.tsx`.
 
 For now, let's just put in a placeholder, Since our frame app will be rendering at mobile width, we'll give it a fixed width and center the content:
 
 ```tsx
-export default function Demo() {
+export default function Home() {
   return (
-    <div className="w-[300px] mx-auto py-4 px-2">
-      <h1 className="text-2xl font-bold text-center mb-4">Frames v2 Demo</h1>
+    <div className="mx-auto w-[300px] px-2 py-4">
+      <h1 className="mb-4 text-2xl font-bold">Frames v2 Demo</h1>
     </div>
   );
 }
 ```
 
-Since we're going to import the frames SDK in this component, we'll need to load it dynamically, too. Edit `app/page.tsx`:
+Since we're going to import the frames-react package in this component, we'll need to make the page into a client component.
 
 ```tsx
 'use client';
 
-import dynamic from 'next/dynamic';
-
-const Demo = dynamic(() => import('~/components/Demo'), {
-  ssr: false,
-});
+import { useFrame } from '@farcaster/frame-react';
 
 export default function Home() {
+  const context = useFrame();
+
   return (
-    <main className="min-h-screen flex flex-col p-4">
-      <Demo />
-    </main>
+    <div className="mx-auto w-[300px] px-2 py-4">
+      <h1 className="mb-4 text-2xl font-bold">Frames v2 Demo</h1>
+      <p>Hello {context?.user.username}</p>
+    </div>
   );
 }
 ```
@@ -282,7 +270,7 @@ $ yarn dev
 Next, start ngrok:
 
 ```bash
-$ ngrok http http://localhost:3000
+$ ngrok http 3000
 ```
 
 ::: info Tunneling gotchas
@@ -295,234 +283,114 @@ Enter your ngrok URL:
 
 <img src="https://raw.githubusercontent.com/farcasterxyz/frames-v2-demo/refs/heads/main/docs/img/1_playground.png" width="200" alt="Frames Playground" />
 
-..and tap "Launch" to open your app.
-
-<img src="https://raw.githubusercontent.com/farcasterxyz/frames-v2-demo/refs/heads/main/docs/img/2_blank.png" width="200" alt="Launch" />
-
-If you watch your dev server and ngrok logs, you'll see a request to your server. But nothing will load until we signal to Warpcast that our app is `ready()`.
-
-### Calling `ready()`
-
-To give frames a consistent loading experience, clients display a splash screen and image until the app calls `sdk.actions.ready()`. In order to make it more visible here, let's add a splash image and loading color:
-
-<img src="https://raw.githubusercontent.com/farcasterxyz/frames-v2-demo/refs/heads/main/docs/img/3_config.png" width="200" alt="Config" />
-
-Now we get a nice background color and splash image:
-
-<img src="https://raw.githubusercontent.com/farcasterxyz/frames-v2-demo/refs/heads/main/docs/img/4_splash.png" width="200" alt="Splash" />
-
-Let's call `ready()` to load our app. We'll call `sdk.actions.ready()` in an effect on render, which tells the parent Farcaster app that our frame is ready to render and hides the splash screen:
-
-```tsx
-import { useEffect, useState } from 'react';
-import sdk from '@farcaster/frame-sdk';
-
-export default function Demo() {
-  const [isSDKLoaded, setIsSDKLoaded] = useState(false);
-
-  useEffect(() => {
-    const load = async () => {
-      sdk.actions.ready();
-    };
-    if (sdk && !isSDKLoaded) {
-      setIsSDKLoaded(true);
-      load();
-    }
-  }, [isSDKLoaded]);
-
-  return (
-    <div className="w-[300px] mx-auto py-4 px-2">
-      <h1 className="text-2xl font-bold text-center mb-4">Frames v2 Demo</h1>
-    </div>
-  );
-}
-```
-
-Try again in the playground and we'll see our app:
-
-<img src="https://raw.githubusercontent.com/farcasterxyz/frames-v2-demo/refs/heads/main/docs/img/5_hello.png" width="200" alt="Hello" />
+..and tap "Launch" to open your app. You should see your Farcaster username, which is part of the context that Frames inject into your app!
 
 ### Viewing context
 
-When your frame loads, the parent Farcaster app provides it with context information, including the current user. Let's take a look at it.
+When your frame loads, the parent Farcaster app provides it with context information.
 
-We can access the context data at `sdk.context` to see information about the current user.:
-
-```tsx
-import { useEffect, useCallback, useState } from 'react';
-import sdk, { type FrameContext } from '@farcaster/frame-sdk';
-
-export default function Demo() {
-  const [isSDKLoaded, setIsSDKLoaded] = useState(false);
-  const [context, setContext] = useState<FrameContext>();
-
-  useEffect(() => {
-    const load = async () => {
-      setContext(await sdk.context);
-      sdk.actions.ready();
-    };
-    if (sdk && !isSDKLoaded) {
-      setIsSDKLoaded(true);
-      load();
-    }
-  }, [isSDKLoaded]);
-
-  if (!isSDKLoaded) {
-    return <div>Loading...</div>;
-  }
-
-  return (
-    <div className="w-[300px] mx-auto py-4 px-2">
-      <h1 className="text-2xl font-bold text-center mb-4">Frames v2 Demo</h1>
-
-      <div className="mb-4">
-        <h2 className="font-2xl font-bold">Context</h2>
-        <button
-          onClick={toggleContext}
-          className="flex items-center gap-2 transition-colors"
-        >
-          <span
-            className={`transform transition-transform ${
-              isContextOpen ? 'rotate-90' : ''
-            }`}
-          >
-            ➤
-          </span>
-          Tap to expand
-        </button>
-
-        {isContextOpen && (
-          <div className="p-4 mt-2 bg-gray-100 dark:bg-gray-800 rounded-lg">
-            <pre className="font-mono text-xs whitespace-pre-wrap break-words max-w-[260px] overflow-x-">
-              {JSON.stringify(context, null, 2)}
-            </pre>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
+```ts
+type FrameContext = {
+  user: {
+    fid: number;
+    username?: string;
+    displayName?: string;
+    /**
+     * Profile image URL
+     */
+    pfpUrl?: string;
+  };
+  location?: FrameLocationContext;
+  client: {
+    clientFid: number;
+    added: boolean;
+    notificationDetails?: FrameNotificationDetails;
+  };
+};
 ```
-
-When you load this in the Warpcast frames playground, you should see your own Farcaster user profile:
 
 > [!WARNING]
 > In the current developer preview, context data is unauthenticated. Assume this data is spoofable and don't use it to grant privileged access to the user! Future frame SDK releases will include a mechanism fo verify context data.
 
-<img src="https://raw.githubusercontent.com/farcasterxyz/frames-v2-demo/refs/heads/main/docs/img/6_context.PNG" width="200" alt="Context" />
-
-This is a lot of data, so let's hide it behind a simple toggle:
+Previously we only showed the injected username. For testing purposes, let's replace that with a section including all of the available context data.
 
 ```tsx
-export default function Demo() {
-  const [isSDKLoaded, setIsSDKLoaded] = useState(false);
-  const [context, setContext] = useState<FrameContext>();
-  const [isContextOpen, setIsContextOpen] = useState(false);
+'use client';
 
-  useEffect(() => {
-    const load = async () => {
-      setContext(await sdk.context);
-      sdk.actions.ready();
-    };
-    if (sdk && !isSDKLoaded) {
-      setIsSDKLoaded(true);
-      load();
-    }
-  }, [isSDKLoaded]);
+import { useFrame } from '@farcaster/frame-react';
 
-  const toggleContext = useCallback(() => {
-    setIsContextOpen((prev) => !prev);
-  }, []);
-
-  if (!isSDKLoaded) {
-    return <div>Loading...</div>;
-  }
+export default function Home() {
+  const context = useFrame();
 
   return (
-    <div className="w-[300px] mx-auto py-4 px-2">
-      <h1 className="text-2xl font-bold text-center mb-4">Frames v2 Demo</h1>
+    <div className="mx-auto max-w-lg space-y-6 p-4">
+      <h1 className="mb-4 text-2xl font-bold">Frames v2 Demo</h1>
 
-      <div className="mb-4">
+      <div>
         <h2 className="font-2xl font-bold">Context</h2>
-        <button
-          onClick={toggleContext}
-          className="flex items-center gap-2 transition-colors"
-        >
-          <span
-            className={`transform transition-transform ${
-              isContextOpen ? 'rotate-90' : ''
-            }`}
-          >
-            ➤
-          </span>
-          Tap to expand
-        </button>
-
-        {isContextOpen && (
-          <div className="p-4 mt-2 bg-gray-100 dark:bg-gray-800 rounded-lg">
-            <pre className="font-mono text-xs whitespace-pre-wrap break-words max-w-[260px] overflow-x-">
-              {JSON.stringify(context, null, 2)}
-            </pre>
-          </div>
-        )}
+        <pre className="overflow-x-auto whitespace-pre-wrap break-words rounded-lg bg-gray-100 p-4 font-mono text-xs">
+          {JSON.stringify(context, null, 2)}
+        </pre>
       </div>
     </div>
   );
 }
 ```
 
-<img src="https://raw.githubusercontent.com/farcasterxyz/frames-v2-demo/refs/heads/main/docs/img/7_toggle.png" width="200" alt="Toggle" />
+<img src="https://raw.githubusercontent.com/farcasterxyz/frames-v2-demo/refs/heads/main/docs/img/6_context.PNG" width="200" alt="Context" />
 
 ### Invoking actions
 
-Now let's make our frame do something. We can invoke actions by calling the functions on `sdk.actions`. We've already used `sdk.actions.ready`. We can also call functions like `sdk.actions.openUrl` and `sdk.actions.close` to send commands back to the Farcaster client app.
+Now let's make our frame do something. We can invoke actions by calling the functions on `sdk.actions`. We can call functions like `sdk.actions.openUrl` and `sdk.actions.close` to send commands back to the Farcaster client app.
 
 Let's start by opening an external URL. Add an `openUrl` callback that calls `sdk.actions.openUrl` and a button that calls it:
 
 ```tsx
-import { useEffect, useCallback, useState } from 'react';
-import sdk, { type FrameContext } from '@farcaster/frame-sdk';
+'use client';
 
-export default function Demo() {
-  const [isSDKLoaded, setIsSDKLoaded] = useState(false);
-  const [context, setContext] = useState<FrameContext>();
-  const [isContextOpen, setIsContextOpen] = useState(false);
+import { useFrame } from '@farcaster/frame-react';
+import sdk from '@farcaster/frame-sdk';
+import { useCallback } from 'react';
 
-  useEffect(() => {
-    const load = async () => {
-      setContext(await sdk.context);
-      sdk.actions.ready();
-    };
-    if (sdk && !isSDKLoaded) {
-      setIsSDKLoaded(true);
-      load();
-    }
-  }, [isSDKLoaded]);
+export default function Home() {
+  const context = useFrame();
 
   const openUrl = useCallback(() => {
     sdk.actions.openUrl('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
   }, []);
 
-  if (!isSDKLoaded) {
+  if (!context) {
     return <div>Loading...</div>;
   }
 
   return (
-    <div className="w-[300px] mx-auto py-4 px-2">
-      <h1 className="text-2xl font-bold text-center mb-4">Frames v2 Demo</h1>
+    <div className="mx-auto max-w-lg space-y-6 p-4">
+      <h1 className="mb-4 text-2xl font-bold">Frames v2 Demo</h1>
 
-      {/* context toggle and data */}
+      <div>
+        <h2 className="font-2xl font-bold">Context</h2>
+        <details>
+          <summary>Tap to expand</summary>
+          <pre className="max-w-[260px] overflow-x-auto whitespace-pre-wrap break-words rounded-lg bg-gray-100 p-4 font-mono text-xs">
+            {JSON.stringify(context, null, 2)}
+          </pre>
+        </details>
+      </div>
 
       <div>
         <h2 className="font-2xl font-bold">Actions</h2>
-
         <div className="mb-4">
-          <div className="p-2 bg-gray-100 dark:bg-gray-800 rounded-lg my-2">
-            <pre className="font-mono text-xs whitespace-pre-wrap break-words max-w-[260px] overflow-x-">
+          <div className="my-2 rounded-lg bg-gray-100 p-2 dark:bg-gray-800">
+            <pre className="overflow-x- max-w-[260px] whitespace-pre-wrap break-words font-mono text-xs">
               sdk.actions.openUrl
             </pre>
           </div>
-          <Button onClick={openUrl}>Open Link</Button>
+          <button
+            onClick={openUrl}
+            className="w-full rounded bg-purple-700 p-2 text-white"
+          >
+            Open Link
+          </button>
         </div>
       </div>
     </div>
@@ -535,6 +403,8 @@ export default function Demo() {
 Tap the button and you'll be directed to an external URL.
 
 <img src="https://raw.githubusercontent.com/farcasterxyz/frames-v2-demo/refs/heads/main/docs/img/9_url.png" width="200" alt="URL" />
+
+<!-- TODO: keep updating from here -->
 
 Let's add another button to call `close()`:
 
