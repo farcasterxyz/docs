@@ -32,11 +32,10 @@ $ yarn create next-app
 ✔ Would you like to use TypeScript? … (Yes)
 ✔ Would you like to use ESLint? … (No)
 ✔ Would you like to use Tailwind CSS? … (Yes)
-✔ Would you like your code inside a \`src/\` directory? … (Yes)
-✔ Would you like to use App Router? \(recommended\) … (Yes)
+✔ Would you like your code inside a src directory? … (Yes)
+✔ Would you like to use App Router? … (Yes)
 ✔ Would you like to use Turbopack for next dev? … (No)
-✔ Would you like to customize the import alias \(@/* by default\)? … (No)
-Creating a new Next.js app in /Users/horsefacts/Projects/frames-v2-demo.
+✔ Would you like to customize the import alias? … (No)
 ```
 
 Next, install frame related dependencies.
@@ -158,15 +157,14 @@ export function frameConnector() {
 
 Next, let's create a provider component that handles our Wagmi and Frame SDK configuration. Create `components/ClientProviders.tsx`.
 
-We'll configure our client with Base as a connected network and use the `frameConnector` that we just created:
+We'll configure our client with Base as the network and use the `frameConnector` that we just created:
 
 ```tsx
 'use client';
 
 import { FrameProvider } from '@farcaster/frame-react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { WagmiProvider } from 'wagmi';
-import { createConfig, http } from 'wagmi';
+import { WagmiProvider, createConfig, http } from 'wagmi';
 import { base } from 'wagmi/chains';
 
 import { frameConnector } from '@/lib/connector';
@@ -200,7 +198,7 @@ Finally, let's add this providers component to our app layout. Edit `app/layout.
 import type { Metadata } from 'next';
 
 import '@/app/globals.css';
-import { Providers } from '@/app/providers';
+import { ClientProviders } from '@/components/ClientProviders';
 
 export const metadata: Metadata = {
   title: 'Farcaster Frames v2 Demo',
@@ -295,9 +293,6 @@ type FrameContext = {
     fid: number;
     username?: string;
     displayName?: string;
-    /**
-     * Profile image URL
-     */
     pfpUrl?: string;
   };
   location?: FrameLocationContext;
@@ -312,7 +307,7 @@ type FrameContext = {
 > [!WARNING]
 > In the current developer preview, context data is unauthenticated. Assume this data is spoofable and don't use it to grant privileged access to the user! Future frame SDK releases will include a mechanism fo verify context data.
 
-Previously we only showed the injected username. For testing purposes, let's replace that with a section including all of the available context data.
+Previously, we only showed the injected username. Let's replace that with a section including all of the available context data.
 
 ```tsx
 'use client';
@@ -367,31 +362,29 @@ export default function Home() {
     <div className="mx-auto max-w-lg space-y-6 p-4">
       <h1 className="mb-4 text-2xl font-bold">Frames v2 Demo</h1>
 
-      <div>
+      <div className="space-y-2">
         <h2 className="font-2xl font-bold">Context</h2>
         <details>
           <summary>Tap to expand</summary>
-          <pre className="max-w-[260px] overflow-x-auto whitespace-pre-wrap break-words rounded-lg bg-gray-100 p-4 font-mono text-xs">
+          <pre className="overflow-x-auto whitespace-pre-wrap break-words rounded-lg bg-gray-100 p-4 font-mono text-xs">
             {JSON.stringify(context, null, 2)}
           </pre>
         </details>
       </div>
 
-      <div>
+      <div className="space-y-2">
         <h2 className="font-2xl font-bold">Actions</h2>
-        <div className="mb-4">
-          <div className="my-2 rounded-lg bg-gray-100 p-2 dark:bg-gray-800">
-            <pre className="overflow-x- max-w-[260px] whitespace-pre-wrap break-words font-mono text-xs">
-              sdk.actions.openUrl
-            </pre>
-          </div>
-          <button
-            onClick={openUrl}
-            className="w-full rounded bg-purple-700 p-2 text-white"
-          >
-            Open Link
-          </button>
+        <div className="rounded-lg bg-gray-100 p-2">
+          <pre className="overflow-x- max-w-[260px] whitespace-pre-wrap break-words font-mono text-xs">
+            sdk.actions.openUrl
+          </pre>
         </div>
+        <button
+          onClick={openUrl}
+          className="w-full rounded bg-purple-700 p-2 text-white"
+        >
+          Open Link
+        </button>
       </div>
     </div>
   );
@@ -404,28 +397,17 @@ Tap the button and you'll be directed to an external URL.
 
 <img src="https://raw.githubusercontent.com/farcasterxyz/frames-v2-demo/refs/heads/main/docs/img/9_url.png" width="200" alt="URL" />
 
-<!-- TODO: keep updating from here -->
-
 Let's add another button to call `close()`:
 
 ```tsx
-import { useEffect, useCallback, useState } from 'react';
-import sdk, { type FrameContext } from '@farcaster/frame-sdk';
+'use client';
 
-export default function Demo() {
-  const [isSDKLoaded, setIsSDKLoaded] = useState(false);
-  const [context, setContext] = useState<FrameContext>();
+import { useFrame } from '@farcaster/frame-react';
+import sdk from '@farcaster/frame-sdk';
+import { useCallback } from 'react';
 
-  useEffect(() => {
-    const load = async () => {
-      setContext(await sdk.context);
-      sdk.actions.ready();
-    };
-    if (sdk && !isSDKLoaded) {
-      setIsSDKLoaded(true);
-      load();
-    }
-  }, [isSDKLoaded]);
+export default function Home() {
+  const context = useFrame();
 
   const openUrl = useCallback(() => {
     sdk.actions.openUrl('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
@@ -435,33 +417,47 @@ export default function Demo() {
     sdk.actions.close();
   }, []);
 
-  if (!isSDKLoaded) {
+  if (!context) {
     return <div>Loading...</div>;
   }
 
   return (
-    <div className="w-[300px] mx-auto py-4 px-2">
-      <h1 className="text-2xl font-bold text-center mb-4">Frames v2 Demo</h1>
+    <div className="mx-auto max-w-lg space-y-6 p-4">
+      <h1 className="mb-4 text-2xl font-bold">Frames v2 Demo</h1>
 
-      <div>
+      {/* Context omitted */}
+
+      <div className="space-y-2">
         <h2 className="font-2xl font-bold">Actions</h2>
-
-        <div className="mb-4">
-          <div className="p-2 bg-gray-100 dark:bg-gray-800 rounded-lg my-2">
-            <pre className="font-mono text-xs whitespace-pre-wrap break-words max-w-[260px] overflow-x-">
-              sdk.actions.openUrl
-            </pre>
-          </div>
-          <Button onClick={openUrl}>Open Link</Button>
-        </div>
-
-        <div className="mb-4">
-          <div className="p-2 bg-gray-100 dark:bg-gray-800 rounded-lg my-2">
-            <pre className="font-mono text-xs whitespace-pre-wrap break-words max-w-[260px] overflow-x-">
-              sdk.actions.close
-            </pre>
-          </div>
-          <Button onClick={close}>Close Frame</Button>
+        <div className="space-y-4">
+          {[
+            {
+              action: 'openUrl',
+              label: 'Open Link',
+              onClick: openUrl,
+            },
+            {
+              action: 'close',
+              label: 'Close Frame',
+              onClick: close,
+            },
+          ].map((item) => {
+            return (
+              <div className="space-y-2" key={item.action}>
+                <div className="rounded-lg bg-gray-100 p-2">
+                  <pre className="overflow-x- max-w-[260px] whitespace-pre-wrap break-words font-mono text-xs">
+                    sdk.actions.{item.action}
+                  </pre>
+                </div>
+                <button
+                  onClick={item.onClick}
+                  className="w-full rounded bg-purple-700 p-2 text-white"
+                >
+                  {item.label}
+                </button>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
@@ -478,40 +474,26 @@ When you tap this, the frame should close.
 Finally, let's interact with the user's connected wallet. To do so, we can use the wallet connector and Wagmi hooks we set up earlier. To start, let's read the user's connected wallet address, using `useAccount`:
 
 ```tsx
-import { useEffect, useCallback, useState } from 'react';
-import sdk, { type FrameContext } from '@farcaster/frame-sdk';
+'use client';
+
+import { useFrame } from '@farcaster/frame-react';
 import { useAccount } from 'wagmi';
 
-import { Button } from '~/components/ui/Button';
+export default function Home() {
+  const context = useFrame();
+  const { address } = useAccount();
 
-export default function Demo() {
-  const [isSDKLoaded, setIsSDKLoaded] = useState(false);
-  const [context, setContext] = useState<FrameContext>();
-
-  const { address, isConnected } = useAccount();
-
-  useEffect(() => {
-    const load = async () => {
-      setContext(await sdk.context);
-      sdk.actions.ready();
-    };
-    if (sdk && !isSDKLoaded) {
-      setIsSDKLoaded(true);
-      load();
-    }
-  }, [isSDKLoaded]);
-
-  if (!isSDKLoaded) {
+  if (!context) {
     return <div>Loading...</div>;
   }
 
   return (
-    <div className="w-[300px] mx-auto py-4 px-2">
-      <h1 className="text-2xl font-bold text-center mb-4">Frames v2 Demo</h1>
+    <div className="mx-auto max-w-lg space-y-6 p-4">
+      <h1 className="mb-4 text-2xl font-bold">Frames v2 Demo</h1>
 
       {/* Context and action buttons omitted */}
 
-      <div>
+      <div className="space-y-2">
         <h2 className="font-2xl font-bold">Wallet</h2>
 
         {address && (
@@ -525,48 +507,33 @@ export default function Demo() {
 }
 ```
 
-<img src="https://raw.githubusercontent.com/farcasterxyz/frames-v2-demo/refs/heads/main/docs/img/10_wallet.png" width="200" alt="Wallet" />
-
 If your wallet is connected to Warpcast, you should see its address. In case it's not, let's add a connect/disconnect button. Note that we'll need to import our Wagmi config to `connect`:
 
 ```tsx
-import { useEffect, useCallback, useState } from 'react';
-import sdk, { type FrameContext } from '@farcaster/frame-sdk';
-import { useAccount } from 'wagmi';
+'use client';
 
-import { config } from '~/components/providers/WagmiProvider';
-import { Button } from '~/components/ui/Button';
+import { useFrame } from '@farcaster/frame-react';
+import { useAccount, useConnect, useDisconnect } from 'wagmi';
 
-export default function Demo() {
-  const [isSDKLoaded, setIsSDKLoaded] = useState(false);
-  const [context, setContext] = useState<FrameContext>();
+import { wagmiConfig } from '@/components/ClientProviders';
 
+export default function Home() {
+  const context = useFrame();
   const { address, isConnected } = useAccount();
-  const { disconnect } = useDisconnect();
   const { connect } = useConnect();
+  const { disconnect } = useDisconnect();
 
-  useEffect(() => {
-    const load = async () => {
-      setContext(await sdk.context);
-      sdk.actions.ready();
-    };
-    if (sdk && !isSDKLoaded) {
-      setIsSDKLoaded(true);
-      load();
-    }
-  }, [isSDKLoaded]);
-
-  if (!isSDKLoaded) {
+  if (!context) {
     return <div>Loading...</div>;
   }
 
   return (
-    <div className="w-[300px] mx-auto py-4 px-2">
-      <h1 className="text-2xl font-bold text-center mb-4">Frames v2 Demo</h1>
+    <div className="mx-auto max-w-lg space-y-6 p-4">
+      <h1 className="mb-4 text-2xl font-bold">Frames v2 Demo</h1>
 
       {/* Context and action buttons omitted */}
 
-      <div>
+      <div className="space-y-2">
         <h2 className="font-2xl font-bold">Wallet</h2>
 
         {address && (
@@ -575,17 +542,16 @@ export default function Demo() {
           </div>
         )}
 
-        <div className="mb-4">
-          <Button
-            onClick={() =>
-              isConnected
-                ? disconnect()
-                : connect({ connector: config.connectors[0] })
-            }
-          >
-            {isConnected ? 'Disconnect' : 'Connect'}
-          </Button>
-        </div>
+        <button
+          className="w-full rounded bg-purple-700 p-2 text-white"
+          onClick={() =>
+            isConnected
+              ? disconnect()
+              : connect({ connector: wagmiConfig.connectors[0] })
+          }
+        >
+          {isConnected ? 'Disconnect' : 'Connect'}
+        </button>
       </div>
     </div>
   );
@@ -598,83 +564,54 @@ Now let's request a transaction. We'll use the Wagmi `useSendTransaction` hook t
 > In a more complex app, you'll probably want to use Wagmi's [useWriteContract](https://wagmi.sh/react/api/hooks/useWriteContract) hook instead. This provides better type safety and automatic encoding/decoding of calldata based on the contract ABI.
 
 ```tsx
-import { useEffect, useCallback, useState } from 'react';
-import sdk, { type FrameContext } from '@farcaster/frame-sdk';
+'use client';
+
+import { useFrame } from '@farcaster/frame-react';
+import { useCallback } from 'react';
 import {
   useAccount,
-  useSendTransaction,
-  useSignMessage,
-  useSignTypedData,
-  useWaitForTransactionReceipt,
-  useDisconnect,
   useConnect,
+  useDisconnect,
+  useSendTransaction,
+  useWaitForTransactionReceipt,
 } from 'wagmi';
 
-import { config } from '~/components/providers/WagmiProvider';
-import { Button } from '~/components/ui/Button';
+import { wagmiConfig } from '@/components/ClientProviders';
 
-export default function Demo() {
-  const [isSDKLoaded, setIsSDKLoaded] = useState(false);
-  const [context, setContext] = useState<FrameContext>();
-  const [txHash, setTxHash] = useState<string | null>(null);
+const btnClasses = 'w-full rounded bg-purple-700 p-2 text-white';
 
-  const { address, isConnected } = useAccount();
-  const {
-    sendTransaction,
-    error: sendTxError,
-    isError: isSendTxError,
-    isPending: isSendTxPending,
-  } = useSendTransaction();
-
-  const { isLoading: isConfirming, isSuccess: isConfirmed } =
-    useWaitForTransactionReceipt({
-      hash: txHash as `0x${string}`,
-    });
-
-  const { disconnect } = useDisconnect();
+export default function Home() {
+  const context = useFrame();
   const { connect } = useConnect();
+  const { disconnect } = useDisconnect();
+  const { address, isConnected } = useAccount();
 
-  useEffect(() => {
-    const load = async () => {
-      setContext(await sdk.context);
-      sdk.actions.ready();
-    };
-    if (sdk && !isSDKLoaded) {
-      setIsSDKLoaded(true);
-      load();
-    }
-  }, [isSDKLoaded]);
+  const transaction = useSendTransaction();
+  const receipt = useWaitForTransactionReceipt({ hash: transaction.data });
 
   const sendTx = useCallback(() => {
-    sendTransaction(
-      {
-        to: '0x4bBFD120d9f352A0BEd7a014bd67913a2007a878',
-        data: '0x9846cd9efc000023c0',
-      },
-      {
-        onSuccess: (hash) => {
-          setTxHash(hash);
-        },
-      }
-    );
-  }, [sendTransaction]);
+    transaction.sendTransaction({
+      to: '0x4bBFD120d9f352A0BEd7a014bd67913a2007a878',
+      data: '0x9846cd9efc000023c0',
+    });
+  }, [transaction.sendTransaction]);
 
   const renderError = (error: Error | null) => {
     if (!error) return null;
-    return <div className="text-red-500 text-xs mt-1">{error.message}</div>;
+    return <div className="mt-1 text-xs text-red-500">{error.message}</div>;
   };
 
-  if (!isSDKLoaded) {
+  if (!context) {
     return <div>Loading...</div>;
   }
 
   return (
-    <div className="w-[300px] mx-auto py-4 px-2">
-      <h1 className="text-2xl font-bold text-center mb-4">Frames v2 Demo</h1>
+    <div className="mx-auto max-w-lg space-y-6 p-4">
+      <h1 className="mb-4 text-2xl font-bold">Frames v2 Demo</h1>
 
-      {/* Context and actions omitted. */}
+      {/* Context and action buttons omitted */}
 
-      <div>
+      <div className="space-y-2">
         <h2 className="font-2xl font-bold">Wallet</h2>
 
         {address && (
@@ -683,43 +620,40 @@ export default function Demo() {
           </div>
         )}
 
-        <div className="mb-4">
-          <Button
-            onClick={() =>
-              isConnected
-                ? disconnect()
-                : connect({ connector: config.connectors[0] })
-            }
-          >
-            {isConnected ? 'Disconnect' : 'Connect'}
-          </Button>
-        </div>
+        <button
+          onClick={() =>
+            isConnected
+              ? disconnect()
+              : connect({ connector: wagmiConfig.connectors[0] })
+          }
+          className={btnClasses}
+        >
+          {isConnected ? 'Disconnect' : 'Connect'}
+        </button>
 
         {isConnected && (
           <>
-            <div className="mb-4">
-              <Button
-                onClick={sendTx}
-                disabled={!isConnected || isSendTxPending}
-                isLoading={isSendTxPending}
-              >
-                Send Transaction
-              </Button>
-              {isSendTxError && renderError(sendTxError)}
-              {txHash && (
-                <div className="mt-2 text-xs">
-                  <div>Hash: {txHash}</div>
-                  <div>
-                    Status:{' '}
-                    {isConfirming
-                      ? 'Confirming...'
-                      : isConfirmed
-                      ? 'Confirmed!'
-                      : 'Pending'}
-                  </div>
+            <button
+              onClick={sendTx}
+              disabled={!isConnected || transaction.isPending}
+              className={btnClasses}
+            >
+              Send Transaction
+            </button>
+            {transaction.isError && renderError(transaction.error)}
+            {transaction.data && (
+              <div className="text-xs">
+                <div>Hash: {transaction.data}</div>
+                <div>
+                  Status:{' '}
+                  {receipt.isLoading
+                    ? 'Confirming...'
+                    : receipt.isSuccess
+                    ? 'Confirmed!'
+                    : 'Pending'}
                 </div>
-              )}
-            </div>
+              </div>
+            )}
           </>
         )}
       </div>
@@ -736,71 +670,33 @@ Tap "Send Transaction" and you'll be directed to your wallet.
 
 ### Signatures
 
-Finally, let's add two new helpers for wallet signature methods. Below is the full `Demo` component:
+Finally, let's add two new helpers for wallet signature methods. Below is the full `page.tsx`:
 
 ```tsx
-import { useEffect, useCallback, useState } from 'react';
-import sdk, { type FrameContext } from '@farcaster/frame-sdk';
+'use client';
+
+import { useFrame } from '@farcaster/frame-react';
+import sdk from '@farcaster/frame-sdk';
+import { useCallback } from 'react';
 import {
   useAccount,
+  useConnect,
+  useDisconnect,
   useSendTransaction,
   useSignMessage,
   useSignTypedData,
   useWaitForTransactionReceipt,
-  useDisconnect,
-  useConnect,
 } from 'wagmi';
 
-import { config } from '~/components/providers/WagmiProvider';
-import { Button } from '~/components/ui/Button';
-import { truncateAddress } from '~/lib/truncateAddress';
+import { wagmiConfig } from '@/components/ClientProviders';
 
-export default function Demo() {
-  const [isSDKLoaded, setIsSDKLoaded] = useState(false);
-  const [context, setContext] = useState<FrameContext>();
-  const [isContextOpen, setIsContextOpen] = useState(false);
-  const [txHash, setTxHash] = useState<string | null>(null);
+const btnClasses = 'w-full rounded bg-purple-700 p-2 text-white';
 
-  const { address, isConnected } = useAccount();
-  const {
-    sendTransaction,
-    error: sendTxError,
-    isError: isSendTxError,
-    isPending: isSendTxPending,
-  } = useSendTransaction();
-
-  const { isLoading: isConfirming, isSuccess: isConfirmed } =
-    useWaitForTransactionReceipt({
-      hash: txHash as `0x${string}`,
-    });
-
-  const {
-    signMessage,
-    error: signError,
-    isError: isSignError,
-    isPending: isSignPending,
-  } = useSignMessage();
-
-  const {
-    signTypedData,
-    error: signTypedError,
-    isError: isSignTypedError,
-    isPending: isSignTypedPending,
-  } = useSignTypedData();
-
-  const { disconnect } = useDisconnect();
+export default function Home() {
+  const context = useFrame();
   const { connect } = useConnect();
-
-  useEffect(() => {
-    const load = async () => {
-      setContext(await sdk.context);
-      sdk.actions.ready();
-    };
-    if (sdk && !isSDKLoaded) {
-      setIsSDKLoaded(true);
-      load();
-    }
-  }, [isSDKLoaded]);
+  const { disconnect } = useDisconnect();
+  const { address, isConnected } = useAccount();
 
   const openUrl = useCallback(() => {
     sdk.actions.openUrl('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
@@ -810,26 +706,24 @@ export default function Demo() {
     sdk.actions.close();
   }, []);
 
+  const transaction = useSendTransaction();
+  const receipt = useWaitForTransactionReceipt({ hash: transaction.data });
+  const message = useSignMessage();
+  const typedData = useSignTypedData();
+
   const sendTx = useCallback(() => {
-    sendTransaction(
-      {
-        to: '0x4bBFD120d9f352A0BEd7a014bd67913a2007a878',
-        data: '0x9846cd9efc000023c0',
-      },
-      {
-        onSuccess: (hash) => {
-          setTxHash(hash);
-        },
-      }
-    );
-  }, [sendTransaction]);
+    transaction.sendTransaction({
+      to: '0x4bBFD120d9f352A0BEd7a014bd67913a2007a878',
+      data: '0x9846cd9efc000023c0',
+    });
+  }, [transaction.sendTransaction]);
 
   const sign = useCallback(() => {
-    signMessage({ message: 'Hello from Frames v2!' });
-  }, [signMessage]);
+    message.signMessage({ message: 'Hello from Frames v2!' });
+  }, [message.signMessage]);
 
   const signTyped = useCallback(() => {
-    signTypedData({
+    typedData.signTypedData({
       domain: {
         name: 'Frames v2 Demo',
         version: '1',
@@ -843,139 +737,131 @@ export default function Demo() {
       },
       primaryType: 'Message',
     });
-  }, [signTypedData]);
-
-  const toggleContext = useCallback(() => {
-    setIsContextOpen((prev) => !prev);
-  }, []);
+  }, [typedData.signTypedData]);
 
   const renderError = (error: Error | null) => {
     if (!error) return null;
-    return <div className="text-red-500 text-xs mt-1">{error.message}</div>;
+    return <div className="mt-1 text-xs text-red-500">{error.message}</div>;
   };
 
-  if (!isSDKLoaded) {
+  if (!context) {
     return <div>Loading...</div>;
   }
 
   return (
-    <div className="w-[300px] mx-auto py-4 px-2">
-      <h1 className="text-2xl font-bold text-center mb-4">Frames v2 Demo</h1>
+    <div className="mx-auto max-w-lg space-y-6 p-4">
+      <h1 className="mb-4 text-2xl font-bold">Frames v2 Demo</h1>
 
-      <div className="mb-4">
+      <div className="space-y-2">
         <h2 className="font-2xl font-bold">Context</h2>
-        <button
-          onClick={toggleContext}
-          className="flex items-center gap-2 transition-colors"
-        >
-          <span
-            className={`transform transition-transform ${
-              isContextOpen ? 'rotate-90' : ''
-            }`}
-          >
-            ➤
-          </span>
-          Tap to expand
-        </button>
-
-        {isContextOpen && (
-          <div className="p-4 mt-2 bg-gray-100 dark:bg-gray-800 rounded-lg">
-            <pre className="font-mono text-xs whitespace-pre-wrap break-words max-w-[260px] overflow-x-">
-              {JSON.stringify(context, null, 2)}
-            </pre>
-          </div>
-        )}
+        <details>
+          <summary>Tap to expand</summary>
+          <pre className="overflow-x-auto whitespace-pre-wrap break-words rounded-lg bg-gray-100 p-4 font-mono text-xs">
+            {JSON.stringify(context, null, 2)}
+          </pre>
+        </details>
       </div>
 
-      <div>
+      <div className="space-y-2">
         <h2 className="font-2xl font-bold">Actions</h2>
 
-        <div className="mb-4">
-          <div className="p-2 bg-gray-100 dark:bg-gray-800 rounded-lg my-2">
-            <pre className="font-mono text-xs whitespace-pre-wrap break-words max-w-[260px] overflow-x-">
-              sdk.actions.openUrl
-            </pre>
-          </div>
-          <Button onClick={openUrl}>Open Link</Button>
-        </div>
-
-        <div className="mb-4">
-          <div className="p-2 bg-gray-100 dark:bg-gray-800 rounded-lg my-2">
-            <pre className="font-mono text-xs whitespace-pre-wrap break-words max-w-[260px] overflow-x-">
-              sdk.actions.close
-            </pre>
-          </div>
-          <Button onClick={close}>Close Frame</Button>
+        <div className="space-y-4">
+          {[
+            {
+              action: 'openUrl',
+              label: 'Open Link',
+              onClick: openUrl,
+            },
+            {
+              action: 'close',
+              label: 'Close Frame',
+              onClick: close,
+            },
+          ].map((item) => {
+            return (
+              <div className="space-y-2" key={item.action}>
+                <div className="rounded-lg bg-gray-100 p-2">
+                  <pre className="overflow-x- max-w-[260px] whitespace-pre-wrap break-words font-mono text-xs">
+                    sdk.actions.{item.action}
+                  </pre>
+                </div>
+                <button onClick={item.onClick} className={btnClasses}>
+                  {item.label}
+                </button>
+              </div>
+            );
+          })}
         </div>
       </div>
 
-      <div>
+      <div className="space-y-2">
         <h2 className="font-2xl font-bold">Wallet</h2>
 
         {address && (
           <div className="my-2 text-xs">
-            Address: <pre className="inline">{truncateAddress(address)}</pre>
+            Address: <pre className="inline">{address}</pre>
           </div>
         )}
 
-        <div className="mb-4">
-          <Button
-            onClick={() =>
-              isConnected
-                ? disconnect()
-                : connect({ connector: config.connectors[0] })
-            }
-          >
-            {isConnected ? 'Disconnect' : 'Connect'}
-          </Button>
-        </div>
+        <button
+          className={btnClasses}
+          onClick={() =>
+            isConnected
+              ? disconnect()
+              : connect({ connector: wagmiConfig.connectors[0] })
+          }
+        >
+          {isConnected ? 'Disconnect' : 'Connect'}
+        </button>
 
         {isConnected && (
-          <>
-            <div className="mb-4">
-              <Button
+          <div className="space-y-2">
+            <div>
+              <button
                 onClick={sendTx}
-                disabled={!isConnected || isSendTxPending}
-                isLoading={isSendTxPending}
+                disabled={!isConnected || transaction.isPending}
+                className={btnClasses}
               >
                 Send Transaction
-              </Button>
-              {isSendTxError && renderError(sendTxError)}
-              {txHash && (
-                <div className="mt-2 text-xs">
-                  <div>Hash: {truncateAddress(txHash)}</div>
+              </button>
+              {transaction.isError && renderError(transaction.error)}
+              {transaction.data && (
+                <div className="text-xs">
+                  <div>Hash: {transaction.data}</div>
                   <div>
                     Status:{' '}
-                    {isConfirming
+                    {receipt.isLoading
                       ? 'Confirming...'
-                      : isConfirmed
+                      : receipt.isSuccess
                       ? 'Confirmed!'
                       : 'Pending'}
                   </div>
                 </div>
               )}
             </div>
-            <div className="mb-4">
-              <Button
+
+            <div>
+              <button
                 onClick={sign}
-                disabled={!isConnected || isSignPending}
-                isLoading={isSignPending}
+                disabled={!isConnected || message.isPending}
+                className={btnClasses}
               >
                 Sign Message
-              </Button>
-              {isSignError && renderError(signError)}
+              </button>
+              {message.isError && renderError(message.error)}
             </div>
-            <div className="mb-4">
-              <Button
+
+            <div>
+              <button
                 onClick={signTyped}
-                disabled={!isConnected || isSignTypedPending}
-                isLoading={isSignTypedPending}
+                disabled={!isConnected || typedData.isPending}
+                className={btnClasses}
               >
                 Sign Typed Data
-              </Button>
-              {isSignTypedError && renderError(signTypedError)}
+              </button>
+              {typedData.isError && renderError(typedData.error)}
             </div>
-          </>
+          </div>
         )}
       </div>
     </div>
@@ -986,7 +872,7 @@ export default function Demo() {
 We've build a simple v2 frame by:
 
 1. Setting up a NextJS web app
-2. Importing the Frames SDK and calling `sdk.actions.ready()`
-3. Reading the user context from `sdk.context`
+2. Importing @farcaster/frame-sdk and @farcaster/frame-react
+3. Reading the user context from `useFrame()`
 4. Invoking actions using `sdk.actions`
 5. Connecting to the user's wallet using Wagmi and `sdk.wallet.ethProvider`
