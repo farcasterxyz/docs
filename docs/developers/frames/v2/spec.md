@@ -248,67 +248,97 @@ Frame applications must include a frame SDK JavaScript package to communicate wi
 
 The frame SDK manages frame-client communication over a `window.postMessage` channel. Since the parent app cannot inject arbitrary JavaScript in a browser context, frame applications must include the SDK in their app to establish a communication channel.
 
+The `sdk.context` variable provides information about the context within which the frame is running:
+
+```tsx
+export type FrameContext = {
+  user: {
+    fid: number;
+    username?: string;
+    displayName?: string;
+    pfpUrl?: string;
+  };
+  location?: FrameLocationContext;
+  client: {
+    clientFid: number;
+    added: boolean;
+    notificationDetails?: FrameNotificationDetails;
+  };
+};
+```
+
 ### context.location
 
 Contains information about the context from which the frame was launched.
 
 ```tsx
-type LaunchContext = CastEmbedLaunchContext | NotificationLaunchContext;
+export type FrameLocationContextCastEmbed = {
+  type: 'cast_embed';
+  cast: {
+    fid: number;
+    hash: string;
+  };
+};
+
+export type FrameLocationContextNotification = {
+  type: 'notification';
+  notification: {
+    notificationId: string;
+    title: string;
+    body: string;
+  };
+};
+
+export type FrameLocationContextLauncher = {
+  type: 'launcher';
+};
+
+export type FrameLocationContext =
+  | FrameLocationContextCastEmbed
+  | FrameLocationContextNotification
+  | FrameLocationContextLauncher;
 ```
 
 **Cast Embed**
 
+Indicates that the frame was launched from a cast (where it is an embed).
+
 ```tsx
 > sdk.context.location
 {
-  type: "embed",
+  type: "cast_embed",
   cast: {
     fid: 3621,
     hash: "0xa2fbef8c8e4d00d8f84ff45f9763b8bae2c5c544",
-    text: "New Yoink just dropped:",
-    embeds: ["https://yoink.party/frames"]
   }
 }
 ```
 
-```tsx
-type Cast = {
-  fid: number;
-  hash: string;
-  text: string;
-  embeds: string[];
-  mentions: Mention[];
-};
-
-type CastEmbedLaunchContext = {
-  type: 'cast';
-  cast: Cast;
-};
-```
-
 **Notification**
+
+Indicates that the frame was launched from a notification triggered by the frame.
 
 ```tsx
 > sdk.context.location
 {
   type: "notification",
   notification: {
+    notificationId: "f7e9ebaf-92f0-43b9-a410-ad8c24f3333b"
     title: "Yoinked!",
     body: "horsefacts captured the flag from you.",
-    id: "f7e9ebaf-92f0-43b9-a410-ad8c24f3333b"
   }
 }
 ```
 
+**Launcher**
+
+Indicates that the frame was launched directly by the client app outside of a context, e.g. via some type of catalog or a notification triggered by the client.
+
 ```tsx
-type NotificationLaunchContext = {
-  type: 'notification';
-  notification: {
-    title: string;
-    body: string;
-    id: string;
-  };
-};
+> sdk.context.location
+{
+  type: "launcher"
+}
 ```
 
 ### context.user
@@ -351,6 +381,26 @@ type User = {
     username: string;
   }[];
 };
+```
+
+### context.client
+
+Details about the Farcaster client running the frame. This should be considered untrusted
+
+- `clientFid`: the self-reported FID of the client (e.g. 9152 for Warpcast)
+- `added`: whether the user has added the frame to the client
+- `notificationDetails`: in case the user has enabled notifications, includes the `url` and `token` for sending notifications
+
+```trx
+> sdk.context.client
+{
+  clientFid: 9152,
+  added: true,
+  notificationDetails: {
+    url: "https://api.warpcast.com/v1/frame-notifications",
+    token: "a05059ef2415c67b08ecceb539201cbc6"
+  }
+}
 ```
 
 ### actions.ready
