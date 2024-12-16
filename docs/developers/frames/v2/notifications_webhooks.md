@@ -30,17 +30,19 @@ A Farcaster domain manifest is required for a frame to be eligible to be added t
 {
   "accountAssociation": {
     "header": "eyJmaWQiOjU0NDgsInR5cGUiOiJjdXN0b2R5Iiwia2V5IjoiMHg2MWQwMEFENzYwNjhGOEQ0NzQwYzM1OEM4QzAzYUFFYjUxMGI1OTBEIn0",
-    "payload": "eyJkb21haW4iOiJ0ZXN0In0",
-    "signature": "MHhlZWJkZjlhNDgwMWI2YTExNTc2MjdiZDg2OTM3YTAxN2ZlMzFhMzQ2Njk1YjMxZjFmZTFhOWYzZGUyNjY0MjEwNGJiMDRlMGJlNDdmZjg4YWE4NjIzOWUwZTg1MDc4MDQzNDdmNGUxNmUwMDAwOTUzY2VhMGQwMDdhNDEwMTBjZDFj"
+    "payload": "eyJkb21haW4iOiJleGFtcGxlLmNvbSJ9",
+    "signature": "MHg3NmRkOWVlMjE4OGEyMjliNzExZjUzOTkxYTc1NmEzMGZjNTA3NmE5OTU5OWJmOWFmYjYyMzAyZWQxMWQ2MWFmNTExYzlhYWVjNjQ3OWMzODcyMTI5MzA2YmJhYjdhMTE0MmRhMjA4MmNjNTM5MTJiY2MyMDRhMWFjZTY2NjE5OTFj"
   },
   "frame": {
+    "version": "1",
     "name": "Example Frame",
-    "version": "0.0.1",
     "iconUrl": "https://example.com/icon.png",
     "homeUrl": "https://example.com",
+    "imageUrl": "https://example.com/image.png",
+    "buttonTitle": "Check this out",
     "splashImageUrl": "https://example.com/splash.png",
     "splashBackgroundColor": "#eeccff",
-    "webhookUrl": "https://example.com/webhook"
+    "webhookUrl": "https://example.com/api/webhook"
   }
 }
 ```
