@@ -151,6 +151,17 @@ type FrameConfig = {
   // Example: "https://yoink.party/img/icon.png"
   iconUrl: string;
 
+  // Default image to show when frame is rendered in a feed.
+  // Max 512 characters.
+  // Image must have a 3:2 ratio.
+  // Example: "https://yoink.party/framesV2/opengraph-image"
+  imageUrl: string;
+
+  // Default button title to use when frame is rendered in a feed.
+  // Max 32 characters.
+  // Example: "🚩 Start"
+  buttonTitle: string;
+
   // Splash image URL.
   // Max 512 characters.
   // Image must be 200x200px and less than 1MB.
