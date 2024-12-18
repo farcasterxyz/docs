@@ -30,7 +30,7 @@ Warpcast will continue to support Frames v1 through at least March 2025.
 
 ### Farcaster 101
 
-A 5 minute non-technical primer on Frames:
+A 5-minute non-technical primer on Frames:
 
 <iframe width="688" height="387" src="https://www.youtube.com/embed/rp9X8rAPzPM?si=aXLuh4BBonkm4pKj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
