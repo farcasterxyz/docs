@@ -694,7 +694,7 @@ type EventNotificationsEnabledPayload = {
 };
 ```
 
-### Feature: Frame Events
+## Feature: Frame Events
 
 Farcaster clients emit events to your frame, while it is open, to let you know of actions the user takes.
 
