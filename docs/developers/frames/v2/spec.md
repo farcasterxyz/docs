@@ -559,14 +559,18 @@ type FrameNotificationDetails = {
   token: string;
 };
 
+export type AddFrameRejectedReason =
+  | 'invalid_domain_manifest'
+  | 'rejected_by_user';
+
 export type AddFrameResult =
   | {
-      type: 'success';
+      added: true;
       notificationDetails?: FrameNotificationDetails;
     }
   | {
-      type: 'error';
-      errorReason: 'invalid_domain_manifest' | 'rejected_by_user';
+      added: false;
+      reason: AddFrameRejectedReason;
     };
 
 export type AddFrame = () => Promise<AddFrameResult>;
@@ -577,7 +581,7 @@ There are 2 expected failure conditions which the frame should gracefully handle
 - `invalid_domain_manifest`: The frame domain manifest is invalid. The frame developer should use the developer tools to validate and fix their manifest.
 - `rejected_by_user`: Returned when the user rejects/dismisses the prompt asking them to add the frame, or the frame has triggered `addFrame()` more than once per session.
 
-## Feature: Events
+## Feature: Server (Webhook) Events
 
 The Farcaster client server POSTs 4 types of events to the frame server at the `webhookUrl` specified in its frame manifest:
 
@@ -689,6 +693,53 @@ type EventNotificationsEnabledPayload = {
   notificationDetails: FrameNotificationDetails;
 };
 ```
+
+### Feature: Frame (Frontend) Events
+
+Farcaster clients emit events to your frame, while it is open, to let you know of actions the user takes.
+
+To listen to events, you have to use `sdk.on` to register callbacks ([see full example](https://github.com/farcasterxyz/frames-v2-demo/blob/20d454f5f6b1e4f30a6a49295cbd29ca7f30d44a/src/components/Demo.tsx#L92-L124)).
+
+```ts
+sdk.on('frameAdded', ({ notificationDetails }) => {
+  setLastEvent(
+    `frameAdded${!!notificationDetails ? ', notifications enabled' : ''}`
+  );
+
+  setAdded(true);
+  if (notificationDetails) {
+    setNotificationDetails(notificationDetails);
+  }
+});
+```
+
+Here are the callback definitions:
+
+```ts
+export type EventMap = {
+  frameAdded: ({
+    notificationDetails,
+  }: {
+    notificationDetails?: FrameNotificationDetails;
+  }) => void;
+  frameAddRejected: ({ reason }: { reason: AddFrameRejectedReason }) => void;
+  frameRemoved: () => void;
+  notificationsEnabled: ({
+    notificationDetails,
+  }: {
+    notificationDetails: FrameNotificationDetails;
+  }) => void;
+  notificationsDisabled: () => void;
+};
+```
+
+The emitted events are:
+
+- `frameAdded`, same as the `frame_added` webhook
+- `frameAddRejected`, frontend-only, emitted when the frame has triggered the `addFrame` action and the frame was not added. Reason is the same as in the return value of `addFrame`.
+- `frameRemoved`, same as the `frame_removed` webhook
+- `notificationsEnabled`, same as the `notifications_enabled` webhook
+- `notificationsDisabled`, same as the `notifications_disabled` webhook
 
 ### Feature: Notifications API
 

@@ -12,7 +12,7 @@ The steps to successfully send a notification are:
 
 1. Set up a valid domain manifest
 2. Have a user add the frame to their Farcaster client. You can trigger a prompt via the `addFrame` action
-3. Receive a notification `url` and `token` and save these to persistent storage.
+3. Receive a notification `url` and `token` and save these to persistent storage
 4. Send a notification by POSTing to the `url` using the `token`
 5. Listen for webhooks that tell you when a user adds/removes the frame and enables/disables notifications
 
@@ -63,12 +63,13 @@ To generate and validate a domain manifest:
 
 ## Have users add your frame to their Farcaster client
 
-For a frame to send notifications, it needs to first be added by a user to their Farcaster client, and then notifications need to be enabled. Warpcast always enables notifications when a frame is added so a 2nd step is not needed.
+For a frame to send notifications, it needs to first be added by a user to their Farcaster client, and then notifications need to be enabled. Warpcast always enables notifications when a frame is added (and the manifest contains a `webhookUrl`) so a 2nd step is not needed.
 
-When notifications are enabled, the Farcaster client generates a unique `token` for the user. This token is communicated to the frame together with a `url` that the frame must call. There are 2 way to get these:
+When notifications are enabled, the Farcaster client generates a unique `token` for the user. This token is communicated to the frame together with a `url` that the frame must call. There are 3 ways to get these:
 
 - The return value when calling `addFrame` (see below)
-- Via a webhook, so that you can get the `token` and `url` when the frame is added but not open, and when a user re-enables notification (see below)
+- Via a webhook, so that you can get the `token` and `url` also when the frame is not open, and when a user re-enables notification (see below)
+- Via a frame event, when the user adds the frame while the frame is open
 
 The `token` and `url` need to be saved to persistent storage.
 
@@ -76,13 +77,17 @@ The `token` and `url` need to be saved to persistent storage.
 
 You can use the `addFrame` action while a user is using your frame to prompt them to add it to their Farcaster client.
 
-The result type is:
+The return type is:
 
 ```ts
 export type FrameNotificationDetails = {
   url: string;
   token: string;
 };
+
+export type AddFrameRejectedReason =
+  | 'invalid_domain_manifest'
+  | 'rejected_by_user';
 
 export type AddFrameResult =
   | {
@@ -91,7 +96,7 @@ export type AddFrameResult =
     }
   | {
       added: false;
-      reason: 'invalid_domain_manifest' | 'rejected_by_user';
+      reason: AddFrameRejectedReason;
     };
 ```
 
@@ -266,3 +271,50 @@ type EventNotificationsEnabledPayload = {
   notificationDetails: FrameNotificationDetails;
 };
 ```
+
+## Listen for frame events to get updates while the frame is open
+
+Farcaster clients emit events to your frame, while it is open, to let you know of actions the user takes.
+
+To listen to events, you have to use `sdk.on` to register callbacks ([see full example](https://github.com/farcasterxyz/frames-v2-demo/blob/20d454f5f6b1e4f30a6a49295cbd29ca7f30d44a/src/components/Demo.tsx#L92-L124)).
+
+```ts
+sdk.on('frameAdded', ({ notificationDetails }) => {
+  setLastEvent(
+    `frameAdded${!!notificationDetails ? ', notifications enabled' : ''}`
+  );
+
+  setAdded(true);
+  if (notificationDetails) {
+    setNotificationDetails(notificationDetails);
+  }
+});
+```
+
+Here are the callback definitions:
+
+```ts
+export type EventMap = {
+  frameAdded: ({
+    notificationDetails,
+  }: {
+    notificationDetails?: FrameNotificationDetails;
+  }) => void;
+  frameAddRejected: ({ reason }: { reason: AddFrameRejectedReason }) => void;
+  frameRemoved: () => void;
+  notificationsEnabled: ({
+    notificationDetails,
+  }: {
+    notificationDetails: FrameNotificationDetails;
+  }) => void;
+  notificationsDisabled: () => void;
+};
+```
+
+The emitted events are:
+
+- `frameAdded`, same as the `frame_added` webhook
+- `frameAddRejected`, frontend-only, emitted when the frame has triggered the `addFrame` action and the frame was not added. Reason is the same as in the return value of `addFrame`.
+- `frameRemoved`, same as the `frame_removed` webhook
+- `notificationsEnabled`, same as the `notifications_enabled` webhook
+- `notificationsDisabled`, same as the `notifications_disabled` webhook
