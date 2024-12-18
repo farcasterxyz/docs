@@ -1,6 +1,6 @@
 # `useSignInMessage`
 
-Hook for reading the Sign in With Farcaster message and signature used to authenticate the user.
+Hook for reading the Sign In With Farcaster message and signature used to authenticate the user.
 
 If you're providing the message and signature to a backend API, you may want to use this hook.
 
@@ -12,8 +12,8 @@ function App() {
 
   return (
     <div>
-      <p>You signed: {message}</p>
-      <p>Your signature: {signature}</p>
+      <p>You signed in with: {message}</p>
+      <p>Your signed message: {signature}</p>
     </div>
   );
 }
