@@ -581,7 +581,7 @@ There are 2 expected failure conditions which the frame should gracefully handle
 - `invalid_domain_manifest`: The frame domain manifest is invalid. The frame developer should use the developer tools to validate and fix their manifest.
 - `rejected_by_user`: Returned when the user rejects/dismisses the prompt asking them to add the frame, or the frame has triggered `addFrame()` more than once per session.
 
-## Feature: Server (Webhook) Events
+## Feature: Server Events
 
 The Farcaster client server POSTs 4 types of events to the frame server at the `webhookUrl` specified in its frame manifest:
 
@@ -694,7 +694,7 @@ type EventNotificationsEnabledPayload = {
 };
 ```
 
-### Feature: Frame (Frontend) Events
+### Feature: Frame Events
 
 Farcaster clients emit events to your frame, while it is open, to let you know of actions the user takes.
 
@@ -712,6 +712,8 @@ sdk.on('frameAdded', ({ notificationDetails }) => {
   }
 });
 ```
+
+Ensure that on unmount/close, all the listeners are removed via `sdk.removeAllListeners()`.
 
 Here are the callback definitions:
 
@@ -741,7 +743,7 @@ The emitted events are:
 - `notificationsEnabled`, same as the `notifications_enabled` webhook
 - `notificationsDisabled`, same as the `notifications_disabled` webhook
 
-### Feature: Notifications API
+## Feature: Notifications API
 
 A frame server can send notifications to one or more users who have enabled them.
 

@@ -291,6 +291,8 @@ sdk.on('frameAdded', ({ notificationDetails }) => {
 });
 ```
 
+Ensure that on unmount/close, all the listeners are removed via `sdk.removeAllListeners()`.
+
 Here are the callback definitions:
 
 ```ts
