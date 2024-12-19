@@ -499,32 +499,44 @@ Older frame types will be fully supported for now until we develop a thorough tr
 
 ## Feature: Auth
 
-Provide a trustworthy form of authentication similar to signed Frame Messages in Frames v1
+Allow users to sign into frames using their Farcaster identity.
 
-### actions.requestAuthToken
+### actions.signIn
 
-Requests a JSON token that can make authenticated requests to a server on behalf of the user. This request is executed in the background and no UI is shown to the user. Tokens are self-verifying and can be authenticated by checking the signature against a hub API.
+Initiates a Sign In with Farcaster flow for the user.
 
 ```tsx
-> await sdk.actions.requestAuthToken();
-"0xabcd...1234"
+> await sdk.actions.signIn({ nonce });
+{ message: "yoink.party wants you to sign in...", signature: "0xabcd..." }
 ```
 
 ```tsx
-type RequestAuthToken = (
-  options: Partial<{
-    /**
-     * When this token should be considered invalid.
-     * @default 15 minutes from now
-     */
-    exp?: number;
-  }>
-) => Promise<string>;
+export type SignInOptions = {
+  /**
+   * A random string used to prevent replay attacks.
+   */
+  nonce: string;
+
+  /**
+   * Start time at which the signature becomes valid.
+   * ISO 8601 datetime.
+   */
+  notBefore?: string;
+
+  /**
+   * Expiration time at which the signature is no longer valid.
+   * ISO 8601 datetime.
+   */
+  expirationTime?: string;
+};
+
+export type SignInResult = {
+  signature: string;
+  message: string;
+};
+
+export type SignIn = (options: SignInOptions) => Promise<SignInResult>;
 ```
-
-**TBD:**
-
-- Token scheme and verification method
 
 ## Feature: Add frame
 
