@@ -503,7 +503,10 @@ Allow users to sign into frames using their Farcaster identity.
 
 ### actions.signIn
 
-Initiates a Sign In with Farcaster flow for the user.
+Initiates a Sign In with Farcaster flow for the user. The Frame host must set
+the `domain` value of the SIWF message to the domain of the frame and the `uri`
+value of the url of the Frame. When validating this message the `domain` must
+be checked.
 
 ```tsx
 > await sdk.actions.signIn({ nonce });
