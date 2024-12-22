@@ -20,8 +20,6 @@ Here's a full walkthrough of creating a frames v2 app:
 
 ## Tutorial
 
-The following tutorial is based on the [Frames v2 Demo](https://github.com/farcasterxyz/frames-v2-demo) repo on Github.
-
 ### Setup and dependencies
 
 We'll start with a fresh NextJS app, and accept all the default config options.
@@ -41,7 +39,7 @@ $ yarn create next-app
 Next, install frame related dependencies.
 
 ```bash
-$ yarn add @farcaster/frame-sdk @farcaster/frame-react
+$ yarn add @farcaster/frame-sdk @farcaster/frame-react @farcaster/frame-wagmi-connector
 ```
 
 We'll also need [Wagmi](https://wagmi.sh/) to handle wallet interactions. Let's install it and its dependencies.
@@ -54,127 +52,25 @@ OK, we're ready to get started!
 
 ### Configuring providers
 
-We'll need to set up a custom Wagmi connector in order to interact with the user's Farcaster wallet.
+First, create `components/ClientProviders.tsx` to handle our Wagmi and Frame SDK configuration.
 
-First, let's create a custom connector component at `lib/connector.ts`. We'll use this to connect to the user's Farcaster wallet from our app.
-
-> [!NOTE]
-> We plan to move this connector into the frames SDK so you don't have to worry about it. But you'll need to copy-paste it for now.
-
-```ts
-import sdk from '@farcaster/frame-sdk';
-import { SwitchChainError, fromHex, getAddress, numberToHex } from 'viem';
-import { ChainNotConfiguredError, createConnector } from 'wagmi';
-
-frameConnector.type = 'frameConnector' as const;
-
-export function frameConnector() {
-  let connected = true;
-
-  return createConnector<typeof sdk.wallet.ethProvider>((config) => ({
-    id: 'farcaster',
-    name: 'Farcaster Wallet',
-    type: frameConnector.type,
-
-    async setup() {
-      this.connect({ chainId: config.chains[0].id });
-    },
-    async connect({ chainId } = {}) {
-      const provider = await this.getProvider();
-      const accounts = await provider.request({
-        method: 'eth_requestAccounts',
-      });
-
-      let currentChainId = await this.getChainId();
-      if (chainId && currentChainId !== chainId) {
-        const chain = await this.switchChain!({ chainId });
-        currentChainId = chain.id;
-      }
-
-      connected = true;
-
-      return {
-        accounts: accounts.map((x) => getAddress(x)),
-        chainId: currentChainId,
-      };
-    },
-    async disconnect() {
-      connected = false;
-    },
-    async getAccounts() {
-      if (!connected) throw new Error('Not connected');
-      const provider = await this.getProvider();
-      const accounts = await provider.request({
-        method: 'eth_requestAccounts',
-      });
-      return accounts.map((x) => getAddress(x));
-    },
-    async getChainId() {
-      const provider = await this.getProvider();
-      const hexChainId = await provider.request({ method: 'eth_chainId' });
-      return fromHex(hexChainId, 'number');
-    },
-    async isAuthorized() {
-      if (!connected) {
-        return false;
-      }
-
-      const accounts = await this.getAccounts();
-      return !!accounts.length;
-    },
-    async switchChain({ chainId }) {
-      const provider = await this.getProvider();
-      const chain = config.chains.find((x) => x.id === chainId);
-      if (!chain) throw new SwitchChainError(new ChainNotConfiguredError());
-
-      await provider.request({
-        method: 'wallet_switchEthereumChain',
-        params: [{ chainId: numberToHex(chainId) }],
-      });
-      return chain;
-    },
-    onAccountsChanged(accounts) {
-      if (accounts.length === 0) this.onDisconnect();
-      else
-        config.emitter.emit('change', {
-          accounts: accounts.map((x) => getAddress(x)),
-        });
-    },
-    onChainChanged(chain) {
-      const chainId = Number(chain);
-      config.emitter.emit('change', { chainId });
-    },
-    async onDisconnect() {
-      config.emitter.emit('disconnect');
-      connected = false;
-    },
-    async getProvider() {
-      return sdk.wallet.ethProvider;
-    },
-  }));
-}
-```
-
-Next, let's create a provider component that handles our Wagmi and Frame SDK configuration. Create `components/ClientProviders.tsx`.
-
-We'll configure our client with Base as the network and use the `frameConnector` that we just created:
+We'll configure our client with Base as the network and use the `farcasterFrame` connector from `@farcaster/frame-wagmi-connector`:
 
 ```tsx
 'use client';
 
 import { FrameProvider } from '@farcaster/frame-react';
+import { farcasterFrame } from '@farcaster/frame-wagmi-connector';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { WagmiProvider, createConfig, http } from 'wagmi';
 import { base } from 'wagmi/chains';
-
-import { frameConnector } from '@/lib/connector';
 
 export const wagmiConfig = createConfig({
   chains: [base],
   transports: {
     [base.id]: http(),
   },
-  connectors: [frameConnector()],
+  connectors: [farcasterFrame()],
 });
 
 const queryClient = new QueryClient();
@@ -190,9 +86,9 @@ export function ClientProviders({ children }: { children: React.ReactNode }) {
 }
 ```
 
-The reason we need to create a separate `ClientProviders` component is because the Frame SDK relies on the browser `window` object, which is not available on the server. This is why we need `'use client'` at the top of the file.
+The reason we need to create a separate `ClientProviders` component is because the Frame SDK relies on the browser `window` object, which is not available on the server.
 
-Finally, let's add this providers component to our app layout. Edit `app/layout.tsx`:
+Finally, let's add this providers component to our app layout and specify the entry point of our frame. Edit `app/layout.tsx`:
 
 ```tsx
 import type { Metadata } from 'next';
@@ -200,9 +96,27 @@ import type { Metadata } from 'next';
 import '@/app/globals.css';
 import { ClientProviders } from '@/components/ClientProviders';
 
+const BASE_URL = 'https://your-app.com';
+
 export const metadata: Metadata = {
   title: 'Farcaster Frames v2 Demo',
   description: 'A Farcaster Frames v2 demo app',
+  other: {
+    'fc:frame': JSON.stringify({
+      version: 'next',
+      imageUrl: `${BASE_URL}/img/opengraph.jpg`,
+      button: {
+        title: 'Launch Frame',
+        action: {
+          type: 'launch_frame',
+          name: 'Frames v2 Demo',
+          url: `${BASE_URL}`,
+          splashImageUrl: `${BASE_URL}/img/splash-image.jpg`,
+          splashBackgroundColor: '#f7f7f7',
+        },
+      },
+    }),
+  },
 };
 
 export default function RootLayout({
@@ -275,6 +189,8 @@ $ ngrok http 3000
 Some tunneling tools, like the ngrok free tier, insert an click-through interstitial between your dev server and the tunnel endpoint. Use a paid ngrok account or a different tool, like Tailscale funnel.
 :::
 
+Once the tunnel is running, set `BASE_URL` in `app/layout.tsx` to be your ngrok URL.
+
 Now open the Frame Playground on Warpcast mobile, by visiting [https://warpcast.com/~/developers/frame](https://warpcast.com/~/developers/frames).
 
 Enter your ngrok URL:
@@ -282,6 +198,8 @@ Enter your ngrok URL:
 <img src="https://raw.githubusercontent.com/farcasterxyz/frames-v2-demo/refs/heads/main/docs/img/1_playground.png" width="200" alt="Frames Playground" />
 
 ..and tap "Launch" to open your app. You should see your Farcaster username, which is part of the context that Frames inject into your app!
+
+You can create `/img/opengraph.jpg` and `/img/splash-image.jpg` in your public directory to customize the frame's in-feed appearance.
 
 ### Viewing context
 
