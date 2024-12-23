@@ -262,6 +262,7 @@ export type FrameContext = {
   client: {
     clientFid: number;
     added: boolean;
+    safeAreaInsets?: SafeAreaInsets;
     notificationDetails?: FrameNotificationDetails;
   };
 };
@@ -371,15 +372,6 @@ type User = {
     placeId: string;
     description: string;
   };
-  custodyAddress: string;
-  verifiedAddresses: {
-    ethereum: string[];
-    solana: string[];
-  };
-  connectedAccounts: {
-    platform: string;
-    username: string;
-  }[];
 };
 ```
 
@@ -389,6 +381,7 @@ Details about the Farcaster client running the frame. This should be considered 
 
 - `clientFid`: the self-reported FID of the client (e.g. 9152 for Warpcast)
 - `added`: whether the user has added the frame to the client
+- `safeAreaInsets`: insets to avoid areas covered by navigation elements that obscure the view
 - `notificationDetails`: in case the user has enabled notifications, includes the `url` and `token` for sending notifications
 
 ```trx
@@ -396,12 +389,57 @@ Details about the Farcaster client running the frame. This should be considered 
 {
   clientFid: 9152,
   added: true,
+  safeAreaInsets: {
+    top: 0,
+    bottom: 20,
+    left: 0,
+    right: 0,
+  };
   notificationDetails: {
     url: "https://api.warpcast.com/v1/frame-notifications",
     token: "a05059ef2415c67b08ecceb539201cbc6"
   }
 }
 ```
+
+```tsx
+type SafeAreaInsets = {
+  top: number;
+  bottom: number;
+  left: number;
+  right: number;
+};
+
+type ClientContext = {
+  clientFid: number;
+  added: boolean;
+  safeAreaInsets?: SafeAreaInsets;
+  notificationDetails?: FrameNotificationDetails;
+};
+```
+
+#### Using safeAreaInsets
+
+Mobile devices render navigation elements that obscure the view of a frame. Use
+the `safeAreaInsets` to render content in the safe area that won't be obstructed.
+
+A basic usage would to wrap your view in a container that adds margin:
+
+```
+<div style={{
+  marginTop: context.client.safeAreaInsets.top,
+  marginBottom: context.client.safeAreaInsets.bottom,
+  marginLeft: context.client.safeAreaInsets.left,
+  marginRight: context.client.safeAreaInsets.right,
+}}>
+  ...your frame view
+</div>
+```
+
+However, you may want to set these insets on specific elements: for example if
+you have tab bar at the bottom of your frame with a different background, you'd
+want to set the bottom inset as padding there so it looks attached to the
+bottom of the view.
 
 ### actions.ready
 
