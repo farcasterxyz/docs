@@ -10,7 +10,7 @@ Channels are being prototyped in Warpcast and not fully supported by the Farcast
 
 ## Hosting Channels
 
-Anyone can create a channel host by paying a fee in Warpcast and choosing a channel name. The name must be under 16 characters and can only contain lowercase alphabets and numbers. A channel's creator is called a host and may invite other co-hosts to operate the channel. Hosts have special privileges like:
+Anyone can create a channel host by paying a fee in Warpcast and choosing a channel name. The name must be under 16 characters and can only contain lowercase letters and numbers. A channel's creator is called a host and may invite other co-hosts to operate the channel. Hosts have special privileges like:
 
 1. Defining “channel norms" which everyone must agree to when joining.
 2. Pinning or hiding casts in a channel.
