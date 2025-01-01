@@ -151,6 +151,17 @@ type FrameConfig = {
   // Example: "https://yoink.party/img/icon.png"
   iconUrl: string;
 
+  // Default image to show when frame is rendered in a feed.
+  // Max 512 characters.
+  // Image must have a 3:2 ratio.
+  // Example: "https://yoink.party/framesV2/opengraph-image"
+  imageUrl: string;
+
+  // Default button title to use when frame is rendered in a feed.
+  // Max 32 characters.
+  // Example: "🚩 Start"
+  buttonTitle: string;
+
   // Splash image URL.
   // Max 512 characters.
   // Image must be 200x200px and less than 1MB.
@@ -237,67 +248,98 @@ Frame applications must include a frame SDK JavaScript package to communicate wi
 
 The frame SDK manages frame-client communication over a `window.postMessage` channel. Since the parent app cannot inject arbitrary JavaScript in a browser context, frame applications must include the SDK in their app to establish a communication channel.
 
+The `sdk.context` variable provides information about the context within which the frame is running:
+
+```tsx
+export type FrameContext = {
+  user: {
+    fid: number;
+    username?: string;
+    displayName?: string;
+    pfpUrl?: string;
+  };
+  location?: FrameLocationContext;
+  client: {
+    clientFid: number;
+    added: boolean;
+    safeAreaInsets?: SafeAreaInsets;
+    notificationDetails?: FrameNotificationDetails;
+  };
+};
+```
+
 ### context.location
 
 Contains information about the context from which the frame was launched.
 
 ```tsx
-type LaunchContext = CastEmbedLaunchContext | NotificationLaunchContext;
+export type FrameLocationContextCastEmbed = {
+  type: 'cast_embed';
+  cast: {
+    fid: number;
+    hash: string;
+  };
+};
+
+export type FrameLocationContextNotification = {
+  type: 'notification';
+  notification: {
+    notificationId: string;
+    title: string;
+    body: string;
+  };
+};
+
+export type FrameLocationContextLauncher = {
+  type: 'launcher';
+};
+
+export type FrameLocationContext =
+  | FrameLocationContextCastEmbed
+  | FrameLocationContextNotification
+  | FrameLocationContextLauncher;
 ```
 
 **Cast Embed**
 
+Indicates that the frame was launched from a cast (where it is an embed).
+
 ```tsx
 > sdk.context.location
 {
-  type: "embed",
+  type: "cast_embed",
   cast: {
     fid: 3621,
     hash: "0xa2fbef8c8e4d00d8f84ff45f9763b8bae2c5c544",
-    text: "New Yoink just dropped:",
-    embeds: ["https://yoink.party/frames"]
   }
 }
 ```
 
-```tsx
-type Cast = {
-  fid: number;
-  hash: string;
-  text: string;
-  embeds: string[];
-  mentions: Mention[];
-};
-
-type CastEmbedLaunchContext = {
-  type: 'cast';
-  cast: Cast;
-};
-```
-
 **Notification**
+
+Indicates that the frame was launched from a notification triggered by the frame.
 
 ```tsx
 > sdk.context.location
 {
   type: "notification",
   notification: {
+    notificationId: "f7e9ebaf-92f0-43b9-a410-ad8c24f3333b"
     title: "Yoinked!",
     body: "horsefacts captured the flag from you.",
-    id: "f7e9ebaf-92f0-43b9-a410-ad8c24f3333b"
   }
 }
 ```
 
+**Launcher**
+
+Indicates that the frame was launched directly by the client app outside of a context, e.g. via some type of catalog or a notification triggered by the client.
+
 ```tsx
-type NotificationLaunchContext = {
-  type: 'notification';
-  notification: {
-    title: string;
-    body: string;
-    id: string;
-  };
-};
+> sdk.context.location
+{
+  type: "launcher"
+}
 ```
 
 ### context.user
@@ -330,17 +372,74 @@ type User = {
     placeId: string;
     description: string;
   };
-  custodyAddress: string;
-  verifiedAddresses: {
-    ethereum: string[];
-    solana: string[];
-  };
-  connectedAccounts: {
-    platform: string;
-    username: string;
-  }[];
 };
 ```
+
+### context.client
+
+Details about the Farcaster client running the frame. This should be considered untrusted
+
+- `clientFid`: the self-reported FID of the client (e.g. 9152 for Warpcast)
+- `added`: whether the user has added the frame to the client
+- `safeAreaInsets`: insets to avoid areas covered by navigation elements that obscure the view
+- `notificationDetails`: in case the user has enabled notifications, includes the `url` and `token` for sending notifications
+
+```trx
+> sdk.context.client
+{
+  clientFid: 9152,
+  added: true,
+  safeAreaInsets: {
+    top: 0,
+    bottom: 20,
+    left: 0,
+    right: 0,
+  };
+  notificationDetails: {
+    url: "https://api.warpcast.com/v1/frame-notifications",
+    token: "a05059ef2415c67b08ecceb539201cbc6"
+  }
+}
+```
+
+```tsx
+type SafeAreaInsets = {
+  top: number;
+  bottom: number;
+  left: number;
+  right: number;
+};
+
+type ClientContext = {
+  clientFid: number;
+  added: boolean;
+  safeAreaInsets?: SafeAreaInsets;
+  notificationDetails?: FrameNotificationDetails;
+};
+```
+
+#### Using safeAreaInsets
+
+Mobile devices render navigation elements that obscure the view of a frame. Use
+the `safeAreaInsets` to render content in the safe area that won't be obstructed.
+
+A basic usage would to wrap your view in a container that adds margin:
+
+```
+<div style={{
+  marginTop: context.client.safeAreaInsets.top,
+  marginBottom: context.client.safeAreaInsets.bottom,
+  marginLeft: context.client.safeAreaInsets.left,
+  marginRight: context.client.safeAreaInsets.right,
+}}>
+  ...your frame view
+</div>
+```
+
+However, you may want to set these insets on specific elements: for example if
+you have tab bar at the bottom of your frame with a different background, you'd
+want to set the bottom inset as padding there so it looks attached to the
+bottom of the view.
 
 ### actions.ready
 
@@ -438,32 +537,47 @@ Older frame types will be fully supported for now until we develop a thorough tr
 
 ## Feature: Auth
 
-Provide a trustworthy form of authentication similar to signed Frame Messages in Frames v1
+Allow users to sign into frames using their Farcaster identity.
 
-### actions.requestAuthToken
+### actions.signIn
 
-Requests a JSON token that can make authenticated requests to a server on behalf of the user. This request is executed in the background and no UI is shown to the user. Tokens are self-verifying and can be authenticated by checking the signature against a hub API.
+Initiates a Sign In with Farcaster flow for the user. The Frame host must set
+the `domain` value of the SIWF message to the domain of the frame and the `uri`
+value of the url of the Frame. When validating this message the `domain` must
+be checked.
 
 ```tsx
-> await sdk.actions.requestAuthToken();
-"0xabcd...1234"
+> await sdk.actions.signIn({ nonce });
+{ message: "yoink.party wants you to sign in...", signature: "0xabcd..." }
 ```
 
 ```tsx
-type RequestAuthToken = (
-  options: Partial<{
-    /**
-     * When this token should be considered invalid.
-     * @default 15 minutes from now
-     */
-    exp?: number;
-  }>
-) => Promise<string>;
+export type SignInOptions = {
+  /**
+   * A random string used to prevent replay attacks.
+   */
+  nonce: string;
+
+  /**
+   * Start time at which the signature becomes valid.
+   * ISO 8601 datetime.
+   */
+  notBefore?: string;
+
+  /**
+   * Expiration time at which the signature is no longer valid.
+   * ISO 8601 datetime.
+   */
+  expirationTime?: string;
+};
+
+export type SignInResult = {
+  signature: string;
+  message: string;
+};
+
+export type SignIn = (options: SignInOptions) => Promise<SignInResult>;
 ```
-
-**TBD:**
-
-- Token scheme and verification method
 
 ## Feature: Add frame
 
@@ -498,14 +612,18 @@ type FrameNotificationDetails = {
   token: string;
 };
 
+export type AddFrameRejectedReason =
+  | 'invalid_domain_manifest'
+  | 'rejected_by_user';
+
 export type AddFrameResult =
   | {
-      type: 'success';
+      added: true;
       notificationDetails?: FrameNotificationDetails;
     }
   | {
-      type: 'error';
-      errorReason: 'invalid_domain_manifest' | 'rejected_by_user';
+      added: false;
+      reason: AddFrameRejectedReason;
     };
 
 export type AddFrame = () => Promise<AddFrameResult>;
@@ -516,7 +634,7 @@ There are 2 expected failure conditions which the frame should gracefully handle
 - `invalid_domain_manifest`: The frame domain manifest is invalid. The frame developer should use the developer tools to validate and fix their manifest.
 - `rejected_by_user`: Returned when the user rejects/dismisses the prompt asking them to add the frame, or the frame has triggered `addFrame()` more than once per session.
 
-## Feature: Events
+## Feature: Server Events
 
 The Farcaster client server POSTs 4 types of events to the frame server at the `webhookUrl` specified in its frame manifest:
 
@@ -629,7 +747,56 @@ type EventNotificationsEnabledPayload = {
 };
 ```
 
-### Feature: Notifications API
+## Feature: Frame Events
+
+Farcaster clients emit events to your frame, while it is open, to let you know of actions the user takes.
+
+To listen to events, you have to use `sdk.on` to register callbacks ([see full example](https://github.com/farcasterxyz/frames-v2-demo/blob/20d454f5f6b1e4f30a6a49295cbd29ca7f30d44a/src/components/Demo.tsx#L92-L124)).
+
+```ts
+sdk.on('frameAdded', ({ notificationDetails }) => {
+  setLastEvent(
+    `frameAdded${!!notificationDetails ? ', notifications enabled' : ''}`
+  );
+
+  setAdded(true);
+  if (notificationDetails) {
+    setNotificationDetails(notificationDetails);
+  }
+});
+```
+
+Ensure that on unmount/close, all the listeners are removed via `sdk.removeAllListeners()`.
+
+Here are the callback definitions:
+
+```ts
+export type EventMap = {
+  frameAdded: ({
+    notificationDetails,
+  }: {
+    notificationDetails?: FrameNotificationDetails;
+  }) => void;
+  frameAddRejected: ({ reason }: { reason: AddFrameRejectedReason }) => void;
+  frameRemoved: () => void;
+  notificationsEnabled: ({
+    notificationDetails,
+  }: {
+    notificationDetails: FrameNotificationDetails;
+  }) => void;
+  notificationsDisabled: () => void;
+};
+```
+
+The emitted events are:
+
+- `frameAdded`, same as the `frame_added` webhook
+- `frameAddRejected`, frontend-only, emitted when the frame has triggered the `addFrame` action and the frame was not added. Reason is the same as in the return value of `addFrame`.
+- `frameRemoved`, same as the `frame_removed` webhook
+- `notificationsEnabled`, same as the `notifications_enabled` webhook
+- `notificationsDisabled`, same as the `notifications_disabled` webhook
+
+## Feature: Notifications API
 
 A frame server can send notifications to one or more users who have enabled them.
 
