@@ -38,7 +38,7 @@ A frame URL must have a FrameEmbed in a serialized form in the `fc:frame` meta t
 <meta name="fc:frame" content="<stringified FrameEmbed JSON>" />
 ```
 
-```tsx
+```ts
 type FrameEmbed = {
   // Frame spec version. Required.
   // Example: "next"
@@ -92,7 +92,7 @@ The manifest file declares the metadata that is applied to the frame application
 
 Frame servers must provide a JSON manifest file on their domain at the well known URI `/.well-known/farcaster.json`.
 
-```tsx
+```ts
 type FarcasterManifest = {
   // Metadata associating the domain with a Farcaster account
   accountAssociation: {
@@ -120,7 +120,7 @@ type FarcasterManifest = {
 
 The account association links the domain to a Farcaster account. The signature must be a signed [JSON Farcaster Signature](https://github.com/farcasterxyz/protocol/discussions/208) from the account's custody address with the following payload:
 
-```tsx
+```ts
 {
   domain: string;
 }
@@ -130,7 +130,7 @@ The domain in the signed object must match the domain the manifest is served fro
 
 **Frame Config**
 
-```tsx
+```ts
 type FrameConfig = {
   // Manifest version. Required.
   version: '1';
@@ -194,7 +194,7 @@ Frames may be invoked in the following ways. When invoked, the frame application
 
 Triggers allow a user to launch into your frame application from different places in a Farcaster client application. These will eventually replace "cast actions" and "composer actions." See [Feature: Triggers](#feature-triggers) in the Appendix for further details.
 
-```tsx
+```ts
 type TriggerConfig =
   | {
       // Type of trigger, either cast or composer. Required.
@@ -250,7 +250,7 @@ The frame SDK manages frame-client communication over a `window.postMessage` cha
 
 The `sdk.context` variable provides information about the context within which the frame is running:
 
-```tsx
+```ts
 export type FrameContext = {
   user: {
     fid: number;
@@ -272,16 +272,17 @@ export type FrameContext = {
 
 Contains information about the context from which the frame was launched.
 
-```tsx
-export type FrameLocationContextCastEmbed = {
+```ts
+export type CastEmbedLocationContext = {
   type: 'cast_embed';
+  embed: string;
   cast: {
     fid: number;
     hash: string;
   };
 };
 
-export type FrameLocationContextNotification = {
+export type NotificationLocationContext = {
   type: 'notification';
   notification: {
     notificationId: string;
@@ -290,21 +291,42 @@ export type FrameLocationContextNotification = {
   };
 };
 
-export type FrameLocationContextLauncher = {
+export type LauncherLocationContext = {
   type: 'launcher';
 };
 
-export type FrameLocationContext =
-  | FrameLocationContextCastEmbed
-  | FrameLocationContextNotification
-  | FrameLocationContextLauncher;
+export type ChannelLocationContext = {
+  type: 'channel';
+  channel: {
+    /**
+     * Channel key identifier
+     */
+    key: string;
+
+    /**
+     * Channel name
+     */
+    name: string;
+
+    /**
+     * Channel profile image URL
+     */
+    imageUrl?: string;
+  };
+};
+
+export type LocationContext =
+  | CastEmbedLocationContext
+  | NotificationLocationContext
+  | LauncherLocationContext
+  | ChannelLocationContext;
 ```
 
 **Cast Embed**
 
 Indicates that the frame was launched from a cast (where it is an embed).
 
-```tsx
+```ts
 > sdk.context.location
 {
   type: "cast_embed",
@@ -319,7 +341,7 @@ Indicates that the frame was launched from a cast (where it is an embed).
 
 Indicates that the frame was launched from a notification triggered by the frame.
 
-```tsx
+```ts
 > sdk.context.location
 {
   type: "notification",
@@ -335,7 +357,7 @@ Indicates that the frame was launched from a notification triggered by the frame
 
 Indicates that the frame was launched directly by the client app outside of a context, e.g. via some type of catalog or a notification triggered by the client.
 
-```tsx
+```ts
 > sdk.context.location
 {
   type: "launcher"
@@ -346,7 +368,30 @@ Indicates that the frame was launched directly by the client app outside of a co
 
 Details about the calling user which can be used to customize the interface. This should be considered untrusted since it is passed in by the application, and there is no guarantee that it was authorized by the user.
 
-```tsx
+```ts
+export type AccountLocation = {
+  placeId: string;
+
+  /**
+   * Human-readable string describing the location
+   */
+  description: string;
+};
+
+export type UserContext = {
+  fid: number;
+  username?: string;
+  displayName?: string;
+
+  /**
+   * Profile image URL
+   */
+  pfpUrl?: string;
+  location?: AccountLocation;
+};
+```
+
+```ts
 > sdk.context.user
 {
   "fid": 6841,
@@ -361,7 +406,7 @@ Details about the calling user which can be used to customize the interface. Thi
 }
 ```
 
-```tsx
+```ts
 type User = {
   fid: number;
   username?: string;
@@ -384,7 +429,23 @@ Details about the Farcaster client running the frame. This should be considered 
 - `safeAreaInsets`: insets to avoid areas covered by navigation elements that obscure the view
 - `notificationDetails`: in case the user has enabled notifications, includes the `url` and `token` for sending notifications
 
-```trx
+```ts
+export type SafeAreaInsets = {
+  top: number;
+  bottom: number;
+  left: number;
+  right: number;
+};
+
+export type ClientContext = {
+  clientFid: number;
+  added: boolean;
+  notificationDetails?: FrameNotificationDetails;
+  safeAreaInsets?: SafeAreaInsets;
+};
+```
+
+```ts
 > sdk.context.client
 {
   clientFid: 9152,
@@ -402,7 +463,12 @@ Details about the Farcaster client running the frame. This should be considered 
 }
 ```
 
-```tsx
+```ts
+type FrameNotificationDetails = {
+  url: string;
+  token: string;
+};
+
 type SafeAreaInsets = {
   top: number;
   bottom: number;
@@ -445,11 +511,11 @@ bottom of the view.
 
 Indicates that the application is fully loaded and ready to displayed to users. Once this is called the loading screen will be hidden. Frame applications MUST call `ready()` to display their app.
 
-```tsx
+```ts
 > await sdk.actions.ready();
 ```
 
-```tsx
+```ts
 type Ready = (
   options: Partial<{
     /**
@@ -465,11 +531,11 @@ type Ready = (
 
 Request the client app to direct the user to an external URL via deep link or web browser.
 
-```tsx
+```ts
 > await sdk.actions.openUrl({ url: "<https://yoink.today/>" });
 ```
 
-```tsx
+```ts
 type OpenExternalUrl = (options: {
   url: string;
   close?: boolean;
@@ -480,14 +546,14 @@ type OpenExternalUrl = (options: {
 
 Close the app frame and display an optional toast.
 
-```tsx
+```ts
 > await sdk.actions.close({ toast: {
     message: "You yoinked the flag from @deodad."
   }
 });
 ```
 
-```tsx
+```ts
 type Close = (options: {
   toast?: {
     message: string;
@@ -503,7 +569,7 @@ An [EIP-1193 Ethereum Provider](https://eips.ethereum.org/EIPS/eip-1193) for i
 - request a transaction (`eth_sendTransaction`)
 - request a wallet signature (`eth_signTypedData_v4`)
 
-```tsx
+```ts
 > await sdk.wallet.ethProvider.request({
   method: 'eth_requestAccounts'
 });
@@ -546,12 +612,12 @@ the `domain` value of the SIWF message to the domain of the frame and the `uri`
 value of the url of the Frame. When validating this message the `domain` must
 be checked.
 
-```tsx
+```ts
 > await sdk.actions.signIn({ nonce });
 { message: "yoink.party wants you to sign in...", signature: "0xabcd..." }
 ```
 
-```tsx
+```ts
 export type SignInOptions = {
   /**
    * A random string used to prevent replay attacks.
@@ -595,7 +661,7 @@ Request the user to add the frame, which adds it to the user's favorites list an
 
 ![https://github.com/user-attachments/assets/cdc36744-7a20-4666-996b-ad2003f0afb9](https://github.com/user-attachments/assets/cdc36744-7a20-4666-996b-ad2003f0afb9)
 
-```tsx
+```ts
 > await sdk.actions.addFrame();
 {
   "type": "success",
@@ -606,7 +672,7 @@ Request the user to add the frame, which adds it to the user's favorites list an
 }
 ```
 
-```tsx
+```ts
 type FrameNotificationDetails = {
   url: string;
   token: string;
@@ -687,7 +753,7 @@ Webhook payload:
 }
 ```
 
-```tsx
+```ts
 type EventFrameAddedPayload = {
   event: 'frame_added';
   notificationDetails?: FrameNotificationDetails;
@@ -740,7 +806,7 @@ Webhook payload:
 }
 ```
 
-```tsx
+```ts
 type EventNotificationsEnabledPayload = {
   event: 'notifications_enabled';
   notificationDetails: FrameNotificationDetails;
@@ -751,7 +817,7 @@ type EventNotificationsEnabledPayload = {
 
 Farcaster clients emit events to your frame, while it is open, to let you know of actions the user takes.
 
-To listen to events, you have to use `sdk.on` to register callbacks ([see full example](https://github.com/farcasterxyz/frames-v2-demo/blob/20d454f5f6b1e4f30a6a49295cbd29ca7f30d44a/src/components/Demo.tsx#L92-L124)).
+To listen to events, you have to use `sdk.on` to register callbacks ([see full example](https://github.com/farcasterxyz/frames-v2-demo/blob/20d454f5f6b1e4f30a6a49295cbd29ca7f30d44a/src/components/Demo.ts#L92-L124)).
 
 ```ts
 sdk.on('frameAdded', ({ notificationDetails }) => {
@@ -853,7 +919,7 @@ We intend to introduce additional triggers in the future, replacing "cast action
 
 **Context types**
 
-```tsx
+```ts
 type CastLaunchContext = {
   type: 'cast';
   triggerId: string; // comes from TriggerConfig
@@ -894,7 +960,7 @@ type DirectCastEmbedLaunchContext = {
 };
 ```
 
-```tsx
+```ts
 > sdk.context.location
 {
   type: "cast_embed",
@@ -917,11 +983,11 @@ A native action button may be rendered via an SDK call which provides a clear an
 
 Set the Primary Button.
 
-```tsx
+```ts
 > await sdk.actions.setPrimaryButton({ text: "Yoink!" });
 ```
 
-```tsx
+```ts
 type SetPrimaryButton = (options: {
   text: string;
   enabled?: boolean;
@@ -935,7 +1001,7 @@ An app frame should subscribe to the `primaryButtonClicked` event to respond to 
 
 Emitted when user clicks the Primary Button.
 
-```tsx
+```ts
 > Farcaster.events.on("primaryButtonClick", () => {
     console.log("clicked!") }
 );
