@@ -9,15 +9,15 @@ generates a new messages
 
 The message is a protobuf that contains the data, its hash and a signature from the author.
 
-| Field            | Type                                | Label | Description                                                                                                                                                                                                                                                     |
-| ---------------- | ----------------------------------- | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| data             | [MessageData](#MessageData)         |       | Contents of the message. Alternatively, you can use the data_bytes to serialize the `MessageData`                                                                                                                                                               |
-| hash             | bytes                               |       | Hash digest of data                                                                                                                                                                                                                                             |
-| hash_scheme      | [HashScheme](#HashScheme)           |       | Hash scheme that produced the hash digest                                                                                                                                                                                                                       |
-| signature        | bytes                               |       | Signature of the hash digest                                                                                                                                                                                                                                    |
-| signature_scheme | [SignatureScheme](#SignatureScheme) |       | Signature scheme that produced the signature                                                                                                                                                                                                                    |
-| signer           | bytes                               |       | Public key or address of the key pair that produced the signature                                                                                                                                                                                               |
-| data_bytes       | bytes                               |       | Alternate to the "data" field. If you are constructing the [MessageData](#MessageData) in a programing language other than Typescript, you can use this field to serialize the `MessageData` and calculate the `hash` and `signature` on these bytes. Optional. |
+| Field            | Type                                | Label | Description                                                                                                                                                                                                                                                      |
+| ---------------- | ----------------------------------- | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| data             | [MessageData](#MessageData)         |       | Contents of the message. Alternatively, you can use the data_bytes to serialize the `MessageData`                                                                                                                                                                |
+| hash             | bytes                               |       | Hash digest of data                                                                                                                                                                                                                                              |
+| hash_scheme      | [HashScheme](#HashScheme)           |       | Hash scheme that produced the hash digest                                                                                                                                                                                                                        |
+| signature        | bytes                               |       | Signature of the hash digest                                                                                                                                                                                                                                     |
+| signature_scheme | [SignatureScheme](#SignatureScheme) |       | Signature scheme that produced the signature                                                                                                                                                                                                                     |
+| signer           | bytes                               |       | Public key or address of the key pair that produced the signature                                                                                                                                                                                                |
+| data_bytes       | bytes                               |       | Alternate to the "data" field. If you are constructing the [MessageData](#MessageData) in a programming language other than Typescript, you can use this field to serialize the `MessageData` and calculate the `hash` and `signature` on these bytes. Optional. |
 
 ### 1.1 MessageData
 
@@ -174,7 +174,7 @@ Type of Reaction
 
 ## 5. Link
 
-A Link message creates a relationship between two users (e..g follow)
+A Link message creates a relationship between two users (e.g. follow)
 
 ### 5.1 LinkBody
 

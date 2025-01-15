@@ -5,7 +5,7 @@ title: Getting Started with Frames
 # Getting Started
 
 ::: info Not ready to build?
-If you'd prefer to learn more about Frames before building one, jump ahead to the [Frames Specifcation](./spec).
+If you'd prefer to learn more about Frames before building one, jump ahead to the [Frames Specification](./spec).
 :::
 
 Let's use Frog to go from 0 to 1 in less than a minute. At the end of this we'll have:
@@ -39,7 +39,7 @@ pnpm create frog -t vercel
 Complete the prompts and follow the instructions:
 
 ```
-bun install // install depedencies
+bun install // install dependencies
 bun run dev // start dev server
 ```
 
@@ -93,7 +93,7 @@ pnpm run deploy
 ```
 
 Complete the prompts. Once your frame is deployed you can test it end-to-end
-using the [Warpcast Frame Validator](https://warpcast.com/~/developers/frames).
+using the [Warpcast Frame Validator](https://warpcast.com/~/developers/frames-legacy).
 
 ::: info
 Make sure to plug the full frame URL in. For Vercel projects this default frame

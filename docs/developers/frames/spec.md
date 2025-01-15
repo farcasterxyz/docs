@@ -50,7 +50,7 @@ A frame enters Farcaster when a user creates a cast and embeds the frame URL in 
 
 ## Constructing a frame
 
-A frame must include required properties and may contain optional properties. Frames can be validated using the [Frame Validator](https://warpcast.com/~/developers/frames) tool provided by Warpcast.
+A frame must include required properties and may contain optional properties. Frames can be validated using the [Frame Validator](https://warpcast.com/~/developers/frames-legacy) tool provided by Warpcast.
 
 ### Properties
 
@@ -403,7 +403,7 @@ A signature packet is a JSON object sent to the Frame server when a button is cl
 
 1. **Signed Message** — an authenticated protobuf that represents the user action. This message must be unpacked by a farcaster hub to read the data inside.
 
-2. **Unsigned Message** — an unathenticated JSON object that represents the user action. can be read directly.
+2. **Unsigned Message** — an unauthenticated JSON object that represents the user action. can be read directly.
 
 ::: warning
 Unsigned messages can be spoofed and should usually be ignored. It is only safe to use them if you are performing an unauthenticated request.
@@ -462,7 +462,7 @@ Although it may be possible to validate an Ed25519 signature onchain, a valid si
 | 2/8/24  | Frames can have [NFT mint buttons](https://warpcast.notion.site/Frames-Mint-action-Public-cea0d2249e3e41dbafb2e9ab23107275) and images with 1:1 aspect ratio.                                   |
 | 2/6/24  | Frames can define [simple links to external pages](https://warpcast.notion.site/Frames-External-Links-Public-60c9900cffae4e2fb1b6aae3d4601c15?pvs=4).                                           |
 | 2/2/24  | Frames can [accept text input](https://warpcast.notion.site/Frames-Text-Input-Public-27c9f0d61903486d89b6d932dd0d6a22).                                                                         |
-| 1/30/24 | Frames [validator](https://warpcast.com/~/developers/frames) launched.                                                                                                                          |
+| 1/30/24 | Frames [validator](https://warpcast.com/~/developers/frames-legacy) launched.                                                                                                                   |
 | 1/29/24 | Frames support redirecting after the post action.                                                                                                                                               |
 | 1/26/24 | Frames launched.                                                                                                                                                                                |
 

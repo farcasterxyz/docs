@@ -21,6 +21,13 @@ Or standalone experiences like polls and games:
 - [Yoink](https://warpcast.com/horsefacts.eth/0x70019199) the flag in this simple yet viral social game
 - generate a [Waifu NFT](https://warpcast.com/horsefacts.eth/0xbc7d33ca) based on your Farcaster profile
 
+::: info Frames are evolving!
+
+We're working on a new [Frames standard](./v2/index.md) to enable even better in-feed experiences. You can choose to build on the stable v1 standard, or the experimental v2.
+
+Warpcast will continue to support Frames v1 through at least March 2025.
+:::
+
 ### Farcaster 101
 
 A 5 minute non-technical primer on Frames:

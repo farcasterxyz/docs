@@ -8,3 +8,4 @@ The reference sections documents API's, standards and protocols used commonly us
 - [Replicator](/reference/replicator/schema) - An overview and schema for the replicator.
 - [Contracts](/reference/contracts/index) - A design overview and ABI reference for Farcaster contracts.
 - [FName Registry](/reference/fname/api) - An overview and API reference for the Farcaster Name Server.
+- [Neynar](/reference/third-party/neynar/index) - An overview of Neynar APIs that can help developers get started with Farcaster

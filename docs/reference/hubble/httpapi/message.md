@@ -154,7 +154,7 @@ curl -X POST "http://127.0.0.1:2281/v1/validateMessage" \
 }
 ```
 
-## Using with Rust, Go or other programing languages
+## Using with Rust, Go or other programming languages
 
 Messages need to be signed with a Ed25519 account key belonging to the FID. If you are using a different programming
 language
