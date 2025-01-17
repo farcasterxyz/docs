@@ -143,7 +143,10 @@ The request is a JSON consisting of:
 - `targetUrl`: the target frame URL to open when a user clicks the notification. It must match the domain for which the notification token was issued. Max 256 characters.
 - `tokens`: an array of tokens (for that `url`) to send the notification to. Max 100 per call.
 
-Note that client servers may impose rate limits per `token`.
+Note that client servers may impose rate limits per `token`. Warpcast enforces the following rate limits:
+
+- 1 notification per 30 seconds per `token`
+- 100 notifications per day per `token`
 
 The response from the client server must be an HTTP 200 OK, with a `result` object that contains 3 arrays:
 
