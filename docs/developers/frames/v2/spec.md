@@ -700,6 +700,25 @@ There are 2 expected failure conditions which the frame should gracefully handle
 - `invalid_domain_manifest`: The frame domain manifest is invalid. The frame developer should use the developer tools to validate and fix their manifest.
 - `rejected_by_user`: Returned when the user rejects/dismisses the prompt asking them to add the frame, or the frame has triggered `addFrame()` more than once per session.
 
+## Feature: Social
+
+### actions.viewProfile
+
+Opens a native modal element with information about a Farcaster account.
+
+```ts
+> await sdk.actions.viewProfile({ fid });
+```
+
+```ts
+export type ViewProfileOptions = {
+  /**
+   * FID of the account to view profile of
+   */
+  fid: string;
+};
+```
+
 ## Feature: Server Events
 
 The Farcaster client server POSTs 4 types of events to the frame server at the `webhookUrl` specified in its frame manifest:
