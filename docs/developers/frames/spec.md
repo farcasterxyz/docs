@@ -349,7 +349,7 @@ Apps should consider the following mechanisms to protect users against malicious
 1. Transaction simulation.
 2. Domain allowlisting and banlisting to stop known attackers.
 3. Social graph analysis to detect potential bad or untrusted actors.
-4. Educating users about the potential dangerous of transactions and using a wallet with limited balances.
+4. Educating users about the potential dangers of transactions and using a wallet with limited balances.
 
 ## Data Structures
 
