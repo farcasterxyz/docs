@@ -16,7 +16,7 @@ Here's a full walkthrough of creating a frames v2 app:
 
 ## Tutorial
 
-The following tutorial is based on the [Frames v2 Demo](https://github.com/farcasterxyz/frames-v2-demo) repo on Github.
+The following tutorial is based on the [Frames v2 Demo](https://github.com/farcasterxyz/frames-v2-demo) repo on GitHub.
 
 ### Setup and dependencies
 
@@ -286,7 +286,7 @@ $ ngrok http http://localhost:3000
 ```
 
 ::: info Tunneling gotchas
-Some tunneling tools, like the ngrok free tier, insert an click-through interstitial between your dev server and the tunnel endpoint. Use a paid ngrok account or a different tool, like Tailscale funnel.
+Some tunneling tools, like the ngrok free tier, insert a click-through interstitial between your dev server and the tunnel endpoint. Use a paid ngrok account or a different tool, like Tailscale funnel.
 :::
 
 Now open the Frame Playground on Warpcast mobile, by visiting [https://warpcast.com/~/developers/frame](https://warpcast.com/~/developers/frames).
