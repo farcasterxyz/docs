@@ -90,7 +90,7 @@ type FrameEmbed = {
 
 The manifest file declares the metadata that is applied to the frame application served from this domain. It also defines triggers that indicate which actions it supports from trigger points like casts and the composer.
 
-Frame can provide a JSON manifest file on their domain at the well known URI `/.well-known/farcaster.json` to provide additional provenance and appearance information that can be used by Farcaster clients. 
+Frame should provide a JSON manifest file on their domain at the well known URI `/.well-known/farcaster.json`.
 
 ```ts
 type FarcasterManifest = {
