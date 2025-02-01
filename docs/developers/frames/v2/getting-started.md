@@ -211,7 +211,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
 
 Note two new things here: since the SDK relies on the browser `window`, we need to define this as a client component with `"use client";` and use a dynamic import to import `WagmiProvider`.
 
-Finally, let's add this providers component to our app layout. Edit `app/layout.tsx`:
+Finally, let's add this providers component to our app layout. If it does not exist already, create a file `app/globals.css` in your project. Then edit `app/layout.tsx`:
 
 ```tsx
 import type { Metadata } from 'next';
