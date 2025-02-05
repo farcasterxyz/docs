@@ -820,3 +820,52 @@ Example:
 ```bash
 curl 'https://api.warpcast.com/v1/blocked-users'
 ```
+
+## Get creator reward winners
+
+`GET /v1/creator-rewards-winner-history`
+
+Warpcast gives out weekly rewards to top creators on the network.
+
+This endpoint provides access to all winners for a given period (week). Paginated, with the list of winners in rank order. Not authenticated.
+
+Query parameters:
+
+- `periodsAgo` (**optional**) - how many periods ago to fetch the results for. 0 or undefined returns results for the most recent period.
+
+Returns:
+
+- `periodStartTimestamp`: Unix time in milliseconds when rewards period began
+- `periodEndTimestamp`: Unix time in milliseconds when rewards period ended
+- `winners`: Paginated list of fid, score, rank and reward amount in rank order
+
+```json
+{
+  "result": {
+    "periodStartTimestamp": 1738080000000,
+    "periodEndTimestamp": 1738684800000,
+    "winners": [
+      {
+        "fid": 1,
+        "score": 10,
+        "rank": 1,
+        "rewardCents": 1000
+      },
+      {
+        "fid": 420,
+        "score": 1,
+        "rank": 2,
+        "rewardCents": 500
+      },
+      ...
+    ]
+  },
+  "next": { "cursor": "..." }
+}
+```
+
+Example:
+
+```bash
+curl 'https://api.warpcast.com/v1/creator-rewards-winner-history'
+```
