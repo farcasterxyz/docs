@@ -4,6 +4,13 @@ title: Frames Introduction
 
 # Frames Introduction
 
+::: info Frames are evolving!
+
+We recently released a new [Frames standard](./v2/index.md) to enable even better in-feed experiences. Frames v1 are stil live, but we recommend Frames v2 for new projects.
+
+Warpcast will continue to support Frames v1 through at least March 2025.
+:::
+
 Frames are a way to build interactive apps that run directly in a Farcaster
 social feed.
 
@@ -20,13 +27,6 @@ Or standalone experiences like polls and games:
 - RSVP to an [Eventcaster](https://warpcast.com/toadyhawk.eth/0xcb4aefe8) event
 - [Yoink](https://warpcast.com/horsefacts.eth/0x70019199) the flag in this simple yet viral social game
 - generate a [Waifu NFT](https://warpcast.com/horsefacts.eth/0xbc7d33ca) based on your Farcaster profile
-
-::: info Frames are evolving!
-
-We're working on a new [Frames standard](./v2/index.md) to enable even better in-feed experiences. You can choose to build on the stable v1 standard, or the experimental v2.
-
-Warpcast will continue to support Frames v1 through at least March 2025.
-:::
 
 ### Farcaster 101
 
