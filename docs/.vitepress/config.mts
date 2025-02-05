@@ -69,7 +69,7 @@ export default defineConfig({
         link: '/learn/',
       },
       {
-        text: 'Developers',
+        text: 'Build apps',
         link: '/developers/',
       },
       {
@@ -80,6 +80,10 @@ export default defineConfig({
       {
         text: 'Reference',
         link: '/reference/',
+      },
+      {
+        text: 'Developer chat',
+        link: 'https://warpcast.com/~/group/X2P7HNc4PHTriCssYHNcmQ',
       },
     ],
     search: {
@@ -153,7 +157,32 @@ export default defineConfig({
         { text: 'Overview', link: '/developers/' },
         { text: 'Resources', link: '/developers/resources' },
         {
-          text: 'Frames',
+          text: 'Frames v2',
+          items: [
+            {
+              text: 'Introduction',
+              link: '/developers/frames/v2/',
+            },
+            {
+              text: 'Getting Started',
+              link: '/developers/frames/v2/getting-started',
+            },
+            {
+              text: 'Notifications & Webhooks',
+              link: '/developers/frames/v2/notifications_webhooks',
+            },
+            {
+              text: 'Specification',
+              link: '/developers/frames/v2/spec',
+            },
+            {
+              text: 'Resources',
+              link: '/developers/frames/v2/resources',
+            },
+          ],
+        },
+        {
+          text: 'Frames v1',
           items: [
             {
               text: 'Introduction',
@@ -178,31 +207,6 @@ export default defineConfig({
             {
               text: 'Resources',
               link: '/developers/frames/resources',
-            },
-          ],
-        },
-        {
-          text: 'Frames v2',
-          items: [
-            {
-              text: 'Introduction',
-              link: '/developers/frames/v2/',
-            },
-            {
-              text: 'Getting Started',
-              link: '/developers/frames/v2/getting-started',
-            },
-            {
-              text: 'Notifications & Webhooks',
-              link: '/developers/frames/v2/notifications_webhooks',
-            },
-            {
-              text: 'Specification',
-              link: '/developers/frames/v2/spec',
-            },
-            {
-              text: 'Resources',
-              link: '/developers/frames/v2/resources',
             },
           ],
         },
