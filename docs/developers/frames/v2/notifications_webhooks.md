@@ -4,9 +4,9 @@ title: Frames v2 Notifications & Webhooks
 
 # Frames v2 Notifications & Webhooks
 
-Frames v2 allow developers to send notifications to users who have "added" the frame to their Farcaster client and enabled notifications.
+Frames v2 allows developers to send notifications to users who have "added" the frame to their Farcaster client and enabled notifications.
 
-In Warpcast, these are **in-app notifications** that trigger the red dot on the notifications tab. At this stage there is no support for push notifications.
+In Warpcast, these are **in-app notifications** that trigger the red dot on the notifications tab. At this stage, there is no support for push notifications.
 
 The steps to successfully send a notification are:
 
@@ -137,7 +137,7 @@ export type SendNotificationResponse = z.infer<
 
 The request is a JSON consisting of:
 
-- `notificationId`: a string (max size 128) that servers as an idempotency key and will be passed back to the frame via context. A Farcaster client should deliver only one notification per user per `notificationId`, even if called multiple times.
+- `notificationId`: a string (max size 128) that serves as an idempotency key and will be passed back to the frame via context. A Farcaster client should deliver only one notification per user per `notificationId`, even if called multiple times.
 - `title`: title of the notification, max 32 characters
 - `body`: body of the notification, max 128 characters
 - `targetUrl`: the target frame URL to open when a user clicks the notification. It must match the domain for which the notification token was issued. Max 256 characters.
