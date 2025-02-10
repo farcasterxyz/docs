@@ -105,6 +105,12 @@ Type of UserData message
 | USER_DATA_TYPE_BIO      | 3      | Bio for the user                      |
 | USER_DATA_TYPE_URL      | 5      | URL of the user                       |
 | USER_DATA_TYPE_USERNAME | 6      | Preferred Farcaster Name for the user |
+| USER_DATA_TYPE_LOCATION | 7      | Location for the user                 |
+| USER_DATA_TYPE_TWITTER  | 8      | Twitter username for the user         |
+| USER_DATA_TYPE_GITHUB   | 9      | GitHub username for the user          |
+
+See [FIP-196](https://github.com/farcasterxyz/protocol/discussions/196) for more information on Location.
+See [FIP-19](https://github.com/farcasterxyz/protocol/discussions/199) for more information on Twitter/X and Github usernames.
 
 ## 3. Cast
 
