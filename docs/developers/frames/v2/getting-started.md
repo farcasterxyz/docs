@@ -655,8 +655,6 @@ export default function Demo() {
 }
 ```
 
-<img src="https://raw.githubusercontent.com/farcasterxyz/frames-v2-demo/refs/heads/main/docs/img/10_wallet.png" width="200" alt="Wallet" />
-
 If your wallet is connected to Warpcast, you should see its address. In case it's not, let's add a connect/disconnect button. Note that we'll need to import our Wagmi config to `connect`:
 
 ```tsx

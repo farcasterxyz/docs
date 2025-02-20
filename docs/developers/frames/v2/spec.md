@@ -10,7 +10,7 @@ It can be embedded in feeds in a compact form which includes an image and a butt
 
 <img width="1330" alt="Screenshot 2024-11-20 at 7 28 48 PM" src="https://github.com/user-attachments/assets/9d076056-f8df-46dd-8630-e8caf5b3def4">
 
-Frames will have access to :
+Frames will have access to:
 
 1. Context: information about the user's Farcaster account and where the frame was called from
 2. Actions: APIs to request the parent app to do certain things on the frame's behalf
@@ -836,7 +836,7 @@ type EventNotificationsEnabledPayload = {
 
 Farcaster clients emit events to your frame, while it is open, to let you know of actions the user takes.
 
-To listen to events, you have to use `sdk.on` to register callbacks ([see full example](https://github.com/farcasterxyz/frames-v2-demo/blob/20d454f5f6b1e4f30a6a49295cbd29ca7f30d44a/src/components/Demo.ts#L92-L124)).
+To listen to events, you have to use `sdk.on` to register callbacks ([see full example](https://github.com/farcasterxyz/frames-v2-demo/blob/20d454f5f6b1e4f30a6a49295cbd29ca7f30d44a/src/components/Demo.tsx#L92-L124)).
 
 ```ts
 sdk.on('frameAdded', ({ notificationDetails }) => {
@@ -1016,12 +1016,12 @@ type SetPrimaryButton = (options: {
 
 An app frame should subscribe to the `primaryButtonClicked` event to respond to interactions.
 
-### primaryButtonClick (Event)
+### primaryButtonClicked (Event)
 
 Emitted when user clicks the Primary Button.
 
 ```ts
-> Farcaster.events.on("primaryButtonClick", () => {
+> Farcaster.events.on("primaryButtonClicked", () => {
     console.log("clicked!") }
 );
 ```
