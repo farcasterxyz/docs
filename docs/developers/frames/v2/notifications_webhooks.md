@@ -137,7 +137,7 @@ export type SendNotificationResponse = z.infer<
 
 The request is a JSON consisting of:
 
-- `notificationId`: a string (max size 128) that servers as an idempotency key and will be passed back to the frame via context. A Farcaster client should deliver only one notification per user per `notificationId`, even if called multiple times.
+- `notificationId`: a string (max size 128) that serves as an idempotency key and will be passed back to the frame via context. A Farcaster client should deliver only one notification per user per `notificationId`, even if called multiple times.
 - `title`: title of the notification, max 32 characters
 - `body`: body of the notification, max 128 characters
 - `targetUrl`: the target frame URL to open when a user clicks the notification. It must match the domain for which the notification token was issued. Max 256 characters.
@@ -172,7 +172,7 @@ export type FrameLocationNotificationContext = {
 
 ## Listen for webhooks to get updates
 
-Farcast clients will POST events to your `webhookUrl` informing you when a user:
+Farcaster clients will POST events to your `webhookUrl` informing you when a user:
 
 - Adds the frame to the client (`frame_added`)
 - Removes the frame from the client which disables notifications (`frame_removed`)
@@ -242,7 +242,7 @@ Webhook payload:
 
 ### `notifications_disabled`: user disabled notifications
 
-Sent when a disables frame notifications from e.g. a settings panel in the client app. Any notification tokens for that fid and client app (based on signer requester) should be considered invalid:
+Sent when a user disables frame notifications from e.g. a settings panel in the client app. Any notification tokens for that fid and client app (based on signer requester) should be considered invalid:
 
 Webhook payload:
 

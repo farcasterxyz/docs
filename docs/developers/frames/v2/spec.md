@@ -891,7 +891,7 @@ The frame server is given an authentication token and a URL which they can use t
 
 The frame server calls the `notificationUrl` with:
 
-- `notificationId`: a string (max size 128) that servers as an idempotency key and will be passed back to the frame via context. A Farcaster client should deliver only one notification per user per `notificationId`, even if called multiple times.
+- `notificationId`: a string (max size 128) that serves as an idempotency key and will be passed back to the frame via context. A Farcaster client should deliver only one notification per user per `notificationId`, even if called multiple times.
 - `title`: title of the notification, max length of 32 characters
 - `body`: body of the notification
 - `targetUrl`: the target frame URL to open when a user clicks the notification. It must match the domain for which the notification token was issued.
