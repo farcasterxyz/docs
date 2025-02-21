@@ -7,7 +7,7 @@ hero:
   actions:
     - theme: brand
       text: Build a frame
-      link: /developers/frames/
+      link: /developers/frames/v2/
     - theme: alt
       text: Explore Sign In with Farcaster
       link: /developers/siwf/
@@ -20,9 +20,9 @@ hero:
 
 Learn how to build frames, which are mini-apps that run inside a Farcaster feed.
 
-- [Introduction to Frames](/developers/frames/) - Understand what a frame is and how it works.
-- [Build your first frame](/developers/frames/getting-started) - Make mini-apps that run inside Farcaster.
-- [Specification](/developers/frames/spec) - A formal specification for the Frame standard.
+- [Introduction to Frames](/developers/frames/v2/) - Understand what a frame is and how it works.
+- [Build your first frame](/developers/frames/v2/getting-started) - Make mini-apps that run inside Farcaster.
+- [Specification](/developers/frames/v2/spec) - A formal specification for the Frame standard.
 
 ### Explore Sign In with Farcaster
 

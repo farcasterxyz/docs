@@ -22,7 +22,7 @@ Here's an example of a frame using a wallet to complete a transaction:
 
 ## Frame URL Specifications
 
-A URL is considered a valid frame if it includes an embed tag in its HTML `<head>` and a manifest file at a well known location at the root of the domain.
+A URL is considered a valid frame if it includes an embed tag in its HTML `<head>`. An optional manifest file at a well known location at the root of the domain can be provided for additional provenance and appearance information for Farcaster clients.
 
 ### Versioning
 
@@ -90,7 +90,7 @@ type FrameEmbed = {
 
 The manifest file declares the metadata that is applied to the frame application served from this domain. It also defines triggers that indicate which actions it supports from trigger points like casts and the composer.
 
-Frame servers must provide a JSON manifest file on their domain at the well known URI `/.well-known/farcaster.json`.
+Frame should provide a JSON manifest file on their domain at the well known URI `/.well-known/farcaster.json`.
 
 ```ts
 type FarcasterManifest = {
