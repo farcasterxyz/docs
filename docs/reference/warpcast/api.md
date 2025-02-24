@@ -1007,6 +1007,8 @@ Warpcast gives out weekly rewards to top creators on the network.
 
 This endpoint provides access to all winners for a given period (week). Paginated, with the list of winners in rank order. Not authenticated.
 
+Data is refreshed every Tuesday at 17:00 UTC.
+
 Query parameters:
 
 - `periodsAgo` (**optional**) - how many periods ago to fetch the results for. 0 or undefined returns results for the most recent period.
@@ -1015,7 +1017,7 @@ Returns:
 
 - `periodStartTimestamp`: Unix time in milliseconds when rewards period began
 - `periodEndTimestamp`: Unix time in milliseconds when rewards period ended
-- `winners`: Paginated list of fid, score, rank and reward amount in rank order
+- `winners`: Paginated list of fid, score, rank, wallet address (optional) and reward amount in rank order. A missing wallet address indicates that the user does not have a verified wallet on Warpcast.
 
 ```json
 {
@@ -1027,13 +1029,15 @@ Returns:
         "fid": 1,
         "score": 10,
         "rank": 1,
-        "rewardCents": 1000
+        "rewardCents": 1000,
+        "walletAddress": "0x0000000000000000000000000000000000000000",
       },
       {
         "fid": 420,
         "score": 1,
         "rank": 2,
-        "rewardCents": 500
+        "rewardCents": 500,
+        "walletAddress": "0x0000000000000000000000000000000000000001",
       },
       ...
     ]
