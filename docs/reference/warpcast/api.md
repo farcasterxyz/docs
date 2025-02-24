@@ -1017,7 +1017,7 @@ Returns:
 
 - `periodStartTimestamp`: Unix time in milliseconds when rewards period began
 - `periodEndTimestamp`: Unix time in milliseconds when rewards period ended
-- `winners`: Paginated list of fid, score, rank, wallet address (optional) and reward amount in rank order
+- `winners`: Paginated list of fid, score, rank, wallet address (optional) and reward amount in rank order. A missing wallet address indicates that the user does not have a verified wallet on Warpcast.
 
 ```json
 {
