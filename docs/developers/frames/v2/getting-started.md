@@ -605,6 +605,9 @@ When you tap this, the frame should close.
 
 ### Wallet interactions
 
+> [!WARNING]
+> If you are launching a new smart contract, your users may see a warning on Warpcast. To prevent it, warm it up with some transactions and verify it with [Blockaid](https://report.blockaid.io/verifiedProject).
+
 Finally, let's interact with the user's connected wallet. To do so, we can use the wallet connector and Wagmi hooks we set up earlier. To start, let's read the user's connected wallet address, using `useAccount`:
 
 ```tsx
