@@ -25,6 +25,7 @@ title: Frames v2 Resources
 
 - [Frame Playground](https://warpcast.com/~/developers/frames) - Warpcast Frame developer tools
 - [Frame SDK](https://github.com/farcasterxyz/frames/) - Frame SDK JavaScript library
+- [Frames.js Local Debugger](https://framesjs.org/guides/debugger) - Frame Local Debugger
 
 #### Learning
 
