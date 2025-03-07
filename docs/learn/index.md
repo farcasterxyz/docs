@@ -27,10 +27,10 @@ Find more how-tos, guide and tutorials like this in the [developers](/developers
 ## Documentation
 
 - [Farcaster Spec](https://github.com/farcasterxyz/protocol) - Specifications for Farcaster, including its contracts and hubs.
-- [Frame Spec](/developers/frames/spec) - Specifications for writing and rendering frames in Farcaster apps.
+- [Frame Spec](/developers/frames/spec.md) - Specifications for writing and rendering frames in Farcaster apps.
 - [APIs](/reference/) - Docs for API's and ABI's for onchain and offchain systems.
 
 ## Contributing
 
 To learn about how to contribute to the protocol, including this documentation site, check out
-the [Contributing](/learn/contributing/overview) section.
+the [Contributing](/learn/contributing/overview.md) section.
