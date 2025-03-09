@@ -18,7 +18,7 @@ We're working on a new frame standard to enable richer social applications.
 
 New features include:
 
-- A full screen interactive canvas based on HTML/CSS/Javascript
+- A full-screen interactive canvas based on HTML/CSS/Javascript
 - Reliable and fast mobile wallet transactions
 - Ability to save, search, and discover frames
 - Access to native mobile notifications
