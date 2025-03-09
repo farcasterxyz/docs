@@ -10,7 +10,7 @@ to another fid. Unregistering an fname is a transfer from the user's fid to fid 
 ::: warning Registering an fname
 
 Note, when registering a new fname, calling this api is not sufficient. This only reserves the name to your fid. You
-must also submit a [UserDataAdd](/reference/hubble/datatypes/messages#_2-userdata) message to the hub
+must also submit a [UserDataAdd](/reference/hubble/datatypes/messages.md#_2-userdata) message to the hub
 to set this name as your username.
 
 :::
