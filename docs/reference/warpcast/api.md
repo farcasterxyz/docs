@@ -1051,3 +1051,43 @@ Example:
 ```bash
 curl 'https://api.warpcast.com/v1/creator-rewards-winner-history'
 ```
+
+## Get Starter Pack Members
+
+`GET /fc/starter-pack-members`
+
+Starter pack members. Ordered by the time when they were added to the pack, descending. Paginated. Not authenticated.
+
+Query parameters:
+
+- `id` - starter pack id found as a part of the public Warpcast pack URL or in the non-authed public API of starter pack metadata.
+
+Returns: a `members` array:
+
+- `fid` - account Farcaster id
+- `memberAt` - time when member was added to the starter pack, in milliseconds
+
+```json
+{
+  "result": {
+    "members": [
+      {
+        "fid": 3,
+        "memberAt": 1740172669691
+      },
+      {
+        "fid": 296646,
+        "memberAt": 1740172669691
+      },
+      ...
+    ]
+  },
+  "next": { "cursor": "..." }
+}
+```
+
+Example:
+
+```bash
+curl 'https://api.warpcast.com/fc/starter-pack-members?id=Underrated-CT-1y7n9b'
+```
