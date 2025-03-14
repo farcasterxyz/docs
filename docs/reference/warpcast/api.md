@@ -615,7 +615,7 @@ Body parameters:
 - `inviteFid` - fid of the user to invite
 - `role` - either of:
   - `member`: invites the user to be a member. The user must already follow either the channel or the user calling the endpoint. The caller must be a channel moderator or the channel owner.
-  - `moderator`: invites a user to be a moderator. The user must already be a channel member (i.e. has accepted a prior `member` invitation). The caller must be the channel owner. The number of active moderators + outstanding moderator invites cannot go above 10 (you’ll get an error).
+  - `moderator`: invites a user to be a moderator. The user must already be a channel member (i.e. has accepted a prior `member` invitation). The caller must be the channel owner. The number of active moderators + outstanding moderator invites cannot go above 10 (you'll get an error).
 
 Returns:
 
@@ -1050,6 +1050,108 @@ Example:
 
 ```bash
 curl 'https://api.warpcast.com/v1/creator-rewards-winner-history'
+```
+
+# Fetch primary address
+
+## Get primary address
+
+`GET /fc/primary-address?fid=12152&protocol=ethereum`
+
+Fetch the primary address from the user. This is picked by the user whenever they expressed a preference, or picked by Warpcast.
+
+Query parameters:
+
+- `fid` - the fid of the user to fetch the primary address for
+- `protocol` - the protocol of the address to fetch. Both `ethereum` and `solana` are supported.
+
+Returns:
+
+- `address` - the primary address of the user
+
+```json
+{
+  "result": {
+    "address": {
+      "fid": 12152,
+      "protocol": "ethereum",
+      "address": "0x0BD6b1DFE1eA61C2b487806ECd06b5A95383a4e3"
+    }
+  }
+}
+```
+
+Example:
+
+```bash
+curl 'https://api.warpcast.com/fc/primary-address?fid=12152&protocol=ethereum'
+```
+
+## Get multiple primary addresses
+
+`GET /fc/primary-addresses`
+
+Fetch primary addresses for multiple users at once. This is a batch version of the single primary address endpoint. For each FID, this returns the primary address picked by the user whenever they expressed a preference, or picked by Warpcast.
+
+Query parameters:
+
+- `fids` - comma-separated list of FIDs to fetch primary addresses for
+- `protocol` - the protocol of the addresses to fetch. Both `ethereum` and `solana` are supported.
+
+Returns:
+
+- `addresses` - an array of address results, one for each requested FID:
+  - `fid` - the FID that was requested
+  - `success` - boolean indicating whether the address was found
+  - `address` - (only present when `success` is true) object containing:
+    - `fid` - the FID of the user
+    - `protocol` - the protocol of the address (`ethereum` or `solana`)
+    - `address` - the primary address string
+
+```json
+{
+  "result": {
+    "addresses": [
+      {
+        "fid": 12152,
+        "success": true,
+        "address": {
+          "fid": 12152,
+          "protocol": "ethereum",
+          "address": "0x0BD6b1DFE1eA61C2b487806ECd06b5A95383a4e3"
+        }
+      },
+      {
+        "fid": 2,
+        "success": true,
+        "address": {
+          "fid": 2,
+          "protocol": "ethereum",
+          "address": "0x661E2209B9C6B06C1F32A0639f60D3294185ab35"
+        }
+      },
+      {
+        "fid": 1315,
+        "success": true,
+        "address": {
+          "fid": 1315,
+          "protocol": "ethereum",
+          "address": "0x0450a8545028547Df4129Aa5b4EC5794D5aF2409"
+        }
+      },
+      {
+        "fid": 39939393939,
+        "success": false
+      }
+    ]
+  }
+}
+```
+
+Example:
+
+```bash
+curl 'https://api.warpcast.com/fc/primary-addresses?fids=12152,2,1315,39939393939&protocol=ethereum'
 ```
 
 ## Get Starter Pack Members
