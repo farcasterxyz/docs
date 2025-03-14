@@ -1096,6 +1096,8 @@ Query parameters:
 - `fids` - comma-separated list of FIDs to fetch primary addresses for
 - `protocol` - the protocol of the addresses to fetch. Both `ethereum` and `solana` are supported.
 
+For now, only 100 FIDs can be fetched at once. We can change this quickly if needed (just reach out to us).
+
 Returns:
 
 - `addresses` - an array of address results, one for each requested FID:
