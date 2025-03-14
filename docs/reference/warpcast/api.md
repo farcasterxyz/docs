@@ -1052,9 +1052,7 @@ Example:
 curl 'https://api.warpcast.com/v1/creator-rewards-winner-history'
 ```
 
-# Fetch primary address
-
-## Get primary address
+## Get User Primary Address
 
 `GET /fc/primary-address?fid=12152&protocol=ethereum`
 
@@ -1087,7 +1085,7 @@ Example:
 curl 'https://api.warpcast.com/fc/primary-address?fid=12152&protocol=ethereum'
 ```
 
-## Get multiple primary addresses
+## Get Multiple User Primary Addresses
 
 `GET /fc/primary-addresses`
 
