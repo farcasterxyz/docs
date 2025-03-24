@@ -38,7 +38,7 @@ Some popular connected apps include:
 ### Tools
 
 - [Hubble](../../hubble/hubble.md) - a farcaster hub for reading and writing messages.
-- [Replicator](https://github.com/farcasterxyz/hub-monorepo/tree/main/apps/replicator) - a tool to sync a hub to a postgres database.
+- [Replicator](https://github.com/farcasterxyz/hub-monorepo/tree/main/packages/shuttle) - a tool to sync a hub to a postgres database.
 
 ### Tutorials
 
