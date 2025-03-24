@@ -59,7 +59,7 @@ OPTIMISM_L2_RPC_URL=your-L2-optimism-RPC-URL
 HUB_OPERATOR_FID=your-fid
 ```
 
-5. Follow the instructions to set [connect to a network](./networks.md).
+5. Follow the instructions to [connect to a network](./networks.md).
 
 6. Start Hubble with docker compose in detached mode:
 
@@ -111,7 +111,7 @@ First, ensure that the following are installed globally on your machine:
 
 To run the Hubble commands, go to the Hubble app (`cd apps/hubble`) and run the `yarn` commands.
 
-1. `yarn identity create` to create a ID
+1. `yarn identity create` to create an ID
 2. Follow the instructions to set [connect to a network](./networks.md)
 3. `yarn start --eth-mainnet-rpc-url <your ETH-mainnet-RPC-URL> --l2-rpc-url <your Optimism-L2-RPC-URL> --hub-operator-fid <your FID>`
 
