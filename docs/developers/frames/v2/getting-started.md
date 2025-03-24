@@ -20,7 +20,7 @@ The following tutorial is based on the [Frames v2 Demo](https://github.com/farca
 
 ### Setup and dependencies
 
-We'll start with a fresh NextJS app:
+We'll start with a fresh NextJS app. Execute the following command and provide `frames-v2-demo` for the project name and accept the defaults for all prompts _except_ for the prompt to customize the import alias - select `Yes` for that option and set the alias to `~/*`:
 
 ```bash
 $ yarn create next-app
@@ -40,6 +40,12 @@ Next, install frame related dependencies. We'll need the official frame SDK:
 
 ```bash
 $ yarn add @farcaster/frame-sdk
+```
+
+You'll also need [next](https://nextjs.org/) to execute your project:
+
+```bash
+$ yarn add next@latest react@latest react-dom@latest
 ```
 
 We'll also need [Wagmi](https://wagmi.sh/) to handle wallet interactions. Let's install it and its dependencies.
@@ -205,7 +211,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
 
 Note two new things here: since the SDK relies on the browser `window`, we need to define this as a client component with `"use client";` and use a dynamic import to import `WagmiProvider`.
 
-Finally, let's add this providers component to our app layout. Edit `app/layout.tsx`:
+Finally, let's add this providers component to our app layout. If it does not exist already, create a file `app/globals.css` in your project. Then edit `app/layout.tsx`:
 
 ```tsx
 import type { Metadata } from 'next';
@@ -355,6 +361,7 @@ import sdk, { type FrameContext } from '@farcaster/frame-sdk';
 export default function Demo() {
   const [isSDKLoaded, setIsSDKLoaded] = useState(false);
   const [context, setContext] = useState<FrameContext>();
+  const [isContextOpen, setIsContextOpen] = useState(false);
 
   useEffect(() => {
     const load = async () => {
@@ -366,6 +373,10 @@ export default function Demo() {
       load();
     }
   }, [isSDKLoaded]);
+
+  const toggleContext = useCallback(() => {
+    setIsContextOpen((prev) => !prev);
+  }, []);
 
   if (!isSDKLoaded) {
     return <div>Loading...</div>;
