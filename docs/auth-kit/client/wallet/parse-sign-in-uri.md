@@ -4,7 +4,7 @@ Parse the Sign In With Farcaster URI provided by a connected app user.
 
 Returns the parsed parameters. Your app should use these to construct a Sign In With Farcaster message.
 
-Returns an error if URI is invalid.
+Returns an error if the URI is invalid.
 
 ```ts
 const params = walletClient.parseSignInURI({

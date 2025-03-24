@@ -16,7 +16,7 @@ Here's a full walkthrough of creating a frames v2 app:
 
 ## Tutorial
 
-The following tutorial is based on the [Frames v2 Demo](https://github.com/farcasterxyz/frames-v2-demo) repo on Github.
+The following tutorial is based on the [Frames v2 Demo](https://github.com/farcasterxyz/frames-v2-demo) repo on GitHub.
 
 ### Setup and dependencies
 

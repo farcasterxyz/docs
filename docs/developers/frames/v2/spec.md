@@ -509,7 +509,7 @@ bottom of the view.
 
 ### actions.ready
 
-Indicates that the application is fully loaded and ready to displayed to users. Once this is called the loading screen will be hidden. Frame applications MUST call `ready()` to display their app.
+Indicates that the application is fully loaded and ready to be displayed to users. Once this is called the loading screen will be hidden. Frame applications MUST call `ready()` to display their app.
 
 ```ts
 > await sdk.actions.ready();
