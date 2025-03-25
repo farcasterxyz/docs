@@ -36,7 +36,7 @@ $ yarn create next-app
 Creating a new Next.js app in /Users/horsefacts/Projects/frames-v2-demo.
 ```
 
-Next, install frame related dependencies. We'll need the official frame SDK:
+Next, install frame-related dependencies. We'll need the official frame SDK:
 
 ```bash
 $ yarn add @farcaster/frame-sdk
@@ -52,7 +52,7 @@ OK, we're ready to get started!
 
 ### Configuring providers
 
-We'll need to set up a custom Wagmi connector in order to interact with the user's Farcaster wallet. Since the frames SDK is a frontend only package, we'll also need to use client components and [Next dynamic imports](https://nextjs.org/docs/pages/building-your-application/optimizing/lazy-loading#nextdynamic) in a few places.
+We'll need to set up a custom Wagmi connector in order to interact with the user's Farcaster wallet. Since the frames SDK is a frontend-only package, we'll also need to use client components and [Next dynamic imports](https://nextjs.org/docs/pages/building-your-application/optimizing/lazy-loading#nextdynamic) in a few places.
 
 First, let's create a custom connector component at `lib/connector.ts`. We'll use this to connect to the user's Farcaster wallet from our app.
 
