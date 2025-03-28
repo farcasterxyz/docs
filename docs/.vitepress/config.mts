@@ -111,7 +111,7 @@ export default defineConfig({
           items: [
             {
               text: 'Mini Apps',
-              link: '/developers/frames/v2/',
+              link: '/developers/miniapps/',
             },
             {
               text: 'Accounts',
@@ -161,23 +161,23 @@ export default defineConfig({
           items: [
             {
               text: 'Introduction',
-              link: '/developers/frames/v2/',
+              link: '/developers/miniapps/',
             },
             {
               text: 'Getting Started',
-              link: '/developers/frames/v2/getting-started',
+              link: '/developers/miniapps/getting-started',
             },
             {
               text: 'Notifications & Webhooks',
-              link: '/developers/frames/v2/notifications_webhooks',
+              link: '/developers/miniapps/notifications_webhooks',
             },
             {
               text: 'Specification',
-              link: '/developers/frames/v2/spec',
+              link: '/developers/miniapps/spec',
             },
             {
               text: 'Resources',
-              link: '/developers/frames/v2/resources',
+              link: '/developers/miniapps/resources',
             },
           ],
         },

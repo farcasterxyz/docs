@@ -1,6 +1,6 @@
 # Mini Apps Introduction
 
-[Legacy Frames](../index.md) launched in January 2024 as a way to build interactive apps that run directly in a Farcaster social feed. They enabled developers to identify users, connect wallets, and take limited actions on and offchain.
+[Legacy Frames](../frames/index.md) launched in January 2024 as a way to build interactive apps that run directly in a Farcaster social feed. They enabled developers to identify users, connect wallets, and take limited actions on and offchain.
 
 Although we saw many apps built, they were held back by several limitations:
 

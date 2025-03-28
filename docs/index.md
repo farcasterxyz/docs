@@ -7,7 +7,7 @@ hero:
   actions:
     - theme: brand
       text: Build a mini app
-      link: /developers/frames/v2/
+      link: /developers/miniapps/
     - theme: alt
       text: Explore Sign In with Farcaster
       link: /developers/siwf/
@@ -20,9 +20,9 @@ hero:
 
 Learn how to build mini apps that run inside a Farcaster feed.
 
-- [Introduction to Mini Apps](/developers/frames/v2/) - Understand what a mini app is and how it works.
-- [Build your first mini app](/developers/frames/v2/getting-started) - Make mini apps that run inside Farcaster.
-- [Specification](/developers/frames/v2/spec) - A formal specification for the Mini Apps standard.
+- [Introduction to Mini Apps](/developers/miniapps/) - Understand what a mini app is and how it works.
+- [Build your first mini app](/developers/miniapps/getting-started) - Make mini apps that run inside Farcaster.
+- [Specification](/developers/miniapps/spec) - A formal specification for the Mini Apps standard.
 
 ### Explore Sign In with Farcaster
 
