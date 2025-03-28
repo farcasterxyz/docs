@@ -10,7 +10,12 @@ Resources are often from third parties and are not reviewed. Use them at your ow
 
 ## Libraries
 
-### Frames
+### Mini Apps
+
+- [@farcaster/mini-app](https://miniapps.farcaster.xyz/docs/getting-started) - CLI tool for building mini apps.
+- [@neynar/create-farcaster-mini-app](https://www.npmjs.com/package/@neynar/create-farcaster-mini-app) - A Mini App quickstart npx script from Neynar.
+
+### Legacy Frames
 
 - [@frame-js/frames](https://framesjs.org/) - next.js template for building and debugging frames.
 - [@coinbase/onchainkit](https://github.com/coinbase/onchainkit) - react toolkit to create frames.

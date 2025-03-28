@@ -111,7 +111,7 @@ export default defineConfig({
           items: [
             {
               text: 'Mini Apps',
-              link: '/developers/miniapps/',
+              link: 'https://miniapps.farcaster.xyz/',
             },
             {
               text: 'Accounts',
@@ -161,23 +161,27 @@ export default defineConfig({
           items: [
             {
               text: 'Introduction',
-              link: '/developers/miniapps/',
+              link: 'https://miniapps.farcaster.xyz',
             },
             {
               text: 'Getting Started',
-              link: '/developers/miniapps/getting-started',
+              link: 'https://miniapps.farcaster.xyz/docs/getting-started',
             },
             {
-              text: 'Notifications & Webhooks',
-              link: '/developers/miniapps/notifications_webhooks',
+              text: 'Interacting with Wallets',
+              link: 'https://miniapps.farcaster.xyz/docs/guides/wallets',
+            },
+            {
+              text: 'Sending Notifications',
+              link: 'https://miniapps.farcaster.xyz/docs/guides/notifications',
+            },
+            {
+              text: 'Authenticating Users',
+              link: 'https://miniapps.farcaster.xyz/docs/guides/auth',
             },
             {
               text: 'Specification',
-              link: '/developers/miniapps/spec',
-            },
-            {
-              text: 'Resources',
-              link: '/developers/miniapps/resources',
+              link: 'https://miniapps.farcaster.xyz/docs/specification',
             },
           ],
         },

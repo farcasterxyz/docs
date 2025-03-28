@@ -6,9 +6,8 @@ Ask questions and hang out with other Farcaster developers in the [/fc-devs](htt
 
 Learn how to build mini apps that run inside a Farcaster feed.
 
-- [Introduction](/developers/miniapps/) - understand what a mini app is and how it works
-- [Getting Started](/developers/miniapps/getting-started) - Build your first mini app
-- [Specification](/developers/miniapps/spec) - a formal specification for the Mini Apps standard
+- [Introduction](https://miniapps.farcaster.xyz/) - understand what a mini app is and how it works
+- [Getting Started](https://miniapps.farcaster.xyz/docs/getting-started) - Build your first mini app
 
 ## Sign in with Farcaster
 
