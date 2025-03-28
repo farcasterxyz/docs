@@ -2,18 +2,38 @@
   "cleanUrls": true,
   "redirects": [
     {
-      "source": "/auth-kit/introduction",
-      "destination": "/auth-kit/",
+      "source": "/developers/frames/v2",
+      "destination": "/developers/miniapps",
       "permanent": true
     },
     {
-      "source": "/learn/what-is-farcaster/frames",
-      "destination": "/developers/frames/",
+      "source": "/developers/frames/v2/",
+      "destination": "/developers/miniapps/",
       "permanent": true
     },
     {
-      "source": "/reference/frames/spec",
-      "destination": "/developers/frames/spec",
+      "source": "/developers/frames/v2/getting-started",
+      "destination": "/developers/miniapps/getting-started",
+      "permanent": true
+    },
+    {
+      "source": "/developers/frames/v2/spec",
+      "destination": "/developers/miniapps/spec",
+      "permanent": true
+    },
+    {
+      "source": "/developers/frames/v2/index",
+      "destination": "/developers/miniapps/index",
+      "permanent": true
+    },
+    {
+      "source": "/developers/frames/v2/resources",
+      "destination": "/developers/miniapps/resources",
+      "permanent": true
+    },
+    {
+      "source": "/developers/frames/v2/notifications_webhooks",
+      "destination": "/developers/miniapps/notifications_webhooks",
       "permanent": true
     }
   ]
