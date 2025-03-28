@@ -2,7 +2,7 @@
 
 The reference sections documents API's, standards and protocols used commonly used by Farcaster developers.
 
-- [Mini Apps](https://miniapps.farcaster.xyz){:target="\_self"} - A specification for writing and rendering mini apps.
+- [Mini Apps](https://miniapps.farcaster.xyz){target="\_self"} - A specification for writing and rendering mini apps.
 - [Warpcast](/reference/warpcast/api) - An overview of Warpcast APIs that are publicly available.
 - [Hubble](/reference/hubble/architecture) - A design overview and API reference for Farcaster Hubs.
 - [Replicator](/reference/replicator/schema) - An overview and schema for the replicator.

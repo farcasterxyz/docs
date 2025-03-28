@@ -5,7 +5,7 @@ title: Frames Introduction
 # Frames Introduction
 
 ::: info Mini Apps are evolving!
-We recently released a new [Mini Apps standard](https://miniapps.farcaster.xyz/){:target="\_self"} to enable even better in-feed experiences. **Frames v1 have been deprecated and will be supported only until end of March 2025.** We strongly recommend using Mini Apps for all new projects.
+We recently released a new [Mini Apps standard](https://miniapps.farcaster.xyz/){target="\_self"} to enable even better in-feed experiences. **Frames v1 have been deprecated and will be supported only until end of March 2025.** We strongly recommend using Mini Apps for all new projects.
 :::
 
 Frames are a way to build interactive apps that run directly in a Farcaster social feed.
@@ -32,6 +32,6 @@ A 5 minute non-technical primer on Frames:
 
 ## Next Steps
 
-1. [Build your first mini app](https://miniapps.farcaster.xyz/docs/getting-started){:target="\_self"}
-2. Read through the [formal Mini Apps Specification](https://miniapps.farcaster.xyz/docs/specification){:target="\_self"}
+1. [Build your first mini app](https://miniapps.farcaster.xyz/docs/getting-started){target="\_self"}
+2. Read through the [formal Mini Apps Specification](https://miniapps.farcaster.xyz/docs/specification){target="\_self"}
 3. Join the Farcaster developer community in the [/fc-devs](https://warpcast.com/~/channel/fc-devs) channel on Farcaster.
