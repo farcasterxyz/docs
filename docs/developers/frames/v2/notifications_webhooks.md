@@ -1,22 +1,22 @@
 ---
-title: Frames v2 Notifications & Webhooks
+title: Mini Apps Notifications & Webhooks
 ---
 
-# Frames v2 Notifications & Webhooks
+# Mini Apps Notifications & Webhooks
 
-Frames v2 allow developers to send notifications to users who have "added" the frame to their Farcaster client and enabled notifications.
+Mini Apps allow developers to send notifications to users who have "added" the Mini App to their Farcaster client and enabled notifications.
 
 In Warpcast, these are **in-app notifications** that trigger the red dot on the notifications tab. At this stage there is no support for push notifications.
 
 The steps to successfully send a notification are:
 
 1. Set up a valid domain manifest
-2. Have a user add the frame to their Farcaster client. You can trigger a prompt via the `addFrame` action
+2. Have a user add the Mini App to their Farcaster client. You can trigger a prompt via the `addFrame` action
 3. Receive a notification `url` and `token` and save these to persistent storage
 4. Send a notification by POSTing to the `url` using the `token`
-5. Listen for webhooks that tell you when a user adds/removes the frame and enables/disables notifications
+5. Listen for webhooks that tell you when a user adds/removes the Mini App and enables/disables notifications
 
-The [Frames V2 Demo frame](https://github.com/farcasterxyz/frames-v2-demo) has all of the above:
+The [Mini Apps Demo](https://github.com/farcasterxyz/frames-v2-demo) has all of the above:
 
 - [Handles webhooks](https://github.com/farcasterxyz/frames-v2-demo/blob/main/src/app/api/webhook/route.ts) leveraging the [`@farcaster/frame-node`](https://github.com/farcasterxyz/frames/tree/main/packages/frame-node) library that makes this very easy
 - [Saves notification tokens to Redis](https://github.com/farcasterxyz/frames-v2-demo/blob/main/src/lib/kv.ts)
@@ -201,7 +201,7 @@ The `header` JSON has 3 properties:
 
 The `payload` JSON differs per event, see below.
 
-The [`@farcaster/frame-node`](https://github.com/farcasterxyz/frames/tree/main/packages/frame-node) library makes handling very easy. The only thing it requires is a method that validates that the app key belongs to the FID and returns the Farcaster client FID. An implementation that uses [Neynar](https://neynar.com) is provided. Check out the [README](https://github.com/farcasterxyz/frames/tree/main/packages/frame-node) and [see how it's used in the Frames V2 Demo frame](https://github.com/farcasterxyz/frames-v2-demo/blob/main/src/app/api/webhook/route.ts).
+The [`@farcaster/frame-node`](https://github.com/farcasterxyz/frames/tree/main/packages/frame-node) library makes handling very easy. The only thing it requires is a method that validates that the app key belongs to the FID and returns the Farcaster client FID. An implementation that uses [Neynar](https://neynar.com) is provided. Check out the [README](https://github.com/farcasterxyz/frames/tree/main/packages/frame-node) and [see how it's used in the Mini Apps Demo frame](https://github.com/farcasterxyz/frames-v2-demo/blob/main/src/app/api/webhook/route.ts).
 
 ### `frame_added`: frame added to a client
 

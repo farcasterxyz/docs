@@ -1,6 +1,6 @@
-# Frames v2 Introduction
+# Mini Apps Introduction
 
-[Frames](../index.md) launched in January 2024 as a way to build interactive apps that run directly in a Farcaster social feed. They enabled developers to identify users, connect wallets, and take limited actions on and offchain.
+[Legacy Frames](../index.md) launched in January 2024 as a way to build interactive apps that run directly in a Farcaster social feed. They enabled developers to identify users, connect wallets, and take limited actions on and offchain.
 
 Although we saw many apps built, they were held back by several limitations:
 
@@ -10,7 +10,7 @@ Although we saw many apps built, they were held back by several limitations:
 
 ## A New Standard
 
-We're working on a new frame standard to enable richer social applications.
+Mini Apps are a new standard for building interactive apps that run directly in a Farcaster social feed.
 
 <video width="300" controls>
   <source src="./frames_v2.mp4" type="video/mp4">
@@ -27,8 +27,8 @@ New features include:
 
 ## Next Steps
 
-1. [Build a v2 frame](./getting-started)
+1. [Build a Mini App](./getting-started)
 2. [Use notifications and webhooks](./notifications_webhooks)
-3. [Browse Frames v2 resources](./resources)
-4. Read the draft [Frames v2 Specification](./spec).
-5. Follow Frames v2 updates in the [/frames-v2](https://warpcast.com/~/channel/frames-v2) channel on Farcaster.
+3. [Browse Mini Apps resources](./resources)
+4. Read the draft [Mini Apps Specification](./spec).
+5. Follow Mini Apps updates in the [/mini-apps](https://warpcast.com/~/channel/frames-v2) channel on Farcaster.

@@ -1,12 +1,12 @@
 ---
-title: Frames v2 Specification
+title: Mini Apps Specification
 ---
 
 # Specification
 
-A frame is full-screen application that renders inside a Farcaster app.
+A Mini App is full-screen application that renders inside a Farcaster app.
 
-It can be embedded in feeds in a compact form which includes an image and a button which opens the frame. When the button is clicked the frame URL is rendered in an in-app browser. Developers can build anything that renders in a browser and can use a JavaScript SDK to trigger actions like saving the frame or requesting an onchain transaction.
+It can be embedded in feeds in a compact form which includes an image and a button which opens the Mini App. When the button is clicked the Mini App URL is rendered in an in-app browser. Developers can build anything that renders in a browser and can use a JavaScript SDK to trigger actions like saving the Mini App or requesting an onchain transaction.
 
 <img width="1330" alt="Screenshot 2024-11-20 at 7 28 48 PM" src="https://github.com/user-attachments/assets/9d076056-f8df-46dd-8630-e8caf5b3def4">
 
@@ -244,9 +244,9 @@ A frame should be rendered in a vertical modal. Mobile frame sizes will be dicta
 
 ## Client SDK API
 
-Frame applications must include a frame SDK JavaScript package to communicate with the parent app. Frames may include it as a bundled package or using a `<script>` tag.
+Frame applications must include a mini apps SDK JavaScript package to communicate with the parent app. Frames may include it as a bundled package or using a `<script>` tag.
 
-The frame SDK manages frame-client communication over a `window.postMessage` channel. Since the parent app cannot inject arbitrary JavaScript in a browser context, frame applications must include the SDK in their app to establish a communication channel.
+The mini apps SDK manages frame-client communication over a `window.postMessage` channel. Since the parent app cannot inject arbitrary JavaScript in a browser context, frame applications must include the SDK in their app to establish a communication channel.
 
 The `sdk.context` variable provides information about the context within which the frame is running:
 

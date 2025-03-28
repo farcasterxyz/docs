@@ -157,7 +157,7 @@ export default defineConfig({
         { text: 'Overview', link: '/developers/' },
         { text: 'Resources', link: '/developers/resources' },
         {
-          text: 'Frames v2',
+          text: 'Mini Apps',
           items: [
             {
               text: 'Introduction',
@@ -182,7 +182,7 @@ export default defineConfig({
           ],
         },
         {
-          text: 'Frames v1',
+          text: 'Legacy Frames',
           items: [
             {
               text: 'Introduction',

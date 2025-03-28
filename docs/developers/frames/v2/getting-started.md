@@ -1,22 +1,22 @@
 ---
-title: Getting Started with Frames v2
+title: Getting Started with Mini Apps
 ---
 
-# Getting Started with Frames v2
+# Getting Started with Mini Apps
 
 ::: info Not ready to build?
-If you'd prefer to learn more about the new spec before building a frame, jump ahead to the [Specification](./spec).
+If you'd prefer to learn more about the new spec before building a Mini App, jump ahead to the [Specification](./spec).
 :::
 
 ## Video demo
 
-Here's a full walkthrough of creating a frames v2 app:
+Here's a full walkthrough of creating a Mini App:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/5wAbo_YsuC4?si=-dOyKXgouz60ElmW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Tutorial
 
-The following tutorial is based on the [Frames v2 Demo](https://github.com/farcasterxyz/frames-v2-demo) repo on Github.
+The following tutorial is based on the [Mini Apps Demo](https://github.com/farcasterxyz/frames-v2-demo) repo on Github.
 
 ### Setup and dependencies
 
@@ -24,7 +24,7 @@ We'll start with a fresh NextJS app:
 
 ```bash
 $ yarn create next-app
-✔ What is your project named? … frames-v2-demo
+✔ What is your project named? … mini-apps-demo
 ✔ Would you like to use TypeScript? … No / Yes
 ✔ Would you like to use ESLint? … No / Yes
 ✔ Would you like to use Tailwind CSS? … No / Yes
@@ -33,13 +33,13 @@ $ yarn create next-app
 ✔ Would you like to use Turbopack for next dev? … No / Yes
 ✔ Would you like to customize the import alias (@/* by default)? … No / Yes
 ✔ What import alias would you like configured? … ~/*
-Creating a new Next.js app in /Users/horsefacts/Projects/frames-v2-demo.
+Creating a new Next.js app in /Users/horsefacts/Projects/mini-apps-demo.
 ```
 
-Next, install frame related dependencies. We'll need the official frame SDK:
+Next, install frame related dependencies. We'll need the official mini apps SDK:
 
 ```bash
-$ yarn add @farcaster/frame-sdk
+$ yarn add @farcaster/miniapp-sdk
 ```
 
 We'll also need [Wagmi](https://wagmi.sh/) to handle wallet interactions. Let's install it and its dependencies.
@@ -52,15 +52,15 @@ OK, we're ready to get started!
 
 ### Configuring providers
 
-We'll need to set up a custom Wagmi connector in order to interact with the user's Farcaster wallet. Since the frames SDK is a frontend only package, we'll also need to use client components and [Next dynamic imports](https://nextjs.org/docs/pages/building-your-application/optimizing/lazy-loading#nextdynamic) in a few places.
+We'll need to set up a custom Wagmi connector in order to interact with the user's Farcaster wallet. Since the mini apps SDK is a frontend only package, we'll also need to use client components and [Next dynamic imports](https://nextjs.org/docs/pages/building-your-application/optimizing/lazy-loading#nextdynamic) in a few places.
 
 First, let's create a custom connector component at `lib/connector.ts`. We'll use this to connect to the user's Farcaster wallet from our app.
 
 > [!NOTE]
-> We plan to move this connector into the frames SDK so you don't have to worry about it. But you'll need to copy-paste it for now.
+> We plan to move this connector into the mini apps SDK so you don't have to worry about it. But you'll need to copy-paste it for now.
 
 ```ts
-import sdk from '@farcaster/frame-sdk';
+import sdk from '@farcaster/miniapp-sdk';
 import { SwitchChainError, fromHex, getAddress, numberToHex } from 'viem';
 import { ChainNotConfiguredError, createConnector } from 'wagmi';
 
@@ -214,8 +214,8 @@ import '~/app/globals.css';
 import { Providers } from '~/app/providers';
 
 export const metadata: Metadata = {
-  title: 'Farcaster Frames v2 Demo',
-  description: 'A Farcaster Frames v2 demo app',
+  title: 'Farcaster Mini Apps Demo',
+  description: 'A Farcaster Mini Apps demo app',
 };
 
 export default function RootLayout({
@@ -315,7 +315,7 @@ Let's call `ready()` to load our app. We'll call `sdk.actions.ready()` in an eff
 
 ```tsx
 import { useEffect, useState } from 'react';
-import sdk from '@farcaster/frame-sdk';
+import sdk from '@farcaster/miniapp-sdk';
 
 export default function Demo() {
   const [isSDKLoaded, setIsSDKLoaded] = useState(false);
@@ -350,7 +350,7 @@ We can access the context data at `sdk.context` to see information about the cur
 
 ```tsx
 import { useEffect, useCallback, useState } from 'react';
-import sdk, { type FrameContext } from '@farcaster/frame-sdk';
+import sdk, { type FrameContext } from '@farcaster/miniapp-sdk';
 
 export default function Demo() {
   const [isSDKLoaded, setIsSDKLoaded] = useState(false);
@@ -407,7 +407,7 @@ export default function Demo() {
 When you load this in the Warpcast frames playground, you should see your own Farcaster user profile:
 
 > [!WARNING]
-> In the current developer preview, context data is unauthenticated. Assume this data is spoofable and don't use it to grant privileged access to the user! Future frame SDK releases will include a mechanism fo verify context data.
+> In the current developer preview, context data is unauthenticated. Assume this data is spoofable and don't use it to grant privileged access to the user! Future mini apps SDK releases will include a mechanism fo verify context data.
 
 <img src="https://raw.githubusercontent.com/farcasterxyz/frames-v2-demo/refs/heads/main/docs/img/6_context.PNG" width="200" alt="Context" />
 
@@ -481,7 +481,7 @@ Let's start by opening an external URL. Add an `openUrl` callback that calls `sd
 
 ```tsx
 import { useEffect, useCallback, useState } from 'react';
-import sdk, { type FrameContext } from '@farcaster/frame-sdk';
+import sdk, { type FrameContext } from '@farcaster/miniapp-sdk';
 
 export default function Demo() {
   const [isSDKLoaded, setIsSDKLoaded] = useState(false);
@@ -540,7 +540,7 @@ Let's add another button to call `close()`:
 
 ```tsx
 import { useEffect, useCallback, useState } from 'react';
-import sdk, { type FrameContext } from '@farcaster/frame-sdk';
+import sdk, { type FrameContext } from '@farcaster/miniapp-sdk';
 
 export default function Demo() {
   const [isSDKLoaded, setIsSDKLoaded] = useState(false);
@@ -612,7 +612,7 @@ Finally, let's interact with the user's connected wallet. To do so, we can use t
 
 ```tsx
 import { useEffect, useCallback, useState } from 'react';
-import sdk, { type FrameContext } from '@farcaster/frame-sdk';
+import sdk, { type FrameContext } from '@farcaster/miniapp-sdk';
 import { useAccount } from 'wagmi';
 
 import { Button } from '~/components/ui/Button';
@@ -662,7 +662,7 @@ If your wallet is connected to Warpcast, you should see its address. In case it'
 
 ```tsx
 import { useEffect, useCallback, useState } from 'react';
-import sdk, { type FrameContext } from '@farcaster/frame-sdk';
+import sdk, { type FrameContext } from '@farcaster/miniapp-sdk';
 import { useAccount } from 'wagmi';
 
 import { config } from '~/components/providers/WagmiProvider';
@@ -730,7 +730,7 @@ Now let's request a transaction. We'll use the Wagmi `useSendTransaction` hook t
 
 ```tsx
 import { useEffect, useCallback, useState } from 'react';
-import sdk, { type FrameContext } from '@farcaster/frame-sdk';
+import sdk, { type FrameContext } from '@farcaster/miniapp-sdk';
 import {
   useAccount,
   useSendTransaction,
@@ -871,7 +871,7 @@ Finally, let's add two new helpers for wallet signature methods. Below is the fu
 
 ```tsx
 import { useEffect, useCallback, useState } from 'react';
-import sdk, { type FrameContext } from '@farcaster/frame-sdk';
+import sdk, { type FrameContext } from '@farcaster/miniapp-sdk';
 import {
   useAccount,
   useSendTransaction,
@@ -956,7 +956,7 @@ export default function Demo() {
   }, [sendTransaction]);
 
   const sign = useCallback(() => {
-    signMessage({ message: 'Hello from Frames v2!' });
+    signMessage({ message: 'Hello from Mini Apps!' });
   }, [signMessage]);
 
   const signTyped = useCallback(() => {
@@ -1114,7 +1114,7 @@ export default function Demo() {
 }
 ```
 
-We've build a simple v2 frame by:
+We've built a simple Mini App by:
 
 1. Setting up a NextJS web app
 2. Importing the Frames SDK and calling `sdk.actions.ready()`

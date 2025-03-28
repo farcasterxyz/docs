@@ -4,8 +4,8 @@ title: Frames Introduction
 
 # Frames Introduction
 
-::: info Frames are evolving!
-We recently released a new [Frames standard](./v2/index.md) to enable even better in-feed experiences. **Frames v1 have been deprecated and will be supported only until end of March 2025.** We strongly recommend using Frames v2 for all new projects.
+::: info Mini Apps are evolving!
+We recently released a new [Mini Apps standard](./v2/index.md) to enable even better in-feed experiences. **Frames v1 have been deprecated and will be supported only until end of March 2025.** We strongly recommend using Mini Apps for all new projects.
 :::
 
 Frames are a way to build interactive apps that run directly in a Farcaster social feed.
