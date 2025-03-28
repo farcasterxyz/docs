@@ -18,7 +18,7 @@ If you want to learn more, get started by diving into these concepts:
 
 ## Tutorials
 
-- [Build your first frame](/developers/frames/getting-started) - Make mini-apps that run inside Farcaster.
+- [Build your first mini app](/developers/frames/getting-started) - Make mini-apps that run inside Farcaster.
 - [Sign in with Farcaster](/auth-kit/installation) - Let users login to your app with their Farcaster account.
 - [Write your first app](/developers/index) - Publish a "Hello World" message to Farcaster.
 
@@ -27,7 +27,7 @@ Find more how-tos, guide and tutorials like this in the [developers](/developers
 ## Documentation
 
 - [Farcaster Spec](https://github.com/farcasterxyz/protocol) - Specifications for Farcaster, including its contracts and hubs.
-- [Frame Spec](/developers/frames/spec) - Specifications for writing and rendering frames in Farcaster apps.
+- [Mini Apps Spec](/developers/frames/spec) - Specifications for writing and rendering mini apps in Farcaster apps.
 - [APIs](/reference/) - Docs for API's and ABI's for onchain and offchain systems.
 
 ## Contributing

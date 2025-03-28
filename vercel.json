@@ -2,18 +2,38 @@
   "cleanUrls": true,
   "redirects": [
     {
-      "source": "/auth-kit/introduction",
-      "destination": "/auth-kit/",
+      "source": "/developers/frames/v2",
+      "destination": "https://miniapps.farcaster.xyz/",
       "permanent": true
     },
     {
-      "source": "/learn/what-is-farcaster/frames",
-      "destination": "/developers/frames/",
+      "source": "/developers/frames/v2/",
+      "destination": "https://miniapps.farcaster.xyz/",
       "permanent": true
     },
     {
-      "source": "/reference/frames/spec",
-      "destination": "/developers/frames/spec",
+      "source": "/developers/frames/v2/getting-started",
+      "destination": "https://miniapps.farcaster.xyz/docs/getting-started",
+      "permanent": true
+    },
+    {
+      "source": "/developers/frames/v2/spec",
+      "destination": "https://miniapps.farcaster.xyz/docs/specification",
+      "permanent": true
+    },
+    {
+      "source": "/developers/frames/v2/index",
+      "destination": "https://miniapps.farcaster.xyz/",
+      "permanent": true
+    },
+    {
+      "source": "/developers/frames/v2/resources",
+      "destination": "https://miniapps.farcaster.xyz/docs/specification",
+      "permanent": true
+    },
+    {
+      "source": "/developers/frames/v2/notifications_webhooks",
+      "destination": "https://miniapps.farcaster.xyz/docs/guides/notifications",
       "permanent": true
     }
   ]

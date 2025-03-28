@@ -2,13 +2,12 @@
 Ask questions and hang out with other Farcaster developers in the [/fc-devs](https://warpcast.com/~/channel/fc-devs) channel on Farcaster.
 :::
 
-## Create frames
+## Create mini apps
 
-Learn how to build frames, which are mini-apps that run inside a Farcaster feed.
+Learn how to build mini apps that run inside a Farcaster feed.
 
-- [Introduction](/developers/frames/) - understand what a frame is and how it works
-- [Getting Started](/developers/frames/getting-started) - Build your first Frame
-- [Specification](/developers/frames/spec) - a formal specification for the Frame standard
+- [Introduction](https://miniapps.farcaster.xyz/){target="_self"}- understand what a mini app is and how it works
+- [Getting Started](https://miniapps.farcaster.xyz/docs/getting-started){target="_self"}- Build your first mini app
 
 ## Sign in with Farcaster
 
