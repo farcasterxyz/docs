@@ -112,26 +112,32 @@ export default defineConfig({
             {
               text: 'Mini Apps',
               link: 'https://miniapps.farcaster.xyz/',
+              target: '_self',
             },
             {
               text: 'Accounts',
               link: '/learn/what-is-farcaster/accounts',
+              target: '_self',
             },
             {
               text: 'Usernames',
               link: '/learn/what-is-farcaster/usernames',
+              target: '_self',
             },
             {
               text: 'Messages',
               link: '/learn/what-is-farcaster/messages',
+              target: '_self',
             },
             {
               text: 'Channels',
               link: '/learn/what-is-farcaster/channels',
+              target: '_self',
             },
             {
               text: 'Apps',
               link: '/learn/what-is-farcaster/apps',
+              target: '_self',
             },
           ],
         },
@@ -162,26 +168,32 @@ export default defineConfig({
             {
               text: 'Introduction',
               link: 'https://miniapps.farcaster.xyz',
+              target: '_self',
             },
             {
               text: 'Getting Started',
               link: 'https://miniapps.farcaster.xyz/docs/getting-started',
+              target: '_self',
             },
             {
               text: 'Interacting with Wallets',
               link: 'https://miniapps.farcaster.xyz/docs/guides/wallets',
+              target: '_self',
             },
             {
               text: 'Sending Notifications',
               link: 'https://miniapps.farcaster.xyz/docs/guides/notifications',
+              target: '_self',
             },
             {
               text: 'Authenticating Users',
               link: 'https://miniapps.farcaster.xyz/docs/guides/auth',
+              target: '_self',
             },
             {
               text: 'Specification',
               link: 'https://miniapps.farcaster.xyz/docs/specification',
+              target: '_self',
             },
           ],
         },
@@ -477,7 +489,7 @@ export default defineConfig({
         },
         {
           text: 'Mini Apps',
-          items: [{ text: 'Specification', link: '/developers/frames/v2/spec' }],
+          items: [{ text: 'Specification', link: 'https://miniapps.farcaster.xyz/docs/specification', target: '_self' }],
         },
         {
           text: 'Actions',

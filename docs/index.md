@@ -8,6 +8,7 @@ hero:
     - theme: brand
       text: Build a mini app
       link: https://miniapps.farcaster.xyz/docs/getting-started
+      target: _self
     - theme: alt
       text: Explore Sign In with Farcaster
       link: /developers/siwf/
@@ -20,8 +21,8 @@ hero:
 
 Learn how to build mini apps that run inside a Farcaster feed.
 
-- [Introduction to Mini Apps](https://miniapps.farcaster.xyz/) - Understand what a mini app is and how it works.
-- [Build your first Mini App](https://miniapps.farcaster.xyz/docs/getting-started) - Make mini apps that run inside Farcaster.
+- [Introduction to Mini Apps](https://miniapps.farcaster.xyz/){:target="\_self"} - Understand what a mini app is and how it works.
+- [Build your first Mini App](https://miniapps.farcaster.xyz/docs/getting-started){:target="\_self"} - Make mini apps that run inside Farcaster.
 
 ### Explore Sign In with Farcaster
 
