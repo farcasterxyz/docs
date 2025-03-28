@@ -6,7 +6,7 @@ hero:
   tagline: Permissionlessly build and distribute social apps
   actions:
     - theme: brand
-      text: Build a frame
+      text: Build a mini app
       link: /developers/frames/v2/
     - theme: alt
       text: Explore Sign In with Farcaster
@@ -16,13 +16,13 @@ hero:
       link: /learn/
 ---
 
-### Build a frame
+### Build a mini app
 
-Learn how to build frames, which are mini-apps that run inside a Farcaster feed.
+Learn how to build mini apps that run inside a Farcaster feed.
 
-- [Introduction to Frames](/developers/frames/v2/) - Understand what a frame is and how it works.
-- [Build your first frame](/developers/frames/v2/getting-started) - Make mini-apps that run inside Farcaster.
-- [Specification](/developers/frames/v2/spec) - A formal specification for the Frame standard.
+- [Introduction to Mini Apps](/developers/frames/v2/) - Understand what a mini app is and how it works.
+- [Build your first mini app](/developers/frames/v2/getting-started) - Make mini apps that run inside Farcaster.
+- [Specification](/developers/frames/v2/spec) - A formal specification for the Mini Apps standard.
 
 ### Explore Sign In with Farcaster
 

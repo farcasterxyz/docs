@@ -110,6 +110,10 @@ export default defineConfig({
           text: 'Core Concepts',
           items: [
             {
+              text: 'Mini Apps',
+              link: '/developers/frames/v2/',
+            },
+            {
               text: 'Accounts',
               link: '/learn/what-is-farcaster/accounts',
             },
@@ -120,10 +124,6 @@ export default defineConfig({
             {
               text: 'Messages',
               link: '/learn/what-is-farcaster/messages',
-            },
-            {
-              text: 'Frames',
-              link: '/developers/frames/',
             },
             {
               text: 'Channels',
@@ -472,8 +472,8 @@ export default defineConfig({
           items: [{ text: 'Overview', link: '/reference/index' }],
         },
         {
-          text: 'Frames',
-          items: [{ text: 'Specification', link: '/developers/frames/spec' }],
+          text: 'Mini Apps',
+          items: [{ text: 'Specification', link: '/developers/frames/v2/spec' }],
         },
         {
           text: 'Actions',

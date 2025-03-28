@@ -32,6 +32,6 @@ A 5 minute non-technical primer on Frames:
 
 ## Next Steps
 
-1. [Build your first frame](./getting-started)
-2. Read through the [formal Frames Specification](./spec).
+1. [Build your first mini app](./getting-started)
+2. Read through the [formal Mini Apps Specification](./spec).
 3. Join the Farcaster developer community in the [/fc-devs](https://warpcast.com/~/channel/fc-devs) channel on Farcaster.

@@ -10,29 +10,29 @@ It can be embedded in feeds in a compact form which includes an image and a butt
 
 <img width="1330" alt="Screenshot 2024-11-20 at 7 28 48 PM" src="https://github.com/user-attachments/assets/9d076056-f8df-46dd-8630-e8caf5b3def4">
 
-Frames will have access to:
+Mini Apps will have access to:
 
 1. Context: information about the user's Farcaster account and where the frame was called from
 2. Actions: APIs to request the parent app to do certain things on the frame's behalf
 3. Wallet: an Ethereum provider to request transactions and signatures from the connected wallet
 
-Here's an example of a frame using a wallet to complete a transaction:
+Here's an example of a mini app using a wallet to complete a transaction:
 
 ![https://github.com/user-attachments/assets/140213e1-eec8-4a67-8238-b05ac5ad7423](https://github.com/user-attachments/assets/140213e1-eec8-4a67-8238-b05ac5ad7423)
 
-## Frame URL Specifications
+## Mini App URL Specifications
 
-A URL is considered a valid frame if it includes an embed tag in its HTML `<head>`. An optional manifest file at a well known location at the root of the domain can be provided for additional provenance and appearance information for Farcaster clients.
+A URL is considered a valid mini app if it includes an embed tag in its HTML `<head>`. An optional manifest file at a well known location at the root of the domain can be provided for additional provenance and appearance information for Farcaster clients.
 
 ### Versioning
 
-Frames will follow [semantic versioning](https://semver.org/) and frames must declare the version that they support. Apps will choose to render frames based on the versions they can support.
+Mini Apps will follow [semantic versioning](https://semver.org/) and mini apps must declare the version that they support. Apps will choose to render mini apps based on the versions they can support.
 
 <a name="frame-embed-metatags"></a>
 
-### Frame Embed Metatags
+### Mini App Embed Metatags
 
-A frame URL must have a FrameEmbed in a serialized form in the `fc:frame` meta tag in the HTML `<head>`. When this URL is rendered in a cast, the image is displayed in a 3:2 ratio with a button underneath. Clicking the button will open an app frame to the provided action url and use the splash page to animate the transition.
+A mini app URL must have a FrameEmbed in a serialized form in the `fc:frame` meta tag in the HTML `<head>`. When this URL is rendered in a cast, the image is displayed in a 3:2 ratio with a button underneath. Clicking the button will open an app mini app to the provided action url and use the splash page to animate the transition.
 
 ```html
 <meta name="fc:frame" content="<stringified FrameEmbed JSON>" />
@@ -86,11 +86,11 @@ type FrameEmbed = {
 };
 ```
 
-### Frame Manifest
+### Mini App Manifest
 
-The manifest file declares the metadata that is applied to the frame application served from this domain. It also defines triggers that indicate which actions it supports from trigger points like casts and the composer.
+The manifest file declares the metadata that is applied to the mini app application served from this domain. It also defines triggers that indicate which actions it supports from trigger points like casts and the composer.
 
-Frame should provide a JSON manifest file on their domain at the well known URI `/.well-known/farcaster.json`.
+Mini Apps should provide a JSON manifest file on their domain at the well known URI `/.well-known/farcaster.json`.
 
 ```ts
 type FarcasterManifest = {
@@ -180,9 +180,9 @@ type FrameConfig = {
 };
 ```
 
-**Frame Invocation**
+**Mini App Invocation**
 
-Frames may be invoked in the following ways. When invoked, the frame application may receive additional information about the context in which it was launched.
+Mini Apps may be invoked in the following ways. When invoked, the mini app application may receive additional information about the context in which it was launched.
 
 | Type         | Description                                                                                                                                           | Context                                                           |
 | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
@@ -645,19 +645,19 @@ export type SignInResult = {
 export type SignIn = (options: SignInOptions) => Promise<SignInResult>;
 ```
 
-## Feature: Add frame
+## Feature: Add mini app
 
-The user can add a frame to their Farcaster app, either through an SDK action or directly (from a deep link, catalog page, etc). The Farcaster app should make it easy to find this saved frame in their UI and accept notifications from the app developer and deliver them to the user. For example, a frame which monitors onchain prices could notify users when the price of something exceeds a certain threshold.
+The user can add a mini app to their Farcaster app, either through an SDK action or directly (from a deep link, catalog page, etc). The Farcaster app should make it easy to find this saved mini app in their UI and accept notifications from the app developer and deliver them to the user. For example, a mini app which monitors onchain prices could notify users when the price of something exceeds a certain threshold.
 
 ![https://github.com/user-attachments/assets/b3d7fd68-b763-4f28-897a-f3a24cfc01fe](https://github.com/user-attachments/assets/b3d7fd68-b763-4f28-897a-f3a24cfc01fe)
 
-**Request add frame**
+**Request add mini app**
 
-Asks the user to add the frame to the Farcaster app, which allows the user to invoke the frame from a cast, composer or other locations in the app. Also allows the app to send notifications to the user.
+Asks the user to add the mini app to the Farcaster app, which allows the user to invoke the mini app from a cast, composer or other locations in the app. Also allows the app to send notifications to the user.
 
 ### actions.addFrame
 
-Request the user to add the frame, which adds it to the user's favorites list and allows the frame server to send in-app notifications to the user. The Farcaster client is expected to prompt the user for confirmation. Per session, only a single prompt should be shown (repeated calls to `addFrame()` should immediately result in a. `rejected_by_user` error). When the client supports notifications, returns a `notificationDetails` object with a notification callback URL and token.
+Request the user to add the mini app, which adds it to the user's favorites list and allows the mini app server to send in-app notifications to the user. The Farcaster client is expected to prompt the user for confirmation. Per session, only a single prompt should be shown (repeated calls to `addFrame()` should immediately result in a. `rejected_by_user` error). When the client supports notifications, returns a `notificationDetails` object with a notification callback URL and token.
 
 ![https://github.com/user-attachments/assets/cdc36744-7a20-4666-996b-ad2003f0afb9](https://github.com/user-attachments/assets/cdc36744-7a20-4666-996b-ad2003f0afb9)
 
@@ -832,9 +832,9 @@ type EventNotificationsEnabledPayload = {
 };
 ```
 
-## Feature: Frame Events
+## Feature: Mini App Events
 
-Farcaster clients emit events to your frame, while it is open, to let you know of actions the user takes.
+Farcaster clients emit events to your mini app, while it is open, to let you know of actions the user takes.
 
 To listen to events, you have to use `sdk.on` to register callbacks ([see full example](https://github.com/farcasterxyz/frames-v2-demo/blob/20d454f5f6b1e4f30a6a49295cbd29ca7f30d44a/src/components/Demo.tsx#L92-L124)).
 
