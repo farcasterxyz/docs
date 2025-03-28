@@ -36,7 +36,7 @@ $ yarn create next-app
 Creating a new Next.js app in /Users/horsefacts/Projects/mini-apps-demo.
 ```
 
-Next, install frame related dependencies. We'll need the official mini apps SDK:
+Next, install mini app related dependencies. We'll need the official mini apps SDK:
 
 ```bash
 $ yarn add @farcaster/miniapp-sdk
@@ -239,7 +239,7 @@ OK, setup is all done, let's do something more interesting...
 
 Let's create a component for our app's `homeUrl` page. Create `app/components/Demo.tsx`.
 
-For now, let's just put in a placeholder, Since our frame app will be rendering at mobile width, we'll give it a fixed width and center the content:
+For now, let's just put in a placeholder, Since our mini app will be rendering at mobile width, we'll give it a fixed width and center the content:
 
 ```tsx
 export default function Demo() {
@@ -251,7 +251,7 @@ export default function Demo() {
 }
 ```
 
-Since we're going to import the frames SDK in this component, we'll need to load it dynamically, too. Edit `app/page.tsx`:
+Since we're going to import the mini app SDK in this component, we'll need to load it dynamically, too. Edit `app/page.tsx`:
 
 ```tsx
 'use client';
@@ -271,7 +271,7 @@ export default function Home() {
 }
 ```
 
-OK, we're all set up! Now is a good time to try out our frames app in the developer playground. To do so, we'll use ngrok to access our local dev server over the internet.
+OK, we're all set up! Now is a good time to try out our mini app in the developer playground. To do so, we'll use ngrok to access our local dev server over the internet.
 
 First, run the dev server:
 
@@ -289,7 +289,7 @@ $ ngrok http http://localhost:3000
 Some tunneling tools, like the ngrok free tier, insert a click-through interstitial between your dev server and the tunnel endpoint. Use a paid ngrok account or a different tool, like Tailscale funnel.
 :::
 
-Now open the Frame Playground on Warpcast mobile, by visiting [https://warpcast.com/~/developers/frame](https://warpcast.com/~/developers/frames).
+Now open the Mini App Playground on Warpcast mobile, by visiting [https://warpcast.com/~/developers/mini-apps](https://warpcast.com/~/developers/mini-apps).
 
 Enter your ngrok URL:
 
@@ -303,7 +303,7 @@ If you watch your dev server and ngrok logs, you'll see a request to your server
 
 ### Calling `ready()`
 
-To give frames a consistent loading experience, clients display a splash screen and image until the app calls `sdk.actions.ready()`. In order to make it more visible here, let's add a splash image and loading color:
+To give mini apps a consistent loading experience, clients display a splash screen and image until the app calls `sdk.actions.ready()`. In order to make it more visible here, let's add a splash image and loading color:
 
 <img src="https://raw.githubusercontent.com/farcasterxyz/frames-v2-demo/refs/heads/main/docs/img/3_config.png" width="200" alt="Config" />
 
@@ -311,7 +311,7 @@ Now we get a nice background color and splash image:
 
 <img src="https://raw.githubusercontent.com/farcasterxyz/frames-v2-demo/refs/heads/main/docs/img/4_splash.png" width="200" alt="Splash" />
 
-Let's call `ready()` to load our app. We'll call `sdk.actions.ready()` in an effect on render, which tells the parent Farcaster app that our frame is ready to render and hides the splash screen:
+Let's call `ready()` to load our app. We'll call `sdk.actions.ready()` in an effect on render, which tells the parent Farcaster app that our mini app is ready to render and hides the splash screen:
 
 ```tsx
 import { useEffect, useState } from 'react';
@@ -344,7 +344,7 @@ Try again in the playground and we'll see our app:
 
 ### Viewing context
 
-When your frame loads, the parent Farcaster app provides it with context information, including the current user. Let's take a look at it.
+When your mini app loads, the parent Farcaster app provides it with context information, including the current user. Let's take a look at it.
 
 We can access the context data at `sdk.context` to see information about the current user.:
 
@@ -404,7 +404,7 @@ export default function Demo() {
 }
 ```
 
-When you load this in the Warpcast frames playground, you should see your own Farcaster user profile:
+When you load this in the Warpcast mini app playground, you should see your own Farcaster user profile:
 
 > [!WARNING]
 > In the current developer preview, context data is unauthenticated. Assume this data is spoofable and don't use it to grant privileged access to the user! Future mini apps SDK releases will include a mechanism fo verify context data.
@@ -475,7 +475,7 @@ export default function Demo() {
 
 ### Invoking actions
 
-Now let's make our frame do something. We can invoke actions by calling the functions on `sdk.actions`. We've already used `sdk.actions.ready`. We can also call functions like `sdk.actions.openUrl` and `sdk.actions.close` to send commands back to the Farcaster client app.
+Now let's make our mini app do something. We can invoke actions by calling the functions on `sdk.actions`. We've already used `sdk.actions.ready`. We can also call functions like `sdk.actions.openUrl` and `sdk.actions.close` to send commands back to the Farcaster client app.
 
 Let's start by opening an external URL. Add an `openUrl` callback that calls `sdk.actions.openUrl` and a button that calls it:
 

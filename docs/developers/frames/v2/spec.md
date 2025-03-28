@@ -12,8 +12,8 @@ It can be embedded in feeds in a compact form which includes an image and a butt
 
 Mini Apps will have access to:
 
-1. Context: information about the user's Farcaster account and where the frame was called from
-2. Actions: APIs to request the parent app to do certain things on the frame's behalf
+1. Context: information about the user's Farcaster account and where the mini app was called from
+2. Actions: APIs to request the parent app to do certain things on the mini app's behalf
 3. Wallet: an Ethereum provider to request transactions and signatures from the connected wallet
 
 Here's an example of a mini app using a wallet to complete a transaction:
@@ -128,7 +128,7 @@ The account association links the domain to a Farcaster account. The signature m
 
 The domain in the signed object must match the domain the manifest is served from.
 
-**Frame Config**
+**Mini App Config**
 
 ```ts
 type FrameConfig = {
@@ -222,33 +222,33 @@ type TriggerConfig =
 
 The frame receives the trigger type and id as context data.
 
-**Frame manifest caching**
+**Mini App manifest caching**
 
-Farcaster clients may cache the frame manifest when scraping embeds, but should provide a mechanism for refreshing the manifest file.
+Farcaster clients may cache the mini app manifest when scraping embeds, but should provide a mechanism for refreshing the manifest file.
 
-### Frame UI Specifications
+### Mini App UI Specifications
 
 ![https://github.com/user-attachments/assets/66cba3ca-8337-4644-a3ac-ddc625358390](https://github.com/user-attachments/assets/66cba3ca-8337-4644-a3ac-ddc625358390)
 
 **Header**
 
-Clients should render a header above the frame that includes the name and author specified in the manifest. Clients should show the header whenever the app frame is launched.
+Clients should render a header above the mini app that includes the name and author specified in the manifest. Clients should show the header whenever the app mini app is launched.
 
 **Splash Screen**
 
-Clients should show a splash screen as soon as the app is launched. The icon and background must be specified in the frame manifest or embed meta tags. The frame can hide the splash screen once loading is complete.
+Clients should show a splash screen as soon as the app is launched. The icon and background must be specified in the mini app manifest or embed meta tags. The mini app can hide the splash screen once loading is complete.
 
 **Size & Orientation**
 
-A frame should be rendered in a vertical modal. Mobile frame sizes will be dictated by device dimensions while web frame sizes will be set to 424x695px.
+A mini app should be rendered in a vertical modal. Mobile mini app sizes will be dictated by device dimensions while web mini app sizes will be set to 424x695px.
 
 ## Client SDK API
 
-Frame applications must include a mini apps SDK JavaScript package to communicate with the parent app. Frames may include it as a bundled package or using a `<script>` tag.
+Mini App applications must include a mini apps SDK JavaScript package to communicate with the parent app. Mini Apps may include it as a bundled package or using a `<script>` tag.
 
-The mini apps SDK manages frame-client communication over a `window.postMessage` channel. Since the parent app cannot inject arbitrary JavaScript in a browser context, frame applications must include the SDK in their app to establish a communication channel.
+The mini apps SDK manages mini app-client communication over a `window.postMessage` channel. Since the parent app cannot inject arbitrary JavaScript in a browser context, mini app applications must include the SDK in their app to establish a communication channel.
 
-The `sdk.context` variable provides information about the context within which the frame is running:
+The `sdk.context` variable provides information about the context within which the mini app is running:
 
 ```ts
 export type FrameContext = {
@@ -270,7 +270,7 @@ export type FrameContext = {
 
 ### context.location
 
-Contains information about the context from which the frame was launched.
+Contains information about the context from which the mini app was launched.
 
 ```ts
 export type CastEmbedLocationContext = {
@@ -324,7 +324,7 @@ export type LocationContext =
 
 **Cast Embed**
 
-Indicates that the frame was launched from a cast (where it is an embed).
+Indicates that the mini app was launched from a cast (where it is an embed).
 
 ```ts
 > sdk.context.location
@@ -339,7 +339,7 @@ Indicates that the frame was launched from a cast (where it is an embed).
 
 **Notification**
 
-Indicates that the frame was launched from a notification triggered by the frame.
+Indicates that the mini app was launched from a notification triggered by the mini app.
 
 ```ts
 > sdk.context.location
@@ -355,7 +355,7 @@ Indicates that the frame was launched from a notification triggered by the frame
 
 **Launcher**
 
-Indicates that the frame was launched directly by the client app outside of a context, e.g. via some type of catalog or a notification triggered by the client.
+Indicates that the mini app was launched directly by the client app outside of a context, e.g. via some type of catalog or a notification triggered by the client.
 
 ```ts
 > sdk.context.location
@@ -422,10 +422,10 @@ type User = {
 
 ### context.client
 
-Details about the Farcaster client running the frame. This should be considered untrusted
+Details about the Farcaster client running the mini app. This should be considered untrusted
 
 - `clientFid`: the self-reported FID of the client (e.g. 9152 for Warpcast)
-- `added`: whether the user has added the frame to the client
+- `added`: whether the user has added the mini app to the client
 - `safeAreaInsets`: insets to avoid areas covered by navigation elements that obscure the view
 - `notificationDetails`: in case the user has enabled notifications, includes the `url` and `token` for sending notifications
 
@@ -486,7 +486,7 @@ type ClientContext = {
 
 #### Using safeAreaInsets
 
-Mobile devices render navigation elements that obscure the view of a frame. Use
+Mobile devices render navigation elements that obscure the view of a mini app. Use
 the `safeAreaInsets` to render content in the safe area that won't be obstructed.
 
 A basic usage would to wrap your view in a container that adds margin:
@@ -498,18 +498,18 @@ A basic usage would to wrap your view in a container that adds margin:
   marginLeft: context.client.safeAreaInsets.left,
   marginRight: context.client.safeAreaInsets.right,
 }}>
-  ...your frame view
+  ...your mini app view
 </div>
 ```
 
 However, you may want to set these insets on specific elements: for example if
-you have tab bar at the bottom of your frame with a different background, you'd
+you have tab bar at the bottom of your mini app with a different background, you'd
 want to set the bottom inset as padding there so it looks attached to the
 bottom of the view.
 
 ### actions.ready
 
-Indicates that the application is fully loaded and ready to displayed to users. Once this is called the loading screen will be hidden. Frame applications MUST call `ready()` to display their app.
+Indicates that the application is fully loaded and ready to displayed to users. Once this is called the loading screen will be hidden. Mini App applications MUST call `ready()` to display their app.
 
 ```ts
 > await sdk.actions.ready();
@@ -580,17 +580,17 @@ An [EIP-1193 Ethereum Provider](https://eips.ethereum.org/EIPS/eip-1193) for i
 
 ### FAQ
 
-**What about older frame types / cast actions / composer actions / mini-apps?**
+**What about older mini app types / cast actions / composer actions / mini-apps?**
 
-Older frame types will be fully supported for now until we develop a thorough transition plan. We will give developers at least 3 months notice before deprecating anything.
+Older mini app types will be fully supported for now until we develop a thorough transition plan. We will give developers at least 3 months notice before deprecating anything.
 
 # Release Plan
 
 ## Schedule
 
 - Nov 22nd: new draft of spec, mobile playground
-- Nov 27th: v0.0.0 of frames on mobile
-- Dec 6th+: v0.1.0 of frames on mobile and web (scope tbd, but likely includes auth, add frame, notifications)
+- Nov 27th: v0.0.0 of mini apps on mobile
+- Dec 6th+: v0.1.0 of mini apps on mobile and web (scope tbd, but likely includes auth, add mini app, notifications)
 - Jan/Feb: stable release of v1.0.0
 
 ## Changelog
@@ -603,13 +603,13 @@ Older frame types will be fully supported for now until we develop a thorough tr
 
 ## Feature: Auth
 
-Allow users to sign into frames using their Farcaster identity.
+Allow users to sign into mini apps using their Farcaster identity.
 
 ### actions.signIn
 
-Initiates a Sign In with Farcaster flow for the user. The Frame host must set
-the `domain` value of the SIWF message to the domain of the frame and the `uri`
-value of the url of the Frame. When validating this message the `domain` must
+Initiates a Sign In with Farcaster flow for the user. The Mini App host must set
+the `domain` value of the SIWF message to the domain of the mini app and the `uri`
+value of the url of the Mini App. When validating this message the `domain` must
 be checked.
 
 ```ts
@@ -695,10 +695,10 @@ export type AddFrameResult =
 export type AddFrame = () => Promise<AddFrameResult>;
 ```
 
-There are 2 expected failure conditions which the frame should gracefully handle:
+There are 2 expected failure conditions which the mini app should gracefully handle:
 
-- `invalid_domain_manifest`: The frame domain manifest is invalid. The frame developer should use the developer tools to validate and fix their manifest.
-- `rejected_by_user`: Returned when the user rejects/dismisses the prompt asking them to add the frame, or the frame has triggered `addFrame()` more than once per session.
+- `invalid_domain_manifest`: The mini app domain manifest is invalid. The mini app developer should use the developer tools to validate and fix their manifest.
+- `rejected_by_user`: Returned when the user rejects/dismisses the prompt asking them to add the mini app, or the mini app has triggered `addFrame()` more than once per session.
 
 ## Feature: Social
 
@@ -721,7 +721,7 @@ export type ViewProfileOptions = {
 
 ## Feature: Server Events
 
-The Farcaster client server POSTs 4 types of events to the frame server at the `webhookUrl` specified in its frame manifest:
+The Farcaster client server POSTs 4 types of events to the mini app server at the `webhookUrl` specified in its mini app manifest:
 
 - `frame_added`
 - `frame_removed`
@@ -742,21 +742,21 @@ Events use the [JSON Farcaster Signature](https://github.com/farcasterxyz/protoc
 
 All 3 values are `base64url` encoded. The payload and header can be decoded to JSON, where the payload is different per event.
 
-### `frame_added`: frame added to a client
+### `frame_added`: mini app added to a client
 
-This event may happen when an open frame calls `actions.addFrame` to prompt the user to favorite it, or when the frame is closed and the user adds the frame elsewhere in the client application (e.g. from a catalog).
+This event may happen when an open mini app calls `actions.addFrame` to prompt the user to favorite it, or when the mini app is closed and the user adds the mini app elsewhere in the client application (e.g. from a catalog).
 
-Adding a frame includes enabling notifications.
+Adding a mini app includes enabling notifications.
 
-The Farcaster app server generates a unique `notificationToken` and sends it together with the `notificationUrl` that the frame must call, to both the Farcaster app client and the frame server. Client apps must generate unique tokens for each user.
+The Farcaster app server generates a unique `notificationToken` and sends it together with the `notificationUrl` that the mini app must call, to both the Farcaster app client and the mini app server. Client apps must generate unique tokens for each user.
 
-The app client then resolves the `actions.addFrame` promise so the frame can react immediately (without having to check its server).
+The app client then resolves the `actions.addFrame` promise so the mini app can react immediately (without having to check its server).
 
-This is the flow for an open frame:
+This is the flow for an open mini app:
 
 ![Screenshot 2024-11-26 at 16 02 24](https://github.com/user-attachments/assets/00a79f2e-265b-4ec1-831f-28b3a2a6b6de)
 
-This is the flow when the frame is not open; only the backend part runs:
+This is the flow when the mini app is not open; only the backend part runs:
 
 ![Screenshot 2024-11-26 at 16 02 35](https://github.com/user-attachments/assets/aae4d453-92f7-46c0-a44f-b0597e58fa43)
 
@@ -779,9 +779,9 @@ type EventFrameAddedPayload = {
 };
 ```
 
-### `frame_removed`: user removed frame from client
+### `frame_removed`: user removed mini app from client
 
-A user can remove a frame, which means that any notification tokens for that fid and client app (based on signer requester) should be considered invalid:
+A user can remove a mini app, which means that any notification tokens for that fid and client app (based on signer requester) should be considered invalid:
 
 ![Screenshot 2024-11-26 at 16 02 40](https://github.com/user-attachments/assets/079dfb74-77e4-47c8-b2e7-1b4628d1f162)
 
@@ -795,7 +795,7 @@ Webhook payload:
 
 ### `notifications_disabled`: user disabled notifications
 
-A user can disable frame notifications from e.g. a settings panel in the client app. Any notification tokens for that fid and client app (based on signer requester) should be considered invalid:
+A user can disable mini app notifications from e.g. a settings panel in the client app. Any notification tokens for that fid and client app (based on signer requester) should be considered invalid:
 
 ![Screenshot 2024-11-26 at 16 03 04](https://github.com/user-attachments/assets/bcca0f58-3656-4a8c-bff8-8feda97bdc54)
 
@@ -809,7 +809,7 @@ Webhook payload:
 
 ### `notifications_enabled`: user enabled notifications
 
-A user can enable frame notifications (e.g. after disabling them). The client backend again sends a `notificationUrl` and a `token`, with a backend-only flow:
+A user can enable mini app notifications (e.g. after disabling them). The client backend again sends a `notificationUrl` and a `token`, with a backend-only flow:
 
 ![Screenshot 2024-11-26 at 16 02 48](https://github.com/user-attachments/assets/3ead1768-2efc-4785-9d4a-3a399f2dd0e6)
 
@@ -883,18 +883,18 @@ The emitted events are:
 
 ## Feature: Notifications API
 
-A frame server can send notifications to one or more users who have enabled them.
+A mini app server can send notifications to one or more users who have enabled them.
 
-The frame server is given an authentication token and a URL which they can use to push a notification to the specific Farcaster app that invoked the frame. This is private and must be done separately for each Farcaster app that a user may use.
+The mini app server is given an authentication token and a URL which they can use to push a notification to the specific Farcaster app that invoked the mini app. This is private and must be done separately for each Farcaster app that a user may use.
 
 ![Screenshot 2024-11-27 at 16 50 36](https://github.com/user-attachments/assets/9b23ca16-a173-49a9-aa9f-7bc80c8abcf8)
 
-The frame server calls the `notificationUrl` with:
+The mini app server calls the `notificationUrl` with:
 
-- `notificationId`: a string (max size 128) that serves as an idempotency key and will be passed back to the frame via context. A Farcaster client should deliver only one notification per user per `notificationId`, even if called multiple times.
+- `notificationId`: a string (max size 128) that serves as an idempotency key and will be passed back to the mini app via context. A Farcaster client should deliver only one notification per user per `notificationId`, even if called multiple times.
 - `title`: title of the notification, max length of 32 characters
 - `body`: body of the notification
-- `targetUrl`: the target frame URL to open when a user clicks the notification. It must match the domain for which the notification token was issued.
+- `targetUrl`: the target mini app URL to open when a user clicks the notification. It must match the domain for which the notification token was issued.
 - `tokens`: an array of tokens (for that `notificationUrl`) to send the notification to. Client servers may impose a limit here, e.g. max 10000 tokens.
 
 Client servers may also impose a rate limit per `token`, e.g. 5 sends per 5 minutes.
@@ -902,8 +902,8 @@ Client servers may also impose a rate limit per `token`, e.g. 5 sends per 5 minu
 The response from the client server must be an HTTP 200 OK, with the following 3 arrays:
 
 - `successTokens`: tokens for which the notification succeeded
-- `invalidTokens`: tokens which are no longer valid and should never be used again. This could happen if the user disabled notifications but for some reason the frame server has no record of it.
-- `rateLimitedTokens`: tokens for which the rate limit was exceeded. Frame server can try later.
+- `invalidTokens`: tokens which are no longer valid and should never be used again. This could happen if the user disabled notifications but for some reason the mini app server has no record of it.
+- `rateLimitedTokens`: tokens for which the rate limit was exceeded. Mini app server can try later.
 
 Once a user has been notified, when clicking the notification the client app will:
 
@@ -912,8 +912,8 @@ Once a user has been notified, when clicking the notification the client app wil
 
 Farcaster apps should:
 
-1. Display a list of added frames somewhere in their UI, allowing the user to enable/disable notifications.
-2. Show notifications from added frames along with other in-app notifications.
+1. Display a list of added mini apps somewhere in their UI, allowing the user to enable/disable notifications.
+2. Show notifications from added mini apps along with other in-app notifications.
 
 <a name="feature-triggers"></a>
 
@@ -921,11 +921,11 @@ Farcaster apps should:
 
 ### Contexts
 
-A frame can be launched from different contexts like a cast or direct message. In each case, the frame app receives a context object that contains information about how the frame was triggered. The context may also define what SDK functions are available. For example, a "translate" frame launched from the `composer` context will have a method that allows it to update the cast being written, while one triggered from a `cast` context in the feed will only get the contents of the cast.
+A mini app can be launched from different contexts like a cast or direct message. In each case, the mini app receives a context object that contains information about how the mini app was triggered. The context may also define what SDK functions are available. For example, a "translate" mini app launched from the `composer` context will have a method that allows it to update the cast being written, while one triggered from a `cast` context in the feed will only get the contents of the cast.
 
-Contexts unify cast actions, composer actions, frames and mini-apps into a single standard, instead of having custom flows for each of these features.
+Contexts unify cast actions, composer actions, mini apps and mini-apps into a single standard, instead of having custom flows for each of these features.
 
-A single frame may expose multiple cast and composer triggers via the TriggerConfig in its frame application manifest. When invoked, the context will include the ID of the trigger that was activated.
+A single mini app may expose multiple cast and composer triggers via the TriggerConfig in its mini app application manifest. When invoked, the context will include the ID of the trigger that was activated.
 
 We intend to introduce additional triggers in the future, replacing "cast actions" and "composer actions" and introducing new launch contexts:
 
@@ -998,7 +998,7 @@ type DirectCastEmbedLaunchContext = {
 
 **Action Button**
 
-A native action button may be rendered via an SDK call which provides a clear and consistent call to action for the user. The app frame can specify the text, color mode and callback function. This is optional and frames may choose to implement their own user interface using UI components inside the web view.
+A native action button may be rendered via an SDK call which provides a clear and consistent call to action for the user. The mini app can specify the text, color mode and callback function. This is optional and mini apps may choose to implement their own user interface using UI components inside the web view.
 
 Set the Primary Button.
 
@@ -1014,7 +1014,7 @@ type SetPrimaryButton = (options: {
 }) => Promise<void>;
 ```
 
-An app frame should subscribe to the `primaryButtonClicked` event to respond to interactions.
+A mini app should subscribe to the `primaryButtonClicked` event to respond to interactions.
 
 ### primaryButtonClicked (Event)
 
