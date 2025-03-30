@@ -60,7 +60,7 @@ const key = '0x' + Buffer.from(publicKeyBytes).toString('hex');
 /*** Generating a Signed Key Request signature ***/
 
 const appFid = process.env.APP_FID;
-const account = mnemonicToAccount(process.env.APP_MNENOMIC);
+const account = mnemonicToAccount(process.env.APP_MNEMONIC);
 
 const deadline = Math.floor(Date.now() / 1000) + 86400; // signature is valid for 1 day
 const signature = await account.signTypedData({
@@ -180,7 +180,7 @@ poll(token);
 
 When the user approves the request in Warpcast, an onchain transaction will be
 made that grants write permissions to that signer. Once that completes your app
-should indicate success and can being writing messages using the newly added key.
+should indicate success and can begin writing messages using the newly added key.
 
 ### Reference implementation
 
