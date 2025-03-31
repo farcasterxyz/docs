@@ -1052,6 +1052,63 @@ Example:
 curl 'https://api.warpcast.com/v1/creator-rewards-winner-history'
 ```
 
+## Get developer reward winners
+
+`GET /v1/developer-rewards-winner-history`
+
+Warpcast gives out weekly rewards to top developers on the network.
+
+This endpoint provides access to all winners for a given period (week). Paginated, with the list of winners in rank order. Not authenticated.
+
+Data is refreshed every Wednesday at 17:00 UTC.
+
+Query parameters:
+
+- `periodsAgo` (**optional**) - how many periods ago to fetch the results for. 0 or undefined returns results for the most recent period.
+
+Returns:
+
+- `periodStartTimestamp`: Unix time in milliseconds when rewards period began
+- `periodEndTimestamp`: Unix time in milliseconds when rewards period ended
+- `winners`: Paginated list of fid, domain, frame (mini app) name, score, rank, wallet address (optional) and reward amount in rank order. A missing wallet address indicates that the user does not have a verified wallet on Warpcast.
+
+```json
+{
+  "result": {
+    "periodStartTimestamp": 1738080000000,
+    "periodEndTimestamp": 1738684800000,
+    "winners": [
+      {
+        "fid": 1,
+        "domain": "example.com",
+        "frameName": "App Name",
+        "score": 10,
+        "rank": 1,
+        "rewardCents": 1000,
+        "walletAddress": "0x0000000000000000000000000000000000000000",
+      },
+      {
+        "fid": 420,
+        "domain": "example.com",
+        "frameName": "App Name",
+        "score": 1,
+        "rank": 2,
+        "rewardCents": 500,
+        "walletAddress": "0x0000000000000000000000000000000000000001",
+      },
+      ...
+    ]
+  },
+  "next": { "cursor": "..." }
+}
+```
+
+Example:
+
+```bash
+curl 'https://api.warpcast.com/v1/developer-rewards-winner-history'
+```
+
 ## Get User Primary Address
 
 `GET /fc/primary-address?fid=12152&protocol=ethereum`
