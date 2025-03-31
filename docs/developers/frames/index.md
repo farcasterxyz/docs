@@ -5,6 +5,8 @@ title: Frames Introduction
 # Frames Introduction
 
 ::: info Mini Apps are evolving!
+
+<!-- prettier-ignore -->
 We recently released a new [Mini Apps standard](https://miniapps.farcaster.xyz/){target="_self"} to enable even better in-feed experiences. **Frames v1 have been deprecated and will be supported only until end of March 2025.** We strongly recommend using Mini Apps for all new projects.
 :::
 
