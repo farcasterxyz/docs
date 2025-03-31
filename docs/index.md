@@ -21,7 +21,9 @@ hero:
 
 Learn how to build mini apps that run inside a Farcaster feed.
 
+<!-- prettier-ignore -->
 - [Introduction to Mini Apps](https://miniapps.farcaster.xyz/){target="_self"}- Understand what a mini app is and how it works.
+<!-- prettier-ignore -->
 - [Build your first Mini App](https://miniapps.farcaster.xyz/docs/getting-started){target="_self"}- Make mini apps that run inside Farcaster.
 
 ### Explore Sign In with Farcaster

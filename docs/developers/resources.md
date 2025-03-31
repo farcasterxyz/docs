@@ -12,6 +12,7 @@ Resources are often from third parties and are not reviewed. Use them at your ow
 
 ### Mini Apps
 
+<!-- prettier-ignore -->
 - [@farcaster/mini-app](https://miniapps.farcaster.xyz/docs/getting-started){target="_self"}- CLI tool for building mini apps.
 - [@neynar/create-farcaster-mini-app](https://www.npmjs.com/package/@neynar/create-farcaster-mini-app) - A Mini App quickstart npx script from Neynar.
 
