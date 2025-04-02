@@ -195,6 +195,10 @@ export default defineConfig({
               link: 'https://miniapps.farcaster.xyz/docs/specification',
               target: '_self',
             },
+            {
+              text: 'Rename from Frames v2',
+              link: '/reference/frames-redirect',
+            }
           ],
         },
         {
@@ -489,7 +493,10 @@ export default defineConfig({
         },
         {
           text: 'Mini Apps',
-          items: [{ text: 'Specification', link: 'https://miniapps.farcaster.xyz/docs/specification', target: '_self' }],
+          items: [
+            { text: 'Specification', link: 'https://miniapps.farcaster.xyz/docs/specification', target: '_self' },
+            { text: 'Rename from Frames v2', link: '/reference/frames-redirect'}
+          ],
         },
         {
           text: 'Actions',
