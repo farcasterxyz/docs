@@ -489,7 +489,10 @@ export default defineConfig({
         },
         {
           text: 'Mini Apps',
-          items: [{ text: 'Specification', link: 'https://miniapps.farcaster.xyz/docs/specification', target: '_self' }],
+          items: [
+            { text: 'Specification', link: 'https://miniapps.farcaster.xyz/docs/specification', target: '_self' },
+            { text: 'Rename from Frames', link: '/reference/frames-redirect'}
+          ],
         },
         {
           text: 'Actions',

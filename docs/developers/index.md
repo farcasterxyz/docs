@@ -4,7 +4,7 @@ Ask questions and hang out with other Farcaster developers in the [/fc-devs](htt
 
 ## Create mini apps
 
-Learn how to build mini apps that run inside a Farcaster feed.
+Learn how to build mini apps (previously called Frames) that run inside a Farcaster feed.
 
 <!-- prettier-ignore -->
 - [Introduction](https://miniapps.farcaster.xyz/){target="_self"}- understand what a mini app is and how it works

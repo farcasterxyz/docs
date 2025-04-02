@@ -19,7 +19,7 @@ hero:
 
 ### Build a mini app
 
-Learn how to build mini apps that run inside a Farcaster feed.
+Learn how to build mini apps (previously known as Frames) that run inside a Farcaster feed.
 
 <!-- prettier-ignore -->
 - [Introduction to Mini Apps](https://miniapps.farcaster.xyz/){target="_self"}- Understand what a mini app is and how it works.
