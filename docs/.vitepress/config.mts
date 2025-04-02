@@ -139,6 +139,10 @@ export default defineConfig({
               link: '/learn/what-is-farcaster/apps',
               target: '_self',
             },
+            {
+              text: 'Rename from Frames',
+              link: '/reference/frames-redirect',
+            }
           ],
         },
         {
@@ -195,6 +199,10 @@ export default defineConfig({
               link: 'https://miniapps.farcaster.xyz/docs/specification',
               target: '_self',
             },
+            {
+              text: 'Rename from Frames',
+              link: '/reference/frames-redirect',
+            }
           ],
         },
         {
