@@ -1,8 +1,8 @@
 ---
-title: Frames have been rebranded to Mini Apps
+title: Frames v2 have been rebranded to Mini Apps
 ---
 
-# Frames have been rebranded to Mini Apps
+# Frames v2 have been rebranded to Mini Apps
 
 <!-- prettier-ignore -->
 As of early 2025, Frames v2 have been rebranded to Mini Apps. All Frames documentation and resources have been migrated to the [Mini Apps](https://miniapps.farcaster.xyz/){target="_self"} ecosystem.
