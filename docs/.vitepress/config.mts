@@ -139,10 +139,6 @@ export default defineConfig({
               link: '/learn/what-is-farcaster/apps',
               target: '_self',
             },
-            {
-              text: 'Rename from Frames',
-              link: '/reference/frames-redirect',
-            }
           ],
         },
         {
