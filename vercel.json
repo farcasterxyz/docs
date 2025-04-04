@@ -90,6 +90,11 @@
       "source": "/developers/frames/v2/spec",
       "destination": "https://miniapps.farcaster.xyz/docs/specification",
       "permanent": true
+    },
+    {
+      "source": "/reference/frames/spec",
+      "destination": "https://miniapps.farcaster.xyz/docs/specification",
+      "permanent": true
     }
   ]
 }
