@@ -27,6 +27,11 @@
       "permanent": true
     },
     {
+      "source": "/docs/developers/frames/",
+      "destination": "https://miniapps.farcaster.xyz",
+      "permanent": true
+    },
+    {
       "source": "/developers/frames/v2/getting-started",
       "destination": "https://miniapps.farcaster.xyz/docs/getting-started",
       "permanent": true
