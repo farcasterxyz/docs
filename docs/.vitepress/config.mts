@@ -195,6 +195,10 @@ export default defineConfig({
               link: 'https://miniapps.farcaster.xyz/docs/specification',
               target: '_self',
             },
+            {
+              text: 'Rename from Frames v2',
+              link: '/reference/frames-redirect',
+            }
           ],
         },
         {
@@ -467,6 +471,7 @@ export default defineConfig({
           text: 'Get Started',
           items: [
             { text: 'Hubble', link: '/hubble/hubble' },
+            { text: 'Migrating to Snapchain', link: '/hubble/migrating' },
             { text: 'Installation', link: '/hubble/install' },
             { text: 'Networks', link: '/hubble/networks' },
             { text: 'Monitoring', link: '/hubble/monitoring' },
@@ -489,7 +494,10 @@ export default defineConfig({
         },
         {
           text: 'Mini Apps',
-          items: [{ text: 'Specification', link: 'https://miniapps.farcaster.xyz/docs/specification', target: '_self' }],
+          items: [
+            { text: 'Specification', link: 'https://miniapps.farcaster.xyz/docs/specification', target: '_self' },
+            { text: 'Rename from Frames v2', link: '/reference/frames-redirect'}
+          ],
         },
         {
           text: 'Actions',
