@@ -19,7 +19,7 @@ Read APIs are fully backwards compatible with hubs so no migration is required. 
 Via http once you have a node running
 
 ```bash
-curl http://locaalhost:3381/v1/info 
+curl http://localhost:3381/v1/info 
 ```
 
 Via grpc
@@ -36,7 +36,7 @@ If you are using Shuttle, it will work the same as before. Just need to point it
 
 The write APIs are also backwards compatible with hubs, with some caveats (see below).
 
-In order to write to snapchain, you should run a node and submit directly to it. Refer to [existing docs](https://docs.farcaster.xyz/developers/guides/writing/submit-messages) for writing dia via the client library. Note, you **MUST** use version `0.16` or later of the `hub-nodejs` library.
+In order to write to snapchain, you should run a node and submit directly to it. Refer to [existing docs](https://docs.farcaster.xyz/developers/guides/writing/submit-messages) for writing data via the client library. Note, you **MUST** use version `0.16` or later of the `hub-nodejs` library.
 
 ### Gotchas
 
