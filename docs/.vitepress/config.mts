@@ -471,6 +471,7 @@ export default defineConfig({
           text: 'Get Started',
           items: [
             { text: 'Hubble', link: '/hubble/hubble' },
+            { text: 'Migrating to Snapchain', link: '/hubble/migrating' },
             { text: 'Installation', link: '/hubble/install' },
             { text: 'Networks', link: '/hubble/networks' },
             { text: 'Monitoring', link: '/hubble/monitoring' },
