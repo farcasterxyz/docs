@@ -2,12 +2,14 @@
 [Snapchain](https://github.com/farcasterxyz/snapchain) is a more scalable implementation of the Farcaster protocol. In order to interact with snapchain, you can operate your own read node. 
 
 
-### Running a read node
+## Running a read node
 ```bash
 git clone git@github.com:farcasterxyz/snapchain.git
 cd snapchain
 docker compose -f docker-compose.mainnet.yml up snap_read
 ```
+
+Note, the default http port is `3381`, the default gossip port is `3382` and the default grpc port is `3383`. You may need to open these ports. 
 
 ## Reading from snapchain
 Read APIs are fully backwards compatible with hubs so no migration is required. Refer to [existing docs](https://docs.farcaster.xyz/developers/guides/querying/fetch-casts) for reading data via the client library.
