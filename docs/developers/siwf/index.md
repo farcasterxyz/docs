@@ -18,7 +18,7 @@ a streamlined onboarding experience and social-powered features.
 3. Receive and verify a signature from Warpcast.
 4. Show the logged in user's profile picture and username.
 
-![Sign In with Farcaste demo](./siwf_demo.avifs)
+![Sign In with Farcaster demo](./siwf_demo.avifs)
 
 ## Next Steps
 

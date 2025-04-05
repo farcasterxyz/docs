@@ -83,7 +83,7 @@ const castWithEmojiAndMentions = await makeCastAdd(
 
 A cast can be a reply to another cast, URL or NFT. A reply to another cast is treated as a thread, while a reply to a URL or NFT can be treated as a comment or a [channel](#channels).
 
-The optional parentUrl property can be set to a URL or to an fid-hash value of the cast being replied to, as shown in th example below. See [FIP-2](https://github.com/farcasterxyz/protocol/discussions/71) for more details on reply types.
+The optional parentUrl property can be set to a URL or to an fid-hash value of the cast being replied to, as shown in the example below. See [FIP-2](https://github.com/farcasterxyz/protocol/discussions/71) for more details on reply types.
 
 ```typescript
 /**
