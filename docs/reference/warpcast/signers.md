@@ -17,7 +17,7 @@ them with the option to Connect with Warpcast.
 
 Your app should generate and securely store an Ed25519 associated with this
 user. In the next steps, you will prompt the user to approve this keypair to
-signer messages on their behalf.
+sign messages on their behalf.
 
 Since this keypair can write to the protocol on behalf of the user it's
 important that:
@@ -61,7 +61,7 @@ const key = '0x' + Buffer.from(publicKeyBytes).toString('hex');
 /*** Generating a Signed Key Request signature ***/
 
 const appFid = process.env.APP_FID;
-const account = mnemonicToAccount(process.env.APP_MNENOMIC);
+const account = mnemonicToAccount(process.env.APP_MNEMONIC);
 
 const deadline = Math.floor(Date.now() / 1000) + 86400; // signature is valid for 1 day
 const signature = await account.signTypedData({
