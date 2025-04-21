@@ -18,5 +18,5 @@ bindings for other clients built using other languages. Note that by default, hu
 javascript [ts-proto](https://www.npmjs.com/package/ts-proto) library's serialization byte order to verify messages
 hashes. If you are using a different client, you may need to use the `data_bytes` field with the raw serialized bytes
 when calling `SubmitMessage` in order for the message to be considered valid. Refer to
-the [SubmitMessage HTTP API docs](/reference/hubble/httpapi/message#using-with-rust-go-or-other-programing-languages)
+the [SubmitMessage HTTP API docs](/reference/hubble/httpapi/message#using-with-rust-go-or-other-programming-languages)
 for more details.
