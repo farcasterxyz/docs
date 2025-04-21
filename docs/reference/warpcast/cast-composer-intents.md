@@ -8,6 +8,10 @@ title: Warpcast Intents URLs
 
 Warpcast intents enable builders to direct authenticated users to a pre-filled cast composer.
 
+> [!IMPORTANT]
+> If you're building a Mini App and want to prompt the user to compose a cast, use the [composeCast action](https://miniapps.farcaster.xyz/docs/sdk/actions/compose-cast)
+> from the Mini App SDK.
+
 #### Compose with cast text
 
 ```
