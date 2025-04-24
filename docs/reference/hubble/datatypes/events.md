@@ -2,9 +2,9 @@
 
 Events represent state changes, like a new message or contract event.
 
-Hubble emit events whenever it observes a state change. Since a hub may see messages in a different order than other hubs, events ordering is specific to each hub. Clients can subscribe to the hub using the [Events API](/reference/hubble/grpcapi/events) to get a live stream of changes to the hub.
+Hubble emits events whenever it observes a state change. Since a hub may see messages in a different order than other hubs, events ordering is specific to each hub. Clients can subscribe to the hub using the [Events API](/reference/hubble/grpcapi/events) to get a live stream of changes to the hub.
 
-Hubble keeps event around for 3 days after which they are deleted to save space. To get older data, use the [GRPC](../grpcapi/grpcapi.md) or [HTTP](../httpapi/httpapi.md) APIs.
+Hubble keeps events around for 3 days after which they are deleted to save space. To get older data, use the [GRPC](../grpcapi/grpcapi.md) or [HTTP](../httpapi/httpapi.md) APIs.
 
 ## HubEvent
 
@@ -135,7 +135,7 @@ Hubble keeps event around for 3 days after which they are deleted to save space.
 
 | Field           | Type                                        | Label | Description                                      |
 | --------------- | ------------------------------------------- | ----- | ------------------------------------------------ |
-| to              | [bytes](#)                                  |       | The address the fid was registers/transferred to |
+| to              | [bytes](#)                                  |       | The address the fid was registered/transferred to |
 | event_type      | [IdRegisterEventType](#IdRegisterEventType) |       | The type of the id register event                |
 | from            | [bytes](#)                                  |       | The address the transfer originated from         |
 | recover_address | [bytes](#)                                  |       | The recovery address for the fid                 |

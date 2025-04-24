@@ -4,7 +4,7 @@ Farcaster accounts interact by signing and publishing messages. Alice can create
 
 Messages are stored on a peer-to-peer network of nodes. A node in the Farcaster network is called a Hub, and each Hub stores a copy of the entire network. A user can publish a message to one Hub and it will propagate to the entire network in a few seconds. Farcaster's compact message format and eventually consistent model lets this architecture scale to millions of users.
 
-An account can generate a [key](./accounts.md#adding-account-keys) and give it to an app which can use it to sign messages. Users can use multiple apps with the same account, and each application can have its own key. Separating the signing keys from the ownership keys helps keep the account secure.
+An account can generate a [key](./accounts.md#adding-account-keys) and give it to an app that can use it to sign messages. Users can use multiple apps with the same account, and each application can have its own key. Separating the signing keys from the ownership keys helps keep the account secure.
 
 ## Types
 
