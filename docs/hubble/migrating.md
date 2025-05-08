@@ -62,4 +62,3 @@ wget https://raw.githubusercontent.com/farcasterxyz/snapchain/refs/heads/main/do
 docker compose up # -d to run in the background
 ```
 
-Note, testnet is unstable and will be reset from time to time.
