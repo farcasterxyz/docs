@@ -19,7 +19,7 @@ Read APIs are fully backwards compatible with hubs so no migration is required. 
 Via http once you have a node running
 
 ```bash
-curl http://locaalhost:3381/v1/info 
+curl http://localhost:3381/v1/info 
 ```
 
 Via grpc
