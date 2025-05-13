@@ -100,8 +100,8 @@ Collect an EIP-712 `Register` signature from the user. In a real world app, you'
 
 ```ts
 let nonce = await publicClient.readContract({
-  address: KEY_GATEWAY_ADDRESS,
-  abi: keyGatewayABI,
+  address: ID_REGISTRY_ADDRESS,
+  abi: idRegistryABI,
   functionName: 'nonces',
   args: [alice.address],
 });
