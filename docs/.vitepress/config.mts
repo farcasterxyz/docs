@@ -1,4 +1,6 @@
 import { HeadConfig, defineConfig } from 'vitepress';
+import zhNav from './zh.nav';
+import zhSidebar from './zh.sidebar';
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -720,5 +722,20 @@ export default defineConfig({
   },
   vite: {
     assetsInclude: ['**/*.avifs'],
+  },
+  locales: {
+    root: {
+      label: 'English',
+      lang: 'en',
+    },
+    zh: {
+      label: '简体中文',
+      lang: 'zh',
+      link: '/zh/',
+      themeConfig: {
+        nav: zhNav,
+        sidebar: zhSidebar,
+      },
+    },
   },
 });
