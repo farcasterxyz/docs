@@ -8,7 +8,7 @@ Returns an error if URI is invalid.
 
 ```ts
 const params = walletClient.parseSignInURI({
-  uri: 'farcaster://connect?channelToken=76be6229-bdf7-4ad2-930a-540fb2de1e08&nonce=ESsxs6MaFio7OvqWb&siweUri=https%3A%2F%2Fexample.com%2Flogin&domain=example.com',
+  uri: 'farcaster://connect?channelToken=23W59BKK&nonce=ESsxs6MaFio7OvqWb&siweUri=https%3A%2F%2Fexample.com%2Flogin&domain=example.com',
 });
 ```
 
@@ -38,7 +38,7 @@ const params = walletClient.parseSignInURI({
 
 | Parameter               | Description                                                       |
 | ----------------------- | ----------------------------------------------------------------- |
-| `channelToken`          | Connect relay channel token UUID.                                 |
+| `channelToken`          | Connect relay channel token.                                      |
 | `params.uri`            | Login URI of the relying connected app.                           |
 | `params.domain`         | Domain of the relying app.                                        |
 | `params.nonce`          | Random nonce provided by the relying app.                         |

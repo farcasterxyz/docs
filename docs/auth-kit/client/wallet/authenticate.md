@@ -6,6 +6,7 @@ Submit a Sign In With Farcaster message, user signature, and profile data to the
 const params = await walletClient.authenticate({
   message: 'example.com wants you to sign in with your Ethereum account…',
   signature: '0x9335c3055d47780411a3fdabad293c68c84ea350a11794cdc811fd5…',
+  authMethod: 'authAddress',
   fid: 1,
   username: 'alice',
   bio: "I'm a little teapot who didn't fill out my bio",
@@ -21,8 +22,8 @@ const params = await walletClient.authenticate({
 | `authKey`      | `string` | Farcaster Auth API key. Farcaster Auth v1 restricts calls to `/authenticate` to Warpcast. | Yes      |
 | `channelToken` | `string` | Farcaster Auth channel token.                                                             | Yes      |
 | `message`      | `string` | The Sign in With Farcaster message produced by your wallet app and signed by the user.    | Yes      |
-| `message`      | `string` | The Sign in With Farcaster message produced by your wallet app and signed by the user.    | Yes      |
 | `signature`    | `Hex`    | SIWE signature created by the wallet user's account.                                      | Yes      |
+| `authMethod`   | `string` | Method used to sign the SIWF message. Either `"custody"` or `"authAddress"`.              | Yes      |
 | `fid`          | `number` | Wallet user's fid.                                                                        | Yes      |
 | `username`     | `string` | Wallet user's Farcaster username.                                                         | Yes      |
 | `bio`          | `string` | Wallet user's bio.                                                                        | Yes      |

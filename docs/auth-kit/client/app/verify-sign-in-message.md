@@ -10,17 +10,19 @@ const { data, success, fid } = await appClient.verifySignInMessage({
   domain: 'example.com',
   message: 'example.com wants you to sign in with your Ethereum account…',
   signature: '0x9335c3055d47780411a3fdabad293c68c84ea350a11794cd11fd51b…',
+  acceptAuthAddress: true,
 });
 ```
 
 ## Parameters
 
-| Parameter   | Type                      | Description                                                                                                                                                                                  | Required |
-| ----------- | ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| `domain`    | `string`                  | Domain of your application. Must match the domain in the provided SIWF message.                                                                                                              | Yes      |
-| `nonce`     | `string`                  | A custom nonce. Must match the nonce in the provided SIWF message.                                                                                                                           | Yes      |
-| `message`   | `string` or `SiweMessage` | The Sign in With Farcaster message to verify. This may be either a string or a parsed `SiweMessage`. Your app should read this value from the Connect channel once the request is completed. | Yes      |
-| `signature` | `Hex`                     | Signature provided by the user's Farcaster wallet. Your app should read this from the Connect channel once the request is completed.                                                         | Yes      |
+| Parameter           | Type                      | Description                                                                                                                                                                                  | Required |
+| ------------------- | ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| `domain`            | `string`                  | Domain of your application. Must match the domain in the provided SIWF message.                                                                                                              | Yes      |
+| `nonce`             | `string`                  | A custom nonce. Must match the nonce in the provided SIWF message.                                                                                                                           | Yes      |
+| `message`           | `string` or `SiweMessage` | The Sign in With Farcaster message to verify. This may be either a string or a parsed `SiweMessage`. Your app should read this value from the Connect channel once the request is completed. | Yes      |
+| `signature`         | `Hex`                     | Signature provided by the user's Farcaster wallet. Your app should read this from the Connect channel once the request is completed.                                                         | Yes      |
+| `acceptAuthAddress` | `boolean`                 | Pass `true` to accept an [auth address](https://github.com/farcasterxyz/protocol/discussions/225) signature in addition to a custody address signature.                                      | No       |
 
 ## Returns
 
