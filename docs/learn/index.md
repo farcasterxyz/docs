@@ -5,7 +5,7 @@ Farcaster is a [sufficiently decentralized](https://www.varunsrinivasan.com/2022
 It is a public social network similar to X and Reddit. Users can create profiles, post "casts" and follow others. They own their accounts and relationships with other users and are free to move between different apps.
 
 :::tip Join Farcaster
-If you're not on Farcaster, get started by [creating your account](https://www.farcaster.xyz/) with the Farcaster client.
+If you're not on Farcaster, get started by [creating your account](https://www.farcaster.xyz/) with the official Farcaster client.
 :::
 
 ## Learn
