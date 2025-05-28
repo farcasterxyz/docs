@@ -119,8 +119,7 @@ You can sponsor the onchain fees for the user. See [Sponsoring a signer](#sponso
 
 ### 4. Application presents the deep link from the response to the user
 
-The app presents the deeplink which will prompt the user to open the Farcaster client app and authorize the signer request (screenshots at the bottom). The app should direct the user to open the link on their mobile device they have
-the Farcaster client installed on:
+The app presents the deeplink which will prompt the user to open the Farcaster client app and authorize the signer request (screenshots at the bottom). The app should direct the user to open the link on their mobile device they have the Farcaster client installed on:
 
 1. when on mobile, trigger the deeplink directly
 2. when on web, display the deeplink as a QR code to scan
