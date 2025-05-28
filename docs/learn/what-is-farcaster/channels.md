@@ -21,7 +21,7 @@ Channel metadata is not part of the protocol and stored in Warpcast while channe
 
 ## Casting in Channels
 
-Anyone can post into a channel by using Warpcast and selecting the channel when creating the cast. Warpcast automatically sets the cast's `parentUrl` to `https://warpcast.com/~/channel/<name>`. A cast is considered "in a channel" if it's parentUrl is the channel URI or another cast which is "in a channel".
+Anyone can post into a channel by using Warpcast and selecting the channel when creating the cast. Warpcast automatically sets the cast's `parentUrl` to `https://farcaster.xyz/~/channel/<name>`. A cast is considered "in a channel" if it's parentUrl is the channel URI or another cast which is "in a channel".
 
 Channel casts are part of the protocol and stored on hubs. Using a replicator, you can fetch all casts in a channel by filtering the `parentUrl` field for the channel's FIP-2 URL.
 
@@ -70,4 +70,4 @@ Starting a channel also helps grow your audience:
 
 ### APIs
 
-- [Warpcast Channel APIs](../../reference/warpcast/api.md) - fetch a list of all known channels
+- [Warpcast Channel APIs](../../reference/client/api.md) - fetch a list of all known channels
