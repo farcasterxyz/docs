@@ -2,7 +2,7 @@
 
 This page documents public APIs provided by the Farcaster client with information that is not available on the protocol.
 
-The hostname is always `https://api.farcaster.xy`.
+The hostname is always `https://api.farcaster.xyz`.
 
 ## Pagination
 
