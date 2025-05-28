@@ -8,7 +8,7 @@ An opinionated collection of popular resources for building Frames.
 
 #### Learning
 
-- [/fc-devs](https://warpcast.com/~/channel/fc-devs) - Farcaster developer channel
+- [/fc-devs](https://farcaster.xyz/~/channel/fc-devs) - Farcaster developer channel
 - [Frames Specification](./spec) - official Frames specification
 - [dTech Zero to Hero Getting Started Guides](https://dtech.vision/farcaster/frames/)
 - [Frames.js Guide](https://framesjs.org/guides/create-frame) - guides from Frames.js
@@ -28,7 +28,7 @@ An opinionated collection of popular resources for building Frames.
 
 #### Developer tools
 
-- [Warpcast Frame Validator](https://warpcast.com/~/developers/frames-legacy) - a debugger for testing frames in Warpcast
+- [Farcaster Client Frame Validator](https://farcaster.xyz/~/developers/frames-legacy) - a debugger for testing frames in the Farcaster client
 - [Neynar](https://docs.neynar.com/docs/how-to-build-farcaster-frames-with-neynar) - infrastructure and tools for frame servers
 - [Neynar Frame Studio](https://neynar.com/nfs) - build no-code Frames
 - [Pinata](https://docs.pinata.cloud/farcaster/frames) - Frame analytics, hub APIs, and more

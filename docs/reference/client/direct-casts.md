@@ -1,6 +1,6 @@
 # Direct Casts
 
-This page documents public APIs provided by Warpcast for direct casts. Direct casts are currently not part of the protocol. There are plans to add direct casts to the protocol later this year.
+This page documents public APIs provided by the official Farcaster client for direct casts. Direct casts are currently not part of the protocol. There are plans to add direct casts to the protocol later this year.
 
 #### Send / write API for direct casts
 
@@ -12,7 +12,7 @@ This page documents public APIs provided by Warpcast for direct casts. Direct ca
 Intents enable developers to direct authenticated users to a pre-filled direct cast composer via a URL.
 
 ```bash
-https://warpcast.com/~/inbox/create/[fid]?text=[message]
+https://farcaster.xyz/~/inbox/create/[fid]?text=[message]
 
-https://warpcast.com/~/inbox/create/1?text=gm
+https://farcaster.xyz/~/inbox/create/1?text=gm
 ```

@@ -5,35 +5,35 @@ A channel is a public space for your community to have conversations around a to
 Creating a channel starts a new feed for your community. People can join, cast and find other interesting people. It sparks conversations that wouldn’t otherwise happen on the home feed.
 
 :::warning Experimental Feature
-Channels are being prototyped in Warpcast and not fully supported by the Farcaster protocol. They may be ported to the protocol in the future if the feature is deemed successful or they may be removed entirely.
+Channels are being prototyped in the Farcaster client and not fully supported by the Farcaster protocol. They may be ported to the protocol in the future if the feature is deemed successful or they may be removed entirely.
 :::
 
 ## Hosting Channels
 
-Anyone can create a channel host by paying a fee in Warpcast and choosing a channel name. The name must be under 16 characters and can only contain lowercase alphabets and numbers. A channel's creator is called a host and may invite other co-hosts to operate the channel. Hosts have special privileges like:
+Anyone can create a channel host by paying a fee in the Farcaster client and choosing a channel name. The name must be under 16 characters and can only contain lowercase alphabets and numbers. A channel's creator is called a host and may invite other co-hosts to operate the channel. Hosts have special privileges like:
 
 1. Defining “channel norms" which everyone must agree to when joining.
 2. Pinning or hiding casts in a channel.
 3. Blocking other users from casting in their channel.
 4. Setting a channel picture, description and other metadata.
 
-Channel metadata is not part of the protocol and stored in Warpcast while channels are in the experimental stage.
+Channel metadata is not part of the protocol and stored in the Farcaster client while channels are in the experimental stage.
 
 ## Casting in Channels
 
-Anyone can post into a channel by using Warpcast and selecting the channel when creating the cast. Warpcast automatically sets the cast's `parentUrl` to `https://farcaster.xyz/~/channel/<name>`. A cast is considered "in a channel" if it's parentUrl is the channel URI or another cast which is "in a channel".
+Anyone can post into a channel by using the Farcaster client and selecting the channel when creating the cast. The client automatically sets the cast's `parentUrl` to `https://farcaster.xyz/~/channel/<name>`. A cast is considered "in a channel" if it's parentUrl is the channel URI or another cast which is "in a channel".
 
 Channel casts are part of the protocol and stored on hubs. Using a replicator, you can fetch all casts in a channel by filtering the `parentUrl` field for the channel's FIP-2 URL.
 
 ## Following Channels
 
-Anyone can follow a channel just like a user. A user will see casts from a followed channel in their home feed when using Warpcast.
+Anyone can follow a channel just like a user. A user will see casts from a followed channel in their home feed when using the Farcaster client.
 
-Channel follows are not part of the protocol and are stored in Warpcast while channels are in the experimental stage.
+Channel follows are not part of the protocol and are stored in the Farcaster client while channels are in the experimental stage.
 
 ## Cast Visibility
 
-If a user casts in a channel, Warpcast will:
+If a user casts in a channel, Farcaster will:
 
 1. Always send the casts to the home feeds of any user who follows the channel.
 2. Usually send the casts to the home feeds of any user who follows the author.
@@ -42,11 +42,11 @@ The determination for (2) is made based on the user's preferences, channel conte
 
 ## Usage Policy
 
-Warpcast may remove your channel and will NOT refund your warps if:
+The Farcaster client may remove your channel and will NOT refund your warps if:
 
 1. Your profile or channel impersonates someone.
 2. You squat a channel without using it.
-3. You violate Warpcast's terms and conditions or app store rules.
+3. You violate the Farcaster client's terms and conditions or app store rules.
 
 ## FAQ
 
@@ -62,7 +62,7 @@ The fee discourages people from squatting short names and not using the channels
 
 Starting a channel also helps grow your audience:
 
-1. Warpcast will send your followers a notification about your channel.
+1. The Farcaster client will send your followers a notification about your channel.
 2. Your channel will be promoted to users who follow similar channels.
 3. Users who follow your channel will see channel casts in their home feed.
 
@@ -70,4 +70,4 @@ Starting a channel also helps grow your audience:
 
 ### APIs
 
-- [Warpcast Channel APIs](../../reference/client/api.md) - fetch a list of all known channels
+- [Farcaster Client Channel APIs](../../reference/client/api.md) - fetch a list of all known channels

@@ -8,10 +8,10 @@ If your application wants to write data to Farcaster on behalf of a user, the ap
 
 - a registered FID
 
-### 1. An authenticated user clicks "Connect with Warpcast" in your app
+### 1. An authenticated user clicks "Connect with Farcaster" in your app
 
 Once your app can identify and authenticate a user you can present them with
-the option to connect with Warpcast.
+the option to connect with Farcaster.
 
 ### 2. Generate a new Ed25519 key pair for the user and SignedKeyRequest signature
 
@@ -83,16 +83,16 @@ This value controls how long the Signed Key Request signature is valid for. It
 is a Unix timestamp in second (note: JavaScript uses millisecond). We recommend
 setting this to 24 hours.
 
-### 3. App uses the public key + SignedKeyRequest signature to initiate a Signed Key Request using the Warpcast API
+### 3. App uses the public key + SignedKeyRequest signature to initiate a Signed Key Request using the Farcaster client API
 
-The app calls the Warpcast backend which returns a deeplink and a session token that can be used to check the status of the request.
+The app calls the Farcaster client backend which returns a deeplink and a session token that can be used to check the status of the request.
 
 ```ts
 /*** Creating a Signed Key Request ***/
 
-const warpcastApi = 'https://api.warpcast.com';
+const farcasterClientApi = 'https://api.farcaster.xyz';
 const { token, deeplinkUrl } = await axios
-  .post(`${warpcastApi}/v2/signed-key-requests`, {
+  .post(`${farcasterClientApi}/v2/signed-key-requests`, {
     key: publicKey,
     requestFid: fid,
     signature,
@@ -119,10 +119,7 @@ You can sponsor the onchain fees for the user. See [Sponsoring a signer](#sponso
 
 ### 4. Application presents the deep link from the response to the user
 
-The app presents the deeplink which will prompt the user to open the Warpcast
-app and authorize the signer request (screenshots at the bottom). The app
-should direct the user to open the link on their mobile device they have
-Warpcast installed on:
+The app presents the deeplink which will prompt the user to open the Farcaster client app and authorize the signer request (screenshots at the bottom). The app should direct the user to open the link on their mobile device they have the Farcaster client installed on:
 
 1. when on mobile, trigger the deeplink directly
 2. when on web, display the deeplink as a QR code to scan
@@ -150,7 +147,7 @@ const poll = async (token: string) => {
 
     console.log('polling signed key request');
     const signedKeyRequest = await axios
-      .get(`${warpcastApi}/v2/signed-key-request`, {
+      .get(`${farcasterClientApi}/v2/signed-key-request`, {
         params: {
           token,
         },
@@ -176,9 +173,9 @@ const poll = async (token: string) => {
 poll(token);
 ````
 
-### 6. User opens the link and completes Signer Request flow in Warpcast
+### 6. User opens the link and completes Signer Request flow in the Farcaster client app
 
-When the user approves the request in Warpcast, an onchain transaction will be
+When the user approves the request in the client app, an onchain transaction will be
 made that grants write permissions to that signer. Once that completes your app
 should indicate success and can being writing messages using the newly added key.
 
@@ -234,9 +231,9 @@ const SIGNED_KEY_REQUEST_TYPE = [
 
   /*** Creating a Signed Key Request ***/
 
-  const warpcastApi = 'https://api.warpcast.com';
+  const farcasterClientApi = 'https://api.farcaster.xyz';
   const { token, deeplinkUrl } = await axios
-    .post(`${warpcastApi}/v2/signed-key-requests`, {
+    .post(`${farcasterClientApi}/v2/signed-key-requests`, {
       key,
       requestFid: appFid,
       signature,
@@ -255,7 +252,7 @@ const SIGNED_KEY_REQUEST_TYPE = [
 
       console.log('polling signed key request');
       const signedKeyRequest = await axios
-        .get(`${warpcastApi}/v2/signed-key-request`, {
+        .get(`${farcasterClientApi}/v2/signed-key-request`, {
           params: {
             token,
           },
@@ -377,7 +374,7 @@ Get the state of a signed key requests.
 ## Sponsoring a signer
 
 An application can sponsor a signer so that the user doesn’t need to pay. The
-application must be signed up on Warpcast and have a warps ≥ 100.
+application must be signed up on the Farcaster client app and have a warps ≥ 100.
 
 When generating a signed key request an application can indicate it should be
 sponsored by including an additional `sponsorship` field in the request body.
@@ -410,4 +407,4 @@ const sponsorSignature = sponsoringAccount.signMessage({
 });
 ```
 
-When the user opens the signed key request in Warpcast they will the onchain fees have been sponsored by your application.
+When the user opens the signed key request in the Farcaster client they will the onchain fees have been sponsored by your application.

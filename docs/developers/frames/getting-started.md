@@ -93,7 +93,7 @@ pnpm run deploy
 ```
 
 Complete the prompts. Once your frame is deployed you can test it end-to-end
-using the [Warpcast Frame Validator](https://warpcast.com/~/developers/frames-legacy).
+using the [Farcaster Client Frame Validator](https://farcaster.xyz/~/developers/frames-legacy).
 
 ::: info
 Make sure to plug the full frame URL in. For Vercel projects this default frame

@@ -17,7 +17,7 @@ An account can choose between two kinds of usernames:
 - **Offchain ENS Names**: free and controlled by farcaster. (e.g. @alice)
 - **Onchain ENS Names**: costs money and controlled by your wallet. (e.g. @alice.eth)
 
-Choose an offchain ENS name if you want to get started quickly and don't have an onchain ENS name. An account can always upgrade to an onchain name later. It's recommended to use an app like Warpcast to set this up for you.
+Choose an offchain ENS name if you want to get started quickly and don't have an onchain ENS name. An account can always upgrade to an onchain name later. It's recommended to use an app like the official Farcaster client to set this up for you.
 
 ![Usernames](/assets/usernames.png)
 
