@@ -8,7 +8,7 @@ A Farcaster account is created by calling the IdGateway contract. It will assign
 
 You'll need to get a username, rent storage and add a key before you can use your account. These steps require many signatures and onchain transactions and can be tedious with a regular Ethereum wallet.
 
-We recommend starting with [Warpcast](https://www.warpcast.com/), a special Farcaster client software which will handle the entire flow for you. It also uses a separate Ethereum account to sign transactions, so you can keep your main Ethereum account secure.
+We recommend starting with the [Farcaster client](https://www.farcaster.xyz/), developed by the Farcaster team which will handle the entire flow for you. It also uses a separate Ethereum account to sign transactions, so you can keep your main Ethereum account secure.
 
 ## Adding account keys
 
@@ -20,7 +20,7 @@ Keys are managed by the KeyRegistry contract. To add a key, you'll need to submi
 
 Users often set up separate wallets for their social apps and it's easy to lose access. Farcaster lets any account specify a recovery address which can be used to recover the account. It can be configured when creating the account or anytime after.
 
-Users can set the recovery address to trusted services like Warpcast or they can manage it themselves using a regular Ethereum wallet.
+Users can set the recovery address to trusted services like the Farcaster client or they can manage it themselves using a regular Ethereum wallet.
 
 ## Resources
 
