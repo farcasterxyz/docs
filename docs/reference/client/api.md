@@ -1025,7 +1025,7 @@ Returns:
 
 - `periodStartTimestamp`: Unix time in milliseconds when rewards period began
 - `periodEndTimestamp`: Unix time in milliseconds when rewards period ended
-- `winners`: Paginated list of fid, score, rank, wallet address (optional) and reward amount in rank order. A missing wallet address indicates that the user does not have a verified wallet on Warpcast.
+- `winners`: Paginated list of fid, score, rank, wallet address (optional) and reward amount in rank order. A missing wallet address indicates that the user does not have a verified wallet on the Farcaster Client.
 
 ```json
 {
@@ -1064,7 +1064,7 @@ curl 'https://api.farcaster.xyz/v1/creator-rewards-winner-history'
 
 `GET /v1/developer-rewards-winner-history`
 
-Warpcast gives out weekly rewards to top developers on the network.
+The Farcaster client gives out weekly rewards to top developers on the network.
 
 This endpoint provides access to all winners for a given period (week). Paginated, with the list of winners in rank order. Not authenticated.
 
@@ -1078,7 +1078,7 @@ Returns:
 
 - `periodStartTimestamp`: Unix time in milliseconds when rewards period began
 - `periodEndTimestamp`: Unix time in milliseconds when rewards period ended
-- `winners`: Paginated list of fid, domain, frame (mini app) name, score, rank, wallet address (optional) and reward amount in rank order. A missing wallet address indicates that the user does not have a verified wallet on Warpcast.
+- `winners`: Paginated list of fid, domain, frame (mini app) name, score, rank, wallet address (optional) and reward amount in rank order. A missing wallet address indicates that the user does not have a verified wallet on the Farcaster client.
 
 ```json
 {
@@ -1114,14 +1114,14 @@ Returns:
 Example:
 
 ```bash
-curl 'https://api.warpcast.com/v1/developer-rewards-winner-history'
+curl 'https://api.farcaster.xyz/v1/developer-rewards-winner-history'
 ```
 
 ## Get User Primary Address
 
 `GET /fc/primary-address?fid=12152&protocol=ethereum`
 
-Fetch the primary address from the user. This is picked by the user whenever they expressed a preference, or picked by Warpcast.
+Fetch the primary address from the user. This is picked by the user whenever they expressed a preference, or picked by the Farcaster client.
 
 Query parameters:
 
@@ -1147,14 +1147,14 @@ Returns:
 Example:
 
 ```bash
-curl 'https://api.warpcast.com/fc/primary-address?fid=12152&protocol=ethereum'
+curl 'https://api.farcaster.xyz/fc/primary-address?fid=12152&protocol=ethereum'
 ```
 
 ## Get Multiple User Primary Addresses
 
 `GET /fc/primary-addresses`
 
-Fetch primary addresses for multiple users at once. This is a batch version of the single primary address endpoint. For each FID, this returns the primary address picked by the user whenever they expressed a preference, or picked by Warpcast.
+Fetch primary addresses for multiple users at once. This is a batch version of the single primary address endpoint. For each FID, this returns the primary address picked by the user whenever they expressed a preference, or picked by the Farcaster client.
 
 Query parameters:
 
@@ -1216,7 +1216,7 @@ Returns:
 Example:
 
 ```bash
-curl 'https://api.warpcast.com/fc/primary-addresses?fids=12152,2,1315,39939393939&protocol=ethereum'
+curl 'https://api.farcaster.xyz/fc/primary-addresses?fids=12152,2,1315,39939393939&protocol=ethereum'
 ```
 
 ## Get Starter Pack Members
@@ -1227,7 +1227,7 @@ Starter pack members. Ordered by the time when they were added to the pack, desc
 
 Query parameters:
 
-- `id` - starter pack id found as a part of the public Warpcast pack URL or in the non-authed public API of starter pack metadata.
+- `id` - starter pack id found as a part of the public pack URL or in the non-authed public API of starter pack metadata.
 
 Returns: a `members` array:
 
@@ -1256,5 +1256,5 @@ Returns: a `members` array:
 Example:
 
 ```bash
-curl 'https://api.warpcast.com/fc/starter-pack-members?id=Underrated-CT-1y7n9b'
+curl 'https://api.farcaster.xyz/fc/starter-pack-members?id=Underrated-CT-1y7n9b'
 ```
