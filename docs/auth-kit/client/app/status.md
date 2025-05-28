@@ -72,7 +72,7 @@ const status = await appClient.status({
 | `data.nonce`              | Random nonce used in the SIWE message. If you don't provide a custom nonce as an argument to the hook, you should read this value. |
 | `data.url`                | URL of the application.                                                                                                            |
 | `data.message`            | The generated SIWE message.                                                                                                        |
-| `data.signature`          | Hex signature produced by the user's Warpcast wallet.                                                                              |
+| `data.signature`          | Hex signature produced by the user's Farcaster client app wallet.                                                                  |
 | `data.authMethod`         | Auth method used to sign the message. Either `"custody"` or `"authAddress"`.                                                       |
 | `data.fid`                | User's Farcaster ID.                                                                                                               |
 | `data.username`           | User's Farcaster username.                                                                                                         |
