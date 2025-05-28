@@ -90,9 +90,9 @@ The app calls the Farcaster client backend which returns a deeplink and a sessio
 ```ts
 /*** Creating a Signed Key Request ***/
 
-const farcasterApi = 'https://api.farcaster.xyz';
+const farcasterClientApi = 'https://api.farcaster.xyz';
 const { token, deeplinkUrl } = await axios
-  .post(`${farcasterApi}/v2/signed-key-requests`, {
+  .post(`${farcasterClientApi}/v2/signed-key-requests`, {
     key: publicKey,
     requestFid: fid,
     signature,
@@ -147,7 +147,7 @@ const poll = async (token: string) => {
 
     console.log('polling signed key request');
     const signedKeyRequest = await axios
-      .get(`${farcasterApi}/v2/signed-key-request`, {
+      .get(`${farcasterClientApi}/v2/signed-key-request`, {
         params: {
           token,
         },
@@ -231,9 +231,9 @@ const SIGNED_KEY_REQUEST_TYPE = [
 
   /*** Creating a Signed Key Request ***/
 
-  const farcasterApi = 'https://api.farcaster.xyz';
+  const farcasterClientApi = 'https://api.farcaster.xyz';
   const { token, deeplinkUrl } = await axios
-    .post(`${farcasterApi}/v2/signed-key-requests`, {
+    .post(`${farcasterClientApi}/v2/signed-key-requests`, {
       key,
       requestFid: appFid,
       signature,
@@ -252,7 +252,7 @@ const SIGNED_KEY_REQUEST_TYPE = [
 
       console.log('polling signed key request');
       const signedKeyRequest = await axios
-        .get(`${farcasterApi}/v2/signed-key-request`, {
+        .get(`${farcasterClientApi}/v2/signed-key-request`, {
           params: {
             token,
           },
