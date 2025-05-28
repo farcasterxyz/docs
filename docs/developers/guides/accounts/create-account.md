@@ -61,7 +61,7 @@ const aliceAccountKey = new ViemLocalEip712Signer(alice as any);
 
 const deadline = BigInt(Math.floor(Date.now() / 1000) + 3600); // Set the signatures' deadline to 1 hour from now
 
-const WARPCAST_RECOVERY_PROXY = '0x00000000FcB080a4D6c39a9354dA9EB9bC104cd7';
+const FARCASTER_RECOVERY_PROXY = '0x00000000FcB080a4D6c39a9354dA9EB9bC104cd7';
 ```
 
 ### 2. Register an app FID
@@ -81,7 +81,7 @@ const { request } = await publicClient.simulateContract({
   address: ID_GATEWAY_ADDRESS,
   abi: idGatewayABI,
   functionName: 'register',
-  args: [WARPCAST_RECOVERY_PROXY, 0n],
+  args: [FARCASTER_RECOVERY_PROXY, 0n],
   value: price,
 });
 await walletClient.writeContract(request);
@@ -108,7 +108,7 @@ let nonce = await publicClient.readContract({
 
 const registerSignatureResult = await aliceAccountKey.signRegister({
   to: alice.address as `0x${string}`,
-  recovery: WARPCAST_RECOVERY_PROXY,
+  recovery: FARCASTER_RECOVERY_PROXY,
   nonce,
   deadline,
 });
@@ -201,7 +201,7 @@ if (addSignatureResult.isOk()) {
     args: [
       {
         to: alice.address,
-        recovery: WARPCAST_RECOVERY_PROXY,
+        recovery: FARCASTER_RECOVERY_PROXY,
         sig: bytesToHex(registerSignature),
         deadline,
       },
@@ -268,7 +268,7 @@ const aliceAccountKey = new ViemLocalEip712Signer(alice as any);
 
 const deadline = BigInt(Math.floor(Date.now() / 1000) + 3600); // Set the signatures' deadline to 1 hour from now
 
-const WARPCAST_RECOVERY_PROXY = '0x00000000FcB080a4D6c39a9354dA9EB9bC104cd7';
+const FARCASTER_RECOVERY_PROXY = '0x00000000FcB080a4D6c39a9354dA9EB9bC104cd7';
 
 /*******************************************************************************
  * IdGateway - register - Register an app FID.
@@ -293,7 +293,7 @@ const { request } = await publicClient.simulateContract({
   address: ID_GATEWAY_ADDRESS,
   abi: idGatewayABI,
   functionName: 'register',
-  args: [WARPCAST_RECOVERY_PROXY, 0n],
+  args: [FARCASTER_RECOVERY_PROXY, 0n],
   value: price,
 });
 await walletClient.writeContract(request);
@@ -321,7 +321,7 @@ let nonce = await publicClient.readContract({
 
 const registerSignatureResult = await aliceAccountKey.signRegister({
   to: alice.address as `0x${string}`,
-  recovery: WARPCAST_RECOVERY_PROXY,
+  recovery: FARCASTER_RECOVERY_PROXY,
   nonce,
   deadline,
 });
@@ -406,7 +406,7 @@ if (accountKeyResult.isOk()) {
         args: [
           {
             to: alice.address,
-            recovery: WARPCAST_RECOVERY_PROXY,
+            recovery: FARCASTER_RECOVERY_PROXY,
             sig: bytesToHex(registerSignature),
             deadline,
           },
