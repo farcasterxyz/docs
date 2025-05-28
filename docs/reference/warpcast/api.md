@@ -1,8 +1,8 @@
-# Warpcast API Reference
+# Farcaster Client API Reference
 
-This page documents public APIs provided by Warpcast with information that is not available on the protocol.
+This page documents public APIs provided by the Farcaster client with information that is not available on the protocol.
 
-The hostname is always `https://api.warpcast.com`.
+The hostname is always `https://api.farcaster.xy`.
 
 ## Pagination
 
@@ -54,7 +54,7 @@ const encodedSignature = Buffer.from(signatureResult.value).toString("base64url"
 const authToken = encodedHeader + "." + encodedPayload + "." + encodedSignature;
 
 await got.post(
-  "https://api.warpcast.com/fc/channel-follows",
+  "https://api.farcaster.xyz/fc/channel-follows",
   {
 	  body: { channelKey: 'evm' }
 	  headers: {
@@ -67,8 +67,8 @@ await got.post(
 
 ## Concepts
 
-- Channels: Warpcast has the concept of channels which build upon FIP-2 (setting `parentUrl` on casts). You can read more
-  about channels in the [documentation](https://www.notion.so/warpcast/Channels-4f249d22575348a5a0488b5d86f0dd1c?pvs=4).
+- Channels: The Farcaster client has the concept of channels which build upon FIP-2 (setting `parentUrl` on casts). You can read more
+  about channels in the [documentation](https://www.notion.so/farcaster/Channels-4f249d22575348a5a0488b5d86f0dd1c?pvs=4).
 
 ## Get All Channels
 
@@ -92,7 +92,7 @@ Returns: a `channels` array with properties:
 - `memberCount` - number of members of the channel, including the owner and moderators
 - `pinnedCastHash` - hash of the cast pinned in the channel, if present
 - `publicCasting` - `true`/`false` indicating whether channel allows anybody to cast into it, or only members
-- `externalLink` - external link that appears in the header in Warpcast, if present, with 2 properties:
+- `externalLink` - external link that appears in the header in the Farcaster client, if present, with 2 properties:
   - `title` - title shown in the channel header
   - `url` - url of the link
 
@@ -102,7 +102,7 @@ Returns: a `channels` array with properties:
     "channels": [
       {
         "id": "illustrations",
-        "url": "https://warpcast.com/~/channel/illustrations",
+        "url": "https://farcaster.xyz/~/channel/illustrations",
         "name": "illustrations",
         "description": "Share your wips, sketches, arts, drops, GMs, artworks you adore or collected — all content related to illustration, tag  to join ⊹ ࣪ ˖ cover by ",
         "descriptionMentions": [
@@ -126,7 +126,7 @@ Returns: a `channels` array with properties:
         "publicCasting": false,
         "externalLink": {
           "title": "/creatorssupport",
-          "url": "https://warpcast.com/~/channel/creators-support"
+          "url": "https://farcaster.xyz/~/channel/creators-support"
         }
       },
       ...
@@ -138,7 +138,7 @@ Returns: a `channels` array with properties:
 Example:
 
 ```bash
-curl 'https://api.warpcast.com/v2/all-channels'
+curl 'https://api.farcaster.xyz/v2/all-channels'
 ```
 
 ## Get a Channel
@@ -158,7 +158,7 @@ Returns: a single channel object, as documented in the "Get All Channels" endpoi
   "result": {
     "channel": {
       "id": "illustrations",
-      "url": "https://warpcast.com/~/channel/illustrations",
+      "url": "https://farcaster.xyz/~/channel/illustrations",
       "name": "illustrations",
       "description": "Share your wips, sketches, arts, drops, GMs, artworks you adore or collected — all content related to illustration, tag  to join ⊹ ࣪ ˖ cover by ",
       "descriptionMentions": [367850, 335503],
@@ -174,7 +174,7 @@ Returns: a single channel object, as documented in the "Get All Channels" endpoi
       "publicCasting": false,
       "externalLink": {
         "title": "/creatorssupport",
-        "url": "https://warpcast.com/~/channel/creators-support"
+        "url": "https://farcaster.xyz/~/channel/creators-support"
       }
     }
   }
@@ -182,7 +182,7 @@ Returns: a single channel object, as documented in the "Get All Channels" endpoi
 ```
 
 ```bash
-curl 'https://api.warpcast.com/v1/channel?channelId=illustrations'
+curl 'https://api.farcaster.xyz/v1/channel?channelId=illustrations'
 ```
 
 ## Get Channel Followers
@@ -222,7 +222,7 @@ Returns: a `users` array with properties:
 Example:
 
 ```bash
-curl 'https://api.warpcast.com/v1/channel-followers?channelId=books'
+curl 'https://api.farcaster.xyz/v1/channel-followers?channelId=books'
 ```
 
 ## Get Channels a User is Following
@@ -246,7 +246,7 @@ Returns: a `channels` array with properties:
     "channels": [
       {
         "id": "fc-updates",
-        "url": "https://warpcast.com/~/channel/fc-updates",
+        "url": "https://farcaster.xyz/~/channel/fc-updates",
         "name": "fc-updates",
         "description": "Important updates about things happening in Farcaster",
         "imageUrl": "https://i.imgur.com/YnnrPaH.png",
@@ -270,7 +270,7 @@ Returns: a `channels` array with properties:
 Example:
 
 ```bash
-curl 'https://api.warpcast.com/v1/user-following-channels?fid=3'
+curl 'https://api.farcaster.xyz/v1/user-following-channels?fid=3'
 ```
 
 ## Get User Following Channel Status
@@ -301,7 +301,7 @@ Returns: 2 properties:
 Example:
 
 ```bash
-curl 'https://api.warpcast.com/v1/user-channel?fid=3&channelId=books'
+curl 'https://api.farcaster.xyz/v1/user-channel?fid=3&channelId=books'
 ```
 
 ## Get Channel Members
@@ -342,7 +342,7 @@ Returns: a `members` array:
 Example:
 
 ```bash
-curl 'https://api.warpcast.com/fc/channel-members?channelId=memes'
+curl 'https://api.farcaster.xyz/fc/channel-members?channelId=memes'
 ```
 
 ## Get Channel Invites
@@ -394,7 +394,7 @@ Returns: an `invites` array:
 Example:
 
 ```bash
-curl 'https://api.warpcast.com/fc/channel-invites?channelId=memes'
+curl 'https://api.farcaster.xyz/fc/channel-invites?channelId=memes'
 ```
 
 ## Get Cast Moderation Actions
@@ -434,7 +434,7 @@ Returns: a `moderationActions` array:
 Example:
 
 ```bash
-curl 'https://api.warpcast.com/fc/moderated-casts?channelId=welcome'
+curl 'https://api.farcaster.xyz/fc/moderated-casts?channelId=welcome'
 ```
 
 ## Get Channel Restricted Users
@@ -478,7 +478,7 @@ Returns: a `restrictedUsers` array:
 Example:
 
 ```bash
-curl 'https://api.warpcast.com/fc/channel-restricted-users?channelId=memes'
+curl 'https://api.farcaster.xyz/fc/channel-restricted-users?channelId=memes'
 ```
 
 ## Get Channel Banned Users
@@ -521,7 +521,7 @@ Returns: a `bannedUsers` array:
 Example:
 
 ```bash
-curl 'https://api.warpcast.com/fc/channel-bans?channelId=memes'
+curl 'https://api.farcaster.xyz/fc/channel-bans?channelId=memes'
 ```
 
 ## Ban User From Channel
@@ -548,7 +548,7 @@ curl -X POST \
   -H 'Content-Type: application/json' \
   -H 'Authorization: Bearer <Auth Token>' \
   -d '{ "channelId": "memes", "banFid": 1234 }' \
-  https://api.warpcast.com/fc/channel-bans
+  https://api.farcaster.xyz/fc/channel-bans
 ```
 
 ## Unban User From Channel
@@ -575,7 +575,7 @@ curl -X DELETE \
   -H 'Content-Type: application/json' \
   -H 'Authorization: Bearer <Auth Token>' \
   -d '{ "channelId": "memes", "banFid": 1234 }' \
-  https://api.warpcast.com/fc/channel-bans
+  https://api.farcaster.xyz/fc/channel-bans
 ```
 
 ## Follow/Unfollow Channel
@@ -592,9 +592,9 @@ Body parameters:
 **Examples**
 
 ```bash
-curl -X POST -H 'Content-Type: application/json' -H 'Authorization: Bearer <Auth Token>' -d '{ "channelId": "evm" }' https://api.warpcast.com/fc/channel-follows
+curl -X POST -H 'Content-Type: application/json' -H 'Authorization: Bearer <Auth Token>' -d '{ "channelId": "evm" }' https://api.farcaster.xyz/fc/channel-follows
 
-curl -X DELETE -H 'Content-Type: application/json' -H 'Authorization: Bearer <Auth Token>' -d '{ "channelId": "evm" }' https://api.warpcast.com/fc/channel-follows
+curl -X DELETE -H 'Content-Type: application/json' -H 'Authorization: Bearer <Auth Token>' -d '{ "channelId": "evm" }' https://api.farcaster.xyz/fc/channel-follows
 ```
 
 ## Invite to Channel
@@ -628,7 +628,7 @@ curl -X POST \
   -H 'Content-Type: application/json' \
   -H 'Authorization: Bearer <Auth Token>' \
   -d '{ "channelId": "evm", "inviteFid": 341234, "role": "member" }' \
-  https://api.warpcast.com/fc/channel-invites
+  https://api.farcaster.xyz/fc/channel-invites
 ```
 
 ## Remove from Channel
@@ -660,7 +660,7 @@ curl -X DELETE \
   -H 'Content-Type: application/json' \
   -H 'Authorization: Bearer <Auth Token>' \
   -d '{ "channelId": "evm", "removeFid": 341234, "role": "member" }' \
-  https://api.warpcast.com/fc/channel-invites
+  https://api.farcaster.xyz/fc/channel-invites
 ```
 
 ## Respond to Channel Invite
@@ -688,7 +688,7 @@ curl -X PATCH \
   -H 'Content-Type: application/json' \
   -H 'Authorization: Bearer <Auth Token>' \
   -d '{ "channelId": "evm", "role": "member", "accept": true }' \
-  https://api.warpcast.com/fc/channel-invites
+  https://api.farcaster.xyz/fc/channel-invites
 ```
 
 ## Moderate Channel Cast
@@ -715,7 +715,7 @@ curl -X POST \
   -H 'Content-Type: application/json' \
   -H 'Authorization: Bearer <Auth Token>' \
   -d '{ "castHash": "0x2694aa649f3608bd11fe6621946782d1eb0ae3c4", "action": "hide" }' \
-  https://api.warpcast.com/fc/moderate-cast
+  https://api.farcaster.xyz/fc/moderate-cast
 ```
 
 ## Pin Channel Cast
@@ -740,7 +740,7 @@ curl -X PUT \
   -H 'Content-Type: application/json' \
   -H 'Authorization: Bearer <Auth Token>' \
   -d '{ "castHash": "0x2694aa649f3608bd11fe6621946782d1eb0ae3c4", "notifyChannelFollowers": true }' \
-  https://api.warpcast.com/fc/pinned-casts
+  https://api.farcaster.xyz/fc/pinned-casts
 ```
 
 ## Unpin Channel Cast
@@ -765,7 +765,7 @@ curl -X DELETE \
   -H 'Content-Type: application/json' \
   -H 'Authorization: Bearer <Auth Token>' \
   -d '{ "channelId": "welcome" }' \
-  https://api.warpcast.com/fc/pinned-casts
+  https://api.farcaster.xyz/fc/pinned-casts
 ```
 
 ## Get Farcaster actions
@@ -813,7 +813,7 @@ Returns: an array of `action` objects with properties:
 Example:
 
 ```bash
-curl 'https://api.warpcast.com/v2/discover-actions?list=top&limit=10'
+curl 'https://api.farcaster.xyz/v2/discover-actions?list=top&limit=10'
 ```
 
 ## Get Farcaster composer actions
@@ -826,7 +826,7 @@ Query parameters:
 
 - `list` - the list to retrieve. Must be one of:
   - `'top'`, a list ordered by total users.
-  - `'featured'`, a list curated by Warpcast.
+  - `'featured'`, a list curated by the Farcaster client.
 
 Returns: an `actions` array with properties:
 
@@ -864,14 +864,14 @@ Returns: an `actions` array with properties:
 Example:
 
 ```bash
-curl 'https://api.warpcast.com/v2/discover-composer-actions?list=top&limit=10'
+curl 'https://api.farcaster.xyz/v2/discover-composer-actions?list=top&limit=10'
 ```
 
 ## Get Blocked Users
 
 `GET /fc/blocked-users`
 
-Warpcast allows users to block others from replying, quoting and mentioning them.
+The Farcaster client allows users to block others from replying, quoting and mentioning them.
 
 This endpoint provides access to all blocked users. Paginated, in reverse chronological order by block creation time. Not authenticated.
 
@@ -904,7 +904,7 @@ Returns: a `blockedUsers` array with properties:
 Example:
 
 ```bash
-curl 'https://api.warpcast.com/fc/blocked-users'
+curl 'https://api.farcaster.xyz/fc/blocked-users'
 ```
 
 ## Block User
@@ -928,7 +928,7 @@ curl -X POST \
   -H 'Content-Type: application/json' \
   -H 'Authorization: Bearer <Auth Token>' \
   -d '{ "blockFid": 1234 }' \
-  https://api.warpcast.com/fc/blocked-users
+  https://api.farcaster.xyz/fc/blocked-users
 ```
 
 ## Unblock User
@@ -952,7 +952,7 @@ curl -X DELETE \
   -H 'Content-Type: application/json' \
   -H 'Authorization: Bearer <Auth Token>' \
   -d '{ "unblockFid": 1234 }' \
-  https://api.warpcast.com/fc/blocked-users
+  https://api.farcaster.xyz/fc/blocked-users
 ```
 
 ## Get Account Verifications
@@ -961,7 +961,7 @@ curl -X DELETE \
 
 ### This endpoint is not stable (beta) and likely to have breaking changes in the future or get depracated.
 
-List of account verifications attested by Warpcast. Ordered by the time when the verification occurred, descending. Paginated. Not authenticated.
+List of account verifications attested by the Farcaster client. Ordered by the time when the verification occurred, descending. Paginated. Not authenticated.
 
 Query parameters:
 
@@ -972,7 +972,7 @@ Returns: a `verifications` array:
 
 - `fid` - account Farcaster id
 - `platform` - platform of the verification `'x' | 'github' | 'discord'`
-- `platformId` - string value representing platform identifier (generated by the platform, not Warpcast)
+- `platformId` - string value representing platform identifier (generated by the platform, not the Farcaster client)
 - `platformUsername` - string value representing platform username
 - `verifiedAt` - UNIX time when verification took place, in seconds
 
@@ -1004,14 +1004,14 @@ Returns: a `verifications` array:
 Example:
 
 ```bash
-curl 'https://api.warpcast.com/fc/account-verifications'
+curl 'https://api.farcaster.xyz/fc/account-verifications'
 ```
 
 ## Get creator reward winners
 
 `GET /v1/creator-rewards-winner-history`
 
-Warpcast gives out weekly rewards to top creators on the network.
+The Farcaster client gives out weekly rewards to top creators on the network.
 
 This endpoint provides access to all winners for a given period (week). Paginated, with the list of winners in rank order. Not authenticated.
 
@@ -1057,7 +1057,7 @@ Returns:
 Example:
 
 ```bash
-curl 'https://api.warpcast.com/v1/creator-rewards-winner-history'
+curl 'https://api.farcaster.xyz/v1/creator-rewards-winner-history'
 ```
 
 ## Get developer reward winners
