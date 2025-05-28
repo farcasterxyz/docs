@@ -33,7 +33,7 @@ Channel follows are not part of the protocol and are stored in the Farcaster cli
 
 ## Cast Visibility
 
-If a user casts in a channel, the Farcaster client will:
+If a user casts in a channel, Farcaster will:
 
 1. Always send the casts to the home feeds of any user who follows the channel.
 2. Usually send the casts to the home feeds of any user who follows the author.

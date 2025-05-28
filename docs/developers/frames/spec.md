@@ -50,7 +50,7 @@ A frame enters Farcaster when a user creates a cast and embeds the frame URL in 
 
 ## Constructing a frame
 
-A frame must include required properties and may contain optional properties. Frames can be validated using the [Frame Validator](https://warpcast.com/~/developers/frames-legacy) tool provided by Warpcast.
+A frame must include required properties and may contain optional properties. Frames can be validated using the [Frame Validator](https://farcaster.com/~/developers/frames-legacy) tool provided by the Farcaster client.
 
 ### Properties
 
@@ -451,20 +451,20 @@ Although it may be possible to validate an Ed25519 signature onchain, a valid si
 
 ## vNext Changelog
 
-| Date    | Change                                                                                                                                                                                          |
-| ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 7/10/24 | Frames should include the address that took a wallet action when posting back to target.                                                                                                        |
-| 7/10/24 | Frames can request [EIP-712 signatures](https://www.notion.so/warpcast/Frames-Wallet-Signatures-debe97a82e2643d094d4088f1badd791?pm=c).                                                         |
-| 3/25/24 | Frames can surface [application-level errors](https://warpcast.notion.site/Frames-Errors-ddc965b097d44d9ea03ddf98498597c6?pvs=74) to users.                                                     |
-| 3/8/24  | Frames can request [transactions](https://www.notion.so/warpcast/Frame-Transactions-Public-9d9f9f4f527249519a41bd8d16165f73#c1c3182208ce4ae4a7ffa72129b9795a) from the user's connected wallet. |
-| 2/25/24 | Frames can pass [state](https://www.notion.so/warpcast/Frames-State-Public-f3de69c1d12944e583a37204c98d25d9) to the frame server.                                                               |
-| 2/23/24 | Frames can use HTTP cache headers to refresh their initial image.                                                                                                                               |
-| 2/8/24  | Frames can have [NFT mint buttons](https://warpcast.notion.site/Frames-Mint-action-Public-cea0d2249e3e41dbafb2e9ab23107275) and images with 1:1 aspect ratio.                                   |
-| 2/6/24  | Frames can define [simple links to external pages](https://warpcast.notion.site/Frames-External-Links-Public-60c9900cffae4e2fb1b6aae3d4601c15?pvs=4).                                           |
-| 2/2/24  | Frames can [accept text input](https://warpcast.notion.site/Frames-Text-Input-Public-27c9f0d61903486d89b6d932dd0d6a22).                                                                         |
-| 1/30/24 | Frames [validator](https://warpcast.com/~/developers/frames-legacy) launched.                                                                                                                   |
-| 1/29/24 | Frames support redirecting after the post action.                                                                                                                                               |
-| 1/26/24 | Frames launched.                                                                                                                                                                                |
+| Date    | Change                                                                                                                                                                                           |
+| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 7/10/24 | Frames should include the address that took a wallet action when posting back to target.                                                                                                         |
+| 7/10/24 | Frames can request [EIP-712 signatures](https://www.notion.so/farcaster/Frames-Wallet-Signatures-debe97a82e2643d094d4088f1badd791?pm=c).                                                         |
+| 3/25/24 | Frames can surface [application-level errors](https://farcaster.notion.site/Frames-Errors-ddc965b097d44d9ea03ddf98498597c6?pvs=74) to users.                                                     |
+| 3/8/24  | Frames can request [transactions](https://www.notion.so/farcaster/Frame-Transactions-Public-9d9f9f4f527249519a41bd8d16165f73#c1c3182208ce4ae4a7ffa72129b9795a) from the user's connected wallet. |
+| 2/25/24 | Frames can pass [state](https://www.notion.so/farcaster/Frames-State-Public-f3de69c1d12944e583a37204c98d25d9) to the frame server.                                                               |
+| 2/23/24 | Frames can use HTTP cache headers to refresh their initial image.                                                                                                                                |
+| 2/8/24  | Frames can have [NFT mint buttons](https://farcaster.notion.site/Frames-Mint-action-Public-cea0d2249e3e41dbafb2e9ab23107275) and images with 1:1 aspect ratio.                                   |
+| 2/6/24  | Frames can define [simple links to external pages](https://farcaster.notion.site/Frames-External-Links-Public-60c9900cffae4e2fb1b6aae3d4601c15?pvs=4).                                           |
+| 2/2/24  | Frames can [accept text input](https://farcaster.notion.site/Frames-Text-Input-Public-27c9f0d61903486d89b6d932dd0d6a22).                                                                         |
+| 1/30/24 | Frames [validator](https://farcaster.com/~/developers/frames-legacy) launched.                                                                                                                   |
+| 1/29/24 | Frames support redirecting after the post action.                                                                                                                                                |
+| 1/26/24 | Frames launched.                                                                                                                                                                                 |
 
 ## vNext Proposed Changes
 
