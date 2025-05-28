@@ -38,11 +38,11 @@ const channel = await appClient.createChannel({
 }
 ```
 
-| Parameter           | Description                                                                        |
-| ------------------- | ---------------------------------------------------------------------------------- |
-| `response`          | HTTP response from the Connect relay server.                                       |
-| `data.channelToken` | Connect relay channel token.                                                       |
-| `data.url`          | Sign in With Farcaster URL to present to the user. Links to Warpcast client in v1. |
-| `data.nonce`        | Random nonce included in the Sign in With Farcaster message.                       |
-| `isError`           | True when an error has occurred.                                                   |
-| `error`             | `Error` instance.                                                                  |
+| Parameter           | Description                                                                             |
+| ------------------- | --------------------------------------------------------------------------------------- |
+| `response`          | HTTP response from the Connect relay server.                                            |
+| `data.channelToken` | Connect relay channel token.                                                            |
+| `data.url`          | Sign in With Farcaster URL to present to the user. Links to the Farcaster client in v1. |
+| `data.nonce`        | Random nonce included in the Sign in With Farcaster message.                            |
+| `isError`           | True when an error has occurred.                                                        |
+| `error`             | `Error` instance.                                                                       |

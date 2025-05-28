@@ -89,12 +89,12 @@ function App() {
 | `isError`            | True when an error has occurred.                                                                                                   |
 | `error`              | `AuthClientError` instance.                                                                                                        |
 | `channelToken`       | Connect relay channel token.                                                                                                       |
-| `url`                | Sign in With Farcaster URL to present to the user. Links to Warpcast in v1.                                                        |
+| `url`                | Sign in With Farcaster URL to present to the user. Links to the Farcaster client in v1.                                            |
 | `appClient`          | Underlying `AppClient` instance.                                                                                                   |
 | `data.state`         | Status of the sign in request, either `"pending"` or `"complete"`                                                                  |
 | `data.nonce`         | Random nonce used in the SIWE message. If you don't provide a custom nonce as an argument to the hook, you should read this value. |
 | `data.message`       | The generated SIWE message.                                                                                                        |
-| `data.signature`     | Hex signature produced by the user's Warpcast wallet.                                                                              |
+| `data.signature`     | Hex signature produced by the user's Farcaster client app wallet.                                                                  |
 | `data.fid`           | User's Farcaster ID.                                                                                                               |
 | `data.username`      | User's Farcaster username.                                                                                                         |
 | `data.bio`           | User's Farcaster bio.                                                                                                              |
