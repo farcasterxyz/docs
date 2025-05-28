@@ -504,7 +504,7 @@ export default defineConfig({
           items: [{ text: 'Specification', link: '/reference/actions/spec' }],
         },
         {
-          text: 'Warpcast',
+          text: 'Farcaster Client',
           items: [
             { text: 'APIs', link: '/reference/client/api' },
             {
