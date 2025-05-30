@@ -5,9 +5,6 @@ export default defineConfig({
   title: 'Farcaster Docs',
   titleTemplate: ':title / Farcaster Docs',
   description: 'Documentation for the Farcaster protocol',
-  rewrites: {
-    'reference/client/:slug*': 'reference/warpcast/:slug*',
-  },
   head: [
     ['link', { rel: 'icon', type: 'image/png', href: '/icon.png' }],
     ['meta', { property: 'og:type', content: 'website' }],
@@ -509,18 +506,18 @@ export default defineConfig({
         {
           text: 'Farcaster Client',
           items: [
-            { text: 'APIs', link: '/reference/client/api' },
+            { text: 'APIs', link: '/reference/warpcast/api' },
             {
               text: 'Signer Requests',
-              link: '/reference/client/signer-requests',
+              link: '/reference/warpcast/signer-requests',
             },
             {
               text: 'Intent URLs',
-              link: '/reference/client/cast-composer-intents',
+              link: '/reference/warpcast/cast-composer-intents',
             },
-            { text: 'Direct Casts', link: '/reference/client/direct-casts' },
-            { text: 'Embeds', link: '/reference/client/embeds' },
-            { text: 'Videos', link: '/reference/client/videos' },
+            { text: 'Direct Casts', link: '/reference/warpcast/direct-casts' },
+            { text: 'Embeds', link: '/reference/warpcast/embeds' },
+            { text: 'Videos', link: '/reference/warpcast/videos' },
           ],
         },
         {
