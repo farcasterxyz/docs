@@ -267,6 +267,10 @@ export default defineConfig({
                   link: '/developers/guides/accounts/change-fname',
                 },
                 {
+                  text: 'Register ENS name',
+                  link: '/developers/guides/accounts/register-ens',
+                },
+                {
                   text: 'Change custody address',
                   link: '/developers/guides/accounts/change-custody',
                 },
