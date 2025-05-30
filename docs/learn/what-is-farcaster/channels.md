@@ -70,4 +70,4 @@ Starting a channel also helps grow your audience:
 
 ### APIs
 
-- [Farcaster Client Channel APIs](../../reference/client/api.md) - fetch a list of all known channels
+- [Farcaster Client Channel APIs](../../reference/warpcast/api.md) - fetch a list of all known channels
