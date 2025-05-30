@@ -5,9 +5,6 @@ export default defineConfig({
   title: 'Farcaster Docs',
   titleTemplate: ':title / Farcaster Docs',
   description: 'Documentation for the Farcaster protocol',
-  rewrites: {
-    'reference/client/:slug*': 'reference/warpcast/:slug*',
-  },
   head: [
     ['link', { rel: 'icon', type: 'image/png', href: '/icon.png' }],
     ['meta', { property: 'og:type', content: 'website' }],
