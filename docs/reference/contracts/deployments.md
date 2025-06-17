@@ -2,7 +2,9 @@
 
 ## Addresses
 
-All Farcaster contracts are deployed on Optimism mainnet. There is no testnet deployment.
+The Farcaster contracts are deployed on Optimism and Base mainnet. There are no testnet deployments.
+
+Optimism:
 
 | Contract         | Optimism Address                             | Etherscan Link                                                                             |
 | ---------------- | -------------------------------------------- | ------------------------------------------------------------------------------------------ |
@@ -12,6 +14,12 @@ All Farcaster contracts are deployed on Optimism mainnet. There is no testnet de
 | IdGateway        | `0x00000000fc25870c6ed6b6c7e41fb078b7656f69` | [link](https://optimistic.etherscan.io/address/0x00000000fc25870c6ed6b6c7e41fb078b7656f69) |
 | KeyGateway       | `0x00000000fc56947c7e7183f8ca4b62398caadf0b` | [link](https://optimistic.etherscan.io/address/0x00000000fc56947c7e7183f8ca4b62398caadf0b) |
 | Bundler          | `0x00000000fc04c910a0b5fea33b03e0447ad0b0aa` | [link](https://optimistic.etherscan.io/address/0x00000000fc04c910a0b5fea33b03e0447ad0b0aa) |
+
+Base:
+
+| Contract      | Base Address                                 | Etherscan Link                                                                  |
+| ------------- | -------------------------------------------- | ------------------------------------------------------------------------------- |
+| Tier Registry | `0x00000000fc84484d585C3cF48d213424DFDE43FD` | [link](https://basescan.org/address/0x00000000fc84484d585c3cf48d213424dfde43fd) |
 
 ## ABIs
 

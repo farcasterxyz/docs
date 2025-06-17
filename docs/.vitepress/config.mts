@@ -680,6 +680,10 @@ export default defineConfig({
                   text: 'Signed Key Request Validator',
                   link: '/reference/contracts/reference/signed-key-request-validator',
                 },
+                {
+                  text: 'Tier Registry',
+                  link: '/reference/contracts/reference/tier-registry',
+                },
               ],
             },
             { text: 'Deployments', link: '/reference/contracts/deployments' },
