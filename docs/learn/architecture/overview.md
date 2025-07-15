@@ -16,7 +16,7 @@ Only a handful of actions are performed onchain, including:
 
 ## Offchain
 
-Farcaster's offchain system is a peer-to-peer network of servers called [Hubs](./hubs.md) which store user data. The majority of user actions are performed offchain. These include:
+Farcaster's offchain system is a peer-to-peer network of servers called [Snapchain](https://snapchain.farcaster.xyz/) which store user data. The majority of user actions are performed offchain. These include:
 
 - Posting a new public message.
 - Following another user.
