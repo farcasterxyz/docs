@@ -34,8 +34,8 @@ Users can set the recovery address to trusted services like the official Farcast
 - [IdGateway](../../reference/contracts/reference/id-gateway) - Create accounts onchain.
 - [KeyRegistry](../../reference/contracts/reference/key-registry) - Lookup account key data onchain.
 - [KeyGateway](../../reference/contracts/reference/key-gateway) - Create account keys onchain.
-- [Get Farcaster Ids](../../reference/hubble/httpapi/fids) - Fetch a list of all registered account fids from a hub.
-- [Get account keys](../../reference/hubble/httpapi/onchain#onchainsignersbyfid) - Fetch the account keys (signers) for an account from a hub.
+- [Get Farcaster Ids](https://snapchain.farcaster.xyz/reference/httpapi/fids) - Fetch a list of all registered account fids from a Snapchain node.
+- [Get account keys](https://snapchain.farcaster.xyz/reference/httpapi/onchain#onchainsignersbyfid) - Fetch the account keys (signers) for an account from a Snapchain node.
 
 ### Tutorials
 

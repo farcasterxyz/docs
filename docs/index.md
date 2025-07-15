@@ -38,6 +38,6 @@ Allow users to Sign In with Farcaster and leverage social data in your app.
 
 Sync the Farcaster network to a local machine so you can run queries on the data.
 
-- [Write your first hub query](/developers/guides/querying/fetch-casts.md) - get an account's casts from a hub.
-- [Set up the replicator](/developers/guides/apps/replicate.md) - sync a hub to a postgres database to run advanced queries.
-- [Run a hub](/hubble/install.md) - get realtime access to Farcaster data on your machine.
+- [Write your first snapchain query](https://snapchain.farcaster.xyz/getting-started#query-a-node) - get an account's casts from a snapchain node.
+- [Set up the replicator](https://snapchain.farcaster.xyz/guides/syncing-to-db) - sync a snapchain node to a postgres database to run advanced queries.
+- [Run a snapchain node](https://snapchain.farcaster.xyz/guides/running-a-node) - get realtime access to Farcaster data.

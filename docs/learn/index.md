@@ -26,7 +26,7 @@ Find more how-tos, guide and tutorials like this in the [developers](/developers
 
 ## Documentation
 
-- [Farcaster Spec](https://github.com/farcasterxyz/protocol) - Specifications for Farcaster, including its contracts and hubs.
+- [Farcaster Spec](https://github.com/farcasterxyz/protocol) - Specifications for Farcaster, including its contracts and nodes.
 - [Mini Apps Spec](/developers/frames/spec) - Specifications for writing and rendering mini apps in Farcaster apps.
 - [APIs](/reference/) - Docs for API's and ABI's for onchain and offchain systems.
 

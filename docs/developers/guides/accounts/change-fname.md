@@ -14,11 +14,11 @@ A user can change their offchain ENS name or Fname without affecting their accou
 
 ### Change username
 
-To transfer an Fname, e.g. `Hubble`, make a POST request to `/transfers` with the following body:
+To transfer an Fname, e.g. `farcaster`, make a POST request to `/transfers` with the following body:
 
 ```yaml
 {
-  "name": "hubble", // Name to transfer
+  "name": "farcaster", // Name to transfer
   "from": 123,  // FID to transfer from
   "to": 321, // FID to transfer to
   "fid": 123, // FID making the request (must match from)
@@ -36,7 +36,7 @@ import { makeUserNameProofClaim, EIP712Signer } from '@farcaster/hub-nodejs';
 const accountKey: EIP712Signer = undefined; // Account Key for the custody address (use appropriate subclass from hub-nodejs for ethers or viem)
 
 const claim = makeUserNameProofClaim({
-  name: 'hubble',
+  name: 'farcaster',
   owner: '0x...',
   timestamp: Math.floor(Date.now() / 1000),
 });
@@ -51,7 +51,7 @@ Example request via curl:
 curl -X POST https://fnames.farcaster.xyz/transfers \
   -H "Content-Type: application/json" \
   -d \
-'{"name": "hubble", "owner": "0x...", "signature": "0x...", "from": 123, "to": 321, "timestamp": 1641234567, fid: 123}'
+'{"name": "farcaster", "owner": "0x...", "signature": "0x...", "from": 123, "to": 321, "timestamp": 1641234567, fid: 123}'
 ```
 
 See [here](/reference/fname/api.md) for more details on the Fname registry API.

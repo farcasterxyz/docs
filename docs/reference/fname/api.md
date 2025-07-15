@@ -10,7 +10,7 @@ to another fid. Unregistering an fname is a transfer from the user's fid to fid 
 ::: warning Registering an fname
 
 Note, when registering a new fname, calling this api is not sufficient. This only reserves the name to your fid. You
-must also submit a [UserDataAdd](/reference/hubble/datatypes/messages#_2-userdata) message to the hub
+must also submit a [UserDataAdd](https://snapchain.farcaster.xyz/reference/datatypes/messages#2-userdata) message to the hub
 to set this name as your username.
 
 :::
@@ -69,13 +69,13 @@ Both will return the same transfers object:
 
 ### Register or transfer an fname
 
-To register a new fid, e.g. `hubble`, first make sure the fname is not already registered.
+To register a new fid, e.g. `farcaster`, first make sure the fname is not already registered.
 
 Then make a POST request to `/transfers` with the following body:
 
 ```yaml
 {
-  "name": "hubble", // Name to register
+  "name": "farcaster", // Name to register
   "from": 0,  // Fid to transfer from (0 for a new registration)
   "to": 123, // Fid to transfer to (0 to unregister)
   "fid": 123, // Fid making the request (must match from or to)
@@ -93,7 +93,7 @@ import { makeUserNameProofClaim, EIP712Signer } from '@farcaster/hub-nodejs';
 const accountKey: EIP712Signer = undefined; // Account key for the custody address (use appropriate subclass from hub-nodejs for ethers or viem)
 
 const claim = makeUserNameProofClaim({
-  name: 'hubble',
+  name: 'farcaster',
   owner: '0x...',
   timestamp: Math.floor(Date.now() / 1000),
 });
@@ -111,10 +111,10 @@ e.g.
 curl -X POST https://fnames.farcaster.xyz/transfers \
   -H "Content-Type: application/json" \
   -d \
-'{"name": "hubble", "owner": "0x...", "signature": "0x...", "from": 0, "to": 1000, "timestamp": 1641234567, fid: 1000}'
+'{"name": "farcaster", "owner": "0x...", "signature": "0x...", "from": 0, "to": 1000, "timestamp": 1641234567, fid: 1000}'
 ```
 
-Once a name is registered, it still needs a [UserData](/reference/hubble/datatypes/messages#_2-userdata) message
+Once a name is registered, it still needs a [UserData](https://snapchain.farcaster.xyz/reference/datatypes/messages#2-userdata) message
 to be sent to the hub in order to actually
 set the username for the user. See examples in
 the [hub-nodejs](https://github.com/farcasterxyz/hub-monorepo/tree/main/packages/hub-nodejs/examples/hello-world) repo.

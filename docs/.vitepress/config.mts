@@ -76,7 +76,7 @@ export default defineConfig({
         text: 'AuthKit',
         link: '/auth-kit/',
       },
-      { text: 'Hubble', link: '/hubble/hubble', activeMatch: '/hubble/' },
+      { text: 'Snapchain', link: 'https://snapchain.farcaster.xyz/', },
       {
         text: 'Reference',
         link: '/reference/',
@@ -146,7 +146,7 @@ export default defineConfig({
           items: [
             { text: 'Overview', link: '/learn/architecture/overview' },
             { text: 'Contracts', link: '/learn/architecture/contracts' },
-            { text: 'Hubs', link: '/learn/architecture/hubs' },
+            { text: 'Snapchain', link: 'https://snapchain.farcaster.xyz/', target: '_self' },
             { text: 'ENS Names', link: '/learn/architecture/ens-names' },
           ],
         },
@@ -330,7 +330,8 @@ export default defineConfig({
               items: [
                 {
                   text: 'Replicate to Postgres',
-                  link: '/developers/guides/apps/replicate',
+                  link: 'https://snapchain.farcaster.xyz/guides/syncing-to-db',
+                  target: '_self'
                 },
                 // { text: 'Generate a chronological feed for a user', link: '/developers/guides/applications/feed' },
                 // { text: 'Create a bot to post messages to the hub', link: '/developers/guides/applications/bot' },
@@ -470,27 +471,6 @@ export default defineConfig({
           ],
         },
       ],
-      '/hubble/': [
-        {
-          text: 'Get Started',
-          items: [
-            { text: 'Hubble', link: '/hubble/hubble' },
-            { text: 'Migrating to Snapchain', link: '/hubble/migrating' },
-            { text: 'Installation', link: '/hubble/install' },
-            { text: 'Networks', link: '/hubble/networks' },
-            { text: 'Monitoring', link: '/hubble/monitoring' },
-            { text: 'Tutorials', link: '/hubble/tutorials' },
-            {
-              text: 'Troubleshooting',
-              link: '/hubble/troubleshooting',
-            },
-          ],
-        },
-        // {
-        //   text: 'Replicator',
-        //   items: [{ text: 'Overview', link: '/hubble/replicator' }],
-        // },
-      ],
       '/reference/': [
         {
           text: 'Reference',
@@ -500,7 +480,7 @@ export default defineConfig({
           text: 'Mini Apps',
           items: [
             { text: 'Specification', link: 'https://miniapps.farcaster.xyz/docs/specification', target: '_self' },
-            { text: 'Rename from Frames v2', link: '/reference/frames-redirect'}
+            { text: 'Rename from Frames v2', link: '/reference/frames-redirect' }
           ],
         },
         {
@@ -525,18 +505,18 @@ export default defineConfig({
           ],
         },
         {
-          text: 'Hubble',
+          text: 'Snapchain',
           items: [
-            { text: 'Architecture', link: '/reference/hubble/architecture' },
+            { text: 'Whitepaper', link: 'https://snapchain.farcaster.xyz/whitepaper', target: '_self' },
             {
               text: 'Data Types',
               collapsed: true,
               items: [
                 {
                   text: 'Messages',
-                  link: '/reference/hubble/datatypes/messages',
+                  link: 'https://snapchain.farcaster.xyz/reference/datatypes/messages', target: '_self'
                 },
-                { text: 'Events', link: '/reference/hubble/datatypes/events' },
+                { text: 'Events', link: 'https://snapchain.farcaster.xyz/reference/datatypes/events', target: '_self' },
               ],
             },
             {
@@ -545,44 +525,44 @@ export default defineConfig({
               items: [
                 {
                   text: 'Using GRPC APIs',
-                  link: '/reference/hubble/grpcapi/grpcapi',
+                  link: 'https://snapchain.farcaster.xyz/reference/grpcapi/grpcapi', target: '_self'
                 },
-                { text: 'Casts API', link: '/reference/hubble/grpcapi/casts' },
+                { text: 'Casts API', link: 'https://snapchain.farcaster.xyz/reference/grpcapi/casts', target: '_self' },
                 {
                   text: 'Reactions API',
-                  link: '/reference/hubble/grpcapi/reactions',
+                  link: 'https://snapchain.farcaster.xyz/reference/grpcapi/reactions', target: '_self'
                 },
-                { text: 'Links API', link: '/reference/hubble/grpcapi/links' },
+                { text: 'Links API', link: 'https://snapchain.farcaster.xyz/reference/grpcapi/links', target: '_self' },
                 {
                   text: 'UserData API',
-                  link: '/reference/hubble/grpcapi/userdata',
+                  link: 'https://snapchain.farcaster.xyz/reference/grpcapi/userdata', target: '_self'
                 },
                 {
                   text: 'Username Proofs API',
-                  link: '/reference/hubble/grpcapi/usernameproof',
+                  link: 'https://snapchain.farcaster.xyz/reference/grpcapi/usernameproof', target: '_self'
                 },
                 {
                   text: 'Verifications API',
-                  link: '/reference/hubble/grpcapi/verification',
+                  link: 'https://snapchain.farcaster.xyz/reference/grpcapi/verification', target: '_self'
                 },
                 {
                   text: 'Message API',
-                  link: '/reference/hubble/grpcapi/message',
+                  link: 'https://snapchain.farcaster.xyz/reference/grpcapi/message', target: '_self'
                 },
-                { text: 'Fids API', link: '/reference/hubble/grpcapi/fids' },
+                { text: 'Fids API', link: 'https://snapchain.farcaster.xyz/reference/grpcapi/fids', target: '_self' },
                 {
                   text: 'Storage API',
-                  link: '/reference/hubble/grpcapi/storagelimits',
+                  link: 'https://snapchain.farcaster.xyz/reference/grpcapi/storagelimits', target: '_self'
                 },
                 {
                   text: 'On Chain API',
-                  link: '/reference/hubble/grpcapi/onchain',
+                  link: 'https://snapchain.farcaster.xyz/reference/grpcapi/onchain', target: '_self'
                 },
                 {
                   text: 'Events API',
-                  link: '/reference/hubble/grpcapi/events',
+                  link: 'https://snapchain.farcaster.xyz/reference/grpcapi/events', target: '_self'
                 },
-                { text: 'Sync API', link: '/reference/hubble/grpcapi/sync' },
+                { text: 'Sync API', link: 'https://snapchain.farcaster.xyz/reference/grpcapi/sync', target: '_self' },
               ],
             },
             {
@@ -591,43 +571,43 @@ export default defineConfig({
               items: [
                 {
                   text: 'Using HTTP APIs',
-                  link: '/reference/hubble/httpapi/httpapi',
+                  link: 'https://snapchain.farcaster.xyz/reference/httpapi/httpapi', target: '_self'
                 },
-                { text: 'Info API', link: '/reference/hubble/httpapi/info' },
-                { text: 'Casts API', link: '/reference/hubble/httpapi/casts' },
+                { text: 'Info API', link: 'https://snapchain.farcaster.xyz/reference/httpapi/info', target: '_self' },
+                { text: 'Casts API', link: 'https://snapchain.farcaster.xyz/reference/httpapi/casts', target: '_self' },
                 {
                   text: 'Reactions API',
-                  link: '/reference/hubble/httpapi/reactions',
+                  link: 'https://snapchain.farcaster.xyz/reference/httpapi/reactions', target: '_self'
                 },
-                { text: 'Links API', link: '/reference/hubble/httpapi/links' },
+                { text: 'Links API', link: 'https://snapchain.farcaster.xyz/reference/httpapi/links', target: '_self' },
                 {
                   text: 'UserData API',
-                  link: '/reference/hubble/httpapi/userdata',
+                  link: 'https://snapchain.farcaster.xyz/reference/httpapi/userdata', target: '_self'
                 },
                 {
                   text: 'Username Proofs API',
-                  link: '/reference/hubble/httpapi/usernameproof',
+                  link: 'https://snapchain.farcaster.xyz/reference/httpapi/usernameproof', target: '_self'
                 },
                 {
                   text: 'Verifications API',
-                  link: '/reference/hubble/httpapi/verification',
+                  link: 'https://snapchain.farcaster.xyz/reference/httpapi/verification', target: '_self'
                 },
                 {
                   text: 'Message API',
-                  link: '/reference/hubble/httpapi/message',
+                  link: 'https://snapchain.farcaster.xyz/reference/httpapi/message', target: '_self'
                 },
-                { text: 'Fids API', link: '/reference/hubble/httpapi/fids' },
+                { text: 'Fids API', link: 'https://snapchain.farcaster.xyz/reference/httpapi/fids', target: '_self' },
                 {
                   text: 'Storage API',
-                  link: '/reference/hubble/httpapi/storagelimits',
+                  link: 'https://snapchain.farcaster.xyz/reference/httpapi/storagelimits', target: '_self'
                 },
                 {
                   text: 'On Chain API',
-                  link: '/reference/hubble/httpapi/onchain',
+                  link: 'https://snapchain.farcaster.xyz/reference/httpapi/onchain', target: '_self'
                 },
                 {
                   text: 'Events API',
-                  link: '/reference/hubble/httpapi/events',
+                  link: 'https://snapchain.farcaster.xyz/reference/httpapi/events', target: '_self'
                 },
               ],
             },
@@ -637,13 +617,6 @@ export default defineConfig({
             },
           ],
         },
-        // {
-        // text: 'Hubble Replicator',
-        // items: [
-        // { text: 'Index', link: '/reference/replicator/TODO' },
-        // ],
-        // },
-
         {
           text: 'Contracts',
           items: [

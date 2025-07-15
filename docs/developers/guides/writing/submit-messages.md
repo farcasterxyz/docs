@@ -2,7 +2,7 @@
 
 ::: info Pre-requisites
 
-- Write access to a hubble instance
+- Write access to a Snapchain node
 - Private key of an account key registered to an fid
 - Local typescript development environment
 

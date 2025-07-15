@@ -44,9 +44,9 @@ Choose an offchain ENS name if you want to get started quickly and don't have an
 
 ### APIs
 
-- [UserData API](../../reference/hubble/httpapi/userdata) - Fetch the UserData for a user's current username.
-- [Username Proofs API](../../reference/hubble/httpapi/usernameproof) - Fetch a user's Username Proofs from a hub.
-- [Verification Proofs API](../../reference/hubble/httpapi/verification) - Fetch a user's Verifications from a hub.
+- [UserData API](https://snapchain.farcaster.xyz/reference/httpapi/userdata) - Fetch the UserData for a user's current username.
+- [Username Proofs API](https://snapchain.farcaster.xyz/reference/httpapi/usernameproof) - Fetch a user's Username Proofs from a Snapchain node.
+- [Verification Proofs API](https://snapchain.farcaster.xyz/reference/httpapi/verification) - Fetch a user's Verifications from a Snapchain node.
 - [Fname Registry API](../../reference/fname/api.md) - Register and track fname ownership programmatically.
 
 ### Tutorials

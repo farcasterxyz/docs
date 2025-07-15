@@ -26,9 +26,9 @@ Resources are often from third parties and are not reviewed. Use them at your ow
 
 - [farcaster kit](https://www.farcasterkit.com/) - react hooks for building Farcaster apps.
 
-### Hubs
+### Snapchain
 
-- [@farcaster/hub-nodejs](https://www.npmjs.com/package/@farcaster/hub-nodejs) - lightweight, fast Typescript interface for Farcaster Hubs.
+- [@farcaster/hub-nodejs](https://www.npmjs.com/package/@farcaster/hub-nodejs) - lightweight, fast Typescript interface for Farcaster clients.
 
 ### Onchain
 
