@@ -2,16 +2,16 @@
 
 ::: info Pre-requisites
 
-- Read access to a hubble instance
+- Read access to a Snapchain instance
 
 :::
 
-To fetch casts from a channel, Hubble provides a `getCastsByParent` api call.
+To fetch casts from a channel, Snapchain provides a `getCastsByParent` api call.
 
 For example, to query all casts to the `ethereum` channel:
 
 ```bash
-$ curl http://localhost:2281/v1/castsByParent\?fid\=1\&url\="https://ethereum.org" | jq " .messages | limit(10;.[]) | .data.castAddBody.text"
+$ curl http://localhost:3381/v1/castsByParent\?fid\=1\&url\="https://ethereum.org" | jq " .messages | limit(10;.[]) | .data.castAddBody.text"
 "cue "
 "Commandeering this channel for the one true Ethereum, Ethereum classic."
 "Pretty amazing that even during a bear market, the 30 day average burn gives us deflationary ETH. \n\nSource: Ultrasound.Money"

@@ -2,14 +2,14 @@
 
 ::: info Pre-requisites
 
-- Read only access to a hubble instance
+- Read only access to a Snapchain instance
 
 :::
 
 To fetch profile details, use the
 
 ```bash
-$ curl http://localhost:2281/v1/userDataByFid\?fid\=1 | jq ".messages[].data.userDataBody"
+$ curl http://localhost:3381/v1/userDataByFid\?fid\=1 | jq ".messages[].data.userDataBody"
 {
   "type": "USER_DATA_TYPE_PFP",
   "value": "https://i.imgur.com/I2rEbPF.png"
@@ -28,15 +28,15 @@ $ curl http://localhost:2281/v1/userDataByFid\?fid\=1 | jq ".messages[].data.use
 }
 ```
 
-See the [http api reference](/reference/hubble/httpapi/userdata) for more details.
+See the [http api reference](https://snapchain.farcaster.xyz/reference/httpapi/userdata) for more details.
 
-If you have the hubble installed from source, you can use the built in `console`. This will use the grpc APIs
+If you have the [hub-monorepo](https://github.com/farcasterxyz/hub-monorepo) installed from source, you can use the built in `console`. This will use the grpc APIs
 
 ```bash
 # Ensure you are in the hubble sub directory
 $ cd apps/hubble
 # Remove `--insecure` if the host is using TLS
-$ yarn console --insecure -s localhost:2283
+$ yarn console --insecure -s localhost:3383
 > res = await rpcClient.getUserDataByFid({fid: 1})
 Ok {
   value: {
@@ -56,4 +56,4 @@ Ok {
 ]
 ```
 
-For more details on the GRPC API, see the [grpc api reference](/reference/hubble/grpcapi/grpcapi).
+For more details on the GRPC API, see the [grpc api reference](https://snapchain.farcaster.xyz/reference/grpcapi/grpcapi).

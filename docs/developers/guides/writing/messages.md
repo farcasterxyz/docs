@@ -8,7 +8,7 @@ There are many types of messages, and this tutorial will walk you through the mo
 
 You will need:
 
-- Write access to a hubble instance
+- Write access to a Snapchain node
 - Private key of a signer registered to an fid
 - `hub-nodejs` and helper functions imported and shown below
 

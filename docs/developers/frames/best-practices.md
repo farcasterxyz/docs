@@ -66,7 +66,7 @@ taken and let's the user refresh to check the status.
 #### Use a local copy of Farcaster data {#local-farcaster-data}
 
 If your frame needs to access Farcaster data, consider [using Shuttle to
-replicate it to Postgres](/developers/guides/apps/replicate.md) so it can be fetched
+replicate it to Postgres](https://snapchain.farcaster.xyz/guides/syncing-to-db) so it can be fetched
 locally.
 
 ::: warning Advanced
@@ -93,7 +93,7 @@ If your frame relies on the message to allow the user to take a privileged
 action or expose sensitive data you must verify the message.
 :::
 
-#### Minimize latency from external dependencies like hubs
+#### Minimize latency from external dependencies like Snapchain
 
 This is a generalization of tactics like [skipping
 verification](#skip-verification) and [using a local copy of the Farcaster

@@ -57,17 +57,17 @@ Timestamps are unverified and can be backdated by users, similar to a blog post.
 
 ### APIs
 
-- [Get Casts](../../reference/hubble/httpapi/casts) - fetch an account's casts from a hub
-- [Get Reactions](../../reference/hubble/httpapi/reactions) - fetch an account's reactions from a hub
-- [Get Links](../../reference/hubble/httpapi/links) - fetch an account's links or follows from a hub
-- [Get UserData](../../reference/hubble/httpapi/userdata) - fetch an account's profile data from a hub
-- [Submit Message](../../reference/hubble/httpapi/message#submitmessage) - broadcast a message to the hub network
-- [Validate Message](../../reference/hubble/httpapi/message#validatemessage) - verify a message's authenticity with a hub
+- [Get Casts](https://snapchain.farcaster.xyz/reference/httpapi/casts) - fetch an account's casts from a Snapchain node
+- [Get Reactions](https://snapchain.farcaster.xyz/reference/httpapi/reactions) - fetch an account's reactions from a Snapchain node
+- [Get Links](https://snapchain.farcaster.xyz/reference/httpapi/links) - fetch an account's links or follows from a Snapchain node
+- [Get UserData](https://snapchain.farcaster.xyz/reference/httpapi/userdata) - fetch an account's profile data from a Snapchain node
+- [Submit Message](https://snapchain.farcaster.xyz/reference/httpapi/message#submitmessage) - broadcast a message to the Snapchain network
+- [Validate Message](https://snapchain.farcaster.xyz/reference/httpapi/message#validatemessage) - verify a message's authenticity with a Snapchain node
 - [Storage Registry](../../reference/contracts/reference/storage-registry) - Acquire or check storage units for an account
 
 ### Tutorials
 
-- [Get casts](../../developers/guides/querying/fetch-casts) - Get an account's casts from a hub.
-- [Get profile](../../developers/guides/querying/fetch-profile) - Get an account's profile from a hub.
+- [Get casts](../../developers/guides/querying/fetch-casts) - Get an account's casts from a Snapchain node.
+- [Get profile](../../developers/guides/querying/fetch-profile) - Get an account's profile from a Snapchain node.
 - [Create common message types](../../developers/guides/writing/messages) - Create casts, links, reactions and userdata.
 - [Create casts with advanced features](../../developers/guides/writing/casts) - Create casts with embeds, emojis and mentions.
