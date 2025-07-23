@@ -25,6 +25,8 @@ Resources are often from third parties and are not reviewed. Use them at your ow
 ### Apps
 
 - [farcaster kit](https://www.farcasterkit.com/) - react hooks for building Farcaster apps.
+- [getembed.ai React Components](https://docs.getembed.ai/docs/render-a-feed-in-a-farcaster-mini-app-using-react) - ready made react components to render Farcaster feeds in your apps
+- [getembed.ai Typescript SDK](https://docs.getembed.ai/) - functions to get feeds, recommendations and AI labels for Farcaster users (FIDs)
 
 ### Snapchain
 
