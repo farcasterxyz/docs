@@ -1023,32 +1023,38 @@ Query parameters:
 
 Returns:
 
-- `periodStartTimestamp`: Unix time in milliseconds when rewards period began
-- `periodEndTimestamp`: Unix time in milliseconds when rewards period ended
-- `winners`: Paginated list of fid, score, rank, wallet address (optional) and reward amount in rank order. A missing wallet address indicates that the user does not have a verified wallet on the Farcaster Client.
+- `history`: Object containing:
+  - `periodStartTimestamp`: Unix time in milliseconds when rewards period began
+  - `periodEndTimestamp`: Unix time in milliseconds when rewards period ended
+  - `winners`: Paginated list of fid, username, score, rank, wallet address (optional) and reward amount in rank order. A missing wallet address indicates that the user does not have a verified wallet on the Farcaster Client.
+- `next`: Pagination cursor
 
 ```json
 {
   "result": {
-    "periodStartTimestamp": 1738080000000,
-    "periodEndTimestamp": 1738684800000,
-    "winners": [
-      {
-        "fid": 1,
-        "score": 10,
-        "rank": 1,
-        "rewardCents": 1000,
-        "walletAddress": "0x0000000000000000000000000000000000000000",
-      },
-      {
-        "fid": 420,
-        "score": 1,
-        "rank": 2,
-        "rewardCents": 500,
-        "walletAddress": "0x0000000000000000000000000000000000000001",
-      },
-      ...
-    ]
+    "history": {
+      "periodStartTimestamp": 1738080000000,
+      "periodEndTimestamp": 1738684800000,
+      "winners": [
+        {
+          "fid": 12345,
+          "score": 50000,
+          "rank": 1,
+          "rewardCents": 60000,
+          "username": "alice.eth",
+          "walletAddress": "0x0000000000000000000000000000000000000001"
+        },
+        {
+          "fid": 67890,
+          "score": 45000,
+          "rank": 2,
+          "rewardCents": 60000,
+          "username": "bob",
+          "walletAddress": "0x0000000000000000000000000000000000000002"
+        },
+        ...
+      ]
+    }
   },
   "next": { "cursor": "..." }
 }
