@@ -11,6 +11,19 @@ const channel = await appClient.createChannel({
 });
 ```
 
+For desktop users, present the link as a popup that contains a QR code then wait for the status using [watchStatus](./watch-status.md).
+
+```ts
+const url = channel.data.url;
+const popup = window.open(url, '_blank', 'width=500,height=800');
+```
+
+For mobile users, use `_top` instead of `_blank` to open the mobile app directly.
+```ts
+const url = channel.data.url;
+const popup = window.open(url, '_top');
+```
+
 ## Parameters
 
 | Parameter           | Type      | Description                                                                                                                   | Required | Example                                |
