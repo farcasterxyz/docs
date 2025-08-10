@@ -415,7 +415,7 @@ If you are unsure, always read the signed message by sending it into the `valida
 {
   "untrustedData": {
     "fid": 2,
-    "url": "https://fcpolls.com/polls/1",
+    "URL": "https://fcpolls.com/polls/1",
     "messageHash": "0xd2b1ddc6c88e865a33cb1a565e0058d757042974",
     "timestamp": 1706243218,
     "network": 1,

@@ -37,9 +37,9 @@ function App() {
 | `timeout`          | `number`   | Return an error after polling for this long.                                        | `300_000` (5 minutes) |
 | `interval`         | `number`   | Poll the relay server for updates at this interval.                                 | `1500` (1.5 seconds)  |
 | `nonce`            | `string`   | A random nonce to include in the Sign In With Farcaster message.                    | None                  |
-| `notBefore`        | `string`   | Time when the SIWF message becomes valid. ISO 8601 datetime string.                 | None                  |
-| `expirationTime`   | `string`   | Time when the SIWF message expires. ISO 8601 datetime string.                       | None                  |
-| `requestId`        | `string`   | An optional system-specific ID to include in the SIWF message.                      | None                  |
+| `notBefore`        | `string`   | Time when the SIWE message becomes valid. ISO 8601 datetime string.                 | None                  |
+| `expirationTime`   | `string`   | Time when the SIWE message expires. ISO 8601 datetime string.                       | None                  |
+| `requestId`        | `string`   | An optional system-specific ID to include in the SIWE message.                      | None                  |
 | `onSuccess`        | `function` | Callback invoked when sign in is complete and the user is authenticated.            | None                  |
 | `onStatusResponse` | `function` | Callback invoked when the component receives a status update from the relay server. | None                  |
 | `onError`          | `function` | Error callback function.                                                            | None                  |
@@ -80,7 +80,7 @@ function App() {
 | Parameter            | Description                                                                                                                        |
 | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | `signIn`             | Call this function following `connect` to begin polling for a signature.                                                           |
-| `signOut`            | Call this function to clear the AuthKit state and sign out the user.                                                               |
+| `signOut`            | Call this function to clear the Auth client state and sign out the user.                                                               |
 | `connect`            | Connect to the auth relay and create a channel.                                                                                    |
 | `reconnect`          | Reconnect to the relay and try again. Call this in the event of an error.                                                          |
 | `isConnected`        | True if AuthKit is connected to the relay server and has an active channel.                                                        |
