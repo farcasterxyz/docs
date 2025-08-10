@@ -38,7 +38,7 @@ Now that your client is set up, you can use it to interact with Farcaster Auth a
 ```tsx
 const { data: { channelToken } } = await appClient.createChannel({
     siweUri: "https://example.com/login",
-    domain: "example.com";
+    domain: "example.com",
 });
 
 const status = await appClient.watchStatus({
