@@ -1007,7 +1007,7 @@ Example:
 curl 'https://api.farcaster.xyz/fc/account-verifications'
 ```
 
-## Get creator reward winners
+## Get Creator Reward Winners
 
 `GET /v1/creator-rewards-winner-history`
 
@@ -1066,7 +1066,7 @@ Example:
 curl 'https://api.farcaster.xyz/v1/creator-rewards-winner-history'
 ```
 
-## Get developer reward winners
+## Get Developer Reward Winners
 
 `GET /v1/developer-rewards-winner-history`
 
