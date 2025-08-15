@@ -1,6 +1,6 @@
 # Change custody address
 
-Accounts are owned by custody address which is an Ethereum address on OP Mainnet.
+Accounts are owned by a custody address which is an Ethereum address on OP Mainnet.
 
 A user may want to change this address for security reasons or to transfer ownership of the entire account.
 
