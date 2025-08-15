@@ -124,7 +124,7 @@ if (accountKeyResult.isOk()) {
 ### 5. Collect an `Add` signature from the user.
 
 Collect an EIP-712 `Add` signature from the user to authorize adding an account key to their FID. In a real world app,
-you'll likely collect this signature on your frontend, from the user's wallet. In a frontend context, you can us a `ViemEip712WalletSigner` to connect to a browser wallet rather than a local signer.
+you'll likely collect this signature on your frontend, from the user's wallet. In a frontend context, you can use a `ViemEip712WalletSigner` to connect to a browser wallet rather than a local signer.
 
 ```ts
 if (signedKeyRequestMetadata.isOk()) {
