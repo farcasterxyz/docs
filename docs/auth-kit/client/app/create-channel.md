@@ -20,7 +20,7 @@ const channel = await appClient.createChannel({
 | `nonce`             | `string`  | A custom nonce. Must be at least 8 alphanumeric characters.                                                                   | No       | `ESsxs6MaFio7OvqWb`                    |
 | `notBefore`         | `string`  | Start time at which the signature becomes valid. ISO 8601 datetime.                                                           | No       | `2023-12-20T23:21:24.917Z`             |
 | `expirationTime`    | `string`  | Expiration time at which the signature is no longer valid. ISO 8601 datetime.                                                 | No       | `2023-12-20T23:21:24.917Z`             |
-| `requestId`         | `string`  | A system specific ID your app can use to refer to the sign in request.                                                        | No       | `8d0494d9-e0cf-402b-ab0a-394ac7fe07a0` |
+| `requestId`         | `string`  | A system specific ID your app can use to refer to the sign-in request.                                                        | No       | `8d0494d9-e0cf-402b-ab0a-394ac7fe07a0` |
 | `acceptAuthAddress` | `boolean` | Whether your application accepts signatures from an [auth address](https://github.com/farcasterxyz/protocol/discussions/225). | No       | `true`                                 |
 
 ## Returns
