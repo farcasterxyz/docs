@@ -28,7 +28,7 @@ like `https://example.xyz/eth-price.png`. When a GET request is made to this end
 
 We recommend setting a non-zero `max-age` so that the image can get cached and
 served from CDNs, otherwise users will see a gray image in their feed while the
-dynamic image is generated and loads. The exact time depends on your
+dynamic image is generated and loaded. The exact time depends on your
 application but opt for the longest time that still keeps the image reasonably
 fresh.
 

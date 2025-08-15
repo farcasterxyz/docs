@@ -211,7 +211,7 @@ const registerFname = async (fid: number) => {
 const fname = await registerFname(fid);
 ```
 
-Note that this only associated the name to our fid, we still need to set it as our username.
+Note that this only associates the name to our fid, we still need to set it as our username.
 
 ## 5. Write to the hub
 

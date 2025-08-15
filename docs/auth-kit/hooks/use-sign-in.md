@@ -1,8 +1,8 @@
 # `useSignIn`
 
-Hook for signing in a user. Connects to the relay server, generates a sign in link to present to the user, and polls the relay server for the user's Farcaster wallet signature.
+Hook for signing in a user. Connects to the relay server, generates a sign-in link to present to the user, and polls the relay server for the user's Farcaster wallet signature.
 
-If you want to build your own sign in component with a custom UI, use the `useSignIn` hook.
+If you want to build your own sign-in component with a custom UI, use the `useSignIn` hook.
 
 ```tsx
 import { useSignIn, QRCode } from '@farcaster/auth-kit';
@@ -40,7 +40,7 @@ function App() {
 | `notBefore`        | `string`   | Time when the SIWF message becomes valid. ISO 8601 datetime string.                 | None                  |
 | `expirationTime`   | `string`   | Time when the SIWF message expires. ISO 8601 datetime string.                       | None                  |
 | `requestId`        | `string`   | An optional system-specific ID to include in the SIWF message.                      | None                  |
-| `onSuccess`        | `function` | Callback invoked when sign in is complete and the user is authenticated.            | None                  |
+| `onSuccess`        | `function` | Callback invoked when sign-in is complete and the user is authenticated.            | None                  |
 | `onStatusResponse` | `function` | Callback invoked when the component receives a status update from the relay server. | None                  |
 | `onError`          | `function` | Error callback function.                                                            | None                  |
 

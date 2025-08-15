@@ -1,6 +1,6 @@
 # Register ENS Name
 
-A user can set their farcaster username to an ENS name they own.
+A user can set their Farcaster username to an ENS name they own.
 
 ### Requirements
 

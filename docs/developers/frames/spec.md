@@ -150,7 +150,7 @@ The `target` property must be a valid `CAIP-10` address, plus an optional token 
 />
 ```
 
-The `tx` action allows a frame to request the user takes an action in their connected wallet. Unlike other action types, `tx` actions have multiple steps.
+The `tx` action allows a frame to request that the user takes an action in their connected wallet. Unlike other action types, `tx` actions have multiple steps.
 
 First, the client makes a POST request to the `target` URL to fetch data about the wallet action. The frame server receives a Signature Packet in the POST body, including the address of the connected wallet. The frame server must respond with a 200 OK and a JSON response describing the wallet action:
 

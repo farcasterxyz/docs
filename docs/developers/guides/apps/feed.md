@@ -94,7 +94,7 @@ if (castsResult.isErr()) {
 
 ## 4. Function to pretty print a cast
 
-The raw cast data is not very readable. We'll write a function to convert the timestamp to a human readable format, and
+The raw cast data is not very readable. We'll write a function to convert the timestamp to a human-readable format, and
 also resolve any mentions (only stored as fids and their location within the cast) to their fnames.
 
 ```typescript
