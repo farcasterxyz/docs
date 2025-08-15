@@ -7,7 +7,7 @@ title: Frame Best Practices
 Learn best practices for building great Frame experiences.
 
 ::: info
-These best practices assume a prior knowledge of Frames. If you're looking for
+These best practices assume prior knowledge of Frames. If you're looking for
 general information about building Frames check out these resources:
 
 - [Getting Started](./getting-started)
