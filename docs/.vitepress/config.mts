@@ -202,35 +202,6 @@ export default defineConfig({
           ],
         },
         {
-          text: 'Legacy Frames',
-          items: [
-            {
-              text: 'Introduction',
-              link: '/developers/frames/',
-            },
-            {
-              text: 'Getting Started',
-              link: '/developers/frames/getting-started',
-            },
-            {
-              text: 'Specification',
-              link: '/developers/frames/spec',
-            },
-            {
-              text: 'Best Practices',
-              link: '/developers/frames/best-practices',
-            },
-            {
-              text: 'Advanced',
-              link: '/developers/frames/advanced',
-            },
-            {
-              text: 'Resources',
-              link: '/developers/frames/resources',
-            },
-          ],
-        },
-        {
           text: 'Sign In with Farcaster',
           items: [
             {
@@ -484,20 +455,12 @@ export default defineConfig({
           ],
         },
         {
-          text: 'Actions',
-          items: [{ text: 'Specification', link: '/reference/actions/spec' }],
-        },
-        {
           text: 'Farcaster Client',
           items: [
             { text: 'APIs', link: '/reference/warpcast/api' },
             {
               text: 'Signer Requests',
               link: '/reference/warpcast/signer-requests',
-            },
-            {
-              text: 'Intent URLs',
-              link: '/reference/warpcast/cast-composer-intents',
             },
             { text: 'Direct Casts', link: '/reference/warpcast/direct-casts' },
             { text: 'Embeds', link: '/reference/warpcast/embeds' },
