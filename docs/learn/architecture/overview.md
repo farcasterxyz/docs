@@ -2,7 +2,7 @@
 
 Farcaster has a hybrid architecture that stores identity onchain and data offchain.
 
-![Architecture](/assets/architecture.png)
+![Architecture](../../assets/architecture.png)
 
 ## Onchain
 
