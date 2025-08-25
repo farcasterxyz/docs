@@ -12,7 +12,7 @@ There are three main contracts deployed on OP Mainnet:
 
 <br>
 
-![Registry Contracts](/assets/registry-contracts.png)
+![Registry Contracts](../../assets/registry-contracts.png)
 
 The contracts are deployed at the following addresses:
 
