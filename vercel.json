@@ -95,6 +95,51 @@
       "source": "/reference/frames/spec",
       "destination": "https://miniapps.farcaster.xyz/docs/specification",
       "permanent": true
+    },
+    {
+      "source": "/reference/hubble/architecture",
+      "destination": "https://snapchain.farcaster.xyz/whitepaper",
+      "permanent": true
+    },
+    {
+      "source": "/reference/hubble/",
+      "destination": "https://snapchain.farcaster.xyz/",
+      "permanent": true
+    },
+    {
+      "source": "/reference/hubble",
+      "destination": "https://snapchain.farcaster.xyz/",
+      "permanent": true
+    },
+    {
+      "source": "/reference/hub/architecture",
+      "destination": "https://snapchain.farcaster.xyz/whitepaper",
+      "permanent": true
+    },
+    {
+      "source": "/reference/hub/",
+      "destination": "https://snapchain.farcaster.xyz/",
+      "permanent": true
+    },
+    {
+      "source": "/reference/hub",
+      "destination": "https://snapchain.farcaster.xyz/",
+      "permanent": true
+    },
+    {
+      "source": "/hubble/architecture",
+      "destination": "https://snapchain.farcaster.xyz/whitepaper",
+      "permanent": true
+    },
+    {
+      "source": "/hubble/",
+      "destination": "https://snapchain.farcaster.xyz/",
+      "permanent": true
+    },
+    {
+      "source": "/hubble",
+      "destination": "https://snapchain.farcaster.xyz/",
+      "permanent": true
     }
   ]
 }
