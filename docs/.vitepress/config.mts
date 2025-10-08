@@ -464,7 +464,6 @@ export default defineConfig({
             },
             { text: 'Direct Casts', link: '/reference/warpcast/direct-casts' },
             { text: 'Embeds', link: '/reference/warpcast/embeds' },
-            { text: 'Videos', link: '/reference/warpcast/videos' },
           ],
         },
         {
