@@ -13,7 +13,7 @@ export const walletClient = createWalletClient({
 });
 
 // JSON-RPC Account
-export const [account] = await walletClient.getAddresses();
+export const [jsonRpcAccount] = await walletClient.getAddresses();
 
 // Local Account
-export const account = privateKeyToAccount('0x...');
+export const localAccount = privateKeyToAccount('0x...');
