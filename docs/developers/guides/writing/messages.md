@@ -67,7 +67,7 @@ const castRemove = await makeCastRemove(
 );
 ```
 
-To create casts with embeds, mentions, channels emoji, see the [casts](../writing/casts.md) tutorial.
+To create casts with embeds, mentions, channels, and emoji, see the [casts](../writing/casts.md) tutorial.
 
 ## Reactions
 

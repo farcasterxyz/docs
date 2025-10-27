@@ -15,8 +15,8 @@ Learn how to build mini apps (previously called Frames) that run inside a Farcas
 
 Make it easy for users to sign in to your app with their Farcaster account.
 
-- [Examples](/auth-kit/examples.md) - see Sign in with Farcaster (SIWF) in action
-- [AuthKit](/auth-kit/installation.md) - a React toolkit to integrate SIWF
+- [Examples](/auth-kit/examples) - see Sign in with Farcaster (SIWF) in action
+- [AuthKit](/auth-kit/installation) - a React toolkit to integrate SIWF
 - [FIP-11](https://github.com/farcasterxyz/protocol/discussions/110) - the formal standard for SIWF
 
 ## Analyze Farcaster data

@@ -908,7 +908,7 @@ curl -X DELETE \
 
 `GET /fc/account-verifications`
 
-### This endpoint is not stable (beta) and likely to have breaking changes in the future or get depracated.
+### This endpoint is not stable (beta) and likely to have breaking changes in the future or get deprecated.
 
 List of account verifications attested by the Farcaster client. Ordered by the time when the verification occurred, descending. Paginated. Not authenticated.
 
