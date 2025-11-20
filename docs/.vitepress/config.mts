@@ -457,13 +457,13 @@ export default defineConfig({
         {
           text: 'Farcaster Client',
           items: [
-            { text: 'APIs', link: '/reference/warpcast/api' },
+            { text: 'APIs', link: '/reference/farcaster/api' },
             {
               text: 'Signer Requests',
-              link: '/reference/warpcast/signer-requests',
+              link: '/reference/farcaster/signer-requests',
             },
-            { text: 'Direct Casts', link: '/reference/warpcast/direct-casts' },
-            { text: 'Embeds', link: '/reference/warpcast/embeds' },
+            { text: 'Direct Casts', link: '/reference/farcaster/direct-casts' },
+            { text: 'Embeds', link: '/reference/farcaster/embeds' },
           ],
         },
         {

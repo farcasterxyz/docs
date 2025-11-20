@@ -1,0 +1,36 @@
+---
+title: Mini Apps
+---
+
+# Mini Apps
+
+Mini Apps are a standard for creating interactive and authenticated experiences on Farcaster, embeddable in any Farcaster client.
+
+<!-- prettier-ignore -->
+Mini Apps allow developers to build interactive applications that run directly in a Farcaster social feed. For a comprehensive introduction, visit the [official Mini Apps documentation](https://miniapps.farcaster.xyz/){target="_self"}.
+
+## Specification
+
+<!-- prettier-ignore -->
+For detailed technical information, refer to the [formal Mini Apps Specification](https://miniapps.farcaster.xyz/docs/specification){target="_self"}.
+
+## Rename from Frames v2
+
+In early 2025, Frames were renamed to Mini Apps to better reflect their evolving capabilities and scope. The new Mini Apps standard builds upon the foundation established by Frames, offering enhanced functionality and a more intuitive developer experience.
+
+Key points about the transition:
+
+- All existing Frames documentation and resources have been migrated to the Mini Apps ecosystem
+- Frames v1 have been deprecated and will be supported only until the end of March 2025
+- Developers are strongly encouraged to migrate existing Frame projects to the Mini Apps standard
+- The Mini Apps standard maintains backward compatibility while introducing new features
+
+If you're familiar with the previous Frames implementation, you'll find that Mini Apps preserve the core concepts while expanding the possibilities for creating rich, interactive experiences within the Farcaster ecosystem.
+
+## Resources
+
+Explore these resources to enhance your Mini Apps development:
+
+<!-- prettier-ignore -->
+- [Mini Apps Examples](https://miniapps.farcaster.xyz/docs/examples){target="_self"} - A collection of sample Mini Apps demonstrating various features and use cases
+- Join the Farcaster developer community in the [/fc-devs](https://farcaster.com/~/channel/fc-devs) channel on Farcaster

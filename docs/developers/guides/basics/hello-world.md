@@ -253,4 +253,4 @@ await submitMessage(
 );
 ```
 
-Now, you can view your profile on any farcaster client. To see it on Warpcast, visit `https://warpcast.com/@<fname>`
+Now, you can view your profile on any farcaster client. To see it on Farcaster, visit `https://farcaster.com/@<fname>`

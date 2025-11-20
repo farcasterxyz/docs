@@ -1,6 +1,6 @@
 # Apps
 
-Using Farcaster requires an Ethereum wallet to register your account and UI to browse the network. If you are new, we recommend starting with the official Farcaster client on [iOS](https://apps.apple.com/us/app/warpcast/id1600555445) or [Android](https://play.google.com/store/apps/details?id=com.farcaster.mobile&hl=en_US&gl=US)
+Using Farcaster requires an Ethereum wallet to register your account and UI to browse the network. If you are new, we recommend starting with the official Farcaster client on [iOS](https://apps.apple.com/us/app/farcaster/id1600555445) or [Android](https://play.google.com/store/apps/details?id=com.farcaster.mobile&hl=en_US&gl=US)
 
 There are two kinds of apps:
 
@@ -17,7 +17,7 @@ A wallet app controls the Ethereum address that owns the account. It has control
 
 The Farcaster client is a wallet app developed by the Farcaster team. It has a web and mobile app, though signing up is only available on mobile.
 
-- Download: [iOS](https://apps.apple.com/us/app/warpcast/id1600555445), [Android](https://play.google.com/store/apps/details?id=com.farcaster.mobile&hl=en_US&gl=US)
+- Download: [iOS](https://apps.apple.com/us/app/farcaster/id1600555445), [Android](https://play.google.com/store/apps/details?id=com.farcaster.mobile&hl=en_US&gl=US)
 
 ## Connected Apps
 

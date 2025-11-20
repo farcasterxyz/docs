@@ -2,7 +2,7 @@
 
 In addition to the core AuthKit implementation, "Sign in With Farcaster" can be implemented through multiple service providers and combined with additional functionality and login methods.
 
-# Providers
+## Providers
 
 Below is a list of providers that currently support "Sign in With Farcaster" functionality as part of their product suite.
 
