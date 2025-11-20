@@ -14,8 +14,8 @@ a streamlined onboarding experience and social-powered features.
 ### How does it work?
 
 1. Show a "Sign in with Farcaster" button to the user.
-2. Wait for the user to click, scan a QR code and approve the request in Warpcast.
-3. Receive and verify a signature from Warpcast.
+2. Wait for the user to click, scan a QR code and approve the request in Farcaster.
+3. Receive and verify a signature from Farcaster.
 4. Show the logged in user's profile picture and username.
 
 ![Sign In with Farcaste demo](./siwf_demo.avifs)
