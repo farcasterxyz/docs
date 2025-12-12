@@ -462,6 +462,10 @@ export default defineConfig({
               text: 'Signer Requests',
               link: '/reference/farcaster/signer-requests',
             },
+            {
+              text: 'Intent URLs',
+              link: '/reference/farcaster/intent-urls',
+            },
             { text: 'Direct Casts', link: '/reference/farcaster/direct-casts' },
             { text: 'Embeds', link: '/reference/farcaster/embeds' },
           ],
