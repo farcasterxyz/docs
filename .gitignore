@@ -73,3 +73,5 @@ docs/.vitepress/cache
 out/
 
 .DS_Store
+.vercel
+.env*.local
