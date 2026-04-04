@@ -1,7 +1,6 @@
 "use client";
 
 import { DocSearch } from "@docsearch/react";
-import "@docsearch/css";
 
 export default function Search() {
   return (

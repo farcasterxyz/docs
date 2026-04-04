@@ -38,6 +38,7 @@ export default function CodeGroup({
         {tabs.map((tab, i) => (
           <button
             key={i}
+            type="button"
             className={`code-group-tab${i === activeIndex ? " active" : ""}`}
             onClick={() => setActiveIndex(i)}
           >
