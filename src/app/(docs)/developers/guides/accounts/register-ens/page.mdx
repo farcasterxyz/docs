@@ -63,7 +63,7 @@ const usernameProofMessage = makeUsernameProof(
 
 // Once it's accepted, you can set the username to the ENS name
 
-const usernameMessage = makeUserData(
+const usernameMessage = makeUserDataAdd(
   {
     type: UserDataType.USERNAME,
     value: claim.name,

@@ -42,7 +42,7 @@ const latestBlock = await publicClient.getBlock();
 const fid = 1n;
 const network = FarcasterNetwork.MAINNET;
 const address = alice.address;
-const blockHash = latestBlock.blockhash;
+const blockHash = latestBlock.hash;
 
 const ethSignature = eip712Signer.signVerificationEthAddressClaim({
   fid,
@@ -99,7 +99,7 @@ const latestBlock = await publicClient.getBlock();
 const fid = 1n;
 const network = FarcasterNetwork.MAINNET;
 const address = alice.address;
-const blockHash = latestBlock.blockhash;
+const blockHash = latestBlock.hash;
 
 const ethSignature = eip712Signer.signVerificationEthAddressClaim({
   fid,

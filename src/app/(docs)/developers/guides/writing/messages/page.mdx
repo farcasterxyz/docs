@@ -26,13 +26,13 @@ import {
 } from '@farcaster/hub-nodejs';
 
 const ACCOUNT_PRIVATE_KEY: Hex = '0x...'; // Your account key's private key
-const FID = -1; // Your fid
+const FID = 123; // Your fid
+const FC_NETWORK = FarcasterNetwork.MAINNET;
 const ed25519Signer = new NobleEd25519Signer(ACCOUNT_PRIVATE_KEY);
 const dataOptions = {
   fid: FID,
   network: FC_NETWORK,
 };
-const FC_NETWORK = FarcasterNetwork.MAINNET;
 ```
 
 ## Casts
