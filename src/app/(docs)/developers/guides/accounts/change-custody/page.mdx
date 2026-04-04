@@ -115,8 +115,8 @@ export const walletClient = createWalletClient({
   transport: custom(window.ethereum),
 });
 
-// JSON-RPC Account
-export const [account] = await walletClient.getAddresses();
+// JSON-RPC Account (use one or the other, not both)
+// export const [account] = await walletClient.getAddresses();
 
 // Local Account
 export const account = privateKeyToAccount('0x...');

@@ -73,7 +73,7 @@ const nonce = await readNonce();
 const deadline = getDeadline();
 
 const eip712Signer = new ViemWalletEip712Signer(walletClient);
-const signature = await eip712signer.signRegister({
+const signature = await eip712Signer.signRegister({
   to: account,
   recovery: '0x00000000FcB080a4D6c39a9354dA9EB9bC104cd7',
   nonce,
@@ -146,8 +146,8 @@ export const walletClient = createWalletClient({
   transport: custom(window.ethereum),
 });
 
-// JSON-RPC Account
-export const [account] = await walletClient.getAddresses();
+// JSON-RPC Account (use one or the other, not both)
+// export const [account] = await walletClient.getAddresses();
 
 // Local Account
 export const account = privateKeyToAccount('0x...');

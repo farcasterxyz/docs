@@ -14,14 +14,14 @@ The Tier Registry contract supporting Farcaster Pro subscriptions is deployed on
 The Id Registry contract is used to keep track of Farcaster IDs. It maps an fid to an owning Ethereum
 address. The owner can also designate a "recovery address" which can be used to recover the fid if the owner loses
 access to the registering address. Registering an fid for the first time must be done through
-the [ID Gateway](#idgateway).
+the [ID Gateway](#id-gateway).
 
 ## Key Registry
 
-The Key Registry associates a Farcaster id to zero or more ed2559 public keys. Only messages signed by a key registered
+The Key Registry associates a Farcaster id to zero or more ed25519 public keys. Only messages signed by a key registered
 here are considered valid by the hubs. Registered keys can be revoked by the owner of the fid, but revoked keys can not
 be added to that fid again. The same key may be registered to multiple fids. Adding a key must be done through the
-[Key Gateway](#keygateway).
+[Key Gateway](#key-gateway).
 
 ## Storage Registry
 

@@ -1,3 +1,5 @@
+import snapSidebar from "./snap-sidebar.json";
+
 export type NavLink = {
   text: string;
   link: string;
@@ -31,7 +33,8 @@ export const TOP_NAV: NavLink[] = [
   { text: "Learn", link: "/learn/" },
   { text: "Build apps", link: "/developers/" },
   { text: "AuthKit", link: "/auth-kit/" },
-  { text: "Snap", link: "/snap/" },
+  // TODO: Add back when Snap docs go public
+  // { text: "Snap", link: "/snap/" },
   { text: "Reference", link: "/reference/" },
   {
     text: "Snapchain",
@@ -637,43 +640,7 @@ export const SECTIONS: SectionConfig[] = [
     text: "Snap",
     link: "/snap/",
     pathPrefix: "/snap",
-    sidebar: [
-      {
-        text: "Learn",
-        items: [
-          { text: "Introduction", link: "/snap/" },
-          { text: "Examples", link: "/snap/examples" },
-        ],
-      },
-      {
-        text: "Create",
-        items: [{ text: "Building a Snap", link: "/snap/building" }],
-      },
-      {
-        text: "Integrate",
-        items: [
-          { text: "On existing website", link: "/snap/existing-site" },
-        ],
-      },
-      {
-        text: "Reference",
-        items: [
-          { text: "Elements", link: "/snap/elements" },
-          { text: "Buttons", link: "/snap/buttons" },
-          { text: "Actions", link: "/snap/actions" },
-          { text: "Effects", link: "/snap/effects" },
-          { text: "Constraints", link: "/snap/constraints" },
-          { text: "Theme & Styling", link: "/snap/theme" },
-          { text: "Color Palette", link: "/snap/colors" },
-          { text: "Authentication", link: "/snap/auth" },
-          { text: "Data Store", link: "/snap/data-store" },
-        ],
-      },
-      {
-        text: "Agents",
-        items: [{ text: "Agents", link: "/snap/agents" }],
-      },
-    ],
+    sidebar: snapSidebar as SidebarItem[],
   },
 ];
 

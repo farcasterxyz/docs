@@ -395,6 +395,22 @@ body {
   line-height: 1.7;
 }
 
+.docs-llms-link {
+  position: sticky;
+  top: 16px;
+  float: right;
+  margin-right: 20px;
+  margin-top: 16px;
+  font-size: 12px;
+  color: var(--text-faint);
+  text-decoration: none;
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+}
+
+.docs-llms-link:hover {
+  color: var(--text-muted);
+}
+
 .docs-content h1 {
   font-size: 30px;
   font-weight: 600;

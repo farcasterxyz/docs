@@ -25,7 +25,7 @@ import {
   FarcasterNetwork,
 } from '@farcaster/hub-nodejs';
 
-const ACCOUNT_PRIVATE_KEY: Hex = '0x...'; // Your account key's private key
+const ACCOUNT_PRIVATE_KEY = '0x...'; // Your account key's private key
 const FID = 123; // Your fid
 const FC_NETWORK = FarcasterNetwork.MAINNET;
 const ed25519Signer = new NobleEd25519Signer(ACCOUNT_PRIVATE_KEY);
@@ -60,7 +60,7 @@ A cast can be removed by issuing a CastRemove message with the hash of the CastA
 ```typescript
 const castRemove = await makeCastRemove(
   {
-    targetHash: castReplyingToAUrl._unsafeUnwrap().hash,
+    targetHash: cast._unsafeUnwrap().hash,
   },
   dataOptions,
   ed25519Signer
