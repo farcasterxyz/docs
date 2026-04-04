@@ -1,0 +1,164 @@
+# Data Store
+
+Snaps can persist data between requests using a key-value data store. The store is
+available on every snap handler invocation through `ctx.data`.
+
+```ts
+const snap: SnapFunction = async (ctx) => {
+  const count = ((await ctx.data.get("visits")) as number) ?? 0;
+  await ctx.data.set("visits", count + 1);
+  // ...
+};
+```
+
+## Context
+
+The `SnapContext` passed to every `SnapFunction` includes a `data` field of type
+`SnapDataStore`:
+
+```ts
+type SnapContext = {
+  action: SnapAction;
+  request: Request;
+  data: SnapDataStore;
+};
+```
+
+If no data store implementation is configured, calling any method on `ctx.data` throws
+an error. Use a data store adapter (like `@farcaster/snap-upstash`) or provide your own
+implementation to enable persistence.
+
+## Types
+
+### `DataStoreValue`
+
+The value type accepted by `get` and `set`. Any JSON-serializable structure:
+
+```ts
+type DataStoreValue =
+  | string
+  | number
+  | boolean
+  | null
+  | DataStoreValue[]
+  | { [key: string]: DataStoreValue };
+```
+
+### `SnapDataStoreOperations`
+
+The read/write interface available inside and outside of locks:
+
+```ts
+type SnapDataStoreOperations = {
+  get(key: string): Promise<DataStoreValue | null>;
+  set(key: string, value: DataStoreValue): Promise<void>;
+};
+```
+
+### `SnapDataStore`
+
+Extends `SnapDataStoreOperations` with a concurrency-safe locking primitive:
+
+```ts
+type SnapDataStore = SnapDataStoreOperations & {
+  withLock<T>(fn: (store: SnapDataStoreOperations) => Promise<T>): Promise<T>;
+};
+```
+
+## Methods
+
+### `get(key)`
+
+Returns the value for a key, or `null` if the key does not exist.
+
+| Parameter | Type     | Description        |
+| --------- | -------- | ------------------ |
+| `key`     | `string` | The key to look up |
+
+**Returns** `Promise<DataStoreValue | null>`
+
+### `set(key, value)`
+
+Writes a value for a key. Overwrites any existing value.
+
+| Parameter | Type             | Description        |
+| --------- | ---------------- | ------------------ |
+| `key`     | `string`         | The key to write   |
+| `value`   | `DataStoreValue` | The value to store |
+
+**Returns** `Promise<void>`
+
+### `withLock(fn)`
+
+Acquires an exclusive lock, runs `fn`, then releases the lock. Use this when a
+read-then-write must be atomic — for example, incrementing a counter or appending to a
+list.
+
+| Parameter | Type                                             | Description                                 |
+| --------- | ------------------------------------------------ | ------------------------------------------- |
+| `fn`      | `(store: SnapDataStoreOperations) => Promise<T>` | Callback that receives the store operations |
+
+**Returns** `Promise<T>` — the value returned by `fn`
+
+The callback receives `SnapDataStoreOperations` (not `SnapDataStore`), which
+intentionally omits `withLock` to prevent nested locks and potential deadlocks.
+
+```ts
+const snap: SnapFunction = async (ctx) => {
+  const newCount = await ctx.data.withLock(async (store) => {
+    const count = ((await store.get("votes")) as number) ?? 0;
+    await store.set("votes", count + 1);
+    return count + 1;
+  });
+  // ...
+};
+```
+
+## Implementing a Data Store
+
+Any object that satisfies the `SnapDataStore` interface works. A minimal in-memory
+implementation:
+
+```ts
+import type { SnapDataStore, DataStoreValue } from "@farcaster/snap";
+
+function createMemoryStore(): SnapDataStore {
+  const data = new Map<string, DataStoreValue>();
+  return {
+    async get(key) {
+      return data.get(key) ?? null;
+    },
+    async set(key, value) {
+      data.set(key, value);
+    },
+    async withLock(fn) {
+      return fn(this);
+    },
+  };
+}
+```
+
+This is useful for local development and testing. For production, use a persistent
+backend (Redis, a database, etc.) and a real distributed lock so concurrent requests
+don't clobber each other.
+
+## Adapter Pattern
+
+The recommended way to wire a data store into your snap is the wrapper pattern — a
+function that takes your `SnapFunction` and returns a new one with `ctx.data` replaced:
+
+```ts
+function withMyStore(snapFn: SnapFunction): SnapFunction {
+  const store = createMyStore();
+  return (ctx) => snapFn({ ...ctx, data: store });
+}
+```
+
+Then in your server setup:
+
+```ts
+registerSnapHandler({ handler: withMyStore(snap) });
+```
+
+`@farcaster/snap-upstash` follows this exact pattern. You can swap in any backend by
+writing a thin adapter that implements `SnapDataStore`.

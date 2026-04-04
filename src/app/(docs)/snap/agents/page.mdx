@@ -1,0 +1,73 @@
+# Agents
+
+This page collects everything an AI agent or automated tool needs to work with Farcaster
+Snaps.
+
+## Machine-readable documentation
+
+The full docs are available in machine-readable form:
+
+- **[/llms.txt](/llms.txt)** — all documentation concatenated into a single plain-text
+  file, suitable for pasting into a context window or fetching at the start of a session
+- **`/markdown-content/<slug>`** — individual pages as plain markdown (e.g.
+  `/markdown-content/elements`, `/markdown-content/buttons`)
+
+## Creating a snap with an agent
+
+The fastest path is the Claude Code skill:
+
+```bash
+mkdir -p $HOME/.claude/skills/create-farcaster-snap
+curl -sS -o $HOME/.claude/skills/create-farcaster-snap/SKILL.md https://snap.farcaster.xyz/SKILL.md
+```
+
+Then run:
+
+```
+/create-farcaster-snap a poll asking users to pick their favorite L2
+```
+
+The skill reads the spec, generates valid snap JSON, validates it, and deploys to a live
+URL. It is the source of truth for the create-snap workflow — fetch the latest version
+at the URL above rather than relying on a cached copy.
+
+## Integrating snaps with an agent
+
+If you are building a product that needs to serve snaps or consume them, start here:
+
+- **[Introduction](/snap)** — protocol overview, SnapResponse shape, HTTP negotiation rules
+- **[Adding a Snap to an Existing Website](/snap/existing-site)** — content negotiation
+  patterns for Node.js, Hono, Express, and static hosts
+- **[Authentication](/snap/auth)** — JFS signing and server-side verification
+- **[Reference](/snap/elements)** — complete element, button, effects, constraint, and theme
+  specs
+
+The canonical machine definition of the protocol is in
+[`@farcaster/snap`](https://github.com/farcasterxyz/snap/tree/main/pkgs/snap)
+(`pkgs/snap/src/schemas.ts`). The prose docs above explain those schemas; the schemas
+are the final authority on validation behavior.
+
+## Working inside the snap repository
+
+If you are an agent contributing to the snap repo itself (implementing features, writing
+tests, editing docs), read:
+
+- [`AGENTS.md`](https://github.com/farcasterxyz/snap/blob/main/AGENTS.md) — design
+  principles, philosophy, and coding conventions
+- [`WORKSPACE.md`](https://github.com/farcasterxyz/snap/blob/main/WORKSPACE.md) —
+  operational facts: ports, env vars, package behaviors, and dev workflow
+- [`README.md`](https://github.com/farcasterxyz/snap/blob/main/README.md) — repo map,
+  development setup, and release process
+
+## Key facts for agents
+
+- **Snap GET**: send `Accept: application/vnd.farcaster.snap+json`; the server returns
+  snap JSON or falls back to HTML
+- **Snap POST**: body must be a JFS compact string (`header.payload.signature`); skip
+  verification locally with `SKIP_JFS_VERIFICATION=1`
+- **Validator package**: `@farcaster/snap` (Zod schemas + runtime validation). Run
+  `pnpm --filter @farcaster/snap test` to check your output
+- **Template**: [`template/`](https://github.com/farcasterxyz/snap/tree/main/template)
+  is the canonical deployable starter — use it rather than building from scratch
+- **Deploy target**: [host.neynar.app](https://host.neynar.app) — fetch `/SKILL.md`
+  there for the latest deploy instructions

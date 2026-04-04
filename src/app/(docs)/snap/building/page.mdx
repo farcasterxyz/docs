@@ -1,0 +1,115 @@
+# Building a Snap
+
+There are several ways to create a Farcaster Snap, from AI-assisted generation to manual
+implementation.
+
+## Claude Code Skill
+
+If you use [Claude Code](https://claude.ai/code), you can install a custom slash command
+that generates snaps from natural language:
+
+```bash
+mkdir -p $HOME/.claude/skills/create-farcaster-snap
+curl -sS -o $HOME/.claude/skills/create-farcaster-snap/SKILL.md https://snap.farcaster.xyz/SKILL.md
+```
+
+You can also
+[view the skill source on GitHub](https://github.com/farcasterxyz/snap/blob/main/agent-skills/create-farcaster-snap/SKILL.md).
+
+Then run it:
+
+```
+/create-farcaster-snap a poll asking users to pick their favorite L2
+```
+
+The skill will:
+
+1. Read the full snap spec
+2. Generate valid snap JSON and server logic
+3. Validate the output against the schema
+4. Optionally deploy to a live URL
+
+This is the fastest way to go from idea to working snap.
+
+> **Note:** The skill works best when run from within the
+> [snap](https://github.com/farcasterxyz/snap) repo, since it references the spec docs
+> and template locally.
+
+## Template (Hono)
+
+The `snap-template/` directory is a starter project using [Hono](https://hono.dev) with
+the `@farcaster/snap-hono` package:
+
+```bash
+# From the repo root
+cp -r snap-template my-snap
+cd my-snap
+pnpm install
+```
+
+Edit `src/index.ts` to implement your snap logic:
+
+```typescript
+import { Hono } from "hono";
+import { registerSnapHandler } from "@farcaster/snap-hono";
+
+const app = new Hono();
+
+registerSnapHandler(
+  app,
+  async (ctx) => {
+    if (ctx.action.type === "get") {
+      return {
+        version: "1.0",
+        page: {
+          theme: { accent: "purple" },
+          elements: {
+            type: "stack",
+            children: [
+              { type: "text", style: "title", content: "My Snap" },
+              { type: "text", style: "body", content: "Hello world" },
+            ],
+          },
+        },
+      };
+    }
+
+    // Handle POST interactions
+    const { fid, inputs, button_index } = ctx.action;
+    // ... your logic here
+  },
+  {
+    skipJFSVerification: process.env.SKIP_JFS_VERIFICATION === "1",
+  },
+);
+```
+
+Run locally:
+
+```bash
+SKIP_JFS_VERIFICATION=1 pnpm dev  # http://localhost:3003
+```
+
+## Testing
+
+Use the [Emulator](https://farcaster.xyz/~/developers/snaps) to test your snap. Enter
+your snap's URL and interact with it -- the emulator signs messages automatically, so no
+signature bypass is needed.
+
+## Deploying
+
+Snaps can be deployed anywhere that serves HTTP. Common options:
+
+- **Vercel** -- works with the Hono template out of the box
+- **Any Node.js host** -- the Hono template includes a standalone server
+
+Set `SNAP_PUBLIC_BASE_URL` to your deployment origin (no trailing slash) so button
+target URLs resolve correctly.
+
+After deploying, verify your snap works:
+
+```bash
+curl -sS -H 'Accept: application/vnd.farcaster.snap+json' https://your-snap-url.com/
+```
+
+You should get valid JSON with content type `application/vnd.farcaster.snap+json`.

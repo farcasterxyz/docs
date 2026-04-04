@@ -1,0 +1,294 @@
+# Farcaster Snaps
+
+Snaps are interactive embeds inside Farcaster casts. They render as cards in the feed
+and can be multi-page, stateful, and dynamic.
+
+> **Beta:** Snaps are still in beta and may change significantly over the next few weeks
+> or months.
+
+## Where do you want to go?
+
+**Just curious or want to build something?**
+
+- [Examples](/snap/examples) — see what snaps look like and what they can do
+- [Building a Snap](/snap/building) — go from idea to deployed snap in minutes
+
+> **Using Claude Code?** Install the snap generator skill and run
+> `/create-farcaster-snap` to go from prompt to deployed snap. See the
+> [Building a Snap](/snap/building) guide for install instructions and all other approaches.
+
+**Integrating snaps into an existing product?**
+
+- [Adding a Snap to an Existing Website](/snap/existing-site) — serve snap JSON alongside
+  your normal site
+- [Reference](/snap/elements) — full element, button, constraint, and auth specs
+
+**Working with an agent or AI tool?**
+
+- [Agents](/snap/agents) — machine-readable docs, skill file, and agent-oriented starting
+  points
+
+**Contributing to this repo?**
+
+- See the [GitHub repo](https://github.com/farcasterxyz/snap) and
+  [`AGENTS.md`](https://github.com/farcasterxyz/snap/blob/main/AGENTS.md)
+
+---
+
+## Overview
+
+A Farcaster Snap is an interactive embed inside a cast. It renders as a card in the feed
+and can be multi-page, stateful, and dynamic. Snaps are defined by a JSON schema served
+by an external server. The Farcaster client renders the JSON — it never executes
+arbitrary code.
+
+Snaps are the evolution of Frames: richer elements, multi-page flows, dynamic content,
+and the same server-driven model.
+
+Example interaction:
+
+1. A cast embed points to a URL that implements the snap protocol
+2. The client GETs that URL, signaling snap support. The server responds with a JSON
+   SnapResponse
+3. The client renders the response as an embed
+4. The user interacts (taps a button, moves a slider, types text)
+5. The client POSTs the interaction data to the server and receives a new JSON
+   SnapResponse
+6. The client replaces the previous content with the new content
+7. Repeat
+
+### Signaling Snap Support
+
+The snap media type is `application/vnd.farcaster.snap+json`.
+
+- When making an HTTP request, a client MAY include
+  `application/vnd.farcaster.snap+json` in the `Accept` HTTP header to indicate snap
+  support
+- If `application/vnd.farcaster.snap+json` is the highest-priority acceptable type, the
+  server MAY return a snap response
+- If the server returns a snap response, it MUST set
+  `Content-Type: application/vnd.farcaster.snap+json`
+- If the request does not indicate snap support, the server MUST NOT return a snap
+  response. Instead it SHOULD return another content type (for example, a text/html
+  fallback)
+- Even when a snap is requested, the server MAY return a different content type (for
+  example, if there was an internal error)
+- When the representation depends on `Accept` (for example, snap JSON versus a
+  plain-text fallback on GET), the server MUST include `Vary: Accept` on those responses
+  so caches and intermediaries key correctly
+
+When multiple content types are available (e.g. snap and html), the server SHOULD return
+a Link header listing the available types. For example:
+
+```
+Link: </resource>; rel="alternate"; type="application/vnd.farcaster.snap+json",
+      </resource>; rel="alternate"; type="text/html"
+```
+
+If the response `Content-Type` is `application/vnd.farcaster.snap+json`, the client MUST
+render it as a snap.
+
+Clients MAY cache GET responses from snap servers to avoid extraneous re-fetching.
+
+## Authentication
+
+POST requests use **JSON Farcaster Signatures (JFS)** for authentication. See
+[FIP: JSON Farcaster Signatures](https://github.com/farcasterxyz/protocol/discussions/208).
+Signed POST bodies, client signing, server verification (including hub-backed signer
+checks), replay protection, and requirements: [Authentication](/snap/auth).
+
+## SnapResponse
+
+The full snap response contract is documented across these pages:
+
+- Response JSON shape (`version`, `page`, `elements`, `buttons`, `effects`, `theme`) —
+  [Elements](/snap/elements) (shape and element types), [Buttons](/snap/buttons),
+  [Effects](/snap/effects), [Theme & Styling](/snap/theme), [Color Palette](/snap/colors)
+- `page.elements` stack rules — [Elements](/snap/elements)
+- Element types and properties — [Elements](/snap/elements)
+- Button actions and target rules — [Buttons](/snap/buttons)
+- Response constraints — [Constraints](/snap/constraints)
+
+`SnapResponse` is the JSON payload returned by a snap. Every valid response is a page
+payload with this shape:
+
+```json
+{
+  "version": "1.0",
+  "page": {
+    "theme": {
+      "accent": "purple"
+    },
+    "elements": {
+      "type": "stack",
+      "children": [
+        { "type": "text", "style": "title", "content": "Best sci-fi movies" },
+        {
+          "type": "button_group",
+          "name": "pick",
+          "options": ["Arrival", "Dune", "Interstellar"]
+        }
+      ]
+    },
+    "buttons": [
+      {
+        "label": "Submit",
+        "action": "post",
+        "target": "https://example.com/submit"
+      }
+    ],
+    "button_layout": "stack"
+  }
+}
+```
+
+### Top-Level Fields
+
+| Field                | Required | Description                                                                                                                                                                |
+| -------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `version`            | Yes      | Spec version. Must be `"1.0"`.                                                                                                                                             |
+| `page.theme`         | No       | Accent color for the snap. Client derives all visual styling from this + the app's current light/dark mode. Defaults to `"purple"`.                                        |
+| `page.theme.accent`  | No       | Palette color name: `gray`, `blue`, `red`, `amber`, `green`, `teal`, `purple`, `pink`.                                                                                     |
+| `page.elements`      | Yes      | Page body tree root. MUST be `{ "type": "stack", "children": [...] }`. Children render top to bottom. Min 1, max 5 children. Max 1 media element (image or grid) in stack. |
+| `page.buttons`       | No       | Array of action buttons at the bottom. Min 0, max 4.                                                                                                                       |
+| `page.button_layout` | No       | Layout for action buttons: `"stack"` (default, vertical), `"row"` (horizontal), `"grid"` (2-column grid).                                                                  |
+| `page.effects`       | No       | Array of effect names to trigger on page load.                                                                                                                             |
+
+### Feed Card Dimensions
+
+- **Width**: 100% of the feed column. The client determines the actual pixel width
+- **Height**: Determined by content, designed so valid pages fit within a ~500px feed
+  card. There is no "See more," and snaps should not require dynamic expansion
+
+All snap pages render in the feed card — including pages returned by `post` button taps.
+The card replaces its content in place. Snaps that need to show more content than fits
+in one page should paginate across multiple pages (e.g., "See full leaderboard" button
+loads the next page with more items) or link to a mini app via `action: "mini_app"`.
+
+### Height-Enforced Element Constraints
+
+These constraints apply to **every page**, not just the first. They are designed so that
+any valid combination of elements fits within the 500px feed card height (including
+padding and buttons). See [Constraints](/snap/constraints) for the full summary and
+validation rules.
+
+| Constraint              | Limit                 | Rationale                                  |
+| ----------------------- | --------------------- | ------------------------------------------ |
+| Elements per page       | Max 5                 | Prevents vertical overflow                 |
+| Media elements per page | Max 1 (image or grid) | Media elements are tall; only one per page |
+| Body text               | Max 160 chars         | ~4 lines, ~80px                            |
+| Caption text            | Max 100 chars         | ~2 lines, ~36px                            |
+| List items              | Max 4                 | ~120px total                               |
+| Button group options    | Max 4                 | ~100px stacked                             |
+| Grid rows               | Max 8                 | Keeps the page within the feed card height |
+
+Snaps that need longer text, bigger grids, or more list items can spread content across
+multiple pages via `post` buttons, or link to a Farcaster mini app for the full
+experience.
+
+## Broken Snaps
+
+If the snap URL is unreachable, returns invalid JSON, or fails schema validation:
+
+- The embed does **not** render in the feed
+- The cast displays normally with the snap URL shown as plain text in the cast body
+- The client may cache the last valid first page and show it with a "stale" indicator,
+  at its discretion
+
+If a `post` button request fails (timeout, server error, or invalid JSON response):
+
+- The client stays on the current page — it is never replaced with a blank screen or
+  error page
+- An inline error is shown on the current page: "Something went wrong. Tap to retry."
+- The user can retry the same button tap, or close/navigate away from the snap
+- This applies to any page in the flow, not just the first page. Whether you're on page
+  1 or page 5, a failed response keeps you on the page you were on
+
+## Navigation
+
+There is no client-managed back button. Navigation is server-driven.
+
+If a snap wants "go back" functionality, it includes a button on the page that POSTs to
+the server, and the server returns the appropriate previous page. The server is
+responsible for maintaining navigation state.
+
+The client does maintain a distinction between the feed card view and the expanded mini
+app view. The mini app close/minimize buttons return the user to the feed — they do not
+navigate within the snap.
+
+## Linking Between Snaps
+
+A button with `action: "post"` can target any snap server URL, including a different
+snap's URL. This allows one snap to link to another.
+
+When the user taps such a button, the client fetches the target URL, receives a page
+JSON, and renders it. The user is now "inside" the new snap. The mini app header updates
+to show the new snap's name and creator.
+
+## Input Data in POST Requests
+
+POST action payload rules are on [Buttons](/snap/buttons#input-data-in-post-requests).
+
+## Effects and Theme
+
+Response-level effects: [Effects](/snap/effects). Styling rules: [Theme & Styling](/snap/theme)
+and [Color Palette](/snap/colors).
+
+## Validation
+
+A valid snap page must pass these checks. Full detail: [Constraints](/snap/constraints).
+
+### Schema Validation (instant, at render time)
+
+- JSON conforms to the page schema
+- All required fields present
+- All field values within allowed ranges and types
+- Element count within limits (max 5, max 1 media element)
+- Button count within limits (max 4)
+- Text lengths within limits per element type
+- Grid dimensions within limits (max 64 cols x 8 rows)
+- Version field matches a supported version
+
+### URL Validation (at publish time)
+
+- For `post`, `link`, and `mini_app` buttons, `target` must use **HTTPS**. As an
+  exception for local development and emulators, **`http://` is allowed** when the host
+  is loopback only: `localhost`, `127.0.0.1`, or IPv6 loopback (`[::1]` / `::1`).
+  Non-loopback HTTP targets are invalid
+- Snap URL responds with valid page JSON
+- No `javascript:` URIs
+
+If schema validation fails at render time, the snap does not render (falls back to plain
+link in cast text). No LLM evaluation is required.
+
+## Versioning
+
+The `version` field is required on every page response. Clients must check this field.
+
+- If the version is supported, render normally
+- If the version is newer than the client supports, show a fallback: the snap name/URL
+  with a message "Update Farcaster to view this snap"
+- Snaps should target the lowest version that supports their element types
+
+When new element types are added in future spec versions:
+
+- They get a new version number (e.g., `"1.1"`)
+- Old clients gracefully degrade (show update message)
+
+## Validator (`@farcaster/snap`)
+
+Runtime validation lives in
+[`@farcaster/snap`](https://github.com/farcasterxyz/snap/tree/main/pkgs/snap)
+(`pkgs/snap`). The package validates snap JSON against the rules summarized in this
+documentation.
+
+```bash
+pnpm --filter @farcaster/snap test
+```
+
+Hono-oriented HTTP wiring (`registerSnapHandler`) is in
+[`@farcaster/snap-hono`](https://github.com/farcasterxyz/snap/tree/main/pkgs/hono).
+
+## Examples
+
+Full SnapResponse examples: [Examples](/snap/examples).

@@ -65,7 +65,11 @@ typings/
 
 
 # Vitepress configuration files
-docs/.vitepress/dist 
+docs/.vitepress/dist
 docs/.vitepress/cache
+
+# Next.js
+.next/
+out/
 
 .DS_Store
