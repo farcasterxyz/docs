@@ -12,7 +12,10 @@ export const metadata: Metadata = {
   },
   description:
     "A protocol for building sufficiently decentralized social networks.",
-  icons: [{ rel: "icon", url: "/icon.png" }],
+  icons: [
+    { rel: "icon", url: "/icon.svg", type: "image/svg+xml" },
+    { rel: "icon", url: "/icon.png" },
+  ],
   openGraph: {
     type: "website",
     images: ["/og-image.png"],
