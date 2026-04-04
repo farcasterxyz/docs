@@ -31,16 +31,11 @@ export const TOP_NAV: NavLink[] = [
   { text: "Learn", link: "/learn/" },
   { text: "Build apps", link: "/developers/" },
   { text: "AuthKit", link: "/auth-kit/" },
-  { text: "Snaps", link: "/snap/" },
+  { text: "Snap", link: "/snap/" },
+  { text: "Reference", link: "/reference/" },
   {
     text: "Snapchain",
     link: "https://snapchain.farcaster.xyz/",
-    external: true,
-  },
-  { text: "Reference", link: "/reference/" },
-  {
-    text: "Developer chat",
-    link: "https://farcaster.xyz/~/group/X2P7HNc4PHTriCssYHNcmQ",
     external: true,
   },
 ];
@@ -268,9 +263,9 @@ export const SECTIONS: SectionConfig[] = [
         ],
       },
       {
-        text: "Third party services",
+        text: "REST APIs",
         items: [
-          { text: "Neynar", link: "/reference/third-party/neynar/" },
+          { text: "Neynar", link: "https://docs.neynar.com", external: true },
         ],
       },
     ],
@@ -631,15 +626,15 @@ export const SECTIONS: SectionConfig[] = [
         items: [{ text: "API Reference", link: "/reference/fname/api" }],
       },
       {
-        text: "Third party services",
+        text: "REST APIs",
         items: [
-          { text: "Neynar", link: "/reference/third-party/neynar/" },
+          { text: "Neynar", link: "https://docs.neynar.com", external: true },
         ],
       },
     ],
   },
   {
-    text: "Snaps",
+    text: "Snap",
     link: "/snap/",
     pathPrefix: "/snap",
     sidebar: [

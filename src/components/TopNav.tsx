@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ExternalLink } from "lucide-react";
 import FarcasterLogo from "./FarcasterLogo";
+import Search from "./Search";
 import { TOP_NAV, SOCIAL_LINKS } from "@/lib/nav-config";
 
 export default function TopNav() {
@@ -51,6 +52,7 @@ export default function TopNav() {
         </nav>
       </div>
       <div className="top-nav-right">
+        <Search />
         {SOCIAL_LINKS.map((social) => (
           <a
             key={social.link}

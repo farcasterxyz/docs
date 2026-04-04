@@ -784,3 +784,67 @@ body {
 .homepage-section a:hover {
   text-decoration: underline;
 }
+
+/* ── DocSearch overrides ── */
+
+:root {
+  --docsearch-primary-color: var(--accent) !important;
+  --docsearch-text-color: var(--text-primary) !important;
+  --docsearch-muted-color: var(--text-muted) !important;
+  --docsearch-container-background: rgba(0, 0, 0, 0.5) !important;
+  --docsearch-modal-background: var(--bg-surface) !important;
+  --docsearch-modal-shadow: 0 8px 32px rgba(0, 0, 0, 0.2) !important;
+  --docsearch-searchbox-background: var(--bg-primary) !important;
+  --docsearch-searchbox-focus-background: var(--bg-primary) !important;
+  --docsearch-hit-background: var(--bg-surface) !important;
+  --docsearch-hit-active-color: #fff !important;
+  --docsearch-hit-color: var(--text-secondary) !important;
+  --docsearch-highlight-color: var(--accent) !important;
+  --docsearch-footer-background: var(--bg-surface) !important;
+  --docsearch-footer-shadow: 0 -1px 0 var(--border) !important;
+  --docsearch-key-gradient: linear-gradient(-26.5deg, var(--bg-hover), var(--bg-code)) !important;
+  --docsearch-key-shadow: none !important;
+}
+
+.DocSearch-Button {
+  border-radius: 6px !important;
+  border: 1px solid var(--border) !important;
+  background: var(--bg-primary) !important;
+  color: var(--text-muted) !important;
+  height: 32px !important;
+  padding: 0 10px !important;
+  font-size: 13px !important;
+  margin: 0 8px !important;
+}
+
+.DocSearch-Button:hover {
+  background: var(--bg-hover) !important;
+  border-color: var(--border) !important;
+  box-shadow: none !important;
+}
+
+.DocSearch-Button-Placeholder {
+  font-size: 13px !important;
+}
+
+.DocSearch-Search-Icon {
+  width: 14px !important;
+  height: 14px !important;
+  color: var(--text-faint) !important;
+}
+
+.DocSearch-Button-Keys {
+  min-width: auto !important;
+}
+
+.DocSearch-Button-Key {
+  font-size: 11px !important;
+  padding: 0 4px !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 3px !important;
+  background: var(--bg-code) !important;
+  color: var(--text-faint) !important;
+  box-shadow: none !important;
+  width: auto !important;
+  height: 18px !important;
+}
