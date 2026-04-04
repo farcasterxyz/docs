@@ -1,0 +1,210 @@
+# Examples
+
+Real-world examples of `SnapResponse` payloads showing common patterns.
+
+## Collaborative Wordle
+
+A word game with a grid board, text input, and submit button.
+
+### First page (feed card)
+
+```json
+{
+  "version": "1.0",
+  "page": {
+    "theme": { "accent": "green" },
+    "elements": {
+      "type": "stack",
+      "children": [
+        {
+          "type": "text",
+          "style": "title",
+          "content": "Daily Wordle · Day 12"
+        },
+        {
+          "type": "grid",
+          "cols": 5,
+          "rows": 6,
+          "cellSize": "square",
+          "gap": "small",
+          "cells": [
+            { "row": 0, "col": 0, "color": "#CA8A04", "content": "C" },
+            { "row": 0, "col": 1, "color": "#6B7280", "content": "R" },
+            { "row": 0, "col": 2, "color": "#22C55E", "content": "A" },
+            { "row": 0, "col": 3, "color": "#6B7280", "content": "N" },
+            { "row": 0, "col": 4, "color": "#6B7280", "content": "E" }
+          ]
+        },
+        {
+          "type": "text_input",
+          "name": "guess",
+          "placeholder": "Type 5-letter word...",
+          "maxLength": 5
+        },
+        {
+          "type": "text",
+          "style": "caption",
+          "content": "1,247 guesses today · Attempt 4/6"
+        }
+      ]
+    },
+    "buttons": [
+      {
+        "label": "Submit guess",
+        "action": "post",
+        "target": "https://wordle.example.com/guess"
+      }
+    ]
+  }
+}
+```
+
+### Response after submitting a guess
+
+```json
+{
+  "version": "1.0",
+  "page": {
+    "theme": { "accent": "green" },
+    "elements": {
+      "type": "stack",
+      "children": [
+        {
+          "type": "text",
+          "style": "title",
+          "content": "Daily Wordle · Day 12"
+        },
+        {
+          "type": "grid",
+          "cols": 5,
+          "rows": 6,
+          "cellSize": "square",
+          "gap": "small",
+          "cells": [
+            { "row": 0, "col": 0, "color": "#CA8A04", "content": "C" },
+            { "row": 0, "col": 1, "color": "#6B7280", "content": "R" },
+            { "row": 0, "col": 2, "color": "#22C55E", "content": "A" },
+            { "row": 0, "col": 3, "color": "#6B7280", "content": "N" },
+            { "row": 0, "col": 4, "color": "#6B7280", "content": "E" },
+            { "row": 3, "col": 0, "color": "#22C55E", "content": "C" },
+            { "row": 3, "col": 1, "color": "#22C55E", "content": "L" },
+            { "row": 3, "col": 2, "color": "#22C55E", "content": "A" },
+            { "row": 3, "col": 3, "color": "#22C55E", "content": "S" },
+            { "row": 3, "col": 4, "color": "#22C55E", "content": "S" }
+          ]
+        },
+        {
+          "type": "text",
+          "style": "body",
+          "content": "Your guess has been submitted!",
+          "align": "center"
+        },
+        {
+          "type": "text",
+          "style": "caption",
+          "content": "The crowd's most popular guess will be locked in at 6pm"
+        }
+      ]
+    },
+    "buttons": [
+      {
+        "label": "Open full game",
+        "action": "mini_app",
+        "target": "https://wordle.example.com/app"
+      }
+    ]
+  }
+}
+```
+
+## This or That
+
+A voting snap with button groups and progress bars for results.
+
+### First page (feed card)
+
+```json
+{
+  "version": "1.0",
+  "page": {
+    "theme": { "accent": "blue" },
+    "elements": {
+      "type": "stack",
+      "children": [
+        { "type": "text", "style": "title", "content": "Startup dilemmas" },
+        {
+          "type": "text",
+          "style": "caption",
+          "content": "by @dwr.eth · 3.1k voted"
+        },
+        {
+          "type": "button_group",
+          "name": "vote",
+          "options": ["Move fast, break things", "Move deliberately, build trust"],
+          "style": "stack"
+        }
+      ]
+    },
+    "buttons": [
+      {
+        "label": "Vote",
+        "action": "post",
+        "target": "https://example.com/thisorthat/vote"
+      }
+    ]
+  }
+}
+```
+
+### Response after voting
+
+```json
+{
+  "version": "1.0",
+  "page": {
+    "theme": { "accent": "blue" },
+    "elements": {
+      "type": "stack",
+      "children": [
+        { "type": "text", "style": "title", "content": "Startup dilemmas" },
+        {
+          "type": "text",
+          "style": "label",
+          "content": "Move fast, break things"
+        },
+        {
+          "type": "progress",
+          "value": 38,
+          "max": 100,
+          "label": "38%",
+          "color": "accent"
+        },
+        {
+          "type": "text",
+          "style": "label",
+          "content": "Move deliberately, build trust"
+        },
+        {
+          "type": "progress",
+          "value": 62,
+          "max": 100,
+          "label": "62% · 3,102 votes",
+          "color": "green"
+        }
+      ]
+    },
+    "buttons": [
+      {
+        "label": "Next question",
+        "action": "post",
+        "target": "https://example.com/thisorthat/next"
+      },
+      {
+        "label": "Share results",
+        "action": "link",
+        "target": "https://example.com/thisorthat/share/abc123"
+      }
+    ]
+  }
+}
+```

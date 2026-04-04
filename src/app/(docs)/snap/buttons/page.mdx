@@ -1,0 +1,113 @@
+# Buttons
+
+Buttons appear at the bottom of the page, below all elements. Each button performs one action.
+
+```json
+{
+  "buttons": [
+    {
+      "label": "Submit",
+      "action": "post",
+      "target": "https://example.com/submit"
+    },
+    {
+      "label": "Learn more",
+      "action": "link",
+      "target": "https://example.com"
+    },
+    {
+      "label": "View profile",
+      "action": "client",
+      "client_action": { "type": "view_profile", "fid": 6841 }
+    }
+  ]
+}
+```
+
+## Button Properties
+
+| Property | Required | Description |
+| --- | --- | --- |
+| `label` | Yes | Button text. Max 30 chars |
+| `action` | Yes | One of the four action types: `post`, `link`, `mini_app`, `client` |
+| `target` | Yes* | URL for `post`, `link`, and `mini_app` buttons |
+| `client_action` | Yes* | Structured client action object for `client` buttons. See [Actions](/snap/actions) |
+| `style` | No | `"primary"` (filled, default for first button), `"secondary"` (outlined, default for rest) |
+
+\* `target` is required for `post`, `link`, and `mini_app` buttons. `client_action` is required for `client` buttons. A button must have exactly one of `target` or `client_action`.
+
+## Button Layout
+
+The `page.button_layout` field controls how buttons are arranged:
+
+- `"stack"` — vertical, one button per row (default)
+- `"row"` — horizontal, side by side
+- `"grid"` — 2-column grid
+
+## Target URLs
+
+For `post`, `link`, and `mini_app`, `target` is a normal URL and must use HTTPS in production.
+
+For local development, `http://` is valid only when the host is loopback: `localhost`, `127.0.0.1`, or IPv6 loopback (`[::1]` / `::1`). Any other `http://` target is invalid.
+
+## Action Types
+
+### `post`
+
+Makes a POST request to the target URL. The request body is a **JFS compact string** (JSON Farcaster Signatures) whose decoded payload includes all input element values from the current page, the user's FID, and a timestamp.
+
+Decoded JFS payload shape:
+
+```json
+{
+  "fid": 12345,
+  "inputs": {
+    "guess": "CLASS",
+    "vote": "Tabs"
+  },
+  "button_index": 0,
+  "timestamp": 1710864000
+}
+```
+
+The response must be a valid page JSON; the client renders it as the next page.
+
+**Timeout**: The client waits up to 5 seconds. If the server doesn't respond, the client shows an error state on the current page. The user can retry.
+
+### `link`
+
+Opens the target URL in the device's external browser. No request is made to the server. The snap stays in its current state.
+
+### `mini_app`
+
+Opens the target URL as a Farcaster mini app (slides up from bottom, rendered inside the Farcaster app). The target must be a valid Farcaster mini app URL.
+
+### `client`
+
+Triggers a Farcaster client action. Instead of a `target` URL, `client` buttons use a structured `client_action` object. See the full list of supported client actions on the [Actions](/snap/actions) page.
+
+```json
+{ "label": "View cast", "action": "client", "client_action": { "type": "view_cast", "hash": "0x1234abcd" } }
+```
+
+```json
+{ "label": "Share", "action": "client", "client_action": { "type": "compose_cast", "text": "Check this out!" } }
+```
+
+```json
+{ "label": "Send tip", "action": "client", "client_action": { "type": "send_token", "recipientFid": 3 } }
+```
+
+## Input Data in POST Requests
+
+When a button with `action: "post"` is tapped, the client collects values from all input elements on the current page and includes them in the POST body.
+
+| Element Type | Data Included |
+| --- | --- |
+| `text_input` | `{ "name": "string value" }` |
+| `slider` | `{ "name": numeric_value }` |
+| `button_group` | `{ "name": "selected option string" }` |
+| `toggle` | `{ "name": true/false }` |
+| `grid` (interactive) | `{ "grid_tap": { "row": N, "col": N } }` |
+
+Input elements without a user interaction are included with their default/initial values.

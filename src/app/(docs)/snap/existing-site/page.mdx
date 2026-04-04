@@ -1,0 +1,197 @@
+# Adding a Snap to an Existing Website
+
+If you already have a website and want it to render as a snap when shared on Farcaster, you need **content negotiation** -- serving different responses based on the `Accept` header.
+
+When a Farcaster client loads your URL, it sends `Accept: application/vnd.farcaster.snap+json`. Your server checks for this header and returns snap JSON instead of HTML. Browsers don't send this header, so they continue to see your normal webpage.
+
+## How it works
+
+```
+Browser → GET example.com → Accept: text/html → Your normal webpage
+Farcaster → GET example.com → Accept: application/vnd.farcaster.snap+json → Snap JSON
+```
+
+The server must include `Vary: Accept` on these responses so caches key correctly.
+
+## Dynamic sites (Node.js, Hono, Express)
+
+If your site has a server, add middleware that checks the `Accept` header before your existing routes.
+
+### With Hono
+
+```typescript
+import { Hono } from "hono";
+import { MEDIA_TYPE } from "@farcaster/snap";
+
+const app = new Hono();
+
+// Snap handler -- runs before your existing routes
+app.get("/", async (c, next) => {
+  const accept = c.req.header("Accept") || "";
+  if (!accept.includes("application/vnd.farcaster.snap+json")) {
+    return next(); // Not a snap request, continue to normal site
+  }
+
+  // Return snap JSON
+  return c.json(
+    {
+      version: "1.0",
+      page: {
+        theme: { accent: "purple" },
+        elements: {
+          type: "stack",
+          children: [
+            { type: "text", style: "title", content: "My Site" },
+            {
+              type: "text",
+              style: "body",
+              content: "Welcome to my site on Farcaster.",
+            },
+          ],
+        },
+        buttons: [
+          {
+            label: "Visit site",
+            action: "link",
+            target: "https://example.com",
+          },
+        ],
+      },
+    },
+    200,
+    {
+      "Content-Type": "application/vnd.farcaster.snap+json",
+      Vary: "Accept",
+    },
+  );
+});
+
+// Your existing routes continue to work
+app.get("/", (c) => c.html("<h1>My normal website</h1>"));
+```
+
+### With Express
+
+```typescript
+app.get("/", (req, res, next) => {
+  const accept = req.headers.accept || "";
+  if (!accept.includes("application/vnd.farcaster.snap+json")) {
+    return next();
+  }
+
+  res.set("Content-Type", "application/vnd.farcaster.snap+json");
+  res.set("Vary", "Accept");
+  res.json({
+    version: "1.0",
+    page: {
+      theme: { accent: "blue" },
+      elements: {
+        type: "stack",
+        children: [
+          { type: "text", style: "title", content: "My Site" },
+          {
+            type: "text",
+            style: "body",
+            content: "Check us out on Farcaster.",
+          },
+        ],
+      },
+    },
+  });
+});
+```
+
+## Static sites (GitHub Pages, Netlify, S3)
+
+Static hosts can't do server-side content negotiation. Use one of these approaches:
+
+### Option 1: Cloudflare Worker proxy
+
+Put a Cloudflare Worker in front of your static site. It checks the `Accept` header and routes snap requests to a separate snap server.
+
+```typescript
+export default {
+  async fetch(request: Request): Promise<Response> {
+    const accept = request.headers.get("Accept") || "";
+    const url = new URL(request.url);
+
+    if (accept.includes("application/vnd.farcaster.snap+json")) {
+      // Forward to your snap server (e.g. deployed on host.neynar.app)
+      const snapUrl = "https://my-snap.host.neynar.app" + url.pathname;
+      return fetch(snapUrl, {
+        method: request.method,
+        headers: request.headers,
+        body: request.body,
+      });
+    }
+
+    // Forward to your static site
+    return fetch(request);
+  },
+};
+```
+
+Deploy the snap server separately (e.g. using the [snap template](https://github.com/farcasterxyz/snap/tree/main/template) on [host.neynar.app](https://host.neynar.app)) and point the worker at it.
+
+### Option 2: Vercel Edge Middleware
+
+If your static site is on Vercel, add a `middleware.ts` at the project root:
+
+```typescript
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+
+export function middleware(request: NextRequest) {
+  const accept = request.headers.get("Accept") || "";
+
+  if (accept.includes("application/vnd.farcaster.snap+json")) {
+    // Rewrite to your snap API route or external snap server
+    return NextResponse.rewrite(
+      new URL("https://my-snap.host.neynar.app" + request.nextUrl.pathname),
+    );
+  }
+
+  return NextResponse.next();
+}
+```
+
+### Option 3: Separate snap URL
+
+The simplest approach -- deploy your snap to a different URL entirely and share that URL in casts. Your website stays untouched.
+
+- Website: `https://example.com`
+- Snap: `https://example-snap.host.neynar.app`
+
+Users who click the link in a browser go to the snap's fallback page (which previews the snap and links to your site). Farcaster clients render the snap inline.
+
+## Handling POST interactions
+
+If your snap has `post` buttons, the Farcaster client sends signed POST requests to the button's `target` URL. For static site setups (Options 1-3 above), these POSTs go to your snap server, not the static site.
+
+Make sure your snap's button targets point to the snap server URL, not the static site:
+
+```json
+{
+  "buttons": [
+    {
+      "label": "Vote",
+      "action": "post",
+      "target": "https://my-snap.host.neynar.app/vote"
+    }
+  ]
+}
+```
+
+## Testing
+
+Test content negotiation with curl:
+
+```bash
+# Should return your normal HTML
+curl -sS https://example.com/
+
+# Should return snap JSON
+curl -sS -H 'Accept: application/vnd.farcaster.snap+json' https://example.com/
+```
+
+Then test interactively at [farcaster.xyz/~/developers/snaps](https://farcaster.xyz/~/developers/snaps) -- enter your URL and click Load snap. The emulator sends real signed POST requests, so buttons work exactly like in the feed.

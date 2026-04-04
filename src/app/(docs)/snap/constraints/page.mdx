@@ -1,0 +1,71 @@
+# Constraints
+
+Snaps enforce strict limits so every valid page fits within a ~500px feed card and
+renders consistently across clients.
+
+## Response Constraints Summary
+
+| Constraint              | Limit                                     |
+| ----------------------- | ----------------------------------------- |
+| Elements per page       | Max 5                                     |
+| Media elements per page | Max 1 (image or grid)                     |
+| Buttons per page        | Max 4                                     |
+| Title text              | Max 80 chars                              |
+| Body text               | Max 160 chars                             |
+| Caption text            | Max 100 chars                             |
+| Label text              | Max 40 chars                              |
+| Button label            | Max 30 chars                              |
+| Text input max length   | Max 280 chars                             |
+| List items              | Max 4                                     |
+| Button group options    | Min 2, max 4                              |
+| Group children          | Min 2, max 3. No media, no nested groups. |
+| Bar chart bars          | Min 1, max 6                              |
+| Grid dimensions         | Min 2x2, max 64 cols x 8 rows             |
+| POST response timeout   | 5s                                        |
+
+## Height-Enforced Element Constraints
+
+These constraints apply to **every page**, not just the first. They are designed so that
+any valid combination of elements fits within the 500px feed card height (including
+padding and buttons).
+
+| Constraint              | Limit                 | Rationale                                  |
+| ----------------------- | --------------------- | ------------------------------------------ |
+| Elements per page       | Max 5                 | Prevents vertical overflow                 |
+| Media elements per page | Max 1 (image or grid) | Media elements are tall; only one per page |
+| Body text               | Max 160 chars         | ~4 lines, ~80px                            |
+| Caption text            | Max 100 chars         | ~2 lines, ~36px                            |
+| List items              | Max 4                 | ~120px total                               |
+| Button group options    | Max 4                 | ~100px stacked                             |
+| Grid rows               | Max 8                 | Keeps the page within the feed card height |
+
+Snaps that need longer text, bigger grids, or more list items can spread content across
+multiple pages via `post` buttons, or link to a Farcaster mini app for the full
+experience.
+
+## Validation
+
+A valid snap page must pass these checks:
+
+### Schema Validation (at render time)
+
+- JSON conforms to the page schema
+- All required fields present
+- All field values within allowed ranges and types
+- Element count within limits (max 5, max 1 media element)
+- Button count within limits (max 4)
+- Text lengths within limits per element type
+- Grid dimensions within limits (max 64 cols x 8 rows)
+- Version field matches a supported version
+
+### URL Validation (at publish time)
+
+- For `post`, `link`, and `mini_app` buttons, `target` must use **HTTPS**. As an
+  exception for local development and emulators, **`http://` is allowed** when the host
+  is loopback only: `localhost`, `127.0.0.1`, or IPv6 loopback (`[::1]` / `::1`).
+  Non-loopback HTTP targets are invalid
+- Snap URL responds with valid page JSON
+- No `javascript:` URIs
+
+If schema validation fails at render time, the snap does not render (falls back to plain
+link in cast text). No LLM evaluation is required.

@@ -1,0 +1,207 @@
+# Actions
+
+Buttons in a snap page trigger actions. There are four button action types.
+
+| Action | Behavior |
+| --- | --- |
+| `post` | POST to the snap server, receive a new page |
+| `link` | Open a URL in the browser |
+| `mini_app` | Open a Farcaster mini app |
+| `client` | Trigger a Farcaster client action |
+
+For `post`, `link`, and `mini_app`, the button includes a `target` URL. For `client`, the button includes a structured `client_action` object instead.
+
+## `post`
+
+Makes a POST request to the target URL. The request body is a **JFS compact string** ([JSON Farcaster Signatures](https://github.com/farcasterxyz/protocol/discussions/208)) whose decoded payload includes all input element values from the current page, the user's FID, and a timestamp. See [Authentication](/snap/auth).
+
+```json
+{
+  "label": "Submit",
+  "action": "post",
+  "target": "https://example.com/submit"
+}
+```
+
+The response must be a valid page JSON; the client renders it as the next page.
+
+**Timeout**: The client waits up to 5 seconds. If the server doesn't respond, the client shows an error on the current page. The user can retry.
+
+### Input Data
+
+When a `post` button is tapped, the client collects values from all input elements on the current page:
+
+| Element Type | Data Included |
+| --- | --- |
+| `text_input` | `{ "name": "string value" }` |
+| `slider` | `{ "name": numeric_value }` |
+| `button_group` | `{ "name": "selected option string" }` |
+| `toggle` | `{ "name": true/false }` |
+| `grid` (interactive) | `{ "grid_tap": { "row": N, "col": N } }` |
+
+Input elements without a user interaction are included with their default/initial values.
+
+## `link`
+
+Opens the target URL in the device's external browser. No request is made to the server. The snap stays in its current state.
+
+```json
+{
+  "label": "Learn more",
+  "action": "link",
+  "target": "https://example.com"
+}
+```
+
+## `mini_app`
+
+Opens the target URL as a Farcaster mini app (slides up from bottom, rendered inside the Farcaster app).
+
+```json
+{
+  "label": "Open app",
+  "action": "mini_app",
+  "target": "https://example.com/app"
+}
+```
+
+## `client`
+
+Triggers a Farcaster client action. The button includes a `client_action` object that specifies the action type and parameters.
+
+```json
+{
+  "label": "View cast",
+  "action": "client",
+  "client_action": { "type": "view_cast", "hash": "0x1234abcd" }
+}
+```
+
+## Client Action Types
+
+### `view_cast`
+
+Opens a cast in the Farcaster client.
+
+| Property | Required | Description |
+| --- | --- | --- |
+| `type` | Yes | `"view_cast"` |
+| `hash` | Yes | Cast hash |
+
+```json
+{
+  "label": "View cast",
+  "action": "client",
+  "client_action": { "type": "view_cast", "hash": "0x1234abcd" }
+}
+```
+
+### `view_profile`
+
+Opens a user's Farcaster profile.
+
+| Property | Required | Description |
+| --- | --- | --- |
+| `type` | Yes | `"view_profile"` |
+| `fid` | Yes | Farcaster user ID |
+
+```json
+{
+  "label": "View profile",
+  "action": "client",
+  "client_action": { "type": "view_profile", "fid": 6841 }
+}
+```
+
+### `compose_cast`
+
+Opens the cast composer with optional pre-filled content. The user can edit before posting.
+
+| Property | Required | Description |
+| --- | --- | --- |
+| `type` | Yes | `"compose_cast"` |
+| `text` | No | Suggested body text |
+| `embeds` | No | Array of up to 2 embed URLs |
+| `parent` | No | Reply target: `{ "type": "cast", "hash": "0x..." }` |
+| `channelKey` | No | Post to a specific channel |
+
+```json
+{
+  "label": "Share",
+  "action": "client",
+  "client_action": {
+    "type": "compose_cast",
+    "text": "Check out this snap!",
+    "embeds": ["https://example.com"],
+    "channelKey": "farcaster"
+  }
+}
+```
+
+### `view_token`
+
+Displays a token in the Farcaster client.
+
+| Property | Required | Description |
+| --- | --- | --- |
+| `type` | Yes | `"view_token"` |
+| `token` | Yes | [CAIP-19](https://github.com/ChainAgnostic/CAIPs/blob/main/CAIPs/caip-19.md) asset ID |
+
+```json
+{
+  "label": "View token",
+  "action": "client",
+  "client_action": {
+    "type": "view_token",
+    "token": "eip155:8453/erc20:0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"
+  }
+}
+```
+
+### `send_token`
+
+Opens the send form, optionally pre-filled with token, amount, and recipient. All parameters are optional — omit them to let the user choose.
+
+| Property | Required | Description |
+| --- | --- | --- |
+| `type` | Yes | `"send_token"` |
+| `token` | No | CAIP-19 asset ID |
+| `amount` | No | Amount in raw token units (e.g. `"1000000"` for 1 USDC) |
+| `recipientFid` | No | Farcaster user ID of recipient |
+| `recipientAddress` | No | Wallet address of recipient |
+
+```json
+{
+  "label": "Send tip",
+  "action": "client",
+  "client_action": {
+    "type": "send_token",
+    "token": "eip155:8453/erc20:0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+    "amount": "1000000",
+    "recipientFid": 3
+  }
+}
+```
+
+### `swap_token`
+
+Opens the swap form, optionally pre-filled with tokens and amount. All parameters are optional.
+
+| Property | Required | Description |
+| --- | --- | --- |
+| `type` | Yes | `"swap_token"` |
+| `sellToken` | No | CAIP-19 asset ID to sell |
+| `buyToken` | No | CAIP-19 asset ID to buy |
+| `sellAmount` | No | Amount in raw token units |
+
+```json
+{
+  "label": "Swap",
+  "action": "client",
+  "client_action": {
+    "type": "swap_token",
+    "sellToken": "eip155:8453/erc20:0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+    "buyToken": "eip155:8453/erc20:0x4ed4E862860beD51a9570b96d89aF5E1B0Efefed"
+  }
+}
+```

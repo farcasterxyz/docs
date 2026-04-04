@@ -1,0 +1,59 @@
+# Theme & Styling
+
+Snaps specify only an accent color. The client handles all other styling, including
+light/dark mode from app settings.
+
+## How Theming Works
+
+The snap provides a single `theme.accent` color. The Farcaster client uses this accent to style interactive elements, then derives everything else -- backgrounds, text colors, borders, spacing -- from its own design system and the user's current light/dark mode preference.
+
+```json
+{
+  "version": "1.0",
+  "page": {
+    "theme": {
+      "accent": "purple"
+    },
+    "elements": {
+      "type": "stack",
+      "children": [{ "type": "text", "style": "title", "content": "My Snap" }]
+    }
+  }
+}
+```
+
+### Theme Properties
+
+| Property            | Required | Values                                                                                                     |
+| ------------------- | -------- | ---------------------------------------------------------------------------------------------------------- |
+| `page.theme`        | No       | Theme object. If omitted, defaults apply                                                                   |
+| `page.theme.accent` | No       | Palette color name: `gray`, `blue`, `red`, `amber`, `green`, `teal`, `purple`, `pink`. Default: `"purple"` |
+
+## Accent Surfaces
+
+The accent color is used for:
+
+- Primary button fill
+- Progress bar fill (unless overridden by `color`)
+- Slider active track and thumb
+- Button group selected option highlight
+- Toggle active state fill
+- Interactive grid tap highlight
+
+## What Snaps Cannot Control
+
+Snaps intentionally have no control over visual details. This keeps snaps consistent within the Farcaster feed and prevents visual clutter.
+
+Snaps **cannot** specify:
+
+- Font family, font size, or font weight
+- Padding, margins, or spacing
+- Border radius, shadows, or decorative styling
+- Custom CSS or inline styles
+- Background colors on individual elements (except grid cells)
+- Element pixel dimensions
+- Light/dark mode
+
+The client is responsible for all layout decisions — spacing between elements, card
+padding, font rendering, and responsive behavior — so snaps look native in every
+Farcaster client.

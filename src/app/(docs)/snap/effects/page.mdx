@@ -1,0 +1,60 @@
+# Effects
+
+Effects are page-level overlays that fire when a page is rendered. They trigger on both
+the initial load (GET) and after button taps (POST responses). They do not count toward
+the 5-element limit.
+
+## Available Effects
+
+| Effect     | Behavior                                                       |
+| ---------- | -------------------------------------------------------------- |
+| `confetti` | One-time burst of confetti particles when the page is rendered |
+
+Effects fire once per page render. If a POST button returns the same page with
+`"effects": ["confetti"]`, the confetti fires again. They do not repeat on client-side
+re-renders of the same page.
+
+## Preview
+
+<ConfettiDemo />
+
+## Usage
+
+Add the `effects` array to the page object:
+
+```json
+{
+  "version": "1.0",
+  "page": {
+    "effects": ["confetti"],
+    "elements": {
+      "type": "stack",
+      "children": [
+        {
+          "type": "text",
+          "style": "title",
+          "content": "You won!",
+          "align": "center"
+        },
+        {
+          "type": "text",
+          "style": "body",
+          "content": "Congratulations on completing the challenge!",
+          "align": "center"
+        }
+      ]
+    }
+  }
+}
+```
+
+## When to Use Effects
+
+Effects are best for:
+
+- **Celebrations** — completing a challenge, winning a game
+- **Milestones** — reaching a streak, hitting a follower count
+- **Completion states** — finishing a multi-page flow
+
+Use effects sparingly. They are most impactful when they are unexpected and earned, not
+when they appear on every page transition.
