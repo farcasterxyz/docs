@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "@docsearch/css";
 import TopNav from "@/components/TopNav";
 import Sidebar from "@/components/Sidebar";
 

@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "@docsearch/css";
 
 @source "../**/*.{js,jsx,ts,tsx}";
 
