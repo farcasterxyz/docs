@@ -20,10 +20,10 @@ export default function CodeGroup({
 }) {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const tabs: { label: string; content: React.ReactNode }[] = [];
+  const tabs: { label: string; content: ReactNode }[] = [];
   Children.forEach(children, (child) => {
     if (isValidElement(child) && child.props) {
-      const props = child.props as { label?: string; children?: React.ReactNode };
+      const props = child.props as { label?: string; children?: ReactNode };
       tabs.push({
         label: props.label || "Tab",
         content: props.children,

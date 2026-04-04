@@ -18,8 +18,6 @@ export default function InteractiveGrid() {
     { r: 1, c: 4, color: "#006BFF", text: "S" },
   ];
 
-  const filledKeys = new Set(cells.map((c) => `${c.r},${c.c}`));
-
   return (
     <div>
       <div

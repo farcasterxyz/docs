@@ -12,7 +12,6 @@ import {
   ExternalLink,
 } from "lucide-react";
 import {
-  SECTIONS,
   getSectionForPathname,
   isNavLink,
   isNavGroup,
@@ -54,6 +53,7 @@ function SidebarGroup({
       <button
         className={`sidebar-group-toggle${open ? " open" : ""}`}
         onClick={() => setOpen(!open)}
+        aria-expanded={open}
       >
         <ChevronRight
           size={12}

@@ -61,6 +61,7 @@ export default function TopNav() {
             target="_blank"
             rel="noopener noreferrer"
             title={social.icon}
+            aria-label={social.icon}
           >
             <SocialIcon icon={social.icon} />
           </a>
