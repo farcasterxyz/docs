@@ -1,5 +1,6 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { useState, Children, isValidElement } from "react";
 
 export function CodeGroupItem({
@@ -7,7 +8,7 @@ export function CodeGroupItem({
   children,
 }: {
   label: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   return <div data-label={label}>{children}</div>;
 }
@@ -15,7 +16,7 @@ export function CodeGroupItem({
 export default function CodeGroup({
   children,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   const [activeIndex, setActiveIndex] = useState(0);
 

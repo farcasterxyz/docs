@@ -2,8 +2,6 @@
 
 import { useState } from "react";
 
-const COLORS = ["#22C55E", "#6B7280", "#CA8A04", "#8B5CF6", "#006BFF"];
-
 export default function InteractiveGrid() {
   const [tapped, setTapped] = useState<string | null>(null);
 

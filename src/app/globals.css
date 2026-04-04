@@ -22,6 +22,9 @@
   --text-faint: #9ca3af;
   --accent: #7c3aed;
   --accent-dim: #f5f3ff;
+  --log-error-color: #991b1b;
+  --log-error-bg: #fee2e2;
+  --log-error-border: #fecaca;
   --callout-info-bg: rgba(59, 130, 246, 0.06);
   --callout-tip-bg: rgba(124, 58, 237, 0.06);
   --callout-warning-bg: rgba(245, 158, 11, 0.06);
@@ -46,6 +49,9 @@
   --text-faint: #6b7280;
   --accent: #a78bfa;
   --accent-dim: #1e1b2e;
+  --log-error-color: #fca5a5;
+  --log-error-bg: #450a0a;
+  --log-error-border: #7f1d1d;
   --callout-info-bg: rgba(59, 130, 246, 0.1);
   --callout-tip-bg: rgba(124, 58, 237, 0.1);
   --callout-warning-bg: rgba(245, 158, 11, 0.1);
@@ -71,6 +77,9 @@
     --text-faint: #6b7280;
     --accent: #a78bfa;
     --accent-dim: #1e1b2e;
+    --log-error-color: #fca5a5;
+    --log-error-bg: #450a0a;
+    --log-error-border: #7f1d1d;
     --callout-info-bg: rgba(59, 130, 246, 0.1);
     --callout-tip-bg: rgba(124, 58, 237, 0.1);
     --callout-warning-bg: rgba(245, 158, 11, 0.1);

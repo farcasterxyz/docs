@@ -1,7 +1,9 @@
+import type { ReactNode } from "react";
+
 export default function DocsLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   return (
     <main className="main-content">

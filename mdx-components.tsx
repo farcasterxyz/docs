@@ -1,3 +1,4 @@
+import type { ReactNode, HTMLAttributes } from "react";
 import type { MDXComponents } from "mdx/types";
 import CodeBlock from "@/components/CodeBlock";
 import Callout from "@/components/Callout";
@@ -14,13 +15,13 @@ function slugify(text: string): string {
     .replace(/(^-|-$)/g, "");
 }
 
-function extractText(children: React.ReactNode): string {
+function extractText(children: ReactNode): string {
   if (typeof children === "string") return children;
   if (Array.isArray(children)) return children.map(extractText).join("");
   if (children && typeof children === "object" && "props" in children) {
     const props = (children as { props?: Record<string, unknown> }).props;
     if (props?.children) {
-      return extractText(props.children as React.ReactNode);
+      return extractText(props.children as ReactNode);
     }
   }
   return "";
@@ -32,8 +33,8 @@ function Heading({
   ...props
 }: {
   level: 1 | 2 | 3 | 4;
-  children?: React.ReactNode;
-} & React.HTMLAttributes<HTMLHeadingElement>) {
+  children?: ReactNode;
+} & HTMLAttributes<HTMLHeadingElement>) {
   const Tag = `h${level}` as "h1" | "h2" | "h3" | "h4";
   const text = extractText(children);
   const id = slugify(text);

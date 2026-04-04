@@ -1,9 +1,10 @@
 "use client";
 
+import type { HTMLAttributes } from "react";
 import { useEffect, useRef, useState } from "react";
 import { Copy, Check } from "lucide-react";
 
-export default function CodeBlock(props: React.HTMLAttributes<HTMLPreElement>) {
+export default function CodeBlock(props: HTMLAttributes<HTMLPreElement>) {
   const preRef = useRef<HTMLPreElement>(null);
   const [copied, setCopied] = useState(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);

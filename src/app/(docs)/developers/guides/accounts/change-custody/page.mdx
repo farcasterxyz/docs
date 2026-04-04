@@ -48,7 +48,7 @@ await walletClient.writeContract(transferRequest);
 import {
   ID_REGISTRY_EIP_712_TYPES,
   idRegistryABI,
-  ID_GATEWAY_ADDRESS,
+  ID_REGISTRY_ADDRESS,
 } from '@farcaster/hub-web';
 import { walletClient, account } from './clients.ts';
 import { readNonce, getDeadline } from './helpers.ts';
@@ -57,7 +57,7 @@ const nonce = await readNonce();
 const deadline = getDeadline();
 const IdContract = {
   abi: idRegistryABI,
-  address: ID_GATEWAY_ADDRESS,
+  address: ID_REGISTRY_ADDRESS,
   chain: optimism,
 };
 

@@ -1,10 +1,12 @@
 "use client";
 
+import type { ReactNode } from "react";
+
 export default function SnapCard({
   children,
   valid = true,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   valid?: boolean;
 }) {
   return (

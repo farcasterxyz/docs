@@ -1,8 +1,9 @@
+import type { ReactNode } from "react";
 import { Info, AlertTriangle, Lightbulb, AlertCircle } from "lucide-react";
 
 const CALLOUT_STYLES: Record<
   string,
-  { icon: React.ReactNode; borderColor: string; bg: string; titleColor: string }
+  { icon: ReactNode; borderColor: string; bg: string; titleColor: string }
 > = {
   info: {
     icon: <Info size={16} />,
@@ -37,7 +38,7 @@ export default function Callout({
 }: {
   type?: "info" | "tip" | "warning" | "danger";
   title?: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   const style = CALLOUT_STYLES[type] || CALLOUT_STYLES.info;
 
