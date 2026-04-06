@@ -1,123 +1,43 @@
 # Persistent State
 
-Snaps created with SKILL.md use Neynar hosting and have built-in data storage. They can
-persist data between requests using a key-value data store. The store is available on
-every snap handler invocation through `ctx.data`.
+**Key-value storage is optional** and lives in your server code, not in
+`@farcaster/snap` itself.
+
+**For coding agents:** use `@farcaster/snap-turso`. It exports a `DataStore` with:
+
+- **`await store.get(key)`** — returns a JSON-serializable value or `null` if the key is
+  missing.
+- **`await store.set(key, value)`** — writes the value (overwrites an existing key).
+
+Create a single store when the process starts (module scope), then close over it inside
+your `SnapFunction`.
 
 ```ts
+import type { SnapFunction } from "@farcaster/snap";
+import { createTursoDataStore } from "@farcaster/snap-turso";
+
+const store = createTursoDataStore();
+
 const snap: SnapFunction = async (ctx) => {
-  const count = ((await ctx.data.get("visits")) as number) ?? 0;
-  await ctx.data.set("visits", count + 1);
-  // ...
-};
-```
-
-## Context
-
-The `SnapContext` passed to every `SnapFunction` includes a `data` field of type
-`SnapDataStore`:
-
-```ts
-type SnapContext = {
-  action: SnapAction;
-  request: Request;
-  data: SnapDataStore;
-};
-```
-
-If no data store implementation is configured, calling any method on `ctx.data` throws
-an error. Use a data store adapter (like `@farcaster/snap-turso`) or provide your own
-implementation to enable persistence.
-
-## Types
-
-### `DataStoreValue`
-
-The value type accepted by `get` and `set`. Any JSON-serializable structure:
-
-```ts
-type DataStoreValue =
-  | string
-  | number
-  | boolean
-  | null
-  | DataStoreValue[]
-  | { [key: string]: DataStoreValue };
-```
-
-### `SnapDataStore`
-
-```ts
-type SnapDataStore = {
-  get(key: string): Promise<DataStoreValue | null>;
-  set(key: string, value: DataStoreValue): Promise<void>;
-};
-```
-
-## Methods
-
-### `get(key)`
-
-Returns the value for a key, or `null` if the key does not exist.
-
-| Parameter | Type     | Description        |
-| --------- | -------- | ------------------ |
-| `key`     | `string` | The key to look up |
-
-**Returns** `Promise<DataStoreValue | null>`
-
-### `set(key, value)`
-
-Writes a value for a key. Overwrites any existing value.
-
-| Parameter | Type             | Description        |
-| --------- | ---------------- | ------------------ |
-| `key`     | `string`         | The key to write   |
-| `value`   | `DataStoreValue` | The value to store |
-
-**Returns** `Promise<void>`
-
-## Implementing a Data Store
-
-Any object that satisfies the `SnapDataStore` interface works. A minimal in-memory
-implementation:
-
-```ts
-import type { SnapDataStore, DataStoreValue } from "@farcaster/snap";
-
-function createMemoryStore(): SnapDataStore {
-  const data = new Map<string, DataStoreValue>();
+  const visits = ((await store.get("visits")) as number) ?? 0;
+  await store.set("visits", visits + 1);
   return {
-    async get(key) {
-      return data.get(key) ?? null;
-    },
-    async set(key, value) {
-      data.set(key, value);
+    version: "1.0",
+    ui: {
+      root: "page",
+      elements: {
+        page: { type: "stack", props: {}, children: ["count"] },
+        count: {
+          type: "text",
+          props: { content: `Visits: ${visits + 1}` },
+        },
+      },
     },
   };
-}
+};
 ```
 
-This is useful for local development and testing. For production, use a persistent
-backend (a database, etc.).
+`createTursoDataStore()` uses an in-memory map for local development and testing.
 
-## Adapter Pattern
-
-The recommended way to wire a data store into your snap is the wrapper pattern — a
-function that takes your `SnapFunction` and returns a new one with `ctx.data` replaced:
-
-```ts
-function withMyStore(snapFn: SnapFunction): SnapFunction {
-  const store = createMyStore();
-  return (ctx) => snapFn({ ...ctx, data: store });
-}
-```
-
-Then in your server setup:
-
-```ts
-registerSnapHandler({ handler: withMyStore(snap) });
-```
-
-`@farcaster/snap-turso` follows this exact pattern. You can swap in any backend by
-writing a thin adapter that implements `SnapDataStore`.
+**Full wiring example** lives in the repo template — start from
+[`template/src/index.ts`](https://github.com/farcasterxyz/snap/blob/main/template/src/index.ts).
