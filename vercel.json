@@ -96,6 +96,16 @@
       "source": "/reference/frames/spec",
       "destination": "https://miniapps.farcaster.xyz/docs/specification",
       "permanent": true
+    },
+    {
+      "source": "/snap",
+      "destination": "https://snap-docs.farcaster.xyz",
+      "permanent": true
+    },
+    {
+      "source": "/snap/:path*",
+      "destination": "https://snap-docs.farcaster.xyz/:path*",
+      "permanent": true
     }
   ]
 }
