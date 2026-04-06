@@ -1,8 +1,7 @@
 import { readFileSync } from "node:fs";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
 
-const SKILL_MD_PATH = join(dirname(fileURLToPath(import.meta.url)), "SKILL.md");
+const SKILL_MD_PATH = join(process.cwd(), "src/app/snap/SKILL.md/SKILL.md");
 
 export async function GET() {
   const body = readFileSync(SKILL_MD_PATH, "utf-8");
