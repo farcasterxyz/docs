@@ -1,10 +1,10 @@
-# Snap Protocol
+# Overview
 
 ## Overview
 
 A Farcaster Snap is an interactive embed inside a cast. It renders as a card in the feed
-and can be multi-page, stateful, and dynamic. Snaps are defined by a JSON response served
-by an external server. The Farcaster client renders the JSON — it never executes
+and can be multi-page, stateful, and dynamic. Snaps are defined by a JSON response
+served by an external server. The Farcaster client renders the JSON — it never executes
 arbitrary code.
 
 Snaps are the evolution of Frames: richer components, multi-page flows, dynamic content,
@@ -104,56 +104,56 @@ Every valid snap response has this shape:
 
 ### Top-Level Fields
 
-| Field | Type | Required | Default | Description |
-| --- | --- | --- | --- | --- |
-| `version` | `"1.0"` | Yes | | Spec version |
-| `theme` | object | No | `{ accent: "purple" }` | Theme configuration |
-| `theme.accent` | PaletteColor | No | `"purple"` | Accent color for buttons, progress bars, etc. |
-| `effects` | string[] | No | | Visual effects applied on render. See [Effects](/snap/effects) |
-| `ui` | json-render Spec | Yes | | The UI tree |
+| Field          | Type             | Required | Default                | Description                                               |
+| -------------- | ---------------- | -------- | ---------------------- | --------------------------------------------------------- |
+| `version`      | `"1.0"`          | Yes      |                        | Spec version                                              |
+| `theme`        | object           | No       | `{ accent: "purple" }` | Theme configuration                                       |
+| `theme.accent` | PaletteColor     | No       | `"purple"`             | Accent color for buttons, progress bars, etc.             |
+| `effects`      | string[]         | No       |                        | Visual effects applied on render. See [Effects](/snap/effects) |
+| `ui`           | json-render Spec | Yes      |                        | The UI tree                                               |
 
 ### The `ui` Field
 
 The `ui` field is a [json-render](https://json-render.dev/) Spec — a flat element map
 with typed components, props, and event bindings.
 
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `ui.root` | string | Yes | ID of the root element |
-| `ui.elements` | Record\<string, UIElement\> | Yes | Flat map of all elements by ID |
-| `ui.state` | Record\<string, unknown\> | No | Initial state for the json-render state store |
+| Field         | Type                        | Required | Description                                   |
+| ------------- | --------------------------- | -------- | --------------------------------------------- |
+| `ui.root`     | string                      | Yes      | ID of the root element                        |
+| `ui.elements` | Record\<string, UIElement\> | Yes      | Flat map of all elements by ID                |
+| `ui.state`    | Record\<string, unknown\>   | No       | Initial state for the json-render state store |
 
 ### Element Structure
 
 Every element in `ui.elements` follows this shape:
 
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `type` | string | Yes | Component name (see [Elements](/snap/elements)) |
-| `props` | object | Yes | Component-specific properties (use `{}` if none) |
-| `children` | string[] | No | Child element IDs (for containers and action slots) |
-| `on` | object | No | Event bindings — `on.press` triggers an action when a button is tapped |
+| Field      | Type     | Required | Description                                                            |
+| ---------- | -------- | -------- | ---------------------------------------------------------------------- |
+| `type`     | string   | Yes      | Component name (see [Elements](/snap/elements))                             |
+| `props`    | object   | Yes      | Component-specific properties (use `{}` if none)                       |
+| `children` | string[] | No       | Child element IDs (for containers and action slots)                    |
+| `on`       | object   | No       | Event bindings — `on.press` triggers an action when a button is tapped |
 
 ### POST Payload
 
 When a `submit` action fires, the client sends a JFS-signed envelope containing:
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `fid` | number | Farcaster user ID |
-| `inputs` | Record\<string, value\> | Field values keyed by component `name` prop |
-| `button_index` | number | Button index (0-based) |
-| `timestamp` | number | Unix timestamp in seconds |
+| Field          | Type                    | Description                                 |
+| -------------- | ----------------------- | ------------------------------------------- |
+| `fid`          | number                  | Farcaster user ID                           |
+| `inputs`       | Record\<string, value\> | Field values keyed by component `name` prop |
+| `button_index` | number                  | Button index (0-based)                      |
+| `timestamp`    | number                  | Unix timestamp in seconds                   |
 
 Input values by field type:
 
-| Component | Value sent |
-| --- | --- |
-| `input` | string |
-| `slider` | number |
-| `switch` | boolean |
-| `toggle_group` (single) | string |
-| `toggle_group` (multiple) | string[] |
+| Component                 | Value sent |
+| ------------------------- | ---------- |
+| `input`                   | string     |
+| `slider`                  | number     |
+| `switch`                  | boolean    |
+| `toggle_group` (single)   | string     |
+| `toggle_group` (multiple) | string[]   |
 
 ## Broken Snaps
 
@@ -176,8 +176,8 @@ If a `submit` action fails (timeout, server error, or invalid JSON response):
 There is no client-managed back button. Navigation is server-driven.
 
 If a snap wants "go back" functionality, it includes a `button` with a `submit` action
-that POSTs to the server, and the server returns the appropriate previous page. The server
-is responsible for maintaining navigation state.
+that POSTs to the server, and the server returns the appropriate previous page. The
+server is responsible for maintaining navigation state.
 
 ## Versioning
 

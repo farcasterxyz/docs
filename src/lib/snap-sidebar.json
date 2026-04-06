@@ -3,7 +3,7 @@
     "text": "Home",
     "items": [
       {
-        "text": "Home",
+        "text": "Introduction",
         "link": "/snap"
       },
       {
@@ -34,11 +34,11 @@
     ]
   },
   {
-    "text": "Snap Protocol",
+    "text": "Spec",
     "items": [
       {
         "text": "Overview",
-        "link": "/snap/protocol"
+        "link": "/snap/spec-overview"
       },
       {
         "text": "Elements",

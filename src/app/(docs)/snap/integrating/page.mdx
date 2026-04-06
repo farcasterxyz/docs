@@ -1,8 +1,13 @@
-# Adding a Snap to an Existing Website
+# Integrating Snaps
 
-If you already have a website and want it to render as a snap when shared on Farcaster, you need **content negotiation** -- serving different responses based on the `Accept` header.
+If you already have a website and want it to render as a snap when shared on Farcaster,
+you need **content negotiation** -- serving different responses based on the `Accept`
+header.
 
-When a Farcaster client loads your URL, it sends `Accept: application/vnd.farcaster.snap+json`. Your server checks for this header and returns snap JSON instead of HTML. Browsers don't send this header, so they continue to see your normal webpage.
+When a Farcaster client loads your URL, it sends
+`Accept: application/vnd.farcaster.snap+json`. Your server checks for this header and
+returns snap JSON instead of HTML. Browsers don't send this header, so they continue to
+see your normal webpage.
 
 ## How it works
 
@@ -15,7 +20,8 @@ The server must include `Vary: Accept` on these responses so caches key correctl
 
 ## Dynamic sites (Node.js, Hono, Express)
 
-If your site has a server, add middleware that checks the `Accept` header before your existing routes.
+If your site has a server, add middleware that checks the `Accept` header before your
+existing routes.
 
 ### With Hono
 
@@ -107,7 +113,8 @@ Static hosts can't do server-side content negotiation. Use one of these approach
 
 ### Option 1: Cloudflare Worker proxy
 
-Put a Cloudflare Worker in front of your static site. It checks the `Accept` header and routes snap requests to a separate snap server.
+Put a Cloudflare Worker in front of your static site. It checks the `Accept` header and
+routes snap requests to a separate snap server.
 
 ```typescript
 export default {
@@ -131,7 +138,9 @@ export default {
 };
 ```
 
-Deploy the snap server separately (e.g. using the [snap template](https://github.com/farcasterxyz/snap/tree/main/template) on [host.neynar.app](https://host.neynar.app)) and point the worker at it.
+Deploy the snap server separately (e.g. using the
+[snap template](https://github.com/farcasterxyz/snap/tree/main/template) on
+[host.neynar.app](https://host.neynar.app)) and point the worker at it.
 
 ### Option 2: Vercel Edge Middleware
 
@@ -157,16 +166,20 @@ export function middleware(request: NextRequest) {
 
 ### Option 3: Separate snap URL
 
-The simplest approach -- deploy your snap to a different URL entirely and share that URL in casts. Your website stays untouched.
+The simplest approach -- deploy your snap to a different URL entirely and share that URL
+in casts. Your website stays untouched.
 
 - Website: `https://example.com`
 - Snap: `https://example-snap.host.neynar.app`
 
-Users who click the link in a browser go to the snap's fallback page (which previews the snap and links to your site). Farcaster clients render the snap inline.
+Users who click the link in a browser go to the snap's fallback page (which previews the
+snap and links to your site). Farcaster clients render the snap inline.
 
 ## Handling POST interactions
 
-If your snap has `post` buttons, the Farcaster client sends signed POST requests to the button's `target` URL. For static site setups (Options 1-3 above), these POSTs go to your snap server, not the static site.
+If your snap has `post` buttons, the Farcaster client sends signed POST requests to the
+button's `target` URL. For static site setups (Options 1-3 above), these POSTs go to
+your snap server, not the static site.
 
 Make sure your snap's button targets point to the snap server URL, not the static site:
 
@@ -194,4 +207,7 @@ curl -sS https://example.com/
 curl -sS -H 'Accept: application/vnd.farcaster.snap+json' https://example.com/
 ```
 
-Then test interactively at [farcaster.xyz/~/developers/snaps](https://farcaster.xyz/~/developers/snaps) -- enter your URL and click Load snap. The emulator sends real signed POST requests, so buttons work exactly like in the feed.
+Then test interactively at
+[farcaster.xyz/~/developers/snaps](https://farcaster.xyz/~/developers/snaps) -- enter
+your URL and click Load snap. The emulator sends real signed POST requests, so buttons
+work exactly like in the feed.
