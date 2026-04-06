@@ -3,37 +3,23 @@
 There are several ways to create a Farcaster Snap, from AI-assisted generation to manual
 implementation.
 
-## Claude Code Skill
+## Agent Skill
 
-If you use [Claude Code](https://claude.ai/code), you can install a custom slash command
-that generates snaps from natural language:
+If you use a coding agent like [Claude Code](https://claude.ai/code), you can ask it to
+install a skill that generates snaps from natural language:
 
 ```bash
-mkdir -p $HOME/.claude/skills/create-farcaster-snap
-curl -sS -o $HOME/.claude/skills/create-farcaster-snap/SKILL.md https://snap.farcaster.xyz/SKILL.md
-```
-
-You can also
-[view the skill source on GitHub](https://github.com/farcasterxyz/snap/blob/main/agent-skills/create-farcaster-snap/SKILL.md).
-
-Then run it:
-
-```
-/create-farcaster-snap a poll asking users to pick their favorite L2
+install the farcaster-snap skill from https://docs.farcaster.xyz/snap/SKILL.md
+make me a Farcaster Snap poll asking users to pick their favorite variety of mole
 ```
 
 The skill will:
 
 1. Read the full snap spec
-2. Generate valid snap JSON and server logic
-3. Validate the output against the schema
-4. Optionally deploy to a live URL
+2. Generate valid snap code
+3. Deploy it to a live URL
 
 This is the fastest way to go from idea to working snap.
-
-> **Note:** The skill works best when run from within the
-> [snap](https://github.com/farcasterxyz/snap) repo, since it references the spec docs
-> and template locally.
 
 ## Template (Hono)
 
@@ -55,33 +41,46 @@ import { registerSnapHandler } from "@farcaster/snap-hono";
 
 const app = new Hono();
 
-registerSnapHandler(
-  app,
-  async (ctx) => {
-    if (ctx.action.type === "get") {
-      return {
-        version: "1.0",
-        page: {
-          theme: { accent: "purple" },
-          elements: {
+registerSnapHandler(app, async (ctx) => {
+  if (ctx.action.type === "get") {
+    return {
+      version: "1.0",
+      theme: { accent: "purple" },
+      ui: {
+        root: "page",
+        elements: {
+          page: {
             type: "stack",
-            children: [
-              { type: "text", style: "title", content: "My Snap" },
-              { type: "text", style: "body", content: "Hello world" },
-            ],
+            props: {},
+            children: ["title", "body", "action"],
+          },
+          title: {
+            type: "text",
+            props: { content: "My Snap", weight: "bold" },
+          },
+          body: {
+            type: "text",
+            props: { content: "Hello world" },
+          },
+          action: {
+            type: "button",
+            props: { label: "Refresh", variant: "primary" },
+            on: {
+              press: {
+                action: "submit",
+                params: { target: "https://my-snap.com/" },
+              },
+            },
           },
         },
-      };
-    }
+      },
+    };
+  }
 
-    // Handle POST interactions
-    const { fid, inputs, button_index } = ctx.action;
-    // ... your logic here
-  },
-  {
-    skipJFSVerification: process.env.SKIP_JFS_VERIFICATION === "1",
-  },
-);
+  // Handle POST interactions
+  const { fid, inputs, button_index } = ctx.action;
+  // ... your logic here
+});
 ```
 
 Run locally:

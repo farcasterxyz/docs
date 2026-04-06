@@ -1,10 +1,31 @@
 [
   {
+    "text": "Home",
+    "items": [
+      {
+        "text": "Home",
+        "link": "/snap"
+      },
+      {
+        "text": "Building Snaps with AI",
+        "link": "/snap/agents"
+      }
+    ]
+  },
+  {
     "text": "Learn",
     "items": [
       {
-        "text": "Introduction",
-        "link": "/snap"
+        "text": "Building a Snap",
+        "link": "/snap/building"
+      },
+      {
+        "text": "Integrating Snaps",
+        "link": "/snap/integrating"
+      },
+      {
+        "text": "Persistent State",
+        "link": "/snap/persistent-state"
       },
       {
         "text": "Examples",
@@ -13,26 +34,12 @@
     ]
   },
   {
-    "text": "Create",
+    "text": "Snap Protocol",
     "items": [
       {
-        "text": "Building a Snap",
-        "link": "/snap/building"
-      }
-    ]
-  },
-  {
-    "text": "Integrate",
-    "items": [
-      {
-        "text": "Adding a Snap to an Existing Website",
-        "link": "/snap/existing-site"
-      }
-    ]
-  },
-  {
-    "text": "Reference",
-    "items": [
+        "text": "Overview",
+        "link": "/snap/protocol"
+      },
       {
         "text": "Elements",
         "link": "/snap/elements"
@@ -42,16 +49,8 @@
         "link": "/snap/buttons"
       },
       {
-        "text": "Actions",
-        "link": "/snap/actions"
-      },
-      {
         "text": "Effects",
         "link": "/snap/effects"
-      },
-      {
-        "text": "Constraints",
-        "link": "/snap/constraints"
       },
       {
         "text": "Theme & Styling",
@@ -62,21 +61,16 @@
         "link": "/snap/colors"
       },
       {
-        "text": "Authentication",
-        "link": "/snap/auth"
+        "text": "Actions",
+        "link": "/snap/actions"
       },
       {
-        "text": "Data Store",
-        "link": "/snap/data-store"
-      }
-    ]
-  },
-  {
-    "text": "Agents",
-    "items": [
+        "text": "Constraints",
+        "link": "/snap/constraints"
+      },
       {
-        "text": "Agents",
-        "link": "/snap/agents"
+        "text": "Authentication",
+        "link": "/snap/auth"
       }
     ]
   }

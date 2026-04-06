@@ -1,71 +1,55 @@
 # Constraints
 
-Snaps enforce strict limits so every valid page fits within a ~500px feed card and
-renders consistently across clients.
+Component-level constraints enforced by the json-render catalog. Violating these causes
+validation to fail and the snap to not render.
 
-## Response Constraints Summary
+## Component Constraints
 
-| Constraint              | Limit                                     |
-| ----------------------- | ----------------------------------------- |
-| Elements per page       | Max 5                                     |
-| Media elements per page | Max 1 (image or grid)                     |
-| Buttons per page        | Max 4                                     |
-| Title text              | Max 80 chars                              |
-| Body text               | Max 160 chars                             |
-| Caption text            | Max 100 chars                             |
-| Label text              | Max 40 chars                              |
-| Button label            | Max 30 chars                              |
-| Text input max length   | Max 280 chars                             |
-| List items              | Max 4                                     |
-| Button group options    | Min 2, max 4                              |
-| Group children          | Min 2, max 3. No media, no nested groups. |
-| Bar chart bars          | Min 1, max 6                              |
-| Grid dimensions         | Min 2x2, max 64 cols x 8 rows             |
-| POST response timeout   | 5s                                        |
+| Component | Prop | Constraint |
+|-----------|------|-----------|
+| `badge` | `label` | Min 1, max 30 chars |
+| `button` | `label` | Min 1, max 30 chars |
+| `item` | `title` | Min 1, max 100 chars |
+| `item` | `description` | Max 160 chars |
+| `progress` | `value` | Finite number, 0 to `max` |
+| `progress` | `max` | Finite number > 0 |
+| `progress` | `label` | Max 60 chars |
+| `text` | `content` | Min 1, max 320 chars |
+| `input` | `name` | Min 1 char |
+| `input` | `maxLength` | 1 to 280 |
+| `input` | `label` | Max 60 chars |
+| `input` | `placeholder` | Max 60 chars |
+| `slider` | `min` | Must be ≤ `max` |
+| `slider` | `max` | Must be ≥ `min` |
+| `slider` | `step` | Finite number > 0 |
+| `slider` | `defaultValue` | Must be between `min` and `max` |
+| `slider` | `label` | Max 60 chars |
+| `switch` | `name` | Min 1 char |
+| `switch` | `label` | Max 60 chars |
+| `toggle_group` | `options` | Min 2, max 6 items. Each max 30 chars |
+| `toggle_group` | `label` | Max 60 chars |
+| `image` | `url` | HTTPS URL. jpg, png, gif, webp only |
 
-## Height-Enforced Element Constraints
+## Response Constraints
 
-These constraints apply to **every page**, not just the first. They are designed so that
-any valid combination of elements fits within the 500px feed card height (including
-padding and buttons).
-
-| Constraint              | Limit                 | Rationale                                  |
-| ----------------------- | --------------------- | ------------------------------------------ |
-| Elements per page       | Max 5                 | Prevents vertical overflow                 |
-| Media elements per page | Max 1 (image or grid) | Media elements are tall; only one per page |
-| Body text               | Max 160 chars         | ~4 lines, ~80px                            |
-| Caption text            | Max 100 chars         | ~2 lines, ~36px                            |
-| List items              | Max 4                 | ~120px total                               |
-| Button group options    | Max 4                 | ~100px stacked                             |
-| Grid rows               | Max 8                 | Keeps the page within the feed card height |
-
-Snaps that need longer text, bigger grids, or more list items can spread content across
-multiple pages via `post` buttons, or link to a Farcaster mini app for the full
-experience.
+| Constraint | Limit |
+|------------|-------|
+| `version` | Must be `"1.0"` |
+| `theme.accent` | Must be a named palette color |
+| `ui.root` | Must be an ID present in `ui.elements` |
+| `submit` target URL | HTTPS in production; http://localhost valid in dev |
+| POST response timeout | 5 seconds |
 
 ## Validation
 
-A valid snap page must pass these checks:
+Schema validation runs at render time. If the snap response fails validation, the snap
+does not render — the cast falls back to showing the URL as plain text.
 
-### Schema Validation (at render time)
+### URL Validation
 
-- JSON conforms to the page schema
-- All required fields present
-- All field values within allowed ranges and types
-- Element count within limits (max 5, max 1 media element)
-- Button count within limits (max 4)
-- Text lengths within limits per element type
-- Grid dimensions within limits (max 64 cols x 8 rows)
-- Version field matches a supported version
+For `submit`, `open_url`, and `open_mini_app` actions, `params.target` must use
+**HTTPS** in production. As an exception for local development and emulators,
+**`http://` is allowed** when the host is loopback only: `localhost`, `127.0.0.1`, or
+IPv6 loopback (`[::1]` / `::1`). Non-loopback HTTP targets are invalid.
 
-### URL Validation (at publish time)
-
-- For `post`, `link`, and `mini_app` buttons, `target` must use **HTTPS**. As an
-  exception for local development and emulators, **`http://` is allowed** when the host
-  is loopback only: `localhost`, `127.0.0.1`, or IPv6 loopback (`[::1]` / `::1`).
-  Non-loopback HTTP targets are invalid
-- Snap URL responds with valid page JSON
-- No `javascript:` URIs
-
-If schema validation fails at render time, the snap does not render (falls back to plain
-link in cast text). No LLM evaluation is required.
+No `javascript:` URIs.

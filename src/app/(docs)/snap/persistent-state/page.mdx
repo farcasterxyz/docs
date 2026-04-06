@@ -1,7 +1,8 @@
-# Data Store
+# Persistent State
 
-Snaps can persist data between requests using a key-value data store. The store is
-available on every snap handler invocation through `ctx.data`.
+Snaps created with SKILL.md use Neynar hosting and have built-in data storage. They can
+persist data between requests using a key-value data store. The store is available on
+every snap handler invocation through `ctx.data`.
 
 ```ts
 const snap: SnapFunction = async (ctx) => {

@@ -1,24 +1,8 @@
 # Authentication
 
-Every POST request from the client to a snap server MUST be authenticated with **JSON
-Farcaster Signatures (JFS)**. See the
-[FIP: JSON Farcaster Signatures](https://github.com/farcasterxyz/protocol/discussions/208)
-discussion for the format and semantics.
-
-## Replay protection
-
-The request payload MUST contain a `timestamp` field (Unix seconds).
-
-Servers SHOULD reject requests with timestamps outside an allowed skew (for example 5
-minutes) to limit replay.
-
-## Requirements
-
-- The client MUST send a valid JFS for every authenticated POST
-- The server MUST verify the JFS cryptographically and MUST verify the signing key
-  against hub (or equivalent) state for the FID
-- The server SHOULD enforce replay protection using `timestamp` (and any other policy
-  you require)
+Every POST request from the client to a snap server MUST be authenticated with
+[JSON Farcaster Signatures](https://github.com/farcasterxyz/protocol/discussions/208)
+(JFS).
 
 ## How It Works
 
@@ -51,6 +35,21 @@ The decoded JFS payload (signed inside JFS, not sent as bare JSON):
   "timestamp": 1710864000
 }
 ```
+
+## Replay protection
+
+The request payload MUST contain a `timestamp` field (Unix seconds).
+
+Servers SHOULD reject requests with timestamps outside an allowed skew (for example 5
+minutes) to limit replay.
+
+## Requirements
+
+- The client MUST send a valid JFS for every authenticated POST
+- The server MUST verify the JFS cryptographically and MUST verify the signing key
+  against hub (or equivalent) state for the FID
+- The server SHOULD enforce replay protection using `timestamp` (and any other policy
+  you require)
 
 ## JSON Farcaster Signatures (JFS) Format
 
@@ -99,7 +98,7 @@ To verify a JFS:
 
 ### Reference Implementation
 
-The official Node.js package is
+The official JFS Node.js package is
 [`@farcaster/jfs`](https://github.com/farcasterxyz/auth-monorepo).
 
 ## Server-Side Verification with @farcaster/snap-hono
@@ -117,10 +116,10 @@ registerSnapHandler(
     // ctx.action.button_index is which button was tapped
   },
   {
-    skipJFSVerification: false, // true for local dev
+    skipJFSVerification: false, // set to `true` for local dev
   },
 );
 ```
 
-Set `SKIP_JFS_VERIFICATION=1` in your environment for local development to skip JFS
-verification.
+Set `SKIP_JFS_VERIFICATION=1` in your environment to skip JFS verification for local
+development.

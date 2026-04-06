@@ -4,207 +4,274 @@ Real-world examples of `SnapResponse` payloads showing common patterns.
 
 ## Collaborative Wordle
 
-A word game with a grid board, text input, and submit button.
+A word game with a text input and submit button.
 
 ### First page (feed card)
+
+<SnapPreview snap={{
+  version: "1.0",
+  theme: { accent: "green" },
+  ui: {
+    root: "page",
+    elements: {
+      "page": { type: "stack", props: {}, children: ["title", "guess", "meta", "submit-btn"] },
+      "title": { type: "text", props: { content: "Daily Wordle \u00b7 Day 12", weight: "bold" } },
+      "guess": { type: "input", props: { name: "guess", label: "Your guess", placeholder: "Type 5-letter word..." } },
+      "meta": { type: "text", props: { content: "1,247 guesses today \u00b7 Attempt 4/6", size: "sm" } },
+      "submit-btn": { type: "button", props: { label: "Submit guess", variant: "primary" }, on: { press: { action: "submit", params: { target: "https://wordle.example.com/guess" } } } }
+    }
+  }
+}} />
 
 ```json
 {
   "version": "1.0",
-  "page": {
-    "theme": { "accent": "green" },
+  "theme": { "accent": "green" },
+  "ui": {
+    "root": "page",
     "elements": {
-      "type": "stack",
-      "children": [
-        {
-          "type": "text",
-          "style": "title",
-          "content": "Daily Wordle · Day 12"
-        },
-        {
-          "type": "grid",
-          "cols": 5,
-          "rows": 6,
-          "cellSize": "square",
-          "gap": "small",
-          "cells": [
-            { "row": 0, "col": 0, "color": "#CA8A04", "content": "C" },
-            { "row": 0, "col": 1, "color": "#6B7280", "content": "R" },
-            { "row": 0, "col": 2, "color": "#22C55E", "content": "A" },
-            { "row": 0, "col": 3, "color": "#6B7280", "content": "N" },
-            { "row": 0, "col": 4, "color": "#6B7280", "content": "E" }
-          ]
-        },
-        {
-          "type": "text_input",
+      "page": {
+        "type": "stack",
+        "props": {},
+        "children": ["title", "guess", "meta", "submit-btn"]
+      },
+      "title": {
+        "type": "text",
+        "props": { "content": "Daily Wordle · Day 12", "weight": "bold" }
+      },
+      "guess": {
+        "type": "input",
+        "props": {
           "name": "guess",
+          "label": "Your guess",
           "placeholder": "Type 5-letter word...",
           "maxLength": 5
-        },
-        {
-          "type": "text",
-          "style": "caption",
-          "content": "1,247 guesses today · Attempt 4/6"
         }
-      ]
-    },
-    "buttons": [
-      {
-        "label": "Submit guess",
-        "action": "post",
-        "target": "https://wordle.example.com/guess"
+      },
+      "meta": {
+        "type": "text",
+        "props": { "content": "1,247 guesses today · Attempt 4/6", "size": "sm" }
+      },
+      "submit-btn": {
+        "type": "button",
+        "props": { "label": "Submit guess", "variant": "primary" },
+        "on": {
+          "press": {
+            "action": "submit",
+            "params": { "target": "https://wordle.example.com/guess" }
+          }
+        }
       }
-    ]
+    }
   }
 }
 ```
 
 ### Response after submitting a guess
 
+<SnapPreview snap={{
+  version: "1.0",
+  theme: { accent: "green" },
+  ui: {
+    root: "page",
+    elements: {
+      "page": { type: "stack", props: {}, children: ["title", "result", "meta", "open-btn"] },
+      "title": { type: "text", props: { content: "Daily Wordle \u00b7 Day 12", weight: "bold" } },
+      "result": { type: "text", props: { content: "Your guess has been submitted!", align: "center" } },
+      "meta": { type: "text", props: { content: "The crowd\u2019s most popular guess will be locked in at 6pm", size: "sm" } },
+      "open-btn": { type: "button", props: { label: "Open full game" }, on: { press: { action: "open_mini_app", params: { target: "https://wordle.example.com/app" } } } }
+    }
+  }
+}} />
+
 ```json
 {
   "version": "1.0",
-  "page": {
-    "theme": { "accent": "green" },
+  "theme": { "accent": "green" },
+  "ui": {
+    "root": "page",
     "elements": {
-      "type": "stack",
-      "children": [
-        {
-          "type": "text",
-          "style": "title",
-          "content": "Daily Wordle · Day 12"
-        },
-        {
-          "type": "grid",
-          "cols": 5,
-          "rows": 6,
-          "cellSize": "square",
-          "gap": "small",
-          "cells": [
-            { "row": 0, "col": 0, "color": "#CA8A04", "content": "C" },
-            { "row": 0, "col": 1, "color": "#6B7280", "content": "R" },
-            { "row": 0, "col": 2, "color": "#22C55E", "content": "A" },
-            { "row": 0, "col": 3, "color": "#6B7280", "content": "N" },
-            { "row": 0, "col": 4, "color": "#6B7280", "content": "E" },
-            { "row": 3, "col": 0, "color": "#22C55E", "content": "C" },
-            { "row": 3, "col": 1, "color": "#22C55E", "content": "L" },
-            { "row": 3, "col": 2, "color": "#22C55E", "content": "A" },
-            { "row": 3, "col": 3, "color": "#22C55E", "content": "S" },
-            { "row": 3, "col": 4, "color": "#22C55E", "content": "S" }
-          ]
-        },
-        {
-          "type": "text",
-          "style": "body",
+      "page": {
+        "type": "stack",
+        "props": {},
+        "children": ["title", "result", "meta", "open-btn"]
+      },
+      "title": {
+        "type": "text",
+        "props": { "content": "Daily Wordle · Day 12", "weight": "bold" }
+      },
+      "result": {
+        "type": "text",
+        "props": {
           "content": "Your guess has been submitted!",
           "align": "center"
-        },
-        {
-          "type": "text",
-          "style": "caption",
-          "content": "The crowd's most popular guess will be locked in at 6pm"
         }
-      ]
-    },
-    "buttons": [
-      {
-        "label": "Open full game",
-        "action": "mini_app",
-        "target": "https://wordle.example.com/app"
+      },
+      "meta": {
+        "type": "text",
+        "props": {
+          "content": "The crowd's most popular guess will be locked in at 6pm",
+          "size": "sm"
+        }
+      },
+      "open-btn": {
+        "type": "button",
+        "props": { "label": "Open full game" },
+        "on": {
+          "press": {
+            "action": "open_mini_app",
+            "params": { "target": "https://wordle.example.com/app" }
+          }
+        }
       }
-    ]
+    }
   }
 }
 ```
 
 ## This or That
 
-A voting snap with button groups and progress bars for results.
+A voting snap with a choice group and progress bars for results.
 
 ### First page (feed card)
+
+<SnapPreview snap={{
+  version: "1.0",
+  theme: { accent: "blue" },
+  ui: {
+    root: "page",
+    elements: {
+      "page": { type: "stack", props: {}, children: ["title", "meta", "vote", "vote-btn"] },
+      "title": { type: "text", props: { content: "Startup dilemmas", weight: "bold" } },
+      "meta": { type: "text", props: { content: "by @dwr.eth \u00b7 3.1k voted", size: "sm" } },
+      "vote": { type: "toggle_group", props: { name: "vote", orientation: "vertical", options: ["Move fast, break things", "Move deliberately, build trust"] } },
+      "vote-btn": { type: "button", props: { label: "Vote", variant: "primary" }, on: { press: { action: "submit", params: { target: "https://example.com/thisorthat/vote" } } } }
+    }
+  }
+}} />
 
 ```json
 {
   "version": "1.0",
-  "page": {
-    "theme": { "accent": "blue" },
+  "theme": { "accent": "blue" },
+  "ui": {
+    "root": "page",
     "elements": {
-      "type": "stack",
-      "children": [
-        { "type": "text", "style": "title", "content": "Startup dilemmas" },
-        {
-          "type": "text",
-          "style": "caption",
-          "content": "by @dwr.eth · 3.1k voted"
-        },
-        {
-          "type": "button_group",
+      "page": {
+        "type": "stack",
+        "props": {},
+        "children": ["title", "meta", "vote", "vote-btn"]
+      },
+      "title": {
+        "type": "text",
+        "props": { "content": "Startup dilemmas", "weight": "bold" }
+      },
+      "meta": {
+        "type": "text",
+        "props": { "content": "by @dwr.eth · 3.1k voted", "size": "sm" }
+      },
+      "vote": {
+        "type": "toggle_group",
+        "props": {
           "name": "vote",
-          "options": ["Move fast, break things", "Move deliberately, build trust"],
-          "style": "stack"
+          "orientation": "vertical",
+          "options": ["Move fast, break things", "Move deliberately, build trust"]
         }
-      ]
-    },
-    "buttons": [
-      {
-        "label": "Vote",
-        "action": "post",
-        "target": "https://example.com/thisorthat/vote"
+      },
+      "vote-btn": {
+        "type": "button",
+        "props": { "label": "Vote", "variant": "primary" },
+        "on": {
+          "press": {
+            "action": "submit",
+            "params": { "target": "https://example.com/thisorthat/vote" }
+          }
+        }
       }
-    ]
+    }
   }
 }
 ```
 
 ### Response after voting
 
+<SnapPreview snap={{
+  version: "1.0",
+  theme: { accent: "blue" },
+  ui: {
+    root: "page",
+    elements: {
+      "page": { type: "stack", props: {}, children: ["title", "opt-a-label", "opt-a-bar", "opt-b-label", "opt-b-bar", "actions"] },
+      "title": { type: "text", props: { content: "Startup dilemmas", weight: "bold" } },
+      "opt-a-label": { type: "text", props: { content: "Move fast, break things", size: "sm" } },
+      "opt-a-bar": { type: "progress", props: { value: 38, max: 100, label: "38%" } },
+      "opt-b-label": { type: "text", props: { content: "Move deliberately, build trust", size: "sm" } },
+      "opt-b-bar": { type: "progress", props: { value: 62, max: 100, label: "62% \u00b7 3,102 votes" } },
+      "actions": { type: "stack", props: { direction: "horizontal", gap: "sm" }, children: ["next-btn", "share-btn"] },
+      "next-btn": { type: "button", props: { label: "Next question", variant: "primary" }, on: { press: { action: "submit", params: { target: "https://example.com/thisorthat/next" } } } },
+      "share-btn": { type: "button", props: { label: "Share results", icon: "share" }, on: { press: { action: "open_url", params: { target: "https://example.com/thisorthat/share/abc123" } } } }
+    }
+  }
+}} />
+
 ```json
 {
   "version": "1.0",
-  "page": {
-    "theme": { "accent": "blue" },
+  "theme": { "accent": "blue" },
+  "ui": {
+    "root": "page",
     "elements": {
-      "type": "stack",
-      "children": [
-        { "type": "text", "style": "title", "content": "Startup dilemmas" },
-        {
-          "type": "text",
-          "style": "label",
-          "content": "Move fast, break things"
-        },
-        {
-          "type": "progress",
-          "value": 38,
-          "max": 100,
-          "label": "38%",
-          "color": "accent"
-        },
-        {
-          "type": "text",
-          "style": "label",
-          "content": "Move deliberately, build trust"
-        },
-        {
-          "type": "progress",
-          "value": 62,
-          "max": 100,
-          "label": "62% · 3,102 votes",
-          "color": "green"
-        }
-      ]
-    },
-    "buttons": [
-      {
-        "label": "Next question",
-        "action": "post",
-        "target": "https://example.com/thisorthat/next"
+      "page": {
+        "type": "stack",
+        "props": {},
+        "children": ["title", "opt-a-label", "opt-a-bar", "opt-b-label", "opt-b-bar", "actions"]
       },
-      {
-        "label": "Share results",
-        "action": "link",
-        "target": "https://example.com/thisorthat/share/abc123"
+      "title": {
+        "type": "text",
+        "props": { "content": "Startup dilemmas", "weight": "bold" }
+      },
+      "opt-a-label": {
+        "type": "text",
+        "props": { "content": "Move fast, break things", "size": "sm" }
+      },
+      "opt-a-bar": {
+        "type": "progress",
+        "props": { "value": 38, "max": 100, "label": "38%" }
+      },
+      "opt-b-label": {
+        "type": "text",
+        "props": { "content": "Move deliberately, build trust", "size": "sm" }
+      },
+      "opt-b-bar": {
+        "type": "progress",
+        "props": { "value": 62, "max": 100, "label": "62% · 3,102 votes" }
+      },
+      "actions": {
+        "type": "stack",
+        "props": { "direction": "horizontal", "gap": "sm" },
+        "children": ["next-btn", "share-btn"]
+      },
+      "next-btn": {
+        "type": "button",
+        "props": { "label": "Next question", "variant": "primary" },
+        "on": {
+          "press": {
+            "action": "submit",
+            "params": { "target": "https://example.com/thisorthat/next" }
+          }
+        }
+      },
+      "share-btn": {
+        "type": "button",
+        "props": { "label": "Share results", "icon": "share" },
+        "on": {
+          "press": {
+            "action": "open_url",
+            "params": { "target": "https://example.com/thisorthat/share/abc123" }
+          }
+        }
       }
-    ]
+    }
   }
 }
 ```

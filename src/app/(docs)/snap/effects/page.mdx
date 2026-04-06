@@ -1,16 +1,15 @@
 # Effects
 
 Effects are page-level overlays that fire when a page is rendered. They trigger on both
-the initial load (GET) and after button taps (POST responses). They do not count toward
-the 5-element limit.
+the initial load (GET) and after `submit` responses.
 
 ## Available Effects
 
-| Effect     | Behavior                                                       |
-| ---------- | -------------------------------------------------------------- |
+| Effect | Behavior |
+| --- | --- |
 | `confetti` | One-time burst of confetti particles when the page is rendered |
 
-Effects fire once per page render. If a POST button returns the same page with
+Effects fire once per page render. If a `submit` action returns the same page with
 `"effects": ["confetti"]`, the confetti fires again. They do not repeat on client-side
 re-renders of the same page.
 
@@ -20,29 +19,31 @@ re-renders of the same page.
 
 ## Usage
 
-Add the `effects` array to the page object:
+Add the `effects` array at the top level of the snap response:
 
 ```json
 {
   "version": "1.0",
-  "page": {
-    "effects": ["confetti"],
+  "effects": ["confetti"],
+  "ui": {
+    "root": "page",
     "elements": {
-      "type": "stack",
-      "children": [
-        {
-          "type": "text",
-          "style": "title",
-          "content": "You won!",
-          "align": "center"
-        },
-        {
-          "type": "text",
-          "style": "body",
+      "page": {
+        "type": "stack",
+        "props": { "gap": "md" },
+        "children": ["title", "body"]
+      },
+      "title": {
+        "type": "text",
+        "props": { "content": "You won!", "weight": "bold", "align": "center" }
+      },
+      "body": {
+        "type": "text",
+        "props": {
           "content": "Congratulations on completing the challenge!",
           "align": "center"
         }
-      ]
+      }
     }
   }
 }
@@ -56,5 +57,5 @@ Effects are best for:
 - **Milestones** — reaching a streak, hitting a follower count
 - **Completion states** — finishing a multi-page flow
 
-Use effects sparingly. They are most impactful when they are unexpected and earned, not
-when they appear on every page transition.
+Use effects sparingly. They are most impactful when unexpected and earned, not when they
+appear on every page transition.
