@@ -41,8 +41,7 @@ throughout. Explore them as needed. Do not rely on memorized spec content.
 
 ## Step 2: Implement the snap (follow the template)
 
-Explore the
-[`template/` directory on GitHub](https://github.com/farcasterxyz/snap/tree/main/template).
+Explore the snap template code on Github.
 
 Read README.md and AGENTS.md there first, then follow the links therein to more content.
 Also skim it's @farcaster/snap\* dependencies.
@@ -68,23 +67,29 @@ Design guidance:
 - 9 action types: `submit` (server round-trip), `open_url` (browser), `open_mini_app`
   (in-app), and client actions: `view_cast`, `view_profile`, `compose_cast`,
   `view_token`, `send_token`, `swap_token`.
-- Keep strings within component char limits (see [Constraints](https://docs.farcaster.xyz/snap/constraints)).
+- Keep strings within component char limits (see
+  [Constraints](https://docs.farcaster.xyz/snap/constraints)).
 
 ## Optional: Persistent storage
 
-Every `SnapFunction` receives `ctx.data`, a key-value store for persisting state between
-requests. Keys are strings; values are any JSON-serializable type.
+To store persistent data, use `createTursoDataStore` from `@farcaster/snap-turso` (see
+the repo `template/`). When deployed to host.neynar.app (which has `TURSO_DATABASE_URL`
+and `TURSO_AUTH_TOKEN` set automatically), data is stored in a key-value store; locally
+it uses an in-memory store.
 
 ```ts
+import { createTursoDataStore } from "@farcaster/snap-turso";
+
+const data = createTursoDataStore();
+
 const snap: SnapFunction = async (ctx) => {
-  const count = ((await ctx.data.get("visits")) as number) ?? 0;
-  await ctx.data.set("visits", count + 1);
+  const count = ((await data.get("visits")) as number) ?? 0;
+  await data.set("visits", count + 1);
   // ...
 };
 ```
 
-Enable persistent storage by using the `withTursoServerless` middleware as shown in the
-template.
+For a more robust persistent storage setup, see the template.
 
 ## Step 3: Validate locally
 
