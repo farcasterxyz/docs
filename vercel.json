@@ -100,11 +100,11 @@
   ],
   "rewrites": [
     {
-      "source": "/snap",
+      "source": "/snaps",
       "destination": "https://snap-docs.farcaster.xyz"
     },
     {
-      "source": "/snap/:path*",
+      "source": "/snaps/:path*",
       "destination": "https://snap-docs.farcaster.xyz/:path*"
     }
   ]
