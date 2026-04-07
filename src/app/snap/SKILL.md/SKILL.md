@@ -36,8 +36,15 @@ Default process:
 
 ## Step 1: Read the docs
 
-Read the agent-directed docs at https://docs.farcaster.xyz/snap. Refer to these docs
-throughout. Explore them as needed. Do not rely on memorized spec content.
+Fetch the complete snap documentation in a single request:
+
+```bash
+curl -fsSL https://docs.farcaster.xyz/snap/llms.txt
+```
+
+This returns all snap docs as plain-text markdown — spec, components, actions,
+constraints, and examples — in one file. Refer to it throughout. Do not rely on memorized
+spec content. Do NOT guess or construct documentation URLs — use only `llms.txt`.
 
 ## Step 2: Implement the snap (follow the template)
 
