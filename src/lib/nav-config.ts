@@ -1,4 +1,3 @@
-import snapSidebar from "./snap-sidebar.json";
 
 export type NavLink = {
   text: string;
@@ -635,12 +634,6 @@ export const SECTIONS: SectionConfig[] = [
         ],
       },
     ],
-  },
-  {
-    text: "Snap",
-    link: "/snap/",
-    pathPrefix: "/snap",
-    sidebar: snapSidebar as SidebarItem[],
   },
 ];
 
