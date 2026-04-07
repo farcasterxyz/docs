@@ -5,6 +5,21 @@ Verify a Sign In With Farcaster message. Your app should call this function and 
 Returns the parsed Sign in With Farcaster message, the user's fid, and whether the verification succeeded.
 
 ```ts
+import { createAppClient, viemConnector } from "@farcaster/auth-client"
+
+const appClient = createAppClient({
+  relay: "https://relay.farcaster.xyz",
+  ethereum: viemConnector({
+    // to handle verifying of Auth Addresses, rpc URLs must be Optimism only! 
+    rpcUrls: [ 
+      "https://mainnet.optimism.io",
+      "https://1rpc.io/op",
+      "https://optimism-rpc.publicnode.com",
+      "https://optimism.drpc.org",
+    ],
+  })
+})
+
 const { data, success, fid } = await appClient.verifySignInMessage({
   nonce: 'abcd1234',
   domain: 'example.com',
