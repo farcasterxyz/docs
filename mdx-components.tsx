@@ -5,11 +5,9 @@ import Callout from "@/components/Callout";
 import CodeGroup, { CodeGroupItem } from "@/components/CodeGroup";
 import InteractiveGrid from "@/components/docs/InteractiveGrid";
 import InteractiveButtonGroup from "@/components/docs/InteractiveButtonGroup";
-import SnapCard from "@/components/docs/SnapCard";
 import ConfettiDemo from "@/components/docs/ConfettiDemo";
 import ElementPreview from "@/components/docs/ElementPreview";
 import ColorSwatch, { ColorSwatchSingle } from "@/components/docs/ColorSwatch";
-import SnapPreview from "@/components/docs/SnapPreview";
 
 function slugify(text: string): string {
   return text
@@ -64,11 +62,9 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     CodeGroupItem,
     InteractiveGrid,
     InteractiveButtonGroup,
-    SnapCard,
     ConfettiDemo,
     ElementPreview,
     ColorSwatch,
     ColorSwatchSingle,
-    SnapPreview,
   };
 }
