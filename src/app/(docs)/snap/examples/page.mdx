@@ -2,6 +2,109 @@
 
 Real-world examples of `SnapResponse` payloads showing common patterns.
 
+## Paginated Gallery
+
+A multi-page gallery with Previous / Next navigation using query parameters.
+
+The handler reads `?idx=N` from the URL and returns different content for each page.
+Buttons use `action: "submit"` with a `target` URL that includes the next or previous index.
+
+### First page (`?idx=0`)
+
+<SnapPreview snap={{
+  version: "1.0",
+  theme: { accent: "blue" },
+  ui: {
+    root: "page",
+    elements: {
+      "page": { type: "stack", props: {}, children: ["title", "counter", "nav"] },
+      "title": { type: "text", props: { content: "Alpha", weight: "bold" } },
+      "counter": { type: "text", props: { content: "1 of 5", size: "sm" } },
+      "nav": { type: "stack", props: { direction: "horizontal" }, children: ["prev-btn", "next-btn"] },
+      "prev-btn": { type: "button", props: { label: "Previous" }, on: { press: { action: "submit", params: { target: "https://example.com/?idx=0" } } } },
+      "next-btn": { type: "button", props: { label: "Next", variant: "primary" }, on: { press: { action: "submit", params: { target: "https://example.com/?idx=1" } } } }
+    }
+  }
+}} />
+
+### After tapping Next (`?idx=1`)
+
+<SnapPreview snap={{
+  version: "1.0",
+  theme: { accent: "blue" },
+  ui: {
+    root: "page",
+    elements: {
+      "page": { type: "stack", props: {}, children: ["title", "counter", "nav"] },
+      "title": { type: "text", props: { content: "Bravo", weight: "bold" } },
+      "counter": { type: "text", props: { content: "2 of 5", size: "sm" } },
+      "nav": { type: "stack", props: { direction: "horizontal" }, children: ["prev-btn", "next-btn"] },
+      "prev-btn": { type: "button", props: { label: "Previous" }, on: { press: { action: "submit", params: { target: "https://example.com/?idx=0" } } } },
+      "next-btn": { type: "button", props: { label: "Next", variant: "primary" }, on: { press: { action: "submit", params: { target: "https://example.com/?idx=2" } } } }
+    }
+  }
+}} />
+
+### Handler code
+
+```ts
+import type { SnapFunction } from "@farcaster/snap";
+
+const items = ["Alpha", "Bravo", "Charlie", "Delta", "Echo"];
+
+function snapBaseUrlFromRequest(request: Request): string {
+  const fromEnv = process.env.SNAP_PUBLIC_BASE_URL?.trim();
+  if (fromEnv) return fromEnv.replace(/\/$/, "");
+
+  const forwardedHost = request.headers.get("x-forwarded-host");
+  const hostHeader = request.headers.get("host");
+  const host = (forwardedHost ?? hostHeader)?.split(",")[0].trim();
+  const isLoopback =
+    host !== undefined &&
+    /^(localhost|127\.0\.0\.1|\[::1\]|::1)(:\d+)?$/.test(host);
+  const forwardedProto = request.headers.get("x-forwarded-proto");
+  const proto = forwardedProto
+    ? forwardedProto.split(",")[0].trim().toLowerCase()
+    : isLoopback
+      ? "http"
+      : "https";
+  if (host) return `${proto}://${host}`.replace(/\/$/, "");
+
+  return `http://localhost:${process.env.PORT ?? "3003"}`.replace(/\/$/, "");
+}
+
+const snap: SnapFunction = async (ctx) => {
+  const url = new URL(ctx.request.url);
+  const idx = Math.max(0, Math.min(items.length - 1,
+    parseInt(url.searchParams.get("idx") ?? "0", 10) || 0));
+  const prev = Math.max(0, idx - 1);
+  const next = Math.min(items.length - 1, idx + 1);
+  const base = snapBaseUrlFromRequest(ctx.request);
+
+  return {
+    version: "1.0",
+    theme: { accent: "blue" },
+    ui: {
+      root: "page",
+      elements: {
+        page: { type: "stack", props: {}, children: ["title", "counter", "nav"] },
+        title: { type: "text", props: { content: items[idx], weight: "bold" } },
+        counter: { type: "text", props: { content: `${idx + 1} of ${items.length}`, size: "sm" } },
+        nav: { type: "stack", props: { direction: "horizontal" }, children: ["prev-btn", "next-btn"] },
+        "prev-btn": {
+          type: "button", props: { label: "Previous" },
+          on: { press: { action: "submit", params: { target: `${base}/?idx=${prev}` } } },
+        },
+        "next-btn": {
+          type: "button", props: { label: "Next", variant: "primary" },
+          on: { press: { action: "submit", params: { target: `${base}/?idx=${next}` } } },
+        },
+      },
+    },
+  };
+};
+```
+
 ## Collaborative Wordle
 
 A word game with a text input and submit button.
