@@ -32,8 +32,7 @@ export const TOP_NAV: NavLink[] = [
   { text: "Learn", link: "/learn/" },
   { text: "Build apps", link: "/developers/" },
   { text: "AuthKit", link: "/auth-kit/" },
-  // TODO: Add back when Snap docs go public
-  // { text: "Snap", link: "/snap/" },
+  { text: "Snap", link: "/snap/" },
   { text: "Reference", link: "/reference/" },
   {
     text: "Snapchain",
