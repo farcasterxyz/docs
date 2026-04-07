@@ -1,6 +1,6 @@
 # Elements
 
-Snaps are built from 14 components organized into three categories. Every component lives
+Snaps are built from 16 components organized into four categories. Every component lives
 in `ui.elements` as a named entry. The `type` field names the component; `props` carries
 its configuration; `children` names child element IDs; `on` binds event handlers.
 
@@ -23,10 +23,12 @@ its configuration; `children` names child element IDs; `on` binds event handlers
 | 8 | [separator](#separator) | Display | Visual divider |
 | 9 | [stack](#stack) | Container | Vertical or horizontal layout |
 | 10 | [text](#text) | Display | Text block with size and weight |
-| 11 | [input](#input) | Field | Text or number input |
-| 12 | [slider](#slider) | Field | Numeric range slider |
-| 13 | [switch](#switch) | Field | Boolean toggle |
-| 14 | [toggle_group](#toggle_group) | Field | Single or multi-select choice group |
+| 11 | [bar_chart](#bar_chart) | Data | Horizontal bar chart with labeled bars |
+| 12 | [cell_grid](#cell_grid) | Data | Colored cell grid, optionally interactive |
+| 13 | [input](#input) | Field | Text or number input |
+| 14 | [slider](#slider) | Field | Numeric range slider |
+| 15 | [switch](#switch) | Field | Boolean toggle |
+| 16 | [toggle_group](#toggle_group) | Field | Single or multi-select choice group |
 
 **Field components** (`input`, `slider`, `switch`, `toggle_group`) collect user input.
 Their values are sent in the POST payload under `inputs[name]` when a `submit` action
@@ -300,6 +302,84 @@ The primary content element. Use `weight: "bold"` for headings and emphasis. Use
 
 ```json
 { "type": "text", "props": { "content": "Last updated 2 hours ago", "size": "sm", "align": "center" } }
+```
+
+---
+
+## bar_chart
+
+Horizontal bar chart for displaying ranked or comparative data. Each bar shows a label on the left, a colored fill bar, and a numeric value on the right. Use for poll results, leaderboards, or any ranked values.
+
+<ElementPreview type="bar_chart" />
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `bars` | object[] | Yes | | 1–6 bar entries (see below) |
+| `max` | number | No | max value | Upper bound for bar scale |
+| `color` | PaletteColor | No | `"accent"` | Default bar color |
+
+### Bar Object
+
+| Prop | Type | Required | Description |
+|------|------|----------|-------------|
+| `label` | string | Yes | Bar label. Max 40 chars |
+| `value` | number | Yes | Bar value (≥ 0) |
+| `color` | PaletteColor | No | Per-bar color override |
+
+```json
+{
+  "type": "bar_chart",
+  "props": {
+    "bars": [
+      { "label": "Poblano", "value": 42 },
+      { "label": "Negro", "value": 38 },
+      { "label": "Verde", "value": 15, "color": "green" }
+    ]
+  }
+}
+```
+
+---
+
+## cell_grid
+
+Grid of colored cells for pixel art, game boards, color pickers, and small data matrices. Cells are defined sparsely — only specify cells that have color or content. Use `select` to enable tap-to-select; taps write to POST inputs under `name`.
+
+<ElementPreview type="cell_grid" />
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `name` | string | No | `"grid_tap"` | POST inputs key for selection data |
+| `cols` | number | Yes | | Column count (2–32) |
+| `rows` | number | Yes | | Row count (2–16) |
+| `cells` | object[] | Yes | | Sparse cell definitions (see below) |
+| `gap` | string | No | `"sm"` | Cell spacing: `"none"` (0px) `"sm"` (1px) `"md"` (2px) `"lg"` (4px) |
+| `select` | string | No | `"off"` | Selection mode: `"off"` `"single"` `"multiple"` |
+
+### Cell Object
+
+| Prop | Type | Required | Description |
+|------|------|----------|-------------|
+| `row` | number | Yes | Row index (0-based) |
+| `col` | number | Yes | Column index (0-based) |
+| `color` | PaletteColor | No | Cell fill color |
+| `content` | string | No | Cell text content |
+
+```json
+{
+  "type": "cell_grid",
+  "props": {
+    "cols": 4,
+    "rows": 4,
+    "cells": [
+      { "row": 0, "col": 0, "color": "red" },
+      { "row": 0, "col": 3, "color": "blue" },
+      { "row": 1, "col": 1, "color": "green", "content": "X" },
+      { "row": 3, "col": 3, "color": "purple" }
+    ],
+    "select": "multiple"
+  }
+}
 ```
 
 ---

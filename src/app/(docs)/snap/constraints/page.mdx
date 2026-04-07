@@ -29,6 +29,13 @@ validation to fail and the snap to not render.
 | `toggle_group` | `options` | Min 2, max 6 items. Each max 30 chars |
 | `toggle_group` | `label` | Max 60 chars |
 | `image` | `url` | HTTPS URL. jpg, png, gif, webp only |
+| `bar_chart` | `bars` | Min 1, max 6 items |
+| `bar_chart` | `bars[].label` | Min 1, max 40 chars |
+| `bar_chart` | `bars[].value` | Must not exceed `max` (if set) |
+| `cell_grid` | `cols` | 2 to 32 |
+| `cell_grid` | `rows` | 2 to 16 |
+| `cell_grid` | `cells[].row` | 0 to `rows - 1` |
+| `cell_grid` | `cells[].col` | 0 to `cols - 1` |
 
 ## Response Constraints
 
