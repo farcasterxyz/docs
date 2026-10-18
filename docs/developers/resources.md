@@ -42,6 +42,7 @@ Resources are often from third parties and are not reviewed. Use them at your ow
 
 ## Learning
 
+- [In Three](https://farcaster.permanentupperclass.com/) - open-source, three-command tutorial for running a Snapchain read node and browser client.
 - [dTech Farcaster Tutorials](https://dtech.vision/farcaster)
 
 ## Open Source Examples
