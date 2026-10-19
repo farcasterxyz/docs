@@ -1,0 +1,310 @@
+# Recover an account with your own recovery address
+
+Every account has a recovery address that can move the FID to a new custody address. Accounts created in the Farcaster app use the Farcaster recovery proxy (`0x00000000FcB080a4D6c39a9354dA9EB9bC104cd7`), and Farcaster handles recovery through "Recover account via email".
+
+If the recovery address is anything else, Farcaster can't recover the account. This happens when the user changed it (Settings → Advanced → Recovery address) or another app created the account with its own recovery address. Email recovery then fails with:
+
+> Account is not configured with Farcaster recovery EVM address
+
+Only the recovery address can recover the FID. This guide shows how the owner of that wallet can do it themselves by calling [`recover`](/reference/contracts/reference/id-registry#recover) on the Id Registry. It's the same call Farcaster makes for accounts that use its proxy, but sent from your own wallet.
+
+The FID moves to a brand-new seed phrase, which you then import into the Farcaster app. The username, casts, followers and everything else tied to the FID stay as they are.
+
+<Callout type="tip">
+If you still have the custody seed phrase, a passkey or a signed-in device, you don't need this guide. Just sign in.
+</Callout>
+
+### Requirements
+
+- Node.js 22 or newer.
+- The FID you want to recover.
+- The seed phrase or private key of the account's **recovery wallet**. Step 3 shows which address that is.
+- A little ETH on OP Mainnet in the recovery wallet to pay gas. One recovery costs well under $0.01.
+- Optional: an RPC URL for OP Mainnet (e.g. via [Alchemy](https://www.alchemy.com/), [Infura](https://www.infura.io/) or [QuickNode](https://www.quicknode.com/)). The public endpoint is used by default.
+
+### How it works
+
+Recovery is one transaction on OP Mainnet:
+
+1. Generate a new seed phrase. It derives the new custody address using the same path the Farcaster app uses (`m/44'/60'/0'/0/0`), so you can import it with Sign In → Seed phrase.
+2. The new custody key signs an EIP-712 [`Transfer`](/reference/contracts/reference/id-registry#transfer-signature) message, which accepts the FID.
+3. The recovery wallet calls `IdRegistry.recover(from, to, deadline, sig)`. It's the only address allowed to make this call, and it pays the gas.
+
+The script below does all of this. It checks your key against the onchain recovery address and simulates the call before sending anything. It also saves the new seed phrase to `.env` before broadcasting, so a crash or retry can't lose it.
+
+### 1. Set up the project
+
+Create a folder with these three files:
+
+<CodeGroup>
+<CodeGroupItem label="recover.mjs">
+
+```js
+// Recover a Farcaster FID using its onchain recovery address.
+//
+//   npm install
+//   cp .env.example .env        # set FID and RECOVERY_MNEMONIC
+//   npm run dry-run             # checks, generates + saves NEW_MNEMONIC, simulates. Sends nothing.
+//   npm start                   # same, then broadcasts.
+import { chmodSync, existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { createPublicClient, createWalletClient, formatEther, http, parseAbi } from 'viem';
+import { english, generateMnemonic, mnemonicToAccount, privateKeyToAccount } from 'viem/accounts';
+import { optimism } from 'viem/chains';
+
+const ID_REGISTRY = '0x00000000Fc6c5F01Fc30151999387Bb99A9f489b';
+const ENV_PATH = join(dirname(fileURLToPath(import.meta.url)), '.env');
+const SEND = process.argv.includes('--send');
+
+for (const event of ['uncaughtException', 'unhandledRejection']) {
+  process.on(event, (e) => {
+    console.error(`\nERROR: ${e?.shortMessage ?? e?.message ?? e}\nNothing was sent.`);
+    process.exit(1);
+  });
+}
+
+if (existsSync(ENV_PATH)) process.loadEnvFile(ENV_PATH);
+if (!/^\d+$/.test(process.env.FID?.trim() ?? '')) throw new Error('Set FID in .env to your Farcaster ID (a number, e.g. FID=1234).');
+const FID = BigInt(process.env.FID.trim());
+const RPC = process.env.OP_RPC_URL?.trim() || 'https://mainnet.optimism.io';
+
+const abi = parseAbi([
+  'function custodyOf(uint256 fid) view returns (address)',
+  'function recoveryOf(uint256 fid) view returns (address)',
+  'function idOf(address owner) view returns (uint256)',
+  'function nonces(address owner) view returns (uint256)',
+  'function recover(address from, address to, uint256 deadline, bytes sig)',
+]);
+
+const pub = createPublicClient({ chain: optimism, transport: http(RPC) });
+const read = (functionName, args) => pub.readContract({ address: ID_REGISTRY, abi, functionName, args });
+const same = (a, b) => a.toLowerCase() === b.toLowerCase();
+
+const from = await read('custodyOf', [FID]);
+const recoveryAddr = await read('recoveryOf', [FID]);
+if (same(from, '0x0000000000000000000000000000000000000000')) throw new Error(`fid ${FID} does not exist onchain.`);
+console.log(`fid=${FID} custody=${from} recovery=${recoveryAddr}`);
+console.log(`Only the recovery wallet ${recoveryAddr} can run this recovery. It also pays the gas on Optimism.`);
+
+// 1. Recovery wallet: the only address allowed to call recover() for this fid. It pays the gas.
+let recoveryAccount;
+const recoveryMnemonic = process.env.RECOVERY_MNEMONIC?.trim();
+const recoveryPrivateKey = process.env.RECOVERY_PRIVATE_KEY?.trim();
+if (recoveryMnemonic) recoveryAccount = mnemonicToAccount(recoveryMnemonic);
+else if (recoveryPrivateKey) recoveryAccount = privateKeyToAccount(recoveryPrivateKey);
+
+// 2. New custody wallet. Same derivation the Farcaster app uses (m/44'/60'/0'/0/0, 12 english words),
+//    so this phrase can be imported via Sign In -> Seed phrase afterwards.
+//    Generated once and saved into .env so a crash or retry never loses it.
+let newMnemonic = process.env.NEW_MNEMONIC?.trim();
+if (SEND && !recoveryAccount) throw new Error('`npm start` needs RECOVERY_MNEMONIC (or RECOVERY_PRIVATE_KEY) in .env.');
+if (!recoveryAccount) {
+  newMnemonic ||= generateMnemonic(english);
+  console.log('\nNo RECOVERY_MNEMONIC / RECOVERY_PRIVATE_KEY in .env: preflight only.');
+} else if (!newMnemonic) {
+  newMnemonic = generateMnemonic(english);
+  saveNewMnemonic(newMnemonic);
+  console.log('\n=== NEW FARCASTER SEED PHRASE. Write it down. It becomes your account. ===');
+  console.log(newMnemonic);
+  console.log(`=== Also saved to ${ENV_PATH} as NEW_MNEMONIC. ===\n`);
+} else {
+  console.log('Using NEW_MNEMONIC from .env.');
+}
+const newAccount = mnemonicToAccount(newMnemonic);
+console.log(`new custody address: ${newAccount.address}`);
+
+if (same(from, newAccount.address)) {
+  console.log(`\nAlready recovered: fid ${FID} belongs to NEW_MNEMONIC. Sign in to the Farcaster app with it.`);
+  process.exit(0);
+}
+if (recoveryAccount && !same(recoveryAccount.address, recoveryAddr)) {
+  throw new Error(
+    `Your key derives ${recoveryAccount.address}, but the onchain recovery address is ${recoveryAddr}. Wrong seed or derivation path.`,
+  );
+}
+const existingFid = await read('idOf', [newAccount.address]);
+if (existingFid !== 0n) throw new Error(`${newAccount.address} already owns fid ${existingFid}. Clear NEW_MNEMONIC in .env to generate a fresh one.`);
+
+const balance = await pub.getBalance({ address: recoveryAddr });
+console.log(`recovery wallet ${recoveryAddr} ETH on Optimism: ${formatEther(balance)} (pays the gas)`);
+
+// 3. Consent signature from the NEW custody key: Transfer(fid, to, nonce, deadline).
+const nonce = await read('nonces', [newAccount.address]);
+const deadline = BigInt(Math.floor(Date.now() / 1000) + 60 * 60);
+const sig = await newAccount.signTypedData({
+  domain: { name: 'Farcaster IdRegistry', version: '1', chainId: 10, verifyingContract: ID_REGISTRY },
+  types: {
+    Transfer: [
+      { name: 'fid', type: 'uint256' },
+      { name: 'to', type: 'address' },
+      { name: 'nonce', type: 'uint256' },
+      { name: 'deadline', type: 'uint256' },
+    ],
+  },
+  primaryType: 'Transfer',
+  message: { fid: FID, to: newAccount.address, nonce, deadline },
+});
+
+// 4. Simulate recover() as the recovery wallet. A revert here means nothing is sent.
+const { request } = await pub.simulateContract({
+  address: ID_REGISTRY,
+  abi,
+  functionName: 'recover',
+  args: [from, newAccount.address, deadline, sig],
+  account: recoveryAccount ?? recoveryAddr,
+});
+console.log('simulation OK: recover() would succeed');
+
+if (!recoveryAccount) {
+  console.log('\nPreflight passed. Fill RECOVERY_MNEMONIC in .env and run `npm run dry-run` again.');
+  process.exit(0);
+}
+if (balance === 0n) throw new Error(`Send a little ETH on Optimism to ${recoveryAddr} for gas ($0.05 worth is plenty, one recovery costs well under $0.01), then re-run.`);
+if (!SEND) {
+  console.log(`\nDry run complete. Nothing was sent.\nThis would move fid ${FID} to ${newAccount.address}.`);
+  console.log('Once the NEW seed phrase is written down, run:  npm start');
+  process.exit(0);
+}
+
+// 5. Broadcast and verify.
+const wallet = createWalletClient({ account: recoveryAccount, chain: optimism, transport: http(RPC) });
+const hash = await wallet.writeContract(request);
+console.log(`sent: https://optimistic.etherscan.io/tx/${hash}`);
+const receipt = await pub.waitForTransactionReceipt({ hash });
+if (receipt.status !== 'success') throw new Error('tx reverted. Run `npm start` again.');
+const custodyNow = await read('custodyOf', [FID]);
+if (!same(custodyNow, newAccount.address)) throw new Error(`custody is ${custodyNow}, expected ${newAccount.address}`);
+console.log(`\nDONE. fid ${FID} custody is now ${custodyNow}.`);
+console.log('Next: Farcaster app -> Sign In -> Seed phrase -> enter NEW_MNEMONIC. It can take a minute for the app to see the transfer.');
+
+function saveNewMnemonic(mnemonic) {
+  const line = `NEW_MNEMONIC="${mnemonic}"`;
+  let text = existsSync(ENV_PATH) ? readFileSync(ENV_PATH, 'utf8') : '';
+  text = text.replace(/^NEW_MNEMONIC=.*(\r?\n|$)/gm, '');
+  text += (text && !text.endsWith('\n') ? '\n' : '') + line + '\n';
+  writeFileSync(ENV_PATH, text, { mode: 0o600 });
+  chmodSync(ENV_PATH, 0o600);
+}
+```
+
+</CodeGroupItem>
+<CodeGroupItem label="package.json">
+
+```json
+{
+  "name": "recover-fid",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "dry-run": "node recover.mjs",
+    "start": "node recover.mjs --send"
+  },
+  "dependencies": { "viem": "^2.21.0" }
+}
+```
+
+</CodeGroupItem>
+<CodeGroupItem label=".env.example">
+
+```bash
+# REQUIRED. Your Farcaster ID: the number shown on your profile's About sheet in the Farcaster app.
+FID=
+
+# REQUIRED. Seed phrase (12 or 24 words, single spaces between words) of your RECOVERY wallet.
+# Not sure which wallet that is? Set only FID above, run `npm run dry-run`, and read the
+# `recovery=0x...` line it prints. Keep the quotes.
+RECOVERY_MNEMONIC=""
+
+# ALTERNATIVE to RECOVERY_MNEMONIC: the raw private key of that same wallet (starts with 0x).
+# RECOVERY_PRIVATE_KEY=0x...
+
+# Leave EMPTY. The script generates a new 12-word Farcaster seed phrase and writes it here.
+NEW_MNEMONIC=""
+
+# OPTIONAL. Only set if the default public OP Mainnet RPC gives you errors.
+# OP_RPC_URL=https://mainnet.optimism.io
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+Then install dependencies and create your `.env`:
+
+```bash
+npm install
+cp .env.example .env
+```
+
+<Callout type="danger">
+`.env` will hold two seed phrases in plain text. Never share it or commit it, and delete it when you're done.
+</Callout>
+
+### 2. Set your FID
+
+Open `.env` and set `FID=` to the FID you want to recover.
+
+### 3. Find the recovery wallet
+
+```bash
+npm run dry-run
+```
+
+With only `FID` set, the script reads the chain, simulates the recovery and exits without sending anything. Look for:
+
+```
+fid=1234 custody=0x... recovery=0xABCD...
+Only the recovery wallet 0xABCD... can run this recovery. It also pays the gas on Optimism.
+```
+
+`recovery=` is the wallet you need the key for. If you don't control it, stop here: nobody else can recover the account. If it's the Farcaster recovery proxy, use "Recover account via email" in the Farcaster app instead.
+
+Make sure that wallet has a little ETH on OP Mainnet.
+
+### 4. Add the recovery key
+
+Set `RECOVERY_MNEMONIC` in `.env` to the recovery wallet's seed phrase, or set `RECOVERY_PRIVATE_KEY` if you only have the raw key. Leave `NEW_MNEMONIC=""` empty.
+
+Run `npm run dry-run` again. This time the script:
+
+1. Checks that your key derives the onchain recovery address.
+2. Generates a new 12-word seed phrase, prints it and saves it to `.env` as `NEW_MNEMONIC`.
+3. Simulates `recover` from your recovery wallet.
+
+**Write the new seed phrase down.** It is your Farcaster account from here on. Later runs reuse the saved phrase, so you only ever get one.
+
+### 5. Recover
+
+```bash
+npm start
+```
+
+The script repeats the checks, sends the `recover` transaction from the recovery wallet and waits for it to confirm. It then checks that the FID's custody address is now the new phrase's address and prints `DONE`.
+
+### 6. Sign in
+
+In the Farcaster app, tap **Sign In** → **Seed phrase** and enter the new 12 words. If the account doesn't appear right away, wait a minute for the app to see the onchain transfer.
+
+### After recovery
+
+- Delete `.env`.
+- The recovery address hasn't changed. Keep that wallet's seed safe, since it's still the account's backup.
+- The old custody address can no longer act for the account. App keys it authorized stay valid onchain. If an old device may be in someone else's hands, remove its key under Settings → Connected apps.
+- To use the Farcaster recovery proxy from now on, [change the recovery address](/developers/guides/accounts/change-recovery) to `0x00000000FcB080a4D6c39a9354dA9EB9bC104cd7`.
+
+### Troubleshooting
+
+| Message                                                          | Meaning                                                                                                   |
+| ---------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `Set FID in .env`                                                | `FID=` is empty or not a number.                                                                          |
+| `fid N does not exist onchain`                                   | Wrong FID.                                                                                                |
+| `Your key derives 0x…, but the onchain recovery address is 0x…`  | Wrong seed, or a wallet that uses a non-standard derivation path. Only the key for `recovery=` works.     |
+| `Send a little ETH on Optimism to 0x…`                           | The recovery wallet has no ETH on OP Mainnet.                                                             |
+| `… already owns fid …`                                           | The address from `NEW_MNEMONIC` already has an FID. Set `NEW_MNEMONIC=""` and re-run.                     |
+| `Already recovered`                                              | The FID already belongs to `NEW_MNEMONIC`. Go to step 6.                                                  |
+| Simulation error with `Unauthorized`                             | The recovery address changed since step 3. Re-run step 3.                                                 |
+| `tx reverted`                                                    | Rare. Run `npm start` again.                                                                              |
+| `process.loadEnvFile is not a function`                          | Node.js is older than 22.                                                                                 |
+
+See the [Id Registry](/reference/contracts/reference/id-registry#recover) section for more details.

@@ -2,6 +2,10 @@
 
 Accounts can configure a recovery address to protect against the loss of the custody address. The recovery address will change the custody address of the account.
 
+<Callout type="warning">
+Accounts created in the Farcaster app use the Farcaster recovery proxy (`0x00000000FcB080a4D6c39a9354dA9EB9bC104cd7`), which lets Farcaster recover them by email. Once you change the recovery address away from the proxy, Farcaster can no longer recover the account, and only the new recovery address can. See [Recover an account](/developers/guides/accounts/recover-account) for how to recover it with that address.
+</Callout>
+
 ### Requirements
 
 - An ETH wallet that has an FID on OP Mainnet, with some ETH for gas costs.

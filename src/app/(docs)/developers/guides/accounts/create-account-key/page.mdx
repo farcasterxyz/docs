@@ -61,6 +61,10 @@ const deadline = BigInt(Math.floor(Date.now() / 1000) + 3600); // Set the signat
 const FARCASTER_RECOVERY_PROXY = '0x00000000FcB080a4D6c39a9354dA9EB9bC104cd7';
 ```
 
+<Callout type="info" title="Recovery address">
+This guide sets the app FID's recovery address to the Farcaster recovery proxy, so Farcaster can recover the account by email. If the recovery address is later changed to something else, Farcaster can no longer recover it. Whoever controls the new recovery address can follow [Recover an account](/developers/guides/accounts/recover-account) instead.
+</Callout>
+
 ### 2. Register an app FID
 
 Register an app FID if you don't already have one. To register an FID, you'll need to read the price from the ID Gateway, then call the ID Gateway and pay the registration price. You can read back your new FID from the Id Registry contract, or parse it from a `Register` event. Here, we'll read it from the registry contract.
