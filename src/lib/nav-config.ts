@@ -190,6 +190,10 @@ export const SECTIONS: SectionConfig[] = [
                 text: "Change recovery address",
                 link: "/developers/guides/accounts/change-recovery",
               },
+              {
+                text: "Recover an account",
+                link: "/developers/guides/accounts/recover-account",
+              },
             ],
           },
           {

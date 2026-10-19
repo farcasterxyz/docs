@@ -22,6 +22,8 @@ Users often set up separate wallets for their social apps and it's easy to lose 
 
 Users can set the recovery address to trusted services like the official Farcaster client or they can manage it themselves using a regular Ethereum wallet.
 
+Accounts created in the Farcaster app use the Farcaster recovery proxy, and Farcaster recovers them by email. If the recovery address has been changed away from the proxy, Farcaster can't recover the account. The owner of the recovery address can [recover it themselves](/developers/guides/accounts/recover-account).
+
 ## Resources
 
 ### Specifications
@@ -44,5 +46,6 @@ Users can set the recovery address to trusted services like the official Farcast
 - [Find account by username](/developers/guides/accounts/find-by-name) - Find an account by its username.
 - [Change custody address](/developers/guides/accounts/change-custody) - Change the address that owns your account.
 - [Change recovery address](/developers/guides/accounts/change-recovery) - Change the address that recovers your account.
+- [Recover an account](/developers/guides/accounts/recover-account) - Recover your account with a recovery address you control.
 - [Find account key requestor](/developers/guides/advanced/decode-key-metadata) - Find the app that the user granted an account key to.
 - [Query signups from replicator](/developers/guides/advanced/query-signups) - Query the number of signups from the replicator.

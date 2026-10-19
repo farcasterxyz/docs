@@ -339,6 +339,8 @@ The `to` address must not already own an fid.
 | deadline  | `uint256` | Signature deadline                                                        |
 | sig       | `bytes`   | EIP-712 [`Transfer`](#transfer-signature) signature from the `to` address |
 
+See [Recover an account](/developers/guides/accounts/recover-account) for a complete script that recovers an fid with a recovery address you control.
+
 ### changeRecoveryAddressFor
 
 Change the recovery address of an fid on behalf of the owner by providing a signature. The owner must sign an
