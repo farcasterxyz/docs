@@ -7,27 +7,42 @@ We will create a simple feed of casts from a list of FIDs and display them in re
 
 ## Installation
 
-Create an empty typescript project and install the hub-nodejs package
+Create an empty typescript project and install the hub-nodejs package, plus the two small libraries the example uses
 
 ```bash
-yarn add @farcaster/hub-nodejs
+yarn add @farcaster/hub-nodejs neverthrow javascript-time-ago
 ```
 
 ## 1. Create a client
 
-First, let's set up some constants and create a client to connect to the hub.
+First, let's set up some constants and create a client to connect to a Snapchain node.
 
 ```typescript
-import { getSSLHubRpcClient } from '@farcaster/hub-nodejs';
+import {
+  type CastAddMessage,
+  fromFarcasterTime,
+  getInsecureHubRpcClient,
+  getSSLHubRpcClient,
+  type HubRpcClient,
+  isCastAddMessage,
+  isUserDataAddMessage,
+  UserDataType,
+} from '@farcaster/hub-nodejs';
+import TimeAgo from 'javascript-time-ago';
+import en from 'javascript-time-ago/locale/en';
+import { err, ok, Result } from 'neverthrow';
+
+TimeAgo.addDefaultLocale(en);
+const timeAgo = new TimeAgo('en-US');
 
 /**
  * Populate the following constants with your own values
  */
 
-const HUB_URL = 'hoyt.farcaster.xyz:3383'; // URL of the Hub
+const HUB_URL = 'your-node.example.com:3383'; // host and gRPC port of a Snapchain node
 const FIDS = [2, 3]; // User IDs to fetch casts for
 
-// const client = getInsecureHubRpcClient(HUB_URL); // Use this if you're not using SSL
+// const client = getInsecureHubRpcClient(HUB_URL); // Use this for a node without TLS, such as your own read node
 const client = getSSLHubRpcClient(HUB_URL);
 ```
 
@@ -98,6 +113,17 @@ The raw cast data is not very readable. We'll write a function to convert the ti
 also resolve any mentions (only stored as fids and their location within the cast) to their fnames.
 
 ```typescript
+// Look up the fname of a mentioned fid, falling back to the fid itself
+const getFnameFromFid = async (fid: number, client: HubRpcClient) => {
+  const result = await client.getUserData({ fid, userDataType: UserDataType.USERNAME });
+  return ok(
+    result.match(
+      (message) => (isUserDataAddMessage(message) ? message.data.userDataBody.value : ''),
+      () => `${fid}!`
+    )
+  );
+};
+
 const castToString = async (
   cast: CastAddMessage,
   nameMapping: Map<number, string>,
