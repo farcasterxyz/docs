@@ -22,20 +22,22 @@ Accounts can publish five different kinds of messages to the network:
 
 An account must pay rent to keep their messages on the Farcaster network. Charging rent prevents users from spamming the network.
 
-An account can rent a unit of storage by making an onchain transaction to the Storage Registry. A unit of storage costs $7 today, lasts for one year and lets each account store a certain number of messages of each type. The limits for each type today are:
+An account can rent a unit of storage by making an onchain transaction to the Storage Registry. A unit of storage costs $0.20 today, lasts for one year and lets each account store a certain number of messages of each type. The limits for each type today are:
 
-- 5000 Casts
-- 2500 Reactions
-- 2500 Links
-- 50 Profile Data
-- 50 Verifications
+- 100 Casts
+- 200 Reactions
+- 200 Links
+- 25 Profile Data
+- 5 Verifications
 
-If an account exceeds its limit for a message type, the oldest message is pruned to make space for the new one. The user can keep using the network without paying for more storage and Hubs can keep the storage load under control. An account can always purchase more storage to increase its limits.
+Units rented before July 16, 2025 are larger and keep the limits they were rented with. An account's limit for each type is the sum over all of its active units.
+
+If an account exceeds its limit for a message type, the oldest message is pruned to make space for the new one. The user can keep using the network without paying for more storage and nodes can keep the storage load under control. An account can always purchase more storage to increase its limits.
 
 An account that lets its storage expire may lose all its messages. There is a 30-day grace period after a storage unit expires during which an account must renew or lose its messages.
 
 The price and size of each storage unit is re-calculated periodically to balance growth and quality of the network. See [FIP-6](https://github.com/farcasterxyz/protocol/discussions/98)
-for more details.
+for more details. Today's price and limits come from the [Storage Redenomination FIP](https://github.com/farcasterxyz/protocol/discussions/229).
 
 ## Deletion
 
