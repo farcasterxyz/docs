@@ -6,7 +6,7 @@ The example shows you how to:
 
 - Make onchain transactions to create an account
 - Rent a storage unit so you can publish messages
-- Add an account key to sign messages
+- Add an account key to sign messages, with no transaction
 - Acquire an fname for your account
 - Create, sign and publish messages
 
@@ -25,11 +25,10 @@ repository [here](https://github.com/farcasterxyz/hub-monorepo/tree/main/package
 import {
   ID_GATEWAY_ADDRESS,
   idGatewayABI,
-  KEY_GATEWAY_ADDRESS,
-  keyGatewayABI,
   ID_REGISTRY_ADDRESS,
   idRegistryABI,
   FarcasterNetwork,
+  MessageType,
 } from '@farcaster/hub-web';
 import { zeroAddress } from 'viem';
 import { optimism } from 'viem/chains';
@@ -62,11 +61,18 @@ const IdContract = {
   address: ID_REGISTRY_ADDRESS,
   chain: CHAIN,
 };
-const KeyContract = {
-  abi: keyGatewayABI,
-  address: KEY_GATEWAY_ADDRESS,
-  chain: CHAIN,
-};
+// Message types the account key may sign. KEY_ADD and KEY_REMOVE are never allowed.
+const SCOPES = [
+  MessageType.CAST_ADD,
+  MessageType.CAST_REMOVE,
+  MessageType.REACTION_ADD,
+  MessageType.REACTION_REMOVE,
+  MessageType.LINK_ADD,
+  MessageType.LINK_REMOVE,
+  MessageType.USER_DATA_ADD,
+];
+// Expires after 30 days unused; refreshed every time the key signs. Max 90 days.
+const TTL = 30 * 24 * 60 * 60;
 ```
 
 ## 2. Register and pay for storage
@@ -122,48 +128,76 @@ const fid = await getOrRegisterFid();
 
 ## 3. Add an account key
 
-Now, we will add an account key to the key registry. Every account key must have a signed metadata field from the fid of the app requesting it.
-In our case, we will use our own fid. Note, this requires you to sign a message with the private key of the address
-holding the fid. If this is not possible, register a separate fid for the app first and use that.
+Now we will add an account key. There is no transaction: the key is registered by submitting a `KEY_ADD` message to a
+node, so this step costs no gas and confirms in about a second.
+
+A `KEY_ADD` carries two EIP-712 signatures, both made here by the custody address of our fid:
+
+1. A signed key request from the app asking for the key. We use our own fid as the app for simplicity; a real app uses
+   its own fid.
+2. An authorization from the custody address of the fid receiving the key, covering the key, its scopes, its TTL and a
+   nonce. Nonces only go up, so we read the current one from the node first.
+
+The message itself is signed by the new key, as proof that whoever submits it holds that key.
 
 ```typescript
 const getOrRegisterAccountKey = async (fid: number) => {
   if (ACCOUNT_KEY_PRIVATE_KEY !== zeroAddress) {
-    // If a private key is provided, we assume the account key is already in the key registry
-    const privateKeyBytes = fromHex(ACCOUNT_KEY_PRIVATE_KEY, 'bytes');
-    const publicKeyBytes = ed25519.getPublicKey(privateKeyBytes);
-    return privateKeyBytes;
+    // If a private key is provided, we assume the account key was already added
+    return fromHex(ACCOUNT_KEY_PRIVATE_KEY, 'bytes');
   }
 
-  const privateKey = ed25519.utils.randomPrivateKey();
-  const publicKey = toHex(ed25519.getPublicKey(privateKey));
+  const privateKey = new Uint8Array(randomBytes(32));
+  const accountKey = new NobleEd25519Signer(privateKey);
+  const key = (await accountKey.getSignerKey())._unsafeUnwrap();
 
-  const eip712signer = new ViemLocalEip712Signer(appAccount);
-  // To add a key, we need to sign the metadata with the fid of the app we're adding the key on behalf of
-  // Use your personal fid, or register a separate fid for the app
-  const metadata = await eip712signer.getSignedKeyRequestMetadata({
-    requestFid: APP_FID,
-    key: APP_PRIVATE_KEY,
-    deadline: Math.floor(Date.now() / 1000) + 60 * 60, // 1 hour from now
-  });
+  // Nonces are strictly increasing per fid. Read the current value and add one.
+  const signers = await hubClient.getSignersByFid({ fid, requesterFids: [] });
+  if (signers.isErr()) {
+    throw new Error(`Error reading account keys: ${signers.error}`);
+  }
 
-  const { request: signerAddRequest } = await walletClient.simulateContract({
-    ...KeyContract,
-    functionName: 'add',
-    args: [1, publicKey, 1, metadata], // keyType, publicKey, metadataType, metadata
-  });
-
-  const accountKeyAddTxHash = await walletClient.writeContract(
-    signerAddRequest
+  const body = await makeKeyAddBody(
+    {
+      fid: BigInt(fid),
+      key,
+      scopes: SCOPES,
+      ttl: TTL,
+      nonce: signers.value.currentUserNonce + 1,
+      // Farcaster time, 1 hour from now
+      deadline: getFarcasterTime()._unsafeUnwrap() + 60 * 60,
+    },
+    new ViemLocalEip712Signer(account)
   );
-  await walletClient.waitForTransactionReceipt({ hash: accountKeyAddTxHash });
-  // Sleeping 30 seconds to allow hubs to pick up the accountKey tx
-  await new Promise((resolve) => setTimeout(resolve, 30000));
+  if (body.isErr()) {
+    throw new Error(`Error building KEY_ADD: ${body.error}`);
+  }
+
+  // The envelope is signed by the new key itself
+  const message = await makeKeyAdd(
+    body.value,
+    { fid, network: FC_NETWORK },
+    accountKey
+  );
+  if (message.isErr()) {
+    throw new Error(`Error creating KEY_ADD: ${message.error}`);
+  }
+  const result = await hubClient.submitMessage(message.value);
+  if (result.isErr()) {
+    throw new Error(`Error submitting KEY_ADD: ${result.error}`);
+  }
   return privateKey;
 };
 
 const accountPrivateKey = await getOrRegisterAccountKey(fid);
 ```
+
+`makeKeyAddBody`, `makeKeyAdd`, `NobleEd25519Signer`, `ViemLocalEip712Signer` and `getFarcasterTime` come from
+`@farcaster/hub-web` (or `@farcaster/hub-nodejs`), `fromHex` from `viem`, and `randomBytes` from `node:crypto`.
+Scopes, the sliding TTL, revoking a key and the errors a node can return are covered in Snapchain's
+[Writing messages](https://snapchain.farcaster.xyz/guides/writing-messages) guide. Keys can still be added onchain
+through the [Key Gateway](/reference/contracts/reference/key-gateway), see
+[Create an account key](/developers/guides/accounts/create-account-key).
 
 ## 4. Register an fname
 
