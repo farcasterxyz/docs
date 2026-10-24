@@ -14,7 +14,7 @@ We recommend starting with the [official client](https://www.farcaster.xyz/), de
 
 Accounts can issue keys which let apps write messages on their behalf. Users will typically issue a key to each Farcaster app they use.
 
-Keys are managed by the KeyRegistry contract. To add a key, you'll need to submit the public key of an EdDSA key pair along with a requestor signature. The requestor can be the account itself or an app that wants to operate on its behalf.
+There are two ways to add a key. Onchain, through the KeyRegistry contract: you submit the public key of an EdDSA key pair along with a requestor signature, in a transaction. Or gasless, with a `KEY_ADD` message submitted to a Snapchain node and authorized by an EIP-712 signature from the account's custody address. A gasless key costs no transaction, declares which message types it may sign, and expires if it goes unused. In both cases the requestor can be the account itself or an app that wants to operate on its behalf.
 
 ## Recovering an account
 

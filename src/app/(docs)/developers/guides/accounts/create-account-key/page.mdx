@@ -1,6 +1,14 @@
+import Callout from "@/components/Callout";
+
 # Create an account key
 
 An account can authorize account keys, which can create messages on its behalf.
+
+<Callout type="tip">
+This guide adds the key onchain, which needs ETH on OP Mainnet. Keys can also be added without a transaction, by
+submitting a gasless `KEY_ADD` message to a Snapchain node. See [Hello World](/developers/guides/basics/hello-world)
+and Snapchain's [Writing messages](https://snapchain.farcaster.xyz/guides/writing-messages) guide.
+</Callout>
 
 The owner of the account can revoke an account key at any time. To add an account key, you'll need to follow six steps:
 
