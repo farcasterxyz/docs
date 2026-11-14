@@ -97,15 +97,5 @@
       "destination": "https://miniapps.farcaster.xyz/docs/specification",
       "permanent": true
     }
-  ],
-  "rewrites": [
-    {
-      "source": "/snap",
-      "destination": "https://snap-docs.farcaster.xyz/snap"
-    },
-    {
-      "source": "/snap/:path*",
-      "destination": "https://snap-docs.farcaster.xyz/snap/:path*"
-    }
   ]
 }
